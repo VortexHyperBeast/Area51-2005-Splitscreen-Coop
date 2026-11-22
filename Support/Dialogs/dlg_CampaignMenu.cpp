@@ -21,6 +21,7 @@
 #include "../../Apps/GameApp/Config.hpp"    
 
 #include "Configuration/GameConfig.hpp"
+#include "NetworkMgr/Game/LocalCoop.hpp"
 
 //=========================================================================
 //  Main Menu Dialog
@@ -238,8 +239,8 @@ xbool dlg_campaign_menu::Create( s32                        UserID,
 
     SetNavText( xwstring(navText) );
 
-    // set the number of players to 1
-    g_PendingConfig.SetPlayerCount( 1 );
+    // set the number of players to 1 (2 only for the experimental local co-op)
+    g_PendingConfig.SetPlayerCount( LocalCoop_PlayerCount() );
 
     if( !(CONFIG_IS_AUTOSERVER || CONFIG_IS_AUTOCLIENT) )
     {

@@ -1840,6 +1840,18 @@ void state_mgr::SetupProfileListIndex( void )
             }
         }
     }
+
+#ifdef A51_LOCAL_COOP
+    // Co-op prototype: both local campaign players use the profile selected for
+    // player 1.  The profile data itself is not copied or modified.
+    if( (g_ActiveConfig.GetGameTypeID() == GAME_CAMPAIGN) &&
+        (g_ActiveConfig.GetPlayerCount()  >  1)           &&
+        (m_ProfileListIndex[0] != -1)                     &&
+        (m_ProfileListIndex[1] == -1) )
+    {
+        m_ProfileListIndex[1] = m_ProfileListIndex[0];
+    }
+#endif
 }
 
 //=========================================================================

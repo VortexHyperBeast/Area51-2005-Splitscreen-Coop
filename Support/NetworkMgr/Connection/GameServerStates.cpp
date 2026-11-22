@@ -62,6 +62,17 @@ void game_server::EnterState( server_state NewState )
 
         // Prepare the profile list so they map to local players 
         g_StateMgr.SetupProfileListIndex();
+#ifdef A51_LOCAL_COOP
+        // Co-op prototype: claim one pad per local campaign player, in order.
+        // Player 1 -> pad 0, player 2 -> pad 1 (see player::SetLocalPlayer).
+        if( (g_ActiveConfig.GetGameTypeID() == GAME_CAMPAIGN) && (m_LocalPlayerCount > 1) )
+        {
+            for( i = 0; i < m_LocalPlayerCount; i++ )
+            {
+                g_StateMgr.SetControllerRequested( i, TRUE );
+            }
+        }
+#endif
         GameMgr.Init();
 
         g_VoiceMgr.Init( (m_MaxClients > 0) );

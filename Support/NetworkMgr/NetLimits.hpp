@@ -10,7 +10,11 @@
 //==============================================================================
 
 #if defined(TARGET_DESKTOP) || defined(TARGET_MOBILE)
+#ifdef A51_LOCAL_COOP
+const s32   NET_MAX_PER_CLIENT          =     2;        // Experimental: 2 local campaign players (A51_LOCAL_COOP).
+#else
 const s32   NET_MAX_PER_CLIENT          =     1;        // No split-screen local client.
+#endif
 const s32   NET_MAX_LOCAL_CLIENTS       =    31;        // Client-hosted servers can host 31 remote clients.
 #endif
 

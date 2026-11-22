@@ -112,6 +112,11 @@ target_compile_definitions( a51_build_options INTERFACE
     "$<$<STREQUAL:$<CONFIG>,EDITOR-Debug>:X_EDITOR>"
 )
 
+option( A51_LOCAL_COOP "Experimental: allow two local players in the campaign (opt-in at run time, see Support/NetworkMgr/Game/LocalCoop.hpp)" OFF )
+if( A51_LOCAL_COOP )
+    target_compile_definitions( a51_build_options INTERFACE A51_LOCAL_COOP )
+endif()
+
 if( MSVC )
     # Allow parallel cl.exe invocations.
     target_compile_options( a51_build_options INTERFACE /FS )

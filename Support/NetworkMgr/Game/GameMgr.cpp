@@ -1162,8 +1162,14 @@ void game_mgr::Connect(       s32&    PlayerIndex,
 
     if( m_GameType == GAME_CAMPAIGN )
     {
-        ASSERT( !m_Score.Player[0].IsConnected );
-        s_PlayerCursor = 0;
+#ifdef A51_LOCAL_COOP
+        // Co-op prototype: only the first local player is forced into slot 0.
+        if( m_Score.NConnected == 0 )
+#endif
+        {
+            ASSERT( !m_Score.Player[0].IsConnected );
+            s_PlayerCursor = 0;
+        }
     }
 
     if( (m_Score.NConnected == 0) && (!m_GameInProgress) )
@@ -1552,8 +1558,13 @@ void game_mgr::CreatePlayer( s32 PlayerIndex )
 
     if( m_GameType == GAME_CAMPAIGN )
     {
+#ifdef A51_LOCAL_COOP
+        ASSERT( IN_RANGE( 0, PlayerIndex, LOCAL_COOP_MAX_PLAYERS-1 ) );
+        ASSERT( g_NetworkMgr.IsLocal( PlayerIndex ) );
+#else
         ASSERT( PlayerIndex == 0 );
         ASSERT( g_NetworkMgr.IsLocal( 0 ) );
+#endif
 
         // The campaign logic must personally create the player in order to 
         // force it to have a predefined guid.  This happens in BeginGame which
@@ -1572,6 +1583,22 @@ void game_mgr::CreatePlayer( s32 PlayerIndex )
             // existing player.  So nothing more to do.  For now.
         }
         SlotIter.End();
+
+#ifdef A51_LOCAL_COOP
+        // Co-op prototype: the loop above leaves the LAST player it saw in
+        // pActor, which is only right when there is one.  Bind this slot to the
+        // player object the campaign logic created for it in BeginGame.
+        if( LocalCoop_IsActive() )
+        {
+            guid   CoopGuid  = static_cast<logic_campaign*>( pGameLogic )->GetCampaignPlayerGuid( PlayerIndex );
+            actor* pCoopActor = (actor*)g_ObjMgr.GetObjectByGuid( CoopGuid );
+
+            if( pCoopActor )
+            {
+                pActor = pCoopActor;
+            }
+        }
+#endif
 
         if( pActor )
         {                   

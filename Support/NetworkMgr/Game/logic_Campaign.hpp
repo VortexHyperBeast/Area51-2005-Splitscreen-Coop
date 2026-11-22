@@ -12,6 +12,7 @@
 //==============================================================================
 
 #include "logic_Base.hpp"
+#include "LocalCoop.hpp"
 
 //==============================================================================
 //    TYPES
@@ -31,6 +32,9 @@ virtual        ~logic_campaign      ( void );
 virtual void    Activate            ( void );
 virtual void    PlayerDied          ( s32 Victim, s32 Killer, s32 PainType );
 virtual void    RequestSpawn        ( s32 PlayerIndex, xbool Immediate = FALSE );
+#ifdef A51_LOCAL_COOP
+        guid    GetCampaignPlayerGuid( s32 PlayerIndex ) const;
+#endif
 virtual void    SetPlayerSpawnInfo  ( const vector3& Position, 
                                             radian   Pitch, 
                                             radian   Yaw, 
@@ -45,6 +49,10 @@ protected:
 
 virtual void    AdvanceTime     ( f32 DeltaTime );
 virtual void    BeginGame       ( void );
+#ifdef A51_LOCAL_COOP
+        void    CreateExtraPlayer( s32 Index, const vector3& Position, radian Pitch, radian Yaw, s32 Zone1, s32 Zone2 );
+        void    WriteProbe      ( f32 DeltaTime );
+#endif
 
 /*
 virtual void    Initialize      ( void );
@@ -75,6 +83,10 @@ virtual void    ProvideUpdate   (       bitstream& BitStream, u32& DirtyBits );
         radian  m_PlayerSpawnYaw;
         s32     m_PlayerSpawnZone;
         guid    m_PlayerSpawnGuid;
+#ifdef A51_LOCAL_COOP
+        guid    m_PlayerGuid[ LOCAL_COOP_MAX_PLAYERS ];     // [0] is m_PlayerSpawnGuid
+        f32     m_ProbeTimer;
+#endif
 };
 
 //==============================================================================
