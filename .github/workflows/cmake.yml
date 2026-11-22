@@ -2,6 +2,7 @@ name: CMake portability
 
 on:
   push:
+    branches-ignore: ['coop/**']
   pull_request:
 
 jobs:

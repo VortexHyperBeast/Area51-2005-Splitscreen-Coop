@@ -1,0 +1,243 @@
+name: Co-op build and test
+
+# Builds the experimental local-co-op branch in the cloud and reports back.
+# Runs on every push to a branch named coop/... and can be started by hand.
+# Text reports (build logs, test results) are written to the branch qa-results so they can be
+# read without opening this page.  Game data is never published.
+
+on:
+  push:
+    branches: ['coop/**']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: coop-build-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  # Bump to throw away the cached shader kits.
+  KIT_VERSION: v1
+
+jobs:
+  inspect-assets:
+    name: Inspect the Asset Pack
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download and inspect the Asset Pack
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          sudo mkdir -p /mnt/assets
+          sudo chown "$USER" /mnt/assets
+          bash tools/coop-qa/inspect_assets.sh report /mnt/assets
+
+      - name: Publish report
+        if: always()
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p report
+          echo "run: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" > report/meta.txt
+          echo "sha: $GITHUB_SHA" >> report/meta.txt
+          echo "job status: ${{ job.status }}" >> report/meta.txt
+          bash tools/coop-qa/publish_results.sh report "runs/${{ github.run_number }}/inspect"
+
+  windows:
+    name: Windows x64 (MSVC), co-op build
+    runs-on: windows-2022
+    timeout-minutes: 300
+    env:
+      _CL_: '/w'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Restore shader kit
+        id: kit
+        uses: actions/cache/restore@v4
+        with:
+          path: build/shaders/GameApp/release
+          key: shaderkit-windows-${{ env.KIT_VERSION }}-${{ hashFiles('Apps/GameApp/media/shaders/**', 'Apps/ShaderTool/**', 'xCore/Entropy/Shader/**', 'xCore/3rdParty/DXC/**', 'cmake/A51ShaderKit.cmake') }}
+
+      - name: Configure host shader tools
+        if: steps.kit.outputs.cache-hit != 'true'
+        run: |
+          $ErrorActionPreference = 'Continue'
+          New-Item -ItemType Directory -Force logs | Out-Null
+          cmake --preset shader-tools 2>&1 | Tee-Object -FilePath logs/shader-tools-configure.txt
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+      - name: Prepare shader kit
+        if: steps.kit.outputs.cache-hit != 'true'
+        run: |
+          $ErrorActionPreference = 'Continue'
+          cmake --build --preset prepare-shaders --parallel 4 -- /p:WarningLevel=0 /clp:ErrorsOnly /nologo 2>&1 | Tee-Object -FilePath logs/shader-kit.txt
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+      - name: Save shader kit
+        if: steps.kit.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: build/shaders/GameApp/release
+          key: ${{ steps.kit.outputs.cache-primary-key }}
+
+      - name: Configure game (co-op switch on)
+        run: |
+          $ErrorActionPreference = 'Continue'
+          New-Item -ItemType Directory -Force logs | Out-Null
+          cmake --preset windows-msvc-x64 -DA51_LOCAL_COOP=ON 2>&1 | Tee-Object -FilePath logs/configure.txt
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          $hit = Select-String -Path build/windows-msvc-x64/CMakeCache.txt -Pattern '^A51_LOCAL_COOP:BOOL=ON$'
+          if (-not $hit) { throw 'A51_LOCAL_COOP is not ON in the CMake cache' }
+
+      - name: Build A51 (Release)
+        run: |
+          $ErrorActionPreference = 'Continue'
+          cmake --build build/windows-msvc-x64 --config Release --target A51 --parallel 4 -- /p:WarningLevel=0 /clp:ErrorsOnly /nologo 2>&1 | Tee-Object -FilePath logs/build.txt
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+      - name: Package runtime
+        run: |
+          cmake "-DA51_BINARY=build/windows-msvc-x64/Apps/GameApp/Release/A51.exe" "-DA51_SHADER_KIT=build/shaders/GameApp/release" "-DA51_PACKAGE_DIR=build/packages/windows-x64" -P cmake/PackageRuntime.cmake
+
+      - name: Upload build
+        uses: actions/upload-artifact@v4
+        with:
+          name: A51-coop-stage1-win-x64
+          path: build/packages/windows-x64
+          if-no-files-found: error
+
+      - name: Publish build report
+        if: always()
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p report
+          echo "run: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" > report/meta.txt
+          echo "sha: $GITHUB_SHA" >> report/meta.txt
+          echo "job status: ${{ job.status }}" >> report/meta.txt
+          for f in logs/*.txt; do
+            [ -f "$f" ] || continue
+            b="$(basename "$f" .txt)"
+            tail -n 250 "$f" > "report/$b-tail.txt"
+            grep -n -E "error|FAILED|fatal" "$f" | head -150 > "report/$b-errors.txt" || true
+          done
+          bash tools/coop-qa/publish_results.sh report "runs/${{ github.run_number }}/windows"
+
+  linux:
+    name: Linux x64 (GCC), co-op build, QA configuration
+    runs-on: ubuntu-24.04
+    timeout-minutes: 300
+    env:
+      CFLAGS: '-w'
+      CXXFLAGS: '-w'
+      CCACHE_DIR: ${{ github.workspace }}/.ccache
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            ninja-build pkg-config ccache \
+            libasound2-dev libpulse-dev libaudio-dev libjack-dev libsndio-dev \
+            libpipewire-0.3-dev \
+            libx11-dev libxext-dev libxrandr-dev libxcursor-dev libxfixes-dev libxi-dev \
+            libxss-dev libxtst-dev libxkbcommon-dev libwayland-dev libdecor-0-dev \
+            libdrm-dev libgbm-dev libgl1-mesa-dev libgles2-mesa-dev libegl1-mesa-dev \
+            libdbus-1-dev libibus-1.0-dev libudev-dev libfribidi-dev libthai-dev \
+            libusb-1.0-0-dev liburing-dev
+
+      - name: Restore shader kit
+        id: kit
+        uses: actions/cache/restore@v4
+        with:
+          path: build/shaders/GameApp/release
+          key: shaderkit-linux-${{ env.KIT_VERSION }}-${{ hashFiles('Apps/GameApp/media/shaders/**', 'Apps/ShaderTool/**', 'xCore/Entropy/Shader/**', 'xCore/3rdParty/DXC/**', 'cmake/A51ShaderKit.cmake') }}
+
+      - name: Configure host shader tools
+        if: steps.kit.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p logs
+          cmake --preset shader-tools 2>&1 | tee logs/shader-tools-configure.txt
+
+      - name: Prepare shader kit
+        if: steps.kit.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p logs
+          cmake --build --preset prepare-shaders --parallel 4 2>&1 | tee logs/shader-kit.txt
+
+      - name: Save shader kit
+        if: steps.kit.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: build/shaders/GameApp/release
+          key: ${{ steps.kit.outputs.cache-primary-key }}
+
+      - name: Restore compiler cache
+        uses: actions/cache/restore@v4
+        with:
+          path: .ccache
+          key: ccache-linux-${{ github.run_id }}
+          restore-keys: ccache-linux-
+
+      - name: Configure game (co-op switch on)
+        run: |
+          mkdir -p logs
+          cmake --preset linux-gcc-x64 -DA51_LOCAL_COOP=ON \
+            -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
+            2>&1 | tee logs/configure.txt
+          grep -q '^A51_LOCAL_COOP:BOOL=ON$' build/linux-gcc-x64/CMakeCache.txt
+
+      - name: Build A51 (QA configuration)
+        run: |
+          mkdir -p logs
+          cmake --build build/linux-gcc-x64 --config QA --target A51 --parallel 4 2>&1 | tee logs/build.txt
+          ccache -s | tee logs/ccache.txt
+
+      - name: Save compiler cache
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: .ccache
+          key: ccache-linux-${{ github.run_id }}
+
+      - name: Package runtime
+        run: |
+          BIN="$(find build/linux-gcc-x64/Apps/GameApp -maxdepth 2 -name A51 -type f | head -n 1)"
+          echo "binary: $BIN"
+          test -n "$BIN"
+          cmake "-DA51_BINARY=$BIN" "-DA51_SHADER_KIT=build/shaders/GameApp/release" "-DA51_PACKAGE_DIR=build/packages/linux-x64-qa" -P cmake/PackageRuntime.cmake
+
+      - name: Upload build
+        uses: actions/upload-artifact@v4
+        with:
+          name: A51-coop-stage1-linux-x64-qa
+          path: build/packages/linux-x64-qa
+          if-no-files-found: error
+
+      - name: Publish build report
+        if: always()
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p report
+          echo "run: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" > report/meta.txt
+          echo "sha: $GITHUB_SHA" >> report/meta.txt
+          echo "job status: ${{ job.status }}" >> report/meta.txt
+          for f in logs/*.txt; do
+            [ -f "$f" ] || continue
+            b="$(basename "$f" .txt)"
+            tail -n 250 "$f" > "report/$b-tail.txt"
+            grep -n -E "error|FAILED|undefined reference|fatal" "$f" | head -150 > "report/$b-errors.txt" || true
+          done
+          bash tools/coop-qa/publish_results.sh report "runs/${{ github.run_number }}/linux"
