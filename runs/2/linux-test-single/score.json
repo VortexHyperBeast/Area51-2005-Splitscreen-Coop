@@ -1,0 +1,49 @@
+{
+ "expect": "single",
+ "ok": false,
+ "failed": [
+  "startup",
+  "bot_drove",
+  "completed"
+ ],
+ "no_evidence": [
+  "walk_single"
+ ],
+ "results": [
+  {
+   "name": "startup",
+   "status": "FAIL",
+   "detail": "the game never started a campaign level (last states: SM_MAIN_MENU, SM_PROFILE_SELECT, SM_CAMPAIGN_MENU, SM_LEVEL_SELECT)"
+  },
+  {
+   "name": "asserts",
+   "status": "INFO",
+   "detail": "3 assertion(s) were logged and skipped. First: #1 /home/runner/work/area51-pc/area51-pc/Support/StateMgr/StateMgr.cpp:1834 expr=[count > 0] msg=[]; #2 /home/runner/work/area51-pc/area51-pc/Support/StateMgr/StateMgr.hpp:411 expr=[index >= 0] msg=[]; #3 /home/runner/work/area51-pc/area51-pc/Support/StateMgr/StateMgr.hpp:408 expr=[playerID < SM_PROFILE_COUNT] msg=[]"
+  },
+  {
+   "name": "cinema",
+   "status": "INFO",
+   "detail": "no cinematic during the script"
+  },
+  {
+   "name": "one_player",
+   "status": "PASS",
+   "detail": "only player 0 exists, renderer drew 1 view"
+  },
+  {
+   "name": "bot_drove",
+   "status": "FAIL",
+   "detail": "only 0 of 36 scheduled control changes appear in the log"
+  },
+  {
+   "name": "completed",
+   "status": "FAIL",
+   "detail": "no 'script finished' line (crash or hang?)"
+  },
+  {
+   "name": "walk_single",
+   "status": "NO-EVIDENCE",
+   "detail": "the single player walked 0cm in the best walk phase"
+  }
+ ]
+}

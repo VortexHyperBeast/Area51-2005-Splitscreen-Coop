@@ -1,0 +1,19 @@
+mode=single expect=single window=640x360 cycles=3 max=3300s startup-gate=1200s
+host: Linux 7.0.0-1014-aws x86_64, 4 cpus
+install ready (7 shader packages)
+wrote /mnt/pack/work/single/script.txt: 33 phases, 109 s of game time
+running under gdb
+game started, pid 8347
+game ended: exit code 0 after 10s (124 = stopped by timeout, 137/143 = killed, 139 = crash)
+game output: 70 lines, a51_qa_bot.log: 12 lines
+coopqa score: expect=single log=/home/runner/work/area51-pc/area51-pc/qa-out/a51_qa_bot.log (12 lines, 0 not understood)
+ FAIL        startup      the game never started a campaign level (last states: SM_MAIN_MENU, SM_PROFILE_SELECT, SM_CAMPAIGN_MENU, SM_LEVEL_SELECT)
+ INFO        asserts      3 assertion(s) were logged and skipped. First: #1 /home/runner/work/area51-pc/area51-pc/Support/StateMgr/StateMgr.cpp:1834 expr=[count > 0] msg=[]; #2 /home/runner/work/area51-pc/area51-pc/Support/StateMgr/StateMgr.hpp:411 expr=[index >= 0] msg=[]; #3 /home/runner/work/area51-pc/area51-pc/Support/StateMgr/StateMgr.hpp:408 expr=[playerID < SM_PROFILE_COUNT] msg=[]  (info)
+ INFO        cinema       no cinematic during the script  (info)
+ PASS        one_player   only player 0 exists, renderer drew 1 view
+ FAIL        bot_drove    only 0 of 36 scheduled control changes appear in the log
+ FAIL        completed    no 'script finished' line (crash or hang?)
+ NO-EVIDENCE walk_single  the single player walked 0cm in the best walk phase
+RESULT: FAIL (3 failed: startup,bot_drove,completed; 1 without evidence: walk_single)
+control twin (single-player log judged as co-op): RESULT: FAIL (5 failed: startup,two_players,separate_pads,bot_drove,completed; 11 without evidence: walk0,walk1,walkboth,look0,look1,fire0,fire1,reload0,reload1,pad_mapping,split_view)
+RESULT: FAIL

@@ -1,0 +1,12 @@
+wall=355 qt=-1 QA bot starting (wall limit 3300 s, menu pulses 1)
+wall=355 qt=-1 script '/mnt/pack/work/single/script.txt' loaded: 36 events, quit at 109600 ms
+wall=355 qt=-1 pad 0 attached: instance id 3, is_gamepad=1
+wall=355 qt=-1 pad 1 attached: instance id 4, is_gamepad=1
+wall=1303 qt=-1 state SM_IDLE -> SM_PRESS_START_SCREEN
+wall=1323 qt=-1 state SM_PRESS_START_SCREEN -> SM_MAIN_MENU
+wall=1430 qt=-1 state SM_MAIN_MENU -> SM_PROFILE_SELECT
+wall=1436 qt=-1 state SM_PROFILE_SELECT -> SM_CAMPAIGN_MENU
+wall=1444 qt=-1 state SM_CAMPAIGN_MENU -> SM_LEVEL_SELECT
+wall=5009 qt=-1 ASSERT #1 /home/runner/work/area51-pc/area51-pc/Support/StateMgr/StateMgr.cpp:1834 expr=[count > 0] msg=[]
+wall=5009 qt=-1 ASSERT #2 /home/runner/work/area51-pc/area51-pc/Support/StateMgr/StateMgr.hpp:411 expr=[index >= 0] msg=[]
+wall=5009 qt=-1 ASSERT #3 /home/runner/work/area51-pc/area51-pc/Support/StateMgr/StateMgr.hpp:408 expr=[playerID < SM_PROFILE_COUNT] msg=[]

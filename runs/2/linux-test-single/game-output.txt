@@ -1,0 +1,142 @@
+=== first 150 lines
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[New Thread 0x7ffff27ac6c0 (LWP 8363)]
+[New Thread 0x7ffff17ab6c0 (LWP 8364)]
+[New Thread 0x7ffff039a6c0 (LWP 8365)]
+[New Thread 0x7fffed3716c0 (LWP 8366)]
+[New Thread 0x7fffecb706c0 (LWP 8367)]
+[New Thread 0x7fffe7fff6c0 (LWP 8368)]
+[New Thread 0x7fffe77fe6c0 (LWP 8369)]
+[New Thread 0x7fffe6ffd6c0 (LWP 8370)]
+[New Thread 0x7fffe67fc6c0 (LWP 8371)]
+[New Thread 0x7fffe5ffb6c0 (LWP 8372)]
+[New Thread 0x7fffe57fa6c0 (LWP 8373)]
+[New Thread 0x7fffcd3ff6c0 (LWP 8375)]
+[New Thread 0x7fffc7fff6c0 (LWP 8376)]
+[New Thread 0x7fffbffff6c0 (LWP 8377)]
+[New Thread 0x7fffc6ffe6c0 (LWP 8378)]
+[New Thread 0x7fffc5ffd6c0 (LWP 8379)]
+[New Thread 0x7fffbeffe6c0 (LWP 8380)]
+[New Thread 0x7fffbdffd6c0 (LWP 8381)]
+[New Thread 0x7fffaffff6c0 (LWP 8382)]
+[New Thread 0x7fffaeffe6c0 (LWP 8383)]
+[New Thread 0x7fffadffd6c0 (LWP 8384)]
+[New Thread 0x7fff9afff6c0 (LWP 8385)]
+[New Thread 0x7fff99ffe6c0 (LWP 8386)]
+A51 Vulkan swapchain: video=x11 present=vsync requested-images=3 actual-images=3 frames-in-flight=2 surface-min=3 surface-max=0 size=640x360
+[New Thread 0x7fff8ffff6c0 (LWP 8387)]
+[New Thread 0x7fff8effe6c0 (LWP 8388)]
+A51 Vulkan swapchain: video=x11 present=vsync requested-images=3 actual-images=3 frames-in-flight=2 surface-min=3 surface-max=0 size=640x360
+[Thread 0x7fff99ffe6c0 (LWP 8386) exited]
+[Thread 0x7fff9afff6c0 (LWP 8385) exited]
+[New Thread 0x7fff99ffe6c0 (LWP 8389)]
+[New Thread 0x7fff9afff6c0 (LWP 8390)]
+A51 Vulkan swapchain: video=x11 present=vsync requested-images=3 actual-images=3 frames-in-flight=2 surface-min=3 surface-max=0 size=640x360
+[Thread 0x7fff8effe6c0 (LWP 8388) exited]
+[Thread 0x7fff8ffff6c0 (LWP 8387) exited]
+[New Thread 0x7fffee27c6c0 (LWP 8391)]
+[New Thread 0x7fff8effe6c0 (LWP 8392)]
+[New Thread 0x7fff8ffff6c0 (LWP 8393)]
+[New Thread 0x7fff8dffd6c0 (LWP 8394)]
+[New Thread 0x7fffee2326c0 (LWP 8395)]
+[New Thread 0x7fffec1bd6c0 (LWP 8396)]
+A51 pipeline begin: request=1 name='CompositePipeline' vs=0f9b8ffad15abef9 ps=e25c03b0699a41dd
+A51 pipeline ready: request=1 ms=0.56
+A51 pipeline begin: request=2 name='UIPipeline' vs=af61eb56773a1252 ps=16ebfd2fd2e33a5c
+A51 pipeline ready: request=2 ms=0.68
+A51 pipeline begin: request=3 name='UIPipeline' vs=af61eb56773a1252 ps=16ebfd2fd2e33a5c
+A51 pipeline ready: request=3 ms=0.65
+A51 pipeline begin: request=4 name='UIPipeline' vs=af61eb56773a1252 ps=16ebfd2fd2e33a5c
+A51 pipeline ready: request=4 ms=0.60
+A51 pipeline begin: request=5 name='UIPipeline' vs=af61eb56773a1252 ps=16ebfd2fd2e33a5c
+A51 pipeline ready: request=5 ms=0.66
+A51 pipeline begin: request=6 name='UIPipeline' vs=af61eb56773a1252 ps=16ebfd2fd2e33a5c
+A51 pipeline ready: request=6 ms=0.60
+A51 pipeline begin: request=7 name='UIPipeline' vs=af61eb56773a1252 ps=16ebfd2fd2e33a5c
+A51 pipeline ready: request=7 ms=0.57
+
+Thread 1 "Idle" received signal SIGSEGV, Segmentation fault.
+0x0000555555aa20d4 in player_profile::GetAvatarID() const ()
+#0  0x0000555555aa20d4 in player_profile::GetAvatarID() const ()
+#1  0x0000555555aa11e7 in game_server::EnterState(server_state) ()
+#2  0x0000555555ada923 in game_server::Init(net_socket&, int, int) ()
+#3  0x0000555555ac8937 in network_mgr::BecomeServer() ()
+#4  0x0000555555848f79 in state_mgr::UpdateLevelSelect() ()
+#5  0x000055555583fd9a in state_mgr::UpdateState(sm_states, float) ()
+#6  0x000055555583e36d in state_mgr::Update(float) ()
+#7  0x000055555565a91d in UpdateFrontEnd(FramePacer&, FrameTiming&) ()
+#8  0x000055555565cddc in RunFrontEnd() ()
+#9  0x000055555565dd86 in AppMain(int, char**) ()
+#10 0x000055555565e465 in main ()
+=== last 300 lines
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[New Thread 0x7ffff27ac6c0 (LWP 8363)]
+[New Thread 0x7ffff17ab6c0 (LWP 8364)]
+[New Thread 0x7ffff039a6c0 (LWP 8365)]
+[New Thread 0x7fffed3716c0 (LWP 8366)]
+[New Thread 0x7fffecb706c0 (LWP 8367)]
+[New Thread 0x7fffe7fff6c0 (LWP 8368)]
+[New Thread 0x7fffe77fe6c0 (LWP 8369)]
+[New Thread 0x7fffe6ffd6c0 (LWP 8370)]
+[New Thread 0x7fffe67fc6c0 (LWP 8371)]
+[New Thread 0x7fffe5ffb6c0 (LWP 8372)]
+[New Thread 0x7fffe57fa6c0 (LWP 8373)]
+[New Thread 0x7fffcd3ff6c0 (LWP 8375)]
+[New Thread 0x7fffc7fff6c0 (LWP 8376)]
+[New Thread 0x7fffbffff6c0 (LWP 8377)]
+[New Thread 0x7fffc6ffe6c0 (LWP 8378)]
+[New Thread 0x7fffc5ffd6c0 (LWP 8379)]
+[New Thread 0x7fffbeffe6c0 (LWP 8380)]
+[New Thread 0x7fffbdffd6c0 (LWP 8381)]
+[New Thread 0x7fffaffff6c0 (LWP 8382)]
+[New Thread 0x7fffaeffe6c0 (LWP 8383)]
+[New Thread 0x7fffadffd6c0 (LWP 8384)]
+[New Thread 0x7fff9afff6c0 (LWP 8385)]
+[New Thread 0x7fff99ffe6c0 (LWP 8386)]
+A51 Vulkan swapchain: video=x11 present=vsync requested-images=3 actual-images=3 frames-in-flight=2 surface-min=3 surface-max=0 size=640x360
+[New Thread 0x7fff8ffff6c0 (LWP 8387)]
+[New Thread 0x7fff8effe6c0 (LWP 8388)]
+A51 Vulkan swapchain: video=x11 present=vsync requested-images=3 actual-images=3 frames-in-flight=2 surface-min=3 surface-max=0 size=640x360
+[Thread 0x7fff99ffe6c0 (LWP 8386) exited]
+[Thread 0x7fff9afff6c0 (LWP 8385) exited]
+[New Thread 0x7fff99ffe6c0 (LWP 8389)]
+[New Thread 0x7fff9afff6c0 (LWP 8390)]
+A51 Vulkan swapchain: video=x11 present=vsync requested-images=3 actual-images=3 frames-in-flight=2 surface-min=3 surface-max=0 size=640x360
+[Thread 0x7fff8effe6c0 (LWP 8388) exited]
+[Thread 0x7fff8ffff6c0 (LWP 8387) exited]
+[New Thread 0x7fffee27c6c0 (LWP 8391)]
+[New Thread 0x7fff8effe6c0 (LWP 8392)]
+[New Thread 0x7fff8ffff6c0 (LWP 8393)]
+[New Thread 0x7fff8dffd6c0 (LWP 8394)]
+[New Thread 0x7fffee2326c0 (LWP 8395)]
+[New Thread 0x7fffec1bd6c0 (LWP 8396)]
+A51 pipeline begin: request=1 name='CompositePipeline' vs=0f9b8ffad15abef9 ps=e25c03b0699a41dd
+A51 pipeline ready: request=1 ms=0.56
+A51 pipeline begin: request=2 name='UIPipeline' vs=af61eb56773a1252 ps=16ebfd2fd2e33a5c
+A51 pipeline ready: request=2 ms=0.68
+A51 pipeline begin: request=3 name='UIPipeline' vs=af61eb56773a1252 ps=16ebfd2fd2e33a5c
+A51 pipeline ready: request=3 ms=0.65
+A51 pipeline begin: request=4 name='UIPipeline' vs=af61eb56773a1252 ps=16ebfd2fd2e33a5c
+A51 pipeline ready: request=4 ms=0.60
+A51 pipeline begin: request=5 name='UIPipeline' vs=af61eb56773a1252 ps=16ebfd2fd2e33a5c
+A51 pipeline ready: request=5 ms=0.66
+A51 pipeline begin: request=6 name='UIPipeline' vs=af61eb56773a1252 ps=16ebfd2fd2e33a5c
+A51 pipeline ready: request=6 ms=0.60
+A51 pipeline begin: request=7 name='UIPipeline' vs=af61eb56773a1252 ps=16ebfd2fd2e33a5c
+A51 pipeline ready: request=7 ms=0.57
+
+Thread 1 "Idle" received signal SIGSEGV, Segmentation fault.
+0x0000555555aa20d4 in player_profile::GetAvatarID() const ()
+#0  0x0000555555aa20d4 in player_profile::GetAvatarID() const ()
+#1  0x0000555555aa11e7 in game_server::EnterState(server_state) ()
+#2  0x0000555555ada923 in game_server::Init(net_socket&, int, int) ()
+#3  0x0000555555ac8937 in network_mgr::BecomeServer() ()
+#4  0x0000555555848f79 in state_mgr::UpdateLevelSelect() ()
+#5  0x000055555583fd9a in state_mgr::UpdateState(sm_states, float) ()
+#6  0x000055555583e36d in state_mgr::Update(float) ()
+#7  0x000055555565a91d in UpdateFrontEnd(FramePacer&, FrameTiming&) ()
+#8  0x000055555565cddc in RunFrontEnd() ()
+#9  0x000055555565dd86 in AppMain(int, char**) ()
+#10 0x000055555565e465 in main ()
