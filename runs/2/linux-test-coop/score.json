@@ -1,0 +1,136 @@
+{
+ "expect": "coop",
+ "ok": false,
+ "failed": [
+  "startup",
+  "two_players",
+  "separate_pads",
+  "bot_drove",
+  "completed"
+ ],
+ "no_evidence": [
+  "walk0",
+  "walk1",
+  "walkboth",
+  "look0",
+  "look1",
+  "fire0",
+  "fire1",
+  "reload0",
+  "reload1",
+  "pad_mapping",
+  "split_view"
+ ],
+ "results": [
+  {
+   "name": "startup",
+   "status": "FAIL",
+   "detail": "the game never started a campaign level (last states: SM_MAIN_MENU, SM_PROFILE_SELECT, SM_CAMPAIGN_MENU, SM_LEVEL_SELECT)"
+  },
+  {
+   "name": "asserts",
+   "status": "INFO",
+   "detail": "7 assertion(s) were logged and skipped. First: #1 /home/runner/work/area51-pc/area51-pc/Support/Configuration/GameConfig.cpp:110 expr=[IN_RANGE( m_Config.Players, m_Config.MaxPlayers, 32 )] msg=[]; #2 /home/runner/work/area51-pc/area51-pc/Support/Configuration/GameConfig.cpp:83 expr=[g_PendingConfig.IsValid()] msg=[]; #3 /home/runner/work/area51-pc/area51-pc/Support/Configuration/GameConfig.cpp:110 expr=[IN_RANGE( m_Config.Players, m_Config.MaxPlayers, 32 )] msg=[]"
+  },
+  {
+   "name": "cinema",
+   "status": "INFO",
+   "detail": "no cinematic during the script"
+  },
+  {
+   "name": "two_players",
+   "status": "FAIL",
+   "detail": "players seen: []"
+  },
+  {
+   "name": "separate_pads",
+   "status": "FAIL",
+   "detail": "second player missing"
+  },
+  {
+   "name": "no_fall",
+   "status": "PASS",
+   "detail": "no player sank below its start"
+  },
+  {
+   "name": "alive",
+   "status": "PASS",
+   "detail": "every sample has hp > 0"
+  },
+  {
+   "name": "bot_drove",
+   "status": "FAIL",
+   "detail": "only 0 of 36 scheduled control changes appear in the log"
+  },
+  {
+   "name": "completed",
+   "status": "FAIL",
+   "detail": "no 'script finished' line (crash or hang?)"
+  },
+  {
+   "name": "walk0",
+   "status": "NO-EVIDENCE",
+   "detail": "the driven player never did it. no samples in any window"
+  },
+  {
+   "name": "walk1",
+   "status": "NO-EVIDENCE",
+   "detail": "the driven player never did it. no samples in any window"
+  },
+  {
+   "name": "walkboth",
+   "status": "NO-EVIDENCE",
+   "detail": "the driven player never did it. no samples in any window"
+  },
+  {
+   "name": "look0",
+   "status": "NO-EVIDENCE",
+   "detail": "the driven player never did it. no samples in any window"
+  },
+  {
+   "name": "look1",
+   "status": "NO-EVIDENCE",
+   "detail": "the driven player never did it. no samples in any window"
+  },
+  {
+   "name": "jump0",
+   "status": "NO-EVIDENCE",
+   "detail": "the driven player never did it. no samples in any window"
+  },
+  {
+   "name": "jump1",
+   "status": "NO-EVIDENCE",
+   "detail": "the driven player never did it. no samples in any window"
+  },
+  {
+   "name": "fire0",
+   "status": "NO-EVIDENCE",
+   "detail": "the driven player never did it. no samples in any window"
+  },
+  {
+   "name": "fire1",
+   "status": "NO-EVIDENCE",
+   "detail": "the driven player never did it. no samples in any window"
+  },
+  {
+   "name": "reload0",
+   "status": "NO-EVIDENCE",
+   "detail": "the driven player never did it. no samples in any window"
+  },
+  {
+   "name": "reload1",
+   "status": "NO-EVIDENCE",
+   "detail": "the driven player never did it. no samples in any window"
+  },
+  {
+   "name": "pad_mapping",
+   "status": "NO-EVIDENCE",
+   "detail": "pads with evidence: []"
+  },
+  {
+   "name": "split_view",
+   "status": "NO-EVIDENCE",
+   "detail": "view lines: view0=0 view1=0"
+  }
+ ]
+}

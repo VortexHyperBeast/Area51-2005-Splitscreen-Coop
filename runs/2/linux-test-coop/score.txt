@@ -1,0 +1,24 @@
+coopqa score: expect=coop log=/home/runner/work/area51-pc/area51-pc/qa-out/a51_qa_bot.log (16 lines, 0 not understood)
+ FAIL        startup        the game never started a campaign level (last states: SM_MAIN_MENU, SM_PROFILE_SELECT, SM_CAMPAIGN_MENU, SM_LEVEL_SELECT)
+ INFO        asserts        7 assertion(s) were logged and skipped. First: #1 /home/runner/work/area51-pc/area51-pc/Support/Configuration/GameConfig.cpp:110 expr=[IN_RANGE( m_Config.Players, m_Config.MaxPlayers, 32 )] msg=[]; #2 /home/runner/work/area51-pc/area51-pc/Support/Configuration/GameConfig.cpp:83 expr=[g_PendingConfig.IsValid()] msg=[]; #3 /home/runner/work/area51-pc/area51-pc/Support/Configuration/GameConfig.cpp:110 expr=[IN_RANGE( m_Config.Players, m_Config.MaxPlayers, 32 )] msg=[]  (info)
+ INFO        cinema         no cinematic during the script  (info)
+ FAIL        two_players    players seen: []
+ FAIL        separate_pads  second player missing
+ PASS        no_fall        no player sank below its start
+ PASS        alive          every sample has hp > 0
+ FAIL        bot_drove      only 0 of 36 scheduled control changes appear in the log
+ FAIL        completed      no 'script finished' line (crash or hang?)
+ NO-EVIDENCE walk0          the driven player never did it. no samples in any window
+ NO-EVIDENCE walk1          the driven player never did it. no samples in any window
+ NO-EVIDENCE walkboth       the driven player never did it. no samples in any window
+ NO-EVIDENCE look0          the driven player never did it. no samples in any window
+ NO-EVIDENCE look1          the driven player never did it. no samples in any window
+ NO-EVIDENCE jump0          the driven player never did it. no samples in any window  (info)
+ NO-EVIDENCE jump1          the driven player never did it. no samples in any window  (info)
+ NO-EVIDENCE fire0          the driven player never did it. no samples in any window
+ NO-EVIDENCE fire1          the driven player never did it. no samples in any window
+ NO-EVIDENCE reload0        the driven player never did it. no samples in any window
+ NO-EVIDENCE reload1        the driven player never did it. no samples in any window
+ NO-EVIDENCE pad_mapping    pads with evidence: []
+ NO-EVIDENCE split_view     view lines: view0=0 view1=0
+RESULT: FAIL (5 failed: startup,two_players,separate_pads,bot_drove,completed; 11 without evidence: walk0,walk1,walkboth,look0,look1,fire0,fire1,reload0,reload1,pad_mapping,split_view)
