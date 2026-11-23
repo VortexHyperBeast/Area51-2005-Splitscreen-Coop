@@ -170,6 +170,7 @@ class Log(object):
         self.asserts = []       # assertions the game hit (logged and skipped by the bot)
         self.lines = 0
         self.unparsed = 0
+        self.perf = []          # (wall ms, frames, window ms) from the bot's frame counter
         self.level = None       # level id the campaign started
         self.declared_players = None
 
@@ -214,8 +215,11 @@ def parse_log(text):
         if sm:
             log.states.append((wall, sm.group(1), sm.group(2)))
             continue
+        pfm = re.match(r"^perf frames=(\d+) in (\d+) ms", msg)
         bm = re.match(r"^campaign BeginGame done: players=(\d+) level=(-?\d+)", msg)
-        if bm:
+        if pfm:
+            log.perf.append((wall, int(pfm.group(1)), int(pfm.group(2))))
+        elif bm:
             log.declared_players = int(bm.group(1))
             log.level = int(bm.group(2))
         elif msg.startswith("armed:"):
@@ -596,6 +600,15 @@ def check_pad_mapping(results_meta):
         drivers[0], drivers[1], sum(len(t) for p in mapping.values() for t in p.values())))
 
 
+def check_perf(log):
+    """Information only: how fast the game ran (a software renderer can be slow)."""
+    if not log.perf:
+        return Result("perf", INFO, "no frame-rate lines in the log")
+    rates = [1000.0 * f / max(1, ms) for (_, f, ms) in log.perf]
+    return Result("perf", INFO, "%d samples, frame rate min %.1f, mean %.1f, max %.1f per second" % (
+        len(rates), min(rates), sum(rates) / len(rates), max(rates)))
+
+
 def check_cinema(log):
     """Information only: a cutscene during the script explains missing evidence."""
     during = []
@@ -619,6 +632,7 @@ def score(log, phases, expect="coop"):
     results.append(check_startup(log, expect))
     results.append(check_asserts(log))
     results.append(check_cinema(log))
+    results.append(check_perf(log))
 
     if expect == "single":
         extra = set(log.players) - {0}

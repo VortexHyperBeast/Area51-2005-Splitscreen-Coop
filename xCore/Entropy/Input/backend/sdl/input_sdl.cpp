@@ -1479,6 +1479,25 @@ namespace qa
             return;
         }
 
+        // Frame rate, every 5 seconds: a software renderer can be slow, and the script
+        // runs on game time, so this says how long a run takes.
+        {
+            static Uint64 s_PerfLast   = 0;
+            static s32    s_PerfFrames = 0;
+
+            Uint64 const Now = SDL_GetTicks();
+            s_PerfFrames++;
+            if( (Now - s_PerfLast) >= 5000 )
+            {
+                if( s_PerfLast != 0 )
+                {
+                    qa_bot_Log( "perf frames=%d in %u ms", (int)s_PerfFrames, (unsigned)(Now - s_PerfLast) );
+                }
+                s_PerfLast   = Now;
+                s_PerfFrames = 0;
+            }
+        }
+
         if( SDL_GetTicks() > s_MaxWallMs )
         {
             qa_bot_Log( "wall-clock limit reached (armed=%d), asking the game to exit", (int)s_Armed );

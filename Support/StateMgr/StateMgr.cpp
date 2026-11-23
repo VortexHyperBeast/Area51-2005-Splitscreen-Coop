@@ -2473,6 +2473,16 @@ void state_mgr::UpdateMainMenu( void )
     }
     else if ( CONFIG_IS_AUTOCAMPAIGN )
     {
+#ifdef A51_LOCAL_COOP_QA
+        // TEST ONLY: the auto-campaign flow expects an existing profile, a fresh
+        // test install has none.  Select a default one, as AutoServer does above.
+        if( GetSelectedProfile( 0 ) == 0 )
+        {
+            m_Profiles[0].SetHash();
+            SetSelectedProfile( 0, m_Profiles[0].GetHash() );
+        }
+#endif
+
         // activate controller 0
         SetControllerRequested( 0, TRUE );
  
