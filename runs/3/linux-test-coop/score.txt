@@ -1,0 +1,25 @@
+coopqa score: expect=coop log=/home/runner/work/area51-pc/area51-pc/qa-out/a51_qa_bot.log (925 lines, 0 not understood)
+ PASS        startup        level 1000 started, bot armed at wall=53834ms, samples per player [210, 210]
+ INFO        asserts        1 assertion(s) were logged and skipped. First: #1 /home/runner/work/area51-pc/area51-pc/xCore/x_files/Implementation/x_threads_posix.cpp:425 expr=[Joined] msg=[POSIX thread did not terminate before native jo  (info)
+ INFO        cinema         no cinematic during the script  (info)
+ INFO        perf           46 samples, frame rate min 0.9, mean 19.5, max 230.6 per second  (info)
+ PASS        two_players    two player objects 2B99E001 and 00000003, first seen 118cm apart
+ PASS        separate_pads  game-side pad P0=[0] P1=[1], local slots P0=[0] P1=[1]
+ PASS        no_fall        no player sank below its start
+ PASS        alive          every sample has hp > 0
+ PASS        bot_drove      36 of 36 scheduled control changes seen, both pads attached
+ PASS        completed      script played to the end, last sample at 109600ms
+ PASS        walk0          c0: P0 1500cm P1 0cm; c1: P0 1439cm P1 0cm; c2: P0 766cm P1 0cm
+ PASS        walk1          c0: P0 0cm P1 1413cm; c1: P0 0cm P1 1500cm; c2: P0 0cm P1 714cm
+ PASS        walkboth       c0: P0 1140cm P1 18cm, displacement difference 1158cm; c1: P0 1176cm P1 1199cm, displacement difference 817cm; c2: P0 284cm P1 862cm, displacement difference 1013cm
+ PASS        look0          c0: P0 96.2deg P1 0.0deg; c1: P0 96.2deg P1 0.0deg; c2: P0 96.2deg P1 0.0deg
+ PASS        look1          c0: P0 0.0deg P1 122.8deg; c1: P0 0.0deg P1 96.3deg; c2: P0 0.0deg P1 96.3deg
+ PASS        jump0          c0: P0 +118cm P1 +0cm; c1: P0 +105cm P1 +0cm; c2: P0 +105cm P1 +0cm  (info)
+ PASS        jump1          c0: P0 +0cm P1 +111cm; c1: P0 +0cm P1 +105cm; c2: P0 +0cm P1 +105cm  (info)
+ NO-EVIDENCE fire0          the driven player never did it. no samples in any window
+ NO-EVIDENCE fire1          the driven player never did it. no samples in any window
+ NO-EVIDENCE reload0        the driven player never did it. no samples in any window
+ NO-EVIDENCE reload1        the driven player never did it. no samples in any window
+ PASS        pad_mapping    pad 0 -> player 0, pad 1 -> player 1, in all 18 judged actions
+ PASS        split_view     view 0 (0, 0, 640, 179) above view 1 (0, 181, 640, 360), 330 eye samples near their own player, both cameras moved
+RESULT: FAIL (0 failed: -; 4 without evidence: fire0,fire1,reload0,reload1)
