@@ -27,6 +27,7 @@
 #include "UI/ui_manager.hpp"
 #include "UI/ui_renderer.hpp"
 #include "Render/Render.hpp"
+#include "NetworkMgr/Game/LocalCoop.hpp"
 
 #include "Dialogs/dlg_MainMenu.hpp"
 #include "Dialogs/dlg_Settings.hpp"
@@ -3371,7 +3372,7 @@ void state_mgr::UpdateCampaignMenu( void )
                         const map_entry* pMapEntry = g_MapList.Find( -1, GAME_CAMPAIGN);
                         ASSERTS( pMapEntry, "Cannot find a campaign map in the maplist" );
                         g_PendingConfig.SetLevelID( pMapEntry->GetMapID() );
-                        g_PendingConfig.SetMaxPlayerCount( 1 );
+                        g_PendingConfig.SetMaxPlayerCount( LocalCoop_PlayerCount() );
                         g_StateMgr.SetLevelIndex( 0 );
 
                         ASSERT( g_NetworkMgr.IsOnline()==FALSE );
@@ -3481,7 +3482,7 @@ void state_mgr::UpdateLoadCampaign( void )
             case DIALOG_STATE_SELECT:
             {
                 // Exit menu and restore save game data.
-                g_PendingConfig.SetMaxPlayerCount( 1 );
+                g_PendingConfig.SetMaxPlayerCount( LocalCoop_PlayerCount() );
 
                 g_NetworkMgr.BecomeServer();
                 SetState( SM_START_SAVE_GAME );
@@ -3590,7 +3591,7 @@ void state_mgr::UpdateResumeCampaign( void )
                 // The checkpoint is actually restored within the dialog code. But this is where
                 // we need to tell the statemgr that we're going to restore a level from a save.
                 m_bStartSaveGame = TRUE;
-                g_PendingConfig.SetMaxPlayerCount( 1 );
+                g_PendingConfig.SetMaxPlayerCount( LocalCoop_PlayerCount() );
 
                 g_NetworkMgr.BecomeServer();
 
@@ -5907,7 +5908,7 @@ void state_mgr::UpdateLevelSelect( void )
         {
             case DIALOG_STATE_SELECT:
             {
-                g_PendingConfig.SetMaxPlayerCount( 1 );
+                g_PendingConfig.SetMaxPlayerCount( LocalCoop_PlayerCount() );
 
                 g_NetworkMgr.BecomeServer();
                 EnableDefaultLoadOut();
