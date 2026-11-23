@@ -397,6 +397,41 @@ void logic_campaign::ArmQaBot( f32 DeltaTime )
     {
         m_QaArmed = TRUE;
         qa_bot_Arm( "level running, no cinematic on any local player" );
+        QaEquipPlayers();
+    }
+}
+
+//==============================================================================
+//  TEST ONLY.  The first level starts unarmed (the pistol is found later in the
+//  level), so the bot could not shoot or reload.  Hand each local player the
+//  pistol with a clip that is not full and some spare ammo, through the same calls
+//  the game's own pickups use.  The script gives the weapon a few seconds to come up.
+
+void logic_campaign::QaEquipPlayers( void )
+{
+    for( s32 i = 0; i < LocalCoop_PlayerCount(); i++ )
+    {
+        player* pPlayer = (player*)g_ObjMgr.GetObjectByGuid( m_PlayerGuid[i] );
+        if( !pPlayer )
+        {
+            qa_bot_Log( "equip player %d: no player object", (int)i );
+            continue;
+        }
+
+        pPlayer->AddNewWeapon2( INVEN_WEAPON_DESERT_EAGLE );
+
+        new_weapon* pWeapon = pPlayer->GetWeaponPtr( INVEN_WEAPON_DESERT_EAGLE );
+        if( !pWeapon )
+        {
+            qa_bot_Log( "equip player %d: the pistol object does not exist", (int)i );
+            continue;
+        }
+
+        const s32 PerClip = pWeapon->GetAmmoPerClip( new_weapon::AMMO_PRIMARY );
+        pWeapon->SetAmmoState2( new_weapon::AMMO_PRIMARY, PerClip * 8, (PerClip > 2) ? (PerClip - 2) : PerClip );
+        pPlayer->SetNextWeapon2( INVEN_WEAPON_DESERT_EAGLE, TRUE );
+
+        qa_bot_Log( "equip player %d: pistol, %d rounds per clip", (int)i, (int)PerClip );
     }
 }
 
