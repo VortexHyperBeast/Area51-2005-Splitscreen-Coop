@@ -9,6 +9,11 @@ on:
   push:
     branches: ['coop/**']
   workflow_dispatch:
+    inputs:
+      release_anyway:
+        description: 'Publish the Windows package even if the two-controller test did not pass (marked as pre-release)'
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -109,6 +114,19 @@ jobs:
       - name: Package runtime
         run: |
           cmake "-DA51_BINARY=build/windows-msvc-x64/Apps/GameApp/Release/A51.exe" "-DA51_SHADER_KIT=build/shaders/GameApp/release" "-DA51_PACKAGE_DIR=build/packages/windows-x64" -P cmake/PackageRuntime.cmake
+
+      - name: The play build must not contain any test code
+        shell: bash
+        run: |
+          f=build/packages/windows-x64/A51.exe
+          ls -l "$f"
+          if grep -a -q -E 'A51_QA_SCRIPT|a51_qa_bot|A51_QA_WINDOW|A51_QA_MENU_PULSE' "$f"; then
+            echo "FOUND test-only strings in the play build"
+            exit 1
+          fi
+          echo "no test-only strings in the play build"
+          grep -a -q 'A51_LOCAL_COOP' "$f"
+          echo "the co-op switch is in the play build"
 
       - name: Upload build
         uses: actions/upload-artifact@v4
@@ -222,6 +240,11 @@ jobs:
           test -n "$BIN"
           cmake "-DA51_BINARY=$BIN" "-DA51_SHADER_KIT=build/shaders/GameApp/release" "-DA51_PACKAGE_DIR=build/packages/linux-x64-qa" -P cmake/PackageRuntime.cmake
 
+      - name: The test build must contain the test bot (positive control for the play-build check)
+        run: |
+          grep -a -q 'A51_QA_SCRIPT' build/packages/linux-x64-qa/A51
+          echo "test bot present in the test build"
+
       - name: Upload build (test build, for the test jobs; not for playing)
         uses: actions/upload-artifact@v4
         with:
@@ -316,3 +339,170 @@ jobs:
           echo "sha: $GITHUB_SHA" >> qa-out/meta.txt
           echo "job status: ${{ job.status }}" >> qa-out/meta.txt
           bash tools/coop-qa/publish_results.sh qa-out "runs/${{ github.run_number }}/linux-test-${{ matrix.mode }}"
+
+  windows-smoke:
+    name: Windows start-up check (play build, real setup script)
+    needs: windows
+    runs-on: windows-2022
+    timeout-minutes: 60
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download the play build
+        uses: actions/download-artifact@v4
+        with:
+          name: A51-coop-stage1-win-x64
+          path: ${{ runner.temp }}\play
+
+      - name: Put the play files next to the game, as in the zip
+        shell: powershell
+        run: |
+          Copy-Item "tools\coop-play\*" "$env:RUNNER_TEMP\play\" -Force
+          Get-ChildItem "$env:RUNNER_TEMP\play" | Format-Table Name, Length | Out-String | Write-Host
+
+      - name: Run the real setup script (downloads the Asset Pack)
+        shell: powershell
+        run: |
+          $ErrorActionPreference = 'Continue'
+          New-Item -ItemType Directory -Force report | Out-Null
+          $play = "$env:RUNNER_TEMP\play"
+          # The call PLAY-COOP-2-PLAYERS.cmd makes, plus -Yes because nobody is here to answer the question.
+          cmd /c "powershell.exe -NoProfile -ExecutionPolicy Bypass -File `"$play\Setup-Assets.ps1`" -Yes > report\setup.txt 2>&1"
+          $code = $LASTEXITCODE
+          Get-Content report\setup.txt | Write-Host
+          "setup exit code $code" | Add-Content report\setup.txt
+          if ($code -ne 0) { exit $code }
+          if (-not (Test-Path "$play\LEVELS")) { throw 'no LEVELS folder after setup' }
+          if (-not (Test-Path "$play\.coop-assets-ok")) { throw 'no marker file after setup' }
+          Get-ChildItem $play -Directory | Select-Object -ExpandProperty Name | Out-File report\data-folders.txt
+
+      - name: Start the game and watch it for a minute
+        shell: powershell
+        run: |
+          $ErrorActionPreference = 'Continue'
+          $play = "$env:RUNNER_TEMP\play"
+          New-Item -ItemType Directory -Force report | Out-Null
+          $env:A51_LOCAL_COOP = '2'
+          $started = Get-Date
+          $p = Start-Process -FilePath "$play\A51.exe" -WorkingDirectory $play -PassThru -RedirectStandardOutput "$play\_out.txt" -RedirectStandardError "$play\_err.txt"
+          Start-Sleep -Seconds 70
+          $exited = $p.HasExited
+          if ($exited) {
+            $line = "the game EXITED before 70 s, exit code $($p.ExitCode)"
+          } else {
+            $line = "the game was still running after 70 s (pid $($p.Id))"
+          }
+          $line | Tee-Object -FilePath report\smoke.txt
+          if (-not $exited) { Stop-Process -Id $p.Id -Force }
+          foreach ($f in '_out.txt', '_err.txt') {
+            if (Test-Path "$play\$f") {
+              "--- $f (last 80 lines)" | Add-Content report\smoke.txt
+              Get-Content "$play\$f" -Tail 80 | Add-Content report\smoke.txt
+            }
+          }
+          "--- files the game wrote next to the exe (names only)" | Add-Content report\smoke.txt
+          Get-ChildItem $play -File | Where-Object { $_.LastWriteTime -gt $started.AddSeconds(-1) } | Select-Object -ExpandProperty Name | Add-Content report\smoke.txt
+          if (Test-Path "$play\a51_local_coop_probe.log") { Get-Content "$play\a51_local_coop_probe.log" -Tail 40 | Set-Content report\probe-tail.txt }
+          "--- Windows application error events in the last 15 minutes that mention A51" | Add-Content report\smoke.txt
+          Get-WinEvent -FilterHashtable @{ LogName = 'Application'; StartTime = (Get-Date).AddMinutes(-15) } -ErrorAction SilentlyContinue | Where-Object { $_.Message -match 'A51' } | Select-Object -First 5 | ForEach-Object { $_.Message } | Add-Content report\smoke.txt
+          if ($exited) { exit 1 }
+
+      - name: Publish report
+        if: always()
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p report
+          echo "run: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" > report/meta.txt
+          echo "sha: $GITHUB_SHA" >> report/meta.txt
+          echo "job status: ${{ job.status }}" >> report/meta.txt
+          bash tools/coop-qa/publish_results.sh report "runs/${{ github.run_number }}/windows-smoke"
+
+  release:
+    name: Publish the Windows play package (GitHub release)
+    needs: [windows, windows-smoke, linux-test]
+    if: ${{ !cancelled() && needs.windows.result == 'success' && (needs.linux-test.result == 'success' || inputs.release_anyway == true) }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download the play build
+        uses: actions/download-artifact@v4
+        with:
+          name: A51-coop-stage1-win-x64
+          path: play
+
+      - name: Assemble the package
+        run: |
+          set -euo pipefail
+          NAME="Area51-Coop-Stage1-win-x64"
+          mkdir -p "dist/$NAME"
+          cp -a play/. "dist/$NAME/"
+          cp tools/coop-play/Setup-Assets.ps1 tools/coop-play/PLAY-COOP-2-PLAYERS.cmd tools/coop-play/PLAY-SINGLE-PLAYER.cmd tools/coop-play/README.txt "dist/$NAME/"
+
+          # The test results of this very commit, as text, from the results branch.
+          git fetch --quiet --depth 30 origin qa-results:refs/remotes/origin/qa-results || true
+          R="runs/${{ github.run_number }}"
+          show() { git show "origin/qa-results:$1" 2>/dev/null || echo "(not found: $1)"; }
+          {
+            echo "TEST REPORT"
+            echo "==========="
+            echo "Commit ${GITHUB_SHA}"
+            echo "Run    ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+            echo
+            echo "What was tested: the same co-op code as in this package, built as a Linux test build with a bot"
+            echo "that drives two virtual controllers, run with a software renderer. The Windows build in this zip"
+            echo "was built and started in the cloud, but it has not been played with real controllers yet."
+            for m in coop single; do
+              echo
+              echo "----- two-controller test, mode: $m -----"
+              show "$R/linux-test-$m/run.txt"
+              show "$R/linux-test-$m/score.txt"
+            done
+            echo
+            echo "----- Windows start-up check (first lines) -----"
+            show "$R/windows-smoke/smoke.txt" | sed -n '1,12p'
+          } > "dist/$NAME/TEST-REPORT.txt"
+
+          for f in "dist/$NAME"/*.cmd "dist/$NAME"/*.ps1 "dist/$NAME"/README.txt "dist/$NAME"/TEST-REPORT.txt; do
+            sed -i 's/\r$//; s/$/\r/' "$f"
+          done
+
+          ZIP="$NAME-run${{ github.run_number }}.zip"
+          (cd dist && zip -q -r -9 "../$ZIP" "$NAME")
+          ls -l "$ZIP"
+          sha256sum "$ZIP" | tee zip.sha256
+          echo "ZIP=$ZIP" >> "$GITHUB_ENV"
+
+      - name: Create the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          TAG="coop-stage1-run${{ github.run_number }}"
+          COOP="${{ needs.linux-test.result }}"
+          SMOKE="${{ needs.windows-smoke.result }}"
+          PRE=()
+          if [ "$COOP" != "success" ]; then PRE=(--prerelease); fi
+          SUM="$(cut -d' ' -f1 zip.sha256)"
+          cat > notes.md <<EOF
+          Experimental two-player split-screen co-op for the Area 51 (2005) PC port, Stage 1. Not an official release.
+
+          How to use: download the zip below, extract it into a new folder, double-click PLAY-COOP-2-PLAYERS.cmd. It asks before it downloads the game data (about 1.5 GB). README.txt inside the zip has the details and the known gaps.
+
+          Built from commit ${GITHUB_SHA} by this repository's Actions run ${GITHUB_RUN_ID}.
+
+          Automated checks of this commit:
+          - Two-controller test (Linux test build with a bot, software rendering): ${COOP}
+          - Windows start-up check of this exact build: ${SMOKE}
+          - The play build contains no test code (checked in the build job).
+
+          The zip contains no game data. SHA-256 of the zip: ${SUM}
+          EOF
+          gh release delete "$TAG" --repo "$GITHUB_REPOSITORY" --yes --cleanup-tag >/dev/null 2>&1 || true
+          gh release create "$TAG" --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" \
+            --title "Co-op Stage 1, build ${{ github.run_number }}" --notes-file notes.md "${PRE[@]}" "$ZIP"

@@ -1,0 +1,64 @@
+AREA 51 (2005) - 2 PLAYER SPLIT-SCREEN CO-OP, STAGE 1 (EXPERIMENTAL)
+=====================================================================
+
+What this is
+------------
+The Dreamland-51 PC port of Area 51, with an experiment added: two players in the same
+campaign level on one PC, one controller each, top and bottom split screen.
+It is Stage 1 of a longer plan, see "Known gaps" below.
+
+Your original Area 51 install is not used and not touched. Everything lives in this folder.
+
+
+How to start
+------------
+1. Extract the whole zip (right click, Extract All) into a NEW folder, for example
+   C:\Games\Area51-Coop. Do not use your original install folder.
+2. Plug in both Xbox controllers.
+3. Double-click  PLAY-COOP-2-PLAYERS.cmd
+
+   First start only: it asks "Download it now?" before it downloads the game data
+   (about 1.5 GB, about 4 GB on disk). That data is the open "Dreamland-51 Asset Pack" of the
+   port project. Type Y and press Enter. It checks the file against the fingerprint this build
+   was tested with. This needs an internet connection and takes some minutes.
+
+   Windows may show a blue box "Windows protected your PC" because the files are new and
+   unsigned. Click "More info", then "Run anyway". The program was built from the source code
+   in the GitHub repository this zip came from.
+
+4. In the game, start a new campaign as usual (you may have to create a profile first, any name).
+   Both controllers are used. The first controller is player 1 (it also controls the menus);
+   the second is player 2. The keyboard and mouse also drive player 1.
+   If they come out the wrong way round, unplug both and plug in the controller you want
+   as player 1 first.
+
+PLAY-SINGLE-PLAYER.cmd starts the same program as a normal one player game, to compare.
+
+
+What you should see
+-------------------
+- The screen split into a top and a bottom view, one HUD each.
+- Player 2 starts about a metre beside player 1 in the same world.
+- Controller 1 moves, looks, shoots, reloads and uses things for the top player only,
+  controller 2 for the bottom player only. Try one at a time, then both together.
+- If either player dies, the level restarts from the last checkpoint (temporary rule).
+
+
+Known gaps (so they are not a surprise)
+---------------------------------------
+- Enemies may only react to one of the two players. Making them aim at both is the next stage.
+- Triggers, cutscenes, checkpoints, pickups and level changes are not made two-player aware yet.
+  At the start of the first level only player 1 is in the opening cutscene while player 2
+  can already move (seen in the cloud test).
+- There is no menu entry for co-op; that is why the start file sets it up.
+- It is the first time this runs on a real Windows PC with real controllers. Expect rough edges.
+
+
+If something goes wrong
+-----------------------
+Please send me:
+ - what you did and what happened (a phone photo of the screen is fine),
+ - the file  a51_local_coop_probe.log  from this folder, if there is one,
+ - the file  TEST-REPORT.txt  is only for reference, you do not need to send it.
+
+The game data and saves are in this folder. To start over, delete the folder.
