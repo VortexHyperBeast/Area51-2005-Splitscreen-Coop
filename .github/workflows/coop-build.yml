@@ -20,6 +20,9 @@ concurrency:
 env:
   # Bump to throw away the cached shader kits.
   KIT_VERSION: v1
+  # The public Asset Pack of the upstream port (game data the test needs; never published from here).
+  ASSET_REPO: Source2Spy/area51-pc
+  ASSET_TAG: ASSETS-10.11.2026-RC1
 
 jobs:
   inspect-assets:
@@ -132,8 +135,8 @@ jobs:
           done
           bash tools/coop-qa/publish_results.sh report "runs/${{ github.run_number }}/windows"
 
-  linux:
-    name: Linux x64 (GCC), co-op build, QA configuration
+  linux-build:
+    name: Linux x64 (GCC), co-op test build (OptDebug, bot compiled in)
     runs-on: ubuntu-24.04
     timeout-minutes: 300
     env:
@@ -190,18 +193,19 @@ jobs:
           key: ccache-linux-${{ github.run_id }}
           restore-keys: ccache-linux-
 
-      - name: Configure game (co-op switch on)
+      - name: Configure game (co-op switch and test bot on)
         run: |
           mkdir -p logs
-          cmake --preset linux-gcc-x64 -DA51_LOCAL_COOP=ON \
+          cmake --preset linux-gcc-x64 -DA51_LOCAL_COOP=ON -DA51_LOCAL_COOP_QA=ON \
             -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
             2>&1 | tee logs/configure.txt
           grep -q '^A51_LOCAL_COOP:BOOL=ON$' build/linux-gcc-x64/CMakeCache.txt
+          grep -q '^A51_LOCAL_COOP_QA:BOOL=ON$' build/linux-gcc-x64/CMakeCache.txt
 
-      - name: Build A51 (QA configuration)
+      - name: Build A51 (OptDebug configuration)
         run: |
           mkdir -p logs
-          cmake --build build/linux-gcc-x64 --config QA --target A51 --parallel 4 2>&1 | tee logs/build.txt
+          cmake --build build/linux-gcc-x64 --config OptDebug --target A51 --parallel 4 2>&1 | tee logs/build.txt
           ccache -s | tee logs/ccache.txt
 
       - name: Save compiler cache
@@ -218,10 +222,10 @@ jobs:
           test -n "$BIN"
           cmake "-DA51_BINARY=$BIN" "-DA51_SHADER_KIT=build/shaders/GameApp/release" "-DA51_PACKAGE_DIR=build/packages/linux-x64-qa" -P cmake/PackageRuntime.cmake
 
-      - name: Upload build
+      - name: Upload build (test build, for the test jobs; not for playing)
         uses: actions/upload-artifact@v4
         with:
-          name: A51-coop-stage1-linux-x64-qa
+          name: A51-coop-test-linux-x64
           path: build/packages/linux-x64-qa
           if-no-files-found: error
 
@@ -241,3 +245,74 @@ jobs:
             grep -n -E "error|FAILED|undefined reference|fatal" "$f" | head -150 > "report/$b-errors.txt" || true
           done
           bash tools/coop-qa/publish_results.sh report "runs/${{ github.run_number }}/linux"
+
+  linux-test:
+    name: Two-controller test on Linux (${{ matrix.mode }})
+    needs: linux-build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      matrix:
+        mode: [coop, single]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install runtime dependencies (virtual display, software Vulkan, gdb)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            xvfb mesa-vulkan-drivers libvulkan1 vulkan-tools gdb unzip \
+            libx11-6 libxext6 libxrandr2 libxcursor1 libxfixes3 libxi6 libxss1 libxtst6 \
+            libxkbcommon0 libasound2t64 libpulse0 libudev1 libusb-1.0-0 libdbus-1-3
+
+      - name: Prove the scorer before trusting it
+        run: |
+          mkdir -p qa-out
+          python3 -I tools/coop-qa/coopqa.py selftest | tee qa-out/selftest.txt
+          test "${PIPESTATUS[0]}" -eq 0
+
+      - name: Download the test build
+        uses: actions/download-artifact@v4
+        with:
+          name: A51-coop-test-linux-x64
+          path: pkg
+
+      - name: Download the Asset Pack and merge the PC textures
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          sudo mkdir -p /mnt/pack
+          sudo chown "$USER" /mnt/pack
+          gh release download "$ASSET_TAG" --repo "$ASSET_REPO" --dir /mnt/pack/dl --clobber
+          ls -la /mnt/pack/dl
+          unzip -q /mnt/pack/dl/*.zip -d /mnt/pack/data
+          ROOT="$(find /mnt/pack/data -maxdepth 2 -type d -name Main-Assets | head -n 1)"
+          echo "Main-Assets: $ROOT"
+          test -d "$ROOT"
+          TEX="$(dirname "$ROOT")/PC-Textures"
+          test -d "$TEX"
+          cp -a "$TEX"/. "$ROOT"/
+          rm -rf /mnt/pack/dl
+          echo "DATA_DIR=$ROOT" >> "$GITHUB_ENV"
+          df -h /mnt | tail -n 1
+
+      - name: Play the test
+        run: |
+          chmod +x pkg/A51
+          export QA_WORK=/mnt/pack/work
+          export QA_GDB=1
+          bash tools/coop-qa/run_linux.sh "${{ matrix.mode }}" pkg "$DATA_DIR" qa-out 2>&1 | tee -a qa-out/launcher-console.txt
+          exit "${PIPESTATUS[0]}"
+
+      - name: Publish test results (text only)
+        if: always()
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p qa-out
+          echo "run: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" > qa-out/meta.txt
+          echo "sha: $GITHUB_SHA" >> qa-out/meta.txt
+          echo "job status: ${{ job.status }}" >> qa-out/meta.txt
+          bash tools/coop-qa/publish_results.sh qa-out "runs/${{ github.run_number }}/linux-test-${{ matrix.mode }}"
