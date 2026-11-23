@@ -18,6 +18,9 @@
 #include "Objects/Actor/Actor.hpp"
 #include "Objects/Player/Player.hpp"
 #include "InputMgr/GamePad.hpp"
+#ifdef A51_LOCAL_COOP_QA
+#include "Input/backend/sdl/qa_bot.hpp"
+#endif
 
 #include "UI/ui_button.hpp"
 #include "UI/ui_dialog.hpp"
@@ -422,6 +425,9 @@ void state_mgr::SetState( sm_states State, xbool ForceStateChange )
     {
         x_MemSanity();
         LOG_MESSAGE( "state_mgr::SetState", "From:%s, to:%s, MemFree:%d", GetStateName( m_State ), GetStateName( State ), x_MemGetFree() );
+#ifdef A51_LOCAL_COOP_QA
+        qa_bot_Log( "state %s -> %s", GetStateName( m_State ), GetStateName( State ) );
+#endif
         // Reset current dialog flag
         if( m_CurrentDialog )
         {

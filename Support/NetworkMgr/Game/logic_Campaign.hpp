@@ -53,6 +53,10 @@ virtual void    BeginGame       ( void );
         void    CreateExtraPlayer( s32 Index, const vector3& Position, radian Pitch, radian Yaw, s32 Zone1, s32 Zone2 );
         void    WriteProbe      ( f32 DeltaTime );
 #endif
+#ifdef A51_LOCAL_COOP_QA
+        void    ArmQaBot        ( f32 DeltaTime );
+        void    WriteQaProbe    ( f32 DeltaTime );
+#endif
 
 /*
 virtual void    Initialize      ( void );
@@ -86,6 +90,12 @@ virtual void    ProvideUpdate   (       bitstream& BitStream, u32& DirtyBits );
 #ifdef A51_LOCAL_COOP
         guid    m_PlayerGuid[ LOCAL_COOP_MAX_PLAYERS ];     // [0] is m_PlayerSpawnGuid
         f32     m_ProbeTimer;
+#endif
+#ifdef A51_LOCAL_COOP_QA
+        f32     m_QaProbeTimer;
+        f32     m_QaSinceBegin;     // game seconds since the level began
+        f32     m_QaFreeTime;       // game seconds in a row without a cinematic on any local player
+        xbool   m_QaArmed;
 #endif
 };
 

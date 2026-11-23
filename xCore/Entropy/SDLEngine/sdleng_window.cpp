@@ -18,6 +18,9 @@
 #ifndef X_STDIO_HPP
 #include "x_stdio.hpp"
 #endif
+#ifdef A51_LOCAL_COOP_QA
+#include <stdio.h>
+#endif
 
 //==============================================================================
 //  CONSTANTS
@@ -335,7 +338,32 @@ sdleng_native_instance_handle sdleng_WindowGetInstance( void )
 //  WINDOW LIFETIME
 //==============================================================================
 
+#ifdef A51_LOCAL_COOP_QA
+static xbool sdleng_WindowInitImpl( const sdleng_window_desc& Desc );
+
+//  TEST ONLY: A51_QA_WINDOW=<width>x<height> opens a small window, so that a software
+//  renderer on a machine without a graphics card can keep up with the game.
 xbool sdleng_WindowInit( const sdleng_window_desc& Desc )
+{
+    char const* pSize = SDL_getenv( "A51_QA_WINDOW" );
+    int         W     = 0;
+    int         H     = 0;
+
+    if( pSize && (sscanf( pSize, "%dx%d", &W, &H ) == 2) && (W >= 320) && (H >= 240) )
+    {
+        sdleng_window_desc Small = Desc;
+        Small.Width  = W;
+        Small.Height = H;
+        return sdleng_WindowInitImpl( Small );
+    }
+
+    return sdleng_WindowInitImpl( Desc );
+}
+
+static xbool sdleng_WindowInitImpl( const sdleng_window_desc& Desc )
+#else
+xbool sdleng_WindowInit( const sdleng_window_desc& Desc )
+#endif
 {
     if( s_Window.pWindow )
     {

@@ -18,6 +18,7 @@
 #include "SDLEngine/sdleng_window.hpp"
 
 #include "SDL3/SDL.h"
+#include "Input/backend/sdl/qa_bot.hpp"
 
 #include <cmath>
 
@@ -1091,6 +1092,473 @@ void HandleWindowEvent( void* pContext, SDL_Event const& Event, SDL_WindowID Win
     }
 }
 
+#ifdef A51_LOCAL_COOP_QA
+
+//==============================================================================
+// QA BOT  (TEST ONLY - compiled in with the CMake option A51_LOCAL_COOP_QA)
+//
+// Two virtual SDL gamepads driven by a timed script.  See qa_bot.hpp.
+//
+// Script file (path in the environment variable A51_QA_SCRIPT), one line each:
+//     <start_ms> <end_ms> <pad 0|1> <control> [value]
+//     quit <ms>
+// Times are game time since the game called qa_bot_Arm().  Controls:
+//     lx ly rx ry   sticks, value -100..100 (+100 on ly/ry = forward/up)
+//     lt rt         triggers, value 0..100
+//     a b x y back guide start ls rs lb rb up down left right   buttons (value ignored)
+// '#' starts a comment.
+//
+// Other environment variables:  A51_QA_MAX_SECONDS (wall-clock limit, default 1500)
+//                               A51_QA_MENU_PULSE=0 (do not press A on pad 0 in the menus)
+//==============================================================================
+
+#include <stdio.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+
+namespace qa
+{
+    static s32 const MAX_PADS   = 2;
+    static s32 const MAX_EVENTS = 2048;
+
+    // Axes first, then buttons, in the order SDL's virtual gamepad mapping uses:
+    // axis index = control, button index = control - C_A.
+    enum
+    {
+        C_LX, C_LY, C_RX, C_RY, C_LT, C_RT,
+        C_A, C_B, C_X, C_Y, C_BACK, C_GUIDE, C_START, C_LS, C_RS, C_LB, C_RB, C_UP, C_DOWN, C_LEFT, C_RIGHT,
+        C_COUNT
+    };
+
+    static char const* const ControlNames[C_COUNT] =
+    {
+        "lx", "ly", "rx", "ry", "lt", "rt",
+        "a", "b", "x", "y", "back", "guide", "start", "ls", "rs", "lb", "rb", "up", "down", "left", "right"
+    };
+
+    struct script_event
+    {
+        s32 StartMs;
+        s32 EndMs;
+        s32 Pad;
+        s32 Control;
+        s32 Value;
+    };
+
+    static script_event  s_Events[MAX_EVENTS];
+    static s32           s_EventCount = 0;
+    static s32           s_QuitMs     = 0;
+    static xbool         s_Enabled    = FALSE;
+    static xbool         s_Armed      = FALSE;
+    static xbool         s_Finished   = FALSE;
+    static double        s_ScriptSec  = 0.0;
+    static Uint64        s_MaxWallMs  = 1500000;
+    static xbool         s_MenuPulses = TRUE;
+    static s32           s_PulseFrames = 0;          // frames the menu A press still has to be held
+    static Uint64        s_NextPulseMs = 5000;       // wall-clock time of the next menu A press
+    static SDL_Joystick* s_pPad[MAX_PADS];
+    static Sint16        s_Sent[MAX_PADS][C_COUNT];
+    static xbool         s_SetFailed  = FALSE;
+    static FILE*         s_pLog       = NULL;
+
+    //--------------------------------------------------------------------------
+
+    static
+    Sint16 RestValue( s32 Control )
+    {
+        return (Sint16)(((Control == C_LT) || (Control == C_RT)) ? SDL_JOYSTICK_AXIS_MIN : 0);
+    }
+
+    //--------------------------------------------------------------------------
+
+    static
+    Sint16 ToSDL( s32 Control, s32 Value )
+    {
+        if( Control < C_LT )
+        {
+            // Sticks.  +100 on Y means forward/up, which SDL reports as negative.
+            s32 const V   = (Value > 100) ? 100 : ((Value < -100) ? -100 : Value);
+            s32 const Raw = (V * 32767) / 100;
+            return (Sint16)(((Control == C_LY) || (Control == C_RY)) ? -Raw : Raw);
+        }
+
+        if( Control < C_A )
+        {
+            // Triggers: 0 (released, SDL minimum) .. 100 (fully pressed).
+            s32 const V = (Value > 100) ? 100 : ((Value < 0) ? 0 : Value);
+            return (Sint16)(-32768 + ((V * 65535) / 100));
+        }
+
+        return (Sint16)((Value != 0) ? 1 : 0);
+    }
+
+    //--------------------------------------------------------------------------
+
+    static
+    void LoadScript( char const* pPath )
+    {
+        FILE* pFile = fopen( pPath, "r" );
+        if( !pFile )
+        {
+            qa_bot_Log( "ERROR cannot open script '%s'", pPath );
+            return;
+        }
+
+        char Line[256];
+        s32  LineNo = 0;
+        s32  MaxEnd = 0;
+        s_EventCount = 0;
+        s_QuitMs     = 0;
+
+        while( fgets( Line, sizeof(Line), pFile ) )
+        {
+            LineNo++;
+
+            char* pHash = strchr( Line, '#' );
+            if( pHash )
+            {
+                *pHash = 0;
+            }
+
+            int Quit = 0;
+            if( sscanf( Line, " quit %d", &Quit ) == 1 )
+            {
+                s_QuitMs = Quit;
+                continue;
+            }
+
+            int  Start = 0, End = 0, Pad = 0, Value = 100;
+            char Name[32];
+            int  Count = sscanf( Line, " %d %d %d %31s %d", &Start, &End, &Pad, Name, &Value );
+            if( Count < 4 )
+            {
+                continue;
+            }
+
+            s32 Control = -1;
+            for( s32 i = 0; i < C_COUNT; i++ )
+            {
+                if( strcmp( Name, ControlNames[i] ) == 0 )
+                {
+                    Control = i;
+                    break;
+                }
+            }
+
+            if( (Control < 0) || (Pad < 0) || (Pad >= MAX_PADS) || (End <= Start) || (s_EventCount >= MAX_EVENTS) )
+            {
+                qa_bot_Log( "ERROR script line %d rejected", (int)LineNo );
+                continue;
+            }
+
+            script_event& E = s_Events[s_EventCount++];
+            E.StartMs = Start;
+            E.EndMs   = End;
+            E.Pad     = Pad;
+            E.Control = Control;
+            E.Value   = Value;
+            if( End > MaxEnd )
+            {
+                MaxEnd = End;
+            }
+        }
+
+        fclose( pFile );
+
+        if( s_QuitMs < MaxEnd )
+        {
+            s_QuitMs = MaxEnd + 1000;
+        }
+
+        qa_bot_Log( "script '%s' loaded: %d events, quit at %d ms", pPath, (int)s_EventCount, (int)s_QuitMs );
+    }
+
+    //--------------------------------------------------------------------------
+
+    static
+    void AttachPads( void )
+    {
+        // Without this SDL drops joystick input while the window has no focus,
+        // which is the normal case on a headless test machine.
+        SDL_SetHint( SDL_HINT_JOYSTICK_ALLOW_BACKGROUND_EVENTS, "1" );
+
+        for( s32 p = 0; p < MAX_PADS; p++ )
+        {
+            SDL_VirtualJoystickDesc Desc;
+            SDL_INIT_INTERFACE( &Desc );
+            Desc.type     = SDL_JOYSTICK_TYPE_GAMEPAD;
+            Desc.naxes    = 6;
+            Desc.nbuttons = 15;
+            Desc.name     = (p == 0) ? "QA Pad 0" : "QA Pad 1";
+
+            SDL_JoystickID const Id = SDL_AttachVirtualJoystick( &Desc );
+            if( Id == 0 )
+            {
+                qa_bot_Log( "ERROR attach pad %d failed: %s", (int)p, SDL_GetError() );
+                continue;
+            }
+
+            s_pPad[p] = SDL_OpenJoystick( Id );
+            if( !s_pPad[p] )
+            {
+                qa_bot_Log( "ERROR open pad %d failed: %s", (int)p, SDL_GetError() );
+                continue;
+            }
+
+            for( s32 c = 0; c < C_COUNT; c++ )
+            {
+                s_Sent[p][c] = RestValue( c );
+            }
+
+            qa_bot_Log( "pad %d attached: instance id %u, is_gamepad=%d", (int)p, (unsigned)Id, (int)SDL_IsGamepad( Id ) );
+        }
+    }
+
+    //--------------------------------------------------------------------------
+    // Sends every control that differs from what was sent last.  NowMs < 0 means
+    // "not armed yet": only the menu pulses on pad 0 are active.
+
+    static
+    void Apply( s32 NowMs )
+    {
+        Sint16 Want[MAX_PADS][C_COUNT];
+
+        for( s32 p = 0; p < MAX_PADS; p++ )
+        {
+            for( s32 c = 0; c < C_COUNT; c++ )
+            {
+                Want[p][c] = RestValue( c );
+            }
+        }
+
+        if( NowMs < 0 )
+        {
+            // Press A on pad 0 every 2 s of wall-clock time (first press after 5 s),
+            // held for 3 frames so that a slow software renderer cannot miss it.
+            // Gets through movies and the level-select list when the game starts
+            // by itself.
+            if( s_PulseFrames > 0 )
+            {
+                s_PulseFrames--;
+                Want[0][C_A] = 1;
+            }
+            else if( s_MenuPulses )
+            {
+                Uint64 const Wall = SDL_GetTicks();
+                if( Wall >= s_NextPulseMs )
+                {
+                    s_NextPulseMs = Wall + 2000;
+                    s_PulseFrames = 2;
+                    Want[0][C_A]  = 1;
+                }
+            }
+        }
+        else
+        {
+            for( s32 i = 0; i < s_EventCount; i++ )
+            {
+                script_event const& E = s_Events[i];
+                if( (NowMs >= E.StartMs) && (NowMs < E.EndMs) )
+                {
+                    Want[E.Pad][E.Control] = ToSDL( E.Control, E.Value );
+                }
+            }
+        }
+
+        for( s32 p = 0; p < MAX_PADS; p++ )
+        {
+            if( !s_pPad[p] )
+            {
+                continue;
+            }
+
+            for( s32 c = 0; c < C_COUNT; c++ )
+            {
+                if( Want[p][c] == s_Sent[p][c] )
+                {
+                    continue;
+                }
+
+                bool const Ok = (c < C_A)
+                    ? SDL_SetJoystickVirtualAxis( s_pPad[p], c, Want[p][c] )
+                    : SDL_SetJoystickVirtualButton( s_pPad[p], c - C_A, Want[p][c] != 0 );
+
+                if( !Ok && !s_SetFailed )
+                {
+                    s_SetFailed = TRUE;
+                    qa_bot_Log( "ERROR setting pad %d control %s failed: %s", (int)p, ControlNames[c], SDL_GetError() );
+                }
+
+                s_Sent[p][c] = Want[p][c];
+
+                // Menu pulses are too chatty to log; script changes are the evidence.
+                if( NowMs >= 0 )
+                {
+                    qa_bot_Log( "pad %d %s = %d", (int)p, ControlNames[c], (int)Want[p][c] );
+                }
+            }
+        }
+    }
+
+    //--------------------------------------------------------------------------
+    // The test build is an OptDebug build, which has assertions; the build that
+    // people play has none.  A failing assertion would stop the test with a
+    // crash that the played build never sees, so it is logged and skipped.
+
+    static
+    xbool AssertHandler( char const* pFile, s32 Line, char const* pExpr, char const* pMsg )
+    {
+        static s32 s_Count = 0;
+
+        s_Count++;
+        if( s_Count <= 100 )
+        {
+            qa_bot_Log( "ASSERT #%d %s:%d expr=[%s] msg=[%s]", (int)s_Count,
+                        pFile ? pFile : "?", (int)Line, pExpr ? pExpr : "", pMsg ? pMsg : "" );
+        }
+
+        return FALSE;
+    }
+
+    //--------------------------------------------------------------------------
+
+    static
+    void Init( void )
+    {
+        char const* pScript = SDL_getenv( "A51_QA_SCRIPT" );
+        if( !pScript || !pScript[0] )
+        {
+            return;
+        }
+
+        char const* pMax = SDL_getenv( "A51_QA_MAX_SECONDS" );
+        if( pMax && (atoi( pMax ) > 0) )
+        {
+            s_MaxWallMs = (Uint64)atoi( pMax ) * 1000;
+        }
+
+        char const* pPulse = SDL_getenv( "A51_QA_MENU_PULSE" );
+        if( pPulse && (pPulse[0] == '0') )
+        {
+            s_MenuPulses = FALSE;
+        }
+
+        qa_bot_Log( "QA bot starting (wall limit %u s, menu pulses %d)", (unsigned)(s_MaxWallMs / 1000), (int)s_MenuPulses );
+        x_SetRTFHandler( AssertHandler );
+        LoadScript( pScript );
+        AttachPads();
+        s_Enabled = (s_EventCount > 0);
+    }
+
+    //--------------------------------------------------------------------------
+
+    static
+    void Shutdown( void )
+    {
+        if( s_Enabled )
+        {
+            qa_bot_Log( "QA bot shutting down (armed=%d finished=%d)", (int)s_Armed, (int)s_Finished );
+        }
+
+        for( s32 p = 0; p < MAX_PADS; p++ )
+        {
+            s_pPad[p] = NULL;
+        }
+        s_Enabled = FALSE;
+    }
+
+    //--------------------------------------------------------------------------
+    // Called once per input capture, before SDL's events are pumped.
+
+    static
+    void Update( void )
+    {
+        if( !s_Enabled || s_Finished )
+        {
+            return;
+        }
+
+        if( SDL_GetTicks() > s_MaxWallMs )
+        {
+            qa_bot_Log( "wall-clock limit reached (armed=%d), asking the game to exit", (int)s_Armed );
+            s_Finished        = TRUE;
+            s_Input.ExitApp   = TRUE;
+            return;
+        }
+
+        if( !s_Armed )
+        {
+            Apply( -1 );
+            return;
+        }
+
+        s32 const NowMs = (s32)(s_ScriptSec * 1000.0);
+        if( NowMs >= s_QuitMs )
+        {
+            qa_bot_Log( "script finished, asking the game to exit" );
+            Apply( 0x7FFFFFFF );
+            s_Finished      = TRUE;
+            s_Input.ExitApp = TRUE;
+            return;
+        }
+
+        Apply( NowMs );
+    }
+}
+
+void qa_bot_Log( char const* pFormat, ... )
+{
+    if( !qa::s_pLog )
+    {
+        qa::s_pLog = fopen( "a51_qa_bot.log", "a" );
+        if( !qa::s_pLog )
+        {
+            return;
+        }
+    }
+
+    va_list Args;
+    va_start( Args, pFormat );
+    fprintf( qa::s_pLog, "wall=%u qt=%d ", (unsigned)SDL_GetTicks(), qa_bot_ScriptMs() );
+    vfprintf( qa::s_pLog, pFormat, Args );
+    fputc( '\n', qa::s_pLog );
+    fflush( qa::s_pLog );
+    va_end( Args );
+}
+
+void qa_bot_Arm( char const* pWhy )
+{
+    if( !qa::s_Enabled || qa::s_Armed )
+    {
+        return;
+    }
+
+    qa::s_Armed     = TRUE;
+    qa::s_ScriptSec = 0.0;
+    qa_bot_Log( "armed: %s", pWhy ? pWhy : "" );
+}
+
+void qa_bot_Tick( float DeltaSeconds )
+{
+    if( qa::s_Armed && !qa::s_Finished )
+    {
+        qa::s_ScriptSec += (double)DeltaSeconds;
+    }
+}
+
+int qa_bot_ScriptMs( void )
+{
+    return qa::s_Armed ? (int)(qa::s_ScriptSec * 1000.0) : -1;
+}
+
+unsigned qa_bot_WallMs( void )
+{
+    return (unsigned)SDL_GetTicks();
+}
+
+#endif // A51_LOCAL_COOP_QA
+
 //==============================================================================
 // BACKEND
 //==============================================================================
@@ -1133,6 +1601,9 @@ public:
         }
 
         sdleng_WindowSetEventCallback( &HandleWindowEvent, NULL );
+#ifdef A51_LOCAL_COOP_QA
+        qa::Init();
+#endif
         OpenExistingGamepads();
 
         if( !SetRelativeMouseMode( TRUE ) )
@@ -1147,6 +1618,9 @@ public:
 
     void Kill( void ) override
     {
+#ifdef A51_LOCAL_COOP_QA
+        qa::Shutdown();
+#endif
         s_PendingEvents.BeginCapture( 0 );
         sdleng_WindowSetEventCallback( NULL, NULL );
         SetRelativeMouseMode( FALSE );
@@ -1172,6 +1646,10 @@ public:
         u32 const StartTime = (u32)SDL_GetTicks();
         Events.BeginCapture( StartTime );
         ClearRelativeState();
+
+#ifdef A51_LOCAL_COOP_QA
+        qa::Update();
+#endif
 
         if( !sdleng_WindowPumpMessages() )
         {

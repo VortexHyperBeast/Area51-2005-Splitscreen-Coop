@@ -36,6 +36,9 @@
 #include "StateMgr/StateMgr.hpp"
 #include "SaveData/SaveDataMgr.hpp"
 #include "SaveData/Backend/SaveDataBackend.hpp"
+#ifdef A51_LOCAL_COOP_QA
+#include "Input/backend/sdl/qa_bot.hpp"
+#endif
 
 //==============================================================================
 //  OBJECT INCLUDES
@@ -971,6 +974,32 @@ void RenderGame( void )
         zone_mgr::zone_id const PlayerViewZone =
             pPlayers[i]->GetPlayerViewZone();
         SetupViewAndFog( PlayerViewZone );
+
+    #ifdef A51_LOCAL_COOP_QA
+        {
+            // TEST ONLY: once a second per view, where on the screen the renderer is
+            // told to draw and from which eye position (see tools/coop-qa).
+            static unsigned s_QaLastMs[MAX_LOCAL_PLAYERS] = { 0 };
+            static unsigned s_QaFrames[MAX_LOCAL_PLAYERS] = { 0 };
+
+            s_QaFrames[i]++;
+
+            unsigned const NowMs = qa_bot_WallMs();
+            if( (NowMs - s_QaLastMs[i]) >= 1000 )
+            {
+                s_QaLastMs[i] = NowMs;
+
+                s32 X0, Y0, X1, Y1;
+                g_View.GetViewport( X0, Y0, X1, Y1 );
+                vector3 const Eye = g_View.GetPosition();
+
+                qa_bot_Log( "view %d viewport=%d,%d,%d,%d eye=%d,%d,%d frames=%u views=%d",
+                            (int)i, (int)X0, (int)Y0, (int)X1, (int)Y1,
+                            (int)Eye.GetX(), (int)Eye.GetY(), (int)Eye.GetZ(),
+                            s_QaFrames[i], (int)nPlayers );
+            }
+        }
+    #endif
 
         // render all objects
         xbool DoPortalWalk = TRUE;

@@ -15,6 +15,10 @@
 #ifdef A51_LOCAL_COOP
 #include "InputMgr/GamePad.hpp"
 #endif
+#ifdef A51_LOCAL_COOP_QA
+#include "Objects/NewWeapon.hpp"
+#include "Input/backend/sdl/qa_bot.hpp"
+#endif
 
 //==============================================================================
 //    FUNCTIONS
@@ -98,6 +102,11 @@ void logic_campaign::AdvanceTime( f32 DeltaTime )
 {
 #ifdef A51_LOCAL_COOP
     WriteProbe( DeltaTime );
+#endif
+#ifdef A51_LOCAL_COOP_QA
+    ArmQaBot( DeltaTime );
+    qa_bot_Tick( DeltaTime );
+    WriteQaProbe( DeltaTime );
 #endif
 
     if( m_RespawnDelay > 0.0f )
@@ -243,6 +252,14 @@ void logic_campaign::BeginGame( void )
 #endif
 
     m_Alive = TRUE;
+
+#ifdef A51_LOCAL_COOP_QA
+    m_QaProbeTimer = 0.0f;
+    m_QaSinceBegin = 0.0f;
+    m_QaFreeTime   = 0.0f;
+    m_QaArmed      = FALSE;
+    qa_bot_Log( "campaign BeginGame done: players=%d level=%d", (int)LocalCoop_PlayerCount(), (int)g_ActiveConfig.GetLevelID() );
+#endif
 }
 
 #ifdef A51_LOCAL_COOP
@@ -343,5 +360,99 @@ void logic_campaign::WriteProbe( f32 DeltaTime )
 }
 
 #endif // A51_LOCAL_COOP
+
+#ifdef A51_LOCAL_COOP_QA
+
+//==============================================================================
+//  TEST ONLY.  Twice a second of game time, one line per local player goes to
+//  a51_qa_bot.log: who it is, which pad drives it, where it stands and looks,
+//  what it holds.  The scorer in tools/coop-qa reads these lines, and nothing
+//  else of the game, to decide whether the players really act independently.
+//  Yaw and pitch are in tenths of a degree.
+
+void logic_campaign::ArmQaBot( f32 DeltaTime )
+{
+    if( m_QaArmed )
+    {
+        return;
+    }
+
+    // The script starts once the level has been running for a while and no local
+    // player is in a cinematic (the player cannot be steered during one).
+    m_QaSinceBegin += DeltaTime;
+
+    xbool Free = TRUE;
+    for( s32 i = 0; i < LocalCoop_PlayerCount(); i++ )
+    {
+        player* pPlayer = (player*)g_ObjMgr.GetObjectByGuid( m_PlayerGuid[i] );
+        if( !pPlayer || pPlayer->IsCinemaRunning() )
+        {
+            Free = FALSE;
+        }
+    }
+
+    m_QaFreeTime = Free ? (m_QaFreeTime + DeltaTime) : 0.0f;
+
+    if( (m_QaSinceBegin >= 5.0f) && (m_QaFreeTime >= 5.0f) )
+    {
+        m_QaArmed = TRUE;
+        qa_bot_Arm( "level running, no cinematic on any local player" );
+    }
+}
+
+//==============================================================================
+
+void logic_campaign::WriteQaProbe( f32 DeltaTime )
+{
+    m_QaProbeTimer -= DeltaTime;
+    if( m_QaProbeTimer > 0.0f )
+    {
+        return;
+    }
+    m_QaProbeTimer = 0.5f;
+
+    for( s32 i = 0; i < LocalCoop_PlayerCount(); i++ )
+    {
+        player* pPlayer = (player*)g_ObjMgr.GetObjectByGuid( m_PlayerGuid[i] );
+
+        if( !pPlayer )
+        {
+            qa_bot_Log( "player %d missing", (int)i );
+            continue;
+        }
+
+        const vector3 Pos       = pPlayer->GetPosition();
+        const s32     LocalSlot = pPlayer->GetLocalSlot();
+        const s32     Pad       = (LocalSlot >= 0) ? g_GameInput.GetPlayerDevice( LocalSlot ) : -1;
+
+        const char* pWeaponName = "none";
+        s32         Ammo        = -1;
+        s32         AmmoMax     = -1;
+        s32         PerClip     = -1;
+        s32         InClip      = -1;
+
+        new_weapon* pWeapon = pPlayer->GetCurrentWeaponPtr();
+        if( pWeapon )
+        {
+            pWeaponName = pWeapon->GetTypeDesc().GetTypeName();
+            pWeapon->GetAmmoState( new_weapon::AMMO_PRIMARY, Ammo, AmmoMax, PerClip, InClip );
+        }
+
+        qa_bot_Log( "player %d guid=%08X slot=%d pad=%d pos=%d,%d,%d yaw=%d pitch=%d hp=%d weapon=%s ammo=%d inclip=%d perclip=%d cinema=%d",
+                    (int)i,
+                    (unsigned)m_PlayerGuid[i].GetLow(),
+                    (int)LocalSlot,
+                    (int)Pad,
+                    (int)Pos.GetX(), (int)Pos.GetY(), (int)Pos.GetZ(),
+                    (int)(RAD_TO_DEG( pPlayer->GetYaw()   ) * 10.0f),
+                    (int)(RAD_TO_DEG( pPlayer->GetPitch() ) * 10.0f),
+                    (int)pPlayer->GetHealth(),
+                    pWeaponName,
+                    (int)Ammo, (int)InClip, (int)PerClip,
+                    (int)(pPlayer->IsCinemaRunning() ? 1 : 0) );
+    }
+}
+
+#endif // A51_LOCAL_COOP_QA
 
 //==============================================================================

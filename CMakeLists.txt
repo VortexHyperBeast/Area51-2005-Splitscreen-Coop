@@ -117,6 +117,14 @@ if( A51_LOCAL_COOP )
     target_compile_definitions( a51_build_options INTERFACE A51_LOCAL_COOP )
 endif()
 
+option( A51_LOCAL_COOP_QA "TEST ONLY: build the controller bot and the per-player test log used by tools/coop-qa (needs A51_LOCAL_COOP, never ship this build)" OFF )
+if( A51_LOCAL_COOP_QA )
+    if( NOT A51_LOCAL_COOP )
+        message( FATAL_ERROR "A51_LOCAL_COOP_QA needs A51_LOCAL_COOP=ON" )
+    endif()
+    target_compile_definitions( a51_build_options INTERFACE A51_LOCAL_COOP_QA )
+endif()
+
 if( MSVC )
     # Allow parallel cl.exe invocations.
     target_compile_options( a51_build_options INTERFACE /FS )
