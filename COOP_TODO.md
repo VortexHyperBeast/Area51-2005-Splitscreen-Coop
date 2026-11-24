@@ -53,8 +53,8 @@ A passing bot test is not a played game. Statuses:
 | Items: scripted gives and all pickups shared (weapons, ammo, grenades, equipment unlocks) | IMPLEMENTED, NOT FULLY TESTED. **Owner's decision (2026-11-24): keep it shared, do not change** | Bot (`shared_items`) | `PlayerInventory.cpp` |
 | Inventory carried across level changes and checkpoints for both | IMPLEMENTED, NOT FULLY TESTED | Bot (store/restore only, `carry_over`); real level change not re-tested | `StateMgr.cpp` (`Backup/RestorePlayerInventory`), `CheckPointMgr.cpp` |
 | "The player" of scripts is always player 1 | IMPLEMENTED, NOT FULLY TESTED | Code (cloud object order already put player 1 first) | `SimpleUtils.cpp` (`SMP_UTIL_GetActivePlayer`) |
-| Elevator cutscene voices (level 2 opening) | IMPLEMENTED, NOT FULLY TESTED | Root cause found (the track became 3D when "the player" was player 2); the owner must confirm on real audio | `SimpleUtils.cpp`, `Cinema.cpp` |
-| Crash on level restart while a cinema runs | IMPLEMENTED, NOT FULLY TESTED | Owner crash report fixed; bot kills player 1 and the restart passes | `Global_Variables_Manager.cpp` |
+| Elevator cutscene voices (level 2 opening) | DONE+VERIFIED | Owner (build 28): sound in the cutscene works. Cause: the track became 3D when "the player" was player 2 | `SimpleUtils.cpp`, `Cinema.cpp` |
+| Crash on level restart while a cinema runs | DONE+VERIFIED | Owner (build 28): no crash when either player dies; bot kills player 1 and the restart passes | `Global_Variables_Manager.cpp` |
 
 ### Gameplay systems in the brief
 
@@ -90,7 +90,7 @@ A passing bot test is not a played game. Statuses:
 | ID | Map | Two players | Enemies | Objectives | Cutscenes | Dialogue | Pickups | Checkpoints | Transition | Known bugs | Manual test |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | 1000 | dreamlnd | bot+owner | n/a (none early) | owner: progressed to the elevator | bot+owner | owner | owner (scanner) | bot (death restart) | owner: elevator to 1010 | - | owner, whole level |
-| 1010 | undrgrnd | owner (part) | owner (part), not verified for player 2 | ? | owner: elevator voices lost (fix pending) | bot: same lines as single | ? | owner: a death crashed (fixed) | ? | fall after cutscene (fix pending) | owner, part |
+| 1010 | undrgrnd | owner (part) | owner (part), not verified for player 2 | ? | owner: elevator voices OK (build 28) | bot: same lines as single | ? | owner: death restart OK for both players (build 28) | ? | fall after cutscene (fix pending) | owner, part |
 | 1020-1130 | hotzone ... exit (17 maps) | not tested | not tested | not tested | not tested | not tested | not tested | not tested | not tested | unknown | no |
 
 ## 3. Next milestone: Stage 2, co-op enemy AI
