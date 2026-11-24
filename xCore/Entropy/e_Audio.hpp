@@ -173,6 +173,8 @@ public:
             void            Release                 ( voice_id          VoiceID,
                                                       f32               Time );
             void            ReleaseAll              ( void );
+            // Diagnostics: voices in use and the descriptor most of them play.
+            void            DebugVoiceStats         ( s32& nUsed, const char*& pTopName, s32& TopCount );
 
             xbool           SetReleaseTime          ( voice_id          VoiceID,
                                                       f32               Time );

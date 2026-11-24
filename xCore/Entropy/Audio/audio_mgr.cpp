@@ -122,6 +122,13 @@ audio_mgr::~audio_mgr( void )
 
 //==============================================================================
 
+void audio_mgr::DebugVoiceStats( s32& nUsed, const char*& pTopName, s32& TopCount )
+{
+    Runtime().Voices.DebugStats( nUsed, pTopName, TopCount );
+}
+
+//==============================================================================
+
 audio_runtime& audio_mgr::Runtime( void )
 {
     ASSERT( m_pRuntime );

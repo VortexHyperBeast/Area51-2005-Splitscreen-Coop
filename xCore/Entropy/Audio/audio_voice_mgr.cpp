@@ -2534,6 +2534,50 @@ void audio_voice_mgr::Update( f32 DeltaTime )
 
 //==============================================================================
 
+void audio_voice_mgr::DebugStats( s32& nUsed, const char*& pTopName, s32& TopCount )
+{
+    const s32   MAX_NAMES = 32;
+    const char* Names[MAX_NAMES];
+    s32         Counts[MAX_NAMES];
+    s32         nNames = 0;
+
+    nUsed    = 0;
+    pTopName = "";
+    TopCount = 0;
+
+    voice* pHead  = UsedVoices();
+    voice* pVoice = pHead->Link.pNext;
+    while( pVoice && (pVoice != pHead) && (nUsed < 100000) )
+    {
+        nUsed++;
+        const char* pName = pVoice->pDescriptorName ? pVoice->pDescriptorName : "?";
+        s32 i;
+        for( i = 0; i < nNames; i++ )
+        {
+            if( x_strcmp( Names[i], pName ) == 0 )
+                break;
+        }
+        if( i == nNames && nNames < MAX_NAMES )
+        {
+            Names[nNames]  = pName;
+            Counts[nNames] = 0;
+            nNames++;
+        }
+        if( i < nNames )
+        {
+            Counts[i]++;
+            if( Counts[i] > TopCount )
+            {
+                TopCount = Counts[i];
+                pTopName = Names[i];
+            }
+        }
+        pVoice = pVoice->Link.pNext;
+    }
+}
+
+//==============================================================================
+
 void audio_voice_mgr::UpdateCheckQueued( void )
 {
     voice* pVoice;

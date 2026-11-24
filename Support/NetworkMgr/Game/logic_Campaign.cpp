@@ -601,6 +601,19 @@ void logic_campaign::WriteQaProbe( f32 DeltaTime )
     }
     m_QaProbeTimer = 0.5f;
 
+    // Audio: voices in use (a leak would make sounds cut out and finally stop;
+    // the owner heard that in a co-op cutscene, not in single player).
+    {
+        static s32 s_AudioTick = 0;
+        if( (s_AudioTick++ % 4) == 0 )
+        {
+            s32         nUsed = 0, TopCount = 0;
+            const char* pTop  = "";
+            g_AudioMgr.DebugVoiceStats( nUsed, pTop, TopCount );
+            qa_bot_Log( "audio voices=%d top=%s x%d", (int)nUsed, (pTop && pTop[0]) ? pTop : "-", (int)TopCount );
+        }
+    }
+
     for( s32 i = 0; i < LocalCoop_PlayerCount(); i++ )
     {
         player* pPlayer = (player*)g_ObjMgr.GetObjectByGuid( m_PlayerGuid[i] );

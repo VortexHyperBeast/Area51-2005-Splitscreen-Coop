@@ -120,7 +120,7 @@ jobs:
         run: |
           f=build/packages/windows-x64/A51.exe
           ls -l "$f"
-          if grep -a -q -E 'A51_QA_SCRIPT|a51_qa_bot|A51_QA_WINDOW|A51_QA_MENU_PULSE|bodies view=|share item=|scanner player|profile player|swaptest|carryover player' "$f"; then
+          if grep -a -q -E 'A51_QA_SCRIPT|a51_qa_bot|A51_QA_WINDOW|A51_QA_MENU_PULSE|bodies view=|share item=|scanner player|profile player|swaptest|carryover player|audio voices=' "$f"; then
             echo "FOUND test-only strings in the play build"
             exit 1
           fi

@@ -136,6 +136,8 @@ public:
 inline  xbool           IsValidVoice                ( voice* pVoice )       { return (pVoice >= m_FirstVoice) && (pVoice <= m_LastVoice);}
 inline  xbool           IsValidElement              ( element* pElement )   { return (pElement >= m_FirstElement) && (pElement <= m_LastElement);}
 inline  s32             GetNumVoices                ( void )                { return m_NumVoices; }
+        // Diagnostics: voices in use, and the descriptor most of them play.
+        void            DebugStats                  ( s32& nUsed, const char*& pTopName, s32& TopCount );
 inline  s32             GetNumElements              ( void )                { return m_NumElements; }
 inline  voice*          GetVoiceBuffer              ( void )                { return m_FirstVoice; }
         f32             GetVoiceTime                ( voice* pVoice );
