@@ -1,6 +1,6 @@
 # Area 51 (2005) local co-op: status and TODO
 
-Branch `coop/stage1` of `VortexHyperBeast/area51-pc`. Last updated 2026-11-24 (after build 27).
+Branch `coop/stage1` of `VortexHyperBeast/area51-pc`. Last updated 2026-11-24 (after build 27; shared-inventory decision; AI audit).
 
 Every status below is backed by one of three kinds of evidence, and says which:
 
@@ -50,7 +50,7 @@ A passing bot test is not a played game. Statuses:
 | The other player joins after a scene (checked free spot, after the end marker) | IMPLEMENTED, NOT FULLY TESTED | Code; owner's fall-off case not re-tested | `PlayerProperties.cpp` (`CoopMoveNextTo`, `CoopUpdate`) |
 | Teleport / regroup button (Back), fall rescue | DONE (bot) | Bot (`join_button`). The brief says not to work on these further | `PlayerProperties.cpp` (`CoopUpdate`) |
 | Look-and-use prompts (focus objects) for either player | DONE+VERIFIED | Owner (scanner pickup) | `FocusObject.cpp`, `condition_player_button_state.cpp` |
-| Items: scripted gives and all pickups shared | IMPLEMENTED, NOT FULLY TESTED | Bot (`shared_items`) | `PlayerInventory.cpp` |
+| Items: scripted gives and all pickups shared (weapons, ammo, grenades, equipment unlocks) | IMPLEMENTED, NOT FULLY TESTED. **Owner's decision (2026-11-24): keep it shared, do not change** | Bot (`shared_items`) | `PlayerInventory.cpp` |
 | Inventory carried across level changes and checkpoints for both | IMPLEMENTED, NOT FULLY TESTED | Bot (store/restore only, `carry_over`); real level change not re-tested | `StateMgr.cpp` (`Backup/RestorePlayerInventory`), `CheckPointMgr.cpp` |
 | "The player" of scripts is always player 1 | IMPLEMENTED, NOT FULLY TESTED | Code (cloud object order already put player 1 first) | `SimpleUtils.cpp` (`SMP_UTIL_GetActivePlayer`) |
 | Elevator cutscene voices (level 2 opening) | IMPLEMENTED, NOT FULLY TESTED | Root cause found (the track became 3D when "the player" was player 2); the owner must confirm on real audio | `SimpleUtils.cpp`, `Cinema.cpp` |
@@ -61,9 +61,9 @@ A passing bot test is not a played game. Statuses:
 | Feature | Status | Evidence / notes | Files |
 |---|---|---|---|
 | Independent health, damage, death | PARTIAL | Separate objects, so separate health. Death is shared fate: either death restarts the checkpoint | `logic_Campaign.cpp` (`PlayerDied`) |
-| Independent weapons, ammo, reload, switching | PARTIAL | Bot: fire/reload per player. Pickups are mirrored, so ammo and health are duplicated, not individual | `PlayerInventory.cpp` |
-| Individual health/ammo/grenades, shared story items (owner's preferred rules) | NOT IMPLEMENTED | Today everything picked up is mirrored | `PlayerInventory.cpp` (`TakePickup`, `AddItemToInventory2`) |
-| Enemies perceive and target both players | BROKEN / INVESTIGATE | Code: many AI paths ask for "the player" (one player). Audit running, see section 3 | `Support/Characters/*`, `God.cpp`, `SimpleUtils.cpp` |
+| Independent weapon use: switching, firing, reloading, current clip | DONE+VERIFIED | Bot: fire/reload per player | - |
+| Inventory rules (owner's decision 2026-11-24) | DECIDED | Weapons, ammunition, grenades and equipment are **shared**: what one player gets, the other gets too, and this carries across levels. Health and damage stay **individual**. No change planned | `PlayerInventory.cpp` |
+| Enemies perceive and target both players | PARTIAL | Code audit: ordinary enemies already pick among all hostile actors, player 2 included (`character::ChoseBestTarget`, re-check every 3 s). Player-1-only spots: Theta stage rage and projectile scan, AlienGlob default target, melee slots shared by both players (2 in total), retarget on damage only if the attacker is closer. Not bot-tested yet. See section 3 | `Character.cpp`, `MutantTank_Attack_State.cpp`, `Mutant_Tank.cpp`, `AlienGlob.cpp`, `God.cpp` |
 | Downed state, revive, bleedout | NOT IMPLEMENTED | Shared fate restart is the only rule | - |
 | Mutant abilities for both players | NOT TESTED / INVESTIGATE | Per-player mutagen and abilities exist (player members). The global time-dilation ("perception") effect is forced off when there is more than one local player | `PerceptionMgr.cpp:57`, `PlayerMutation.cpp` |
 | Boss fights with two players | NOT TESTED | - | - |
@@ -95,14 +95,26 @@ A passing bot test is not a played game. Statuses:
 
 ## 3. Next milestone: Stage 2, co-op enemy AI
 
-Plan (details in the AI audit when it is done):
+Audit result: target selection (`character::ChoseBestTarget`, `Character.cpp`) already scores every
+hostile actor, so player 2 can be chosen. The gaps are specific:
 
-1. Log per enemy (test build): guid, type, target guid, state. Bot run on level 1010 (enemies at the start).
-2. Replace "the player" lookups in target selection with "the best player for this enemy":
-   nearest visible, or the one that last hurt it. In range/LOD/spawn checks, use the nearest player.
-3. Bot checks: an enemy targets player 2 when only player 2 is near; enemies switch target.
-4. Then the owner's preferred item rules (individual health/ammo/grenades), then the downed/revive
-   system (replaces shared fate), then mutants and bosses.
+| Spot | Problem | Planned change (co-op only) |
+|---|---|---|
+| `Character.cpp` damage handling | Switches to the attacker only if it is closer than the current target | Remember the last attacker for a few seconds and weight it in `ChoseBestTarget` |
+| `God.cpp` melee slots | Two melee slots for all players together | Two slots per player |
+| `MutantTank_Attack_State.cpp` stage rage | Aims at "the player" (player 1) | Nearest player |
+| `Mutant_Tank.cpp` `ScanForPlayerProjectile` | Watches player 1's projectiles only | Both players |
+| `AlienGlob.cpp` default target | First player object | Nearest player |
+| `Character.cpp`, `Character_Cover_State.cpp` | Possible null target reads | Null checks |
+
+Helpers `SMP_UTIL_GetNearestPlayer(pos)` and `SMP_UTIL_IsPlayerGuid(guid)` in `SimpleUtils.cpp`.
+
+1. Log per enemy (test build): guid, type, target and which player, state, distance to each player.
+   Bot run on level 1010 (enemies at the start).
+2. Make the changes above, all behind `LocalCoop_IsActive()`, so single player is unchanged.
+3. Bot checks: an enemy targets player 2; an enemy hit by the other player turns to it; both players
+   get targeted during the run.
+4. Then the downed/revive system (replaces shared fate), then mutants and bosses.
 
 ## 4. Biggest risks
 
