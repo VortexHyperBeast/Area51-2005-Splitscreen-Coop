@@ -13,8 +13,6 @@ echo.
 echo Starting Area 51 for 2 players on this PC.
 echo Connect both controllers before the game window opens.
 set A51_LOCAL_COOP=2
-rem Controller swap and characters, if CO-OP-SETTINGS.cmd was run.
-if exist "%~dp0coop-settings.cmd" call "%~dp0coop-settings.cmd"
 start "" "%~dp0A51.exe"
 exit /b 0
 

@@ -39,10 +39,19 @@ How to start
 
 PLAY-SINGLE-PLAYER.cmd starts the same program as a normal one player game, to compare.
 
-CO-OP-SETTINGS.cmd (optional, run it before playing): swap which controller is player 1 and
-which is player 2, and choose each player's character (the multiplayer characters: hazmat,
-special forces, technician, grey alien, 4 colours each). With the controllers swapped, the
-keyboard and mouse still belong to the first controller's slot, i.e. they move player 2.
+CO-OP SETTINGS IN THE GAME: press Start (pause). Under Options/Settings there are three rows:
+  Controllers: normal / swapped   - which controller plays the top and the bottom player
+  P1 body / P2 body               - press A to go through the 16 multiplayer characters
+                                    (hazmat, spec ops, technician, grey; 4 colours each)
+They take effect at once and are saved. With the controllers swapped, the keyboard and mouse
+still belong to the first controller's slot, i.e. they move player 2.
+
+Each player has their own settings: Options in the pause menu edits the settings of the player
+whose controller pressed Start (sensitivity, invert, vibration, ...). Player 2's settings live in a
+profile called "Player 2" that the game creates the first time. Everything is saved when you
+change it and again when the game closes.
+
+If the game crashes, it writes a51_crash.txt and a51_crash.dmp in this folder. Please send both.
 
 
 What you should see
@@ -72,6 +81,7 @@ If something goes wrong
 -----------------------
 Please send me:
  - what you did and what happened (a phone photo of the screen is fine),
+ - the files  a51_crash.txt  and  a51_crash.dmp  if the game crashed,
  - the file  a51_local_coop_probe.log  from this folder, if there is one,
  - the file  TEST-REPORT.txt  is only for reference, you do not need to send it.
 

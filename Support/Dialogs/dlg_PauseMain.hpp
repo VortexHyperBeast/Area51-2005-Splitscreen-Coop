@@ -34,6 +34,9 @@ enum pause_main_controls
     IDC_PAUSE_MENU_CHANGE,    
     IDC_PAUSE_MENU_BUILDDATE, 
     IDC_PAUSE_MENU_VIBRATION,
+    IDC_PAUSE_MENU_COOP_SWAP,       // local co-op: swap the controllers
+    IDC_PAUSE_MENU_COOP_BODY1,      // local co-op: player 1's body
+    IDC_PAUSE_MENU_COOP_BODY2,      // local co-op: player 2's body
 };
 
 #ifndef CONFIG_RETAIL
@@ -79,6 +82,9 @@ protected:
     s32                 m_CurrHL;
     ui_button*          m_pButtonInvert;
     ui_button*          m_pButtonVibration;
+    ui_button*          m_pButtonCoop[3];       // swap, body 1, body 2 (NULL when not co-op)
+    void                CoopUpdateLabels    ( void );
+    void                CoopOnAccept        ( s32 Row );
 
 #if defined(DISPLAY_DEBUG_INFO)
     ui_text*            m_pInvertYText;

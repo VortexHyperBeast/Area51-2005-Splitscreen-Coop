@@ -434,6 +434,19 @@ void logic_campaign::QaCommand( const char* pName )
     if( !s_pQaCampaign || !pName )
         return;
 
+    if( x_strcmp( pName, "swaptest" ) == 0 )
+    {
+        // The pause menu's "Controllers" row, twice: swap, then back.
+        const xbool Was = LocalCoop_SwapPads();
+        g_StateMgr.CoopSetSwapPads( !Was );
+        qa_bot_Log( "swaptest flipped: player 0 pad=%d player 1 pad=%d",
+                    (int)g_GameInput.GetPlayerDevice( 0 ), (int)g_GameInput.GetPlayerDevice( 1 ) );
+        g_StateMgr.CoopSetSwapPads( Was );
+        qa_bot_Log( "swaptest restored: player 0 pad=%d player 1 pad=%d",
+                    (int)g_GameInput.GetPlayerDevice( 0 ), (int)g_GameInput.GetPlayerDevice( 1 ) );
+        return;
+    }
+
     if( x_strcmp( pName, "scanner" ) == 0 )
     {
         player* p0 = (player*)g_ObjMgr.GetObjectByGuid( s_pQaCampaign->m_PlayerGuid[0] );
@@ -521,6 +534,16 @@ void logic_campaign::QaEquipPlayers( void )
         pPlayer->SetNextWeapon2( INVEN_WEAPON_DESERT_EAGLE, TRUE );
 
         qa_bot_Log( "equip player %d: pistol, %d rounds per clip", (int)i, (int)PerClip );
+    }
+
+    // Each local player's profile slot, name and body (player 2 has its own "Player 2" profile).
+    for( s32 i = 0; i < LocalCoop_PlayerCount(); i++ )
+    {
+        const s32 Index = g_StateMgr.GetProfileListIndex( i );
+        qa_bot_Log( "profile player %d: index=%d name=%s avatar=%d",
+                    (int)i, (int)Index,
+                    (Index >= 0) ? g_StateMgr.GetActiveProfile( Index ).GetProfileName() : "-",
+                    (Index >= 0) ? (int)g_StateMgr.GetActiveProfile( Index ).GetAvatarID() : -1 );
     }
 
     // Shared items: give player 0 one grenade the way a script does (the

@@ -113,6 +113,8 @@ def make_script(settle_ms=DEFAULT_SETTLE_MS, cycles=DEFAULT_CYCLES):
     # gives it the way the level script does and switches both players to it; then each pad holds
     # the trigger (rt) and the right bumper (rb, "R1") while turning a little.
     t = end
+    lines.append("# the pause menu's controller swap, there and back")
+    lines.append("cmd %d swaptest" % t)
     lines.append("# scanner")
     lines.append("cmd %d scanner" % t)
     t += SCANNER_SWITCH_MS
@@ -179,6 +181,8 @@ class Log(object):
     def __init__(self):
         self.players = {}       # index -> list of sample dicts (sorted by qt)
         self.views = {}         # index -> list of view dicts
+        self.profiles = {}      # local player -> (profile slot, name, avatar)
+        self.swaptest = {}      # "flipped"/"restored" -> (player 0 pad, player 1 pad)
         self.scanner_cmd_qt = None
         self.scanner_has = {}
         self.shares = []        # (p0 before, p0 after, p1 before, p1 after) of the shared-item probe
@@ -260,6 +264,14 @@ def parse_log(text):
                 log.armed_wall = wall
         elif msg.startswith("script finished"):
             log.finished = True
+        elif msg.startswith("profile player "):
+            mm = re.match(r"profile player (\d+): index=(-?\d+) name=(.*) avatar=(-?\d+)$", msg)
+            if mm:
+                log.profiles[int(mm.group(1))] = (int(mm.group(2)), mm.group(3), int(mm.group(4)))
+        elif msg.startswith("swaptest "):
+            mm = re.match(r"swaptest (\w+): player 0 pad=(-?\d+) player 1 pad=(-?\d+)$", msg)
+            if mm:
+                log.swaptest[mm.group(1)] = (int(mm.group(2)), int(mm.group(3)))
         elif msg.startswith("command scanner"):
             log.scanner_cmd_qt = qt
         elif msg.startswith("scanner player "):
@@ -348,7 +360,7 @@ PASS, FAIL, NOEV, INFO = "PASS", "FAIL", "NO-EVIDENCE", "INFO"
 REQUIRED_COOP = ["startup", "two_players", "separate_pads", "no_fall", "alive", "bot_drove",
                  "completed", "walk0", "walk1", "walkboth", "look0", "look1",
                  "fire0", "fire1", "reload0", "reload1", "pad_mapping", "split_view", "split_pixels",
-                 "partner_body", "shared_cinema", "shared_items", "scanner"]
+                 "partner_body", "shared_cinema", "shared_items", "scanner", "own_profiles", "live_swap"]
 INFO_COOP = ["jump0", "jump1"]
 REQUIRED_SINGLE = ["startup", "one_player", "bot_drove", "completed", "walk_single"]
 
@@ -680,6 +692,27 @@ def check_pad_mapping(results_meta):
         return Result("pad_mapping", FAIL, "both pads drive player %d" % drivers[0])
     return Result("pad_mapping", PASS, "pad 0 -> player %d, pad 1 -> player %d, in all %d judged actions" % (
         drivers[0], drivers[1], sum(len(t) for p in mapping.values() for t in p.values())))
+
+
+def check_live_swap(log):
+    """The pause menu's controller swap re-binds the pads at once, and back again."""
+    f, r = log.swaptest.get("flipped"), log.swaptest.get("restored")
+    if f is None or r is None:
+        return Result("live_swap", NOEV, "no swap test lines")
+    if f[0] != f[1] and f == (r[1], r[0]) and -1 not in f:
+        return Result("live_swap", PASS, "swapped: player 0 pad %d, player 1 pad %d; back: %d, %d" % (f + r))
+    return Result("live_swap", FAIL, "swapped: %s, back: %s" % (f, r))
+
+
+def check_own_profiles(log):
+    """Player 2 has its own profile (own settings and body, saved with it), named "Player 2",
+    in a different profile slot from player 1's."""
+    if 0 not in log.profiles or 1 not in log.profiles:
+        return Result("own_profiles", NOEV, "no profile lines for both players")
+    (i0, n0, a0), (i1, n1, a1) = log.profiles[0], log.profiles[1]
+    if i0 >= 0 and i1 >= 0 and i0 != i1 and n1 == "Player 2":
+        return Result("own_profiles", PASS, "player 1: slot %d '%s' body %d; player 2: slot %d '%s' body %d" % (i0, n0, a0, i1, n1, a1))
+    return Result("own_profiles", FAIL, "player 1: slot %d '%s'; player 2: slot %d '%s'" % (i0, n0, i1, n1))
 
 
 def check_scanner(log):
@@ -1032,6 +1065,8 @@ def score(log, phases, expect="coop", shots=None):
     results.append(check_shared_cinema(log))
     results.append(check_shared_items(log))
     results.append(check_scanner(log))
+    results.append(check_own_profiles(log))
+    results.append(check_live_swap(log))
     return results, REQUIRED_COOP
 
 
@@ -1090,6 +1125,8 @@ FAULTS = [
     "cinema_p0_only",      # a scripted scene reached player 0 only
     "items_not_shared",    # an item given to player 0 does not reach player 1
     "scanner_crash",       # the game dies when the scanner is fired
+    "shared_profile",      # player 2 uses player 1's profile
+    "swap_noop",           # the in-game controller swap changes nothing
 ]
 
 # fault -> names that must NOT be PASS in coop mode ("*ok*" = the run is a good one)
@@ -1119,6 +1156,8 @@ EXPECTED = {
     "cinema_p0_only": ["shared_cinema"],
     "items_not_shared": ["shared_items"],
     "scanner_crash": ["scanner", "completed"],
+    "shared_profile": ["own_profiles"],
+    "swap_noop": ["live_swap"],
 }
 
 
@@ -1157,6 +1196,8 @@ def simulate(faults=(), settle_ms=DEFAULT_SETTLE_MS, cycles=DEFAULT_CYCLES, play
         emit(26000 + 500 * k, -1, "view 0 viewport=0,0,%d,%d eye=1000,372,500 frames=%d views=1" % (SIM_W, SIM_H, 10 + k))
     emit(30000, 0, "armed: level running, no cinematic on any local player")
     if players > 1 and "single_player" not in faults:
+        emit(30000, 0, "profile player 0: index=0 name=QA avatar=0")
+        emit(30000, 0, "profile player 1: index=%s avatar=1" % ("0 name=QA" if "shared_profile" in faults else "1 name=Player 2"))
         emit(30000, 0, "share item=grenade p0 0->1 p1 0->%d" % (0 if "items_not_shared" in faults else 1))
 
     driver = {0: 0, 1: 1}
@@ -1301,6 +1342,8 @@ def simulate(faults=(), settle_ms=DEFAULT_SETTLE_MS, cycles=DEFAULT_CYCLES, play
         t += step
 
     if players > 1 and "single_player" not in faults:
+        emit(30000 + end, end, "swaptest flipped: player 0 pad=%s" % ("0 player 1 pad=1" if "swap_noop" in faults else "1 player 1 pad=0"))
+        emit(30000 + end, end, "swaptest restored: player 0 pad=0 player 1 pad=1")
         emit(30000 + end, end, "command scanner (hook set)")
         for i in range(players):
             emit(30000 + end, end, "scanner player %d: in inventory=1" % i)

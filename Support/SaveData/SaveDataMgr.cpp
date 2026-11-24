@@ -585,6 +585,111 @@ xbool SaveDataMgr::LoadStartupSettings( void )
 
 //=========================================================================
 
+#ifdef A51_LOCAL_COOP
+
+xbool SaveDataMgr::CoopLoadOrCreateProfileSync( const char* pName, s32 PlayerID,
+                                                player_profile& Profile, xbool& bCreated )
+{
+    bCreated = FALSE;
+    if( !m_pImpl || !m_pImpl->Initialized || IsBusy() ||
+        (PlayerID < 0) || (PlayerID >= SM_PROFILE_COUNT) )
+    {
+        return FALSE;
+    }
+
+    if( ScanProfiles( m_pImpl->Backend, m_pImpl->Profiles ) != SaveDataStatus::Success )
+    {
+        return FALSE;
+    }
+
+    const xwstring Wanted( pName );
+    for( s32 i = 0; i < m_pImpl->Profiles.GetCount(); i++ )
+    {
+        profile_info& Info = m_pImpl->Profiles[i];
+        if( Info.bDamaged || (x_wstrcmp( (const xwchar*)Info.Name, (const xwchar*)Wanted ) != 0) )
+        {
+            continue;
+        }
+
+        SaveDataProfileDates Dates;
+        if( ReadProfile( m_pImpl->Backend, GetProfileFileName( Info.ProfileID ), Profile, Dates ) == SaveDataStatus::Success )
+        {
+            m_pImpl->SelectedProfiles[PlayerID] = Info;
+            return TRUE;
+        }
+    }
+
+    const s32 ID = FindFreeProfileID( m_pImpl->Profiles );
+    if( ID < 0 )
+    {
+        return FALSE;
+    }
+
+    SaveDataProfileDates Dates;
+    Dates.CreationDate = eng_GetDate();
+    Dates.ModifiedDate = Dates.CreationDate;
+    if( WriteProfile( m_pImpl->Backend, GetProfileFileName( ID ), Profile, Dates ) != SaveDataStatus::Success )
+    {
+        return FALSE;
+    }
+
+    ScanProfiles( m_pImpl->Backend, m_pImpl->Profiles );
+    for( s32 i = 0; i < m_pImpl->Profiles.GetCount(); i++ )
+    {
+        if( m_pImpl->Profiles[i].ProfileID == ID )
+        {
+            m_pImpl->SelectedProfiles[PlayerID] = m_pImpl->Profiles[i];
+            bCreated = TRUE;
+            return TRUE;
+        }
+    }
+    return FALSE;
+}
+
+//=========================================================================
+
+xbool SaveDataMgr::CoopSaveProfileSync( s32 PlayerID, const player_profile& Profile )
+{
+    if( !m_pImpl || !m_pImpl->Initialized || IsBusy() ||
+        (PlayerID < 0) || (PlayerID >= SM_PROFILE_COUNT) )
+    {
+        return FALSE;
+    }
+
+    const profile_info& Info = m_pImpl->SelectedProfiles[PlayerID];
+    if( Info.ProfileID < 0 )
+    {
+        return FALSE;
+    }
+
+    const xstring                   Name = GetProfileFileName( Info.ProfileID );
+    std::unique_ptr<player_profile> Previous( new player_profile );
+    SaveDataProfileDates            Dates;
+    if( ReadProfile( m_pImpl->Backend, Name, *Previous, Dates ) != SaveDataStatus::Success )
+    {
+        Dates.CreationDate = eng_GetDate();
+    }
+    Dates.ModifiedDate = eng_GetDate();
+
+    return WriteProfile( m_pImpl->Backend, Name, Profile, Dates ) == SaveDataStatus::Success;
+}
+
+//=========================================================================
+
+void SaveDataMgr::CoopFlush( f32 MaxSeconds )
+{
+    const xtick Start = x_GetTime();
+    while( IsBusy() && (x_TicksToSec( x_GetTime() - Start ) < MaxSeconds) )
+    {
+        Update( 0.0f );
+        x_DelayThread( 5 );
+    }
+}
+
+#endif // A51_LOCAL_COOP
+
+//=========================================================================
+
 void SaveDataMgr::RefreshProfiles( void )
 {
     QueueRefreshProfiles( NULL, CompletionCallback() );

@@ -1447,6 +1447,11 @@ void DoShutdown( void )
     eng_ResetAfterException();
     eng_Sync();
     g_ScriptMgr.Kill();    
+#ifdef A51_LOCAL_COOP
+    // Co-op: finish queued saves, then save the local players' changed profiles.
+    g_SaveDataMgr.CoopFlush( 3.0f );
+    g_StateMgr.CoopSaveProfilesNow();
+#endif
     g_SaveDataMgr.Kill();
     g_NetworkMgr.Kill();
     g_GameTextMgr.Kill();

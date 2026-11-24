@@ -446,10 +446,13 @@ void player::PrepLocalCoopAvatar( void )
         m_pLoco->OnInit( m_SkinInst.GetGeom(), m_hAnimGroup.GetName(), GetGuid() );
         InitLoco();
 
+#ifdef A51_LOCAL_COOP
         CoopApplySkin();
+#endif
     }
 }
 
+#ifdef A51_LOCAL_COOP
 // Mesh and texture masks of the avatar for the chosen multiplayer skin
 // (layout as in actor::net_SetSkin: 4 meshes x 4 textures).
 void player::CoopApplySkin( void )
@@ -457,12 +460,23 @@ void player::CoopApplySkin( void )
     if( !m_SkinInst.GetGeom() )
         return;
 
-    const s32 Skin    = LocalCoop_Skin( (m_LocalSlot > 0) ? m_LocalSlot : 0 );
+    const s32 Slot = (m_LocalSlot > 0) ? m_LocalSlot : 0;
+    s32 Skin = LocalCoop_SkinOverride( Slot );
+#ifndef X_EDITOR
+    if( Skin < 0 )
+    {
+        const s32 ProfileIndex = g_StateMgr.GetProfileListIndex( Slot );
+        Skin = (ProfileIndex >= 0) ? g_StateMgr.GetActiveProfile( ProfileIndex ).GetAvatarID() : Slot;
+    }
+#endif
+    if( (Skin < 0) || (Skin > 15) )
+        Skin = Slot;
     const s32 Mesh    = Skin >> 2;
     const s32 Texture = Skin & 3;
     m_SkinInst.SetVMeshMask( 1 << (Mesh * 2) );
     m_SkinInst.SetVirtualTexture( Texture << (Mesh * 4) );
 }
+#endif
 
 //=========================================================================
 

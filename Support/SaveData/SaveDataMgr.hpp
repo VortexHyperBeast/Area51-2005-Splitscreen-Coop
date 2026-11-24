@@ -113,6 +113,18 @@ public:
     profile_info&           GetProfileInfo      ( s32 PlayerID );
     void                    GetProfileNames     ( xarray<profile_info*>& Result );
 
+#ifdef A51_LOCAL_COOP
+    // Local co-op: player 2's own profile, read and written on the calling
+    // thread.  Both refuse (return FALSE) while a queued request is running.
+    // LoadOrCreate: finds the profile named pName, or writes Profile (already
+    // set up by the caller) as a new one; records it as PlayerID's selection.
+    xbool CoopLoadOrCreateProfileSync( const char* pName, s32 PlayerID,
+                                       player_profile& Profile, xbool& bCreated );
+    xbool CoopSaveProfileSync        ( s32 PlayerID, const player_profile& Profile );
+    // Runs queued requests to the end (at most MaxSeconds), e.g. at shutdown.
+    void  CoopFlush                  ( f32 MaxSeconds );
+#endif
+
 private:
 
     struct Impl;

@@ -61,6 +61,9 @@ void game_server::EnterState( server_state NewState )
     case STATE_SERVER_INIT:
 
         // Prepare the profile list so they map to local players 
+#ifdef A51_LOCAL_COOP
+        g_StateMgr.CoopPrepareSecondProfile();
+#endif
         g_StateMgr.SetupProfileListIndex();
 #ifdef A51_LOCAL_COOP
         // Co-op prototype: claim one pad per local campaign player, in order.

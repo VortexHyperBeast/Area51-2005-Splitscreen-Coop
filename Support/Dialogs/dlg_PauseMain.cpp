@@ -26,6 +26,9 @@
 #include "Objects/Player/Player.hpp"
 #include "StateMgr/MapList.hpp"
 #endif
+#include "Objects/Player/Player.hpp"
+#include "NetworkMgr/Game/LocalCoop.hpp"
+#include "InputMgr/GamePad.hpp"
 
 extern          s32         g_Changelist;
 extern  const   char*       g_pBuildDate;
@@ -47,6 +50,12 @@ ui_manager::control_tem PauseMenuControls[] =
     { IDC_PAUSE_MENU_QUIT,      "IDS_PAUSE_MENU_QUIT",      "button",   60, 100, 120, 40, 0, 1, 1, 1, ui_win::WF_VISIBLE },
     { IDC_PAUSE_MENU_OPTIONS,   "IDS_PAUSE_MENU_OPTIONS",   "button",   60, 140, 120, 40, 0, 2, 1, 1, ui_win::WF_VISIBLE },
     { IDC_PAUSE_MENU_SETTINGS,  "IDS_PAUSE_MENU_SETTINGS",  "button",   60, 180, 120, 40, 0, 3, 1, 1, ui_win::WF_VISIBLE },
+#ifdef A51_LOCAL_COOP
+    // Local co-op rows (hidden unless co-op is running); labels are set in code.
+    { IDC_PAUSE_MENU_COOP_SWAP, "IDS_NULL",                 "button",   10, 220, 220, 40, 0, 4, 1, 1, ui_win::WF_VISIBLE },
+    { IDC_PAUSE_MENU_COOP_BODY1,"IDS_NULL",                 "button",   10, 260, 220, 40, 0, 5, 1, 1, ui_win::WF_VISIBLE },
+    { IDC_PAUSE_MENU_COOP_BODY2,"IDS_NULL",                 "button",   10, 300, 220, 40, 0, 6, 1, 1, ui_win::WF_VISIBLE },
+#endif
 #endif
 
 #if defined(DISPLAY_DEBUG_INFO)
@@ -155,6 +164,22 @@ xbool dlg_pause_main::Create( s32                        UserID,
     m_pButtonSettings   = (ui_button*)  FindChildByID( IDC_PAUSE_MENU_SETTINGS  );
     m_pButtonOptions ->SetFlag(ui_win::WF_VISIBLE, FALSE);    
     m_pButtonSettings->SetFlag(ui_win::WF_VISIBLE, FALSE);    
+#endif
+
+    m_pButtonCoop[0] = m_pButtonCoop[1] = m_pButtonCoop[2] = NULL;
+#if defined( A51_LOCAL_COOP ) && !CONFIG_IS_DEMO
+    for( s32 Row = 0; Row < 3; Row++ )
+    {
+        ui_button* pButton = (ui_button*)FindChildByID( IDC_PAUSE_MENU_COOP_SWAP + Row );
+        if( !pButton )
+            continue;
+        pButton->SetFlag( ui_win::WF_VISIBLE, FALSE );
+        if( LocalCoop_IsActive() )
+            m_pButtonCoop[Row] = pButton;
+        else
+            pButton->SetFlag( ui_win::WF_DISABLED, TRUE );
+    }
+    CoopUpdateLabels();
 #endif
 
 
@@ -388,7 +413,11 @@ void dlg_pause_main::OnAccept( ui_win* pWin )
 #else
         else if( pWin == (ui_win*)m_pButtonOptions )
         {
+#ifdef A51_LOCAL_COOP
+            g_StateMgr.InitPendingProfile( g_StateMgr.CoopPausingProfileIndex() );
+#else
             g_StateMgr.InitPendingProfile( 0 );
+#endif
             m_CurrentControl = IDC_PAUSE_MENU_OPTIONS;
             m_State = DIALOG_STATE_SELECT;
             g_AudioMgr.Play("Select_Norm");
@@ -400,7 +429,98 @@ void dlg_pause_main::OnAccept( ui_win* pWin )
             g_AudioMgr.Play("Select_Norm");
         }
 #endif
+        else
+        {
+            for( s32 Row = 0; Row < 3; Row++ )
+            {
+                if( m_pButtonCoop[Row] && (pWin == (ui_win*)m_pButtonCoop[Row]) )
+                {
+                    CoopOnAccept( Row );
+                    g_AudioMgr.Play("Select_Norm");
+                }
+            }
+        }
     }
+}
+
+//=========================================================================
+//  Local co-op rows: A on a row changes it, at once, and it is saved
+//  (controllers in a51_coop.cfg, bodies in each player's profile).
+
+static const char* const s_CoopBodyNames[4] = { "Hazmat", "Spec Ops", "Technician", "Grey" };
+
+static player* CoopFindLocalPlayer( s32 LocalSlot )
+{
+    slot_id ID = g_ObjMgr.GetFirst( object::TYPE_PLAYER );
+    while( ID != SLOT_NULL )
+    {
+        player* pPlayer = (player*)g_ObjMgr.GetObjectBySlot( ID );
+        ID = g_ObjMgr.GetNext( ID );
+        if( pPlayer && (pPlayer->GetLocalSlot() == LocalSlot) )
+            return pPlayer;
+    }
+    return NULL;
+}
+
+static s32 CoopBodyOf( s32 LocalSlot )
+{
+    s32 Skin = LocalCoop_SkinOverride( LocalSlot );
+    if( Skin < 0 )
+    {
+        const s32 ProfileIndex = g_StateMgr.GetProfileListIndex( LocalSlot );
+        Skin = (ProfileIndex >= 0) ? g_StateMgr.GetActiveProfile( ProfileIndex ).GetAvatarID() : LocalSlot;
+    }
+    return ((Skin >= 0) && (Skin <= 15)) ? Skin : LocalSlot;
+}
+
+void dlg_pause_main::CoopUpdateLabels( void )
+{
+#ifdef A51_LOCAL_COOP
+    if( m_pButtonCoop[0] )
+    {
+        m_pButtonCoop[0]->SetLabel( xwstring( LocalCoop_SwapPads() ? "Controllers: swapped" : "Controllers: normal" ) );
+    }
+    for( s32 Slot = 0; Slot < 2; Slot++ )
+    {
+        if( !m_pButtonCoop[1 + Slot] )
+            continue;
+        const s32 Skin = CoopBodyOf( Slot );
+        m_pButtonCoop[1 + Slot]->SetLabel( xwstring( (const char*)xfs( "P%d body: %s %d", (int)(Slot + 1),
+                                                                      s_CoopBodyNames[Skin >> 2], (int)((Skin & 3) + 1) ) ) );
+    }
+#endif
+}
+
+void dlg_pause_main::CoopOnAccept( s32 Row )
+{
+#ifdef A51_LOCAL_COOP
+    if( Row == 0 )
+    {
+        // Swap the two controllers between the players, live.
+        g_StateMgr.CoopSetSwapPads( !LocalCoop_SwapPads() );
+    }
+    else
+    {
+        // Next body for that player (16 multiplayer skins), saved in its profile.
+        const s32 Slot         = Row - 1;
+        const s32 ProfileIndex = g_StateMgr.GetProfileListIndex( Slot );
+        if( ProfileIndex >= 0 )
+        {
+            const s32 Skin = (CoopBodyOf( Slot ) + 1) % 16;
+            g_StateMgr.GetActiveProfile( ProfileIndex ).SetAvatarID( Skin );
+            for( s32 Other = 0; Other < 2; Other++ )
+            {
+                player* pPlayer = CoopFindLocalPlayer( Other );
+                if( pPlayer )
+                    pPlayer->CoopApplySkin();       // both, in case the profiles are shared
+            }
+            g_StateMgr.CoopSaveProfilesNow();
+        }
+    }
+    CoopUpdateLabels();
+#else
+    (void)Row;
+#endif
 }
 
 //=========================================================================
@@ -452,6 +572,11 @@ void dlg_pause_main::OnUpdate ( ui_win* pWin, f32 DeltaTime )
             m_pButtonOptions    ->SetFlag(ui_win::WF_VISIBLE, TRUE);
             m_pButtonSettings   ->SetFlag(ui_win::WF_VISIBLE, TRUE);
 #endif
+            for( s32 Row = 0; Row < 3; Row++ )
+            {
+                if( m_pButtonCoop[Row] )
+                    m_pButtonCoop[Row]->SetFlag( ui_win::WF_VISIBLE, TRUE );
+            }
 
 #if defined( DISPLAY_DEBUG_INFO )
             m_pInvertYText      ->SetFlag(ui_win::WF_VISIBLE, TRUE);

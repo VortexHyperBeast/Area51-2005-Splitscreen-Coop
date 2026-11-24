@@ -48,44 +48,79 @@ inline s32 LocalCoop_PlayerCount( void )
 }
 
 //------------------------------------------------------------------------------
-//  Co-op settings (written by CO-OP-SETTINGS.cmd, passed as environment
-//  variables by PLAY-COOP-2-PLAYERS.cmd):
-//    A51_COOP_SWAP_PADS=1   player 1 uses the second controller, player 2 the first
-//    A51_COOP_SKIN_P1=n     body the other player sees, 0..15 (multiplayer skins:
-//    A51_COOP_SKIN_P2=n     0-3 hazmat, 4-7 special forces, 8-11 technician, 12-15 grey)
+//  Co-op settings.
+//    Controllers: swapped or not.  Changed in the pause menu ("Co-op"), kept
+//    in the file a51_coop.cfg next to the game.  The environment variable
+//    A51_COOP_SWAP_PADS=0/1 (tests) overrides the file at start-up.
+//    Bodies: each player's multiplayer avatar skin (0..15: 0-3 hazmat, 4-7
+//    special forces, 8-11 technician, 12-15 grey) comes from that player's
+//    profile (saved with it).  A51_COOP_SKIN_P1/P2 (tests) override it.
 //------------------------------------------------------------------------------
+
+#define LOCAL_COOP_CONFIG_FILE "a51_coop.cfg"
+
+inline s32& LocalCoop_SwapState( void )
+{
+    static s32 s_Swap = -1;
+    return s_Swap;
+}
 
 inline xbool LocalCoop_SwapPads( void )
 {
-    static s32 s_Swap = -1;
+    s32& Swap = LocalCoop_SwapState();
 
-    if( s_Swap == -1 )
+    if( Swap == -1 )
     {
+        Swap = 0;
+
+        FILE* pFile = fopen( LOCAL_COOP_CONFIG_FILE, "r" );
+        if( pFile )
+        {
+            char Line[64];
+            while( fgets( Line, sizeof(Line), pFile ) )
+            {
+                if( x_strncmp( Line, "swap_pads=1", 11 ) == 0 )
+                    Swap = 1;
+            }
+            fclose( pFile );
+        }
+
         const char* pValue = x_getenv( "A51_COOP_SWAP_PADS" );
-        s_Swap = ( pValue && (pValue[0] == '1') && (pValue[1] == 0) ) ? 1 : 0;
+        if( pValue && ((pValue[0] == '0') || (pValue[0] == '1')) && (pValue[1] == 0) )
+            Swap = pValue[0] - '0';
     }
 
-    return (s_Swap == 1);
+    return (Swap == 1);
 }
 
-inline s32 LocalCoop_Skin( s32 LocalIndex )
+inline void LocalCoop_SetSwapPads( xbool bSwap )
+{
+    LocalCoop_SwapState() = bSwap ? 1 : 0;
+
+    FILE* pFile = fopen( LOCAL_COOP_CONFIG_FILE, "w" );
+    if( pFile )
+    {
+        fprintf( pFile, "swap_pads=%d\n", bSwap ? 1 : 0 );
+        fclose( pFile );
+    }
+}
+
+//  Test override of a player's body, -1 if not set.
+inline s32 LocalCoop_SkinOverride( s32 LocalIndex )
 {
     const char* pValue = x_getenv( (LocalIndex == 0) ? "A51_COOP_SKIN_P1" : "A51_COOP_SKIN_P2" );
-    s32 Skin = (LocalIndex == 0) ? 0 : 1;      // hazmat suit, two colours
+    s32 Value = -1;
 
     if( pValue && (pValue[0] >= '0') && (pValue[0] <= '9') )
     {
-        s32 Value = pValue[0] - '0';
+        Value = pValue[0] - '0';
         if( (pValue[1] >= '0') && (pValue[1] <= '9') && (pValue[2] == 0) )
             Value = Value * 10 + (pValue[1] - '0');
         else if( pValue[1] != 0 )
             Value = -1;
-
-        if( (Value >= 0) && (Value <= 15) )
-            Skin = Value;
     }
 
-    return Skin;
+    return ((Value >= 0) && (Value <= 15)) ? Value : -1;
 }
 
 //------------------------------------------------------------------------------
@@ -117,7 +152,8 @@ const s32 LOCAL_COOP_MAX_PLAYERS = 1;
 
 inline s32 LocalCoop_PlayerCount( void ) { return 1; }
 inline xbool LocalCoop_SwapPads( void ) { return FALSE; }
-inline s32 LocalCoop_Skin( s32 ) { return 0; }
+inline s32 LocalCoop_SkinOverride( s32 ) { return -1; }
+inline void LocalCoop_SetSwapPads( xbool ) {}
 
 #endif // A51_LOCAL_COOP
 

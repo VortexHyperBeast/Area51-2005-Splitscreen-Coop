@@ -418,6 +418,15 @@ public:
         
     // pending profile functions
     void                    InitPendingProfile              ( s32 index );
+#ifdef A51_LOCAL_COOP
+    // Local co-op: player 2's own profile ("Player 2", profile slot 1).
+    void                    CoopPrepareSecondProfile        ( void );
+    void                    CoopReleaseSecondProfile        ( void );
+    void                    CoopSaveProfilesNow             ( void );
+    s32                     CoopPausingProfileIndex         ( void );
+    s32                     CoopPausingLocalSlot            ( void );
+    void                    CoopSetSwapPads                 ( xbool bSwap );
+#endif
     void                    ActivatePendingProfile          ( xbool MarkDirty = FALSE );
     player_profile&         GetPendingProfile               ( void )                                { return m_PendingProfile; }
     s32                     GetPendingProfileIndex          ( void )                                { return m_PendingProfileIndex; }

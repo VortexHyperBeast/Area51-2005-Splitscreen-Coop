@@ -1734,6 +1734,122 @@ void state_mgr::SetPaused( xbool bPause, s32 PausingController )
 
 //=========================================================================
 
+#ifdef A51_LOCAL_COOP
+
+static xbool s_CoopSecondProfileReady = FALSE;
+
+//  Loads player 2's profile ("Player 2") into profile slot 1, creating and
+//  saving it the first time.  Called when the campaign server starts, before
+//  the profile list is built.  Keeps the in-memory copy once loaded, so
+//  settings changed during the game are not overwritten by the file.
+void state_mgr::CoopPrepareSecondProfile( void )
+{
+    if( !LocalCoop_IsActive() || (g_ActiveConfig.GetGameTypeID() != GAME_CAMPAIGN) )
+        return;
+
+    if( m_SelectedProfile[0] == 0 )
+        return;     // the campaign's player 1 always uses slot 0
+
+    if( s_CoopSecondProfileReady && (m_SelectedProfile[1] != 0) && (m_SelectedProfile[1] != m_SelectedProfile[0]) )
+        return;
+
+    static player_profile s_Profile;            // default settings (as ResetProfile)
+    s_Profile = player_profile();
+    s_Profile.SetProfileName( "Player 2" );
+    s_Profile.SetHash();
+    s_Profile.SetAvatarID( 1 );                 // second hazmat colour, so the two differ
+
+    xbool bCreated = FALSE;
+    if( !g_SaveDataMgr.CoopLoadOrCreateProfileSync( "Player 2", 1, s_Profile, bCreated ) )
+        return;
+
+    if( s_Profile.GetHash() == m_SelectedProfile[0] )
+        return;     // player 1 chose the "Player 2" profile: keep sharing
+
+    m_Profiles[1] = s_Profile;
+    m_Profiles[1].Checksum();
+    m_SelectedProfile[1]  = s_Profile.GetHash();
+    m_ProfileNotSaved[1]  = FALSE;
+    s_CoopSecondProfileReady = TRUE;
+}
+
+//  Leaving the campaign: save, and free slot 1 so other menus see one player.
+void state_mgr::CoopReleaseSecondProfile( void )
+{
+    if( !s_CoopSecondProfileReady )
+        return;
+
+    CoopSaveProfilesNow();
+    m_SelectedProfile[1]     = 0;
+    s_CoopSecondProfileReady = FALSE;
+}
+
+//  Writes the local players' profiles that changed since they were last saved.
+//  Player 1's only if autosave is on (the game's own rule for progress).
+void state_mgr::CoopSaveProfilesNow( void )
+{
+    if( !LocalCoop_IsActive() )
+        return;
+
+    for( s32 Slot = 0; Slot < 2; Slot++ )
+    {
+        if( (m_SelectedProfile[Slot] == 0) || m_ProfileNotSaved[Slot] )
+            continue;
+        if( (Slot == 1) && !s_CoopSecondProfileReady )
+            continue;
+        if( (Slot == 0) && !m_bAutosaveProfile )
+            continue;
+        if( !m_Profiles[Slot].HasChanged() )
+            continue;
+
+        if( g_SaveDataMgr.CoopSaveProfileSync( Slot, m_Profiles[Slot] ) )
+        {
+            m_Profiles[Slot].Checksum();
+        }
+    }
+}
+
+//  Swaps the two controllers between the local players, live, and keeps the
+//  choice in a51_coop.cfg (used again on the next level load and start).
+void state_mgr::CoopSetSwapPads( xbool bSwap )
+{
+    LocalCoop_SetSwapPads( bSwap );
+    for( s32 Slot = 0; Slot < 2; Slot++ )
+    {
+        const s32 Pad = bSwap ? (1 - Slot) : Slot;
+        g_GameInput.ClearPlayerActions( Slot );
+        g_GameInput.SetPlayerDevice( Slot, Pad );
+        const s32 ProfileIndex = m_ProfileListIndex[Slot];
+        if( ProfileIndex >= 0 )
+            g_Input.EnableFeedback( m_Profiles[ProfileIndex].GetVibration(), Pad );
+    }
+}
+
+//  The local player (slot) whose pad opened the pause menu, 0 if unknown.
+s32 state_mgr::CoopPausingLocalSlot( void )
+{
+    for( s32 i = 0; i < 2; i++ )
+    {
+        if( g_GameInput.GetPlayerDevice( i ) == m_ActiveControllerID )
+            return i;
+    }
+    return 0;
+}
+
+//  The profile slot the pause menu's options should edit.
+s32 state_mgr::CoopPausingProfileIndex( void )
+{
+    if( !LocalCoop_IsActive() )
+        return 0;
+
+    const s32 Index = m_ProfileListIndex[ CoopPausingLocalSlot() ];
+    return (Index >= 0) ? Index : 0;
+}
+
+#endif // A51_LOCAL_COOP
+
+//=========================================================================
+
 void state_mgr::SetProfileNotSaved( s32 playerID, xbool bNotSaved )
 {
     ASSERT( playerID >= 0 );
@@ -1782,6 +1898,15 @@ void state_mgr::ActivatePendingProfile( xbool MarkDirty )
     {
         m_Profiles[m_PendingProfileIndex].MarkDirty();
     }
+
+#ifdef A51_LOCAL_COOP
+    // Co-op: player 2's options must not change the game's difficulty, autosave or nickname.
+    if( LocalCoop_IsActive() && (m_ProfileListIndex[0] != -1) && (m_PendingProfileIndex != m_ProfileListIndex[0]) )
+    {
+        m_PendingProfileIndex = -1;
+        return;
+    }
+#endif
 
     // set nickname
     g_MatchMgr.SetNickname( m_PendingProfile.GetProfileName() );
@@ -1849,14 +1974,22 @@ void state_mgr::SetupProfileListIndex( void )
     }
 
 #ifdef A51_LOCAL_COOP
-    // Co-op prototype: both local campaign players use the profile selected for
-    // player 1.  The profile data itself is not copied or modified.
+    // Co-op: player 2 uses its own profile in slot 1 (CoopPrepareSecondProfile).
+    // If that could not be set up, both local campaign players use the profile
+    // selected for player 1 (the profile data is not copied or modified).
     if( (g_ActiveConfig.GetGameTypeID() == GAME_CAMPAIGN) &&
         (g_ActiveConfig.GetPlayerCount()  >  1)           &&
-        (m_ProfileListIndex[0] != -1)                     &&
-        (m_ProfileListIndex[1] == -1) )
+        (m_ProfileListIndex[0] != -1) )
     {
-        m_ProfileListIndex[1] = m_ProfileListIndex[0];
+        if( (m_ProfileListIndex[0] == 0) && (m_SelectedProfile[1] != 0) &&
+            (m_SelectedProfile[1] != m_SelectedProfile[0]) )
+        {
+            m_ProfileListIndex[1] = 1;
+        }
+        else if( m_ProfileListIndex[1] == -1 )
+        {
+            m_ProfileListIndex[1] = m_ProfileListIndex[0];
+        }
     }
 #endif
 }
@@ -6399,8 +6532,12 @@ void state_mgr::UpdatePauseMain( void )
 
                     case IDC_PAUSE_MENU_OPTIONS:
                     {
-                        // Edit profile.
+                        // Edit profile (co-op: the profile of the player who paused).
+#ifdef A51_LOCAL_COOP
+                        g_StateMgr.InitPendingProfile( g_StateMgr.CoopPausingProfileIndex() );
+#else
                         g_StateMgr.InitPendingProfile( 0 );
+#endif
                         SetState( SM_PAUSE_OPTIONS );
                     }
                     break;
@@ -9117,6 +9254,9 @@ void state_mgr::ExitEndPause( void )
 
 void state_mgr::EnterExitGame( void )
 {
+#ifdef A51_LOCAL_COOP
+    CoopReleaseSecondProfile();
+#endif
     // gracefully exit from the pause menu
     g_UiMgr->EndDialog( g_UiUserID, TRUE );
     irect mainarea( -75, DIALOG_TOP, ui_viewport::CONTENT_WIDTH + 75, DIALOG_BOTTOM );
