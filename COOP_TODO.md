@@ -73,7 +73,7 @@ A passing bot test is not a played game. Statuses:
 | Saving/loading a campaign with two players | NOT TESTED | Campaign progress lives in player 1's profile (slot 0) by design | `CheckPointMgr.cpp`, `StateMgr.cpp` |
 | HUD: per-player health/ammo/crosshair | DONE+VERIFIED | The engine's split-screen HUD; owner | `HudObject.cpp` |
 | HUD: downed and revive indicators | IMPLEMENTED, NOT FULLY TESTED | Text in each view: "YOU ARE DOWN" with the seconds left or the revive percentage; "YOUR PARTNER IS DOWN" with the distance, seconds left and the revive percentage | `HudObject.cpp` (`CoopRenderDowned`) |
-| Main menu: "Single Player" and "Splitscreen Co-op" (own saves: profiles "Splitscreen P1" with the progress, "Splitscreen P2") | IMPLEMENTED, NOT FULLY TESTED | Owner request. The bot starts the campaign without the menu, so the menu path is not bot-tested | `dlg_MainMenu.cpp`, `StateMgr.cpp` (`CoopPrepareSplitscreenProfile`), `LocalCoop.hpp` (`LocalCoop_SetPlayerCount`) |
+| Main menu: "Single Player" and "Splitscreen Co-op" (own saves: profiles "Splitscreen P1" with the progress, "Splitscreen P2") | DONE+VERIFIED | Owner (build 49): menu entries and the separate Splitscreen P1/P2 saves work. The bot starts the campaign without the menu | `dlg_MainMenu.cpp`, `StateMgr.cpp` (`CoopPrepareSplitscreenProfile`), `LocalCoop.hpp` (`LocalCoop_SetPlayerCount`) |
 | Performance with two views | NOT MEASURED on a real GPU | Owner reports nothing bad | - |
 
 ### Delivery and diagnostics
