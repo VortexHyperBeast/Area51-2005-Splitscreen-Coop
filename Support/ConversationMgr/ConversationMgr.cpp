@@ -6,6 +6,8 @@
 // INCLUDES
 //==============================================================================
 
+#include "NetworkMgr/Game/LocalCoop.hpp"
+#include "Input/backend/sdl/qa_bot.hpp"
 #include "ConversationMgr.hpp"
 #include "AudioMgr/AudioMgr.hpp"
 #include "Audio/audio_stream_controller.hpp"
@@ -30,6 +32,21 @@ conversation_mgr::~conversation_mgr   ( void )
 }
 
 //==============================================================================
+
+//  Local co-op diagnostics: every dialog line started or stopped (the owner
+//  hears voices cut in co-op cutscenes, not in single player).  Into the
+//  probe log in co-op play builds, into the bot log in test builds.
+static void CoopSoundLog( const char* pWhat, const char* pDescriptor, u32 VoiceID )
+{
+#ifdef A51_LOCAL_COOP_QA
+    qa_bot_Log( "%s %s id=%08x", pWhat, pDescriptor, (unsigned)VoiceID );
+#endif
+#ifdef A51_LOCAL_COOP
+    if( LocalCoop_IsActive() )
+        LocalCoop_Probe( "t=%.1f %s %s id=%08x", x_GetTimeSec(), pWhat, pDescriptor, (unsigned)VoiceID );
+#endif
+    (void)pWhat; (void)pDescriptor; (void)VoiceID;
+}
 
 void conversation_mgr::Init ( void )
 {
@@ -104,6 +121,7 @@ u32 conversation_mgr::PlayStream( const char* pDescriptor, const vector3& Positi
     else
         Result = g_ConversationStreamControl.Play( pDescriptor, Position, ZoneID, AutoStart );
 
+    CoopSoundLog( "dialog stream", pDescriptor, Result );
     return Result;
 }
 
@@ -136,6 +154,7 @@ u32 conversation_mgr::PlayHotVoice( const char* pDescriptor, const vector3& Posi
     {
         Result = g_AudioMgr.PlayVolumeClipped( pDescriptor, Position, ZoneID, AutoStart );
     }
+    CoopSoundLog( "dialog voice", pDescriptor, Result );
 
     g_AudioMgr.SetPitch( Result, Pitch );
         
@@ -209,6 +228,7 @@ xbool conversation_mgr::IsReadyToPlay( u32 VoiceID )
 
 void conversation_mgr::Stop ( u32 VoiceID, f32 ReleaseTime )
 {
+    CoopSoundLog( "dialog stop", "-", VoiceID );
     g_AudioMgr.Release( VoiceID, ReleaseTime );
 }
 

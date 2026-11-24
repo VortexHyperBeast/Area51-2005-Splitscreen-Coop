@@ -1592,6 +1592,7 @@ def audio_report(text):
     A track that stops well before its length was cut off (the owner's co-op cutscene)."""
     out, starts = [], {}
     voices = []
+    dialog = []
     for line in text.splitlines():
         m = re.match(r"^wall=(\d+) qt=(-?\d+) (.*)$", line)
         if not m:
@@ -1612,11 +1613,24 @@ def audio_report(text):
         if f:
             out.append("FAIL %s: %s" % (f.group(2), f.group(1)))
             continue
+        d = re.match(r"dialog (stream|voice|stop) (\S+) id=([0-9a-f]+)", msg)
+        if d:
+            dialog.append((wall, d.group(1), d.group(2), d.group(3)))
+            continue
         v = re.match(r"audio voices=(\d+) top=(\S+) x(\d+)", msg)
         if v:
             voices.append((int(v.group(1)), v.group(2), int(v.group(3))))
     for name, (w0, length) in starts.items():
         out.append("OPEN %s: started, no end logged (length %d ms)" % (name, length))
+    if dialog:
+        from collections import Counter
+        plays = Counter((k, n) for (_, k, n, i) in dialog if k != "stop")
+        failed = Counter((k, n) for (_, k, n, i) in dialog if k != "stop" and int(i, 16) == 0)
+        stops = sum(1 for d in dialog if d[1] == "stop")
+        out.append("dialog lines started: %d (%d could not start), stop calls: %d" % (
+            sum(plays.values()), sum(failed.values()), stops))
+        for (k, n), c in sorted(plays.items()):
+            out.append("  %-6s %-40s x%d%s" % (k, n, c, ("  (%d failed)" % failed[(k, n)]) if failed[(k, n)] else ""))
     if voices:
         mx = max(voices)
         out.append("voices in use: max %d (top %s x%d), last %d" % (mx[0], mx[1], mx[2], voices[-1][0]))
