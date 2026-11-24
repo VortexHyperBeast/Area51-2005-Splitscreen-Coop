@@ -806,6 +806,11 @@ def shot_stats(path, vp0, vp1):
     sy = h / float(full_h)
     top_end = int(round(vp0[3] * sy))         # first row below the top view
     bot_start = int(round(vp1[1] * sy))       # first row of the bottom view
+    if top_end >= bot_start:
+        # co-op layout: the views share an edge and each draws its part of a 4-row divider
+        # (rows edge-2 .. edge+1) inside itself
+        edge = bot_start
+        top_end, bot_start = edge - int(round(2 * sy)), edge + int(round(2 * sy))
     bar_rows = list(range(top_end, bot_start))
     out = {"w": w, "h": h, "bar_y0": top_end, "bar_y1": bot_start}
 
