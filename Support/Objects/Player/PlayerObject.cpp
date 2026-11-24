@@ -491,6 +491,7 @@ void player::OnInit( void )
     m_CoopReviveTime  = 0.0f;
     m_CoopRevivedThisFrame = FALSE;
     m_CoopDownBlend   = 0.0f;
+    m_CoopCorpseGuid  = NULL_GUID;
 #endif
 //  LOG_MESSAGE( "player::OnInit", "" );
 

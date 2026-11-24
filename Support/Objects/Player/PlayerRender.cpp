@@ -248,6 +248,13 @@ void player::OnRender( void )
     {
         return;
     }
+#ifdef A51_LOCAL_COOP
+    // Downed in co-op: the lying body is drawn instead (CoopStartDownedPose).
+    if( m_CoopDowned && (m_CoopCorpseGuid != NULL_GUID) && (g_RenderContext.NetPlayerSlot != m_NetSlot) )
+    {
+        return;
+    }
+#endif
 #endif
 
     if( m_DeathCamera.IsActive() && IsDead() )

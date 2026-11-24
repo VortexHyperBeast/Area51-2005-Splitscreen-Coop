@@ -768,6 +768,7 @@ protected:
             xbool       m_CoopRevivedThisFrame; // the partner kept reviving this frame
 public:
             f32         m_CoopDownBlend;        // 0 standing .. 1 lying (camera height)
+            guid        m_CoopCorpseGuid;       // the lying body shown while downed
 #endif
 
 //==============================================================================

@@ -13,6 +13,7 @@
 //  INCLUDES
 //=========================================================================
 
+#include "Objects/Corpse.hpp"
 #include "Player.hpp"
 #include "Objects/WeaponMutation.hpp"
 #include "StateMgr/StateMgr.hpp"
@@ -418,30 +419,35 @@ xbool player::CoopTryGoDown( void )
     return TRUE;
 }
 
-// The body the other player sees falls and lies on the floor, using the
-// multiplayer avatar's own death animation (the same one a killed player plays
-// in multiplayer).  Revive brings the body back to its normal standing state.
+// The body the other player sees falls and lies on the floor: the same limp
+// body (ragdoll corpse) a killed player leaves in multiplayer.  The avatar has
+// no death animation of its own.  The live body is hidden meanwhile (see
+// PlayerRender.cpp); revive removes the lying body and shows the live one.
 void player::CoopStartDownedPose( void )
 {
-    xbool bPlayed = FALSE;
-    if( m_pLoco && UsingLoco() )
+    xbool bMade = FALSE;
+    if( m_pLoco && UsingLoco() && (m_CoopCorpseGuid == NULL_GUID) )
     {
-        m_pLoco->SetState( loco::STATE_IDLE );
-        bPlayed = m_pLoco->PlayDeathAnim( loco::ANIM_DEATH );
-        if( !bPlayed )
-            bPlayed = m_pLoco->PlayDeathAnim( loco::ANIM_DEATH_SIMPLE );
-        if( !bPlayed )
-            bPlayed = m_pLoco->PlayDeathAnim( loco::ANIM_DEATH_EXPLOSION );
+        const guid OldCorpse = m_CorpseGuid;
+        corpse* pCorpse = CreateCorpseObject( FALSE );
+        if( pCorpse )
+        {
+            m_CoopCorpseGuid = pCorpse->GetGuid();
+            bMade = TRUE;
+        }
+        m_CorpseGuid = OldCorpse;   // the real death keeps its own corpse
     }
-    CoopDownLog( "coop down_pose slot=%d played=%.0f", m_LocalSlot, bPlayed ? 1.0f : 0.0f );
+    CoopDownLog( "coop down_pose slot=%d played=%.0f", m_LocalSlot, bMade ? 1.0f : 0.0f );
 }
 
 void player::CoopEndDownedPose( void )
 {
-    if( m_pLoco && UsingLoco() )
+    if( m_CoopCorpseGuid != NULL_GUID )
     {
-        m_pLoco->SetDead( FALSE );
-        m_pLoco->SetState( loco::STATE_IDLE );
+        object* pObj = g_ObjMgr.GetObjectByGuid( m_CoopCorpseGuid );
+        if( pObj && pObj->IsKindOf( corpse::GetRTTI() ) )
+            g_ObjMgr.DestroyObject( m_CoopCorpseGuid );
+        m_CoopCorpseGuid = NULL_GUID;
     }
 }
 

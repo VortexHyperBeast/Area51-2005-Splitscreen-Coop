@@ -2167,7 +2167,25 @@ u32 state_mgr::GetTotalLoreAcquired( void )
 
 void state_mgr::EnterStartupInfo( void )
 {
+#ifdef A51_LOCAL_COOP
+    // The co-op mod's own start screen ("Splitscreen co-op"), shipped next to
+    // A51.exe as SCREENS/UI_COOP_WARNINGSCREEN.png (the texture loader falls back
+    // from .XBMP to .png).  Without that file: the original screen.
+    {
+        FILE* pCoopScreen = fopen( "SCREENS/UI_COOP_WARNINGSCREEN.png", "rb" );
+        if( pCoopScreen )
+        {
+            fclose( pCoopScreen );
+            g_UiMgr->LoadBackground( "startup info", "SCREENS/UI_COOP_WARNINGSCREEN.XBMP" );
+        }
+        else
+        {
+            g_UiMgr->LoadBackground( "startup info", "SCREENS/UI_WARNINGSCREEN.XBMP" );
+        }
+    }
+#else
     g_UiMgr->LoadBackground( "startup info", "SCREENS/UI_WARNINGSCREEN.XBMP" );
+#endif
     g_UiMgr->SetUserBackground( g_UiUserID, "startup info" );
 
     m_StartupInfoTime = 10.0f;
