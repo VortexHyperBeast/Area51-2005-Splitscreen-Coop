@@ -39,6 +39,11 @@ How to start
 
 PLAY-SINGLE-PLAYER.cmd starts the same program as a normal one player game, to compare.
 
+CO-OP-SETTINGS.cmd (optional, run it before playing): swap which controller is player 1 and
+which is player 2, and choose each player's character (the multiplayer characters: hazmat,
+special forces, technician, grey alien, 4 colours each). With the controllers swapped, the
+keyboard and mouse still belong to the first controller's slot, i.e. they move player 2.
+
 
 What you should see
 -------------------
@@ -53,9 +58,12 @@ What you should see
 Known gaps (so they are not a surprise)
 ---------------------------------------
 - Enemies may only react to one of the two players. Making them aim at both is the next stage.
-- Triggers, cutscenes, checkpoints, pickups and level changes are not made two-player aware yet.
-  At the start of the first level the opening cutscene is flagged for player 1 only, not for
-  player 2 (seen in the cloud test's log). How that looks on screen is not known yet.
+- Cutscenes and scenes that take control away are shared: both players get them, the other
+  player is moved next to whoever started it, and the screen shows one full-screen view
+  while the scene runs.
+- Items and pickups are shared: what one player gets (weapons, scanner, ammo, health),
+  the other gets too.
+- Checkpoints and level changes are not made two-player aware yet.
 - There is no menu entry for co-op; that is why the start file sets it up.
 - It is the first time this runs on a real Windows PC with real controllers. Expect rough edges.
 

@@ -483,6 +483,24 @@ void logic_campaign::QaEquipPlayers( void )
 
         qa_bot_Log( "equip player %d: pistol, %d rounds per clip", (int)i, (int)PerClip );
     }
+
+    // Shared items: give player 0 one grenade the way a script does (the
+    // "player inventory" trigger action calls AddItemToInventory2 on the first
+    // player) and log what both players hold before and after.
+    if( LocalCoop_PlayerCount() > 1 )
+    {
+        player* p0 = (player*)g_ObjMgr.GetObjectByGuid( m_PlayerGuid[0] );
+        player* p1 = (player*)g_ObjMgr.GetObjectByGuid( m_PlayerGuid[1] );
+        if( p0 && p1 )
+        {
+            const s32 Before0 = (s32)p0->GetInventory2().GetAmount( INVEN_GRENADE_FRAG );
+            const s32 Before1 = (s32)p1->GetInventory2().GetAmount( INVEN_GRENADE_FRAG );
+            p0->AddItemToInventory2( INVEN_GRENADE_FRAG );
+            const s32 After0  = (s32)p0->GetInventory2().GetAmount( INVEN_GRENADE_FRAG );
+            const s32 After1  = (s32)p1->GetInventory2().GetAmount( INVEN_GRENADE_FRAG );
+            qa_bot_Log( "share item=grenade p0 %d->%d p1 %d->%d", (int)Before0, (int)After0, (int)Before1, (int)After1 );
+        }
+    }
 }
 
 //==============================================================================

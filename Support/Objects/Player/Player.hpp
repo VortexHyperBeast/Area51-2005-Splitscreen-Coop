@@ -742,6 +742,7 @@ protected:
 
     virtual xbool       UsingLoco                   ( void );
             void        PrepLocalCoopAvatar         ( void );
+            void        CoopApplySkin               ( void );
 #ifdef A51_LOCAL_COOP
 public:
             void        CoopMoveNextTo              ( player& Leader );

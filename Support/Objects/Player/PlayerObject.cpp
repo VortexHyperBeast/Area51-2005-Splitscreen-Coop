@@ -446,9 +446,22 @@ void player::PrepLocalCoopAvatar( void )
         m_pLoco->OnInit( m_SkinInst.GetGeom(), m_hAnimGroup.GetName(), GetGuid() );
         InitLoco();
 
-        m_SkinInst.SetVMeshMask( 1 );
-        m_SkinInst.SetVirtualTexture( 0 );
+        CoopApplySkin();
     }
+}
+
+// Mesh and texture masks of the avatar for the chosen multiplayer skin
+// (layout as in actor::net_SetSkin: 4 meshes x 4 textures).
+void player::CoopApplySkin( void )
+{
+    if( !m_SkinInst.GetGeom() )
+        return;
+
+    const s32 Skin    = LocalCoop_Skin( (m_LocalSlot > 0) ? m_LocalSlot : 0 );
+    const s32 Mesh    = Skin >> 2;
+    const s32 Texture = Skin & 3;
+    m_SkinInst.SetVMeshMask( 1 << (Mesh * 2) );
+    m_SkinInst.SetVirtualTexture( Texture << (Mesh * 4) );
 }
 
 //=========================================================================
@@ -707,6 +720,21 @@ void player::SetLocalPlayer( s32 LocalIndex )
         iPad = LocalIndex;
         g_StateMgr.SetControllerRequested( iPad, TRUE );
     }
+
+#ifdef A51_LOCAL_COOP
+    // Co-op setting: swap the two controllers between the players.
+    if( LocalCoop_IsActive() && LocalCoop_SwapPads() && (iPad < 2) && (LocalIndex < 2) &&
+        (GameMgr.GetGameType() == GAME_CAMPAIGN) )
+    {
+        iPad = 1 - iPad;
+    }
+
+    // Co-op setting: the body (multiplayer skin) the other player sees.
+    if( LocalCoop_IsActive() && (GameMgr.GetGameType() == GAME_CAMPAIGN) )
+    {
+        CoopApplySkin();
+    }
+#endif
 
     g_GameInput.SetPlayerDevice( LocalIndex, iPad );
 

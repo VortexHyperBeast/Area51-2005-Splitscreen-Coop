@@ -163,6 +163,7 @@ class Log(object):
     def __init__(self):
         self.players = {}       # index -> list of sample dicts (sorted by qt)
         self.views = {}         # index -> list of view dicts
+        self.shares = []        # (p0 before, p0 after, p1 before, p1 after) of the shared-item probe
         self.bodies = {}        # view index -> list of (drawn frames, frames, others, others with a body)
         self.controls = []      # (qt, pad, name, raw)
         self.states = []        # (wall, from, to)
@@ -211,6 +212,10 @@ def parse_log(text):
                 "qt": qt, "wall": wall, "vp": (g[1], g[2], g[3], g[4]),
                 "eye": (g[5], g[6], g[7]), "frames": g[8], "views": g[9],
             })
+            continue
+        sh = re.match(r"^share item=\S+ p0 (-?\d+)->(-?\d+) p1 (-?\d+)->(-?\d+)$", msg)
+        if sh:
+            log.shares.append(tuple(int(v) for v in sh.groups()))
             continue
         bm_ = BODY_RE.match(msg)
         if bm_:
@@ -304,7 +309,7 @@ PASS, FAIL, NOEV, INFO = "PASS", "FAIL", "NO-EVIDENCE", "INFO"
 REQUIRED_COOP = ["startup", "two_players", "separate_pads", "no_fall", "alive", "bot_drove",
                  "completed", "walk0", "walk1", "walkboth", "look0", "look1",
                  "fire0", "fire1", "reload0", "reload1", "pad_mapping", "split_view", "split_pixels",
-                 "partner_body", "shared_cinema"]
+                 "partner_body", "shared_cinema", "shared_items"]
 INFO_COOP = ["jump0", "jump1"]
 REQUIRED_SINGLE = ["startup", "one_player", "bot_drove", "completed", "walk_single"]
 
@@ -613,6 +618,18 @@ def check_pad_mapping(results_meta):
         drivers[0], drivers[1], sum(len(t) for p in mapping.values() for t in p.values())))
 
 
+def check_shared_items(log):
+    """An item a script gives the first player reaches the other one too (on the owner's PC the
+    pistol and the scanner of the first level went to player 1 only).  The test build gives
+    player 0 one grenade the way the trigger action does and logs both players' counts."""
+    if not log.shares:
+        return Result("shared_items", NOEV, "no shared-item probe in the log")
+    b0, a0, b1, a1 = log.shares[0]
+    if a0 == b0 + 1 and a1 == b1 + 1:
+        return Result("shared_items", PASS, "grenade given to player 0: player 0 %d->%d, player 1 %d->%d" % (b0, a0, b1, a1))
+    return Result("shared_items", FAIL, "grenade given to player 0: player 0 %d->%d, player 1 %d->%d" % (b0, a0, b1, a1))
+
+
 def check_shared_cinema(log):
     """A scripted scene (cutscene, or a moment that takes control away) must reach both players.
     Triggers address the first player; the co-op code copies the scene to the other one.  On
@@ -857,6 +874,10 @@ def check_split_pixels(shots):
 
 
 def score(log, phases, expect="coop", shots=None):
+    # coop-swapped: a co-op run with the controller-swap setting on; pad 0 must drive player 1
+    swapped = (expect == "coop-swapped")
+    if swapped:
+        expect = "coop"
     results = []
     results.append(check_startup(log, expect))
     results.append(check_asserts(log))
@@ -910,10 +931,17 @@ def score(log, phases, expect="coop", shots=None):
                 meta.append((pad, e[3], "%s c%d" % (kind, ph.cycle)))
         results.append(aggregate(kind, per))
     results.append(check_pad_mapping(meta))
+    if swapped:
+        r = results[-1]
+        if r.status == PASS and not r.detail.startswith("pad 0 -> player 1,"):
+            results[-1] = Result("pad_mapping", FAIL, "controller swap is on, but " + r.detail)
+        elif r.status == PASS:
+            r.detail = "controller swap on: " + r.detail
     results.append(check_split_view(log))
     results.append(check_split_pixels(shots))
     results.append(check_partner_body(log))
     results.append(check_shared_cinema(log))
+    results.append(check_shared_items(log))
     return results, REQUIRED_COOP
 
 
@@ -970,6 +998,7 @@ FAULTS = [
     "identical_halves",    # both halves show the same picture
     "partner_invisible",   # the players have no 3rd person body, so neither sees the other
     "cinema_p0_only",      # a scripted scene reached player 0 only
+    "items_not_shared",    # an item given to player 0 does not reach player 1
 ]
 
 # fault -> names that must NOT be PASS in coop mode ("*ok*" = the run is a good one)
@@ -997,6 +1026,7 @@ EXPECTED = {
     "identical_halves": ["split_pixels"],
     "partner_invisible": ["partner_body"],
     "cinema_p0_only": ["shared_cinema"],
+    "items_not_shared": ["shared_items"],
 }
 
 
@@ -1034,6 +1064,8 @@ def simulate(faults=(), settle_ms=DEFAULT_SETTLE_MS, cycles=DEFAULT_CYCLES, play
                      i, 0xA0000 + i, i, i, 1000 + 100 * i, on))
         emit(26000 + 500 * k, -1, "view 0 viewport=0,0,%d,%d eye=1000,372,500 frames=%d views=1" % (SIM_W, SIM_H, 10 + k))
     emit(30000, 0, "armed: level running, no cinematic on any local player")
+    if players > 1 and "single_player" not in faults:
+        emit(30000, 0, "share item=grenade p0 0->1 p1 0->%d" % (0 if "items_not_shared" in faults else 1))
 
     driver = {0: 0, 1: 1}
     if "pads_swapped" in faults:
@@ -1273,6 +1305,17 @@ def selftest():
         print(" %-4s fault %-15s %s" % ("ok" if good else "BAD", fault, why))
         ok_all &= good
 
+    # the controller-swap setting: a swapped run passes as coop-swapped, an unswapped one fails it
+    log = parse_log(simulate(["pads_swapped"]))
+    ok, failed, noev = verdict(*score(log, phases, "coop-swapped", sim_shots(log, [])))
+    print(" %-4s swapped pads judged as coop-swapped must PASS: %s" % ("ok" if ok else "BAD", "PASS" if ok else (failed, noev)))
+    ok_all &= ok
+    log = parse_log(simulate([]))
+    ok, failed, noev = verdict(*score(log, phases, "coop-swapped", sim_shots(log, [])))
+    good = (not ok) and failed == ["pad_mapping"]
+    print(" %-4s unswapped pads judged as coop-swapped must FAIL on pad_mapping: %s" % ("ok" if good else "BAD", failed or "PASS"))
+    ok_all &= good
+
     # the single-player control
     log = parse_log(simulate(["single_player"], players=1))
     one_shots = sim_shots(log, ["no_gap_line"])
@@ -1310,7 +1353,7 @@ def main(argv=None):
     s = sub.add_parser("score")
     s.add_argument("log")
     s.add_argument("--script")
-    s.add_argument("--expect", choices=["coop", "single"], default="coop")
+    s.add_argument("--expect", choices=["coop", "coop-swapped", "single"], default="coop")
     s.add_argument("--json")
     s.add_argument("--shots", help="statistics written by the shots command")
 

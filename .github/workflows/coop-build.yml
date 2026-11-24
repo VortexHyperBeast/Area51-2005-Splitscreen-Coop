@@ -120,7 +120,7 @@ jobs:
         run: |
           f=build/packages/windows-x64/A51.exe
           ls -l "$f"
-          if grep -a -q -E 'A51_QA_SCRIPT|a51_qa_bot|A51_QA_WINDOW|A51_QA_MENU_PULSE|bodies view=' "$f"; then
+          if grep -a -q -E 'A51_QA_SCRIPT|a51_qa_bot|A51_QA_WINDOW|A51_QA_MENU_PULSE|bodies view=|share item=' "$f"; then
             echo "FOUND test-only strings in the play build"
             exit 1
           fi
@@ -277,7 +277,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        mode: [coop, single]
+        mode: [coop, swap, single]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -470,7 +470,7 @@ jobs:
           NAME="Area51-Coop-Stage1-win-x64"
           mkdir -p "dist/$NAME"
           cp -a play/. "dist/$NAME/"
-          cp tools/coop-play/Setup-Assets.ps1 tools/coop-play/PLAY-COOP-2-PLAYERS.cmd tools/coop-play/PLAY-SINGLE-PLAYER.cmd tools/coop-play/README.txt "dist/$NAME/"
+          cp tools/coop-play/Setup-Assets.ps1 tools/coop-play/PLAY-COOP-2-PLAYERS.cmd tools/coop-play/PLAY-SINGLE-PLAYER.cmd tools/coop-play/CO-OP-SETTINGS.cmd tools/coop-play/README.txt "dist/$NAME/"
 
           # The test results of this very commit, as text, from the results branch.
           git fetch --quiet --depth 30 origin qa-results:refs/remotes/origin/qa-results || true
@@ -485,7 +485,7 @@ jobs:
             echo "What was tested: the same co-op code as in this package, built as a Linux test build with a bot"
             echo "that drives two virtual controllers, run with a software renderer. The Windows build in this zip"
             echo "was built and started in the cloud, but it has not been played with real controllers yet."
-            for m in coop single; do
+            for m in coop swap single; do
               echo
               echo "----- two-controller test, mode: $m -----"
               show "$R/linux-test-$m/run.txt"

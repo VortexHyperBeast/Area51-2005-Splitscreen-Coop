@@ -44,8 +44,9 @@ CYCLES="${QA_CYCLES:-3}"
 
 case "$MODE" in
   coop)   EXPECT=coop ;;
+  swap)   EXPECT=coop-swapped ;;   # co-op with the CO-OP-SETTINGS options: controllers swapped, other skins
   single) EXPECT=single ;;
-  *) echo "mode must be coop or single"; exit 2 ;;
+  *) echo "mode must be coop, swap or single"; exit 2 ;;
 esac
 
 say() { echo "$@" | tee -a "$OUT/run.txt"; }
@@ -96,7 +97,12 @@ export A51_QA_WINDOW="$WINDOW"
 export SDL_AUDIODRIVER=dummy
 export SDL_VIDEODRIVER=x11
 export SDL_JOYSTICK_ALLOW_BACKGROUND_EVENTS=1
-if [ "$MODE" = coop ]; then export A51_LOCAL_COOP=2; else unset A51_LOCAL_COOP; fi
+if [ "$MODE" = coop ] || [ "$MODE" = swap ]; then export A51_LOCAL_COOP=2; else unset A51_LOCAL_COOP; fi
+if [ "$MODE" = swap ]; then
+  export A51_COOP_SWAP_PADS=1 A51_COOP_SKIN_P1=6 A51_COOP_SKIN_P2=13
+else
+  unset A51_COOP_SWAP_PADS A51_COOP_SKIN_P1 A51_COOP_SKIN_P2
+fi
 
 # Diagnostics that help when the very first start fails.
 {
