@@ -200,6 +200,7 @@ class Log(object):
         self.carryover = {}     # player -> (scanner, pistol) after a stored/restored inventory
         self.swaptest = {}      # "flipped"/"restored" -> (player 0 pad, player 1 pad)
         self.kill_qt = None
+        self.finished_wall = None
         self.begins = []        # script times of "campaign BeginGame done"
         self.scanner_cmd_qt = None
         self.scanner_has = {}
@@ -214,6 +215,7 @@ class Log(object):
         self.attached = {}      # pad -> is_gamepad
         self.missing = []       # "player N missing" lines
         self.asserts = []       # assertions the game hit (logged and skipped by the bot)
+        self.exit_asserts = []  # assertions while the game shuts down after the script
         self.lines = 0
         self.unparsed = 0
         self.perf = []          # (wall ms, frames, window ms) from the bot's frame counter
@@ -283,6 +285,7 @@ def parse_log(text):
                 log.armed_wall = wall
         elif msg.startswith("script finished"):
             log.finished = True
+            log.finished_wall = wall
         elif msg.startswith("profile player "):
             mm = re.match(r"profile player (\d+): index=(-?\d+) name=(.*) avatar=(-?\d+)$", msg)
             if mm:
@@ -308,7 +311,11 @@ def parse_log(text):
         elif msg.startswith("ERROR"):
             log.errors.append(msg)
         elif msg.startswith("ASSERT #"):
-            log.asserts.append(msg)
+            # after "script finished" the game is shutting down (static destructors)
+            if log.finished_wall is None:
+                log.asserts.append(msg)
+            else:
+                log.exit_asserts.append(msg)
         elif re.match(r"^player \d+ missing", msg):
             log.missing.append(msg)
         else:
@@ -559,8 +566,15 @@ def check_startup(log, expect):
         log.level if log.level is not None else "?", log.armed_wall, counts))
 
 
+def before_kill(log, samples):
+    """Samples before the scripted death of player 1 (the level restarts after it)."""
+    if log.kill_qt is None:
+        return samples
+    return [s for s in samples if s["qt"] < log.kill_qt]
+
+
 def check_two_players(log):
-    p0, p1 = log.players.get(0, []), log.players.get(1, [])
+    p0, p1 = before_kill(log, log.players.get(0, [])), before_kill(log, log.players.get(1, []))
     if not p0 or not p1:
         return Result("two_players", FAIL, "players seen: %s" % sorted(log.players))
     g0 = set(s["guid"] for s in p0)
@@ -599,7 +613,7 @@ def check_no_fall(log):
 def check_alive(log):
     dead = []
     for i, lst in sorted(log.players.items()):
-        for s in lst:
+        for s in before_kill(log, lst):
             if s["hp"] <= 0:
                 dead.append((i, s["qt"]))
                 break
