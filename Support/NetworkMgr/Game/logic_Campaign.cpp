@@ -420,6 +420,43 @@ void logic_campaign::WriteProbe( f32 DeltaTime )
 //  else of the game, to decide whether the players really act independently.
 //  Yaw and pitch are in tenths of a degree.
 
+//  TEST ONLY.  Script commands ("cmd <ms> <name>" in the bot script).
+//    scanner   give the scanner the way the first level's script does (the
+//              "player inventory" action: AddItemToInventory2 on the first
+//              player) and switch every local player to it; the script then
+//              fires it with each pad.  The owner's game crashed there (R1
+//              with the scanner, 2026-11-24).
+
+static logic_campaign* s_pQaCampaign = NULL;
+
+void logic_campaign::QaCommand( const char* pName )
+{
+    if( !s_pQaCampaign || !pName )
+        return;
+
+    if( x_strcmp( pName, "scanner" ) == 0 )
+    {
+        player* p0 = (player*)g_ObjMgr.GetObjectByGuid( s_pQaCampaign->m_PlayerGuid[0] );
+        if( p0 )
+        {
+            p0->AddItemToInventory2( INVEN_WEAPON_SCANNER );
+        }
+
+        for( s32 i = 0; i < LocalCoop_PlayerCount(); i++ )
+        {
+            player* pPlayer = (player*)g_ObjMgr.GetObjectByGuid( s_pQaCampaign->m_PlayerGuid[i] );
+            if( !pPlayer )
+                continue;
+
+            const s32 Has = (s32)pPlayer->GetInventory2().GetAmount( INVEN_WEAPON_SCANNER );
+            pPlayer->SetNextWeapon2( INVEN_WEAPON_SCANNER, TRUE );
+            qa_bot_Log( "scanner player %d: in inventory=%d", (int)i, (int)Has );
+        }
+    }
+}
+
+//==============================================================================
+
 void logic_campaign::ArmQaBot( f32 DeltaTime )
 {
     if( m_QaArmed )
@@ -446,6 +483,8 @@ void logic_campaign::ArmQaBot( f32 DeltaTime )
     if( (m_QaSinceBegin >= 5.0f) && (m_QaFreeTime >= 5.0f) )
     {
         m_QaArmed = TRUE;
+        s_pQaCampaign = this;
+        qa_bot_SetCommandHook( QaCommand );
         qa_bot_Arm( "level running, no cinematic on any local player" );
         QaEquipPlayers();
     }
@@ -537,7 +576,14 @@ void logic_campaign::WriteQaProbe( f32 DeltaTime )
         new_weapon* pWeapon = pPlayer->GetCurrentWeaponPtr();
         if( pWeapon )
         {
-            pWeaponName = pWeapon->GetTypeDesc().GetTypeName();
+            switch( pWeapon->GetType() )                      // short codes as player::GetCurrentWeaponName
+            {
+            case object::TYPE_WEAPON_DESERT_EAGLE: pWeaponName = "EGL"; break;
+            case object::TYPE_WEAPON_SCANNER:      pWeaponName = "SCN"; break;
+            case object::TYPE_WEAPON_SMP:          pWeaponName = "SMP"; break;
+            case object::TYPE_WEAPON_SHOTGUN:      pWeaponName = "SHT"; break;
+            default:                               pWeaponName = "other"; break;
+            }
             pWeapon->GetAmmoState( new_weapon::AMMO_PRIMARY, Ammo, AmmoMax, PerClip, InClip );
         }
 

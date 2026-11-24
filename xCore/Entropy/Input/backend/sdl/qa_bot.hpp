@@ -28,12 +28,18 @@ int  qa_bot_ScriptMs ( void );                      // script time in ms since a
 unsigned qa_bot_WallMs ( void );                    // wall-clock ms since the game started
 void qa_bot_Log      ( const char* pFormat, ... );  // appends a line to a51_qa_bot.log
 
+// Script lines "cmd <ms> <name>" call this hook once, at that script time, with the name.
+typedef void (*qa_bot_command_fn)( const char* pName );
+void qa_bot_SetCommandHook( qa_bot_command_fn pHook );
+
 #else
 
 inline void qa_bot_Arm      ( const char* ) {}
 inline void qa_bot_Tick     ( float )       {}
 inline int  qa_bot_ScriptMs ( void )        { return -1; }
 inline unsigned qa_bot_WallMs ( void )      { return 0; }
+typedef void (*qa_bot_command_fn)( const char* pName );
+inline void qa_bot_SetCommandHook( qa_bot_command_fn ) {}
 
 #endif
 

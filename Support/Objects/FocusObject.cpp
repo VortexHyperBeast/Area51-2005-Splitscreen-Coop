@@ -23,6 +23,7 @@
 #ifndef X_EDITOR
 #include "GameLib/RenderContext.hpp"
 #include "NetworkMgr/Messages/MsgMgr.hpp"
+#include "NetworkMgr/Game/LocalCoop.hpp"
 #endif
 
 //=========================================================================
@@ -505,6 +506,57 @@ void focus_object::OnRender( void )
 
 //=========================================================================
 
+#ifdef A51_LOCAL_COOP
+//=========================================================================
+//  Local co-op: the focus object (the "look at it and press use" prompt)
+//  follows the local player who looks at it, else the nearest one.  It used
+//  to follow only the first player.
+
+static player* CoopFocusPlayer( const vector3& Position, const bbox& LocalFocusBox, f32 ViewDist )
+{
+    player* pNearest  = NULL;
+    f32     NearestSq = F32_MAX;
+
+    slot_id ID = g_ObjMgr.GetFirst( object::TYPE_PLAYER );
+    while( ID != SLOT_NULL )
+    {
+        player* pPlayer = (player*)g_ObjMgr.GetObjectBySlot( ID );
+        ID = g_ObjMgr.GetNext( ID );
+
+        if( !pPlayer || (pPlayer->GetLocalSlot() == -1) || pPlayer->IsDead() )
+            continue;
+
+        // Same test as below: the eye ray against the focus box, scaled down when close.
+        bbox FocusBBox = LocalFocusBox;
+        const f32 LongestDim = MAX( 1.0f,
+                                    MAX( x_abs( FocusBBox.Max.GetX() - FocusBBox.Min.GetX() ),
+                                         MAX( x_abs( FocusBBox.Max.GetY() - FocusBBox.Min.GetY() ),
+                                              x_abs( FocusBBox.Max.GetZ() - FocusBBox.Min.GetZ() ) ) ) );
+        const f32 Distance    = (Position - pPlayer->GetEyesPosition()).Length();
+        const f32 ScaleFactor = MIN( 1.0f, Distance / (LongestDim * 2.0f) );
+        FocusBBox.Transform( matrix4( vector3( ScaleFactor, ScaleFactor, ScaleFactor ),
+                                      radian3( 0.0f, 0.0f, 0.0f ),
+                                      Position ) );
+
+        const view&   SimulationView = pPlayer->GetSimulationView();
+        const vector3 RayStart       = SimulationView.GetPosition();
+        const vector3 RayEnd         = RayStart + SimulationView.GetViewZ() * ViewDist;
+        f32 HitTime;
+        if( FocusBBox.Intersect( HitTime, RayStart, RayEnd ) )
+            return pPlayer;
+
+        const f32 DistSq = (Position - pPlayer->GetPosition()).LengthSquared();
+        if( DistSq < NearestSq )
+        {
+            NearestSq = DistSq;
+            pNearest  = pPlayer;
+        }
+    }
+
+    return pNearest;
+}
+#endif
+
 void focus_object::OnAdvanceSimulation( f32 DeltaTime )
 {
     // this will fix the activate on same frame and execute trigger bug
@@ -547,6 +599,12 @@ void focus_object::OnAdvanceSimulation( f32 DeltaTime )
     }
 
     player* pPlayer = SMP_UTIL_GetActivePlayer();
+#ifdef A51_LOCAL_COOP
+    if( LocalCoop_IsActive() )
+    {
+        pPlayer = CoopFocusPlayer( GetPosition(), m_pCurrState->m_FocusBox, m_pCurrState->m_ViewDist );
+    }
+#endif
     if( !pPlayer )
         return;
     //

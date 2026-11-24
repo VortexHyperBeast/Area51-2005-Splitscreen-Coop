@@ -57,6 +57,7 @@ virtual void    BeginGame       ( void );
 #ifdef A51_LOCAL_COOP_QA
         void    ArmQaBot        ( f32 DeltaTime );
         void    QaEquipPlayers  ( void );
+static  void    QaCommand       ( const char* pName );
         void    WriteQaProbe    ( f32 DeltaTime );
 #endif
 

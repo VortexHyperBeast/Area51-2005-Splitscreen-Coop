@@ -13,6 +13,7 @@
 #include "../MiscUtils/SimpleUtils.hpp"
 #include "../Support/Objects/Player/Player.hpp"
 #include "../TriggerEx_Object.hpp"
+#include "NetworkMgr/Game/LocalCoop.hpp"
 
 //=========================================================================
 // CLASS FUNCTIONS
@@ -26,9 +27,45 @@ m_ButtonID(ingame_pad::ACTION_USE)
 
 //=============================================================================
 
+#ifdef A51_LOCAL_COOP
+//  Local co-op: a button condition (e.g. "use" to pick up the scanner) is met
+//  by any local player's pad, not only the first player's.
+static xbool CoopAnyPadPressed( s32 ButtonID )
+{
+    slot_id ID = g_ObjMgr.GetFirst( object::TYPE_PLAYER );
+    while( ID != SLOT_NULL )
+    {
+        player* pPlayer = (player*)g_ObjMgr.GetObjectBySlot( ID );
+        ID = g_ObjMgr.GetNext( ID );
+
+        if( !pPlayer || (pPlayer->GetLocalSlot() == -1) || pPlayer->IsDead() )
+            continue;
+
+        const s32 Pad = pPlayer->GetActivePlayerPad();
+        if( (Pad < 0) || (Pad >= MAX_LOCAL_PLAYERS) )
+            continue;
+
+        if( (g_GameInput[ Pad ].GetFrameLogical( ButtonID ).GetWasValue() > 0.25f) ||
+            (g_GameInput[ Pad ].GetFrameLogical( ButtonID ).GetIsValue()  > 0.25f) )
+            return TRUE;
+    }
+    return FALSE;
+}
+#endif
+
 xbool condition_player_button_state::Execute( guid TriggerGuid )
 {    
     (void) TriggerGuid;
+
+#ifdef A51_LOCAL_COOP
+    if( LocalCoop_IsActive() &&
+        (m_ButtonID >= ingame_pad::GAMEPLAY_ACTION_FIRST) && (m_ButtonID < ingame_pad::GAMEPLAY_ACTION_END) &&
+        ((m_Code == BUTTON_CODE_PRESSED) || (m_Code == BUTTON_CODE_NOT_PRESSED)) )
+    {
+        const xbool Any = CoopAnyPadPressed( m_ButtonID );
+        return (m_Code == BUTTON_CODE_PRESSED) ? Any : !Any;
+    }
+#endif
     
     player* pPlayer = SMP_UTIL_GetActivePlayer();
     if ( !pPlayer )

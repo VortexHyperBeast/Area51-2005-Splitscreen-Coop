@@ -1102,6 +1102,7 @@ void HandleWindowEvent( void* pContext, SDL_Event const& Event, SDL_WindowID Win
 // Script file (path in the environment variable A51_QA_SCRIPT), one line each:
 //     <start_ms> <end_ms> <pad 0|1> <control> [value]
 //     quit <ms>
+//     cmd <ms> <name>     (calls the game's command hook once, see qa_bot_SetCommandHook)
 // Times are game time since the game called qa_bot_Arm().  Controls:
 //     lx ly rx ry   sticks, value -100..100 (+100 on ly/ry = forward/up)
 //     lt rt         triggers, value 0..100
@@ -1147,6 +1148,17 @@ namespace qa
     };
 
     static script_event  s_Events[MAX_EVENTS];
+
+    static s32 const MAX_COMMANDS = 16;
+    struct script_command
+    {
+        s32   AtMs;
+        xbool Done;
+        char  Name[32];
+    };
+    static script_command    s_Commands[MAX_COMMANDS];
+    static s32               s_CommandCount = 0;
+    static qa_bot_command_fn s_pCommandHook = NULL;
     static s32           s_EventCount = 0;
     static s32           s_QuitMs     = 0;
     static xbool         s_Enabled    = FALSE;
@@ -1225,6 +1237,24 @@ namespace qa
             if( sscanf( Line, " quit %d", &Quit ) == 1 )
             {
                 s_QuitMs = Quit;
+                continue;
+            }
+
+            int  CmdMs = 0;
+            char CmdName[32];
+            if( sscanf( Line, " cmd %d %31s", &CmdMs, CmdName ) == 2 )
+            {
+                if( s_CommandCount < MAX_COMMANDS )
+                {
+                    script_command& C = s_Commands[s_CommandCount++];
+                    C.AtMs = CmdMs;
+                    C.Done = FALSE;
+                    strcpy( C.Name, CmdName );
+                    if( CmdMs > MaxEnd )
+                    {
+                        MaxEnd = CmdMs;
+                    }
+                }
                 continue;
             }
 
@@ -1356,6 +1386,20 @@ namespace qa
         }
         else
         {
+            for( s32 i = 0; i < s_CommandCount; i++ )
+            {
+                script_command& C = s_Commands[i];
+                if( !C.Done && (NowMs >= C.AtMs) )
+                {
+                    C.Done = TRUE;
+                    qa_bot_Log( "command %s (hook %s)", C.Name, s_pCommandHook ? "set" : "missing" );
+                    if( s_pCommandHook )
+                    {
+                        s_pCommandHook( C.Name );
+                    }
+                }
+            }
+
             for( s32 i = 0; i < s_EventCount; i++ )
             {
                 script_event const& E = s_Events[i];
@@ -1544,6 +1588,11 @@ void qa_bot_Log( char const* pFormat, ... )
     fputc( '\n', qa::s_pLog );
     fflush( qa::s_pLog );
     va_end( Args );
+}
+
+void qa_bot_SetCommandHook( qa_bot_command_fn pHook )
+{
+    qa::s_pCommandHook = pHook;
 }
 
 void qa_bot_Arm( char const* pWhy )

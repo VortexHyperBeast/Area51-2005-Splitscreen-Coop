@@ -109,8 +109,24 @@ def make_script(settle_ms=DEFAULT_SETTLE_MS, cycles=DEFAULT_CYCLES):
         lines.append("# %s cycle %d" % (p.kind, p.cycle))
         for (pad, ctrl, val) in p.actions:
             lines.append("%d %d %d %s %d" % (p.start, p.end, pad, ctrl, val))
-    lines.append("quit %d" % (end + 1000))
+    # the scanner: the owner's game crashed when R1 was pressed with it (2026-11-24).  The game
+    # gives it the way the level script does and switches both players to it; then each pad holds
+    # the trigger (rt) and the right bumper (rb, "R1") while turning a little.
+    t = end
+    lines.append("# scanner")
+    lines.append("cmd %d scanner" % t)
+    t += SCANNER_SWITCH_MS
+    for pad in (0, 1):
+        for ctrl, hold in (("rt", 3000), ("rb", 1500)):
+            lines.append("%d %d %d %s 100" % (t, t + hold, pad, ctrl))
+            lines.append("%d %d %d rx 25" % (t, t + hold, pad))
+            t += hold + 500
+    lines.append("quit %d" % (t + 1000))
     return "\n".join(lines) + "\n"
+
+
+SCANNER_SWITCH_MS = 4000
+SCANNER_MS = SCANNER_SWITCH_MS + 2 * (3500 + 2000)
 
 
 HEADER_RE = re.compile(r"^#\s*coopqa script v1 settle=(\d+) cycles=(\d+)", re.M)
@@ -163,6 +179,8 @@ class Log(object):
     def __init__(self):
         self.players = {}       # index -> list of sample dicts (sorted by qt)
         self.views = {}         # index -> list of view dicts
+        self.scanner_cmd_qt = None
+        self.scanner_has = {}
         self.shares = []        # (p0 before, p0 after, p1 before, p1 after) of the shared-item probe
         self.bodies = {}        # view index -> list of (drawn frames, frames, others, others with a body)
         self.controls = []      # (qt, pad, name, raw)
@@ -242,6 +260,12 @@ def parse_log(text):
                 log.armed_wall = wall
         elif msg.startswith("script finished"):
             log.finished = True
+        elif msg.startswith("command scanner"):
+            log.scanner_cmd_qt = qt
+        elif msg.startswith("scanner player "):
+            mm = re.match(r"scanner player (\d+): in inventory=(-?\d+)", msg)
+            if mm:
+                log.scanner_has[int(mm.group(1))] = int(mm.group(2))
         elif msg.startswith("wall-clock limit reached"):
             log.wall_limit = True
         elif msg.startswith("ERROR"):
@@ -324,7 +348,7 @@ PASS, FAIL, NOEV, INFO = "PASS", "FAIL", "NO-EVIDENCE", "INFO"
 REQUIRED_COOP = ["startup", "two_players", "separate_pads", "no_fall", "alive", "bot_drove",
                  "completed", "walk0", "walk1", "walkboth", "look0", "look1",
                  "fire0", "fire1", "reload0", "reload1", "pad_mapping", "split_view", "split_pixels",
-                 "partner_body", "shared_cinema", "shared_items"]
+                 "partner_body", "shared_cinema", "shared_items", "scanner"]
 INFO_COOP = ["jump0", "jump1"]
 REQUIRED_SINGLE = ["startup", "one_player", "bot_drove", "completed", "walk_single"]
 
@@ -658,6 +682,25 @@ def check_pad_mapping(results_meta):
         drivers[0], drivers[1], sum(len(t) for p in mapping.values() for t in p.values())))
 
 
+def check_scanner(log):
+    """Both players get the scanner (given to player 0 the way the level script does) and fire it
+    with RT and R1 without the game crashing (the run must still finish: see 'completed')."""
+    if log.scanner_cmd_qt is None:
+        return Result("scanner", NOEV, "the scanner command never ran")
+    bad = []
+    for i in (0, 1):
+        if log.scanner_has.get(i, 0) < 1:
+            bad.append("player %d did not get it" % i)
+        after = [s for s in log.players.get(i, []) if s["qt"] >= log.scanner_cmd_qt + SCANNER_SWITCH_MS]
+        if not any(s["weapon"] == "SCN" for s in after):
+            bad.append("player %d never held it" % i)
+    if not log.finished:
+        bad.append("the game did not reach the end of the script after firing it")
+    if bad:
+        return Result("scanner", FAIL, "; ".join(bad))
+    return Result("scanner", PASS, "both players got the scanner, held it and fired it with RT and R1; the game ran on")
+
+
 def check_shared_items(log):
     """An item a script gives the first player reaches the other one too (on the owner's PC the
     pistol and the scanner of the first level went to player 1 only).  The test build gives
@@ -988,6 +1031,7 @@ def score(log, phases, expect="coop", shots=None):
     results.append(check_partner_body(log))
     results.append(check_shared_cinema(log))
     results.append(check_shared_items(log))
+    results.append(check_scanner(log))
     return results, REQUIRED_COOP
 
 
@@ -1045,6 +1089,7 @@ FAULTS = [
     "partner_invisible",   # the players have no 3rd person body, so neither sees the other
     "cinema_p0_only",      # a scripted scene reached player 0 only
     "items_not_shared",    # an item given to player 0 does not reach player 1
+    "scanner_crash",       # the game dies when the scanner is fired
 ]
 
 # fault -> names that must NOT be PASS in coop mode ("*ok*" = the run is a good one)
@@ -1073,6 +1118,7 @@ EXPECTED = {
     "partner_invisible": ["partner_body"],
     "cinema_p0_only": ["shared_cinema"],
     "items_not_shared": ["shared_items"],
+    "scanner_crash": ["scanner", "completed"],
 }
 
 
@@ -1083,7 +1129,7 @@ def simulate(faults=(), settle_ms=DEFAULT_SETTLE_MS, cycles=DEFAULT_CYCLES, play
     for ph in phases:
         for (pad, ctrl, val) in ph.actions:
             events.append((ph.start, ph.end, pad, ctrl, val))
-    quit_ms = end + 1000
+    quit_ms = end + SCANNER_MS + 1000
     lines = []
 
     def emit(wall, qt, msg):
@@ -1254,8 +1300,19 @@ def simulate(faults=(), settle_ms=DEFAULT_SETTLE_MS, cycles=DEFAULT_CYCLES, play
                     i, drawn, others, body))
         t += step
 
+    if players > 1 and "single_player" not in faults:
+        emit(30000 + end, end, "command scanner (hook set)")
+        for i in range(players):
+            emit(30000 + end, end, "scanner player %d: in inventory=1" % i)
+        for k in range(1, (SCANNER_MS // 500)):
+            tt = end + 500 * k
+            for i in range(players):
+                emit(30000 + tt, tt, "player %d guid=%08X slot=%d pad=%d pos=%d,200,500 yaw=0 pitch=0 hp=100 weapon=%s ammo=0 inclip=0 perclip=0 cinema=0" % (
+                    i, 0xA0000 + i, i, i, 5000 + 100 * i, "SCN" if tt >= end + SCANNER_SWITCH_MS else "EGL"))
     if "timeout" in faults:
         emit(30000 + t, t, "wall-clock limit reached (armed=1), asking the game to exit")
+    elif "scanner_crash" in faults:
+        pass
     else:
         emit(30000 + quit_ms, quit_ms, "script finished, asking the game to exit")
     return "\n".join(lines) + "\n"
