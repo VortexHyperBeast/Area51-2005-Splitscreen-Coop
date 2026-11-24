@@ -180,6 +180,7 @@ struct local_coop_revive_rules
     f32     ReviveSec;
     f32     ReviveHealthPct;
     f32     ReviveRange;        // cm
+    f32     MutantDamagePct;    // damage a mutated player takes, percent (owner: 50)
 };
 
 inline const local_coop_revive_rules& LocalCoop_ReviveRules( void )
@@ -194,6 +195,9 @@ inline const local_coop_revive_rules& LocalCoop_ReviveRules( void )
         s_Rules.ReviveSec       = LocalCoop_ConfigF32( "revive_seconds",       "A51_COOP_REVIVE_TIME",     4.0f  );
         s_Rules.ReviveHealthPct = LocalCoop_ConfigF32( "revive_health_percent","A51_COOP_REVIVE_HEALTH",   35.0f );
         s_Rules.ReviveRange     = LocalCoop_ConfigF32( "revive_range_cm",      "A51_COOP_REVIVE_RANGE",    200.0f );
+        s_Rules.MutantDamagePct = LocalCoop_ConfigF32( "mutant_damage_percent","A51_COOP_MUTANT_DAMAGE",   50.0f );
+        if( s_Rules.MutantDamagePct < 0.0f )   s_Rules.MutantDamagePct = 0.0f;
+        if( s_Rules.MutantDamagePct > 100.0f ) s_Rules.MutantDamagePct = 100.0f;
         if( s_Rules.BleedoutSec < 1.0f )   s_Rules.BleedoutSec = 1.0f;
         if( s_Rules.ReviveSec < 0.1f )     s_Rules.ReviveSec = 0.1f;
         if( s_Rules.ReviveHealthPct < 1.0f )   s_Rules.ReviveHealthPct = 1.0f;

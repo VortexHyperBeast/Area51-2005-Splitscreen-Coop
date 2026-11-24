@@ -70,6 +70,7 @@ a51_coop.cfg (in this folder) such as:
   revive_health_percent=35
   revive_range_cm=200
   downed=0          (turns it off: any death restarts the checkpoint, as before)
+  mutant_damage_percent=50   (a mutated player takes this percentage of the damage; 100 = as normal)
 
 If the game crashes, it writes a51_crash.txt and a51_crash.dmp in this folder. Please send both.
 

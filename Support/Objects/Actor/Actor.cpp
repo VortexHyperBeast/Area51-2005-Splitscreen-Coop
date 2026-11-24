@@ -10,6 +10,7 @@
 
 #include "Render/PrimitiveDebug.hpp"
 #include "EventMgr/EventMgr.hpp"
+#include "NetworkMgr/Game/LocalCoop.hpp"
 #include "Actor.hpp"
 #include "Objects/Corpse.hpp"
 #include "Characters/Character.hpp"
@@ -3602,6 +3603,15 @@ xbool actor::TakeDamage( const pain& Pain )
     {
         tweak_handle LeanPainPct("PLAYER_Lean_Pain_Percent");
         Damage *= LeanPainPct.GetF32();
+    }
+#endif
+
+#ifdef A51_LOCAL_COOP
+    // Local co-op (owner's rule): a mutated player takes half damage
+    // (mutant_damage_percent in a51_coop.cfg).  Single player is unchanged.
+    if( bIsPlayer && m_bIsMutated && LocalCoop_IsActive() )
+    {
+        Damage *= LocalCoop_ReviveRules().MutantDamagePct / 100.0f;
     }
 #endif
 
