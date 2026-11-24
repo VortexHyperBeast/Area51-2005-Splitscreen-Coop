@@ -3768,6 +3768,7 @@ void character::EmitMeleePain( const pain_event& PainEvent )
     //
     guid DirectHitGuid=0;
     vector3 HitPosition;
+    s32 iCollisionInfo = 0;         // which collision describes the hit (-1: none)
     {
         // Compute melee info from tweaks
         vector3 StartPos;
@@ -3782,6 +3783,57 @@ void character::EmitMeleePain( const pain_event& PainEvent )
             DirectHitGuid = g_CollisionMgr.m_Collisions[0].ObjectHitGuid;
             HitPosition = g_CollisionMgr.m_Collisions[0].Point;
         }
+
+#ifdef A51_LOCAL_COOP
+        // Local co-op: the players wear the multiplayer body, and the owner saw
+        // Theta's close melee do no damage while his leap (a radius blast) did.
+        // Prefer a player among the hits; if the sweep touched no player, a
+        // local player standing in the swept sphere (his collision box against
+        // the segment) is hit as well.
+        if( LocalCoop_IsActive() )
+        {
+            xbool bPlayerHit = FALSE;
+            for( s32 iHit = 0; iHit < g_CollisionMgr.m_nCollisions; iHit++ )
+            {
+                if( SMP_UTIL_IsPlayerGuid( g_CollisionMgr.m_Collisions[iHit].ObjectHitGuid ) )
+                {
+                    DirectHitGuid = g_CollisionMgr.m_Collisions[iHit].ObjectHitGuid;
+                    HitPosition   = g_CollisionMgr.m_Collisions[iHit].Point;
+                    iCollisionInfo = iHit;
+                    bPlayerHit    = TRUE;
+                    break;
+                }
+            }
+            if( !bPlayerHit )
+            {
+                for( slot_id Slot = g_ObjMgr.GetFirst( object::TYPE_PLAYER ); Slot != SLOT_NULL; Slot = g_ObjMgr.GetNext( Slot ) )
+                {
+                    player* pPlayer = (player*)g_ObjMgr.GetObjectBySlot( Slot );
+                    if( !pPlayer || pPlayer->IsDead() || (pPlayer->GetLocalSlot() == -1) || !IsEnemyFaction( pPlayer->GetFaction() ) )
+                        continue;
+                    // Closest point of the swept segment to the player's box centre.
+                    const bbox    Box    = pPlayer->GetBBox();
+                    const vector3 Centre = Box.GetCenter();
+                    vector3       Seg    = EndPos - StartPos;
+                    const f32     Len2   = Seg.LengthSquared();
+                    f32           T      = ( Len2 > 0.0f ) ? ( (Centre - StartPos).Dot( Seg ) / Len2 ) : 0.0f;
+                    T = MINMAX( 0.0f, T, 1.0f );
+                    const vector3 Closest = StartPos + Seg * T;
+                    // Inside the box grown by the sphere radius?
+                    if( (Closest.GetX() >= Box.Min.GetX() - MeleeSphereRadius) && (Closest.GetX() <= Box.Max.GetX() + MeleeSphereRadius) &&
+                        (Closest.GetY() >= Box.Min.GetY() - MeleeSphereRadius) && (Closest.GetY() <= Box.Max.GetY() + MeleeSphereRadius) &&
+                        (Closest.GetZ() >= Box.Min.GetZ() - MeleeSphereRadius) && (Closest.GetZ() <= Box.Max.GetZ() + MeleeSphereRadius) )
+                    {
+                        DirectHitGuid = pPlayer->GetGuid();
+                        HitPosition   = Closest;
+                        iCollisionInfo = -1;
+                        CoopQaTargetLog( this, "melee_box_hit", DirectHitGuid );
+                        break;
+                    }
+                }
+            }
+        }
+#endif
     }
 
     // If there was no direct hit then there's no pain to issue
@@ -3792,7 +3844,8 @@ void character::EmitMeleePain( const pain_event& PainEvent )
 
         Pain.Setup(xfs("%s_MELEE",GetLogicalName()),GetGuid(),HitPosition);
         Pain.SetDirectHitGuid( DirectHitGuid );
-        Pain.SetCollisionInfo( g_CollisionMgr.m_Collisions[0] );
+        if( iCollisionInfo >= 0 )
+            Pain.SetCollisionInfo( g_CollisionMgr.m_Collisions[iCollisionInfo] );
 
         // Setup direction
         object* pHitObject = g_ObjMgr.GetObjectByGuid( DirectHitGuid );
