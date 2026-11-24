@@ -135,6 +135,13 @@ jobs:
           path: build/packages/windows-x64
           if-no-files-found: error
 
+      - name: Upload debug symbols
+        uses: actions/upload-artifact@v4
+        with:
+          name: A51-coop-stage1-win-x64-pdb
+          path: build/windows-msvc-x64/Apps/GameApp/Release/A51.pdb
+          if-no-files-found: warn
+
       - name: Publish build report
         if: always()
         shell: bash
@@ -464,6 +471,13 @@ jobs:
           name: A51-coop-stage1-win-x64
           path: play
 
+      - name: Download the debug symbols
+        uses: actions/download-artifact@v4
+        with:
+          name: A51-coop-stage1-win-x64-pdb
+          path: pdb
+        continue-on-error: true
+
       - name: Assemble the package
         run: |
           set -euo pipefail
@@ -533,9 +547,11 @@ jobs:
 
           The zip contains no game data. SHA-256 of the zip: ${SUM}
           EOF
+          PDB=()
+          if [ -f pdb/A51.pdb ]; then PDB=("pdb/A51.pdb#A51-run${{ github.run_number }}.pdb (debug symbols, only needed to read a crash report)"); fi
           gh release delete "$TAG" --repo "$GITHUB_REPOSITORY" --yes --cleanup-tag >/dev/null 2>&1 || true
           gh release create "$TAG" --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" \
-            --title "Co-op Stage 1, build ${{ github.run_number }}" --notes-file notes.md "${PRE[@]}" "$ZIP"
+            --title "Co-op Stage 1, build ${{ github.run_number }}" --notes-file notes.md "${PRE[@]}" "$ZIP" "${PDB[@]}"
 
           # keep the newest three builds, remove older ones
           gh release list --repo "$GITHUB_REPOSITORY" --limit 50 --json tagName,createdAt \
