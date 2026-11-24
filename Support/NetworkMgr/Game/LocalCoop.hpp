@@ -34,7 +34,7 @@ const s32 LOCAL_COOP_MAX_PLAYERS = 2;
 //  Read once; set the environment variable A51_LOCAL_COOP=2 to ask for co-op.
 //------------------------------------------------------------------------------
 
-inline s32 LocalCoop_PlayerCount( void )
+inline s32& LocalCoop_PlayerCountRef( void )
 {
     static s32 s_Count = 0;
 
@@ -45,6 +45,18 @@ inline s32 LocalCoop_PlayerCount( void )
     }
 
     return s_Count;
+}
+
+inline s32 LocalCoop_PlayerCount( void )
+{
+    return LocalCoop_PlayerCountRef();
+}
+
+//  The main menu chooses: "Single Player" sets 1, "Splitscreen Co-op" sets 2
+//  (the environment variable is only the start value, used by the tests).
+inline void LocalCoop_SetPlayerCount( s32 Count )
+{
+    LocalCoop_PlayerCountRef() = ( Count == 2 ) ? 2 : 1;
 }
 
 //------------------------------------------------------------------------------
@@ -229,6 +241,7 @@ inline void LocalCoop_Probe( const char* pFormat, ... )
 const s32 LOCAL_COOP_MAX_PLAYERS = 1;
 
 inline s32 LocalCoop_PlayerCount( void ) { return 1; }
+inline void LocalCoop_SetPlayerCount( s32 ) {}
 inline xbool LocalCoop_SwapPads( void ) { return FALSE; }
 inline s32 LocalCoop_SkinOverride( s32 ) { return -1; }
 inline void LocalCoop_SetSwapPads( xbool ) {}

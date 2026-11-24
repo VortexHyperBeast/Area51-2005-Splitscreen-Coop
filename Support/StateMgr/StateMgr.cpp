@@ -1773,6 +1773,43 @@ void state_mgr::CoopPrepareSecondProfile( void )
     s_CoopSecondProfileReady = TRUE;
 }
 
+//  Splitscreen co-op keeps its own campaign save: player 1 always plays the
+//  profile "Splitscreen" (created the first time), never a single-player
+//  profile.  Single Player uses the normal profile select.
+static xbool s_CoopSplitProfileActive = FALSE;
+
+xbool state_mgr::CoopPrepareSplitscreenProfile( void )
+{
+    static player_profile s_Profile;
+    s_Profile = player_profile();
+    s_Profile.SetProfileName( "Splitscreen" );
+    s_Profile.SetHash();
+
+    xbool bCreated = FALSE;
+    if( !g_SaveDataMgr.CoopLoadOrCreateProfileSync( "Splitscreen", 0, s_Profile, bCreated ) )
+        return FALSE;
+
+    m_Profiles[0] = s_Profile;
+    m_Profiles[0].Checksum();
+    m_SelectedProfile[0]  = s_Profile.GetHash();
+    m_ProfileNotSaved[0]  = FALSE;
+    g_MatchMgr.SetNickname( s_Profile.GetProfileName() );
+    g_Difficulty          = s_Profile.GetDifficultyLevel();
+    m_bAutosaveProfile    = s_Profile.GetAutosaveOn();
+    s_CoopSplitProfileActive = TRUE;
+    return TRUE;
+}
+
+//  Single Player after Splitscreen: forget the "Splitscreen" profile so the
+//  profile select asks for a single-player one.
+void state_mgr::CoopLeaveSplitscreenProfile( void )
+{
+    if( !s_CoopSplitProfileActive )
+        return;
+    ClearSelectedProfile( 0 );
+    s_CoopSplitProfileActive = FALSE;
+}
+
 //  Leaving the campaign: save, and free slot 1 so other menus see one player.
 void state_mgr::CoopReleaseSecondProfile( void )
 {
@@ -2665,6 +2702,11 @@ void state_mgr::UpdateMainMenu( void )
                     {
                         case IDC_MAIN_MENU_CAMPAIGN:
                         {
+#ifdef A51_LOCAL_COOP
+                            // "Single Player": one player, a single-player profile.
+                            LocalCoop_SetPlayerCount( 1 );
+                            CoopLeaveSplitscreenProfile();
+#endif
                             g_PendingConfig.SetGameTypeID( GAME_CAMPAIGN );
                             g_PendingConfig.SetPlayerCount( 1 );
 
@@ -2681,6 +2723,21 @@ void state_mgr::UpdateMainMenu( void )
 
                         case IDC_MAIN_MENU_MULTI:
                         {
+#ifdef A51_LOCAL_COOP
+                            // "Splitscreen Co-op": the campaign for two, with its own save.
+                            LocalCoop_SetPlayerCount( 2 );
+                            g_PendingConfig.SetGameTypeID( GAME_CAMPAIGN );
+                            g_PendingConfig.SetPlayerCount( 1 );
+                            if( CoopPrepareSplitscreenProfile() )
+                            {
+                                SetState( SM_CAMPAIGN_MENU );
+                            }
+                            else
+                            {
+                                SetState( SM_PROFILE_SELECT );
+                            }
+                            break;
+#endif
                             // Clear the profiles and controller requests.
                             // This will prevent issues associated with default profiles.
                             for( s32 p = 0; p < SM_MAX_PLAYERS; p++ )

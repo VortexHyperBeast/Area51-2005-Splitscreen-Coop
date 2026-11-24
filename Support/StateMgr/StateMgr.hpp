@@ -421,6 +421,8 @@ public:
 #ifdef A51_LOCAL_COOP
     // Local co-op: player 2's own profile ("Player 2", profile slot 1).
     void                    CoopPrepareSecondProfile        ( void );
+    xbool                   CoopPrepareSplitscreenProfile   ( void );   // player 1's own "Splitscreen" save
+    void                    CoopLeaveSplitscreenProfile     ( void );
     void                    CoopReleaseSecondProfile        ( void );
     void                    CoopSaveProfilesNow             ( void );
     s32                     CoopPausingProfileIndex         ( void );

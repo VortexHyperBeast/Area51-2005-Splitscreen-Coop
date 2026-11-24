@@ -26,8 +26,14 @@
 
 ui_manager::control_tem MainMenuControls[] = 
 {
+#ifndef A51_LOCAL_COOP
     { IDC_MAIN_MENU_CAMPAIGN,           "IDS_MAIN_MENU_CAMPAIGN",   "button",   60, 40,  120, 40, 0, 0, 1, 1, ui_win::WF_VISIBLE },
     { IDC_MAIN_MENU_MULTI,              "IDS_MAIN_MENU_MULTI",      "button",   60, 80,  120, 40, 0, 1, 1, 1,  ui_win::WF_VISIBLE },
+#else
+    // Co-op build: "Single Player" and "Splitscreen Co-op" (labels set in Create).
+    { IDC_MAIN_MENU_CAMPAIGN,           "IDS_MAIN_MENU_CAMPAIGN",   "button",   10, 40,  220, 40, 0, 0, 1, 1, ui_win::WF_VISIBLE },
+    { IDC_MAIN_MENU_MULTI,              "IDS_MAIN_MENU_MULTI",      "button",   10, 80,  220, 40, 0, 1, 1, 1,  ui_win::WF_VISIBLE },
+#endif
     { IDC_MAIN_MENU_ONLINE,             "IDS_MAIN_MENU_ONLINE",     "button",   60, 120, 120, 40, 0, 2, 1, 1,  ui_win::WF_VISIBLE },
     { IDC_MAIN_MENU_SETTINGS,           "IDS_MAIN_MENU_SETTINGS",   "button",   60, 160, 120, 40, 0, 3, 1, 1,  ui_win::WF_VISIBLE },
     { IDC_MAIN_MENU_PROFILES,           "IDS_MAIN_MENU_PROFILES",   "button",   60, 200, 120, 40, 0, 4, 1, 1,  ui_win::WF_VISIBLE },
@@ -149,7 +155,15 @@ xbool dlg_main_menu::Create( s32                        UserID,
 #if defined(TARGET_DESKTOP)    
     m_pButtonExit         ->SetFlag(ui_win::WF_VISIBLE, FALSE);
 #endif    
+#ifdef A51_LOCAL_COOP
+    // Co-op build: the first button is the single-player campaign, the second
+    // the splitscreen co-op campaign (enabled; the versus split screen of the
+    // original menu stays unavailable in this port).
+    m_pButtonCampaign   ->SetLabel( xwstring( "Single Player" ) );
+    m_pButtonMultiPlayer->SetLabel( xwstring( "Splitscreen Co-op" ) );
+#else
     m_pButtonMultiPlayer  ->SetFlag(ui_win::WF_DISABLED, TRUE);
+#endif
 
 
     // set up nav text 

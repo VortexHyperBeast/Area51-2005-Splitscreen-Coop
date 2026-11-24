@@ -29,9 +29,12 @@ How to start
    unsigned. Click "More info", then "Run anyway". The program was built from the source code
    in the GitHub repository this zip came from.
 
-4. In the game, start a new campaign as usual (you may have to create a profile first, any name).
-   The menu's own split-screen entry stays greyed out; that is expected, the start file has
-   already switched co-op on.
+4. The main menu has two campaign entries:
+     SINGLE PLAYER       the normal one-player campaign, with your own profiles and saves.
+     SPLITSCREEN CO-OP   the two-player campaign. It has its own save (a profile called
+                         "Splitscreen", made the first time), separate from single player.
+                         Player 2's settings live in the profile "Player 2".
+   Both start files open the same menu; you choose the mode there.
    Both controllers are used. The first controller is player 1 (it also controls the menus);
    the second is player 2. The keyboard and mouse also drive player 1.
    If they come out the wrong way round, unplug both and plug in the controller you want
