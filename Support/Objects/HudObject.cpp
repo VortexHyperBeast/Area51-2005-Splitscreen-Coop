@@ -17,6 +17,9 @@
 #include "x_math.hpp"
 #include "../MiscUtils/SimpleUtils.hpp"
 #include "Objects/Player/Player.hpp"
+#ifdef A51_LOCAL_COOP
+static void CoopRenderDowned( player* pSelf, const rect& View );
+#endif
 #include "Objects/WeaponSniper.hpp"
 #include "GameTextMgr/GameTextMgr.hpp"
 #include "NetworkMgr/NetworkMgr.hpp"
