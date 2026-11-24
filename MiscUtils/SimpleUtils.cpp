@@ -541,6 +541,37 @@ player* SMP_UTIL_GetActivePlayer( void )
 
 //=========================================================================
 
+player* SMP_UTIL_GetNearestPlayer( const vector3& Pos )
+{
+    player* pBest  = NULL;
+    f32     BestD2 = 0.0f;
+    for( slot_id Slot = g_ObjMgr.GetFirst( object::TYPE_PLAYER ); Slot != SLOT_NULL; Slot = g_ObjMgr.GetNext( Slot ) )
+    {
+        player* pPlayer = (player*)g_ObjMgr.GetObjectBySlot( Slot );
+        if( !pPlayer || !pPlayer->IsActivePlayer() || pPlayer->IsDead() )
+            continue;
+        f32 D2 = ( pPlayer->GetPosition() - Pos ).LengthSquared();
+        if( !pBest || D2 < BestD2 )
+        {
+            pBest  = pPlayer;
+            BestD2 = D2;
+        }
+    }
+    return pBest ? pBest : SMP_UTIL_GetActivePlayer();
+}
+
+//=========================================================================
+
+xbool SMP_UTIL_IsPlayerGuid( guid Guid )
+{
+    if( Guid == NULL_GUID )
+        return FALSE;
+    object* pObj = g_ObjMgr.GetObjectByGuid( Guid );
+    return ( pObj && pObj->IsKindOf( player::GetRTTI() ) ) ? TRUE : FALSE;
+}
+
+//=========================================================================
+
 guid SMP_UTIL_GetActivePlayerGuid( void )
 {
     player* pPlayer = SMP_UTIL_GetActivePlayer();

@@ -20,6 +20,8 @@
 
 const s32 k_NumTargettingData = 32;
 const s32 k_MaxMeleeingPlayer = 2;
+// Local co-op: k_MaxMeleeingPlayer melee slots per player (two players).
+const s32 k_MaxMeleeingSlots  = k_MaxMeleeingPlayer * 2;
 
 class character;
 
@@ -120,7 +122,8 @@ protected:
     s32                 m_ActiveThinkID ;           // Current ID of character that can think
     f32                 m_ThinkTimeAccumulator;
     xarray<guid>        m_ActiveCharacterGuids;
-    guid                m_MeleeingPlayerGuids[k_MaxMeleeingPlayer];       // guid of the NPC currently meleeing the player.   
+    guid                m_MeleeingPlayerGuids[k_MaxMeleeingSlots];        // guid of the NPC currently meleeing the player.   
+    guid                m_MeleeingTargetGuids[k_MaxMeleeingSlots];        // local co-op: the player each of them melees
     xtick               m_SoundTimer;
     xtick               m_GrenadeTimer;
     f32                 m_TimeDeltaToTalk;      

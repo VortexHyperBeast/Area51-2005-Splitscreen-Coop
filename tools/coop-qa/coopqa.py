@@ -221,6 +221,7 @@ class Log(object):
         self.perf = []          # (wall ms, frames, window ms) from the bot's frame counter
         self.level = None       # level id the campaign started
         self.declared_players = None
+        self.npc = []           # (qt, what, self guid, type, target guid, target local slot) enemy target changes
 
 
 def parse_log(text):
@@ -254,6 +255,11 @@ def parse_log(text):
                 "qt": qt, "wall": wall, "vp": (g[1], g[2], g[3], g[4]),
                 "eye": (g[5], g[6], g[7]), "frames": g[8], "views": g[9],
             })
+            continue
+        nm = re.match(r"^npc (\w+) self=([0-9a-fA-F]+) type=(\S+) tgt=([0-9a-fA-F]+) tslot=(-?\d+)$", msg)
+        if nm:
+            g = nm.groups()
+            log.npc.append((qt, g[0], g[1].upper(), g[2], g[3].upper(), int(g[4])))
             continue
         sh = re.match(r"^share item=\S+ p0 (-?\d+)->(-?\d+) p1 (-?\d+)->(-?\d+)$", msg)
         if sh:
@@ -879,6 +885,26 @@ def check_perf(log):
         len(rates), min(rates), sum(rates) / len(rates), max(rates)))
 
 
+def check_enemy_targets(log):
+    """Report only (Stage 2): which player the enemies pick. Becomes a requirement once a bot
+    route reliably meets enemies."""
+    if not log.npc:
+        return Result("enemy_targets", INFO, "no enemy picked a target while the log was written")
+    sets = [n for n in log.npc if n[1] == "set"]
+    hits = [n for n in log.npc if n[1] == "hit"]
+    by_slot = {}
+    for n in sets:
+        by_slot[n[5]] = by_slot.get(n[5], 0) + 1
+    enemies = sorted(set(n[2] for n in log.npc))
+    types = sorted(set(n[3] for n in log.npc))
+    on_p2 = sorted(set(n[2] for n in sets if n[5] == 1))
+    return Result("enemy_targets", INFO,
+                  "%d enemies (%s); target picks: player 1 %d, player 2 %d, other %d; "
+                  "%d enemies picked player 2; %d turned on the player who hit them" % (
+                      len(enemies), ",".join(types), by_slot.get(0, 0), by_slot.get(1, 0),
+                      sum(v for k, v in by_slot.items() if k not in (0, 1)), len(on_p2), len(hits)))
+
+
 def check_cinema(log):
     """Information only: a cutscene during the script explains missing evidence."""
     during = []
@@ -1099,6 +1125,7 @@ def score(log, phases, expect="coop", shots=None):
     results.append(check_startup(log, expect))
     results.append(check_asserts(log, required=(expect == "coop")))
     results.append(check_cinema(log))
+    results.append(check_enemy_targets(log))
     results.append(check_perf(log))
 
     if expect == "single":

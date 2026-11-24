@@ -18,11 +18,13 @@
 //=============================================================================
 // INCLUDES
 //=============================================================================
+#include "NetworkMgr/Game/LocalCoop.hpp"
 #include "Render/PrimitiveDebug.hpp"
 #include "AlienGlob.hpp"
 #include "AudioMgr/AudioMgr.hpp"
 #include "CollisionMgr/PolyCache.hpp"
 #include "Player/Player.hpp"
+#include "MiscUtils/SimpleUtils.hpp"
 #include "AnimSurface.hpp"
 #include "Turret.hpp"
 #include "Group.hpp"
@@ -600,6 +602,9 @@ xbool alien_glob::UpdateAI( void )
     {
         slot_id PlayerSlot = g_ObjMgr.GetFirst( object::TYPE_PLAYER ) ;
         object* pObject = g_ObjMgr.GetObjectBySlot( PlayerSlot );
+        // Local co-op: the nearest player, not the first player object.
+        if( LocalCoop_IsActive() )
+            pObject = SMP_UTIL_GetNearestPlayer( GetPosition() );
         if( pObject )
             m_TargetGuid = pObject->GetGuid();
     }

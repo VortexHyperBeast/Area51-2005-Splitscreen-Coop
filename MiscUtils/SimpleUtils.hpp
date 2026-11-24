@@ -51,6 +51,10 @@ xbool       SMP_UTIL_IsPlayerFaction     ( guid Guid );
 bbox        SMP_UTIL_GetUntransformedBBox( const matrix4& M, const bbox& TransBBox );
 god*        SMP_UTIL_Get_God             ( void ) ;
 player*     SMP_UTIL_GetActivePlayer     ( void ) ;
+// Local co-op: the active player nearest to Pos (player 1 when there is only one).
+player*     SMP_UTIL_GetNearestPlayer    ( const vector3& Pos ) ;
+// TRUE when Guid is an active player object.
+xbool       SMP_UTIL_IsPlayerGuid        ( guid Guid ) ;
 guid        SMP_UTIL_GetActivePlayerGuid ( void ) ;
 //xbool       SMP_UTIL_GetFloorProperties  ( guid CharGuid, xcolor& FloorColor, u32& FloorMat );
 u16         SMP_UTIL_GetZoneForPosition  ( const vector3& vPosition, f32 DistToCheck = -200.f );

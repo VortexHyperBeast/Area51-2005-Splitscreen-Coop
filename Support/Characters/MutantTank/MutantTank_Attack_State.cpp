@@ -5,6 +5,7 @@
 #include "Objects/WeaponShotgun.hpp"
 #include "Objects/SuperDestructible.hpp"
 #include "../MiscUtils/SimpleUtils.hpp"
+#include "Objects/Player/Player.hpp"
 
 //=========================================================================
 // DEFINES
@@ -997,7 +998,11 @@ void mutanttank_attack_state::ChangePhase( s32 newPhase )
         break;
     case PHASE_MUTANTTANK_STAGE_RAGE:
         // Set player as target so that character state machine doesn't go to idle state
-        Tank.SetTargetGuid( SMP_UTIL_GetActivePlayerGuid(), FALSE );
+        // (local co-op: the nearest player, not always player 1)
+        {
+            player* pRagePlayer = SMP_UTIL_GetNearestPlayer( Tank.GetPosition() );
+            Tank.SetTargetGuid( pRagePlayer ? pRagePlayer->GetGuid() : NULL_GUID, FALSE );
+        }
         Tank.SetAwarenessLevel( character::AWARENESS_ACQUIRING_TARGET );
         
         // Generate parasite shield?

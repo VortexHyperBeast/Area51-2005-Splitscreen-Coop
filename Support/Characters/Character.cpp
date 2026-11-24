@@ -10,6 +10,10 @@
 
 
 #ifndef X_EDITOR
+#include "NetworkMgr/Game/LocalCoop.hpp"
+#ifdef A51_LOCAL_COOP_QA
+#include "Input/backend/sdl/qa_bot.hpp"
+#endif
 #include "Render/PrimitiveDebug.hpp"
 #include "NetworkMgr/Game/GameMgr.hpp"
 #include "NetworkMgr/NetworkMgr.hpp"
@@ -159,6 +163,29 @@ const f32 k_MinDistForStuck             = 10.0f;
 const f32 k_MinTimeToBeStuck            = 1.5f;
 const f32 k_EscapeDelayTime             = 0.25f;
 const f32 k_PlayerPrefPercent           = 0.7f;
+// Local co-op threat memory: prefer the player who hurt us within k_CoopThreatMemorySec,
+// and keep fighting a player who hurt us within k_CoopThreatHoldSec.
+const f32 k_CoopThreatPrefPercent       = 0.6f;
+const f32 k_CoopThreatMemorySec         = 6.0f;
+const f32 k_CoopThreatHoldSec           = 3.0f;
+
+// Test build: log enemy target changes for the co-op bot (tools/coop-qa).
+static void CoopQaTargetLog( character* pSelf, const char* pWhat, guid Target )
+{
+#ifdef A51_LOCAL_COOP_QA
+    if( !LocalCoop_IsActive() || !pSelf )
+        return;
+    s32 TSlot = -1;
+    object* pT = g_ObjMgr.GetObjectByGuid( Target );
+    if( pT && pT->IsKindOf( player::GetRTTI() ) )
+        TSlot = ((player*)pT)->GetLocalSlot();
+    qa_bot_Log( "npc %s self=%08x type=%s tgt=%08x tslot=%d", pWhat,
+                (unsigned)pSelf->GetGuid().GetLow(), pSelf->GetTypeDesc().GetTypeName(),
+                (unsigned)Target.GetLow(), (int)TSlot );
+#else
+    (void)pSelf; (void)pWhat; (void)Target;
+#endif
+}
 const f32 k_CurrTargetPrefPercent       = 0.8f;
 const f32 k_OtherTargettedPercent       = 0.5f;
 const f32 k_AlertSmellDist              = 200.0f;
@@ -482,6 +509,8 @@ m_FollowState   ( *this, character_state::STATE_FOLLOW )
     m_PreviousActorCollisionRadius = 0.0f;
     m_LastListenTime        = 0;
     m_LastAlertTime         = g_ObjMgr.GetGameTime();
+    m_CoopThreatGuid        = NULL_GUID;
+    m_CoopThreatTime        = 0;
     m_LastAlertSentTime     = 0;
     m_SoundRange            = 2000.0f;
     m_TimeActorColliding    = 0.0f;
@@ -6115,8 +6144,27 @@ xbool character::TakeDamage( const pain& Pain )
         IsValidTarget(Pain.GetOriginGuid()) )
     {
         m_TargetNotSeenTimer = 0.0f;
-        if( (GetTargetGuid() == 0 || IsNewTargetCloser(Pain.GetOriginGuid())) )
-            SetTargetGuid(Pain.GetOriginGuid());
+        guid Attacker = Pain.GetOriginGuid();
+        xbool bSwitch = (GetTargetGuid() == 0 || IsNewTargetCloser(Attacker));
+        if( LocalCoop_IsActive() && SMP_UTIL_IsPlayerGuid( Attacker ) )
+        {
+            // Local co-op: turn on the player who shoots us, unless the player we
+            // are fighting also hurt us in the last few seconds (no ping-pong).
+            xtick Now = g_ObjMgr.GetGameTime();
+            if( !bSwitch && Attacker != GetTargetGuid() && SMP_UTIL_IsPlayerGuid( GetTargetGuid() ) )
+            {
+                xbool bTargetIsThreat = ( m_CoopThreatGuid == GetTargetGuid() ) &&
+                                        ( x_TicksToSec( Now - m_CoopThreatTime ) < k_CoopThreatHoldSec );
+                bSwitch = !bTargetIsThreat;
+            }
+            m_CoopThreatGuid = Attacker;
+            m_CoopThreatTime = Now;
+        }
+        if( bSwitch && Attacker != GetTargetGuid() )
+        {
+            SetTargetGuid(Attacker);
+            CoopQaTargetLog( this, "hit", Attacker );
+        }
     }
 
     // Damage taken
@@ -9879,6 +9927,13 @@ void character::ChoseBestTarget()
                 DistToActor *= ( k_PlayerPrefPercent * k_PlayerPrefPercent );
             }
 
+            // local co-op: prefer the player who hurt us recently
+            if( m_CoopThreatGuid != NULL_GUID && pActor->GetGuid() == m_CoopThreatGuid &&
+                x_TicksToSec( g_ObjMgr.GetGameTime() - m_CoopThreatTime ) < k_CoopThreatMemorySec )
+            {
+                DistToActor *= ( k_CoopThreatPrefPercent * k_CoopThreatPrefPercent );
+            }
+
             // prefer your current target
             if( pActor->GetGuid() == m_TargetGuid )
             {
@@ -10053,6 +10108,7 @@ void character::SetTargetGuid( guid Guid, xbool shoutAboutTarget )
     }
 
     m_TargetGuid = Guid;
+    CoopQaTargetLog( this, "set", Guid );
     object* pObject = g_ObjMgr.GetObjectByGuid(m_TargetGuid);
     if( pObject )
     {

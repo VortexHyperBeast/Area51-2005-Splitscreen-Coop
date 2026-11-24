@@ -7,6 +7,7 @@
 //=========================================================================
 // INCLUDES
 //=========================================================================
+#include "NetworkMgr/Game/LocalCoop.hpp"
 #include "God.hpp"
 #include "Characters/Character.hpp"
 #include "Objects/Camera.hpp"
@@ -212,6 +213,25 @@ xbool IntersectBBoxes( bbox ActiveBBox[k_MaxNumPlayers], object* pObject, s32 Ma
 xbool god::GetCanMeleePlayer( guid reqestNPC )
 {
     s32 c;
+    if( LocalCoop_IsActive() )
+    {
+        // Local co-op: k_MaxMeleeingPlayer NPCs may melee each player.
+        guid Target = NULL_GUID;
+        object* pNPC = g_ObjMgr.GetObjectByGuid( reqestNPC );
+        if( pNPC && pNPC->IsKindOf( character::GetRTTI() ) )
+            Target = ((character*)pNPC)->GetTargetGuid();
+        s32 nOnTarget = 0;
+        for(c=0;c<k_MaxMeleeingSlots;c++)
+        {
+            if( m_MeleeingPlayerGuids[c] == NULL_GUID )
+                continue;
+            if( m_MeleeingPlayerGuids[c] == reqestNPC )
+                return TRUE;
+            if( m_MeleeingTargetGuids[c] == Target )
+                nOnTarget++;
+        }
+        return ( nOnTarget < k_MaxMeleeingPlayer ) ? TRUE : FALSE;
+    }
     for(c=0;c<k_MaxMeleeingPlayer;c++)
     {
         if( reqestNPC == m_MeleeingPlayerGuids[c] || 
@@ -343,10 +363,12 @@ void god::OnAdvanceSimulation( f32 DeltaTime )
     //=============================================================================
  
     s32 c;
-    for(c=0;c<k_MaxMeleeingPlayer;c++)
+    for(c=0;c<k_MaxMeleeingSlots;c++)
     {    
         m_MeleeingPlayerGuids[c] = NULL_GUID;
+        m_MeleeingTargetGuids[c] = NULL_GUID;
     }
+    const s32 nMeleeSlots = LocalCoop_IsActive() ? k_MaxMeleeingSlots : k_MaxMeleeingPlayer;
 
     u32 objectTypeCount;
     s32 HighestAwareness = 0;
@@ -369,11 +391,12 @@ void god::OnAdvanceSimulation( f32 DeltaTime )
 
                     if( pCharacter->IsMeleeingPlayer() )
                     {
-                        for(c=0;c<k_MaxMeleeingPlayer;c++)
+                        for(c=0;c<nMeleeSlots;c++)
                         {
                             if( m_MeleeingPlayerGuids[c] == NULL_GUID )
                             {                            
                                 m_MeleeingPlayerGuids[c] = pCharacter->GetGuid();
+                                m_MeleeingTargetGuids[c] = pCharacter->GetTargetGuid();
                                 break;
                             }
                         }

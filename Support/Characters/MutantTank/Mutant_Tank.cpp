@@ -8,6 +8,7 @@
 // INCLUDES
 //=========================================================================
 
+#include "NetworkMgr/Game/LocalCoop.hpp"
 #include "Mutant_Tank.hpp"
 #include "../MiscUtils/SimpleUtils.hpp"
 #include "GameLib/StatsMgr.hpp"
@@ -2091,6 +2092,8 @@ guid mutant_tank::ScanForPlayerProjectile( void )
         return 0;
     guid PlayerGuid = pPlayer->GetGuid();        
     guid ThetaGuid  = GetGuid();
+    // Local co-op: projectiles of either player count.
+    const xbool bAnyPlayer = LocalCoop_IsActive();
     
     // Loop over all types
     for( s32 iType = 0; iType < ( sizeof(s_ProjTypes) / sizeof(s_ProjTypes[0]) ); iType++ )
@@ -2108,7 +2111,8 @@ guid mutant_tank::ScanForPlayerProjectile( void )
             {
                 // Fired by the player?
                 net_proj& NetProj = net_proj::GetSafeType( *pProjectile );
-                if( NetProj.GetOriginGuid() == PlayerGuid )
+                if( NetProj.GetOriginGuid() == PlayerGuid ||
+                    ( bAnyPlayer && SMP_UTIL_IsPlayerGuid( NetProj.GetOriginGuid() ) ) )
                 {
                     // Not yet targeted?
                     if( !mutant_contagion_projectile::IsTargeted( ThetaGuid, ProjectileGuid ) )
@@ -2120,7 +2124,8 @@ guid mutant_tank::ScanForPlayerProjectile( void )
             {
                 // Fired by the player?
                 base_projectile& BaseProj = base_projectile::GetSafeType( *pProjectile );
-                if( BaseProj.GetOwnerID() == PlayerGuid )
+                if( BaseProj.GetOwnerID() == PlayerGuid ||
+                    ( bAnyPlayer && SMP_UTIL_IsPlayerGuid( BaseProj.GetOwnerID() ) ) )
                 {
                     // Not yet targeted?
                     if( !mutant_contagion_projectile::IsTargeted( ThetaGuid, ProjectileGuid ) )

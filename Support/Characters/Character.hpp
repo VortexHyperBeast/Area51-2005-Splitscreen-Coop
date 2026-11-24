@@ -865,6 +865,9 @@ static  enum_table<eDialogActors>m_DialogActorsEnum;        // Enumeration of th
         f32                 m_SoundRange;           // How far the characters can listen;
         f32                 m_TimeSinceLastDialog;  // how long since we last played a dialog?
         f32                 m_TargetNotSeenTimer;   // Time target has not been seen
+        // Local co-op: the player who last hurt us, and when (threat memory).
+        guid                m_CoopThreatGuid;
+        xtick               m_CoopThreatTime;
         f32                 m_NoTargetTimer;
         f32                 m_TimeSinceLastPathToTargetCheck; // how long since we tried to update to see if we can path to target?
         f32                 m_TimeSinceLastTargetUpdate;
