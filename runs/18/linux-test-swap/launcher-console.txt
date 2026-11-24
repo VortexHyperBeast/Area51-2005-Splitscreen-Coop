@@ -1,0 +1,44 @@
+mode=swap expect=coop-swapped window=640x360 cycles=3 max=3300s startup-gate=1200s
+host: Linux 7.0.0-1017-azure x86_64, 4 cpus
+install ready (7 shader packages)
+wrote /mnt/pack/work/swap/script.txt: 33 phases, 109 s of game time
+running under gdb
+game started, pid 8694
+game ended: exit code 0 after 337s (124 = stopped by timeout, 137/143 = killed, 139 = crash)
+game output: 6686 lines, a51_qa_bot.log: 1713 lines
+screenshots taken: 56
+coopqa shots: 56 lines written to /home/runner/work/area51-pc/area51-pc/qa-out/shots.txt
+coopqa score: expect=coop-swapped log=/home/runner/work/area51-pc/area51-pc/qa-out/a51_qa_bot.log (1713 lines, 0 not understood)
+ PASS        startup        level 1000 started, bot armed at wall=57748ms, samples per player [237, 237]
+ PASS        asserts        1 assertion(s), 0 of them not known harmless. First: #1 /home/runner/work/area51-pc/area51-pc/xCore/x_files/Implementation/x_threads_posix.cpp:425 expr=[Joined] msg=[POSIX thread did not terminate before native jo
+ INFO        cinema         no cinematic during the script  (info)
+ INFO        perf           62 samples, frame rate min 1.5, mean 15.6, max 306.3 per second  (info)
+ PASS        two_players    two player objects 2B99E001 and 00000003, first seen 100cm apart
+ PASS        separate_pads  game-side pad P0=[1] P1=[0], local slots P0=[0] P1=[1]
+ PASS        no_fall        no player sank below its start
+ PASS        alive          every sample has hp > 0
+ PASS        bot_drove      36 of 36 scheduled control changes seen, both pads attached
+ PASS        completed      script played to the end, last sample at 126300ms
+ PASS        walk0          c0: P0 0cm P1 1426cm; c1: P0 0cm P1 1359cm; c2: P0 0cm P1 757cm
+ PASS        walk1          c0: P0 1476cm P1 0cm; c1: P0 505cm P1 0cm; c2: P0 686cm P1 5cm
+ PASS        walkboth       c0: P0 551cm P1 1157cm, displacement difference 1586cm; c1: P0 1193cm P1 1199cm, displacement difference 281cm; c2: P0 1069cm P1 306cm, displacement difference 1344cm
+ PASS        look0          c0: P0 0.0deg P1 96.2deg; c1: P0 0.0deg P1 96.2deg; c2: P0 0.0deg P1 96.2deg
+ PASS        look1          c0: P0 96.4deg P1 0.0deg; c1: P0 96.4deg P1 0.0deg; c2: P0 96.4deg P1 0.0deg
+ PASS        jump0          c0: P0 +0cm P1 +80cm; c1: P0 +0cm P1 +80cm; c2: P0 +0cm P1 +80cm  (info)
+ PASS        jump1          c0: P0 +120cm P1 +0cm; c1: P0 +120cm P1 +0cm; c2: P0 +120cm P1 +0cm  (info)
+ PASS        fire0          c0: P0 spent 0 P1 spent 3; c1: P0 spent 0 P1 spent 3; c2: P0 spent 0 P1 spent 3
+ PASS        fire1          c0: P0 spent 3 P1 spent 0; c1: P0 spent 3 P1 spent 0; c2: P0 spent 3 P1 spent 0
+ PASS        reload0        c0: P0 clip+0 P1 clip+5; c1: P0 clip+0 P1 clip+3; c2: P0 clip+0 P1 clip+3
+ PASS        reload1        c0: P0 clip+5 P1 clip+0; c1: P0 clip+3 P1 clip+0; c2: P0 clip+3 P1 clip+0
+ PASS        pad_mapping    controller swap on: pad 0 -> player 1, pad 1 -> player 0, in all 30 judged actions
+ PASS        split_view     view 0 (0, 0, 640, 180) above view 1 (0, 180, 640, 360), 254 eye samples near their own player, both cameras moved
+ PASS        split_pixels   55 of 55 screenshots: a uniform line between two drawn halves, halves differ by up to 30
+ PASS        partner_body   view 0: other player's body drawn in 232 of 1462 frames; view 1: other player's body drawn in 436 of 1311 frames
+ PASS        shared_cinema  scene seen by both players (18 and 18 samples)
+ PASS        shared_items   grenade given to player 0: player 0 0->1, player 1 0->1
+ PASS        scanner        both players got the scanner, held it and fired it with RT and R1; the game ran on
+ PASS        own_profiles   player 1: slot 0 'Empty' body 0; player 2: slot 1 'Player 2' body 1
+ PASS        live_swap      swapped: player 0 pad 0, player 1 pad 1; back: 1, 0
+ PASS        carry_over     player 0: scanner 1, pistol 1; player 1: scanner 1, pistol 1
+RESULT: PASS
+RESULT: PASS
