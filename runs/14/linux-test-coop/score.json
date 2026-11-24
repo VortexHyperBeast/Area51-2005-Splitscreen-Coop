@@ -1,0 +1,148 @@
+{
+ "expect": "coop",
+ "ok": true,
+ "failed": [],
+ "no_evidence": [],
+ "results": [
+  {
+   "name": "startup",
+   "status": "PASS",
+   "detail": "level 1000 started, bot armed at wall=97453ms, samples per player [233, 233]"
+  },
+  {
+   "name": "asserts",
+   "status": "INFO",
+   "detail": "7 assertion(s) were logged and skipped. First: #1 /home/runner/work/area51-pc/area51-pc/Support/Objects/Player/PlayerLoco.cpp:198 expr=[0] msg=[Weapon not supported in mp!]; #2 /home/runner/work/area51-pc/area51-pc/Support/Objects/Player/PlayerLoco.cpp:248 expr=[0] msg=[Weapon not supported in mp!]; #3 /home/runner/work/area51-pc/area51-pc/Support/Objects/Player/PlayerLoco.cpp:149 expr=[0] msg=[Weapon not supported in mp!]"
+  },
+  {
+   "name": "cinema",
+   "status": "INFO",
+   "detail": "no cinematic during the script"
+  },
+  {
+   "name": "perf",
+   "status": "INFO",
+   "detail": "98 samples, frame rate min 0.2, mean 8.6, max 192.3 per second"
+  },
+  {
+   "name": "two_players",
+   "status": "PASS",
+   "detail": "two player objects 2B99E001 and 00000003, first seen 100cm apart"
+  },
+  {
+   "name": "separate_pads",
+   "status": "PASS",
+   "detail": "game-side pad P0=[0] P1=[1], local slots P0=[0] P1=[1]"
+  },
+  {
+   "name": "no_fall",
+   "status": "PASS",
+   "detail": "no player sank below its start"
+  },
+  {
+   "name": "alive",
+   "status": "PASS",
+   "detail": "every sample has hp > 0"
+  },
+  {
+   "name": "bot_drove",
+   "status": "PASS",
+   "detail": "36 of 36 scheduled control changes seen, both pads attached"
+  },
+  {
+   "name": "completed",
+   "status": "PASS",
+   "detail": "script played to the end, last sample at 124200ms"
+  },
+  {
+   "name": "walk0",
+   "status": "PASS",
+   "detail": "c0: P0 1500cm P1 0cm; c1: P0 1449cm P1 0cm; c2: P0 784cm P1 0cm"
+  },
+  {
+   "name": "walk1",
+   "status": "PASS",
+   "detail": "c0: P0 0cm P1 1365cm; c1: P0 0cm P1 499cm; c2: P0 57cm P1 731cm (pushed by the walker's body)"
+  },
+  {
+   "name": "walkboth",
+   "status": "PASS",
+   "detail": "c0: P0 1140cm P1 532cm, displacement difference 1495cm; c1: P0 1098cm P1 1130cm, displacement difference 300cm; c2: P0 365cm P1 910cm, displacement difference 1251cm"
+  },
+  {
+   "name": "look0",
+   "status": "PASS",
+   "detail": "c0: P0 96.2deg P1 0.0deg; c1: P0 96.2deg P1 0.0deg; c2: P0 96.2deg P1 0.0deg"
+  },
+  {
+   "name": "look1",
+   "status": "PASS",
+   "detail": "c0: P0 0.0deg P1 96.4deg; c1: P0 0.0deg P1 96.4deg; c2: P0 0.0deg P1 96.4deg"
+  },
+  {
+   "name": "jump0",
+   "status": "PASS",
+   "detail": "c0: P0 +125cm P1 +0cm; c1: P0 +125cm P1 +0cm; c2: P0 +125cm P1 +0cm"
+  },
+  {
+   "name": "jump1",
+   "status": "PASS",
+   "detail": "c0: P0 +0cm P1 +105cm; c1: P0 +0cm P1 +105cm; c2: P0 +0cm P1 +105cm"
+  },
+  {
+   "name": "fire0",
+   "status": "PASS",
+   "detail": "c0: P0 spent 3 P1 spent 0; c1: P0 spent 3 P1 spent 0; c2: P0 spent 3 P1 spent 0"
+  },
+  {
+   "name": "fire1",
+   "status": "PASS",
+   "detail": "c0: P0 spent 0 P1 spent 3; c1: P0 spent 0 P1 spent 3; c2: P0 spent 0 P1 spent 3"
+  },
+  {
+   "name": "reload0",
+   "status": "PASS",
+   "detail": "c0: P0 clip+5 P1 clip+0; c1: P0 clip+3 P1 clip+0; c2: P0 clip+3 P1 clip+0"
+  },
+  {
+   "name": "reload1",
+   "status": "PASS",
+   "detail": "c0: P0 clip+0 P1 clip+5; c1: P0 clip+0 P1 clip+3; c2: P0 clip+0 P1 clip+3"
+  },
+  {
+   "name": "pad_mapping",
+   "status": "PASS",
+   "detail": "pad 0 -> player 0, pad 1 -> player 1, in all 30 judged actions"
+  },
+  {
+   "name": "split_view",
+   "status": "PASS",
+   "detail": "view 0 (0, 0, 640, 180) above view 1 (0, 180, 640, 360), 410 eye samples near their own player, both cameras moved"
+  },
+  {
+   "name": "split_pixels",
+   "status": "PASS",
+   "detail": "49 of 49 screenshots: a uniform line between two drawn halves, halves differ by up to 44"
+  },
+  {
+   "name": "partner_body",
+   "status": "PASS",
+   "detail": "view 0: other player's body drawn in 284 of 1392 frames; view 1: other player's body drawn in 408 of 1295 frames"
+  },
+  {
+   "name": "shared_cinema",
+   "status": "PASS",
+   "detail": "scene seen by both players (17 and 17 samples)"
+  },
+  {
+   "name": "shared_items",
+   "status": "PASS",
+   "detail": "grenade given to player 0: player 0 0->1, player 1 0->1"
+  },
+  {
+   "name": "scanner",
+   "status": "PASS",
+   "detail": "both players got the scanner, held it and fired it with RT and R1; the game ran on"
+  }
+ ]
+}
