@@ -667,6 +667,14 @@ guid var_mngr::GetGuid ( xhandle& rGuidHandle )
     X_PROFILE_SCOPE_CATEGORY( "GlobalVariables", "var_mngr::GetGuid" );
 
     ASSERT( rGuidHandle.IsNonNull() );
+
+    // The variables are cleared before the level's objects are destroyed.  A
+    // cinema still running at that moment (co-op: a player died during one,
+    // the owner's crash 2026-11-24) looks up its actors through here while it
+    // stops: no variables any more, so no object.
+    if( rGuidHandle.IsNull() || (m_GuidKeys.GetCount() == 0) ||
+        (rGuidHandle.Handle < 0) || (rGuidHandle.Handle >= m_GuidKeys.GetCapacity()) )
+        return NULL_GUID;
     
     guid_key &key = m_GuidKeys( rGuidHandle );
     return key.m_Guid;   

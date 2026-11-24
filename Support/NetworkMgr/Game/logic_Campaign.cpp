@@ -456,6 +456,18 @@ void logic_campaign::QaCommand( const char* pName )
         return;
     }
 
+    if( x_strcmp( pName, "kill0" ) == 0 )
+    {
+        // Player 1 dies: shared fate, the level restarts from the checkpoint.
+        // The owner's game crashed there once (a cinema still running while the
+        // level unloaded, 2026-11-24).
+        player* p0 = (player*)g_ObjMgr.GetObjectByGuid( s_pQaCampaign->m_PlayerGuid[0] );
+        qa_bot_Log( "kill player 0: %s", p0 ? "dying" : "no player" );
+        if( p0 )
+            p0->DebugSuicide();
+        return;
+    }
+
     if( x_strcmp( pName, "carryover" ) == 0 )
     {
         // What a level change does with the inventory: store it (from player 1),

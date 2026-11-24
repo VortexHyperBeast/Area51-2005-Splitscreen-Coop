@@ -131,6 +131,10 @@ def make_script(settle_ms=DEFAULT_SETTLE_MS, cycles=DEFAULT_CYCLES):
     lines.append("%d %d 1 ly 100" % (t, t + 3000))
     lines.append("%d %d 1 back 100" % (t + JOIN_PRESS_MS, t + JOIN_PRESS_MS + 300))
     t += JOIN_MS
+    # player 1 dies: the level must restart from the checkpoint without a crash
+    lines.append("# player 1 dies, the level restarts")
+    lines.append("cmd %d kill0" % t)
+    t += DEATH_MS
     lines.append("quit %d" % (t + 1000))
     return "\n".join(lines) + "\n"
 
@@ -139,6 +143,7 @@ SCANNER_SWITCH_MS = 4000
 SCANNER_MS = SCANNER_SWITCH_MS + 2 * (3500 + 2000) + 2000
 JOIN_PRESS_MS = 3500                        # after the start of the join section
 JOIN_MS = 5500
+DEATH_MS = 20000
 
 
 HEADER_RE = re.compile(r"^#\s*coopqa script v1 settle=(\d+) cycles=(\d+)", re.M)
@@ -194,6 +199,8 @@ class Log(object):
         self.profiles = {}      # local player -> (profile slot, name, avatar)
         self.carryover = {}     # player -> (scanner, pistol) after a stored/restored inventory
         self.swaptest = {}      # "flipped"/"restored" -> (player 0 pad, player 1 pad)
+        self.kill_qt = None
+        self.begins = []        # script times of "campaign BeginGame done"
         self.scanner_cmd_qt = None
         self.scanner_has = {}
         self.shares = []        # (p0 before, p0 after, p1 before, p1 after) of the shared-item probe
@@ -270,6 +277,7 @@ def parse_log(text):
         elif bm:
             log.declared_players = int(bm.group(1))
             log.level = int(bm.group(2))
+            log.begins.append(qt)
         elif msg.startswith("armed:"):
             if log.armed_wall is None:
                 log.armed_wall = wall
@@ -287,6 +295,8 @@ def parse_log(text):
             mm = re.match(r"swaptest (\w+): player 0 pad=(-?\d+) player 1 pad=(-?\d+)$", msg)
             if mm:
                 log.swaptest[mm.group(1)] = (int(mm.group(2)), int(mm.group(3)))
+        elif msg.startswith("kill player 0"):
+            log.kill_qt = qt
         elif msg.startswith("command scanner"):
             log.scanner_cmd_qt = qt
         elif msg.startswith("scanner player "):
@@ -375,7 +385,7 @@ PASS, FAIL, NOEV, INFO = "PASS", "FAIL", "NO-EVIDENCE", "INFO"
 REQUIRED_COOP = ["startup", "two_players", "separate_pads", "no_fall", "alive", "bot_drove",
                  "completed", "walk0", "walk1", "walkboth", "look0", "look1",
                  "fire0", "fire1", "reload0", "reload1", "pad_mapping", "split_view", "split_pixels",
-                 "partner_body", "shared_cinema", "shared_items", "scanner", "own_profiles", "live_swap", "asserts", "carry_over", "join_button"]
+                 "partner_body", "shared_cinema", "shared_items", "scanner", "own_profiles", "live_swap", "asserts", "carry_over", "join_button", "death_restart"]
 INFO_COOP = ["jump0", "jump1"]
 REQUIRED_SINGLE = ["startup", "one_player", "bot_drove", "completed", "walk_single"]
 
@@ -728,6 +738,19 @@ def check_join_button(log, script_end):
     if d0 >= 300 and d1 <= 250:
         return Result("join_button", PASS, "player 2 was %d cm away, %d cm after pressing Back" % (d0, d1))
     return Result("join_button", FAIL, "player 2 was %d cm away before Back and %d cm after" % (d0, d1))
+
+
+def check_death_restart(log):
+    """Player 1 dies; with shared fate the level restarts from the checkpoint.  The game must
+    get there without crashing and run on (the owner's game crashed at such a restart)."""
+    if log.kill_qt is None:
+        return Result("death_restart", NOEV, "the kill command never ran")
+    again = [q for q in log.begins if q is not None and q > log.kill_qt]
+    if not again:
+        return Result("death_restart", FAIL, "no restart after player 1 died%s" % ("" if log.finished else " (and the game did not finish)"))
+    if not log.finished:
+        return Result("death_restart", FAIL, "the level restarted %d ms after the death, then the game did not finish" % (again[0] - log.kill_qt))
+    return Result("death_restart", PASS, "the level restarted %d ms after player 1 died, and the game ran on" % (again[0] - log.kill_qt))
 
 
 def check_carry_over(log, players=2):
@@ -1126,6 +1149,7 @@ def score(log, phases, expect="coop", shots=None):
     results.append(check_own_profiles(log))
     results.append(check_live_swap(log))
     results.append(check_carry_over(log))
+    results.append(check_death_restart(log))
     if phases:
         results.append(check_join_button(log, max(p.check_end for p in phases) + GAP_MS))
     return results, REQUIRED_COOP
@@ -1191,6 +1215,7 @@ FAULTS = [
     "assert_hit",          # the game hit a real assertion (a retail build may crash there)
     "carry_lost_p1",       # player 1 loses his weapons at a level change
     "join_ignored",        # the Back button does not bring player 2 to player 1
+    "death_crash",         # the game dies when the level restarts after a death
 ]
 
 # fault -> names that must NOT be PASS in coop mode ("*ok*" = the run is a good one)
@@ -1225,6 +1250,7 @@ EXPECTED = {
     "assert_hit": ["asserts"],
     "carry_lost_p1": ["carry_over"],
     "join_ignored": ["join_button"],
+    "death_crash": ["death_restart", "completed"],
 }
 
 
@@ -1235,7 +1261,7 @@ def simulate(faults=(), settle_ms=DEFAULT_SETTLE_MS, cycles=DEFAULT_CYCLES, play
     for ph in phases:
         for (pad, ctrl, val) in ph.actions:
             events.append((ph.start, ph.end, pad, ctrl, val))
-    quit_ms = end + SCANNER_MS + JOIN_MS + 1000
+    quit_ms = end + SCANNER_MS + JOIN_MS + DEATH_MS + 1000
     lines = []
 
     def emit(wall, qt, msg):
@@ -1432,9 +1458,14 @@ def simulate(faults=(), settle_ms=DEFAULT_SETTLE_MS, cycles=DEFAULT_CYCLES, play
             for i in range(players):
                 emit(30000 + tt, tt, "player %d guid=%08X slot=%d pad=%d pos=%d,200,500 yaw=0 pitch=0 hp=100 weapon=%s ammo=0 inclip=0 perclip=0 cinema=0" % (
                     i, 0xA0000 + i, i, i, 5000 + 100 * i, "SCN" if tt >= end + SCANNER_SWITCH_MS else "EGL"))
+    if players > 1 and "single_player" not in faults:
+        k = end + SCANNER_MS + JOIN_MS
+        emit(30000 + k, k, "kill player 0: dying")
+        if "death_crash" not in faults:
+            emit(30000 + k + 9000, k + 9000, "campaign BeginGame done: players=%d level=1000" % players)
     if "timeout" in faults:
         emit(30000 + t, t, "wall-clock limit reached (armed=1), asking the game to exit")
-    elif "scanner_crash" in faults:
+    elif "scanner_crash" in faults or "death_crash" in faults:
         pass
     else:
         emit(30000 + quit_ms, quit_ms, "script finished, asking the game to exit")
