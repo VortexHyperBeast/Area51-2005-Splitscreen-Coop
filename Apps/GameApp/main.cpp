@@ -922,6 +922,13 @@ void RenderGame( void )
             // two views, set them to a horizontal split
             pPlayers[0]->SetViewViewport( 0,0       ,XRes,YRes/2-1 ); // top
             pPlayers[1]->SetViewViewport( 0,YRes/2+1,XRes,YRes     ); // bottom
+        #ifdef A51_LOCAL_COOP
+            // Local co-op: no rows between the views. Rows no view writes keep
+            // old pictures (seen after a full-screen scene); the dividing line is
+            // drawn inside both views below instead.
+            pPlayers[0]->SetViewViewport( 0,0     ,XRes,YRes/2 ); // top
+            pPlayers[1]->SetViewViewport( 0,YRes/2,XRes,YRes   ); // bottom
+        #endif
 
             if( !g_StateMgr.IsPaused() && eng_Begin( "Kill last rect" ) )
             {
@@ -1039,6 +1046,16 @@ void RenderGame( void )
         // render all objects
         xbool DoPortalWalk = TRUE;
         g_ObjMgr.Render( DoPortalWalk, g_View, pPlayers[i]->GetPlayerViewZoneTracker() );
+
+    #ifdef A51_LOCAL_COOP
+        // Local co-op split screen: the dividing line, drawn in this view's scope
+        // (each view draws the part of it that lies inside the view).
+        if( (nPlayers == 2) && eng_Begin( "Co-op split line" ) )
+        {
+            g_UIRenderer.DrawRect( irect( 0, YRes/2-2, XRes, YRes/2+2 ), XCOLOR_BLACK );
+            eng_End();
+        }
+    #endif
 
     #ifdef A51_LOCAL_COOP_QA
         {
