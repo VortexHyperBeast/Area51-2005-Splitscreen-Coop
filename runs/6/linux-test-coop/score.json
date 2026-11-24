@@ -1,0 +1,133 @@
+{
+ "expect": "coop",
+ "ok": true,
+ "failed": [],
+ "no_evidence": [],
+ "results": [
+  {
+   "name": "startup",
+   "status": "PASS",
+   "detail": "level 1000 started, bot armed at wall=82766ms, samples per player [207, 207]"
+  },
+  {
+   "name": "asserts",
+   "status": "INFO",
+   "detail": "1 assertion(s) were logged and skipped. First: #1 /home/runner/work/area51-pc/area51-pc/xCore/x_files/Implementation/x_threads_posix.cpp:425 expr=[Joined] msg=[POSIX thread did not terminate before native jo"
+  },
+  {
+   "name": "cinema",
+   "status": "INFO",
+   "detail": "no cinematic during the script"
+  },
+  {
+   "name": "perf",
+   "status": "INFO",
+   "detail": "89 samples, frame rate min 0.2, mean 8.8, max 188.2 per second"
+  },
+  {
+   "name": "two_players",
+   "status": "PASS",
+   "detail": "two player objects 2B99E001 and 00000003, first seen 118cm apart"
+  },
+  {
+   "name": "separate_pads",
+   "status": "PASS",
+   "detail": "game-side pad P0=[0] P1=[1], local slots P0=[0] P1=[1]"
+  },
+  {
+   "name": "no_fall",
+   "status": "PASS",
+   "detail": "no player sank below its start"
+  },
+  {
+   "name": "alive",
+   "status": "PASS",
+   "detail": "every sample has hp > 0"
+  },
+  {
+   "name": "bot_drove",
+   "status": "PASS",
+   "detail": "36 of 36 scheduled control changes seen, both pads attached"
+  },
+  {
+   "name": "completed",
+   "status": "PASS",
+   "detail": "script played to the end, last sample at 109100ms"
+  },
+  {
+   "name": "walk0",
+   "status": "PASS",
+   "detail": "c0: P0 1500cm P1 0cm; c1: P0 1443cm P1 0cm; c2: P0 766cm P1 0cm"
+  },
+  {
+   "name": "walk1",
+   "status": "PASS",
+   "detail": "c0: P0 0cm P1 1473cm; c1: P0 0cm P1 217cm; c2: P0 0cm P1 1500cm"
+  },
+  {
+   "name": "walkboth",
+   "status": "PASS",
+   "detail": "c0: P0 1200cm P1 18cm, displacement difference 1218cm; c1: P0 1172cm P1 1199cm, displacement difference 287cm; c2: P0 284cm P1 1093cm, displacement difference 1349cm"
+  },
+  {
+   "name": "look0",
+   "status": "PASS",
+   "detail": "c0: P0 96.2deg P1 0.0deg; c1: P0 96.2deg P1 0.0deg; c2: P0 96.2deg P1 0.0deg"
+  },
+  {
+   "name": "look1",
+   "status": "PASS",
+   "detail": "c0: P0 0.0deg P1 96.3deg; c1: P0 0.0deg P1 96.3deg; c2: P0 0.0deg P1 96.3deg"
+  },
+  {
+   "name": "jump0",
+   "status": "PASS",
+   "detail": "c0: P0 +120cm P1 +0cm; c1: P0 +120cm P1 +0cm; c2: P0 +120cm P1 +0cm"
+  },
+  {
+   "name": "jump1",
+   "status": "PASS",
+   "detail": "c0: P0 +0cm P1 +80cm; c1: P0 +0cm P1 +80cm; c2: P0 +0cm P1 +80cm"
+  },
+  {
+   "name": "fire0",
+   "status": "PASS",
+   "detail": "c0: P0 spent 3 P1 spent 0; c1: P0 spent 3 P1 spent 0; c2: P0 spent 3 P1 spent 0"
+  },
+  {
+   "name": "fire1",
+   "status": "PASS",
+   "detail": "c0: P0 spent 0 P1 spent 3; c1: P0 spent 0 P1 spent 3; c2: P0 spent 0 P1 spent 3"
+  },
+  {
+   "name": "reload0",
+   "status": "PASS",
+   "detail": "c0: P0 clip+5 P1 clip+0; c1: P0 clip+3 P1 clip+0; c2: P0 clip+3 P1 clip+0"
+  },
+  {
+   "name": "reload1",
+   "status": "PASS",
+   "detail": "c0: P0 clip+0 P1 clip+5; c1: P0 clip+0 P1 clip+3; c2: P0 clip+0 P1 clip+3"
+  },
+  {
+   "name": "pad_mapping",
+   "status": "PASS",
+   "detail": "pad 0 -> player 0, pad 1 -> player 1, in all 30 judged actions"
+  },
+  {
+   "name": "split_view",
+   "status": "PASS",
+   "detail": "view 0 (0, 0, 640, 179) above view 1 (0, 181, 640, 360), 606 eye samples near their own player, both cameras moved"
+  },
+  {
+   "name": "split_pixels",
+   "status": "PASS",
+   "detail": "51 of 51 screenshots: a uniform line between two drawn halves, halves differ by up to 40"
+  },
+  {
+   "name": "partner_body",
+   "status": "PASS",
+   "detail": "view 0: other player's body drawn in 10 of 1237 frames; view 1: other player's body drawn in 541 of 1237 frames"
+  }
+ ]
+}
