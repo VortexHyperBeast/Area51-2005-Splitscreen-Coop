@@ -490,6 +490,7 @@ void player::OnInit( void )
     m_CoopBleedLeft   = 0.0f;
     m_CoopReviveTime  = 0.0f;
     m_CoopRevivedThisFrame = FALSE;
+    m_CoopDownBlend   = 0.0f;
 #endif
 //  LOG_MESSAGE( "player::OnInit", "" );
 

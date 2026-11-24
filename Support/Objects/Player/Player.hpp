@@ -757,6 +757,8 @@ public:
 protected:
             void        CoopRevive                  ( void );
             void        CoopBleedOut                ( void );
+            void        CoopStartDownedPose         ( void );   // body lies on the floor
+            void        CoopEndDownedPose           ( void );   // body stands again
             f32         m_CoopFollowTimer;      // > 0: join m_CoopFollowGuid when it runs out
             guid        m_CoopFollowGuid;
             f32         m_CoopFallTime;         // time spent falling far below the partner
@@ -764,6 +766,8 @@ protected:
             f32         m_CoopBleedLeft;        // seconds until a downed player dies
             f32         m_CoopReviveTime;       // seconds the partner has held Use beside us
             xbool       m_CoopRevivedThisFrame; // the partner kept reviving this frame
+public:
+            f32         m_CoopDownBlend;        // 0 standing .. 1 lying (camera height)
 #endif
 
 //==============================================================================

@@ -323,10 +323,14 @@ def parse_log(text):
         elif msg.startswith("down player 1"):
             log.down_cmds.append(qt)
         elif msg.startswith("coop downed ") or msg.startswith("coop revived ") or \
-                msg.startswith("coop revive_start ") or msg.startswith("coop bledout "):
+                msg.startswith("coop revive_start ") or msg.startswith("coop bledout ") or \
+                msg.startswith("coop down_pose "):
             dm = re.match(r"^coop (\w+) slot=(-?\d+)", msg)
             if dm:
-                log.downs.append((qt, dm.group(1), int(dm.group(2))))
+                what = dm.group(1)
+                if what == "down_pose":
+                    what = "pose_ok" if msg.endswith("played=1") else "pose_missing"
+                log.downs.append((qt, what, int(dm.group(2))))
         elif msg.startswith("kill player 0"):
             log.kill_qt = qt
         elif msg.startswith("command scanner"):
@@ -799,7 +803,11 @@ def check_downed_revive(log):
     again = [q for q in downed if q > revived[0]]
     if not again:
         return Result("downed_revive", FAIL, "player 2 was revived after %d ms but did not go down a second time" % took)
-    return Result("downed_revive", PASS, "player 2 went down, was revived after %d ms of play, and went down again" % took)
+    poses = [w for (q, w, sl) in log.downs if w in ("pose_ok", "pose_missing") and sl == 1]
+    pose = (" The lying-down body animation played %d of %d times." % (poses.count("pose_ok"), len(poses))) if poses else ""
+    if poses and "pose_missing" in poses:
+        return Result("downed_revive", FAIL, "player 2 went down and was revived, but the lying-down body animation did not play." + pose)
+    return Result("downed_revive", PASS, "player 2 went down, was revived after %d ms of play, and went down again.%s" % (took, pose))
 
 
 def check_death_restart(log):

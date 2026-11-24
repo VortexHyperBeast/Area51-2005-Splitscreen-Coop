@@ -407,13 +407,43 @@ xbool player::CoopTryGoDown( void )
     if( pWeapon )
         pWeapon->ClearZoom();
     ClearMoveLookInput();
+    CoopStartDownedPose();
 
     CoopDownLog( "coop downed slot=%d bleedout=%.1f", m_LocalSlot, Rules.BleedoutSec );
     return TRUE;
 }
 
+// The body the other player sees falls and lies on the floor, using the
+// multiplayer avatar's own death animation (the same one a killed player plays
+// in multiplayer).  Revive brings the body back to its normal standing state.
+void player::CoopStartDownedPose( void )
+{
+    xbool bPlayed = FALSE;
+    if( m_pLoco && UsingLoco() )
+    {
+        m_pLoco->SetState( loco::STATE_IDLE );
+        bPlayed = m_pLoco->PlayDeathAnim( loco::ANIM_DEATH );
+        if( !bPlayed )
+            bPlayed = m_pLoco->PlayDeathAnim( loco::ANIM_DEATH_SIMPLE );
+        if( !bPlayed )
+            bPlayed = m_pLoco->PlayDeathAnim( loco::ANIM_DEATH_EXPLOSION );
+    }
+    CoopDownLog( "coop down_pose slot=%d played=%.0f", m_LocalSlot, bPlayed ? 1.0f : 0.0f );
+}
+
+void player::CoopEndDownedPose( void )
+{
+    if( m_pLoco && UsingLoco() )
+    {
+        m_pLoco->SetDead( FALSE );
+        m_pLoco->SetState( loco::STATE_IDLE );
+    }
+}
+
 void player::CoopClearDowned( void )
 {
+    if( m_CoopDowned )
+        CoopEndDownedPose();
     m_CoopDowned     = FALSE;
     m_CoopBleedLeft  = 0.0f;
     m_CoopReviveTime = 0.0f;
@@ -453,9 +483,18 @@ void player::CoopBleedOut( void )
 
 void player::CoopUpdate( f32 DeltaTime )
 {
+    // Camera height while down (eased over half a second).
+    {
+        const f32 Target = m_CoopDowned ? 1.0f : 0.0f;
+        const f32 Step   = DeltaTime * 2.0f;
+        if( m_CoopDownBlend < Target )      m_CoopDownBlend = x_min( Target, m_CoopDownBlend + Step );
+        else if( m_CoopDownBlend > Target ) m_CoopDownBlend = x_max( Target, m_CoopDownBlend - Step );
+    }
+
     if( !LocalCoop_IsActive() || (m_LocalSlot == -1) || IsDead() )
     {
         m_CoopDowned = FALSE;
+        m_CoopDownBlend = 0.0f;
         return;
     }
 

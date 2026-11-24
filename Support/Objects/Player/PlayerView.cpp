@@ -414,6 +414,16 @@ PlayerViewSample player::BuildFirstPersonViewSample( void )
         Rot.Yaw   += m_YawMod   - m_ShakeYaw;
     }
 
+#ifdef A51_LOCAL_COOP
+    // Local co-op, downed: the view drops to just above the floor.
+    if( m_CoopDownBlend > 0.0f )
+    {
+        const f32 FloorEye = GetPosition().GetY() + 35.0f;
+        if( Pos.GetY() > FloorEye )
+            Pos.GetY() = Pos.GetY() + ( FloorEye - Pos.GetY() ) * m_CoopDownBlend;
+    }
+#endif
+
     Sample.ViewToWorld.Setup( vector3( 1.0f, 1.0f, 1.0f ), Rot, Pos );
 
     slot_id const SlotID = g_ObjMgr.GetFirst( object::TYPE_LEVEL_SETTINGS );
