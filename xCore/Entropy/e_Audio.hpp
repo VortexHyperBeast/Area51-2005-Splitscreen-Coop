@@ -175,6 +175,8 @@ public:
             void            ReleaseAll              ( void );
             // Diagnostics: voices in use and the descriptor most of them play.
             void            DebugVoiceStats         ( s32& nUsed, const char*& pTopName, s32& TopCount );
+            // Diagnostics: a voice's loudest element after 3D attenuation (-1 if no such voice).
+            f32             DebugVoiceVolume        ( voice_id VoiceID, f32& Positional, s32& ZoneID );
 
             xbool           SetReleaseTime          ( voice_id          VoiceID,
                                                       f32               Time );

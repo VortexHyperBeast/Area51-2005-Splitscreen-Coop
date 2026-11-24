@@ -122,6 +122,29 @@ audio_mgr::~audio_mgr( void )
 
 //==============================================================================
 
+f32 audio_mgr::DebugVoiceVolume( voice_id VoiceID, f32& Positional, s32& ZoneID )
+{
+    Positional = -1.0f;
+    ZoneID     = -1;
+    voice* pVoice = IdToVoice( VoiceID );
+    if( !pVoice )
+        return -1.0f;
+
+    ZoneID = pVoice->ZoneID;
+    f32 Loudest = 0.0f;
+    element* pHead = (element*)&pVoice->Elements;
+    for( element* pElement = pVoice->Elements.pNext; pElement && (pElement != pHead); pElement = pElement->Link.pNext )
+    {
+        if( pElement->Volume > Loudest )
+            Loudest = pElement->Volume;
+        if( pElement->PositionalVolume > Positional )
+            Positional = pElement->PositionalVolume;
+    }
+    return Loudest;
+}
+
+//==============================================================================
+
 void audio_mgr::DebugVoiceStats( s32& nUsed, const char*& pTopName, s32& TopCount )
 {
     Runtime().Voices.DebugStats( nUsed, pTopName, TopCount );

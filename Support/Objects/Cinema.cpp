@@ -1980,6 +1980,43 @@ void cinema_object::OnAdvanceSimulation( f32 DeltaTime )
         break;
 
     case AUDIO_STATUS_PLAYING:
+#if defined( A51_LOCAL_COOP_QA ) || defined( A51_LOCAL_COOP )
+        {
+            // Diagnostics: how loud the scene's sound track is, twice a second
+            // (the owner's co-op elevator scene loses its voices at a camera cut).
+            static f32 s_NextSoundLog = 0.0f;
+            const  f32 Now = (f32)x_GetTimeSec();
+            if( (Now >= s_NextSoundLog) && (LocalCoop_PlayerCount() > 0) )
+            {
+                s_NextSoundLog = Now + 0.5f;
+                f32 Positional = -1.0f;
+                s32 ZoneID     = -1;
+                const f32 Volume = g_AudioMgr.DebugVoiceVolume( m_VoiceID, Positional, ZoneID );
+                vector3 SoundPos( 0.0f, 0.0f, 0.0f );
+                s32 SoundZone = -1;
+                if( m_PositionMarkerIndex != -1 )
+                {
+                    object* pAt = m_PositionMarkers[m_PositionMarkerIndex].ObjectAffecter.GetObjectPtr();
+                    if( pAt )
+                    {
+                        SoundPos  = pAt->GetPosition();
+                        SoundZone = pAt->GetZone1();
+                    }
+                }
+#ifdef A51_LOCAL_COOP_QA
+                qa_bot_Log( "cinema audio level %s vol=%.2f pos3d=%.2f zone=%d marker=%d at=%d,%d,%d 2d=%d",
+                            m_Descriptor, Volume, Positional, (int)ZoneID, (int)m_PositionMarkerIndex,
+                            (int)SoundPos.GetX(), (int)SoundPos.GetY(), (int)SoundPos.GetZ(), (int)m_bIs2D );
+#endif
+#ifdef A51_LOCAL_COOP
+                if( LocalCoop_IsActive() )
+                    LocalCoop_Probe( "t=%.1f cinema sound level %s vol=%.2f pos3d=%.2f zone=%d/%d marker=%d 2d=%d",
+                                     Now, m_Descriptor, Volume, Positional, (int)ZoneID, (int)SoundZone,
+                                     (int)m_PositionMarkerIndex, (int)m_bIs2D );
+#endif
+            }
+        }
+#endif
         if( !g_AudioMgr.IsValidVoiceIdCached( m_VoiceID ) )
         {
 #ifdef A51_LOCAL_COOP_QA

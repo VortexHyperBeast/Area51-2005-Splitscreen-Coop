@@ -1593,6 +1593,7 @@ def audio_report(text):
     out, starts = [], {}
     voices = []
     dialog = []
+    levels = {}
     for line in text.splitlines():
         m = re.match(r"^wall=(\d+) qt=(-?\d+) (.*)$", line)
         if not m:
@@ -1613,6 +1614,10 @@ def audio_report(text):
         if f:
             out.append("FAIL %s: %s" % (f.group(2), f.group(1)))
             continue
+        lv = re.match(r"cinema audio level (\S+) vol=(-?[\d.]+) pos3d=(-?[\d.]+) zone=(-?\d+) marker=(-?\d+) at=(\S+) 2d=(\d)", msg)
+        if lv:
+            levels.setdefault(lv.group(1), []).append((float(lv.group(2)), float(lv.group(3)), lv.group(4), lv.group(5), lv.group(7)))
+            continue
         d = re.match(r"dialog (stream|voice|stop) (\S+) id=([0-9a-f]+)", msg)
         if d:
             dialog.append((wall, d.group(1), d.group(2), d.group(3)))
@@ -1622,6 +1627,11 @@ def audio_report(text):
             voices.append((int(v.group(1)), v.group(2), int(v.group(3))))
     for name, (w0, length) in starts.items():
         out.append("OPEN %s: started, no end logged (length %d ms)" % (name, length))
+    for name, lst in levels.items():
+        seq = " ".join("%.1f" % v for (v, p3, z, mk, d2) in lst)
+        marks = " ".join(sorted(set("m%s/z%s/2d%s" % (mk, z, d2) for (v, p3, z, mk, d2) in lst)))
+        out.append("track %s volume every 0.5 s: %s" % (name, seq))
+        out.append("track %s markers/zones: %s" % (name, marks))
     if dialog:
         from collections import Counter
         plays = Counter((k, n) for (_, k, n, i) in dialog if k != "stop")
