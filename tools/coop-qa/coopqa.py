@@ -256,7 +256,7 @@ def parse_log(text):
                 "eye": (g[5], g[6], g[7]), "frames": g[8], "views": g[9],
             })
             continue
-        nm = re.match(r"^npc (\w+) self=([0-9a-fA-F]+) type=(\S+) tgt=([0-9a-fA-F]+) tslot=(-?\d+)$", msg)
+        nm = re.match(r"^npc (\w+) self=([0-9a-fA-F]+) type=(.+?) tgt=([0-9a-fA-F]+) tslot=(-?\d+)$", msg)
         if nm:
             g = nm.groups()
             log.npc.append((qt, g[0], g[1].upper(), g[2], g[3].upper(), int(g[4])))
@@ -891,7 +891,7 @@ def check_enemy_targets(log):
     if not log.npc:
         return Result("enemy_targets", INFO, "no enemy picked a target while the log was written")
     sets = [n for n in log.npc if n[1] == "set"]
-    hits = [n for n in log.npc if n[1] == "hit"]
+    hits = [n for n in log.npc if n[1] == "hit" and n[5] in (0, 1)]
     by_slot = {}
     for n in sets:
         by_slot[n[5]] = by_slot.get(n[5], 0) + 1
