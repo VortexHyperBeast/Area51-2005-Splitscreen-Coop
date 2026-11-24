@@ -273,6 +273,21 @@ def at(samples, t):
     return samples[i] if i >= 0 else None
 
 
+def at_lerp(samples, t):
+    """Position at time t, interpolated between the samples around it."""
+    keys = [s["qt"] for s in samples]
+    i = bisect.bisect_right(keys, t) - 1
+    if i < 0:
+        return None
+    a = samples[i]
+    if i + 1 >= len(samples) or samples[i + 1]["qt"] == a["qt"]:
+        return a
+    b = samples[i + 1]
+    f = float(t - a["qt"]) / (b["qt"] - a["qt"])
+    return {"qt": t, "x": a["x"] + f * (b["x"] - a["x"]), "y": a["y"] + f * (b["y"] - a["y"]),
+            "z": a["z"] + f * (b["z"] - a["z"])}
+
+
 def between(samples, t0, t1):
     return [s for s in samples if t0 <= s["qt"] <= t1]
 
@@ -339,6 +354,25 @@ def _pair(log, ph):
     return a, b
 
 
+CONTACT = 130       # the players' bodies touch (collision radius 30 cm each, plus margin for the 0.5 s samples)
+
+
+def pushed(log, ph, actor):
+    """The bystander only moved after the walking player's body reached it (since the players
+    have bodies, one can push the other).  True when the bystander had not moved before the
+    first sample at which the two were in contact, and moved less than the walker."""
+    other = 1 - actor
+    w0 = between(log.players.get(0, []), ph.start, ph.check_end)
+    for s0 in w0:
+        s1 = at(log.players.get(1, []), s0["qt"])
+        if s1 is None or hdist(s0, s1) > CONTACT:
+            continue
+        a = at(log.players[other], ph.start)
+        c = at(log.players[other], s0["qt"])
+        return a is not None and c is not None and hdist(a, c) <= STILL_MAX
+    return False
+
+
 def ev_walk(log, ph):
     pr = _pair(log, ph)
     if pr is None:
@@ -346,8 +380,12 @@ def ev_walk(log, ph):
     a, b = pr
     m = [hdist(a[i], b[i]) for i in (0, 1)]
     actor = 0 if m[0] >= m[1] else 1
-    return (m[actor] >= MOVE_MIN, m[1 - actor] <= STILL_MAX,
-            "P0 %dcm P1 %dcm" % (m[0], m[1]), actor if m[actor] >= MOVE_MIN else None)
+    still = m[1 - actor] <= STILL_MAX
+    note = ""
+    if not still and m[actor] >= MOVE_MIN and m[1 - actor] < m[actor] and pushed(log, ph, actor):
+        still, note = True, " (pushed by the walker's body)"
+    return (m[actor] >= MOVE_MIN, still,
+            "P0 %dcm P1 %dcm%s" % (m[0], m[1], note), actor if m[actor] >= MOVE_MIN else None)
 
 
 def ev_look(log, ph):
@@ -577,7 +615,9 @@ def check_split_view(log):
         for v in views:
             if v["qt"] < 0:
                 continue
-            p = [at(log.players.get(k, []), v["qt"]) for k in (0, 1)]
+            # players are sampled every 0.5 s and views once a second: interpolate the player
+            # position to the time of the view sample, or a walking player's eye looks misplaced
+            p = [at_lerp(log.players.get(k, []), v["qt"]) for k in (0, 1)]
             if None in p:
                 continue
             if hdist(p[0], p[1]) < 300:
@@ -659,7 +699,8 @@ def check_partner_body(log):
             continue
         drawn = sum(d for (d, f, o, w) in lst)
         frames = sum(f for (d, f, o, w) in lst)
-        missing = len([1 for (d, f, o, w) in lst if w < o or o < 1])
+        lst = [b for b in lst if b[2] >= 1]      # lines with no other view (full-screen scene) say nothing
+        missing = len([1 for (d, f, o, w) in lst if w < o])
         if missing:
             bad.append("view %d: the other player had no body in %d of %d seconds" % (v, missing, len(lst)))
         if drawn == 0:
@@ -1304,6 +1345,26 @@ def selftest():
                 expected, dict((n, by.get(n)) for n in expected), ok)
         print(" %-4s fault %-15s %s" % ("ok" if good else "BAD", fault, why))
         ok_all &= good
+
+    # bodies: a bystander pushed by the walker's body is not a control leak; one that moves on its
+    # own while far away still is
+    ph = [p for p in phases if p.kind == "walk1"][0]
+    def mk(push):
+        lg = Log()
+        lg.players = {0: [], 1: []}
+        for k in range(0, 9):
+            t = ph.start + k * (ph.check_end - ph.start) // 8
+            x1 = 1000 - 700 + 100 * k if push else 300 + 100 * k
+            x0 = 1000 if (not push or x1 < 900) else x1 + 100
+            if not push and k > 4:
+                x0 = 1000 + 20 * k
+            lg.players[0].append({"qt": t, "x": x0, "y": 0, "z": 0})
+            lg.players[1].append({"qt": t, "x": x1, "y": 0, "z": 0})
+        return lg
+    e_push, e_far = ev_walk(mk(True), ph), ev_walk(mk(False), ph)
+    good = e_push[1] and "pushed" in e_push[2] and not e_far[1]
+    print(" %-4s body push excused, independent drift not: %s / %s" % ("ok" if good else "BAD", e_push[2], e_far[2]))
+    ok_all &= good
 
     # the controller-swap setting: a swapped run passes as coop-swapped, an unswapped one fails it
     log = parse_log(simulate(["pads_swapped"]))

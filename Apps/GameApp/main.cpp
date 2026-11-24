@@ -977,6 +977,13 @@ void RenderGame( void )
     {
         render::RenderScopeDesc Scope;
         Scope.ScopeId = i;
+    #ifdef A51_LOCAL_COOP
+        // The full-screen scene view gets its own scope: each scope keeps a
+        // retained full-size output, and drawing the scene into scope 0's would
+        // leave its picture in the line between the split views afterwards.
+        if( nPlayers < nAllPlayers )
+            Scope.ScopeId = MAX_LOCAL_PLAYERS;
+    #endif
         render::ScopedRenderView RenderViewScope( Scope );
 
         g_RenderContext.Set( i,                                 // Local slot.
