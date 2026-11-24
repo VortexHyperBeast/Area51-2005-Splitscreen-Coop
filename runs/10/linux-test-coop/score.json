@@ -1,0 +1,145 @@
+{
+ "expect": "coop",
+ "ok": false,
+ "failed": [
+  "split_pixels"
+ ],
+ "no_evidence": [],
+ "results": [
+  {
+   "name": "startup",
+   "status": "PASS",
+   "detail": "level 1000 started, bot armed at wall=100182ms, samples per player [208, 208]"
+  },
+  {
+   "name": "asserts",
+   "status": "INFO",
+   "detail": "1 assertion(s) were logged and skipped. First: #1 /home/runner/work/area51-pc/area51-pc/xCore/x_files/Implementation/x_threads_posix.cpp:425 expr=[Joined] msg=[POSIX thread did not terminate before native jo"
+  },
+  {
+   "name": "cinema",
+   "status": "INFO",
+   "detail": "no cinematic during the script"
+  },
+  {
+   "name": "perf",
+   "status": "INFO",
+   "detail": "92 samples, frame rate min 0.3, mean 8.1, max 182.1 per second"
+  },
+  {
+   "name": "two_players",
+   "status": "PASS",
+   "detail": "two player objects 2B99E001 and 00000003, first seen 100cm apart"
+  },
+  {
+   "name": "separate_pads",
+   "status": "PASS",
+   "detail": "game-side pad P0=[0] P1=[1], local slots P0=[0] P1=[1]"
+  },
+  {
+   "name": "no_fall",
+   "status": "PASS",
+   "detail": "no player sank below its start"
+  },
+  {
+   "name": "alive",
+   "status": "PASS",
+   "detail": "every sample has hp > 0"
+  },
+  {
+   "name": "bot_drove",
+   "status": "PASS",
+   "detail": "36 of 36 scheduled control changes seen, both pads attached"
+  },
+  {
+   "name": "completed",
+   "status": "PASS",
+   "detail": "script played to the end, last sample at 109200ms"
+  },
+  {
+   "name": "walk0",
+   "status": "PASS",
+   "detail": "c0: P0 1500cm P1 0cm; c1: P0 1448cm P1 0cm; c2: P0 784cm P1 0cm"
+  },
+  {
+   "name": "walk1",
+   "status": "PASS",
+   "detail": "c0: P0 0cm P1 1363cm; c1: P0 0cm P1 499cm; c2: P0 57cm P1 731cm (pushed by the walker's body)"
+  },
+  {
+   "name": "walkboth",
+   "status": "PASS",
+   "detail": "c0: P0 1140cm P1 528cm, displacement difference 1494cm; c1: P0 1099cm P1 1129cm, displacement difference 301cm; c2: P0 365cm P1 910cm, displacement difference 1251cm"
+  },
+  {
+   "name": "look0",
+   "status": "PASS",
+   "detail": "c0: P0 96.2deg P1 0.0deg; c1: P0 96.2deg P1 0.0deg; c2: P0 96.2deg P1 0.0deg"
+  },
+  {
+   "name": "look1",
+   "status": "PASS",
+   "detail": "c0: P0 0.0deg P1 96.4deg; c1: P0 0.0deg P1 96.4deg; c2: P0 0.0deg P1 96.4deg"
+  },
+  {
+   "name": "jump0",
+   "status": "PASS",
+   "detail": "c0: P0 +125cm P1 +0cm; c1: P0 +125cm P1 +0cm; c2: P0 +125cm P1 +0cm"
+  },
+  {
+   "name": "jump1",
+   "status": "PASS",
+   "detail": "c0: P0 +0cm P1 +105cm; c1: P0 +0cm P1 +105cm; c2: P0 +0cm P1 +105cm"
+  },
+  {
+   "name": "fire0",
+   "status": "PASS",
+   "detail": "c0: P0 spent 3 P1 spent 0; c1: P0 spent 3 P1 spent 0; c2: P0 spent 3 P1 spent 0"
+  },
+  {
+   "name": "fire1",
+   "status": "PASS",
+   "detail": "c0: P0 spent 0 P1 spent 3; c1: P0 spent 0 P1 spent 3; c2: P0 spent 0 P1 spent 3"
+  },
+  {
+   "name": "reload0",
+   "status": "PASS",
+   "detail": "c0: P0 clip+5 P1 clip+0; c1: P0 clip+3 P1 clip+0; c2: P0 clip+3 P1 clip+0"
+  },
+  {
+   "name": "reload1",
+   "status": "PASS",
+   "detail": "c0: P0 clip+0 P1 clip+5; c1: P0 clip+0 P1 clip+3; c2: P0 clip+0 P1 clip+3"
+  },
+  {
+   "name": "pad_mapping",
+   "status": "PASS",
+   "detail": "pad 0 -> player 0, pad 1 -> player 1, in all 30 judged actions"
+  },
+  {
+   "name": "split_view",
+   "status": "PASS",
+   "detail": "view 0 (0, 0, 640, 180) above view 1 (0, 180, 640, 360), 350 eye samples near their own player, both cameras moved"
+  },
+  {
+   "name": "split_pixels",
+   "status": "FAIL",
+   "detail": "the two viewports in the game's log leave no gap, so no line can separate the views"
+  },
+  {
+   "name": "partner_body",
+   "status": "PASS",
+   "detail": "view 0: other player's body drawn in 284 of 1239 frames; view 1: other player's body drawn in 400 of 1142 frames"
+  },
+  {
+   "name": "shared_cinema",
+   "status": "PASS",
+   "detail": "scene seen by both players (17 and 17 samples)"
+  },
+  {
+   "name": "shared_items",
+   "status": "PASS",
+   "detail": "grenade given to player 0: player 0 0->1, player 1 0->1"
+  }
+ ]
+}
