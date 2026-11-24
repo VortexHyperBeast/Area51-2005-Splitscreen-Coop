@@ -306,7 +306,10 @@ xbool BloomEffect::DeclarePostPasses( FrameGraphBuilder&        Graph,
         RenderPassDesc PassDesc;
         PassDesc.pDebugName  = sDownsampleNames[i];
         PassDesc.Color       = Post.m_GlowDownsample[i];
-        PassDesc.ColorLoadOp = RTARGET_LOAD_DONT_CARE;
+        // Split screen: passes are scissored to the view, but the blur reads up to ~5/68 of
+        // the screen beyond it. Clear so those reads see black, not aliased transient memory
+        // (coloured streaks at the top of the bottom view on the owner's PC, 2026-11-24).
+        PassDesc.ColorLoadOp = RTARGET_LOAD_CLEAR;
 
         const RenderPassId PassData = Graph.AddPass( PassDesc, PostProcessFeature::ExecuteGlowDownsamplePass, &Post );
 
@@ -332,7 +335,10 @@ xbool BloomEffect::DeclarePostPasses( FrameGraphBuilder&        Graph,
         RenderPassDesc PassDesc;
         PassDesc.pDebugName  = i == 0 ? "BloomBlurHorizontal" : "BloomBlurVertical";
         PassDesc.Color       = Post.m_GlowBlur[i];
-        PassDesc.ColorLoadOp = RTARGET_LOAD_DONT_CARE;
+        // Split screen: passes are scissored to the view, but the blur reads up to ~5/68 of
+        // the screen beyond it. Clear so those reads see black, not aliased transient memory
+        // (coloured streaks at the top of the bottom view on the owner's PC, 2026-11-24).
+        PassDesc.ColorLoadOp = RTARGET_LOAD_CLEAR;
 
         const RenderPassId PassData = Graph.AddPass( PassDesc, PostProcessFeature::ExecuteGlowBlurPass, &Post );
 
@@ -357,7 +363,10 @@ xbool BloomEffect::DeclarePostPasses( FrameGraphBuilder&        Graph,
         RenderPassDesc PassDesc;
         PassDesc.pDebugName  = "BloomHistoryCombine";
         PassDesc.Color       = Post.m_GlowCombined;
-        PassDesc.ColorLoadOp = RTARGET_LOAD_DONT_CARE;
+        // Split screen: passes are scissored to the view, but the blur reads up to ~5/68 of
+        // the screen beyond it. Clear so those reads see black, not aliased transient memory
+        // (coloured streaks at the top of the bottom view on the owner's PC, 2026-11-24).
+        PassDesc.ColorLoadOp = RTARGET_LOAD_CLEAR;
 
         const RenderPassId PassData = Graph.AddPass( PassDesc, PostProcessFeature::ExecuteGlowCombinePass, &Post );
 
