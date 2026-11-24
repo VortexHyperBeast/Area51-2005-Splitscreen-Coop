@@ -754,6 +754,8 @@ public:
             f32         CoopReviveProgress          ( void ) const;     // 0..1
             xbool       CoopTryGoDown               ( void );           // instead of dying; FALSE = die
             void        CoopClearDowned             ( void );
+            // Mutate / turn back this player only (no property mirroring; tests).
+            void        CoopForceMutation           ( xbool bMutate ) { ForceMutationChange( bMutate ); }
 protected:
             void        CoopRevive                  ( void );
             void        CoopBleedOut                ( void );

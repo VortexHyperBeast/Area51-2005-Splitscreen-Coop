@@ -482,7 +482,7 @@ void logic_campaign::QaCommand( const char* pName )
                 p1->AddNewWeapon2( INVEN_WEAPON_MUTATION );
                 p1->SetMutagen( 100.0f );
             }
-            p1->ForceMutationChange( bMutate );
+            p1->CoopForceMutation( bMutate );
         }
         return;
     }
