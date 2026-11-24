@@ -1,0 +1,145 @@
+{
+ "expect": "coop",
+ "ok": false,
+ "failed": [
+  "split_pixels"
+ ],
+ "no_evidence": [],
+ "results": [
+  {
+   "name": "startup",
+   "status": "PASS",
+   "detail": "level 1000 started, bot armed at wall=61591ms, samples per player [209, 209]"
+  },
+  {
+   "name": "asserts",
+   "status": "INFO",
+   "detail": "1 assertion(s) were logged and skipped. First: #1 /home/runner/work/area51-pc/area51-pc/xCore/x_files/Implementation/x_threads_posix.cpp:425 expr=[Joined] msg=[POSIX thread did not terminate before native jo"
+  },
+  {
+   "name": "cinema",
+   "status": "INFO",
+   "detail": "no cinematic during the script"
+  },
+  {
+   "name": "perf",
+   "status": "INFO",
+   "detail": "60 samples, frame rate min 1.2, mean 15.2, max 236.5 per second"
+  },
+  {
+   "name": "two_players",
+   "status": "PASS",
+   "detail": "two player objects 2B99E001 and 00000003, first seen 100cm apart"
+  },
+  {
+   "name": "separate_pads",
+   "status": "PASS",
+   "detail": "game-side pad P0=[0] P1=[1], local slots P0=[0] P1=[1]"
+  },
+  {
+   "name": "no_fall",
+   "status": "PASS",
+   "detail": "no player sank below its start"
+  },
+  {
+   "name": "alive",
+   "status": "PASS",
+   "detail": "every sample has hp > 0"
+  },
+  {
+   "name": "bot_drove",
+   "status": "PASS",
+   "detail": "36 of 36 scheduled control changes seen, both pads attached"
+  },
+  {
+   "name": "completed",
+   "status": "PASS",
+   "detail": "script played to the end, last sample at 109500ms"
+  },
+  {
+   "name": "walk0",
+   "status": "PASS",
+   "detail": "c0: P0 1500cm P1 0cm; c1: P0 1448cm P1 0cm; c2: P0 784cm P1 0cm"
+  },
+  {
+   "name": "walk1",
+   "status": "PASS",
+   "detail": "c0: P0 0cm P1 1426cm; c1: P0 0cm P1 505cm; c2: P0 57cm P1 732cm (pushed by the walker's body)"
+  },
+  {
+   "name": "walkboth",
+   "status": "PASS",
+   "detail": "c0: P0 1200cm P1 545cm, displacement difference 1557cm; c1: P0 1150cm P1 1189cm, displacement difference 306cm; c2: P0 365cm P1 970cm, displacement difference 1311cm"
+  },
+  {
+   "name": "look0",
+   "status": "PASS",
+   "detail": "c0: P0 96.2deg P1 0.0deg; c1: P0 96.2deg P1 0.0deg; c2: P0 96.2deg P1 0.0deg"
+  },
+  {
+   "name": "look1",
+   "status": "PASS",
+   "detail": "c0: P0 0.0deg P1 96.4deg; c1: P0 0.0deg P1 96.4deg; c2: P0 0.0deg P1 96.4deg"
+  },
+  {
+   "name": "jump0",
+   "status": "PASS",
+   "detail": "c0: P0 +80cm P1 +0cm; c1: P0 +80cm P1 +0cm; c2: P0 +80cm P1 +0cm"
+  },
+  {
+   "name": "jump1",
+   "status": "PASS",
+   "detail": "c0: P0 +0cm P1 +120cm; c1: P0 +0cm P1 +120cm; c2: P0 +0cm P1 +120cm"
+  },
+  {
+   "name": "fire0",
+   "status": "PASS",
+   "detail": "c0: P0 spent 3 P1 spent 0; c1: P0 spent 3 P1 spent 0; c2: P0 spent 3 P1 spent 0"
+  },
+  {
+   "name": "fire1",
+   "status": "PASS",
+   "detail": "c0: P0 spent 0 P1 spent 3; c1: P0 spent 0 P1 spent 3; c2: P0 spent 0 P1 spent 3"
+  },
+  {
+   "name": "reload0",
+   "status": "PASS",
+   "detail": "c0: P0 clip+5 P1 clip+0; c1: P0 clip+3 P1 clip+0; c2: P0 clip+3 P1 clip+0"
+  },
+  {
+   "name": "reload1",
+   "status": "PASS",
+   "detail": "c0: P0 clip+0 P1 clip+5; c1: P0 clip+0 P1 clip+3; c2: P0 clip+0 P1 clip+3"
+  },
+  {
+   "name": "pad_mapping",
+   "status": "PASS",
+   "detail": "pad 0 -> player 0, pad 1 -> player 1, in all 30 judged actions"
+  },
+  {
+   "name": "split_view",
+   "status": "PASS",
+   "detail": "view 0 (0, 0, 640, 179) above view 1 (0, 181, 640, 360), 238 eye samples near their own player, both cameras moved"
+  },
+  {
+   "name": "split_pixels",
+   "status": "FAIL",
+   "detail": "only 0 of 45 screenshots show a uniform line between two drawn views"
+  },
+  {
+   "name": "partner_body",
+   "status": "PASS",
+   "detail": "view 0: other player's body drawn in 284 of 1267 frames; view 1: other player's body drawn in 421 of 1143 frames"
+  },
+  {
+   "name": "shared_cinema",
+   "status": "PASS",
+   "detail": "scene seen by both players (18 and 18 samples)"
+  },
+  {
+   "name": "shared_items",
+   "status": "PASS",
+   "detail": "grenade given to player 0: player 0 0->1, player 1 0->1"
+  }
+ ]
+}
