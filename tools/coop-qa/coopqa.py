@@ -131,6 +131,14 @@ def make_script(settle_ms=DEFAULT_SETTLE_MS, cycles=DEFAULT_CYCLES):
     lines.append("%d %d 1 ly 100" % (t, t + 3000))
     lines.append("%d %d 1 back 100" % (t + JOIN_PRESS_MS, t + JOIN_PRESS_MS + 300))
     t += JOIN_MS
+    # mutation: player 2 alone turns into the mutant and back; player 1 stays human and the game
+    # does not slow down (the single-player mutation slows time for everyone)
+    lines.append("# player 2 mutates and turns back")
+    lines.append("cmd %d mutate1" % t)
+    lines.append("cmd %d mutstat" % (t + MUT_STAT1_MS))
+    lines.append("cmd %d unmutate1" % (t + MUT_BACK_MS))
+    lines.append("cmd %d mutstat" % (t + MUT_STAT2_MS))
+    t += MUT_MS
     # downed and revive: player 2 takes lethal damage and goes down; player 1 (beside him after
     # the join) holds Use (X).  Both pads hold it, the downed player's Use does nothing, and so
     # the swapped-pads run works too.  Then player 2 goes down again and stays down.
@@ -161,6 +169,10 @@ SCANNER_SWITCH_MS = 4000
 SCANNER_MS = SCANNER_SWITCH_MS + 2 * (3500 + 2000) + 2000
 JOIN_PRESS_MS = 3500                        # after the start of the join section
 JOIN_MS = 5500
+MUT_STAT1_MS = 3000                         # after "mutate1"
+MUT_BACK_MS = 3500
+MUT_STAT2_MS = 6500
+MUT_MS = 7000
 DOWN_HOLD_START_MS = 1000                   # after the "down1" command
 DOWN_HOLD_MS = 5500                         # Use held; the revive takes 4 s
 DOWN_PISTOL_MS = 6800                       # player 2 takes the pistol out
@@ -227,6 +239,7 @@ class Log(object):
         self.swaptest = {}      # "flipped"/"restored" -> (player 0 pad, player 1 pad)
         self.kill_qt = None
         self.down_cmds = []     # script times of the "down1" command
+        self.mutstats = []      # (qt, player 1 mutated, player 2 mutated, global time x100)
         self.downstats = []     # (qt, downed, grenades, rounds) of player 2 while downed
         self.downs = []         # (qt, downed/revive_start/revived/bledout, local slot)
         self.finished_wall = None
@@ -337,6 +350,10 @@ def parse_log(text):
             dm = re.match(r"^downstat player 1: downed=(\d) grenades=(-?\d+) rounds=(-?\d+)$", msg)
             if dm:
                 log.downstats.append((qt, int(dm.group(1)), int(dm.group(2)), int(dm.group(3))))
+        elif msg.startswith("mutstat "):
+            mm = re.match(r"^mutstat p0=(-?\d+) p1=(-?\d+) speed=(-?\d+)$", msg)
+            if mm:
+                log.mutstats.append((qt, int(mm.group(1)), int(mm.group(2)), int(mm.group(3))))
         elif msg.startswith("down player 1"):
             log.down_cmds.append(qt)
         elif msg.startswith("coop downed ") or msg.startswith("coop revived ") or \
@@ -442,7 +459,7 @@ PASS, FAIL, NOEV, INFO = "PASS", "FAIL", "NO-EVIDENCE", "INFO"
 REQUIRED_COOP = ["startup", "two_players", "separate_pads", "no_fall", "alive", "bot_drove",
                  "completed", "walk0", "walk1", "walkboth", "look0", "look1",
                  "fire0", "fire1", "reload0", "reload1", "pad_mapping", "split_view", "split_pixels",
-                 "partner_body", "shared_cinema", "shared_items", "scanner", "own_profiles", "live_swap", "asserts", "carry_over", "join_button", "downed_revive", "downed_no_attack", "death_restart"]
+                 "partner_body", "shared_cinema", "shared_items", "scanner", "own_profiles", "live_swap", "asserts", "carry_over", "join_button", "mutation_independent", "downed_revive", "downed_no_attack", "death_restart"]
 INFO_COOP = ["jump0", "jump1"]
 REQUIRED_SINGLE = ["startup", "one_player", "bot_drove", "completed", "walk_single"]
 
@@ -847,6 +864,23 @@ def check_downed_no_attack(log):
     if spent:
         return Result("downed_no_attack", FAIL, "the downed player attacked: " + ", ".join(spent))
     return Result("downed_no_attack", PASS, "the downed player fired nothing and threw nothing (grenades %d, rounds %d)" % (b[2], b[3]))
+
+
+def check_mutation_independent(log):
+    """Player 2 turns into the mutant on his own: player 1 must stay human and the world must
+    not slow down; then player 2 turns back."""
+    if len(log.mutstats) < 2:
+        return Result("mutation_independent", NOEV, "the two mutation snapshots were not logged")
+    a, b = log.mutstats[0], log.mutstats[1]
+    if a[2] != 1:
+        return Result("mutation_independent", FAIL, "player 2 did not turn into the mutant (p2 mutated=%d)" % a[2])
+    if a[1] != 0:
+        return Result("mutation_independent", FAIL, "player 1 turned into the mutant too when only player 2 did")
+    if a[3] < 95:
+        return Result("mutation_independent", FAIL, "the world slowed down (%d%%) while player 2 was a mutant" % a[3])
+    if b[2] != 0:
+        return Result("mutation_independent", FAIL, "player 2 did not turn back")
+    return Result("mutation_independent", PASS, "player 2 mutated alone and turned back; player 1 stayed human, the world ran at %d%%" % a[3])
 
 
 def check_death_restart(log):
@@ -1279,6 +1313,7 @@ def score(log, phases, expect="coop", shots=None):
     results.append(check_own_profiles(log))
     results.append(check_live_swap(log))
     results.append(check_carry_over(log))
+    results.append(check_mutation_independent(log))
     results.append(check_downed_revive(log))
     results.append(check_downed_no_attack(log))
     results.append(check_death_restart(log))
@@ -1351,6 +1386,8 @@ FAULTS = [
     "not_downed",          # lethal damage kills player 2 instead of putting him down
     "no_revive",           # holding Use beside the downed partner does nothing
     "downed_attacks",      # the downed player can still shoot and throw grenades
+    "mutation_shared",     # player 2's mutation also mutates player 1 and slows the world
+    "mutation_failed",     # player 2 cannot turn into the mutant
 ]
 
 # fault -> names that must NOT be PASS in coop mode ("*ok*" = the run is a good one)
@@ -1389,6 +1426,8 @@ EXPECTED = {
     "not_downed": ["downed_revive"],
     "no_revive": ["downed_revive"],
     "downed_attacks": ["downed_no_attack"],
+    "mutation_shared": ["mutation_independent"],
+    "mutation_failed": ["mutation_independent"],
 }
 
 
@@ -1399,7 +1438,7 @@ def simulate(faults=(), settle_ms=DEFAULT_SETTLE_MS, cycles=DEFAULT_CYCLES, play
     for ph in phases:
         for (pad, ctrl, val) in ph.actions:
             events.append((ph.start, ph.end, pad, ctrl, val))
-    quit_ms = end + SCANNER_MS + JOIN_MS + DOWN_MS + DEATH_MS + 1000
+    quit_ms = end + SCANNER_MS + JOIN_MS + MUT_MS + DOWN_MS + DEATH_MS + 1000
     lines = []
 
     def emit(wall, qt, msg):
@@ -1597,7 +1636,16 @@ def simulate(faults=(), settle_ms=DEFAULT_SETTLE_MS, cycles=DEFAULT_CYCLES, play
                 emit(30000 + tt, tt, "player %d guid=%08X slot=%d pad=%d pos=%d,200,500 yaw=0 pitch=0 hp=100 weapon=%s ammo=0 inclip=0 perclip=0 cinema=0" % (
                     i, 0xA0000 + i, i, i, 5000 + 100 * i, "SCN" if tt >= end + SCANNER_SWITCH_MS else "EGL"))
     if players > 1 and "single_player" not in faults:
-        d = end + SCANNER_MS + JOIN_MS
+        mt = end + SCANNER_MS + JOIN_MS
+        emit(30000 + mt, mt, "mutate1 player 1: changing")
+        if "mutation_shared" in faults:
+            emit(30000 + mt + MUT_STAT1_MS, mt + MUT_STAT1_MS, "mutstat p0=1 p1=1 speed=65")
+        elif "mutation_failed" in faults:
+            emit(30000 + mt + MUT_STAT1_MS, mt + MUT_STAT1_MS, "mutstat p0=0 p1=0 speed=100")
+        else:
+            emit(30000 + mt + MUT_STAT1_MS, mt + MUT_STAT1_MS, "mutstat p0=0 p1=1 speed=100")
+        emit(30000 + mt + MUT_STAT2_MS, mt + MUT_STAT2_MS, "mutstat p0=0 p1=0 speed=100")
+        d = end + SCANNER_MS + JOIN_MS + MUT_MS
         emit(30000 + d, d, "down player 1: lethal damage")
         if "not_downed" not in faults:
             emit(30000 + d, d, "coop downed slot=1 bleedout=25.0")
@@ -1611,7 +1659,7 @@ def simulate(faults=(), settle_ms=DEFAULT_SETTLE_MS, cycles=DEFAULT_CYCLES, play
         emit(30000 + d + DOWN_STAT1_MS, d + DOWN_STAT1_MS, "downstat player 1: downed=%d grenades=2 rounds=7" % dn)
         emit(30000 + d + DOWN_STAT2_MS, d + DOWN_STAT2_MS, "downstat player 1: downed=%d grenades=%d rounds=%d" % (
             dn, 1 if "downed_attacks" in faults else 2, 6 if "downed_attacks" in faults else 7))
-        k = end + SCANNER_MS + JOIN_MS + DOWN_MS
+        k = end + SCANNER_MS + JOIN_MS + MUT_MS + DOWN_MS
         emit(30000 + k, k, "kill player 0: dying")
         if "death_crash" not in faults:
             emit(30000 + k + 9000, k + 9000, "campaign BeginGame done: players=%d level=1000" % players)

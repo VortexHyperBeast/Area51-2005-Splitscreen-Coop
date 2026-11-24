@@ -283,6 +283,7 @@ static xbool CoopIsSharedProperty( prop_query& rPropQuery )
            rPropQuery.IsVar     ( "Player\\Hide Player Arms" )     ||
            rPropQuery.IsVar     ( "Player\\Holster Weapon" )       ||
            rPropQuery.IsVar     ( "Player\\In Mutation Tutorial" ) ||
+           rPropQuery.IsVar     ( "Player\\Mutagen" )              ||   // scripted refills: both
            rPropQuery.IsBasePath( "Player\\Mutation" );
 }
 
@@ -923,6 +924,20 @@ xbool player::OnProperty( prop_query& rPropQuery )
     }
 
     xbool bIsMutated = m_bIsMutated;
+#ifdef A51_LOCAL_COOP
+    // Local co-op: scripts ask "the player" (player 1) whether he is mutated,
+    // e.g. to move a tutorial on.  Either player being mutated counts.
+    if( rPropQuery.IsRead() && LocalCoop_IsActive() && (GetLocalSlot() != -1) && !bIsMutated &&
+        rPropQuery.IsVar( "Player\\Mutation\\Is Mutated" ) )
+    {
+        for( slot_id ID = g_ObjMgr.GetFirst( object::TYPE_PLAYER ); ID != SLOT_NULL; ID = g_ObjMgr.GetNext( ID ) )
+        {
+            player* pOther = (player*)g_ObjMgr.GetObjectBySlot( ID );
+            if( pOther && (pOther != this) && (pOther->GetLocalSlot() != -1) && !pOther->IsDead() && pOther->IsMutated() )
+                bIsMutated = TRUE;
+        }
+    }
+#endif
     if ( rPropQuery.VarBool( "Player\\Mutation\\Is Mutated", bIsMutated ) )
     {
         m_bIsMutated = bIsMutated;

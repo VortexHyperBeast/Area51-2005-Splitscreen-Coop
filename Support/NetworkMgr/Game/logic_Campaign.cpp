@@ -9,6 +9,7 @@
 //==============================================================================
 
 #include "logic_Campaign.hpp"
+#include "PerceptionMgr/PerceptionMgr.hpp"
 #include "Objects/Actor/Actor.hpp"  // For actor class
 #include "Objects/Render/PostEffectMgr.hpp"
 #include "StateMgr/StateMgr.hpp"
@@ -464,6 +465,35 @@ void logic_campaign::QaCommand( const char* pName )
         qa_bot_Log( "down player 1: %s", p1 ? "lethal damage" : "no player" );
         if( p1 )
             p1->DebugSuicide();
+        return;
+    }
+
+    if( (x_strcmp( pName, "mutate1" ) == 0) || (x_strcmp( pName, "unmutate1" ) == 0) )
+    {
+        // Player 2 alone turns into the mutant (and back): player 1 must stay as
+        // he is, nothing global (time, vision) may follow player 2.
+        const xbool bMutate = ( pName[0] == 'm' );
+        player* p1 = (player*)g_ObjMgr.GetObjectByGuid( s_pQaCampaign->m_PlayerGuid[1] );
+        qa_bot_Log( "%s player 1: %s", pName, p1 ? "changing" : "no player" );
+        if( p1 )
+        {
+            if( bMutate )
+            {
+                p1->AddNewWeapon2( INVEN_WEAPON_MUTATION );
+                p1->SetMutagen( 100.0f );
+            }
+            p1->ForceMutationChange( bMutate );
+        }
+        return;
+    }
+
+    if( x_strcmp( pName, "mutstat" ) == 0 )
+    {
+        player* p0 = (player*)g_ObjMgr.GetObjectByGuid( s_pQaCampaign->m_PlayerGuid[0] );
+        player* p1 = (player*)g_ObjMgr.GetObjectByGuid( s_pQaCampaign->m_PlayerGuid[1] );
+        qa_bot_Log( "mutstat p0=%d p1=%d speed=%d",
+                    p0 ? (int)p0->IsMutated() : -1, p1 ? (int)p1->IsMutated() : -1,
+                    (int)( g_PerceptionMgr.GetGlobalTimeDialation() * 100.0f ) );
         return;
     }
 
