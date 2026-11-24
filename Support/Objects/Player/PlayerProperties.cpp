@@ -17,6 +17,7 @@
 #include "Objects/WeaponMutation.hpp"
 #include "StateMgr/StateMgr.hpp"
 #include "PerceptionMgr/PerceptionMgr.hpp"
+#include "NetworkMgr/Game/LocalCoop.hpp"
 
 //=========================================================================
 //  IMPLEMENTATION
@@ -254,8 +255,109 @@ xbool player::OnStrainControlProperty( prop_query& I )
 
 //=========================================================================
 
+#ifdef A51_LOCAL_COOP
+
+//=========================================================================
+//  Local co-op: scripted scenes are shared.  Triggers and cinemas address
+//  "the player" (the first player object), so a property that takes control
+//  away or changes what the player may do is copied to every other local
+//  player, and a player that is put into a scene is first moved next to the
+//  player who started it.
+//=========================================================================
+
+static xbool s_CoopMirroring = FALSE;
+
+static xbool CoopIsSharedProperty( prop_query& rPropQuery )
+{
+    return rPropQuery.IsBasePath( "Player\\Cinema" )               ||
+           rPropQuery.IsVar     ( "Player\\Can Jump" )             ||
+           rPropQuery.IsVar     ( "Player\\Hide Player Arms" )     ||
+           rPropQuery.IsVar     ( "Player\\Holster Weapon" )       ||
+           rPropQuery.IsVar     ( "Player\\In Mutation Tutorial" ) ||
+           rPropQuery.IsBasePath( "Player\\Mutation" );
+}
+
+void player::CoopMoveNextTo( player& Leader )
+{
+    if( (&Leader == this) || IsDead() )
+        return;
+
+    vector3 Offset( 100.0f, 0.0f, 0.0f );
+    Offset.RotateY( Leader.m_Yaw );
+
+    Teleport( Leader.GetPosition() + Offset,
+              Leader.m_Pitch,
+              Leader.m_Yaw,
+              static_cast<zone_mgr::zone_id>( Leader.GetZone1() ),
+              static_cast<zone_mgr::zone_id>( Leader.GetZone2() ),
+              PlayerTeleportVelocityPolicy::Clear,
+              FALSE,
+              FALSE );
+}
+
+void player::CoopFollowCinema( player& Leader )
+{
+    if( (&Leader == this) || IsDead() )
+        return;
+
+    const xbool WasMirroring = s_CoopMirroring;
+    s_CoopMirroring = TRUE;
+
+    const xbool On = Leader.IsCinemaRunning();
+    if( On != IsCinemaRunning() )
+    {
+        CoopMoveNextTo( Leader );
+    }
+
+    m_CinemaSettings = Leader.m_CinemaSettings;
+    m_CinemaController.UpdateSettings( m_CinemaSettings );
+
+    prop_query Query;
+    Query.WQueryBool( "Player\\Cinema\\CinemaOn", On );
+    OnProperty( Query );
+
+    s_CoopMirroring = WasMirroring;
+}
+
+static void CoopForEachOtherPlayer( player* pSelf, prop_query& rPropQuery, xbool CinemaOnWrite )
+{
+    slot_id ID = g_ObjMgr.GetFirst( object::TYPE_PLAYER );
+    while( ID != SLOT_NULL )
+    {
+        player* pOther = (player*)g_ObjMgr.GetObjectBySlot( ID );
+        ID = g_ObjMgr.GetNext( ID );
+
+        if( !pOther || (pOther == pSelf) || (pOther->GetLocalSlot() == -1) || pOther->IsDead() )
+            continue;
+
+        if( CinemaOnWrite )
+            pOther->CoopFollowCinema( *pSelf );
+        else
+            static_cast<object*>( pOther )->OnProperty( rPropQuery );
+    }
+}
+
+#endif // A51_LOCAL_COOP
+
+//=========================================================================
+
 xbool player::OnProperty( prop_query& rPropQuery )
 {
+#ifdef A51_LOCAL_COOP
+    if( LocalCoop_IsActive() && !s_CoopMirroring && !rPropQuery.IsRead() &&
+        (GetLocalSlot() != -1) && CoopIsSharedProperty( rPropQuery ) )
+    {
+        const xbool CinemaOnWrite = rPropQuery.IsVar( "Player\\Cinema\\CinemaOn" );
+
+        s_CoopMirroring = TRUE;
+        const xbool Result = OnProperty( rPropQuery );
+        CoopForEachOtherPlayer( this, rPropQuery, CinemaOnWrite );
+        s_CoopMirroring = FALSE;
+
+        return Result;
+    }
+#endif
+
     if( rPropQuery.VarBool( "Player\\Can Die", m_bCanDie ) )
     {
         return TRUE;

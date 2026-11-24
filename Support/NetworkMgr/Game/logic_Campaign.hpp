@@ -52,6 +52,7 @@ virtual void    BeginGame       ( void );
 #ifdef A51_LOCAL_COOP
         void    CreateExtraPlayer( s32 Index, const vector3& Position, radian Pitch, radian Yaw, s32 Zone1, s32 Zone2 );
         void    WriteProbe      ( f32 DeltaTime );
+        void    SyncCoopCinema  ( f32 DeltaTime );
 #endif
 #ifdef A51_LOCAL_COOP_QA
         void    ArmQaBot        ( f32 DeltaTime );
@@ -91,6 +92,7 @@ virtual void    ProvideUpdate   (       bitstream& BitStream, u32& DirtyBits );
 #ifdef A51_LOCAL_COOP
         guid    m_PlayerGuid[ LOCAL_COOP_MAX_PLAYERS ];     // [0] is m_PlayerSpawnGuid
         f32     m_ProbeTimer;
+        f32     m_CoopCinemaMismatch[ LOCAL_COOP_MAX_PLAYERS ];
 #endif
 #ifdef A51_LOCAL_COOP_QA
         f32     m_QaProbeTimer;

@@ -23,6 +23,45 @@
 #include "../../../Apps/Editor/Project.hpp"
 #else
 #include "NetworkMgr/Messages/MsgMgr.hpp"
+#include "NetworkMgr/Game/LocalCoop.hpp"
+
+#ifdef A51_LOCAL_COOP
+//=========================================================================
+//  Local co-op: shared pickups.  What one local player gets (from a pickup
+//  or from a script, e.g. the pistol and the scanner in the first level),
+//  every other living local player gets too; a script that takes an item
+//  away takes it from everyone.
+//=========================================================================
+
+static xbool s_CoopSharing = FALSE;
+
+static s32 CoopOtherPlayers( player* pSelf, player** ppOut )
+{
+    s32 n = 0;
+    if( !LocalCoop_IsActive() || s_CoopSharing || (pSelf->GetLocalSlot() == -1) )
+        return 0;
+
+    slot_id ID = g_ObjMgr.GetFirst( object::TYPE_PLAYER );
+    while( (ID != SLOT_NULL) && (n < LOCAL_COOP_MAX_PLAYERS) )
+    {
+        player* pOther = (player*)g_ObjMgr.GetObjectBySlot( ID );
+        ID = g_ObjMgr.GetNext( ID );
+
+        if( pOther && (pOther != pSelf) && (pOther->GetLocalSlot() != -1) && !pOther->IsDead() )
+            ppOut[n++] = pOther;
+    }
+    return n;
+}
+
+// Keeps the sharing flag set until the end of the scope, so that what the
+// picking player's own TakePickup adds is not shared a second time.
+struct coop_share_scope
+{
+    xbool m_Prev;
+    coop_share_scope ( void ) : m_Prev( s_CoopSharing ) { s_CoopSharing = TRUE; }
+    ~coop_share_scope( void ) { s_CoopSharing = m_Prev; }
+};
+#endif
 #endif
 
 //=========================================================================
@@ -431,6 +470,19 @@ xbool player::AddItemToInventory2( inven_item Item )
             SetNextWeapon2( Item, bFirstTimePickedUp );
         }
     }
+
+#ifdef A51_LOCAL_COOP
+    if( ItemAdded )
+    {
+        player* pOthers[LOCAL_COOP_MAX_PLAYERS];
+        const s32 nOthers = CoopOtherPlayers( this, pOthers );
+        s_CoopSharing = (nOthers > 0) ? TRUE : s_CoopSharing;
+        for( s32 i = 0; i < nOthers; i++ )
+            pOthers[i]->AddItemToInventory2( Item );
+        if( nOthers > 0 )
+            s_CoopSharing = FALSE;
+    }
+#endif
    
     return ItemAdded;
 }
@@ -444,6 +496,20 @@ xbool player::RemoveItemFromInventory2( inven_item Item, xbool bRemoveAll )
         // weapon, they shouldn't have any weapons.
         SwitchWeapon2( INVEN_NULL );
     }
+
+#ifdef A51_LOCAL_COOP
+    {
+        player* pOthers[LOCAL_COOP_MAX_PLAYERS];
+        const s32 nOthers = CoopOtherPlayers( this, pOthers );
+        if( nOthers > 0 )
+        {
+            s_CoopSharing = TRUE;
+            for( s32 i = 0; i < nOthers; i++ )
+                pOthers[i]->RemoveItemFromInventory2( Item, bRemoveAll );
+            s_CoopSharing = FALSE;
+        }
+    }
+#endif
 
     return actor::RemoveItemFromInventory2( Item, bRemoveAll );
 }
@@ -700,6 +766,14 @@ void player::TakePickup( pickup& Pickup )
 
     inven_item Item   =      Pickup.GetItem();
     s32        Amount = (s32)Pickup.GetAmount();
+
+#ifdef A51_LOCAL_COOP
+    player* pCoopOthers[LOCAL_COOP_MAX_PLAYERS];
+    const s32 nCoopOthers = CoopOtherPlayers( this, pCoopOthers );
+    coop_share_scope CoopScope;
+    for( s32 iCoop = 0; iCoop < nCoopOthers; iCoop++ )
+        pCoopOthers[iCoop]->TakePickup( Pickup );
+#endif
 
 #ifndef X_EDITOR
     if( !g_NetworkMgr.IsServer() )

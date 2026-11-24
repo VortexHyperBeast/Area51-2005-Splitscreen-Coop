@@ -102,6 +102,7 @@ void logic_campaign::AdvanceTime( f32 DeltaTime )
 {
 #ifdef A51_LOCAL_COOP
     WriteProbe( DeltaTime );
+    SyncCoopCinema( DeltaTime );
 #endif
 #ifdef A51_LOCAL_COOP_QA
     ArmQaBot( DeltaTime );
@@ -242,6 +243,10 @@ void logic_campaign::BeginGame( void )
         m_PlayerGuid[i] = NULL_GUID;
     }
     m_ProbeTimer = 0.0f;
+    for( s32 i = 0; i < LOCAL_COOP_MAX_PLAYERS; i++ )
+    {
+        m_CoopCinemaMismatch[i] = 0.0f;
+    }
 
     for( s32 i = 1; i < LocalCoop_PlayerCount(); i++ )
     {
@@ -313,6 +318,51 @@ void logic_campaign::CreateExtraPlayer( s32 Index, const vector3& Position,
                        FALSE );
 
     pPlayer->OnSpawn();
+}
+
+//==============================================================================
+//  Scripted scenes are copied from player to player when they start or end
+//  (player::OnProperty).  A scene that started before player 2 existed (the
+//  start of a level) is caught here: if a player's scene state differs from
+//  player 1's for half a second, it follows player 1.
+
+void logic_campaign::SyncCoopCinema( f32 DeltaTime )
+{
+    if( !LocalCoop_IsActive() )
+    {
+        return;
+    }
+
+    player* pLeader = (player*)g_ObjMgr.GetObjectByGuid( m_PlayerGuid[0] );
+    if( !pLeader || pLeader->IsDead() )
+    {
+        return;
+    }
+
+    for( s32 i = 1; i < LocalCoop_PlayerCount(); i++ )
+    {
+        player* pPlayer = (player*)g_ObjMgr.GetObjectByGuid( m_PlayerGuid[i] );
+        if( !pPlayer || pPlayer->IsDead() )
+        {
+            m_CoopCinemaMismatch[i] = 0.0f;
+            continue;
+        }
+
+        if( pPlayer->IsCinemaRunning() != pLeader->IsCinemaRunning() )
+        {
+            m_CoopCinemaMismatch[i] += DeltaTime;
+        }
+        else
+        {
+            m_CoopCinemaMismatch[i] = 0.0f;
+        }
+
+        if( m_CoopCinemaMismatch[i] > 0.5f )
+        {
+            pPlayer->CoopFollowCinema( *pLeader );
+            m_CoopCinemaMismatch[i] = 0.0f;
+        }
+    }
 }
 
 //==============================================================================

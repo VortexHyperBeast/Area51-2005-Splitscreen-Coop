@@ -877,6 +877,29 @@ void RenderGame( void )
     if( nPlayers != g_NetworkMgr.GetLocalPlayerCount() )
         return;
 
+    // All local players (for the active flags below), and the players that get a view.
+    player* pAllPlayers[MAX_LOCAL_PLAYERS] = { 0 };
+    s32     nAllPlayers                    = nPlayers;
+    for( i = 0; i < nPlayers; i++ )
+        pAllPlayers[i] = pPlayers[i];
+
+#ifdef A51_LOCAL_COOP
+    // Local co-op: during a cutscene or any scripted scene, both players watch
+    // one full-screen view (the view of the first player in the scene).
+    if( nPlayers > 1 )
+    {
+        for( i = 0; i < nPlayers; i++ )
+        {
+            if( pPlayers[i]->IsCinemaRunning() )
+            {
+                pPlayers[0] = pAllPlayers[i];
+                nPlayers    = 1;
+                break;
+            }
+        }
+    }
+#endif
+
     s32 XRes, YRes;
     eng_GetRes( XRes, YRes );
     switch( nPlayers )
@@ -947,8 +970,8 @@ void RenderGame( void )
     }
 
     // Make all the players inactive in anticipation of the render...
-    for( i = 0; i < nPlayers; i++ )
-        pPlayers[i]->SetAsActivePlayer( FALSE );
+    for( i = 0; i < nAllPlayers; i++ )
+        pAllPlayers[i]->SetAsActivePlayer( FALSE );
 
     for( i = 0; i < nPlayers; i++ )
     {
@@ -1047,8 +1070,8 @@ void RenderGame( void )
     }
 
     // Make all the players active again so their input will function.
-    for( i = 0; i < nPlayers; i++ )
-        pPlayers[i]->SetAsActivePlayer( TRUE );
+    for( i = 0; i < nAllPlayers; i++ )
+        pAllPlayers[i]->SetAsActivePlayer( TRUE );
 
     #if defined( ENABLE_DEBUG_MENU )
     // Debug menu rendering

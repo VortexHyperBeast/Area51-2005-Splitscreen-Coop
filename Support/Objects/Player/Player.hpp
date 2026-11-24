@@ -742,6 +742,12 @@ protected:
 
     virtual xbool       UsingLoco                   ( void );
             void        PrepLocalCoopAvatar         ( void );
+#ifdef A51_LOCAL_COOP
+public:
+            void        CoopMoveNextTo              ( player& Leader );
+            void        CoopFollowCinema            ( player& Leader );
+protected:
+#endif
 
 //==============================================================================
 //  OLD PLAYER_ALL_STRAINS STUFF

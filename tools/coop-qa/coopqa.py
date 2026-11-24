@@ -304,7 +304,7 @@ PASS, FAIL, NOEV, INFO = "PASS", "FAIL", "NO-EVIDENCE", "INFO"
 REQUIRED_COOP = ["startup", "two_players", "separate_pads", "no_fall", "alive", "bot_drove",
                  "completed", "walk0", "walk1", "walkboth", "look0", "look1",
                  "fire0", "fire1", "reload0", "reload1", "pad_mapping", "split_view", "split_pixels",
-                 "partner_body"]
+                 "partner_body", "shared_cinema"]
 INFO_COOP = ["jump0", "jump1"]
 REQUIRED_SINGLE = ["startup", "one_player", "bot_drove", "completed", "walk_single"]
 
@@ -544,7 +544,9 @@ def check_completed(log, phases):
 
 
 def check_split_view(log):
-    v0, v1 = log.views.get(0, []), log.views.get(1, [])
+    # only while the script runs: during a scene before it, both players share one full-screen view
+    v0 = [v for v in log.views.get(0, []) if v["qt"] >= 0]
+    v1 = [v for v in log.views.get(1, []) if v["qt"] >= 0]
     if len(v0) < 3 or len(v1) < 3:
         return Result("split_view", NOEV, "view lines: view0=%d view1=%d" % (len(v0), len(v1)))
     vp0, vp1 = set(v["vp"] for v in v0), set(v["vp"] for v in v1)
@@ -609,6 +611,20 @@ def check_pad_mapping(results_meta):
         return Result("pad_mapping", FAIL, "both pads drive player %d" % drivers[0])
     return Result("pad_mapping", PASS, "pad 0 -> player %d, pad 1 -> player %d, in all %d judged actions" % (
         drivers[0], drivers[1], sum(len(t) for p in mapping.values() for t in p.values())))
+
+
+def check_shared_cinema(log):
+    """A scripted scene (cutscene, or a moment that takes control away) must reach both players.
+    Triggers address the first player; the co-op code copies the scene to the other one.  On
+    the owner's PC only player 1 got it (2026-11-24).  Level 1000 opens with such a scene."""
+    p0 = [s for s in log.players.get(0, []) if s["cinema"]]
+    p1 = [s for s in log.players.get(1, []) if s["cinema"]]
+    if not p0 and not p1:
+        return Result("shared_cinema", INFO, "no scripted scene ran while the log was written")
+    if p0 and p1:
+        return Result("shared_cinema", PASS, "scene seen by both players (%d and %d samples)" % (len(p0), len(p1)))
+    who = 0 if p0 else 1
+    return Result("shared_cinema", FAIL, "a scene ran for player %d only (%d samples)" % (who, len(p0 or p1)))
 
 
 def check_partner_body(log):
@@ -897,6 +913,7 @@ def score(log, phases, expect="coop", shots=None):
     results.append(check_split_view(log))
     results.append(check_split_pixels(shots))
     results.append(check_partner_body(log))
+    results.append(check_shared_cinema(log))
     return results, REQUIRED_COOP
 
 
@@ -952,6 +969,7 @@ FAULTS = [
     "bottom_blank",        # the bottom half of the screen stays empty
     "identical_halves",    # both halves show the same picture
     "partner_invisible",   # the players have no 3rd person body, so neither sees the other
+    "cinema_p0_only",      # a scripted scene reached player 0 only
 ]
 
 # fault -> names that must NOT be PASS in coop mode ("*ok*" = the run is a good one)
@@ -978,6 +996,7 @@ EXPECTED = {
     "bottom_blank": ["split_pixels"],
     "identical_halves": ["split_pixels"],
     "partner_invisible": ["partner_body"],
+    "cinema_p0_only": ["shared_cinema"],
 }
 
 
@@ -1004,6 +1023,16 @@ def simulate(faults=(), settle_ms=DEFAULT_SETTLE_MS, cycles=DEFAULT_CYCLES, play
         emit(20000, -1, "wall-clock limit reached (armed=0), asking the game to exit")
         return "\n".join(lines) + "\n"
     emit(25000, -1, "campaign BeginGame done: players=%d level=1000" % players)
+    # the opening scene of the level, before the bot is armed (full-screen view while it runs)
+    for k in range(4):
+        for i in range(players):
+            if "single_player" in faults and i == 1:
+                continue
+            on = 0 if ("cinema_p0_only" in faults and i == 1) else 1
+            emit(26000 + 500 * k, -1,
+                 "player %d guid=%08X slot=%d pad=%d pos=%d,200,500 yaw=0 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=%d" % (
+                     i, 0xA0000 + i, i, i, 1000 + 100 * i, on))
+        emit(26000 + 500 * k, -1, "view 0 viewport=0,0,%d,%d eye=1000,372,500 frames=%d views=1" % (SIM_W, SIM_H, 10 + k))
     emit(30000, 0, "armed: level running, no cinematic on any local player")
 
     driver = {0: 0, 1: 1}
