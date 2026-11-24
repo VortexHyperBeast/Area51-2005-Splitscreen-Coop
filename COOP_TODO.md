@@ -40,6 +40,7 @@ A passing bot test is not a played game. Statuses:
 | Profiles saved on change, on leaving the campaign, at shutdown | IMPLEMENTED, NOT FULLY TESTED | Code (create/load bot-tested, the save at shutdown is not) | `StateMgr.cpp` (`CoopSaveProfilesNow`), `main.cpp` (`DoShutdown`) |
 | Controller swap in the pause menu, kept in `a51_coop.cfg` | DONE+VERIFIED | Bot (`live_swap`, swap run); owner used it | `StateMgr.cpp` (`CoopSetSwapPads`), `dlg_PauseMain.cpp`, `LocalCoop.hpp` |
 | Character (16 multiplayer skins) per player in the pause menu, with picture | IMPLEMENTED, NOT FULLY TESTED | Owner: "working well" for skins; picture not confirmed | `dlg_PauseMain.cpp`, `PlayerObject.cpp` (`CoopApplySkin`) |
+| Pause menu layout: highlight bar follows the co-op rows, rows fit inside the frame, no build number/date | IMPLEMENTED, NOT FULLY TESTED | Owner request (screenshot 2026-11-24); not yet seen by the owner | `dlg_PauseMain.cpp` |
 
 ### Shared world, scenes and items
 

@@ -20,7 +20,9 @@
 #include "../../Apps/GameApp/Config.hpp"    
 
 // display build info
+#ifndef A51_LOCAL_COOP     // the co-op build shows no build number or date (owner request)
 #define DISPLAY_BUILD_INFO
+#endif
 
 #if defined( DISPLAY_DEBUG_INFO )
 #include "Objects/Player/Player.hpp"
@@ -46,15 +48,22 @@ ui_manager::control_tem PauseMenuControls[] =
     { IDC_PAUSE_MENU_VIBRATION, "IDS_RUMBLE",               "button",   60, 250, 120, 40, 0, 3, 1, 1, ui_win::WF_VISIBLE },
 #else
     // Frames.
+#ifndef A51_LOCAL_COOP
     { IDC_PAUSE_MENU_RESUME,    "IDS_PAUSE_MENU_RESUME",    "button",   60,  60, 120, 40, 0, 0, 1, 1, ui_win::WF_VISIBLE },
     { IDC_PAUSE_MENU_QUIT,      "IDS_PAUSE_MENU_QUIT",      "button",   60, 100, 120, 40, 0, 1, 1, 1, ui_win::WF_VISIBLE },
     { IDC_PAUSE_MENU_OPTIONS,   "IDS_PAUSE_MENU_OPTIONS",   "button",   60, 140, 120, 40, 0, 2, 1, 1, ui_win::WF_VISIBLE },
     { IDC_PAUSE_MENU_SETTINGS,  "IDS_PAUSE_MENU_SETTINGS",  "button",   60, 180, 120, 40, 0, 3, 1, 1, ui_win::WF_VISIBLE },
-#ifdef A51_LOCAL_COOP
+#else
+    // Co-op build: seven rows, a little closer together so the last one stays
+    // inside the frame.
+    { IDC_PAUSE_MENU_RESUME,    "IDS_PAUSE_MENU_RESUME",    "button",   60,  48, 120, 38, 0, 0, 1, 1, ui_win::WF_VISIBLE },
+    { IDC_PAUSE_MENU_QUIT,      "IDS_PAUSE_MENU_QUIT",      "button",   60,  86, 120, 38, 0, 1, 1, 1, ui_win::WF_VISIBLE },
+    { IDC_PAUSE_MENU_OPTIONS,   "IDS_PAUSE_MENU_OPTIONS",   "button",   60, 124, 120, 38, 0, 2, 1, 1, ui_win::WF_VISIBLE },
+    { IDC_PAUSE_MENU_SETTINGS,  "IDS_PAUSE_MENU_SETTINGS",  "button",   60, 162, 120, 38, 0, 3, 1, 1, ui_win::WF_VISIBLE },
     // Local co-op rows (hidden unless co-op is running); labels are set in code.
-    { IDC_PAUSE_MENU_COOP_SWAP, "IDS_NULL",                 "button",   10, 220, 220, 40, 0, 4, 1, 1, ui_win::WF_VISIBLE },
-    { IDC_PAUSE_MENU_COOP_BODY1,"IDS_NULL",                 "button",   10, 260, 220, 40, 0, 5, 1, 1, ui_win::WF_VISIBLE },
-    { IDC_PAUSE_MENU_COOP_BODY2,"IDS_NULL",                 "button",   10, 300, 220, 40, 0, 6, 1, 1, ui_win::WF_VISIBLE },
+    { IDC_PAUSE_MENU_COOP_SWAP, "IDS_NULL",                 "button",   10, 200, 220, 38, 0, 4, 1, 1, ui_win::WF_VISIBLE },
+    { IDC_PAUSE_MENU_COOP_BODY1,"IDS_NULL",                 "button",   10, 238, 220, 38, 0, 5, 1, 1, ui_win::WF_VISIBLE },
+    { IDC_PAUSE_MENU_COOP_BODY2,"IDS_NULL",                 "button",   10, 276, 220, 38, 0, 6, 1, 1, ui_win::WF_VISIBLE },
 #endif
 #endif
 
@@ -729,6 +738,19 @@ void dlg_pause_main::OnUpdate ( ui_win* pWin, f32 DeltaTime )
         g_UiMgr->SetScreenHighlight( m_pButtonSettings->GetPosition() );
     }
 #endif
+    else
+    {
+        // Local co-op rows: the highlight bar follows them too.
+        for( s32 Row = 0; Row < 3; Row++ )
+        {
+            if( m_pButtonCoop[Row] && m_pButtonCoop[Row]->IsFocused() )
+            {
+                highLight = 4 + Row;
+                g_UiMgr->SetScreenHighlight( m_pButtonCoop[Row]->GetPosition() );
+                break;
+            }
+        }
+    }
 
     if( highLight != m_CurrHL )
     {
