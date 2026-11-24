@@ -6,11 +6,11 @@
 ██████  ██   ██ ███████ ██   ██ ██      ██ ███████ ██   ██ ██   ████ ██████        ███████  ██ 
 ```
 
-[![CMake portability](https://github.com/Source2Spy/area51-pc/actions/workflows/cmake.yml/badge.svg?branch=master)](https://github.com/Source2Spy/area51-pc/actions/workflows/cmake.yml)
-[![Branch](https://img.shields.io/badge/branch-master-555555)](https://github.com/Source2Spy/area51-pc/tree/master)
-[![GitHub issues](https://img.shields.io/github/issues/Source2Spy/area51-pc)](https://github.com/Source2Spy/area51-pc/issues)
+[![CMake portability](https://github.com/VortexHyperBeast/area51-pc/actions/workflows/cmake.yml/badge.svg?branch=master)](https://github.com/VortexHyperBeast/area51-pc/actions/workflows/cmake.yml)
+[![Branch](https://img.shields.io/badge/branch-master-555555)](https://github.com/VortexHyperBeast/area51-pc/tree/master)
+[![GitHub issues](https://img.shields.io/github/issues/VortexHyperBeast/area51-pc)](https://github.com/VortexHyperBeast/area51-pc/issues)
 
-Links: [Game assets](https://github.com/Source2Spy/area51-pc/releases/) | [Development builds](https://github.com/Source2Spy/area51-pc/actions) | [Discord](https://discord.gg/7gGhFSjxsq)
+Links: [Game assets](https://github.com/VortexHyperBeast/area51-pc/releases/) | [Development builds](https://github.com/VortexHyperBeast/area51-pc/actions) | [Discord](https://discord.gg/7gGhFSjxsq)
 
 <!-- Add a gameplay screenshot or a project banner here. -->
   
@@ -29,10 +29,11 @@ This file contains the following sections:
 9. [Original Xbox (Legacy)](#original-xbox-legacy)
 10. [Shader Pipeline](#shader-pipeline)
 11. [Installation](#installation)
-12. [Development and Modding Tools](#development-and-modding-tools)
-13. [Bug Reports](#bug-reports)
-14. [License](#license)
-15. [FAQ](#faq)
+12. [Co-op Builds](#co-op-builds)
+13. [Development and Modding Tools](#development-and-modding-tools)
+14. [Bug Reports](#bug-reports)
+15. [License](#license)
+16. [FAQ](#faq)
 
 # About the Port
 
@@ -83,6 +84,17 @@ The original PC code was written around Direct3D, 32-bit Windows and the develop
 * Language selection at runtime for text, voice audio and video.
 * Russian, Czech and Japanese language support.
 * New, editable ASCII-based `.strings` and `.fonts` formats.
+
+
+## Co-op Builds
+
+- [Experimental Split-Screen Co-op — Stage 1, build 35](https://github.com/VortexHyperBeast/area51-pc/releases/tag/coop-stage1-run35): Windows x64 two-player local split-screen build.
+- Download `Area51-Coop-Stage1-win-x64-run35.zip` from the release assets, extract it into a new folder, then run `PLAY-COOP-2-PLAYERS.cmd`.
+- The launcher asks before downloading approximately 1.5 GB of game data. The ZIP itself does not include the original game data.
+- This is an experimental, unofficial community build. See the `README.txt` included in the ZIP for details and known limitations.
+- The release reports a successful automated two-controller test on its Linux test build. Its Windows startup check used a software Vulkan driver on a machine without a graphics card, so hardware compatibility should be tested on the player's system.
+
+This local split-screen experiment is separate from the port's existing LAN and direct-IP multiplayer features described below. The two-player build is currently published as a Windows x64 release; do not assume that the split-screen launcher is available on Linux or Android.
 
 ## Multiplayer
 
@@ -225,7 +237,7 @@ The original Xbox target uses the older console toolchain and is separate from t
 Clone the `master` branch:
 
 ```sh
-git clone --branch "master" --single-branch https://github.com/Source2Spy/area51-pc.git
+git clone --branch "master" --single-branch https://github.com/VortexHyperBeast/area51-pc.git
 cd area51-pc
 ```
 
@@ -360,7 +372,7 @@ The package contains the game executable and `SHADERS/` directory. Game data mus
 ## Windows, Linux
 
 1. Download the [Asset Pack](https://github.com/Source2Spy/area51-pc/releases).
-2. Download the executable for your platform from [GitHub Actions](https://github.com/Source2Spy/area51-pc/actions), or compile it yourself using the instructions above.
+2. Download the executable for your platform from [GitHub Actions](https://github.com/VortexHyperBeast/area51-pc/actions), or compile it yourself using the instructions above.
 3. Extract the game assets to a new directory.
 4. Copy the executable and its `SHADERS/` folder into that directory, keeping the existing resource paths.
 5. Install the required textures according to the internal guide.
@@ -369,7 +381,7 @@ The package contains the game executable and `SHADERS/` directory. Game data mus
 ## Android
 
 1. Download the [Asset Pack](https://github.com/Source2Spy/area51-pc/releases).
-2. Download the executable for your platform from [GitHub Actions](https://github.com/Source2Spy/area51-pc/actions), or compile it yourself using the instructions above.
+2. Download the executable for your platform from [GitHub Actions](https://github.com/VortexHyperBeast/area51-pc/actions), or compile it yourself using the instructions above.
 3. Extract the game assets to a new directory.
 4. Copy `SHADERS/` folder into that directory, keeping the existing resource paths.
 5. Install the required textures according to the internal guide.
@@ -482,7 +494,7 @@ The statuses below come from the project's original tool list. Several programs 
 
 # Bug Reports
 
-Report bugs through the [GitHub issue tracker](https://github.com/Source2Spy/area51-pc/issues). Include the build or commit, operating system, graphics API, and instructions for reproducing the problem. Logs and screenshots help with startup and rendering bugs.
+Report bugs through the [GitHub issue tracker](https://github.com/VortexHyperBeast/area51-pc/issues). Include the build or commit, operating system, graphics API, and instructions for reproducing the problem. Logs and screenshots help with startup and rendering bugs.
 
 Project discussion is also available on [Discord](https://discord.gg/7gGhFSjxsq).
 
