@@ -41,7 +41,7 @@ A passing bot test is not a played game. Statuses:
 | Controller swap in the pause menu, kept in `a51_coop.cfg` | DONE+VERIFIED | Bot (`live_swap`, swap run); owner used it | `StateMgr.cpp` (`CoopSetSwapPads`), `dlg_PauseMain.cpp`, `LocalCoop.hpp` |
 | Character (16 multiplayer skins) per player in the pause menu, with picture | IMPLEMENTED, NOT FULLY TESTED | Owner: "working well" for skins; picture not confirmed | `dlg_PauseMain.cpp`, `PlayerObject.cpp` (`CoopApplySkin`) |
 | Pause menu layout: highlight bar follows the co-op rows, rows fit inside the frame, no build number/date | DONE+VERIFIED | Owner (build 41): the highlight follows the controller and body rows | `dlg_PauseMain.cpp` |
-| Start screen says "Splitscreen co-op" (the owner's picture, `SCREENS/UI_COOP_WARNINGSCREEN.png` in the zip; the original screen if the file is missing) | IMPLEMENTED, NOT FULLY TESTED | Owner request; not yet seen in the game | `StateMgr.cpp` (`EnterStartupInfo`), workflow, `tools/coop-play/SCREENS` |
+| Start screen says "Splitscreen co-op" (the owner's picture, `SCREENS/UI_COOP_WARNINGSCREEN.XBMP` in the zip; the original screen if the file is missing) | BROKEN / INVESTIGATE | Build 41 (as .png): black screen on the owner's PC. Now shipped as a 2048x1024 32-bit XBMP, the game's own format; not yet seen | `StateMgr.cpp` (`EnterStartupInfo`), workflow, `tools/coop-play/SCREENS` |
 
 ### Shared world, scenes and items
 

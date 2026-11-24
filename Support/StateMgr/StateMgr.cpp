@@ -2206,10 +2206,11 @@ void state_mgr::EnterStartupInfo( void )
 {
 #ifdef A51_LOCAL_COOP
     // The co-op mod's own start screen ("Splitscreen co-op"), shipped next to
-    // A51.exe as SCREENS/UI_COOP_WARNINGSCREEN.png (the texture loader falls back
-    // from .XBMP to .png).  Without that file: the original screen.
+    // A51.exe as SCREENS/UI_COOP_WARNINGSCREEN.XBMP (2048x1024, 32-bit, the
+    // game's own texture format; a .png there gave a black screen on the
+    // owner's PC).  Without that file: the original screen.
     {
-        FILE* pCoopScreen = fopen( "SCREENS/UI_COOP_WARNINGSCREEN.png", "rb" );
+        FILE* pCoopScreen = fopen( "SCREENS/UI_COOP_WARNINGSCREEN.XBMP", "rb" );
         if( pCoopScreen )
         {
             fclose( pCoopScreen );
