@@ -27,6 +27,7 @@
 #include "UI/ui_manager.hpp"
 #include "UI/ui_renderer.hpp"
 #include "Render/Render.hpp"
+#include "Render/TextureFile.hpp"
 #include "Render/Texture.hpp"
 #include "NetworkMgr/Game/LocalCoop.hpp"
 
@@ -2239,6 +2240,31 @@ void state_mgr::EnterStartupInfo( void )
                              pTex ? (int)pTex->m_bitmap.GetFormat() : -1,
                              pTex ? (int)pTex->m_bitmap.GetNMips()  : -1,
                              pTex ? (unsigned)pTex->m_bitmap.GetFlags() : 0u );
+        }
+
+        // Deeper diagnostics when the co-op picture did not load: the data path,
+        // whether the file parses as an XBMP, and whether the GPU texture can be made.
+        if( bFound && !bLoaded[0] )
+        {
+            extern char g_DataPath[256];
+            const char* pFull = xfs( "%s/%s", g_DataPath, s_Names[0] );
+            X_FILE* pFile = x_fopen( pFull, "rb" );
+            xbitmap Bitmap;
+            const xbool bParsed = pFile ? texture_file::LoadXBMP( Bitmap, pFile ) : FALSE;
+            if( pFile )
+                x_fclose( pFile );
+            xbool bGpu = FALSE;
+            if( bParsed )
+            {
+                vram_texture Probe;
+                bGpu = vram_CreateTexture( Probe, Bitmap, TRUE, "probe" );
+                if( bGpu )
+                    vram_DestroyTexture( Probe );
+            }
+            LocalCoop_Probe( "start screen detail: datapath=%s open=%d parsed=%d w=%d h=%d fmt=%d gpu=%d",
+                             g_DataPath, (int)(pFile != NULL), (int)bParsed,
+                             bParsed ? (int)Bitmap.GetWidth() : -1, bParsed ? (int)Bitmap.GetHeight() : -1,
+                             bParsed ? (int)Bitmap.GetFormat() : -1, (int)bGpu );
         }
 
         g_UiMgr->LoadBackground( "startup info", (bFound && bLoaded[0]) ? s_Names[0] : s_Names[1] );
