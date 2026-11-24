@@ -51,6 +51,18 @@ whose controller pressed Start (sensitivity, invert, vibration, ...). Player 2's
 profile called "Player 2" that the game creates the first time. Everything is saved when you
 change it and again when the game closes.
 
+DOWNED AND REVIVE: when a player loses all health while the other player is still up, he goes
+down instead of dying. He can look around but not move or shoot, and enemies leave him alone.
+The other player walks up to him and holds USE (X on an Xbox controller) for 4 seconds: he gets
+up with 35% health. If nobody helps him within 25 seconds, he dies and the checkpoint restarts.
+If both players are down, the checkpoint restarts. To change the rules, add lines to
+a51_coop.cfg (in this folder) such as:
+  bleedout_seconds=25
+  revive_seconds=4
+  revive_health_percent=35
+  revive_range_cm=200
+  downed=0          (turns it off: any death restarts the checkpoint, as before)
+
 If the game crashes, it writes a51_crash.txt and a51_crash.dmp in this folder. Please send both.
 
 

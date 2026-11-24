@@ -3619,6 +3619,13 @@ xbool actor::TakeDamage( const pain& Pain )
         {
             m_Health.Add(GetMaxHealth());
         }
+#ifdef A51_LOCAL_COOP
+        // Local co-op: a player goes down (partner can revive) instead of dying.
+        else if( bIsPlayer && IsKindOf( player::GetRTTI() ) && ((player*)this)->CoopTryGoDown() )
+        {
+            m_TimeSinceLastPain = 0.0f;
+        }
+#endif
         else
         {
             m_TimeSinceLastPain = 0.0f;

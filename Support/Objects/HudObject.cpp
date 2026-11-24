@@ -10,11 +10,13 @@
 // INCLUDES
 //==============================================================================
 
+#include "NetworkMgr/Game/LocalCoop.hpp"
 #include "HudObject.hpp"
 #include "e_View.hpp"
 #include "Entropy.hpp"
 #include "x_math.hpp"
 #include "../MiscUtils/SimpleUtils.hpp"
+#include "Objects/Player/Player.hpp"
 #include "Objects/WeaponSniper.hpp"
 #include "GameTextMgr/GameTextMgr.hpp"
 #include "NetworkMgr/NetworkMgr.hpp"
@@ -610,6 +612,10 @@ void hud_object::OnRender( void )
         if( m_RenderTimer )
             RenderTimer( HudViewDimensions );
 
+#ifdef A51_LOCAL_COOP
+        CoopRenderDowned( pActivePlayer, HudViewDimensions );
+#endif
+
         g_UIRenderer.PopHudSpace();
     }
 
@@ -618,6 +624,69 @@ void hud_object::OnRender( void )
 
 }
 //==============================================================================
+#ifdef A51_LOCAL_COOP
+// Local co-op: downed / revive messages in this player's view.
+static void CoopRenderDowned( player* pSelf, const rect& View )
+{
+#ifndef X_EDITOR
+    if( !pSelf || !LocalCoop_IsActive() || pSelf->IsDead() )
+        return;
+
+    player* pPartner = NULL;
+    for( slot_id ID = g_ObjMgr.GetFirst( object::TYPE_PLAYER ); ID != SLOT_NULL; ID = g_ObjMgr.GetNext( ID ) )
+    {
+        player* pOther = (player*)g_ObjMgr.GetObjectBySlot( ID );
+        if( pOther && (pOther != pSelf) && (pOther->GetLocalSlot() != -1) && !pOther->IsDead() )
+            pPartner = pOther;
+    }
+
+    const char* pLine1 = NULL;
+    char        Line2[128];
+    Line2[0] = 0;
+    xcolor      Color  = XCOLOR_WHITE;
+    if( pSelf->CoopIsDowned() )
+    {
+        pLine1 = "YOU ARE DOWN";
+        Color  = xcolor( 220, 40, 40, 255 );
+        if( pSelf->CoopReviveProgress() > 0.0f )
+            x_strncpy( Line2, xfs( "Being revived... %d%%", (s32)(pSelf->CoopReviveProgress() * 100.0f) ), 127 );
+        else
+            x_strncpy( Line2, xfs( "Player %d can revive you: %d s left", pPartner ? pPartner->GetLocalSlot() + 1 : 0,
+                         (s32)x_ceil( pSelf->CoopBleedoutLeft() ) ), 127 );
+    }
+    else if( pPartner && pPartner->CoopIsDowned() )
+    {
+        pLine1 = "YOUR PARTNER IS DOWN";
+        Color  = xcolor( 255, 200, 40, 255 );
+        if( pPartner->CoopReviveProgress() > 0.0f )
+            x_strncpy( Line2, xfs( "Reviving... %d%%", (s32)(pPartner->CoopReviveProgress() * 100.0f) ), 127 );
+        else
+        {
+            const f32 Dist = (pPartner->GetPosition() - pSelf->GetPosition()).Length() / 100.0f;
+            x_strncpy( Line2, xfs( "Go to Player %d and hold USE (%d m, %d s left)", pPartner->GetLocalSlot() + 1,
+                         (s32)Dist, (s32)x_ceil( pPartner->CoopBleedoutLeft() ) ), 127 );
+        }
+    }
+    if( !pLine1 )
+        return;
+
+    const s32 X0 = (s32)x_floor( View.Min.X );
+    const s32 X1 = (s32)x_ceil( View.Max.X );
+    const s32 Y  = (s32)( View.Min.Y + (View.Max.Y - View.Min.Y) * 0.30f );
+    irect Rect1( X0, Y,      X1, Y + 30 );
+    irect Rect2( X0, Y + 30, X1, Y + 60 );
+    xwchar Text[96];
+    x_wstrcpy( Text, (const xwchar*)((xwstring)pLine1) );
+    RenderLine( Text, Rect1, 255, Color, 2, ui_font::h_center|ui_font::v_center, TRUE );
+    x_wstrcpy( Text, (const xwchar*)((xwstring)Line2) );
+    xcolor White = XCOLOR_WHITE;
+    RenderLine( Text, Rect2, 255, White, 1, ui_font::h_center|ui_font::v_center, TRUE );
+#else
+    (void)pSelf; (void)View;
+#endif
+}
+#endif
+
 void hud_object::RenderTimer( const rect& ViewDimensions )
 {
     irect TimerRect( (s32)x_floor( ViewDimensions.Min.X ),

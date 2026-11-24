@@ -456,6 +456,17 @@ void logic_campaign::QaCommand( const char* pName )
         return;
     }
 
+    if( x_strcmp( pName, "down1" ) == 0 )
+    {
+        // Player 2 takes lethal damage: with player 1 up, he goes down (revivable)
+        // instead of dying.
+        player* p1 = (player*)g_ObjMgr.GetObjectByGuid( s_pQaCampaign->m_PlayerGuid[1] );
+        qa_bot_Log( "down player 1: %s", p1 ? "lethal damage" : "no player" );
+        if( p1 )
+            p1->DebugSuicide();
+        return;
+    }
+
     if( x_strcmp( pName, "kill0" ) == 0 )
     {
         // Player 1 dies: shared fate, the level restarts from the checkpoint.

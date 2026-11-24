@@ -748,10 +748,22 @@ public:
             void        CoopFollowCinema            ( player& Leader );
             void        CoopApplySkin               ( void );
             void        CoopUpdate                  ( f32 DeltaTime );
+            // Downed / revive (local co-op).
+            xbool       CoopIsDowned                ( void ) const { return m_CoopDowned; }
+            f32         CoopBleedoutLeft            ( void ) const { return m_CoopBleedLeft; }
+            f32         CoopReviveProgress          ( void ) const;     // 0..1
+            xbool       CoopTryGoDown               ( void );           // instead of dying; FALSE = die
+            void        CoopClearDowned             ( void );
 protected:
+            void        CoopRevive                  ( void );
+            void        CoopBleedOut                ( void );
             f32         m_CoopFollowTimer;      // > 0: join m_CoopFollowGuid when it runs out
             guid        m_CoopFollowGuid;
             f32         m_CoopFallTime;         // time spent falling far below the partner
+            xbool       m_CoopDowned;           // down, waiting for the partner
+            f32         m_CoopBleedLeft;        // seconds until a downed player dies
+            f32         m_CoopReviveTime;       // seconds the partner has held Use beside us
+            xbool       m_CoopRevivedThisFrame; // the partner kept reviving this frame
 #endif
 
 //==============================================================================

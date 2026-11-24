@@ -60,17 +60,17 @@ A passing bot test is not a played game. Statuses:
 
 | Feature | Status | Evidence / notes | Files |
 |---|---|---|---|
-| Independent health, damage, death | PARTIAL | Separate objects, so separate health. Death is shared fate: either death restarts the checkpoint | `logic_Campaign.cpp` (`PlayerDied`) |
+| Independent health, damage, death | IMPLEMENTED, NOT FULLY TESTED | Separate health per player. Lethal damage puts a player down while the partner is up (see the downed row). The checkpoint restarts when both are down, or when a downed player bleeds out | `Actor.cpp` (`TakeDamage`), `PlayerProperties.cpp`, `logic_Campaign.cpp` (`PlayerDied`) |
 | Independent weapon use: switching, firing, reloading, current clip | DONE+VERIFIED | Bot: fire/reload per player | - |
 | Inventory rules (owner's decision 2026-11-24) | DECIDED | Weapons, ammunition, grenades and equipment are **shared**: what one player gets, the other gets too, and this carries across levels. Health and damage stay **individual**. No change planned | `PlayerInventory.cpp` |
 | Enemies perceive and target both players | IMPLEMENTED, NOT FULLY TESTED | Bot, level 1010 (build 31): 20 enemies, 8 of them picked player 2; target picks player 1: 42, player 2: 38. Changes in build 31: turn on the player who hits, threat memory, 2 melee slots per player, Theta and globs use the nearest player. Owner has not played it; bosses not reached by the bot | `Character.cpp`, `God.cpp`, `MutantTank_Attack_State.cpp`, `Mutant_Tank.cpp`, `AlienGlob.cpp`, `SimpleUtils.cpp` |
-| Downed state, revive, bleedout | NOT IMPLEMENTED | Shared fate restart is the only rule | - |
+| Downed state, revive, bleedout | IMPLEMENTED, NOT FULLY TESTED | Build 32+: lethal damage while the partner is up puts the player down: look only, no damage, enemies ignore him. Partner holds Use (X) within 2 m for 4 s: up with 35% health. 25 s bleedout, then death and checkpoint. Both down: checkpoint. Rules in `a51_coop.cfg` (`downed`, `bleedout_seconds`, `revive_seconds`, `revive_health_percent`, `revive_range_cm`). Bot check `downed_revive` (down, revive, down again). Bleedout timer not bot-tested; owner has not played it. No downed animation or lowered camera yet | `PlayerProperties.cpp`, `PlayerInput.cpp`, `PlayerStatus.cpp`, `Actor.cpp`, `Character.cpp` (`IsValidTarget`), `LocalCoop.hpp`, `CheckPointMgr.cpp` |
 | Mutant abilities for both players | NOT TESTED / INVESTIGATE | Per-player mutagen and abilities exist (player members). The global time-dilation ("perception") effect is forced off when there is more than one local player | `PerceptionMgr.cpp:57`, `PlayerMutation.cpp` |
 | Boss fights with two players | NOT TESTED | - | - |
 | Checkpoint restore of both players | PARTIAL | Restore gives both players the inventory; positions after respawn not checked | `CheckPointMgr.cpp` |
 | Saving/loading a campaign with two players | NOT TESTED | Campaign progress lives in player 1's profile (slot 0) by design | `CheckPointMgr.cpp`, `StateMgr.cpp` |
 | HUD: per-player health/ammo/crosshair | DONE+VERIFIED | The engine's split-screen HUD; owner | `HudObject.cpp` |
-| HUD: downed and revive indicators | NOT IMPLEMENTED | - | - |
+| HUD: downed and revive indicators | IMPLEMENTED, NOT FULLY TESTED | Text in each view: "YOU ARE DOWN" with the seconds left or the revive percentage; "YOUR PARTNER IS DOWN" with the distance, seconds left and the revive percentage | `HudObject.cpp` (`CoopRenderDowned`) |
 | Menu entry for co-op (instead of the launcher) | NOT IMPLEMENTED | Started by `PLAY-COOP-2-PLAYERS.cmd` (`A51_LOCAL_COOP=2`) | `tools/coop-play` |
 | Performance with two views | NOT MEASURED on a real GPU | Owner reports nothing bad | - |
 
@@ -114,7 +114,7 @@ Helpers `SMP_UTIL_GetNearestPlayer(pos)` and `SMP_UTIL_IsPlayerGuid(guid)` in `S
 2. Make the changes above, all behind `LocalCoop_IsActive()`, so single player is unchanged.
 3. Bot checks: an enemy targets player 2; an enemy hit by the other player turns to it; both players
    get targeted during the run.
-4. Then the downed/revive system (replaces shared fate), then mutants and bosses.
+4. Downed/revive: implemented (see section 1). Next: mutants and bosses.
 
 ## 4. Biggest risks
 

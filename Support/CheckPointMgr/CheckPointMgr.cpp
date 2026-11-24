@@ -120,6 +120,9 @@ xbool check_point_mgr::Restore( xbool bIsDebugAdvance )
                 pPlayer->m_bSecondaryMutationFireEnabled = CP.MutantSecondary;
                 pPlayer->m_Mutagen                       = CP.Mutagen;
                 pPlayer->ResetHealth( CP.Health );
+#ifdef A51_LOCAL_COOP
+                pPlayer->CoopClearDowned();
+#endif
                 pPlayer->SetMaxHealth( CP.MaxHealth );
 
                 // Set up the inventory.

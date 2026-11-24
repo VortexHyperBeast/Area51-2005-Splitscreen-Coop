@@ -91,9 +91,24 @@ void player::UpdateUserInput(  f32 DeltaTime )
         {
             m_Input.Sample( g_GameInput[m_ActivePlayerPad] );
 
+#ifdef A51_LOCAL_COOP
+            if( m_CoopDowned )
+            {
+                // Downed: look around only, no moving, firing or using.
+                UpdateMoveLookInput();
+                m_fMoveValue     = 0.0f;
+                m_fStrafeValue   = 0.0f;
+                m_JumpBufferTime = 0.0f;
+                m_MoveInput      = PlayerMoveInput();
+                m_Movement.Clear();
+            }
+            else
+#endif
+            {
             //handles button press events
             OnButtonInput( DeltaTime );
             UpdateMoveLookInput();
+            }
         }
     }
     else if( m_LockedView.IsActive() || m_CinemaController.IsActive() )

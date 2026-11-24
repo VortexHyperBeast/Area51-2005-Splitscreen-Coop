@@ -212,6 +212,12 @@ void player::OnPain( const pain& Pain )
     if( m_bDead )
         return;
 
+#ifdef A51_LOCAL_COOP
+    // Downed in co-op: no more damage until revived or bled out.
+    if( m_CoopDowned )
+        return;
+#endif
+
     // If the same pain event as the last one, ignore it.
     if( (Pain.GetAnimEventID()!=-1) && 
         (Pain.GetAnimEventID() == m_LastAnimPainID) )

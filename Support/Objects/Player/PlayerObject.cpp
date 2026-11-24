@@ -486,6 +486,10 @@ void player::OnInit( void )
     m_CoopFollowTimer = 0.0f;
     m_CoopFollowGuid  = NULL_GUID;
     m_CoopFallTime    = 0.0f;
+    m_CoopDowned      = FALSE;
+    m_CoopBleedLeft   = 0.0f;
+    m_CoopReviveTime  = 0.0f;
+    m_CoopRevivedThisFrame = FALSE;
 #endif
 //  LOG_MESSAGE( "player::OnInit", "" );
 

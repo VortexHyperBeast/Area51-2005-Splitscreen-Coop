@@ -131,7 +131,17 @@ def make_script(settle_ms=DEFAULT_SETTLE_MS, cycles=DEFAULT_CYCLES):
     lines.append("%d %d 1 ly 100" % (t, t + 3000))
     lines.append("%d %d 1 back 100" % (t + JOIN_PRESS_MS, t + JOIN_PRESS_MS + 300))
     t += JOIN_MS
-    # player 1 dies: the level must restart from the checkpoint without a crash
+    # downed and revive: player 2 takes lethal damage and goes down; player 1 (beside him after
+    # the join) holds Use (X).  Both pads hold it, the downed player's Use does nothing, and so
+    # the swapped-pads run works too.  Then player 2 goes down again and stays down.
+    lines.append("# player 2 goes down, player 1 revives him")
+    lines.append("cmd %d down1" % t)
+    for pad in (0, 1):
+        lines.append("%d %d %d x 100" % (t + DOWN_HOLD_START_MS, t + DOWN_HOLD_START_MS + DOWN_HOLD_MS, pad))
+    lines.append("cmd %d down1" % (t + DOWN_AGAIN_MS))
+    t += DOWN_MS
+    # player 1 dies: the level must restart from the checkpoint without a crash (with player 2
+    # down too, both players are down: the checkpoint restarts)
     lines.append("# player 1 dies, the level restarts")
     lines.append("cmd %d kill0" % t)
     t += DEATH_MS
@@ -143,6 +153,10 @@ SCANNER_SWITCH_MS = 4000
 SCANNER_MS = SCANNER_SWITCH_MS + 2 * (3500 + 2000) + 2000
 JOIN_PRESS_MS = 3500                        # after the start of the join section
 JOIN_MS = 5500
+DOWN_HOLD_START_MS = 1000                   # after the "down1" command
+DOWN_HOLD_MS = 5500                         # Use held; the revive takes 4 s
+DOWN_AGAIN_MS = 8000                        # second "down1"
+DOWN_MS = 9500
 DEATH_MS = 20000
 
 
@@ -200,6 +214,8 @@ class Log(object):
         self.carryover = {}     # player -> (scanner, pistol) after a stored/restored inventory
         self.swaptest = {}      # "flipped"/"restored" -> (player 0 pad, player 1 pad)
         self.kill_qt = None
+        self.down_cmds = []     # script times of the "down1" command
+        self.downs = []         # (qt, downed/revive_start/revived/bledout, local slot)
         self.finished_wall = None
         self.begins = []        # script times of "campaign BeginGame done"
         self.scanner_cmd_qt = None
@@ -304,6 +320,13 @@ def parse_log(text):
             mm = re.match(r"swaptest (\w+): player 0 pad=(-?\d+) player 1 pad=(-?\d+)$", msg)
             if mm:
                 log.swaptest[mm.group(1)] = (int(mm.group(2)), int(mm.group(3)))
+        elif msg.startswith("down player 1"):
+            log.down_cmds.append(qt)
+        elif msg.startswith("coop downed ") or msg.startswith("coop revived ") or \
+                msg.startswith("coop revive_start ") or msg.startswith("coop bledout "):
+            dm = re.match(r"^coop (\w+) slot=(-?\d+)", msg)
+            if dm:
+                log.downs.append((qt, dm.group(1), int(dm.group(2))))
         elif msg.startswith("kill player 0"):
             log.kill_qt = qt
         elif msg.startswith("command scanner"):
@@ -398,7 +421,7 @@ PASS, FAIL, NOEV, INFO = "PASS", "FAIL", "NO-EVIDENCE", "INFO"
 REQUIRED_COOP = ["startup", "two_players", "separate_pads", "no_fall", "alive", "bot_drove",
                  "completed", "walk0", "walk1", "walkboth", "look0", "look1",
                  "fire0", "fire1", "reload0", "reload1", "pad_mapping", "split_view", "split_pixels",
-                 "partner_body", "shared_cinema", "shared_items", "scanner", "own_profiles", "live_swap", "asserts", "carry_over", "join_button", "death_restart"]
+                 "partner_body", "shared_cinema", "shared_items", "scanner", "own_profiles", "live_swap", "asserts", "carry_over", "join_button", "downed_revive", "death_restart"]
 INFO_COOP = ["jump0", "jump1"]
 REQUIRED_SINGLE = ["startup", "one_player", "bot_drove", "completed", "walk_single"]
 
@@ -758,6 +781,25 @@ def check_join_button(log, script_end):
     if d0 >= 300 and d1 <= 250:
         return Result("join_button", PASS, "player 2 was %d cm away, %d cm after pressing Back" % (d0, d1))
     return Result("join_button", FAIL, "player 2 was %d cm away before Back and %d cm after" % (d0, d1))
+
+
+def check_downed_revive(log):
+    """Player 2 takes lethal damage while player 1 is up: he must go down, not die; player 1
+    holds Use beside him and he gets up; a second lethal hit puts him down again."""
+    if not log.down_cmds:
+        return Result("downed_revive", NOEV, "the down command never ran")
+    first = log.down_cmds[0]
+    downed = [q for (q, w, sl) in log.downs if w == "downed" and sl == 1 and q >= first]
+    revived = [q for (q, w, sl) in log.downs if w == "revived" and sl == 1 and q >= first]
+    if not downed:
+        return Result("downed_revive", FAIL, "player 2 did not go down after lethal damage")
+    if not revived:
+        return Result("downed_revive", FAIL, "player 2 went down but was not revived while player 1 held Use")
+    took = revived[0] - downed[0]
+    again = [q for q in downed if q > revived[0]]
+    if not again:
+        return Result("downed_revive", FAIL, "player 2 was revived after %d ms but did not go down a second time" % took)
+    return Result("downed_revive", PASS, "player 2 went down, was revived after %d ms of play, and went down again" % took)
 
 
 def check_death_restart(log):
@@ -1190,6 +1232,7 @@ def score(log, phases, expect="coop", shots=None):
     results.append(check_own_profiles(log))
     results.append(check_live_swap(log))
     results.append(check_carry_over(log))
+    results.append(check_downed_revive(log))
     results.append(check_death_restart(log))
     if phases:
         results.append(check_join_button(log, max(p.check_end for p in phases) + GAP_MS))
@@ -1257,6 +1300,8 @@ FAULTS = [
     "carry_lost_p1",       # player 1 loses his weapons at a level change
     "join_ignored",        # the Back button does not bring player 2 to player 1
     "death_crash",         # the game dies when the level restarts after a death
+    "not_downed",          # lethal damage kills player 2 instead of putting him down
+    "no_revive",           # holding Use beside the downed partner does nothing
 ]
 
 # fault -> names that must NOT be PASS in coop mode ("*ok*" = the run is a good one)
@@ -1292,6 +1337,8 @@ EXPECTED = {
     "carry_lost_p1": ["carry_over"],
     "join_ignored": ["join_button"],
     "death_crash": ["death_restart", "completed"],
+    "not_downed": ["downed_revive"],
+    "no_revive": ["downed_revive"],
 }
 
 
@@ -1302,7 +1349,7 @@ def simulate(faults=(), settle_ms=DEFAULT_SETTLE_MS, cycles=DEFAULT_CYCLES, play
     for ph in phases:
         for (pad, ctrl, val) in ph.actions:
             events.append((ph.start, ph.end, pad, ctrl, val))
-    quit_ms = end + SCANNER_MS + JOIN_MS + DEATH_MS + 1000
+    quit_ms = end + SCANNER_MS + JOIN_MS + DOWN_MS + DEATH_MS + 1000
     lines = []
 
     def emit(wall, qt, msg):
@@ -1500,7 +1547,17 @@ def simulate(faults=(), settle_ms=DEFAULT_SETTLE_MS, cycles=DEFAULT_CYCLES, play
                 emit(30000 + tt, tt, "player %d guid=%08X slot=%d pad=%d pos=%d,200,500 yaw=0 pitch=0 hp=100 weapon=%s ammo=0 inclip=0 perclip=0 cinema=0" % (
                     i, 0xA0000 + i, i, i, 5000 + 100 * i, "SCN" if tt >= end + SCANNER_SWITCH_MS else "EGL"))
     if players > 1 and "single_player" not in faults:
-        k = end + SCANNER_MS + JOIN_MS
+        d = end + SCANNER_MS + JOIN_MS
+        emit(30000 + d, d, "down player 1: lethal damage")
+        if "not_downed" not in faults:
+            emit(30000 + d, d, "coop downed slot=1 bleedout=25.0")
+            if "no_revive" not in faults:
+                emit(30000 + d + DOWN_HOLD_START_MS, d + DOWN_HOLD_START_MS, "coop revive_start slot=1 left=24.0")
+                emit(30000 + d + DOWN_HOLD_START_MS + 4000, d + DOWN_HOLD_START_MS + 4000, "coop revived slot=1 health=35")
+        emit(30000 + d + DOWN_AGAIN_MS, d + DOWN_AGAIN_MS, "down player 1: lethal damage")
+        if "not_downed" not in faults:
+            emit(30000 + d + DOWN_AGAIN_MS, d + DOWN_AGAIN_MS, "coop downed slot=1 bleedout=25.0")
+        k = end + SCANNER_MS + JOIN_MS + DOWN_MS
         emit(30000 + k, k, "kill player 0: dying")
         if "death_crash" not in faults:
             emit(30000 + k + 9000, k + 9000, "campaign BeginGame done: players=%d level=1000" % players)

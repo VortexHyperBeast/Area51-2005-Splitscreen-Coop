@@ -6180,6 +6180,13 @@ xbool character::IsValidTarget( guid targetGuid )
     {    
         return FALSE;
     }
+#ifdef A51_LOCAL_COOP
+    // Local co-op: enemies leave a downed player alone.
+    if( targetObject->IsKindOf( player::GetRTTI() ) && ((player*)targetObject)->CoopIsDowned() )
+    {
+        return FALSE;
+    }
+#endif
 
     // dead, inactive, and invulnerable turrets are not valid.
     if( targetObject->IsKindOf(turret::GetRTTI()) )

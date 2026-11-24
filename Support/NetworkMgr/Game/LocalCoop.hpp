@@ -97,12 +97,90 @@ inline void LocalCoop_SetSwapPads( xbool bSwap )
 {
     LocalCoop_SwapState() = bSwap ? 1 : 0;
 
+    // Keep the file's other settings (downed/revive tuning).
+    char Keep[1024];
+    s32  nKeep = 0;
+    Keep[0] = 0;
+    FILE* pIn = fopen( LOCAL_COOP_CONFIG_FILE, "r" );
+    if( pIn )
+    {
+        char Line[128];
+        while( fgets( Line, sizeof(Line), pIn ) )
+        {
+            if( x_strncmp( Line, "swap_pads=", 10 ) == 0 )
+                continue;
+            s32 Len = x_strlen( Line );
+            if( nKeep + Len < (s32)sizeof(Keep) - 1 )
+            {
+                x_strcpy( Keep + nKeep, Line );
+                nKeep += Len;
+            }
+        }
+        fclose( pIn );
+    }
+
     FILE* pFile = fopen( LOCAL_COOP_CONFIG_FILE, "w" );
     if( pFile )
     {
         fprintf( pFile, "swap_pads=%d\n", bSwap ? 1 : 0 );
+        if( nKeep > 0 )
+            fputs( Keep, pFile );
         fclose( pFile );
     }
+}
+
+//  A number from a51_coop.cfg ("key=value" lines), or Default.  The environment
+//  variable pEnv (tests) wins over the file.
+inline f32 LocalCoop_ConfigF32( const char* pKey, const char* pEnv, f32 Default )
+{
+    f32 Value = Default;
+    FILE* pFile = fopen( LOCAL_COOP_CONFIG_FILE, "r" );
+    if( pFile )
+    {
+        char Line[128];
+        const s32 KeyLen = x_strlen( pKey );
+        while( fgets( Line, sizeof(Line), pFile ) )
+        {
+            if( (x_strncmp( Line, pKey, KeyLen ) == 0) && (Line[KeyLen] == '=') )
+                Value = (f32)x_atof( Line + KeyLen + 1 );
+        }
+        fclose( pFile );
+    }
+    const char* pValue = pEnv ? x_getenv( pEnv ) : NULL;
+    if( pValue && pValue[0] )
+        Value = (f32)x_atof( pValue );
+    return Value;
+}
+
+//  Downed / revive rules (owner's brief): 25 s to bleed out, 4 s to revive,
+//  back up with 35% health.  downed=0 in a51_coop.cfg turns it off (shared fate).
+struct local_coop_revive_rules
+{
+    xbool   bEnabled;
+    f32     BleedoutSec;
+    f32     ReviveSec;
+    f32     ReviveHealthPct;
+    f32     ReviveRange;        // cm
+};
+
+inline const local_coop_revive_rules& LocalCoop_ReviveRules( void )
+{
+    static local_coop_revive_rules s_Rules;
+    static xbool s_bRead = FALSE;
+    if( !s_bRead )
+    {
+        s_bRead = TRUE;
+        s_Rules.bEnabled        = LocalCoop_ConfigF32( "downed",               "A51_COOP_DOWNED",          1.0f  ) != 0.0f;
+        s_Rules.BleedoutSec     = LocalCoop_ConfigF32( "bleedout_seconds",     "A51_COOP_BLEEDOUT",        25.0f );
+        s_Rules.ReviveSec       = LocalCoop_ConfigF32( "revive_seconds",       "A51_COOP_REVIVE_TIME",     4.0f  );
+        s_Rules.ReviveHealthPct = LocalCoop_ConfigF32( "revive_health_percent","A51_COOP_REVIVE_HEALTH",   35.0f );
+        s_Rules.ReviveRange     = LocalCoop_ConfigF32( "revive_range_cm",      "A51_COOP_REVIVE_RANGE",    200.0f );
+        if( s_Rules.BleedoutSec < 1.0f )   s_Rules.BleedoutSec = 1.0f;
+        if( s_Rules.ReviveSec < 0.1f )     s_Rules.ReviveSec = 0.1f;
+        if( s_Rules.ReviveHealthPct < 1.0f )   s_Rules.ReviveHealthPct = 1.0f;
+        if( s_Rules.ReviveHealthPct > 100.0f ) s_Rules.ReviveHealthPct = 100.0f;
+    }
+    return s_Rules;
 }
 
 //  Test override of a player's body, -1 if not set.

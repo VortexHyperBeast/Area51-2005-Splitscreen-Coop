@@ -18,6 +18,10 @@
 #include "StateMgr/StateMgr.hpp"
 #include "PerceptionMgr/PerceptionMgr.hpp"
 #include "NetworkMgr/Game/LocalCoop.hpp"
+#include "NetworkMgr/Game/GameMgr.hpp"
+#ifdef A51_LOCAL_COOP_QA
+#include "Input/backend/sdl/qa_bot.hpp"
+#endif
 #include "CollisionMgr/CollisionMgr.hpp"
 #include "InputMgr/GamePad.hpp"
 
@@ -364,10 +368,111 @@ void player::CoopFollowCinema( player& Leader )
 
 //  Once per frame (co-op): join the partner after a scene, rescue from a fall
 //  out of the level, and the "join partner" button (Back / View).
+static void CoopDownLog( const char* pFormat, s32 A, f32 B )
+{
+#ifdef A51_LOCAL_COOP_QA
+    qa_bot_Log( pFormat, (int)A, (double)B );
+#endif
+    LocalCoop_Probe( pFormat, (int)A, (double)B );
+}
+
+xbool player::CoopTryGoDown( void )
+{
+    if( !LocalCoop_IsActive() || (m_LocalSlot == -1) || m_CoopDowned || IsCinemaRunning() )
+        return FALSE;
+    const local_coop_revive_rules& Rules = LocalCoop_ReviveRules();
+    if( !Rules.bEnabled )
+        return FALSE;
+
+    // Only while the partner is up: with both players down the checkpoint restarts.
+    xbool bPartnerUp = FALSE;
+    for( slot_id ID = g_ObjMgr.GetFirst( object::TYPE_PLAYER ); ID != SLOT_NULL; ID = g_ObjMgr.GetNext( ID ) )
+    {
+        player* pOther = (player*)g_ObjMgr.GetObjectBySlot( ID );
+        if( pOther && (pOther != this) && (pOther->GetLocalSlot() != -1) &&
+            !pOther->IsDead() && !pOther->CoopIsDowned() )
+            bPartnerUp = TRUE;
+    }
+    if( !bPartnerUp )
+        return FALSE;
+
+    m_CoopDowned     = TRUE;
+    m_CoopBleedLeft  = Rules.BleedoutSec;
+    m_CoopReviveTime = 0.0f;
+    m_CoopRevivedThisFrame = FALSE;
+    ResetHealth( 1.0f );
+
+    // Drop out of zoom and stop moving.
+    new_weapon* pWeapon = GetCurrentWeaponPtr();
+    if( pWeapon )
+        pWeapon->ClearZoom();
+    ClearMoveLookInput();
+
+    CoopDownLog( "coop downed slot=%d bleedout=%.1f", m_LocalSlot, Rules.BleedoutSec );
+    return TRUE;
+}
+
+void player::CoopClearDowned( void )
+{
+    m_CoopDowned     = FALSE;
+    m_CoopBleedLeft  = 0.0f;
+    m_CoopReviveTime = 0.0f;
+    m_CoopRevivedThisFrame = FALSE;
+}
+
+f32 player::CoopReviveProgress( void ) const
+{
+    if( !m_CoopDowned )
+        return 0.0f;
+    f32 T = m_CoopReviveTime / LocalCoop_ReviveRules().ReviveSec;
+    return (T > 1.0f) ? 1.0f : T;
+}
+
+void player::CoopRevive( void )
+{
+    const local_coop_revive_rules& Rules = LocalCoop_ReviveRules();
+    CoopClearDowned();
+    f32 Health = GetMaxHealth() * Rules.ReviveHealthPct / 100.0f;
+    if( Health < 1.0f )
+        Health = 1.0f;
+    ResetHealth( Health );
+    CoopDownLog( "coop revived slot=%d health=%.0f", m_LocalSlot, Health );
+}
+
+void player::CoopBleedOut( void )
+{
+    CoopDownLog( "coop bledout slot=%d t=%.1f", m_LocalSlot, 0.0f );
+    CoopClearDowned();
+    m_Health.Sub( m_Health.GetHealth() + 1.0f, TRUE );
+    OnDeath();
+#ifndef X_EDITOR
+    if( pGameLogic )
+        pGameLogic->PlayerDied( m_NetSlot, m_NetSlot, 0 );
+#endif
+}
+
 void player::CoopUpdate( f32 DeltaTime )
 {
     if( !LocalCoop_IsActive() || (m_LocalSlot == -1) || IsDead() )
+    {
+        m_CoopDowned = FALSE;
         return;
+    }
+
+    // Downed: bleed out unless the partner is reviving us.
+    if( m_CoopDowned )
+    {
+        if( !m_CoopRevivedThisFrame )
+            m_CoopReviveTime = 0.0f;
+        m_CoopRevivedThisFrame = FALSE;
+        if( !IsCinemaRunning() && (m_CoopReviveTime <= 0.0f) )
+            m_CoopBleedLeft -= DeltaTime;
+        if( m_CoopBleedLeft <= 0.0f )
+        {
+            CoopBleedOut();
+            return;
+        }
+    }
 
     player* pPartner = NULL;
     {
@@ -398,6 +503,30 @@ void player::CoopUpdate( f32 DeltaTime )
     }
 
     if( !pPartner || IsCinemaRunning() || pPartner->IsCinemaRunning() )
+    {
+        m_CoopFallTime = 0.0f;
+        return;
+    }
+
+    // Revive: hold Use beside the downed partner.
+    if( pPartner->m_CoopDowned && !m_CoopDowned )
+    {
+        const local_coop_revive_rules& Rules = LocalCoop_ReviveRules();
+        const f32 Range = Rules.ReviveRange;
+        const xbool bNear = (pPartner->GetPosition() - GetPosition()).LengthSquared() < Range * Range;
+        if( bNear && m_Input.GetState().IsHeld( PlayerAction::Use ) )
+        {
+            if( pPartner->m_CoopReviveTime <= 0.0f )
+                CoopDownLog( "coop revive_start slot=%d left=%.1f", pPartner->m_LocalSlot, pPartner->m_CoopBleedLeft );
+            pPartner->m_CoopReviveTime += DeltaTime;
+            pPartner->m_CoopRevivedThisFrame = TRUE;
+            if( pPartner->m_CoopReviveTime >= Rules.ReviveSec )
+                pPartner->CoopRevive();
+        }
+    }
+
+    // A downed player can't regroup.
+    if( m_CoopDowned )
     {
         m_CoopFallTime = 0.0f;
         return;
