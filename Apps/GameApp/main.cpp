@@ -1052,7 +1052,12 @@ void RenderGame( void )
         // (each view draws the part of it that lies inside the view).
         if( (nPlayers == 2) && eng_Begin( "Co-op split line" ) )
         {
-            g_UIRenderer.DrawRect( irect( 0, YRes/2-2, XRes, YRes/2+2 ), XCOLOR_BLACK );
+            // Screen-space pixels, as the cinema letterbox does (hud_object::RenderLetterBox).
+            const irect ViewRect = (i == 0) ? irect( 0, 0, XRes, YRes/2 ) : irect( 0, YRes/2, XRes, YRes );
+            const irect LinePart = (i == 0) ? irect( 0, YRes/2-2, XRes, YRes/2 ) : irect( 0, YRes/2, XRes, YRes/2+2 );
+            g_UIRenderer.PushScreenSpace( ViewRect );
+            g_UIRenderer.DrawRect( LinePart, XCOLOR_BLACK );
+            g_UIRenderer.PopScreenSpace();
             eng_End();
         }
     #endif
