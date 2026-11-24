@@ -35,13 +35,13 @@ A passing bot test is not a played game. Statuses:
 
 | Feature | Status | Evidence | Files |
 |---|---|---|---|
-| Player 2's own profile ("Player 2"), own options (sensitivity, invert, vibration...) | IMPLEMENTED, NOT FULLY TESTED | Bot (`own_profiles`); owner asked for it, has not confirmed | `StateMgr.cpp` (`CoopPrepareSecondProfile`, `SetupProfileListIndex`), `SaveDataMgr.cpp` |
+| Player 2's own profile ("Splitscreen P2"), own options (sensitivity, invert, vibration...) | IMPLEMENTED, NOT FULLY TESTED | Bot (`own_profiles`); owner asked for it, has not confirmed | `StateMgr.cpp` (`CoopPrepareSecondProfile`, `SetupProfileListIndex`), `SaveDataMgr.cpp` |
 | Pause > Options edits the profile of the player who paused | IMPLEMENTED, NOT FULLY TESTED | Code | `StateMgr.cpp`, `dlg_PauseMain.cpp` |
 | Profiles saved on change, on leaving the campaign, at shutdown | IMPLEMENTED, NOT FULLY TESTED | Code (create/load bot-tested, the save at shutdown is not) | `StateMgr.cpp` (`CoopSaveProfilesNow`), `main.cpp` (`DoShutdown`) |
 | Controller swap in the pause menu, kept in `a51_coop.cfg` | DONE+VERIFIED | Bot (`live_swap`, swap run); owner used it | `StateMgr.cpp` (`CoopSetSwapPads`), `dlg_PauseMain.cpp`, `LocalCoop.hpp` |
 | Character (16 multiplayer skins) per player in the pause menu, with picture | IMPLEMENTED, NOT FULLY TESTED | Owner: "working well" for skins; picture not confirmed | `dlg_PauseMain.cpp`, `PlayerObject.cpp` (`CoopApplySkin`) |
 | Pause menu layout: highlight bar follows the co-op rows, rows fit inside the frame, no build number/date | DONE+VERIFIED | Owner (build 41): the highlight follows the controller and body rows | `dlg_PauseMain.cpp` |
-| Start screen says "Splitscreen co-op" (the owner's picture, `SCREENS/UI_COOP_WARNINGSCREEN.XBMP` in the zip; the original screen if the file is missing) | IMPLEMENTED, NOT FULLY TESTED | Builds 41-47: the picture never loaded (black, then the original screen). Cause found with the probe: the play build's file system reads only the packed archives, loose files are not passed through. Now read with stdio and made into a texture directly | `StateMgr.cpp` (`EnterStartupInfo`), workflow, `tools/coop-play/SCREENS` |
+| Start screen says "Splitscreen co-op" (the owner's picture, `SCREENS/UI_COOP_WARNINGSCREEN.XBMP` in the zip; the original screen if the file is missing) | DONE+VERIFIED | Owner (build 48): the picture shows. Builds 41-47: the picture never loaded (black, then the original screen). Cause found with the probe: the play build's file system reads only the packed archives, loose files are not passed through. Now read with stdio and made into a texture directly | `StateMgr.cpp` (`EnterStartupInfo`), workflow, `tools/coop-play/SCREENS` |
 
 ### Shared world, scenes and items
 
@@ -73,7 +73,7 @@ A passing bot test is not a played game. Statuses:
 | Saving/loading a campaign with two players | NOT TESTED | Campaign progress lives in player 1's profile (slot 0) by design | `CheckPointMgr.cpp`, `StateMgr.cpp` |
 | HUD: per-player health/ammo/crosshair | DONE+VERIFIED | The engine's split-screen HUD; owner | `HudObject.cpp` |
 | HUD: downed and revive indicators | IMPLEMENTED, NOT FULLY TESTED | Text in each view: "YOU ARE DOWN" with the seconds left or the revive percentage; "YOUR PARTNER IS DOWN" with the distance, seconds left and the revive percentage | `HudObject.cpp` (`CoopRenderDowned`) |
-| Main menu: "Single Player" and "Splitscreen Co-op" (own save, profile "Splitscreen") | IMPLEMENTED, NOT FULLY TESTED | Owner request. The bot starts the campaign without the menu, so the menu path is not bot-tested | `dlg_MainMenu.cpp`, `StateMgr.cpp` (`CoopPrepareSplitscreenProfile`), `LocalCoop.hpp` (`LocalCoop_SetPlayerCount`) |
+| Main menu: "Single Player" and "Splitscreen Co-op" (own saves: profiles "Splitscreen P1" with the progress, "Splitscreen P2") | IMPLEMENTED, NOT FULLY TESTED | Owner request. The bot starts the campaign without the menu, so the menu path is not bot-tested | `dlg_MainMenu.cpp`, `StateMgr.cpp` (`CoopPrepareSplitscreenProfile`), `LocalCoop.hpp` (`LocalCoop_SetPlayerCount`) |
 | Performance with two views | NOT MEASURED on a real GPU | Owner reports nothing bad | - |
 
 ### Delivery and diagnostics

@@ -883,12 +883,12 @@ def check_live_swap(log):
 
 
 def check_own_profiles(log):
-    """Player 2 has its own profile (own settings and body, saved with it), named "Player 2",
+    """Player 2 has its own profile (own settings and body, saved with it), named "Splitscreen P2",
     in a different profile slot from player 1's."""
     if 0 not in log.profiles or 1 not in log.profiles:
         return Result("own_profiles", NOEV, "no profile lines for both players")
     (i0, n0, a0), (i1, n1, a1) = log.profiles[0], log.profiles[1]
-    if i0 >= 0 and i1 >= 0 and i0 != i1 and n1 == "Player 2":
+    if i0 >= 0 and i1 >= 0 and i0 != i1 and n1 == "Splitscreen P2":
         return Result("own_profiles", PASS, "player 1: slot %d '%s' body %d; player 2: slot %d '%s' body %d" % (i0, n0, a0, i1, n1, a1))
     return Result("own_profiles", FAIL, "player 1: slot %d '%s'; player 2: slot %d '%s'" % (i0, n0, i1, n1))
 
@@ -1428,7 +1428,7 @@ def simulate(faults=(), settle_ms=DEFAULT_SETTLE_MS, cycles=DEFAULT_CYCLES, play
     emit(30000, 0, "armed: level running, no cinematic on any local player")
     if players > 1 and "single_player" not in faults:
         emit(30000, 0, "profile player 0: index=0 name=QA avatar=0")
-        emit(30000, 0, "profile player 1: index=%s avatar=1" % ("0 name=QA" if "shared_profile" in faults else "1 name=Player 2"))
+        emit(30000, 0, "profile player 1: index=%s avatar=1" % ("0 name=QA" if "shared_profile" in faults else "1 name=Splitscreen P2"))
         emit(30000, 0, "share item=grenade p0 0->1 p1 0->%d" % (0 if "items_not_shared" in faults else 1))
 
     driver = {0: 0, 1: 1}

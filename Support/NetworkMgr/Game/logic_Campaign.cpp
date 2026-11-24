@@ -618,7 +618,7 @@ void logic_campaign::QaEquipPlayers( void )
         qa_bot_Log( "equip player %d: pistol, %d rounds per clip", (int)i, (int)PerClip );
     }
 
-    // Each local player's profile slot, name and body (player 2 has its own "Player 2" profile).
+    // Each local player's profile slot, name and body (player 2 has its own "Splitscreen P2" profile).
     for( s32 i = 0; i < LocalCoop_PlayerCount(); i++ )
     {
         const s32 Index = g_StateMgr.GetProfileListIndex( i );

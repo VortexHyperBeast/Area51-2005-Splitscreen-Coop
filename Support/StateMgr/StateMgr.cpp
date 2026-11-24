@@ -1739,7 +1739,7 @@ void state_mgr::SetPaused( xbool bPause, s32 PausingController )
 
 static xbool s_CoopSecondProfileReady = FALSE;
 
-//  Loads player 2's profile ("Player 2") into profile slot 1, creating and
+//  Loads player 2's profile (LOCAL_COOP_PROFILE_P2, "Splitscreen P2") into profile slot 1, creating and
 //  saving it the first time.  Called when the campaign server starts, before
 //  the profile list is built.  Keeps the in-memory copy once loaded, so
 //  settings changed during the game are not overwritten by the file.
@@ -1756,16 +1756,16 @@ void state_mgr::CoopPrepareSecondProfile( void )
 
     static player_profile s_Profile;            // default settings (as ResetProfile)
     s_Profile = player_profile();
-    s_Profile.SetProfileName( "Player 2" );
+    s_Profile.SetProfileName( LOCAL_COOP_PROFILE_P2 );
     s_Profile.SetHash();
     s_Profile.SetAvatarID( 1 );                 // second hazmat colour, so the two differ
 
     xbool bCreated = FALSE;
-    if( !g_SaveDataMgr.CoopLoadOrCreateProfileSync( "Player 2", 1, s_Profile, bCreated ) )
+    if( !g_SaveDataMgr.CoopLoadOrCreateProfileSync( LOCAL_COOP_PROFILE_P2, 1, s_Profile, bCreated ) )
         return;
 
     if( s_Profile.GetHash() == m_SelectedProfile[0] )
-        return;     // player 1 chose the "Player 2" profile: keep sharing
+        return;     // player 1 chose player 2's profile: keep sharing
 
     m_Profiles[1] = s_Profile;
     m_Profiles[1].Checksum();
@@ -1775,19 +1775,19 @@ void state_mgr::CoopPrepareSecondProfile( void )
 }
 
 //  Splitscreen co-op keeps its own campaign save: player 1 always plays the
-//  profile "Splitscreen" (created the first time), never a single-player
-//  profile.  Single Player uses the normal profile select.
+//  profile "Splitscreen P1" and player 2 "Splitscreen P2" (both created the
+//  first time), never a single-player profile.  Single Player uses the normal profile select.
 static xbool s_CoopSplitProfileActive = FALSE;
 
 xbool state_mgr::CoopPrepareSplitscreenProfile( void )
 {
     static player_profile s_Profile;
     s_Profile = player_profile();
-    s_Profile.SetProfileName( "Splitscreen" );
+    s_Profile.SetProfileName( LOCAL_COOP_PROFILE_P1 );
     s_Profile.SetHash();
 
     xbool bCreated = FALSE;
-    if( !g_SaveDataMgr.CoopLoadOrCreateProfileSync( "Splitscreen", 0, s_Profile, bCreated ) )
+    if( !g_SaveDataMgr.CoopLoadOrCreateProfileSync( LOCAL_COOP_PROFILE_P1, 0, s_Profile, bCreated ) )
         return FALSE;
 
     m_Profiles[0] = s_Profile;
@@ -1801,7 +1801,7 @@ xbool state_mgr::CoopPrepareSplitscreenProfile( void )
     return TRUE;
 }
 
-//  Single Player after Splitscreen: forget the "Splitscreen" profile so the
+//  Single Player after Splitscreen: forget the "Splitscreen P1" profile so the
 //  profile select asks for a single-player one.
 void state_mgr::CoopLeaveSplitscreenProfile( void )
 {

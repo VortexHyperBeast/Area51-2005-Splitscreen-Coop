@@ -31,9 +31,12 @@ How to start
 
 4. The main menu has two campaign entries:
      SINGLE PLAYER       the normal one-player campaign, with your own profiles and saves.
-     SPLITSCREEN CO-OP   the two-player campaign. It has its own save (a profile called
-                         "Splitscreen", made the first time), separate from single player.
-                         Player 2's settings live in the profile "Player 2".
+     SPLITSCREEN CO-OP   the two-player campaign. It has its own saves, made the first time:
+                         "Splitscreen P1" (the co-op progress and player 1's settings) and
+                         "Splitscreen P2" (player 2's settings and body). They are never used
+                         by single player, and deleting a single-player profile does not
+                         touch them. Profiles named "Player 2" or "Splitscreen" from older
+                         test builds are no longer used and can be deleted.
    Both start files open the same menu; you choose the mode there.
    Both controllers are used. The first controller is player 1 (it also controls the menus);
    the second is player 2. The keyboard and mouse also drive player 1.
@@ -50,8 +53,8 @@ They take effect at once and are saved. With the controllers swapped, the keyboa
 still belong to the first controller's slot, i.e. they move player 2.
 
 Each player has their own settings: Options in the pause menu edits the settings of the player
-whose controller pressed Start (sensitivity, invert, vibration, ...). Player 2's settings live in a
-profile called "Player 2" that the game creates the first time. Everything is saved when you
+whose controller pressed Start (sensitivity, invert, vibration, ...). Player 2's settings live in the
+profile "Splitscreen P2" that the game creates the first time. Everything is saved when you
 change it and again when the game closes.
 
 DOWNED AND REVIVE: when a player loses all health while the other player is still up, he goes

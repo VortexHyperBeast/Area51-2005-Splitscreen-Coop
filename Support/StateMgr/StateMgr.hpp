@@ -419,9 +419,9 @@ public:
     // pending profile functions
     void                    InitPendingProfile              ( s32 index );
 #ifdef A51_LOCAL_COOP
-    // Local co-op: player 2's own profile ("Player 2", profile slot 1).
+    // Local co-op: player 2's own profile ("Splitscreen P2", profile slot 1).
     void                    CoopPrepareSecondProfile        ( void );
-    xbool                   CoopPrepareSplitscreenProfile   ( void );   // player 1's own "Splitscreen" save
+    xbool                   CoopPrepareSplitscreenProfile   ( void );   // player 1's own "Splitscreen P1" save
     void                    CoopLeaveSplitscreenProfile     ( void );
     void                    CoopReleaseSecondProfile        ( void );
     void                    CoopSaveProfilesNow             ( void );

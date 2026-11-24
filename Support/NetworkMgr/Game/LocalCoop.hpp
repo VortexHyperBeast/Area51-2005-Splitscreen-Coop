@@ -71,6 +71,13 @@ inline void LocalCoop_SetPlayerCount( s32 Count )
 
 #define LOCAL_COOP_CONFIG_FILE "a51_coop.cfg"
 
+//  The splitscreen co-op saves: two profiles of their own, never shared with
+//  single player (profile names are at most 15 characters).  Player 1's holds
+//  the co-op campaign progress and player 1's settings; player 2's holds
+//  player 2's settings and body.
+#define LOCAL_COOP_PROFILE_P1  "Splitscreen P1"
+#define LOCAL_COOP_PROFILE_P2  "Splitscreen P2"
+
 inline s32& LocalCoop_SwapState( void )
 {
     static s32 s_Swap = -1;
