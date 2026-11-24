@@ -18,6 +18,8 @@
 #include "StateMgr/StateMgr.hpp"
 #include "PerceptionMgr/PerceptionMgr.hpp"
 #include "NetworkMgr/Game/LocalCoop.hpp"
+#include "CollisionMgr/CollisionMgr.hpp"
+#include "InputMgr/GamePad.hpp"
 
 //=========================================================================
 //  IMPLEMENTATION
@@ -277,15 +279,49 @@ static xbool CoopIsSharedProperty( prop_query& rPropQuery )
            rPropQuery.IsBasePath( "Player\\Mutation" );
 }
 
+//  A free spot next to the leader: behind, right, left or in front of him at
+//  about a metre, with a clear line from him (nothing that blocks players) and
+//  floor under it.  If none is free, the leader's own spot (the bodies then
+//  push apart).  The old fixed sideways metre could land outside the level
+//  (player 2 fell off the map after a cutscene, 2026-11-24).
+static vector3 CoopFreeSpotNear( player& Leader, guid Mover )
+{
+    const vector3 Base  = Leader.GetPosition();
+    const vector3 Chest( 0.0f, 90.0f, 0.0f );
+    static const f32 s_Offsets[4][2] = { { 0.0f, -90.0f }, { 90.0f, 0.0f }, { -90.0f, 0.0f }, { 0.0f, 90.0f } };
+
+    for( s32 i = 0; i < 4; i++ )
+    {
+        vector3 Offset( s_Offsets[i][0], 0.0f, s_Offsets[i][1] );
+        Offset.RotateY( Leader.GetYaw() );
+        const vector3 Spot = Base + Offset;
+
+        // Clear from the leader to the spot?
+        g_CollisionMgr.RaySetup( Mover, Base + Chest, Spot + Chest );
+        g_CollisionMgr.CheckCollisions( object::TYPE_ALL_TYPES, object::ATTR_BLOCKS_PLAYER, object::ATTR_LIVING );
+        if( g_CollisionMgr.m_nCollisions > 0 )
+            continue;
+
+        // Floor under it (within 1.5 m)?
+        g_CollisionMgr.RaySetup( Mover, Spot + vector3( 0.0f, 50.0f, 0.0f ), Spot - vector3( 0.0f, 150.0f, 0.0f ) );
+        g_CollisionMgr.CheckCollisions( object::TYPE_ALL_TYPES, object::ATTR_BLOCKS_PLAYER, object::ATTR_LIVING );
+        if( g_CollisionMgr.m_nCollisions == 0 )
+            continue;
+
+        return Spot;
+    }
+
+    return Base;
+}
+
 void player::CoopMoveNextTo( player& Leader )
 {
     if( (&Leader == this) || IsDead() )
         return;
 
-    vector3 Offset( 100.0f, 0.0f, 0.0f );
-    Offset.RotateY( Leader.m_Yaw );
+    m_CoopFallTime = 0.0f;
 
-    Teleport( Leader.GetPosition() + Offset,
+    Teleport( CoopFreeSpotNear( Leader, GetGuid() ),
               Leader.m_Pitch,
               Leader.m_Yaw,
               static_cast<zone_mgr::zone_id>( Leader.GetZone1() ),
@@ -304,9 +340,16 @@ void player::CoopFollowCinema( player& Leader )
     s_CoopMirroring = TRUE;
 
     const xbool On = Leader.IsCinemaRunning();
-    if( On != IsCinemaRunning() )
+    if( On && !IsCinemaRunning() )
     {
         CoopMoveNextTo( Leader );
+    }
+    else if( !On && IsCinemaRunning() )
+    {
+        // Scene over: the scene may still move the leader to its end marker this
+        // frame, so join him a moment later (CoopUpdate).
+        m_CoopFollowGuid  = Leader.GetGuid();
+        m_CoopFollowTimer = 0.3f;
     }
 
     m_CinemaSettings = Leader.m_CinemaSettings;
@@ -317,6 +360,69 @@ void player::CoopFollowCinema( player& Leader )
     OnProperty( Query );
 
     s_CoopMirroring = WasMirroring;
+}
+
+//  Once per frame (co-op): join the partner after a scene, rescue from a fall
+//  out of the level, and the "join partner" button (Back / View).
+void player::CoopUpdate( f32 DeltaTime )
+{
+    if( !LocalCoop_IsActive() || (m_LocalSlot == -1) || IsDead() )
+        return;
+
+    player* pPartner = NULL;
+    {
+        slot_id ID = g_ObjMgr.GetFirst( object::TYPE_PLAYER );
+        while( ID != SLOT_NULL )
+        {
+            player* pOther = (player*)g_ObjMgr.GetObjectBySlot( ID );
+            ID = g_ObjMgr.GetNext( ID );
+            if( pOther && (pOther != this) && (pOther->GetLocalSlot() != -1) && !pOther->IsDead() )
+            {
+                pPartner = pOther;
+                break;
+            }
+        }
+    }
+
+    // After a scene ended.
+    if( m_CoopFollowTimer > 0.0f )
+    {
+        m_CoopFollowTimer -= DeltaTime;
+        if( m_CoopFollowTimer <= 0.0f )
+        {
+            player* pLeader = (player*)g_ObjMgr.GetObjectByGuid( m_CoopFollowGuid );
+            if( pLeader && (pLeader != this) && !pLeader->IsDead() && !pLeader->IsCinemaRunning() )
+                CoopMoveNextTo( *pLeader );
+            m_CoopFollowTimer = 0.0f;
+        }
+    }
+
+    if( !pPartner || IsCinemaRunning() || pPartner->IsCinemaRunning() )
+    {
+        m_CoopFallTime = 0.0f;
+        return;
+    }
+
+    // Falling far below the partner for a while: out of the level.  Join him.
+    const f32 Below = pPartner->GetPosition().GetY() - GetPosition().GetY();
+    if( IsAirborn() && (GetVelocity().GetY() < -300.0f) && (Below > 1000.0f) )
+    {
+        m_CoopFallTime += DeltaTime;
+        if( m_CoopFallTime > 1.0f )
+            CoopMoveNextTo( *pPartner );
+    }
+    else
+    {
+        m_CoopFallTime = 0.0f;
+    }
+
+    // Back / View button: join the partner.
+    if( (m_ActivePlayerPad >= 0) && (m_ActivePlayerPad < MAX_LOCAL_PLAYERS) )
+    {
+        const input_action_state& Button = g_GameInput[ m_ActivePlayerPad ].GetFrameLogical( ingame_pad::ACTION_SCOREBOARD );
+        if( (Button.GetIsValue() > 0.5f) && (Button.GetWasValue() <= 0.5f) )
+            CoopMoveNextTo( *pPartner );
+    }
 }
 
 static void CoopForEachOtherPlayer( player* pSelf, prop_query& rPropQuery, xbool CinemaOnWrite )

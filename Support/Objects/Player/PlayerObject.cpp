@@ -482,6 +482,11 @@ void player::CoopApplySkin( void )
 
 void player::OnInit( void )
 {
+#ifdef A51_LOCAL_COOP
+    m_CoopFollowTimer = 0.0f;
+    m_CoopFollowGuid  = NULL_GUID;
+    m_CoopFallTime    = 0.0f;
+#endif
 //  LOG_MESSAGE( "player::OnInit", "" );
 
     //#ifndef X_EDITOR
@@ -788,6 +793,10 @@ void player::OnAdvanceSimulation( f32 DeltaTime )
 #endif
 
     g_ZoneMgr.UpdateEar( m_AudioEarID );
+
+#ifdef A51_LOCAL_COOP
+    CoopUpdate( DeltaTime );
+#endif
 
 #ifndef CONFIG_RETAIL
     m_bCanDie = !DEBUG_INVULNERABLE;

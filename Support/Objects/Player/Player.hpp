@@ -747,7 +747,11 @@ public:
             void        CoopMoveNextTo              ( player& Leader );
             void        CoopFollowCinema            ( player& Leader );
             void        CoopApplySkin               ( void );
+            void        CoopUpdate                  ( f32 DeltaTime );
 protected:
+            f32         m_CoopFollowTimer;      // > 0: join m_CoopFollowGuid when it runs out
+            guid        m_CoopFollowGuid;
+            f32         m_CoopFallTime;         // time spent falling far below the partner
 #endif
 
 //==============================================================================

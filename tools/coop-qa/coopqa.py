@@ -126,12 +126,19 @@ def make_script(settle_ms=DEFAULT_SETTLE_MS, cycles=DEFAULT_CYCLES):
     lines.append("# a level change's inventory store and restore, after the scanner was given")
     lines.append("cmd %d carryover" % t)
     t += 2000
+    # the "join partner" button: player 2 walks away, then presses Back
+    lines.append("# player 2 walks away and presses Back (join player 1)")
+    lines.append("%d %d 1 ly 100" % (t, t + 3000))
+    lines.append("%d %d 1 back 100" % (t + JOIN_PRESS_MS, t + JOIN_PRESS_MS + 300))
+    t += JOIN_MS
     lines.append("quit %d" % (t + 1000))
     return "\n".join(lines) + "\n"
 
 
 SCANNER_SWITCH_MS = 4000
 SCANNER_MS = SCANNER_SWITCH_MS + 2 * (3500 + 2000) + 2000
+JOIN_PRESS_MS = 3500                        # after the start of the join section
+JOIN_MS = 5500
 
 
 HEADER_RE = re.compile(r"^#\s*coopqa script v1 settle=(\d+) cycles=(\d+)", re.M)
@@ -368,7 +375,7 @@ PASS, FAIL, NOEV, INFO = "PASS", "FAIL", "NO-EVIDENCE", "INFO"
 REQUIRED_COOP = ["startup", "two_players", "separate_pads", "no_fall", "alive", "bot_drove",
                  "completed", "walk0", "walk1", "walkboth", "look0", "look1",
                  "fire0", "fire1", "reload0", "reload1", "pad_mapping", "split_view", "split_pixels",
-                 "partner_body", "shared_cinema", "shared_items", "scanner", "own_profiles", "live_swap", "asserts", "carry_over"]
+                 "partner_body", "shared_cinema", "shared_items", "scanner", "own_profiles", "live_swap", "asserts", "carry_over", "join_button"]
 INFO_COOP = ["jump0", "jump1"]
 REQUIRED_SINGLE = ["startup", "one_player", "bot_drove", "completed", "walk_single"]
 
@@ -700,6 +707,23 @@ def check_pad_mapping(results_meta):
         return Result("pad_mapping", FAIL, "both pads drive player %d" % drivers[0])
     return Result("pad_mapping", PASS, "pad 0 -> player %d, pad 1 -> player %d, in all %d judged actions" % (
         drivers[0], drivers[1], sum(len(t) for p in mapping.values() for t in p.values())))
+
+
+def check_join_button(log, script_end):
+    """Player 2 presses Back (View) far from player 1 and must be next to him right after."""
+    press = script_end + SCANNER_MS + JOIN_PRESS_MS
+    before = [s for s in between(log.players.get(1, []), press - 1200, press - 1)]
+    after = [s for s in between(log.players.get(1, []), press + 300, press + 1600)]
+    if not before or not after:
+        return Result("join_button", NOEV, "no samples around the Back press")
+    def dist(s1):
+        s0 = at(log.players.get(0, []), s1["qt"])
+        return hdist(s0, s1) if s0 else 1e9
+    d0 = min(dist(s) for s in before)
+    d1 = min(dist(s) for s in after)
+    if d0 >= 300 and d1 <= 250:
+        return Result("join_button", PASS, "player 2 was %d cm away, %d cm after pressing Back" % (d0, d1))
+    return Result("join_button", FAIL, "player 2 was %d cm away before Back and %d cm after" % (d0, d1))
 
 
 def check_carry_over(log, players=2):
@@ -1098,6 +1122,8 @@ def score(log, phases, expect="coop", shots=None):
     results.append(check_own_profiles(log))
     results.append(check_live_swap(log))
     results.append(check_carry_over(log))
+    if phases:
+        results.append(check_join_button(log, max(p.check_end for p in phases) + GAP_MS))
     return results, REQUIRED_COOP
 
 
@@ -1160,6 +1186,7 @@ FAULTS = [
     "swap_noop",           # the in-game controller swap changes nothing
     "assert_hit",          # the game hit a real assertion (a retail build may crash there)
     "carry_lost_p1",       # player 1 loses his weapons at a level change
+    "join_ignored",        # the Back button does not bring player 2 to player 1
 ]
 
 # fault -> names that must NOT be PASS in coop mode ("*ok*" = the run is a good one)
@@ -1193,6 +1220,7 @@ EXPECTED = {
     "swap_noop": ["live_swap"],
     "assert_hit": ["asserts"],
     "carry_lost_p1": ["carry_over"],
+    "join_ignored": ["join_button"],
 }
 
 
@@ -1203,7 +1231,7 @@ def simulate(faults=(), settle_ms=DEFAULT_SETTLE_MS, cycles=DEFAULT_CYCLES, play
     for ph in phases:
         for (pad, ctrl, val) in ph.actions:
             events.append((ph.start, ph.end, pad, ctrl, val))
-    quit_ms = end + SCANNER_MS + 1000
+    quit_ms = end + SCANNER_MS + JOIN_MS + 1000
     lines = []
 
     def emit(wall, qt, msg):
@@ -1383,6 +1411,13 @@ def simulate(faults=(), settle_ms=DEFAULT_SETTLE_MS, cycles=DEFAULT_CYCLES, play
             emit(30000 + end, end, "ASSERT #1 PlayerLoco.cpp:198 expr=[0] msg=[Weapon not supported in mp!]")
         emit(30000 + end, end, "ASSERT #2 x_threads_posix.cpp:425 expr=[Joined] msg=[join timeout]")
         emit(30000 + end, end, "command scanner (hook set)")
+        j0 = end + SCANNER_MS
+        for k, x1 in ((0, 5100), (4, 6200), (6, 7000), (7, 7000), (8, 7000 if "join_ignored" in faults else 5090),
+                      (9, 7000 if "join_ignored" in faults else 5090)):
+            tt = j0 + 500 * k
+            for i, x in ((0, 5000), (1, x1)):
+                emit(30000 + tt, tt, "player %d guid=%08X slot=%d pad=%d pos=%d,200,500 yaw=0 pitch=0 hp=100 weapon=SCN ammo=0 inclip=0 perclip=0 cinema=0" % (
+                    i, 0xA0000 + i, i, i, x))
         emit(30000 + end + SCANNER_MS - 1500, end + SCANNER_MS - 1500,
              "carryover player 0: scanner=%d pistol=%d" % ((0, 0) if "carry_lost_p1" in faults else (1, 1)))
         emit(30000 + end + SCANNER_MS - 1500, end + SCANNER_MS - 1500, "carryover player 1: scanner=1 pistol=1")
