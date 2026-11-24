@@ -30,7 +30,7 @@ enum campaign_menu_controls
     IDC_CAMPAIGN_MENU_LORE,
     IDC_CAMPAIGN_MENU_SECRETS,
     IDC_CAMPAIGN_MENU_EXTRAS,
-#ifndef CONFIG_RETAIL
+#if !defined(CONFIG_RETAIL) || defined(A51_LOCAL_COOP)
     IDC_CAMPAIGN_MENU_LEVEL_SELECT,
 #endif
 };
@@ -74,8 +74,9 @@ protected:
     ui_button*          m_pButtonLore;
     ui_button*          m_pButtonSecrets;
     ui_button*          m_pButtonExtras;
-#ifndef CONFIG_RETAIL
+#if !defined(CONFIG_RETAIL) || defined(A51_LOCAL_COOP)
     ui_button*          m_pButtonLevelSelect;       
+    xbool               m_bCoopLevelSelect;     // level select shown (always in dev builds; co-op only in the play build)
 #endif
 
     dlg_popup*          m_PopUp;

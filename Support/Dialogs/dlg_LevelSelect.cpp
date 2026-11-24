@@ -4,7 +4,7 @@
 //
 //=========================================================================
 
-#ifndef CONFIG_RETAIL
+#if !defined(CONFIG_RETAIL) || defined(A51_LOCAL_COOP)
 
 #include "Entropy.hpp"
 

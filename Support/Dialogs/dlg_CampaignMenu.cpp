@@ -35,7 +35,7 @@ ui_manager::control_tem CampaignMenuControls[] =
     { IDC_CAMPAIGN_MENU_LORE,               "IDS_CAMPAIGN_MENU_LORE",           "button",   80, 180, 120, 40, 0, 3, 1, 1, ui_win::WF_VISIBLE },
     { IDC_CAMPAIGN_MENU_SECRETS,            "IDS_CAMPAIGN_MENU_SECRETS",        "button",   80, 220, 120, 40, 0, 4, 1, 1, ui_win::WF_VISIBLE },
     { IDC_CAMPAIGN_MENU_EXTRAS,             "IDS_CAMPAIGN_MENU_EXTRAS",         "button",   80, 260, 120, 40, 0, 5, 1, 1, ui_win::WF_VISIBLE },
-#ifndef CONFIG_RETAIL
+#if !defined(CONFIG_RETAIL) || defined(A51_LOCAL_COOP)     // co-op build: Level Select in splitscreen co-op
     { IDC_CAMPAIGN_MENU_LEVEL_SELECT,       "IDS_CAMPAIGN_MENU_LEVEL_SELECT",   "button",   80, 300, 120, 40, 0, 6, 1, 1, ui_win::WF_VISIBLE },
 #endif
 }; 
@@ -110,8 +110,21 @@ xbool dlg_campaign_menu::Create( s32                        UserID,
     m_pButtonLore           = (ui_button*)  FindChildByID( IDC_CAMPAIGN_MENU_LORE          );
     m_pButtonSecrets        = (ui_button*)  FindChildByID( IDC_CAMPAIGN_MENU_SECRETS       );
     m_pButtonExtras         = (ui_button*)  FindChildByID( IDC_CAMPAIGN_MENU_EXTRAS        );
-#ifndef CONFIG_RETAIL
+#if !defined(CONFIG_RETAIL) || defined(A51_LOCAL_COOP)     // co-op build: Level Select in splitscreen co-op
     m_pButtonLevelSelect    = (ui_button*)  FindChildByID( IDC_CAMPAIGN_MENU_LEVEL_SELECT  );
+#if defined(CONFIG_RETAIL) && defined(A51_LOCAL_COOP)
+    // The play build offers the level select only in Splitscreen Co-op, so a
+    // co-op save can start at any part of the story (owner request).
+    m_bCoopLevelSelect = LocalCoop_IsActive();
+    if( m_pButtonLevelSelect )
+    {
+        m_pButtonLevelSelect->SetLabel( xwstring( "Level Select" ) );
+        if( !m_bCoopLevelSelect )
+            m_pButtonLevelSelect->SetFlag( ui_win::WF_DISABLED, TRUE );
+    }
+#else
+    m_bCoopLevelSelect = TRUE;
+#endif
 #endif
 
     m_CurrHL            = 0;
@@ -126,7 +139,7 @@ xbool dlg_campaign_menu::Create( s32                        UserID,
     m_pButtonLore           ->SetFlag(ui_win::WF_VISIBLE, FALSE);
     m_pButtonSecrets        ->SetFlag(ui_win::WF_VISIBLE, FALSE);
     m_pButtonExtras         ->SetFlag(ui_win::WF_VISIBLE, FALSE);
-#ifndef CONFIG_RETAIL
+#if !defined(CONFIG_RETAIL) || defined(A51_LOCAL_COOP)     // co-op build: Level Select in splitscreen co-op
     m_pButtonLevelSelect    ->SetFlag(ui_win::WF_VISIBLE, FALSE);
 #endif
     // We cannot resume a campaign if we have no checkpoints
@@ -392,7 +405,7 @@ void dlg_campaign_menu::OnAccept( ui_win* pWin )
         {
             m_CurrentControl = IDC_CAMPAIGN_MENU_EXTRAS;
         }
-#ifndef CONFIG_RETAIL
+#if !defined(CONFIG_RETAIL) || defined(A51_LOCAL_COOP)     // co-op build: Level Select in splitscreen co-op
         else if( pWin == (ui_win*)m_pButtonLevelSelect )
         {
             m_CurrentControl = IDC_CAMPAIGN_MENU_LEVEL_SELECT;
@@ -440,8 +453,8 @@ void dlg_campaign_menu::OnUpdate ( ui_win* pWin, f32 DeltaTime )
             m_pButtonLore           ->SetFlag(ui_win::WF_VISIBLE, TRUE);
             m_pButtonSecrets        ->SetFlag(ui_win::WF_VISIBLE, TRUE);
             m_pButtonExtras         ->SetFlag(ui_win::WF_VISIBLE, TRUE);
-#ifndef CONFIG_RETAIL
-            m_pButtonLevelSelect    ->SetFlag(ui_win::WF_VISIBLE, TRUE);
+#if !defined(CONFIG_RETAIL) || defined(A51_LOCAL_COOP)     // co-op build: Level Select in splitscreen co-op
+            m_pButtonLevelSelect    ->SetFlag(ui_win::WF_VISIBLE, m_bCoopLevelSelect);
 #endif
 
 
@@ -545,7 +558,7 @@ void dlg_campaign_menu::OnUpdate ( ui_win* pWin, f32 DeltaTime )
         g_UiMgr->SetScreenHighlight( m_pButtonExtras->GetPosition() );
         highLight = 5;
     }
-#ifndef CONFIG_RETAIL
+#if !defined(CONFIG_RETAIL) || defined(A51_LOCAL_COOP)     // co-op build: Level Select in splitscreen co-op
     else if( m_pButtonLevelSelect->IsFocused() )
     {
         g_UiMgr->SetScreenHighlight( m_pButtonLevelSelect->GetPosition() );

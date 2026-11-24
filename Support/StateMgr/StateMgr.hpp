@@ -122,7 +122,7 @@ enum sm_states
     SM_ONLINE_HOST_MENU,
     SM_HOST_SAVE_SETTINGS,
 
-#ifndef CONFIG_RETAIL
+#if !defined(CONFIG_RETAIL) || defined(A51_LOCAL_COOP)
     SM_LEVEL_SELECT,
 #endif
     SM_START_GAME,

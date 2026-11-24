@@ -38,6 +38,8 @@ How to start
                          touch them. Profiles named "Player 2" or "Splitscreen" from older
                          test builds are no longer used and can be deleted.
    Both start files open the same menu; you choose the mode there.
+   In Splitscreen Co-op the campaign menu also has LEVEL SELECT: it starts any level of the
+   campaign directly (for example to try a later part of the story without a save there).
    Both controllers are used. The first controller is player 1 (it also controls the menus);
    the second is player 2. The keyboard and mouse also drive player 1.
    If they come out the wrong way round, unplug both and plug in the controller you want

@@ -236,7 +236,7 @@ void state_mgr::Init( void )
     dlg_press_start_register        ( g_UiMgr );
     dlg_multi_player_register       ( g_UiMgr );
     dlg_multi_options_register      ( g_UiMgr );
-#ifndef CONFIG_RETAIL
+#if !defined(CONFIG_RETAIL) || defined(A51_LOCAL_COOP)
     dlg_level_select_register       ( g_UiMgr );
 #endif
     dlg_online_connect_register     ( g_UiMgr );
@@ -546,7 +546,7 @@ const char* state_mgr::GetStateName( sm_states State )
         LABEL_STRING( SM_ONLINE_HOST_MENU );
         LABEL_STRING( SM_HOST_SAVE_SETTINGS );
 
-#ifndef CONFIG_RETAIL
+#if !defined(CONFIG_RETAIL) || defined(A51_LOCAL_COOP)
         LABEL_STRING( SM_LEVEL_SELECT );
 #endif
         LABEL_STRING( SM_START_GAME );
@@ -1248,7 +1248,7 @@ void state_mgr::EnterState( sm_states State )
         case SM_ONLINE_EDIT_PROFILE:               EnterOnlineEditProfile();           break;
         case SM_ONLINE_EDIT_CONTROLS:              EnterOnlineEditControls();          break;
         case SM_ONLINE_EDIT_AVATAR:                EnterOnlineEditAvatar();            break;
-#ifndef CONFIG_RETAIL                              
+#if !defined(CONFIG_RETAIL) || defined(A51_LOCAL_COOP)
         case SM_LEVEL_SELECT:                      EnterLevelSelect();                 break;
 #endif                                             
         case SM_RESUME_CAMPAIGN:                   EnterResumeCampaign();              break;
@@ -1457,7 +1457,7 @@ void state_mgr::UpdateState( sm_states State, f32 DeltaTime )
         case SM_ONLINE_EDIT_PROFILE:                UpdateOnlineEditProfile();          break;
         case SM_ONLINE_EDIT_CONTROLS:               UpdateOnlineEditControls();         break;
         case SM_ONLINE_EDIT_AVATAR:                 UpdateOnlineEditAvatar();           break;
-#ifndef CONFIG_RETAIL                               
+#if !defined(CONFIG_RETAIL) || defined(A51_LOCAL_COOP)
         case SM_LEVEL_SELECT:                       UpdateLevelSelect();                break;
 #endif                                              
         case SM_RESUME_CAMPAIGN:                    UpdateResumeCampaign();             break;
@@ -3696,7 +3696,7 @@ void state_mgr::UpdateCampaignMenu( void )
                         SetState( SM_EXTRAS_MENU );
                     }
                     break;
-#ifndef CONFIG_RETAIL
+#if !defined(CONFIG_RETAIL) || defined(A51_LOCAL_COOP)
                     case IDC_CAMPAIGN_MENU_LEVEL_SELECT:
                     {
                         // Set campaign game type.
