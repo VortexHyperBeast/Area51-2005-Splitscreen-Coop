@@ -15,6 +15,7 @@
 #include "UI/ui_button.hpp"
 #include "UI/ui_listbox.hpp"
 
+#include "Input/backend/sdl/qa_bot.hpp"
 #include "dlg_LevelSelect.hpp"
 #include "StateMgr/StateMgr.hpp"
 #include "StringMgr/StringMgr.hpp"
@@ -341,11 +342,22 @@ void dlg_level_select::FillLevelList( void )
                     continue;
                 }
                 m_pLevelList->AddItem( DisplayName, (uaddr)&Entry );
+#ifdef A51_LOCAL_COOP_QA
+                qa_bot_Log( "level list %d: id=%d", (int)(m_pLevelList->GetItemCount() - 1), (int)Entry.GetMapID() );
+#endif
             }
         }
     }
 
     ASSERTS( m_pLevelList->GetItemCount() > 0, "No maps are present!" );
+#ifdef A51_LOCAL_COOP_QA
+    // TEST ONLY: A51_QA_LEVEL_INDEX=n starts the n-th campaign level of the list (0 = first).
+    {
+        const char* pIndex = x_getenv( "A51_QA_LEVEL_INDEX" );
+        if( pIndex && (pIndex[0] >= '0') && (pIndex[0] <= '9') )
+            iSel = x_atoi( pIndex );
+    }
+#endif
     // Limit Selection
     if( iSel <  0 ) iSel = 0;
     if( iSel >= m_pLevelList->GetItemCount() ) 

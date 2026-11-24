@@ -46,7 +46,8 @@ case "$MODE" in
   coop)   EXPECT=coop ;;
   swap)   EXPECT=coop-swapped ;;   # co-op with the CO-OP-SETTINGS options: controllers swapped, other skins
   single) EXPECT=single ;;
-  *) echo "mode must be coop, swap or single"; exit 2 ;;
+  coop-l2|single-l2) EXPECT=probe ;;   # the second campaign level: cutscene sound report only, never fails
+  *) echo "mode must be coop, swap, single, coop-l2 or single-l2"; exit 2 ;;
 esac
 
 say() { echo "$@" | tee -a "$OUT/run.txt"; }
@@ -97,7 +98,8 @@ export A51_QA_WINDOW="$WINDOW"
 export SDL_AUDIODRIVER=dummy
 export SDL_VIDEODRIVER=x11
 export SDL_JOYSTICK_ALLOW_BACKGROUND_EVENTS=1
-if [ "$MODE" = coop ] || [ "$MODE" = swap ]; then export A51_LOCAL_COOP=2; else unset A51_LOCAL_COOP; fi
+if [ "$MODE" = coop ] || [ "$MODE" = swap ] || [ "$MODE" = coop-l2 ]; then export A51_LOCAL_COOP=2; else unset A51_LOCAL_COOP; fi
+if [ "$EXPECT" = probe ]; then export A51_QA_LEVEL_INDEX="${QA_LEVEL_INDEX:-1}"; else unset A51_QA_LEVEL_INDEX; fi
 if [ "$MODE" = swap ]; then
   export A51_COOP_SWAP_PADS=1 A51_COOP_SKIN_P1=6 A51_COOP_SKIN_P2=13
 else
@@ -205,6 +207,13 @@ say "game output: $(wc -l < "$WORK/game-output.txt") lines, a51_qa_bot.log: $(wc
 #------------------------------------------------------------------------------
 say "screenshots taken: $NSHOTS"
 python3 -I "$HERE/coopqa.py" shots "$SHOTS" --log "$OUT/a51_qa_bot.log" --out "$OUT/shots.txt" 2>&1 | tee -a "$OUT/run.txt"
+python3 -I "$HERE/coopqa.py" audio "$OUT/a51_qa_bot.log" > "$OUT/audio.txt" 2>&1
+say "cutscene sound: $(head -c 2000 "$OUT/audio.txt")"
+if [ "$EXPECT" = probe ]; then
+  grep "level list\|campaign BeginGame" "$OUT/a51_qa_bot.log" | head -30 >> "$OUT/run.txt"
+  echo "RESULT: PASS (probe run, report only)" | tee -a "$OUT/run.txt"
+  exit 0
+fi
 python3 -I "$HERE/coopqa.py" score "$OUT/a51_qa_bot.log" --script "$WORK/script.txt" --expect "$EXPECT" --shots "$OUT/shots.txt" --json "$OUT/score.json" > "$OUT/score.txt" 2>&1
 SCORE_RC=$?
 cat "$OUT/score.txt"

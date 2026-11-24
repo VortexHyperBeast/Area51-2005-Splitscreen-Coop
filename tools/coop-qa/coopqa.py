@@ -1548,6 +1548,40 @@ def selftest():
 # Command line
 # ----------------------------------------------------------------------------
 
+def audio_report(text):
+    """Cinema sound tracks: how long each one played against its length, and the voices in use.
+    A track that stops well before its length was cut off (the owner's co-op cutscene)."""
+    out, starts = [], {}
+    voices = []
+    for line in text.splitlines():
+        m = re.match(r"^wall=(\d+) qt=(-?\d+) (.*)$", line)
+        if not m:
+            continue
+        wall, msg = int(m.group(1)), m.group(3)
+        a = re.match(r"cinema audio start (\S+) length=(-?\d+) ms", msg)
+        if a:
+            starts[a.group(1)] = (wall, int(a.group(2)))
+            continue
+        e = re.match(r"cinema audio end (\S+)", msg)
+        if e and e.group(1) in starts:
+            w0, length = starts.pop(e.group(1))
+            played = wall - w0
+            verdict = "CUT" if (length > 0 and played < 0.9 * length - 300) else "ok"
+            out.append("%-4s %s: played %d ms of %d ms" % (verdict, e.group(1), played, length))
+            continue
+        v = re.match(r"audio voices=(\d+) top=(\S+) x(\d+)", msg)
+        if v:
+            voices.append((int(v.group(1)), v.group(2), int(v.group(3))))
+    for name, (w0, length) in starts.items():
+        out.append("OPEN %s: started, no end logged (length %d ms)" % (name, length))
+    if voices:
+        mx = max(voices)
+        out.append("voices in use: max %d (top %s x%d), last %d" % (mx[0], mx[1], mx[2], voices[-1][0]))
+    if not out:
+        out.append("no cinema sound and no voice lines in the log")
+    return "\n".join(out) + "\n"
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     sub = ap.add_subparsers(dest="cmd")
@@ -1575,6 +1609,8 @@ def main(argv=None):
     m.add_argument("--players", type=int, default=2)
 
     sub.add_parser("selftest")
+    au = sub.add_parser("audio")
+    au.add_argument("log")
 
     a = ap.parse_args(argv)
     if a.cmd == "gen":
@@ -1582,6 +1618,9 @@ def main(argv=None):
             f.write(make_script(a.settle, a.cycles))
         phases, end = build_phases(a.settle, a.cycles)
         print("wrote %s: %d phases, %.0f s of game time" % (a.out, len(phases), end / 1000.0))
+        return 0
+    if a.cmd == "audio":
+        sys.stdout.write(audio_report(open(a.log, encoding="utf-8", errors="replace").read()))
         return 0
     if a.cmd == "selftest":
         return selftest()

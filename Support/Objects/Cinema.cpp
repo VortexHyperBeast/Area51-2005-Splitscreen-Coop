@@ -18,6 +18,7 @@
 #include "../MiscUtils/SimpleUtils.hpp"
 #include "Animation/AnimPlayer.hpp"
 #include "Objects/Player/Player.hpp"
+#include "Input/backend/sdl/qa_bot.hpp"
 
 //=========================================================================
 // DATA
@@ -1957,6 +1958,10 @@ void cinema_object::OnAdvanceSimulation( f32 DeltaTime )
         else if( g_AudioMgr.GetIsReady( m_VoiceID ) )
         {
             g_AudioMgr.Start( m_VoiceID );
+#ifdef A51_LOCAL_COOP_QA
+            qa_bot_Log( "cinema audio start %s length=%d ms", m_Descriptor,
+                        (int)(g_AudioMgr.GetLengthSeconds( m_Descriptor ) * 1000.0f) );
+#endif
             LOG_MESSAGE( "cinema_object::OnAdvanceSimulation", "AUDIO_STATUS_PLAYING" );
             m_AudioStatus = AUDIO_STATUS_PLAYING;
         }
@@ -1965,6 +1970,9 @@ void cinema_object::OnAdvanceSimulation( f32 DeltaTime )
     case AUDIO_STATUS_PLAYING:
         if( !g_AudioMgr.IsValidVoiceIdCached( m_VoiceID ) )
         {
+#ifdef A51_LOCAL_COOP_QA
+            qa_bot_Log( "cinema audio end %s", m_Descriptor );
+#endif
             g_ConverseMgr.Stop( m_VoiceID );
             m_VoiceID = 0;
             LOG_MESSAGE( "cinema_object::OnAdvanceSimulation", "AUDIO_STATUS_DONE" );
