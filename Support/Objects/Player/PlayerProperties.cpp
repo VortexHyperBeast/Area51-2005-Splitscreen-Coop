@@ -13,6 +13,8 @@
 //  INCLUDES
 //=========================================================================
 
+#include "Decals/DecalPackage.hpp"
+#include "Characters/FloorProperties.hpp"
 #include "Objects/Corpse.hpp"
 #include "Player.hpp"
 #include "Objects/WeaponMutation.hpp"
