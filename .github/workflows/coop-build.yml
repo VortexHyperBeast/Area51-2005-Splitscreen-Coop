@@ -286,7 +286,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y \
-            xvfb mesa-vulkan-drivers libvulkan1 vulkan-tools gdb unzip \
+            xvfb mesa-vulkan-drivers libvulkan1 vulkan-tools gdb unzip imagemagick \
             libx11-6 libxext6 libxrandr2 libxcursor1 libxfixes3 libxi6 libxss1 libxtst6 \
             libxkbcommon0 libasound2t64 libpulse0 libudev1 libusb-1.0-0 libdbus-1-3
 
@@ -371,11 +371,11 @@ jobs:
           cmd /c "powershell.exe -NoProfile -ExecutionPolicy Bypass -File `"$play\Setup-Assets.ps1`" -Yes > report\setup.txt 2>&1"
           $code = $LASTEXITCODE
           Get-Content report\setup.txt | Write-Host
-          "setup exit code $code" | Add-Content report\setup.txt
+          "setup exit code $code" | Add-Content report\setup.txt -Encoding Ascii
           if ($code -ne 0) { exit $code }
           if (-not (Test-Path "$play\LEVELS")) { throw 'no LEVELS folder after setup' }
           if (-not (Test-Path "$play\.coop-assets-ok")) { throw 'no marker file after setup' }
-          Get-ChildItem $play -Directory | Select-Object -ExpandProperty Name | Out-File report\data-folders.txt
+          Get-ChildItem $play -Directory | Select-Object -ExpandProperty Name | Out-File report\data-folders.txt -Encoding Ascii
 
       - name: Start the game and watch it for a minute
         shell: powershell
@@ -383,30 +383,58 @@ jobs:
           $ErrorActionPreference = 'Continue'
           $play = "$env:RUNNER_TEMP\play"
           New-Item -ItemType Directory -Force report | Out-Null
+          function Log([string] $t) { Write-Host $t; Add-Content -LiteralPath report\smoke.txt -Value $t -Encoding Ascii }
+
+          # This machine has no graphics card and the game needs a Vulkan device, so look for a software one:
+          # Chrome and Edge ship SwiftShader together with a Vulkan loader.
+          $icd = $null
+          foreach ($root in 'C:\Program Files\Google\Chrome\Application', 'C:\Program Files (x86)\Microsoft\Edge\Application') {
+            if ((-not $icd) -and (Test-Path $root)) {
+              $icd = Get-ChildItem -Path $root -Recurse -Filter vk_swiftshader_icd.json -ErrorAction SilentlyContinue | Select-Object -First 1
+            }
+          }
+          $soft = $false
+          if ($icd) {
+            Log ('software Vulkan driver found: ' + $icd.FullName)
+            $loader = Join-Path $icd.DirectoryName 'vulkan-1.dll'
+            if (Test-Path $loader) {
+              Copy-Item $loader "$play\vulkan-1.dll" -Force
+              Log 'copied its Vulkan loader next to the exe (this check only, it is not in the package)'
+              $env:VK_ICD_FILENAMES = $icd.FullName
+              $env:VK_DRIVER_FILES = $icd.FullName
+              $soft = $true
+            } else {
+              Log 'but it has no vulkan-1.dll next to it'
+            }
+          } else {
+            Log 'no software Vulkan driver found on this machine'
+          }
+
           $env:A51_LOCAL_COOP = '2'
           $started = Get-Date
           $p = Start-Process -FilePath "$play\A51.exe" -WorkingDirectory $play -PassThru -RedirectStandardOutput "$play\_out.txt" -RedirectStandardError "$play\_err.txt"
-          Start-Sleep -Seconds 70
-          $exited = $p.HasExited
-          if ($exited) {
-            $line = "the game EXITED before 70 s, exit code $($p.ExitCode)"
+          Start-Sleep -Seconds 75
+          $p.Refresh()
+          $mode = 'with a software Vulkan driver'
+          if (-not $soft) { $mode = 'without any Vulkan driver (this machine has no graphics card)' }
+          if ($p.HasExited) {
+            Log ('SMOKE RESULT: EXITED ' + $mode + ', exit code ' + $p.ExitCode)
           } else {
-            $line = "the game was still running after 70 s (pid $($p.Id))"
+            Log ('SMOKE RESULT: RUNNING ' + $mode + ': still running after 75 s, responding=' + $p.Responding + ', window title=[' + $p.MainWindowTitle + '], cpu seconds=' + [int]$p.TotalProcessorTime.TotalSeconds + ', memory MB=' + [int]($p.WorkingSet64 / 1MB))
+            Stop-Process -Id $p.Id -Force
           }
-          $line | Tee-Object -FilePath report\smoke.txt
-          if (-not $exited) { Stop-Process -Id $p.Id -Force }
           foreach ($f in '_out.txt', '_err.txt') {
             if (Test-Path "$play\$f") {
-              "--- $f (last 80 lines)" | Add-Content report\smoke.txt
-              Get-Content "$play\$f" -Tail 80 | Add-Content report\smoke.txt
+              Log ('--- ' + $f + ' (last 80 lines)')
+              Get-Content "$play\$f" -Tail 80 | ForEach-Object { Log $_ }
             }
           }
-          "--- files the game wrote next to the exe (names only)" | Add-Content report\smoke.txt
-          Get-ChildItem $play -File | Where-Object { $_.LastWriteTime -gt $started.AddSeconds(-1) } | Select-Object -ExpandProperty Name | Add-Content report\smoke.txt
-          if (Test-Path "$play\a51_local_coop_probe.log") { Get-Content "$play\a51_local_coop_probe.log" -Tail 40 | Set-Content report\probe-tail.txt }
-          "--- Windows application error events in the last 15 minutes that mention A51" | Add-Content report\smoke.txt
-          Get-WinEvent -FilterHashtable @{ LogName = 'Application'; StartTime = (Get-Date).AddMinutes(-15) } -ErrorAction SilentlyContinue | Where-Object { $_.Message -match 'A51' } | Select-Object -First 5 | ForEach-Object { $_.Message } | Add-Content report\smoke.txt
-          if ($exited) { exit 1 }
+          Log '--- files the game wrote next to the exe (names only)'
+          Get-ChildItem $play -File | Where-Object { $_.LastWriteTime -gt $started.AddSeconds(-1) } | ForEach-Object { Log $_.Name }
+          if (Test-Path "$play\a51_local_coop_probe.log") { Get-Content "$play\a51_local_coop_probe.log" -Tail 40 | Set-Content report\probe-tail.txt -Encoding Ascii }
+          Log '--- Windows application error events in the last 15 minutes that mention A51'
+          Get-WinEvent -FilterHashtable @{ LogName = 'Application'; StartTime = (Get-Date).AddMinutes(-15) } -ErrorAction SilentlyContinue | Where-Object { $_.Message -match 'A51' } | Select-Object -First 3 | ForEach-Object { Log $_.Message }
+          exit 0
 
       - name: Publish report
         if: always()
@@ -485,7 +513,9 @@ jobs:
           set -euo pipefail
           TAG="coop-stage1-run${{ github.run_number }}"
           COOP="${{ needs.linux-test.result }}"
-          SMOKE="${{ needs.windows-smoke.result }}"
+          git fetch --quiet --depth 30 origin qa-results:refs/remotes/origin/qa-results || true
+          SMOKE="$(git show "origin/qa-results:runs/${{ github.run_number }}/windows-smoke/smoke.txt" 2>/dev/null | tr -d '\r' | grep -m1 '^SMOKE RESULT' | sed 's/^SMOKE RESULT: //' || true)"
+          [ -n "$SMOKE" ] || SMOKE="no result"
           PRE=()
           if [ "$COOP" != "success" ]; then PRE=(--prerelease); fi
           SUM="$(cut -d' ' -f1 zip.sha256)"
@@ -498,7 +528,7 @@ jobs:
 
           Automated checks of this commit:
           - Two-controller test (Linux test build with a bot, software rendering): ${COOP}
-          - Windows start-up check of this exact build: ${SMOKE}
+          - Windows start-up check of this exact build (the cloud machine has no graphics card): ${SMOKE}
           - The play build contains no test code (checked in the build job).
 
           The zip contains no game data. SHA-256 of the zip: ${SUM}
@@ -506,3 +536,8 @@ jobs:
           gh release delete "$TAG" --repo "$GITHUB_REPOSITORY" --yes --cleanup-tag >/dev/null 2>&1 || true
           gh release create "$TAG" --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" \
             --title "Co-op Stage 1, build ${{ github.run_number }}" --notes-file notes.md "${PRE[@]}" "$ZIP"
+
+          # keep the newest three builds, remove older ones
+          gh release list --repo "$GITHUB_REPOSITORY" --limit 50 --json tagName,createdAt \
+            --jq '[.[] | select(.tagName | startswith("coop-stage1-run"))] | sort_by(.createdAt) | reverse | .[3:] | .[].tagName' \
+            | while read -r OLD; do gh release delete "$OLD" --repo "$GITHUB_REPOSITORY" --yes --cleanup-tag || true; done

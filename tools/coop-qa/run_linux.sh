@@ -24,6 +24,9 @@
 #   QA_CYCLES           how often the script table is repeated                    (default 3)
 #   QA_GDB              1 = run under gdb to get a backtrace if the game crashes (default 0)
 #
+# While the bot plays, a screenshot of the virtual screen is taken every few seconds (needs ImageMagick).
+# The images stay in the scratch directory; only numbers made from them go to the out directory.
+#
 # Prints RESULT: PASS or RESULT: FAIL as the last line and exits 0 only on PASS.
 set -uo pipefail
 
@@ -110,7 +113,8 @@ if [ "$MODE" = coop ]; then export A51_LOCAL_COOP=2; else unset A51_LOCAL_COOP; 
 # Virtual display.
 N=99
 while [ -e "/tmp/.X11-unix/X$N" ] || [ -e "/tmp/.X$N-lock" ]; do N=$((N + 1)); done
-Xvfb ":$N" -screen 0 1280x720x24 -nolisten tcp > "$OUT/xvfb.txt" 2>&1 &
+# The virtual screen is exactly as big as the game window, so a screenshot of the whole screen is the game.
+Xvfb ":$N" -screen 0 "${WINDOW}x24" -nolisten tcp > "$OUT/xvfb.txt" 2>&1 &
 XPID=$!
 trap 'kill "$XPID" 2>/dev/null || true' EXIT
 for _ in $(seq 1 100); do
@@ -136,10 +140,22 @@ timeout --signal=TERM --kill-after=30 "$((MAX_SECONDS + 300))" "${CMD[@]}" > "$W
 GPID=$!
 say "game started, pid $GPID"
 
+# Screenshots stay in $WORK/shots on this machine (they show game content); only numbers made from
+# them are published.
+SHOTS="$WORK/shots"
+mkdir -p "$SHOTS"
+NSHOTS=0
+if ! command -v import >/dev/null 2>&1; then say "ImageMagick 'import' is not installed: no screenshots"; fi
+
 REASON=""
 while kill -0 "$GPID" 2>/dev/null; do
   sleep 5
   ELAPSED=$(( $(date +%s) - START ))
+  if [ "$NSHOTS" -lt 60 ] && grep -q ' armed: ' "$RUN/a51_qa_bot.log" 2>/dev/null && command -v import >/dev/null 2>&1; then
+    if timeout 20 import -window root -depth 8 "ppm:$SHOTS/$(printf '%03d' "$NSHOTS").ppm" 2>/dev/null; then
+      NSHOTS=$((NSHOTS + 1))
+    fi
+  fi
   if ! grep -q ' armed: ' "$RUN/a51_qa_bot.log" 2>/dev/null && [ "$ELAPSED" -gt "$STARTUP_SECONDS" ]; then
     REASON="startup gate: the level was not running after ${STARTUP_SECONDS}s"
     break
@@ -181,14 +197,16 @@ say "game output: $(wc -l < "$WORK/game-output.txt") lines, a51_qa_bot.log: $(wc
 #------------------------------------------------------------------------------
 # Score
 #------------------------------------------------------------------------------
-python3 -I "$HERE/coopqa.py" score "$OUT/a51_qa_bot.log" --script "$WORK/script.txt" --expect "$EXPECT" --json "$OUT/score.json" > "$OUT/score.txt" 2>&1
+say "screenshots taken: $NSHOTS"
+python3 -I "$HERE/coopqa.py" shots "$SHOTS" --log "$OUT/a51_qa_bot.log" --out "$OUT/shots.txt" 2>&1 | tee -a "$OUT/run.txt"
+python3 -I "$HERE/coopqa.py" score "$OUT/a51_qa_bot.log" --script "$WORK/script.txt" --expect "$EXPECT" --shots "$OUT/shots.txt" --json "$OUT/score.json" > "$OUT/score.txt" 2>&1
 SCORE_RC=$?
 cat "$OUT/score.txt"
 
 FINAL=$SCORE_RC
 if [ "$MODE" = single ]; then
   # The control twin: the very same log judged as a co-op run must fail.
-  python3 -I "$HERE/coopqa.py" score "$OUT/a51_qa_bot.log" --script "$WORK/script.txt" --expect coop > "$OUT/score-twin-as-coop.txt" 2>&1
+  python3 -I "$HERE/coopqa.py" score "$OUT/a51_qa_bot.log" --script "$WORK/script.txt" --expect coop --shots "$OUT/shots.txt" > "$OUT/score-twin-as-coop.txt" 2>&1
   TWIN_RC=$?
   say "control twin (single-player log judged as co-op): $(tail -n 1 "$OUT/score-twin-as-coop.txt")"
   if [ "$TWIN_RC" -eq 0 ]; then

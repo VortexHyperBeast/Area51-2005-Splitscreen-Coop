@@ -15,6 +15,9 @@ How to start
 1. Extract the whole zip (right click, Extract All) into a NEW folder, for example
    C:\Games\Area51-Coop. Do not use your original install folder.
 2. Plug in both Xbox controllers.
+   (The game draws with Vulkan, not DirectX. Every current NVIDIA, AMD and Intel graphics
+   driver includes it. If the game stops right at the start with a Vulkan message, update
+   the graphics driver.)
 3. Double-click  PLAY-COOP-2-PLAYERS.cmd
 
    First start only: it asks "Download it now?" before it downloads the game data

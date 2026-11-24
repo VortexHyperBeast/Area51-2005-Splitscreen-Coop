@@ -5,6 +5,9 @@
         Write the script that the in-game QA bot plays on two virtual gamepads.
   coopqa.py score <a51_qa_bot.log> [--script FILE] [--expect coop|single] [--json FILE]
         Read the game's own log, print one line per check, end with RESULT: PASS or FAIL.
+  coopqa.py shots <dir-with-ppm> --log <a51_qa_bot.log> --out <numbers.txt>
+        Turn screenshots into numbers (the images themselves are never published);
+        score reads them with --shots.
   coopqa.py selftest
         Prove the scorer.  A simulated good run must PASS and every simulated
         fault must be caught.  Exit code 0 only if that holds.
@@ -293,7 +296,7 @@ PASS, FAIL, NOEV, INFO = "PASS", "FAIL", "NO-EVIDENCE", "INFO"
 
 REQUIRED_COOP = ["startup", "two_players", "separate_pads", "no_fall", "alive", "bot_drove",
                  "completed", "walk0", "walk1", "walkboth", "look0", "look1",
-                 "fire0", "fire1", "reload0", "reload1", "pad_mapping", "split_view"]
+                 "fire0", "fire1", "reload0", "reload1", "pad_mapping", "split_view", "split_pixels"]
 INFO_COOP = ["jump0", "jump1"]
 REQUIRED_SINGLE = ["startup", "one_player", "bot_drove", "completed", "walk_single"]
 
@@ -627,7 +630,183 @@ def check_asserts(log):
     return Result("asserts", INFO, "%d assertion(s) were logged and skipped. First: %s" % (len(log.asserts), first))
 
 
-def score(log, phases, expect="coop"):
+# ----------------------------------------------------------------------------
+# Screenshots.  The launcher grabs the virtual screen a few times while the bot plays.  The
+# images show game content and stay on the test machine; this code turns each one into a few
+# numbers (the only thing that is published) and the check below judges the numbers.
+#
+# A real split screen is two complete views with a thin gap between them that neither view
+# draws into.  The gap shows the clear colour, so it is a uniform line across the whole width
+# while the rows on both sides of it show the game.  One view drawn full screen has no such line.
+# ----------------------------------------------------------------------------
+
+SHOT_BAND = 8            # rows on each side of the gap that are looked at
+SHOT_CONTENT_STD = 6.0   # luminance spread that counts as "the game is drawn here"
+SHOT_BAR_STD = 4.0       # luminance spread of a uniform gap
+SHOT_MIN_USABLE = 3      # screenshots needed before the check can say anything
+SHOT_DIFF_MIN = 3.0      # the two halves are not the same picture if they differ by this much on average
+
+SHOT_KEYS = ("bar_mean", "bar_std", "above_mean", "above_std", "below_mean", "below_std",
+             "top_std", "bot_std", "diff")
+
+
+def read_ppm(path):
+    """Binary PPM (P6, 8 bit) -> (width, height, pixel bytes)."""
+    with open(path, "rb") as f:
+        data = f.read()
+    n = len(data)
+    pos = 0
+    tokens = []
+    while len(tokens) < 4 and pos < n:
+        c = data[pos:pos + 1]
+        if c in (b" ", b"\t", b"\r", b"\n"):
+            pos += 1
+        elif c == b"#":
+            while pos < n and data[pos:pos + 1] != b"\n":
+                pos += 1
+        else:
+            start = pos
+            while pos < n and data[pos:pos + 1] not in (b" ", b"\t", b"\r", b"\n"):
+                pos += 1
+            tokens.append(data[start:pos])
+    if len(tokens) < 4 or tokens[0] != b"P6" or tokens[3] != b"255":
+        raise ValueError("not an 8 bit binary PPM")
+    pos += 1                                  # the single whitespace after the maximum value
+    w, h = int(tokens[1]), int(tokens[2])
+    body = data[pos:pos + w * h * 3]
+    if len(body) != w * h * 3:
+        raise ValueError("truncated PPM")
+    return w, h, body
+
+
+def _lum_row(body, w, y):
+    row = body[y * w * 3:(y + 1) * w * 3]
+    return [(r * 299 + g * 587 + b * 114) // 1000 for r, g, b in zip(row[0::3], row[1::3], row[2::3])]
+
+
+def _mean_std(values):
+    if not values:
+        return 0.0, 0.0
+    m = sum(values) / float(len(values))
+    return m, math.sqrt(sum((v - m) ** 2 for v in values) / float(len(values)))
+
+
+def shot_stats(path, vp0, vp1):
+    """Numbers for one screenshot.  vp0 / vp1 are the two viewports (x0, y0, x1, y1) from the game's log."""
+    w, h, body = read_ppm(path)
+    full_w, full_h = max(vp0[2], vp1[2]), max(vp0[3], vp1[3])
+    sy = h / float(full_h)
+    top_end = int(round(vp0[3] * sy))         # first row below the top view
+    bot_start = int(round(vp1[1] * sy))       # first row of the bottom view
+    bar_rows = list(range(top_end, bot_start))
+    out = {"w": w, "h": h, "bar_y0": top_end, "bar_y1": bot_start}
+
+    def band(rows):
+        vals = []
+        for y in rows:
+            if 0 <= y < h:
+                vals.extend(_lum_row(body, w, y))
+        return _mean_std(vals)
+
+    out["bar_mean"], out["bar_std"] = band(bar_rows)
+    out["above_mean"], out["above_std"] = band(range(top_end - SHOT_BAND, top_end))
+    out["below_mean"], out["below_std"] = band(range(bot_start, bot_start + SHOT_BAND))
+
+    # whole views on a coarse grid (every 4th row, every 4th pixel), and the two compared point by point
+    top_h = top_end
+    bot_h = h - bot_start
+    n = max(0, min(top_h, bot_h))
+    tops, bots, diffs = [], [], []
+    for k in range(0, n, 4):
+        a = _lum_row(body, w, k)[::4]
+        b = _lum_row(body, w, bot_start + k)[::4]
+        tops.extend(a)
+        bots.extend(b)
+        diffs.extend(abs(p - q) for p, q in zip(a, b))
+    out["top_std"] = _mean_std(tops)[1]
+    out["bot_std"] = _mean_std(bots)[1]
+    out["diff"] = (sum(diffs) / float(len(diffs))) if diffs else 0.0
+    return out
+
+
+def shots_from_dir(directory, log):
+    """Statistics for every *.ppm in the directory, as text lines the score command can read back."""
+    import os
+    v0 = log.views.get(0, [])
+    v1 = log.views.get(1, [])
+    lines = []
+    if v0 and not v1:
+        # a one-view run: look at the middle of the screen as if it were split there
+        x0, y0, x1, y1 = v0[-1]["vp"]
+        mid = (y1 - y0) // 2
+        vp0, vp1 = (x0, y0, x1, y0 + mid - 1), (x0, y0 + mid + 1, x1, y1)
+    elif not v0:
+        return ["# no view lines in the game's log, so the screenshots cannot be located"]
+    else:
+        vp0, vp1 = v0[-1]["vp"], v1[-1]["vp"]
+    names = sorted(f for f in os.listdir(directory) if f.endswith(".ppm"))
+    for i, name in enumerate(names):
+        try:
+            s = shot_stats(os.path.join(directory, name), vp0, vp1)
+        except (ValueError, IOError) as e:
+            lines.append("shot %d unreadable: %s" % (i, e))
+            continue
+        lines.append("shot %d size=%dx%d gap_rows=%d-%d %s" % (
+            i, s["w"], s["h"], s["bar_y0"], s["bar_y1"],
+            " ".join("%s=%.1f" % (k, s[k]) for k in SHOT_KEYS)))
+    return lines
+
+
+SHOT_RE = re.compile(r"^shot (\d+) size=(\d+)x(\d+) gap_rows=(-?\d+)-(-?\d+) (.*)$")
+
+
+def parse_shots(text):
+    shots = []
+    for line in text.splitlines():
+        m = SHOT_RE.match(line.strip())
+        if not m:
+            continue
+        d = {"n": int(m.group(1)), "gap": int(m.group(5)) - int(m.group(4))}
+        for kv in m.group(6).split():
+            k, _, v = kv.partition("=")
+            try:
+                d[k] = float(v)
+            except ValueError:
+                pass
+        if all(k in d for k in SHOT_KEYS):
+            shots.append(d)
+    return shots
+
+
+def _split_counts(shots):
+    usable = [s for s in shots if s["gap"] > 0 and s["above_std"] >= SHOT_CONTENT_STD and s["below_std"] >= SHOT_CONTENT_STD]
+    bar = [s for s in usable if s["bar_std"] < SHOT_BAR_STD]
+    return usable, bar
+
+
+def check_split_pixels(shots):
+    if shots is None:
+        return Result("split_pixels", NOEV, "no screenshot statistics were given")
+    if not shots:
+        return Result("split_pixels", NOEV, "no screenshot could be read")
+    if all(s["gap"] <= 0 for s in shots):
+        return Result("split_pixels", FAIL, "the two viewports in the game's log leave no gap, so no line can separate the views")
+    usable, bar = _split_counts(shots)
+    if len(usable) < SHOT_MIN_USABLE:
+        return Result("split_pixels", NOEV, "only %d of %d screenshots show the game on both sides of the gap (need %d)" % (
+            len(usable), len(shots), SHOT_MIN_USABLE))
+    problems = []
+    if len(bar) < max(SHOT_MIN_USABLE, int(0.6 * len(usable) + 0.999)):
+        problems.append("only %d of %d screenshots show a uniform line between two drawn views" % (len(bar), len(usable)))
+    if max(s["diff"] for s in usable) < SHOT_DIFF_MIN:
+        problems.append("the two halves are the same picture (largest difference %.1f)" % max(s["diff"] for s in usable))
+    if problems:
+        return Result("split_pixels", FAIL, "; ".join(problems))
+    return Result("split_pixels", PASS, "%d of %d screenshots: a uniform line between two drawn halves, halves differ by up to %.0f" % (
+        len(bar), len(usable), max(s["diff"] for s in usable)))
+
+
+def score(log, phases, expect="coop", shots=None):
     results = []
     results.append(check_startup(log, expect))
     results.append(check_asserts(log))
@@ -652,6 +831,11 @@ def score(log, phases, expect="coop"):
                     best = max(best, hdist(a, b))
         results.append(Result("walk_single", PASS if best >= MOVE_MIN else NOEV,
                               "the single player walked %dcm in the best walk phase" % best))
+        if shots:
+            usable, bar = _split_counts(shots)
+            results.append(Result("no_split_line", INFO,
+                                  "%d of %d screenshots show a uniform line across the middle (a one-view run should show none)" % (
+                                      len(bar), len(usable)), ))
         return results, REQUIRED_SINGLE
 
     results.append(check_two_players(log))
@@ -677,6 +861,7 @@ def score(log, phases, expect="coop"):
         results.append(aggregate(kind, per))
     results.append(check_pad_mapping(meta))
     results.append(check_split_view(log))
+    results.append(check_split_pixels(shots))
     return results, REQUIRED_COOP
 
 
@@ -706,6 +891,9 @@ def render(results, required, ok, failed, noev):
 # Simulator for the self-test: writes a log the way the game would
 # ----------------------------------------------------------------------------
 
+SIM_W, SIM_H = 640, 360          # window of the simulated run
+SIM_GAP0, SIM_GAP1 = 179, 181    # the two rows between the views
+
 FAULTS = [
     "none",
     "p1_clone",            # player 1 just copies player 0
@@ -725,6 +913,9 @@ FAULTS = [
     "pads_swapped",        # pad 0 drives player 1 and the reverse (still a valid co-op)
     "same_pad",            # both players bound to one game-side pad
     "p1_falls",            # player 1 spawned outside the world
+    "no_gap_line",         # the screenshots show one continuous picture (no line between two views)
+    "bottom_blank",        # the bottom half of the screen stays empty
+    "identical_halves",    # both halves show the same picture
 ]
 
 # fault -> names that must NOT be PASS in coop mode ("*ok*" = the run is a good one)
@@ -747,6 +938,9 @@ EXPECTED = {
     "pads_swapped": [],
     "same_pad": ["separate_pads"],
     "p1_falls": ["no_fall"],
+    "no_gap_line": ["split_pixels"],
+    "bottom_blank": ["split_pixels"],
+    "identical_halves": ["split_pixels"],
 }
 
 
@@ -902,11 +1096,11 @@ def simulate(faults=(), settle_ms=DEFAULT_SETTLE_MS, cycles=DEFAULT_CYCLES, play
                 else:
                     ex, ey, ez = int(src.x), int(src.y + 172), int(src.z)
                 if n_views == 1:
-                    vp = (0, 0, 1280, 720)
+                    vp = (0, 0, SIM_W, SIM_H)
                 elif "same_viewport" in faults:
-                    vp = (0, 0, 1280, 720)
+                    vp = (0, 0, SIM_W, SIM_H)
                 else:
-                    vp = (0, 0, 1280, 359) if i == 0 else (0, 361, 1280, 720)
+                    vp = (0, 0, SIM_W, SIM_GAP0) if i == 0 else (0, SIM_GAP1, SIM_W, SIM_H)
                 emit(30000 + t, t, "view %d viewport=%d,%d,%d,%d eye=%d,%d,%d frames=%d views=%d" % (
                     i, vp[0], vp[1], vp[2], vp[3], ex, ey, ez, frames, n_views))
         t += step
@@ -918,9 +1112,65 @@ def simulate(faults=(), settle_ms=DEFAULT_SETTLE_MS, cycles=DEFAULT_CYCLES, play
     return "\n".join(lines) + "\n"
 
 
+def synth_shots(directory, faults=(), n=8, w=SIM_W, h=SIM_H):
+    """Screenshots the way a correct split screen looks (two noisy halves, a black gap), or broken."""
+    import os
+    import random
+    faults = set(faults)
+    rows_top, rows_bot, rows_gap = SIM_GAP0, h - SIM_GAP1, SIM_GAP1 - SIM_GAP0
+
+    def noise(rnd, rows):
+        size = rows * w * 3
+        return rnd.getrandbits(8 * size).to_bytes(size, "little")
+
+    for i in range(n):
+        rnd = random.Random(1000 + i)
+        top = noise(rnd, rows_top)
+        bot = noise(rnd, rows_bot)
+        if "identical_halves" in faults:
+            bot = top[:rows_bot * w * 3]
+        if "bottom_blank" in faults:
+            bot = bytes(len(bot))
+        gap = bytes(rows_gap * w * 3)
+        if "no_gap_line" in faults:
+            gap = noise(rnd, rows_gap)
+        with open(os.path.join(directory, "shot%02d.ppm" % i), "wb") as f:
+            f.write(b"P6\n%d %d\n255\n" % (w, h))
+            f.write(top + gap + bot)
+
+
+def sim_shots(log, faults=()):
+    import shutil
+    import tempfile
+    d = tempfile.mkdtemp(prefix="coopqa-shots-")
+    try:
+        synth_shots(d, faults)
+        return parse_shots("\n".join(shots_from_dir(d, log)))
+    finally:
+        shutil.rmtree(d, ignore_errors=True)
+
+
 def selftest():
     ok_all = True
     phases, _ = build_phases()
+
+    # the screenshot reader: a tiny picture whose numbers are known
+    import os
+    import tempfile
+    tmp = tempfile.mkdtemp(prefix="coopqa-ppm-")
+    try:
+        path = os.path.join(tmp, "t.ppm")
+        with open(path, "wb") as f:
+            f.write(b"P6\n# comment\n4 2\n255\n" + bytes([10, 20, 30] * 4 + [255, 255, 255] * 4))
+        w, h, body = read_ppm(path)
+        lum0 = _lum_row(body, w, 0)
+        lum1 = _lum_row(body, w, 1)
+        rd = (w, h, len(body)) == (4, 2, 24) and lum0 == [(10 * 299 + 20 * 587 + 30 * 114) // 1000] * 4 == [18] * 4 and lum1 == [255] * 4
+    finally:
+        import shutil
+        shutil.rmtree(tmp, ignore_errors=True)
+    print(" %-4s screenshot reader" % ("ok" if rd else "BAD"))
+    ok_all &= rd
 
     # the script generator and the parser agree
     txt = make_script()
@@ -937,7 +1187,7 @@ def selftest():
 
     for fault in FAULTS:
         log = parse_log(simulate([fault] if fault != "none" else []))
-        results, required = score(log, phases, "coop")
+        results, required = score(log, phases, "coop", sim_shots(log, [fault]))
         ok, failed, noev = verdict(results, required)
         by = {r.name: r.status for r in results}
         expected = EXPECTED[fault]
@@ -954,16 +1204,17 @@ def selftest():
 
     # the single-player control
     log = parse_log(simulate(["single_player"], players=1))
-    results, required = score(log, phases, "single")
+    one_shots = sim_shots(log, ["no_gap_line"])
+    results, required = score(log, phases, "single", one_shots)
     ok, failed, noev = verdict(results, required)
     print(" %-4s control run, one player, expect=single: %s" % ("ok" if ok else "BAD", "PASS" if ok else (failed, noev)))
     ok_all &= ok
-    results, required = score(log, phases, "coop")
+    results, required = score(log, phases, "coop", one_shots)
     ok, failed, noev = verdict(results, required)
     print(" %-4s control run judged as co-op must FAIL: %s" % ("ok" if not ok else "BAD", "FAIL" if not ok else "PASS"))
     ok_all &= (not ok)
     log = parse_log(simulate([]))
-    results, required = score(log, phases, "single")
+    results, required = score(log, phases, "single", sim_shots(log, []))
     ok, failed, noev = verdict(results, required)
     print(" %-4s a two-player run judged as single must FAIL: %s" % ("ok" if not ok else "BAD", "FAIL" if not ok else "PASS"))
     ok_all &= (not ok)
@@ -990,6 +1241,12 @@ def main(argv=None):
     s.add_argument("--script")
     s.add_argument("--expect", choices=["coop", "single"], default="coop")
     s.add_argument("--json")
+    s.add_argument("--shots", help="statistics written by the shots command")
+
+    h = sub.add_parser("shots")
+    h.add_argument("dir", help="directory with the *.ppm screenshots (they never leave the test machine)")
+    h.add_argument("--log", required=True, help="the game's a51_qa_bot.log, for the viewport rectangles")
+    h.add_argument("--out", required=True, help="text file with numbers only")
 
     m = sub.add_parser("sim")
     m.add_argument("out")
@@ -1013,6 +1270,18 @@ def main(argv=None):
             f.write(simulate(faults, players=a.players))
         print("wrote simulated log %s (faults: %s)" % (a.out, faults or "none"))
         return 0
+    if a.cmd == "shots":
+        try:
+            with open(a.log, "r", errors="replace") as f:
+                log = parse_log(f.read())
+        except IOError as e:
+            print("cannot read %s: %s" % (a.log, e))
+            return 1
+        lines = shots_from_dir(a.dir, log)
+        with open(a.out, "w") as f:
+            f.write("\n".join(lines) + "\n")
+        print("coopqa shots: %d lines written to %s" % (len(lines), a.out))
+        return 0
     if a.cmd == "score":
         try:
             with open(a.log, "r", errors="replace") as f:
@@ -1028,7 +1297,14 @@ def main(argv=None):
         if phases is None:
             phases = build_phases()[0]
         log = parse_log(text)
-        results, required = score(log, phases, a.expect)
+        shots = None
+        if a.shots:
+            try:
+                with open(a.shots, "r", errors="replace") as f:
+                    shots = parse_shots(f.read())
+            except IOError:
+                shots = None
+        results, required = score(log, phases, a.expect, shots)
         ok, failed, noev = verdict(results, required)
         print("coopqa score: expect=%s log=%s (%d lines, %d not understood)" % (a.expect, a.log, log.lines, log.unparsed))
         print(render(results, required, ok, failed, noev))
