@@ -94,8 +94,11 @@ void player::UpdateUserInput(  f32 DeltaTime )
 #ifdef A51_LOCAL_COOP
             if( m_CoopDowned )
             {
-                // Downed: look around only, no moving, firing or using.
+                // Downed: look around only, no moving, firing, grenades, melee,
+                // mutation or using.  The weapon code reads m_Input directly, so the
+                // buttons are dropped here, not only skipped.
                 UpdateMoveLookInput();
+                m_Input.ClearActionsKeepLook();
                 m_fMoveValue     = 0.0f;
                 m_fStrafeValue   = 0.0f;
                 m_JumpBufferTime = 0.0f;

@@ -138,7 +138,15 @@ def make_script(settle_ms=DEFAULT_SETTLE_MS, cycles=DEFAULT_CYCLES):
     lines.append("cmd %d down1" % t)
     for pad in (0, 1):
         lines.append("%d %d %d x 100" % (t + DOWN_HOLD_START_MS, t + DOWN_HOLD_START_MS + DOWN_HOLD_MS, pad))
+    # player 2 takes the pistol out, goes down again, and both pads pull the trigger and press
+    # the grenade button (B): the downed player must not shoot or throw (player 1 may)
+    lines.append("cmd %d pistol1" % (t + DOWN_PISTOL_MS))
     lines.append("cmd %d down1" % (t + DOWN_AGAIN_MS))
+    lines.append("cmd %d downstat" % (t + DOWN_STAT1_MS))
+    for pad in (0, 1):
+        lines.append("%d %d %d rt 100" % (t + DOWN_ATTACK_MS, t + DOWN_ATTACK_MS + 800, pad))
+        lines.append("%d %d %d b 100" % (t + DOWN_ATTACK_MS, t + DOWN_ATTACK_MS + 300, pad))
+    lines.append("cmd %d downstat" % (t + DOWN_STAT2_MS))
     t += DOWN_MS
     # player 1 dies: the level must restart from the checkpoint without a crash (with player 2
     # down too, both players are down: the checkpoint restarts)
@@ -155,8 +163,12 @@ JOIN_PRESS_MS = 3500                        # after the start of the join sectio
 JOIN_MS = 5500
 DOWN_HOLD_START_MS = 1000                   # after the "down1" command
 DOWN_HOLD_MS = 5500                         # Use held; the revive takes 4 s
+DOWN_PISTOL_MS = 6800                       # player 2 takes the pistol out
 DOWN_AGAIN_MS = 8000                        # second "down1"
-DOWN_MS = 9500
+DOWN_STAT1_MS = 8200                        # what player 2 holds, before ...
+DOWN_ATTACK_MS = 8400                       # ... both pads fire and throw ...
+DOWN_STAT2_MS = 9400                        # ... and after
+DOWN_MS = 9600
 DEATH_MS = 20000
 
 
@@ -215,6 +227,7 @@ class Log(object):
         self.swaptest = {}      # "flipped"/"restored" -> (player 0 pad, player 1 pad)
         self.kill_qt = None
         self.down_cmds = []     # script times of the "down1" command
+        self.downstats = []     # (qt, downed, grenades, rounds) of player 2 while downed
         self.downs = []         # (qt, downed/revive_start/revived/bledout, local slot)
         self.finished_wall = None
         self.begins = []        # script times of "campaign BeginGame done"
@@ -320,6 +333,10 @@ def parse_log(text):
             mm = re.match(r"swaptest (\w+): player 0 pad=(-?\d+) player 1 pad=(-?\d+)$", msg)
             if mm:
                 log.swaptest[mm.group(1)] = (int(mm.group(2)), int(mm.group(3)))
+        elif msg.startswith("downstat player 1:"):
+            dm = re.match(r"^downstat player 1: downed=(\d) grenades=(-?\d+) rounds=(-?\d+)$", msg)
+            if dm:
+                log.downstats.append((qt, int(dm.group(1)), int(dm.group(2)), int(dm.group(3))))
         elif msg.startswith("down player 1"):
             log.down_cmds.append(qt)
         elif msg.startswith("coop downed ") or msg.startswith("coop revived ") or \
@@ -425,7 +442,7 @@ PASS, FAIL, NOEV, INFO = "PASS", "FAIL", "NO-EVIDENCE", "INFO"
 REQUIRED_COOP = ["startup", "two_players", "separate_pads", "no_fall", "alive", "bot_drove",
                  "completed", "walk0", "walk1", "walkboth", "look0", "look1",
                  "fire0", "fire1", "reload0", "reload1", "pad_mapping", "split_view", "split_pixels",
-                 "partner_body", "shared_cinema", "shared_items", "scanner", "own_profiles", "live_swap", "asserts", "carry_over", "join_button", "downed_revive", "death_restart"]
+                 "partner_body", "shared_cinema", "shared_items", "scanner", "own_profiles", "live_swap", "asserts", "carry_over", "join_button", "downed_revive", "downed_no_attack", "death_restart"]
 INFO_COOP = ["jump0", "jump1"]
 REQUIRED_SINGLE = ["startup", "one_player", "bot_drove", "completed", "walk_single"]
 
@@ -808,6 +825,28 @@ def check_downed_revive(log):
     if poses and "pose_missing" in poses:
         return Result("downed_revive", FAIL, "player 2 went down and was revived, but the lying-down body animation did not play." + pose)
     return Result("downed_revive", PASS, "player 2 went down, was revived after %d ms of play, and went down again.%s" % (took, pose))
+
+
+def check_downed_no_attack(log):
+    """While downed, player 2 must not shoot or throw a grenade: both pads pull the trigger and
+    press the grenade button between two snapshots of what he holds."""
+    if len(log.downstats) < 2:
+        return Result("downed_no_attack", NOEV, "the two snapshots of the downed player were not logged")
+    a, b = log.downstats[0], log.downstats[1]
+    if not (a[1] and b[1]):
+        return Result("downed_no_attack", FAIL, "player 2 was not down during the attack test (downed %d then %d)" % (a[1], b[1]))
+    spent = []
+    if b[2] != a[2]:
+        spent.append("grenades %d -> %d" % (a[2], b[2]))
+    if b[3] != a[3]:
+        spent.append("rounds %d -> %d" % (a[3], b[3]))
+    samples = [smp for smp in log.players.get(1, []) if a[0] <= smp["qt"] <= b[0]]
+    clips = [smp["inclip"] for smp in samples if smp["inclip"] >= 0]
+    if clips and max(clips) != min(clips):
+        spent.append("clip %d -> %d" % (max(clips), min(clips)))
+    if spent:
+        return Result("downed_no_attack", FAIL, "the downed player attacked: " + ", ".join(spent))
+    return Result("downed_no_attack", PASS, "the downed player fired nothing and threw nothing (grenades %d, rounds %d)" % (b[2], b[3]))
 
 
 def check_death_restart(log):
@@ -1241,6 +1280,7 @@ def score(log, phases, expect="coop", shots=None):
     results.append(check_live_swap(log))
     results.append(check_carry_over(log))
     results.append(check_downed_revive(log))
+    results.append(check_downed_no_attack(log))
     results.append(check_death_restart(log))
     if phases:
         results.append(check_join_button(log, max(p.check_end for p in phases) + GAP_MS))
@@ -1310,6 +1350,7 @@ FAULTS = [
     "death_crash",         # the game dies when the level restarts after a death
     "not_downed",          # lethal damage kills player 2 instead of putting him down
     "no_revive",           # holding Use beside the downed partner does nothing
+    "downed_attacks",      # the downed player can still shoot and throw grenades
 ]
 
 # fault -> names that must NOT be PASS in coop mode ("*ok*" = the run is a good one)
@@ -1347,6 +1388,7 @@ EXPECTED = {
     "death_crash": ["death_restart", "completed"],
     "not_downed": ["downed_revive"],
     "no_revive": ["downed_revive"],
+    "downed_attacks": ["downed_no_attack"],
 }
 
 
@@ -1565,6 +1607,10 @@ def simulate(faults=(), settle_ms=DEFAULT_SETTLE_MS, cycles=DEFAULT_CYCLES, play
         emit(30000 + d + DOWN_AGAIN_MS, d + DOWN_AGAIN_MS, "down player 1: lethal damage")
         if "not_downed" not in faults:
             emit(30000 + d + DOWN_AGAIN_MS, d + DOWN_AGAIN_MS, "coop downed slot=1 bleedout=25.0")
+        dn = 0 if "not_downed" in faults else 1
+        emit(30000 + d + DOWN_STAT1_MS, d + DOWN_STAT1_MS, "downstat player 1: downed=%d grenades=2 rounds=7" % dn)
+        emit(30000 + d + DOWN_STAT2_MS, d + DOWN_STAT2_MS, "downstat player 1: downed=%d grenades=%d rounds=%d" % (
+            dn, 1 if "downed_attacks" in faults else 2, 6 if "downed_attacks" in faults else 7))
         k = end + SCANNER_MS + JOIN_MS + DOWN_MS
         emit(30000 + k, k, "kill player 0: dying")
         if "death_crash" not in faults:

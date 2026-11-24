@@ -163,6 +163,8 @@ public:
 
     void                Clear                   ( void );
     void                Sample                  ( ingame_pad const& Input );
+    // Drop every button and the movement, keep the look (local co-op, downed player).
+    void                ClearActionsKeepLook    ( void );
 
     PlayerInputState const& GetState             ( void ) const;
 

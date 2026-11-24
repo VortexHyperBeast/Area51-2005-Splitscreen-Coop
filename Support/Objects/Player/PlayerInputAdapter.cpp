@@ -96,6 +96,15 @@ void PlayerInput::Clear( void )
 
 //=========================================================================
 
+void PlayerInput::ClearActionsKeepLook( void )
+{
+    PlayerLookInput const Look = m_State.Look;
+    m_State.Clear();
+    m_State.Look = Look;
+}
+
+//=========================================================================
+
 f32 PlayerInput::GetCombinedActionValue( input_action_state const& Action )
 {
     f32 Value = Action.GetIsValue( INPUT_DEVICE_KEYBOARD );

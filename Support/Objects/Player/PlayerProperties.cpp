@@ -402,10 +402,15 @@ xbool player::CoopTryGoDown( void )
     m_CoopRevivedThisFrame = FALSE;
     ResetHealth( 1.0f );
 
-    // Drop out of zoom and stop moving.
+    // Drop out of zoom, stop any shot, grenade or melee in progress, stop moving.
     new_weapon* pWeapon = GetCurrentWeaponPtr();
     if( pWeapon )
+    {
+        pWeapon->ReleaseAudio();
         pWeapon->ClearZoom();
+    }
+    SetAnimState( ANIM_STATE_IDLE );
+    m_NextAnimState = ANIM_STATE_UNDEFINED;
     ClearMoveLookInput();
     CoopStartDownedPose();
 

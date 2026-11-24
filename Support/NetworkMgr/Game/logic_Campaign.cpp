@@ -467,6 +467,31 @@ void logic_campaign::QaCommand( const char* pName )
         return;
     }
 
+    if( x_strcmp( pName, "pistol1" ) == 0 )
+    {
+        // Player 2 takes the pistol out (so a shot while downed would show in his rounds).
+        player* p1 = (player*)g_ObjMgr.GetObjectByGuid( s_pQaCampaign->m_PlayerGuid[1] );
+        qa_bot_Log( "pistol player 1: %s", p1 ? "switching" : "no player" );
+        if( p1 )
+            p1->SetNextWeapon2( INVEN_WEAPON_DESERT_EAGLE, TRUE );
+        return;
+    }
+
+    if( x_strcmp( pName, "downstat" ) == 0 )
+    {
+        // What player 2 holds while downed: shots and grenades must not change.
+        player* p1 = (player*)g_ObjMgr.GetObjectByGuid( s_pQaCampaign->m_PlayerGuid[1] );
+        if( p1 )
+        {
+            new_weapon* pWeapon = p1->GetCurrentWeaponPtr();
+            const s32 Rounds = pWeapon ? (s32)( pWeapon->GetAmmoCount( new_weapon::AMMO_PRIMARY ) ) : -1;
+            qa_bot_Log( "downstat player 1: downed=%d grenades=%d rounds=%d",
+                        (int)p1->CoopIsDowned(),
+                        (int)p1->GetInventory2().GetAmount( INVEN_GRENADE_FRAG ), (int)Rounds );
+        }
+        return;
+    }
+
     if( x_strcmp( pName, "kill0" ) == 0 )
     {
         // Player 1 dies: shared fate, the level restarts from the checkpoint.
