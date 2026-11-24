@@ -27,6 +27,7 @@
 #include "UI/ui_manager.hpp"
 #include "UI/ui_renderer.hpp"
 #include "Render/Render.hpp"
+#include "Render/Texture.hpp"
 #include "NetworkMgr/Game/LocalCoop.hpp"
 
 #include "Dialogs/dlg_MainMenu.hpp"
@@ -2211,15 +2212,31 @@ void state_mgr::EnterStartupInfo( void )
     // owner's PC).  Without that file: the original screen.
     {
         FILE* pCoopScreen = fopen( "SCREENS/UI_COOP_WARNINGSCREEN.XBMP", "rb" );
+        const xbool bFound = ( pCoopScreen != NULL );
         if( pCoopScreen )
-        {
             fclose( pCoopScreen );
-            g_UiMgr->LoadBackground( "startup info", "SCREENS/UI_COOP_WARNINGSCREEN.XBMP" );
-        }
-        else
+
+        // Diagnostics (co-op probe log): does each picture load as a texture?
+        // (The owner saw a black screen with the co-op picture, 2026-11-24.)
+        static const char* const s_Names[2] = { "SCREENS/UI_COOP_WARNINGSCREEN.XBMP", "SCREENS/UI_WARNINGSCREEN.XBMP" };
+        xbool bLoaded[2] = { FALSE, FALSE };
+        for( s32 i = 0; i < 2; i++ )
         {
-            g_UiMgr->LoadBackground( "startup info", "SCREENS/UI_WARNINGSCREEN.XBMP" );
+            rhandle<texture> hTex;
+            hTex.SetName( s_Names[i] );
+            texture* pTex = hTex.GetPointer();
+            bLoaded[i] = ( pTex != NULL );
+            LocalCoop_Probe( "start screen %s: file=%d texture=%d w=%d h=%d pw=%d fmt=%d mips=%d flags=%x",
+                             s_Names[i], (i == 0) ? (int)bFound : -1, (int)bLoaded[i],
+                             pTex ? (int)pTex->m_bitmap.GetWidth()  : -1,
+                             pTex ? (int)pTex->m_bitmap.GetHeight() : -1,
+                             pTex ? (int)pTex->m_bitmap.GetPWidth() : -1,
+                             pTex ? (int)pTex->m_bitmap.GetFormat() : -1,
+                             pTex ? (int)pTex->m_bitmap.GetNMips()  : -1,
+                             pTex ? (unsigned)pTex->m_bitmap.GetFlags() : 0u );
         }
+
+        g_UiMgr->LoadBackground( "startup info", (bFound && bLoaded[0]) ? s_Names[0] : s_Names[1] );
     }
 #else
     g_UiMgr->LoadBackground( "startup info", "SCREENS/UI_WARNINGSCREEN.XBMP" );

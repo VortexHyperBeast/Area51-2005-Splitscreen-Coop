@@ -82,6 +82,9 @@ cp -f "$PKG/A51" "$INSTALL/A51" || fail_early "cannot install the binary"
 chmod +x "$INSTALL/A51"
 mkdir -p "$INSTALL/SHADERS"
 cp -a "$PKG/SHADERS/." "$INSTALL/SHADERS/" || fail_early "cannot install the shaders"
+# the co-op mod's start screen, as in the play zip (the probe log reports whether it loads)
+SCREENS_SRC="$(cd "$(dirname "$0")/../coop-play/SCREENS" 2>/dev/null && pwd)"
+if [ -n "$SCREENS_SRC" ]; then mkdir -p "$INSTALL/SCREENS"; cp -f "$SCREENS_SRC"/*.XBMP "$INSTALL/SCREENS/" 2>/dev/null || true; fi
 printf 'AutoCampaign=1\n' > "$INSTALL/Config.ini"
 say "install ready ($(find "$INSTALL/SHADERS" -name '*.ecs' | wc -l) shader packages)"
 
