@@ -10476,13 +10476,54 @@ void state_mgr::CloseMovie( void )
 //  Player Inventory Functions
 //=========================================================================
 
+#ifdef A51_LOCAL_COOP
+//  Local co-op: "the player" of the campaign code is player 1 (local slot 0).
+//  The object manager's first player can be either one.
+player* CoopCampaignPlayer( void )
+{
+    slot_id ID = g_ObjMgr.GetFirst( object::TYPE_PLAYER );
+    player* pFirst = (player*)g_ObjMgr.GetObjectBySlot( ID );
+    if( !LocalCoop_IsActive() )
+        return pFirst;
+    while( ID != SLOT_NULL )
+    {
+        player* pPlayer = (player*)g_ObjMgr.GetObjectBySlot( ID );
+        if( pPlayer && (pPlayer->GetLocalSlot() == 0) )
+            return pPlayer;
+        ID = g_ObjMgr.GetNext( ID );
+    }
+    return pFirst;
+}
+
+//  Every player object (local co-op: both get what player 1 carried).
+s32 CoopAllPlayers( player** ppOut, s32 Max )
+{
+    s32 n = 0;
+    slot_id ID = g_ObjMgr.GetFirst( object::TYPE_PLAYER );
+    while( (ID != SLOT_NULL) && (n < Max) )
+    {
+        player* pPlayer = (player*)g_ObjMgr.GetObjectBySlot( ID );
+        if( pPlayer )
+            ppOut[n++] = pPlayer;
+        if( !LocalCoop_IsActive() )
+            break;
+        ID = g_ObjMgr.GetNext( ID );
+    }
+    return n;
+}
+#endif
+
 void state_mgr::BackupPlayerInventory( void )
 {
     ASSERT( GameMgr.GetGameType() == GAME_CAMPAIGN );
 
     // get the player object
+#ifdef A51_LOCAL_COOP
+    player* pPlayer = CoopCampaignPlayer();
+#else
     slot_id ID = g_ObjMgr.GetFirst( object::TYPE_PLAYER );
     player* pPlayer = (player*)g_ObjMgr.GetObjectBySlot( ID );
+#endif
     ASSERT( pPlayer );
 
     // store player settings
@@ -10530,9 +10571,19 @@ void state_mgr::RestorePlayerInventory( void )
     // are we advancing levels?
     if( m_bInventoryIsStored )
     {
-        // get the player object
+        // get the player object (local co-op: every player gets the stored inventory)
+#ifdef A51_LOCAL_COOP
+        player* pTargets[4];
+        const s32 nTargets = CoopAllPlayers( pTargets, 4 );
+        const inven_item StoredWeapon = m_CurrentWeaponItem;
+        for( s32 iTarget = 0; iTarget < nTargets; iTarget++ )
+        {
+        m_CurrentWeaponItem = StoredWeapon;
+        player* pPlayer = pTargets[iTarget];
+#else
         slot_id ID = g_ObjMgr.GetFirst( object::TYPE_PLAYER );
         player* pPlayer = (player*)g_ObjMgr.GetObjectBySlot( ID );
+#endif
         ASSERT( pPlayer );
 
         // create the weapon objects
@@ -10577,6 +10628,9 @@ void state_mgr::RestorePlayerInventory( void )
         pPlayer->m_PrevWeaponItem                = m_PrevWeaponItem;
         pPlayer->m_NextWeaponItem                = m_NextWeaponItem; 
         pPlayer->m_Mutagen                       = m_Mutagen;
+#ifdef A51_LOCAL_COOP
+        }
+#endif
 
         // clear flag
         m_bInventoryIsStored = FALSE;

@@ -447,6 +447,31 @@ void logic_campaign::QaCommand( const char* pName )
         return;
     }
 
+    if( x_strcmp( pName, "carryover" ) == 0 )
+    {
+        // What a level change does with the inventory: store it (from player 1),
+        // the new level's players start empty, restore it.  The owner's player 1
+        // lost his weapons at a level change (2026-11-24).
+        g_StateMgr.BackupPlayerInventory();
+        for( s32 i = 0; i < LocalCoop_PlayerCount(); i++ )
+        {
+            player* pPlayer = (player*)g_ObjMgr.GetObjectByGuid( s_pQaCampaign->m_PlayerGuid[i] );
+            if( pPlayer )
+                pPlayer->GetInventory2().Clear();
+        }
+        g_StateMgr.RestorePlayerInventory();
+        for( s32 i = 0; i < LocalCoop_PlayerCount(); i++ )
+        {
+            player* pPlayer = (player*)g_ObjMgr.GetObjectByGuid( s_pQaCampaign->m_PlayerGuid[i] );
+            if( pPlayer )
+                qa_bot_Log( "carryover player %d: scanner=%d pistol=%d",
+                            (int)i,
+                            (int)pPlayer->GetInventory2().GetAmount( INVEN_WEAPON_SCANNER ),
+                            (int)pPlayer->GetInventory2().GetAmount( INVEN_WEAPON_DESERT_EAGLE ) );
+        }
+        return;
+    }
+
     if( x_strcmp( pName, "scanner" ) == 0 )
     {
         player* p0 = (player*)g_ObjMgr.GetObjectByGuid( s_pQaCampaign->m_PlayerGuid[0] );

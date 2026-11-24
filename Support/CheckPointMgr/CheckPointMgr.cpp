@@ -7,6 +7,11 @@
 #include "Objects/HudObject.hpp"
 #include "StateMgr/PlayerProfile.hpp"
 #include "StateMgr/StateMgr.hpp"
+#include "NetworkMgr/Game/LocalCoop.hpp"
+#ifdef A51_LOCAL_COOP
+extern player* CoopCampaignPlayer( void );                  // StateMgr.cpp
+extern s32     CoopAllPlayers    ( player** ppOut, s32 Max );
+#endif
 
 check_point_mgr g_CheckPointMgr;
 
@@ -95,6 +100,14 @@ xbool check_point_mgr::Restore( xbool bIsDebugAdvance )
             ASSERT( CP.bIsValid );
             if( CP.bIsValid )
             {
+#ifdef A51_LOCAL_COOP
+                // Local co-op: both players get the checkpoint's inventory.
+                player* pTargets[4];
+                const s32 nTargets = CoopAllPlayers( pTargets, 4 );
+                for( s32 iTarget = 0; iTarget < nTargets; iTarget++ )
+                {
+                player* pPlayer = pTargets[iTarget];
+#endif
                 // Now that the inventory is correct, redo the inventory.
                 pPlayer->ReInitInventory();
 
@@ -129,6 +142,9 @@ xbool check_point_mgr::Restore( xbool bIsDebugAdvance )
 
                 // Switch to the correct weapon.
                 pPlayer->SetNextWeapon2( pPlayer->m_CurrentWeaponItem, TRUE );
+#ifdef A51_LOCAL_COOP
+                }
+#endif
 
 #if !defined(X_RETAIL)
                 // Only do the debug advance trigger if its from debug menu.
@@ -246,8 +262,12 @@ xbool check_point_mgr::SetCheckPoint( guid RespawnGUID,
 
     // Find the damn player.
     LOG_MESSAGE( "check_point_mgr::SetCheckPoint","Checkpoint set RespawnGUID:%08x, DebugAdvanceGUID:%08x", RespawnGUID, DebugAdvanceGUID );
+#ifdef A51_LOCAL_COOP
+    player* pPlayer = CoopCampaignPlayer();     // player 1 (the first player object can be player 2)
+#else
     slot_id ID = g_ObjMgr.GetFirst( object::TYPE_PLAYER );
     player* pPlayer = (player*)g_ObjMgr.GetObjectBySlot( ID );
+#endif
     ASSERT( pPlayer );
     if( pPlayer )
     {

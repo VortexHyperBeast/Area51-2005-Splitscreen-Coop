@@ -123,12 +123,15 @@ def make_script(settle_ms=DEFAULT_SETTLE_MS, cycles=DEFAULT_CYCLES):
             lines.append("%d %d %d %s 100" % (t, t + hold, pad, ctrl))
             lines.append("%d %d %d rx 25" % (t, t + hold, pad))
             t += hold + 500
+    lines.append("# a level change's inventory store and restore, after the scanner was given")
+    lines.append("cmd %d carryover" % t)
+    t += 2000
     lines.append("quit %d" % (t + 1000))
     return "\n".join(lines) + "\n"
 
 
 SCANNER_SWITCH_MS = 4000
-SCANNER_MS = SCANNER_SWITCH_MS + 2 * (3500 + 2000)
+SCANNER_MS = SCANNER_SWITCH_MS + 2 * (3500 + 2000) + 2000
 
 
 HEADER_RE = re.compile(r"^#\s*coopqa script v1 settle=(\d+) cycles=(\d+)", re.M)
@@ -182,6 +185,7 @@ class Log(object):
         self.players = {}       # index -> list of sample dicts (sorted by qt)
         self.views = {}         # index -> list of view dicts
         self.profiles = {}      # local player -> (profile slot, name, avatar)
+        self.carryover = {}     # player -> (scanner, pistol) after a stored/restored inventory
         self.swaptest = {}      # "flipped"/"restored" -> (player 0 pad, player 1 pad)
         self.scanner_cmd_qt = None
         self.scanner_has = {}
@@ -268,6 +272,10 @@ def parse_log(text):
             mm = re.match(r"profile player (\d+): index=(-?\d+) name=(.*) avatar=(-?\d+)$", msg)
             if mm:
                 log.profiles[int(mm.group(1))] = (int(mm.group(2)), mm.group(3), int(mm.group(4)))
+        elif msg.startswith("carryover player "):
+            mm = re.match(r"carryover player (\d+): scanner=(-?\d+) pistol=(-?\d+)$", msg)
+            if mm:
+                log.carryover[int(mm.group(1))] = (int(mm.group(2)), int(mm.group(3)))
         elif msg.startswith("swaptest "):
             mm = re.match(r"swaptest (\w+): player 0 pad=(-?\d+) player 1 pad=(-?\d+)$", msg)
             if mm:
@@ -360,7 +368,7 @@ PASS, FAIL, NOEV, INFO = "PASS", "FAIL", "NO-EVIDENCE", "INFO"
 REQUIRED_COOP = ["startup", "two_players", "separate_pads", "no_fall", "alive", "bot_drove",
                  "completed", "walk0", "walk1", "walkboth", "look0", "look1",
                  "fire0", "fire1", "reload0", "reload1", "pad_mapping", "split_view", "split_pixels",
-                 "partner_body", "shared_cinema", "shared_items", "scanner", "own_profiles", "live_swap", "asserts"]
+                 "partner_body", "shared_cinema", "shared_items", "scanner", "own_profiles", "live_swap", "asserts", "carry_over"]
 INFO_COOP = ["jump0", "jump1"]
 REQUIRED_SINGLE = ["startup", "one_player", "bot_drove", "completed", "walk_single"]
 
@@ -692,6 +700,16 @@ def check_pad_mapping(results_meta):
         return Result("pad_mapping", FAIL, "both pads drive player %d" % drivers[0])
     return Result("pad_mapping", PASS, "pad 0 -> player %d, pad 1 -> player %d, in all %d judged actions" % (
         drivers[0], drivers[1], sum(len(t) for p in mapping.values() for t in p.values())))
+
+
+def check_carry_over(log, players=2):
+    """A level change stores the inventory and restores it in the new level.  Both players must
+    come out with the scanner and the pistol they had (player 1 lost his on the owner's PC)."""
+    if not log.carryover:
+        return Result("carry_over", NOEV, "no carry-over lines")
+    bad = [i for i in range(players) if log.carryover.get(i, (0, 0)) < (1, 1) or min(log.carryover.get(i, (0, 0))) < 1]
+    detail = "; ".join("player %d: scanner %d, pistol %d" % ((i,) + log.carryover.get(i, (-1, -1))) for i in range(players))
+    return Result("carry_over", FAIL if bad else PASS, detail)
 
 
 def check_live_swap(log):
@@ -1079,6 +1097,7 @@ def score(log, phases, expect="coop", shots=None):
     results.append(check_scanner(log))
     results.append(check_own_profiles(log))
     results.append(check_live_swap(log))
+    results.append(check_carry_over(log))
     return results, REQUIRED_COOP
 
 
@@ -1140,6 +1159,7 @@ FAULTS = [
     "shared_profile",      # player 2 uses player 1's profile
     "swap_noop",           # the in-game controller swap changes nothing
     "assert_hit",          # the game hit a real assertion (a retail build may crash there)
+    "carry_lost_p1",       # player 1 loses his weapons at a level change
 ]
 
 # fault -> names that must NOT be PASS in coop mode ("*ok*" = the run is a good one)
@@ -1172,6 +1192,7 @@ EXPECTED = {
     "shared_profile": ["own_profiles"],
     "swap_noop": ["live_swap"],
     "assert_hit": ["asserts"],
+    "carry_lost_p1": ["carry_over"],
 }
 
 
@@ -1362,6 +1383,9 @@ def simulate(faults=(), settle_ms=DEFAULT_SETTLE_MS, cycles=DEFAULT_CYCLES, play
             emit(30000 + end, end, "ASSERT #1 PlayerLoco.cpp:198 expr=[0] msg=[Weapon not supported in mp!]")
         emit(30000 + end, end, "ASSERT #2 x_threads_posix.cpp:425 expr=[Joined] msg=[join timeout]")
         emit(30000 + end, end, "command scanner (hook set)")
+        emit(30000 + end + SCANNER_MS - 1500, end + SCANNER_MS - 1500,
+             "carryover player 0: scanner=%d pistol=%d" % ((0, 0) if "carry_lost_p1" in faults else (1, 1)))
+        emit(30000 + end + SCANNER_MS - 1500, end + SCANNER_MS - 1500, "carryover player 1: scanner=1 pistol=1")
         for i in range(players):
             emit(30000 + end, end, "scanner player %d: in inventory=1" % i)
         for k in range(1, (SCANNER_MS // 500)):
