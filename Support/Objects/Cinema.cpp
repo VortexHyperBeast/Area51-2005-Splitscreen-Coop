@@ -1941,6 +1941,9 @@ void cinema_object::OnAdvanceSimulation( f32 DeltaTime )
         {
             m_VoiceID     = 0;
             m_AudioStatus = AUDIO_STATUS_DONE;
+#ifdef A51_LOCAL_COOP_QA
+            qa_bot_Log( "cinema audio failed to start %s", m_Descriptor );
+#endif
             LOG_WARNING( "cinema_object::OnAdvanceSimulation",
                          "Cinema %s could not start audio '%s'; continuing without audio.",
                          (const char*)guid_ToString( GetGuid() ),
@@ -1952,6 +1955,9 @@ void cinema_object::OnAdvanceSimulation( f32 DeltaTime )
 
         if( !g_AudioMgr.IsValidVoiceIdCached( m_VoiceID ) )
         {
+#ifdef A51_LOCAL_COOP_QA
+            qa_bot_Log( "cinema audio lost while warming up %s", m_Descriptor );
+#endif
             m_VoiceID     = 0;
             m_AudioStatus = AUDIO_STATUS_DONE;
         }

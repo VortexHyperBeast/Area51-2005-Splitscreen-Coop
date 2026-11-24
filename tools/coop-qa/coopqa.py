@@ -1604,6 +1604,10 @@ def audio_report(text):
             verdict = "CUT" if (length > 0 and played < 0.9 * length - 300) else "ok"
             out.append("%-4s %s: played %d ms of %d ms" % (verdict, e.group(1), played, length))
             continue
+        f = re.match(r"cinema audio (failed to start|lost while warming up) (\S+)", msg)
+        if f:
+            out.append("FAIL %s: %s" % (f.group(2), f.group(1)))
+            continue
         v = re.match(r"audio voices=(\d+) top=(\S+) x(\d+)", msg)
         if v:
             voices.append((int(v.group(1)), v.group(2), int(v.group(3))))

@@ -6051,6 +6051,27 @@ void state_mgr::UpdateLevelSelect( void )
         {
             case DIALOG_STATE_SELECT:
             {
+#ifdef A51_LOCAL_COOP_QA
+                // TEST ONLY: A51_QA_LEVEL_ID starts that campaign level (e.g. 1010, the second).
+                {
+                    const char* pID = x_getenv( "A51_QA_LEVEL_ID" );
+                    if( pID && (pID[0] >= '0') && (pID[0] <= '9') )
+                    {
+                        const s32 LevelID = x_atoi( pID );
+                        for( s32 Index = 0; Index < g_MapList.GetCount(); Index++ )
+                        {
+                            const map_entry* pEntry = g_MapList.GetByIndex( Index );
+                            if( pEntry && (pEntry->GetMapID() == LevelID) && (pEntry->GetGameType() == GAME_CAMPAIGN) )
+                            {
+                                SetLevelIndex( Index );
+                                g_PendingConfig.SetLevelID( LevelID );
+                                qa_bot_Log( "level picked by the test: %d", (int)LevelID );
+                                break;
+                            }
+                        }
+                    }
+                }
+#endif
                 g_PendingConfig.SetMaxPlayerCount( LocalCoop_PlayerCount() );
 
                 g_NetworkMgr.BecomeServer();
