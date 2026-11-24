@@ -360,7 +360,7 @@ PASS, FAIL, NOEV, INFO = "PASS", "FAIL", "NO-EVIDENCE", "INFO"
 REQUIRED_COOP = ["startup", "two_players", "separate_pads", "no_fall", "alive", "bot_drove",
                  "completed", "walk0", "walk1", "walkboth", "look0", "look1",
                  "fire0", "fire1", "reload0", "reload1", "pad_mapping", "split_view", "split_pixels",
-                 "partner_body", "shared_cinema", "shared_items", "scanner", "own_profiles", "live_swap"]
+                 "partner_body", "shared_cinema", "shared_items", "scanner", "own_profiles", "live_swap", "asserts"]
 INFO_COOP = ["jump0", "jump1"]
 REQUIRED_SINGLE = ["startup", "one_player", "bot_drove", "completed", "walk_single"]
 
@@ -807,11 +807,23 @@ def check_cinema(log):
                   else "no cinematic during the script")
 
 
-def check_asserts(log):
+# Assertions known to be harmless and not caused by co-op (seen in every run, also single player).
+BENIGN_ASSERTS = ["x_threads_posix.cpp"]
+
+
+def check_asserts(log, required=False):
+    """The test build logs assertions and carries on.  A retail build compiles ASSERT(x) into
+    __assume(x), so an assertion that fails here can be a crash there: the owner's scanner crash
+    (2026-11-24) was 'Weapon not supported in mp!' asserts that runs 13 to 15 logged and ignored.
+    In co-op runs every assertion fails the run, except the known harmless ones."""
+    real = [a for a in log.asserts if not any(b in a for b in BENIGN_ASSERTS)]
     if not log.asserts:
-        return Result("asserts", INFO, "the game hit no assertion")
-    first = "; ".join(a[len("ASSERT "):][:160] for a in log.asserts[:3])
-    return Result("asserts", INFO, "%d assertion(s) were logged and skipped. First: %s" % (len(log.asserts), first))
+        return Result("asserts", PASS if required else INFO, "the game hit no assertion")
+    first = "; ".join(a[len("ASSERT "):][:160] for a in (real or log.asserts)[:3])
+    if real and required:
+        return Result("asserts", FAIL, "%d assertion(s) (a retail build may crash there). First: %s" % (len(real), first))
+    return Result("asserts", PASS if required else INFO,
+                  "%d assertion(s), %d of them not known harmless. First: %s" % (len(log.asserts), len(real), first))
 
 
 # ----------------------------------------------------------------------------
@@ -1002,7 +1014,7 @@ def score(log, phases, expect="coop", shots=None):
         expect = "coop"
     results = []
     results.append(check_startup(log, expect))
-    results.append(check_asserts(log))
+    results.append(check_asserts(log, required=(expect == "coop")))
     results.append(check_cinema(log))
     results.append(check_perf(log))
 
@@ -1127,6 +1139,7 @@ FAULTS = [
     "scanner_crash",       # the game dies when the scanner is fired
     "shared_profile",      # player 2 uses player 1's profile
     "swap_noop",           # the in-game controller swap changes nothing
+    "assert_hit",          # the game hit a real assertion (a retail build may crash there)
 ]
 
 # fault -> names that must NOT be PASS in coop mode ("*ok*" = the run is a good one)
@@ -1158,6 +1171,7 @@ EXPECTED = {
     "scanner_crash": ["scanner", "completed"],
     "shared_profile": ["own_profiles"],
     "swap_noop": ["live_swap"],
+    "assert_hit": ["asserts"],
 }
 
 
@@ -1344,6 +1358,9 @@ def simulate(faults=(), settle_ms=DEFAULT_SETTLE_MS, cycles=DEFAULT_CYCLES, play
     if players > 1 and "single_player" not in faults:
         emit(30000 + end, end, "swaptest flipped: player 0 pad=%s" % ("0 player 1 pad=1" if "swap_noop" in faults else "1 player 1 pad=0"))
         emit(30000 + end, end, "swaptest restored: player 0 pad=0 player 1 pad=1")
+        if "assert_hit" in faults:
+            emit(30000 + end, end, "ASSERT #1 PlayerLoco.cpp:198 expr=[0] msg=[Weapon not supported in mp!]")
+        emit(30000 + end, end, "ASSERT #2 x_threads_posix.cpp:425 expr=[Joined] msg=[join timeout]")
         emit(30000 + end, end, "command scanner (hook set)")
         for i in range(players):
             emit(30000 + end, end, "scanner player %d: in inventory=1" % i)

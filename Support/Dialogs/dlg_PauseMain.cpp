@@ -167,6 +167,8 @@ xbool dlg_pause_main::Create( s32                        UserID,
 #endif
 
     m_pButtonCoop[0] = m_pButtonCoop[1] = m_pButtonCoop[2] = NULL;
+    for( s32 i = 0; i < 16; i++ )
+        m_CoopPortrait[i] = -1;
 #if defined( A51_LOCAL_COOP ) && !CONFIG_IS_DEMO
     for( s32 Row = 0; Row < 3; Row++ )
     {
@@ -178,6 +180,19 @@ xbool dlg_pause_main::Create( s32                        UserID,
             m_pButtonCoop[Row] = pButton;
         else
             pButton->SetFlag( ui_win::WF_DISABLED, TRUE );
+    }
+    if( LocalCoop_IsActive() )
+    {
+        // The same pictures as the multiplayer avatar select screen.
+        static const char* const s_Files[16] =
+        {
+            "AVATARS/UI_AVATAR_HAZ_1.XBMP",  "AVATARS/UI_AVATAR_HAZ_2.XBMP",  "AVATARS/UI_AVATAR_HAZ_3.XBMP",  "AVATARS/UI_AVATAR_HAZ_4.XBMP",
+            "AVATARS/UI_AVATAR_SPEC_1.XBMP", "AVATARS/UI_AVATAR_SPEC_2.XBMP", "AVATARS/UI_AVATAR_SPEC_3.XBMP", "AVATARS/UI_AVATAR_SPEC_4.XBMP",
+            "AVATARS/UI_AVATAR_TECH_1.XBMP", "AVATARS/UI_AVATAR_TECH_2.XBMP", "AVATARS/UI_AVATAR_TECH_3.XBMP", "AVATARS/UI_AVATAR_TECH_4.XBMP",
+            "AVATARS/UI_AVATAR_SCI_1.XBMP",  "AVATARS/UI_AVATAR_SCI_2.XBMP",  "AVATARS/UI_AVATAR_SCI_3.XBMP",  "AVATARS/UI_AVATAR_SCI_4.XBMP",
+        };
+        for( s32 i = 0; i < 16; i++ )
+            m_CoopPortrait[i] = g_UiMgr->LoadBitmap( xfs( "coopavatar%d", (int)i ), s_Files[i] );
     }
     CoopUpdateLabels();
 #endif
@@ -290,6 +305,15 @@ void dlg_pause_main::Destroy( void )
 {
     ui_dialog::Destroy();
 
+    for( s32 i = 0; i < 16; i++ )
+    {
+        if( m_CoopPortrait[i] != -1 )
+        {
+            g_UiMgr->UnloadBitmap( xfs( "coopavatar%d", (int)i ) );
+            m_CoopPortrait[i] = -1;
+        }
+    }
+
     // kill screen wipe
     g_UiMgr->ResetScreenWipe();
 }
@@ -354,6 +378,10 @@ void dlg_pause_main::Render( s32 ox, s32 oy )
 
     // render the normal dialog stuff
     ui_dialog::Render( ox, oy );
+
+    // local co-op: picture of the body selected on the P1/P2 body row
+    if( g_UiMgr->IsScreenOn() )
+        CoopRenderPortrait();
 
     // render the glow bar
     g_UiMgr->RenderGlowBar();
@@ -488,6 +516,27 @@ void dlg_pause_main::CoopUpdateLabels( void )
         m_pButtonCoop[1 + Slot]->SetLabel( xwstring( (const char*)xfs( "P%d body: %s %d", (int)(Slot + 1),
                                                                       s_CoopBodyNames[Skin >> 2], (int)((Skin & 3) + 1) ) ) );
     }
+#endif
+}
+
+//  While the cursor is on "P1 body" or "P2 body", that player's body is shown
+//  to the right of the menu.
+void dlg_pause_main::CoopRenderPortrait( void )
+{
+#ifdef A51_LOCAL_COOP
+    const s32 Row = m_NavY - 4;                 // 0 swap, 1 body 1, 2 body 2 (see PauseMenuControls)
+    if( (Row < 1) || (Row > 2) || !m_pButtonCoop[Row] || !(m_pButtonCoop[Row]->GetFlags() & ui_win::WF_VISIBLE) )
+        return;
+
+    const s32 Skin = CoopBodyOf( Row - 1 );
+    if( m_CoopPortrait[Skin] == -1 )
+        return;
+
+    const s32 Size = 112;
+    irect     Box( m_CurrPos.r + 8, m_CurrPos.t + 150, m_CurrPos.r + 8 + Size, m_CurrPos.t + 150 + Size );
+    irect     Back( Box.l - 3, Box.t - 3, Box.r + 3, Box.b + 3 );
+    g_UiMgr->RenderGouraudRect( Back, xcolor(0,0,0,200), xcolor(0,0,0,200), xcolor(0,0,0,200), xcolor(0,0,0,200), FALSE );
+    g_UiMgr->RenderBitmap( m_CoopPortrait[Skin], Box );
 #endif
 }
 

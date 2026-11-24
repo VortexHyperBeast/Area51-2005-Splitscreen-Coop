@@ -85,6 +85,8 @@ protected:
     ui_button*          m_pButtonCoop[3];       // swap, body 1, body 2 (NULL when not co-op)
     void                CoopUpdateLabels    ( void );
     void                CoopOnAccept        ( s32 Row );
+    void                CoopRenderPortrait  ( void );
+    s32                 m_CoopPortrait[16];     // avatar portraits (multiplayer avatar select pictures)
 
 #if defined(DISPLAY_DEBUG_INFO)
     ui_text*            m_pInvertYText;

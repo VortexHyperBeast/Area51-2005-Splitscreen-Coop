@@ -753,6 +753,30 @@ void player_loco::OnInit( const geom* pGeom, const char* pAnimFileName, guid Obj
 
 xbool player_loco::SetWeapon( inven_item InvenWeapon )
 {
+    // The 3rd person body only has animations for the multiplayer weapons.  A
+    // campaign-only weapon (the scanner, for one) reaches here in local co-op,
+    // where the body is drawn for the other player.  The anim lookups below have
+    // no case for it: "default: ASSERTS(0)", which a retail MSVC build turns into
+    // __assume(0), i.e. a jump to nowhere (the owner's R1-with-scanner crash,
+    // 2026-11-24).  Such weapons use the empty-handed set instead.
+    switch( InvenWeapon )
+    {
+    case INVEN_NULL:
+    case INVEN_WEAPON_SMP:
+    case INVEN_WEAPON_SHOTGUN:
+    case INVEN_WEAPON_SNIPER_RIFLE:
+    case INVEN_WEAPON_DESERT_EAGLE:
+    case INVEN_WEAPON_MESON_CANNON:
+    case INVEN_WEAPON_BBG:
+    case INVEN_WEAPON_DUAL_SMP:
+    case INVEN_WEAPON_DUAL_SHT:
+    case INVEN_WEAPON_MUTATION:
+        break;
+    default:
+        InvenWeapon = INVEN_NULL;
+        break;
+    }
+
     // Already using anims for this weapon?
     if( m_CurrentWeaponAnims == InvenWeapon )
         return FALSE;
