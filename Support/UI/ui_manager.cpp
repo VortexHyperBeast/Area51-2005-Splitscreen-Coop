@@ -900,6 +900,15 @@ void ui_manager::RenderBackground( const char* pName ) const
     ASSERT( pBackground );
 
     texture* pTexture = pBackground->Bitmap.GetPointer();
+#ifdef A51_LOCAL_COOP
+    // The co-op mod's own start screen, when it loaded (StateMgr.cpp).
+    if( x_strcmp( pName, "startup info" ) == 0 )
+    {
+        extern texture* LocalCoop_StartScreenTexture( void );
+        if( LocalCoop_StartScreenTexture() )
+            pTexture = LocalCoop_StartScreenTexture();
+    }
+#endif
     if( pTexture )
     {
         g_UIRenderer.DrawImage( *pTexture,

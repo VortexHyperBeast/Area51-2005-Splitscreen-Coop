@@ -27,7 +27,6 @@
 #include "UI/ui_manager.hpp"
 #include "UI/ui_renderer.hpp"
 #include "Render/Render.hpp"
-#include "Render/TextureFile.hpp"
 #include "Render/Texture.hpp"
 #include "NetworkMgr/Game/LocalCoop.hpp"
 
@@ -2204,70 +2203,77 @@ u32 state_mgr::GetTotalLoreAcquired( void )
 
 //=========================================================================
 
+#ifdef A51_LOCAL_COOP
+//  The co-op mod's own start screen ("Splitscreen co-op"), shipped next to
+//  A51.exe as SCREENS/UI_COOP_WARNINGSCREEN.XBMP (2048x1024, 32-bit ARGB).
+//  The game's file system reads only its packed archives (loose files are not
+//  passed through in the play build), so the picture is read with plain stdio
+//  and made into a texture here; the UI draws it in place of the original
+//  start screen (ui_manager::RenderBackground).  Without the file, or if it
+//  does not load: the original screen.
+static texture* s_pCoopStartScreen = NULL;
+
+texture* LocalCoop_StartScreenTexture( void )
+{
+    return s_pCoopStartScreen;
+}
+
+static const char* CoopLoadStartScreen( void )
+{
+    if( s_pCoopStartScreen )
+        return "ok";
+
+    FILE* pFile = fopen( "SCREENS/UI_COOP_WARNINGSCREEN.XBMP", "rb" );
+    if( !pFile )
+        return "no file";
+
+    s32 Header[8];
+    if( fread( Header, sizeof(Header), 1, pFile ) != 1 )
+    {
+        fclose( pFile );
+        return "short header";
+    }
+    const s32 DataSize = Header[0], Width = Header[2], Height = Header[3], NMips = Header[6], Format = Header[7];
+    if( (Format != xbitmap::FMT_32_ARGB_8888) || (NMips != 0) || (Width <= 0) || (Width > 4096) ||
+        (Height <= 0) || (Height > 4096) || (DataSize != Width * Height * 4) )
+    {
+        fclose( pFile );
+        return "unexpected header";
+    }
+
+    byte* pData = (byte*)x_malloc( DataSize );
+    if( !pData )
+    {
+        fclose( pFile );
+        return "out of memory";
+    }
+    const xbool bRead = ( fread( pData, 1, DataSize, pFile ) == (size_t)DataSize );
+    fclose( pFile );
+    if( !bRead )
+    {
+        x_free( pData );
+        return "short data";
+    }
+
+    texture* pTexture = new texture;
+    pTexture->m_bitmap.Setup( xbitmap::FMT_32_ARGB_8888, Width, Height, TRUE, pData );
+    if( !vram_CreateTexture( pTexture->m_texture, pTexture->m_bitmap, TRUE, "coop start screen" ) )
+    {
+        delete pTexture;
+        return "GPU texture failed";
+    }
+    s_pCoopStartScreen = pTexture;
+    return "ok";
+}
+#endif
+
 void state_mgr::EnterStartupInfo( void )
 {
 #ifdef A51_LOCAL_COOP
-    // The co-op mod's own start screen ("Splitscreen co-op"), shipped next to
-    // A51.exe as SCREENS/UI_COOP_WARNINGSCREEN.XBMP (2048x1024, 32-bit, the
-    // game's own texture format; a .png there gave a black screen on the
-    // owner's PC).  Without that file: the original screen.
     {
-        FILE* pCoopScreen = fopen( "SCREENS/UI_COOP_WARNINGSCREEN.XBMP", "rb" );
-        const xbool bFound = ( pCoopScreen != NULL );
-        if( pCoopScreen )
-            fclose( pCoopScreen );
-
-        // Diagnostics (co-op probe log): does each picture load as a texture?
-        // (The owner saw a black screen with the co-op picture, 2026-11-24.)
-        static const char* const s_Names[2] = { "SCREENS/UI_COOP_WARNINGSCREEN.XBMP", "SCREENS/UI_WARNINGSCREEN.XBMP" };
-        xbool bLoaded[2] = { FALSE, FALSE };
-        for( s32 i = 0; i < 2; i++ )
-        {
-            // Resources load only when asked (on-demand loading is off): the
-            // original screen is loaded with the front end, the co-op one is
-            // not, which gave the black screen.
-            if( (i == 0) && bFound )
-                g_RscMgr.Load( s_Names[0] );
-            rhandle<texture> hTex;
-            hTex.SetName( s_Names[i] );
-            texture* pTex = hTex.GetPointer();
-            bLoaded[i] = ( pTex != NULL );
-            LocalCoop_Probe( "start screen %s: file=%d texture=%d w=%d h=%d pw=%d fmt=%d mips=%d flags=%x",
-                             s_Names[i], (i == 0) ? (int)bFound : -1, (int)bLoaded[i],
-                             pTex ? (int)pTex->m_bitmap.GetWidth()  : -1,
-                             pTex ? (int)pTex->m_bitmap.GetHeight() : -1,
-                             pTex ? (int)pTex->m_bitmap.GetPWidth() : -1,
-                             pTex ? (int)pTex->m_bitmap.GetFormat() : -1,
-                             pTex ? (int)pTex->m_bitmap.GetNMips()  : -1,
-                             pTex ? (unsigned)pTex->m_bitmap.GetFlags() : 0u );
-        }
-
-        // Deeper diagnostics when the co-op picture did not load: the data path,
-        // whether the file parses as an XBMP, and whether the GPU texture can be made.
-        if( bFound && !bLoaded[0] )
-        {
-            extern char g_DataPath[256];
-            const char* pFull = xfs( "%s/%s", g_DataPath, s_Names[0] );
-            X_FILE* pFile = x_fopen( pFull, "rb" );
-            xbitmap Bitmap;
-            const xbool bParsed = pFile ? texture_file::LoadXBMP( Bitmap, pFile ) : FALSE;
-            if( pFile )
-                x_fclose( pFile );
-            xbool bGpu = FALSE;
-            if( bParsed )
-            {
-                vram_texture Probe;
-                bGpu = vram_CreateTexture( Probe, Bitmap, TRUE, "probe" );
-                if( bGpu )
-                    vram_DestroyTexture( Probe );
-            }
-            LocalCoop_Probe( "start screen detail: datapath=%s open=%d parsed=%d w=%d h=%d fmt=%d gpu=%d",
-                             g_DataPath, (int)(pFile != NULL), (int)bParsed,
-                             bParsed ? (int)Bitmap.GetWidth() : -1, bParsed ? (int)Bitmap.GetHeight() : -1,
-                             bParsed ? (int)Bitmap.GetFormat() : -1, (int)bGpu );
-        }
-
-        g_UiMgr->LoadBackground( "startup info", (bFound && bLoaded[0]) ? s_Names[0] : s_Names[1] );
+        const char* pResult = CoopLoadStartScreen();
+        LocalCoop_Probe( "start screen: %s", pResult );
+        g_UiMgr->LoadBackground( "startup info", "SCREENS/UI_WARNINGSCREEN.XBMP" );
     }
 #else
     g_UiMgr->LoadBackground( "startup info", "SCREENS/UI_WARNINGSCREEN.XBMP" );
