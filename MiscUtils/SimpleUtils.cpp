@@ -516,18 +516,27 @@ god*  SMP_UTIL_Get_God( void )
 player* SMP_UTIL_GetActivePlayer( void )
 {
     slot_id PlayerSlot = g_ObjMgr.GetFirst( object::TYPE_PLAYER ) ;
+    player* pFirst     = NULL;
 
     while ( PlayerSlot != SLOT_NULL )
     {
         player* pPlayer = (player*)g_ObjMgr.GetObjectBySlot( PlayerSlot ) ;
         if ( pPlayer && pPlayer->IsActivePlayer() )
         {
-            return pPlayer;
+            // Local co-op: outside rendering both players are active; "the player"
+            // of the campaign's scripts is player 1 (local slot 0), whatever the
+            // object order.  The first player object could be player 2, which
+            // made e.g. a scene's player-voiced track 3D instead of 2D (voices
+            // lost at the first camera cut, 2026-11-24).
+            if( pPlayer->GetLocalSlot() <= 0 )
+                return pPlayer;
+            if( !pFirst )
+                pFirst = pPlayer;
         }
         PlayerSlot = g_ObjMgr.GetNext( PlayerSlot ) ;
     }
 
-    return NULL;
+    return pFirst;
 }
 
 //=========================================================================

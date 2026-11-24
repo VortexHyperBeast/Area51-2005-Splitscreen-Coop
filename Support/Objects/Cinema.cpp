@@ -2167,6 +2167,15 @@ void cinema_object::OnActivate( xbool Flag )
         {
             m_bIs2D = TRUE;
         }
+#ifdef A51_LOCAL_COOP
+        // Local co-op: a track placed on any local player is the player's own
+        // (2D), as in single player.
+        else if( pObject && pObject->IsKindOf( player::GetRTTI() ) &&
+                 (((player*)pObject)->GetLocalSlot() != -1) )
+        {
+            m_bIs2D = TRUE;
+        }
+#endif
     }
 
     ASSERT( m_AudioStatus == AUDIO_STATUS_OFF );
