@@ -2222,6 +2222,11 @@ void state_mgr::EnterStartupInfo( void )
         xbool bLoaded[2] = { FALSE, FALSE };
         for( s32 i = 0; i < 2; i++ )
         {
+            // Resources load only when asked (on-demand loading is off): the
+            // original screen is loaded with the front end, the co-op one is
+            // not, which gave the black screen.
+            if( (i == 0) && bFound )
+                g_RscMgr.Load( s_Names[0] );
             rhandle<texture> hTex;
             hTex.SetName( s_Names[i] );
             texture* pTex = hTex.GetPointer();
