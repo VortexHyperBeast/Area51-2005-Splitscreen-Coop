@@ -10,6 +10,7 @@
 #include "Objects/Ladders/Ladder_Field.hpp"
 #include "Objects/Turret.hpp"
 #include "NetworkMgr/Game/GameMgr.hpp"
+#include "NetworkMgr/Game/LocalCoop.hpp"
 #include "PerceptionMgr/PerceptionMgr.hpp"
 
 //=========================================================================
@@ -821,7 +822,9 @@ xbool player::UsingLoco( void )
     return( FALSE );
 #else
     // SB: Use loco so skin geom is setup for bbox collision detection in MP
-    return ( GameMgr.IsGameMultiplayer() );
+    // Local co-op: each player is drawn in the other player's view as a 3rd
+    // person body, which needs the avatar skin and its loco (as in MP split screen).
+    return ( GameMgr.IsGameMultiplayer() || LocalCoop_IsActive() );
 #endif
 }
 

@@ -8,6 +8,7 @@
 #include "GameLib/StatsMgr.hpp"
 #include "StateMgr/StateMgr.hpp"
 #include "NetworkMgr/Game/GameMgr.hpp"
+#include "NetworkMgr/Game/LocalCoop.hpp"
 #include "Objects/HudObject.hpp"
 #include "Characters/ActorEffects.hpp"
 #include "Configuration/GameConfig.hpp"
@@ -429,6 +430,28 @@ const object_desc& player::GetObjectType( void )
 }
 
 //=========================================================================
+// Local co-op (campaign, two players on one machine): the 3rd person body the
+// other player sees.  Same skin, animations and loco as the multiplayer avatar
+// (actor::PrepPlayerAvatar), but the campaign player keeps its own audio and
+// blood packages.  Mesh 0 / texture 0 of the avatar is the hazmat suit
+// (SKIN_HAZMAT_0, see actor::net_SetSkin for the mask layout).
+
+void player::PrepLocalCoopAvatar( void )
+{
+    m_SkinInst.SetUpSkinGeom( PRELOAD_MP_FILE( "MP_AVATAR_BIND.skingeom" ) );
+    m_hAnimGroup.SetName( PRELOAD_MP_FILE( "MP_AVATAR.anim" ) );
+
+    if( m_SkinInst.GetGeom() && m_hAnimGroup.GetPointer() && m_pLoco )
+    {
+        m_pLoco->OnInit( m_SkinInst.GetGeom(), m_hAnimGroup.GetName(), GetGuid() );
+        InitLoco();
+
+        m_SkinInst.SetVMeshMask( 1 );
+        m_SkinInst.SetVirtualTexture( 0 );
+    }
+}
+
+//=========================================================================
 
 void player::OnInit( void )
 {
@@ -541,6 +564,11 @@ void player::OnInit( void )
     // Avatar (only if we're not in split screen)
     if( UsingLoco() )
     {
+#ifndef X_EDITOR
+        if( !GameMgr.IsGameMultiplayer() )
+            PrepLocalCoopAvatar();
+        else
+#endif
         PrepPlayerAvatar();
     }
 

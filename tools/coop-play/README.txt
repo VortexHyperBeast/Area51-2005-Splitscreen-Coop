@@ -30,6 +30,8 @@ How to start
    in the GitHub repository this zip came from.
 
 4. In the game, start a new campaign as usual (you may have to create a profile first, any name).
+   The menu's own split-screen entry stays greyed out; that is expected, the start file has
+   already switched co-op on.
    Both controllers are used. The first controller is player 1 (it also controls the menus);
    the second is player 2. The keyboard and mouse also drive player 1.
    If they come out the wrong way round, unplug both and plug in the controller you want
@@ -42,6 +44,7 @@ What you should see
 -------------------
 - The screen split into a top and a bottom view, one HUD each.
 - Player 2 starts about a metre beside player 1 in the same world.
+- Each player sees the other one as a person in a hazmat suit (the multiplayer body).
 - Controller 1 moves, looks, shoots, reloads and uses things for the top player only,
   controller 2 for the bottom player only. Try one at a time, then both together.
 - If either player dies, the level restarts from the last checkpoint (temporary rule).
@@ -51,8 +54,8 @@ Known gaps (so they are not a surprise)
 ---------------------------------------
 - Enemies may only react to one of the two players. Making them aim at both is the next stage.
 - Triggers, cutscenes, checkpoints, pickups and level changes are not made two-player aware yet.
-  At the start of the first level only player 1 is in the opening cutscene while player 2
-  can already move (seen in the cloud test).
+  At the start of the first level the opening cutscene is flagged for player 1 only, not for
+  player 2 (seen in the cloud test's log). How that looks on screen is not known yet.
 - There is no menu entry for co-op; that is why the start file sets it up.
 - It is the first time this runs on a real Windows PC with real controllers. Expect rough edges.
 
@@ -65,3 +68,6 @@ Please send me:
  - the file  TEST-REPORT.txt  is only for reference, you do not need to send it.
 
 The game data and saves are in this folder. To start over, delete the folder.
+
+This is an unofficial, non-commercial test build for personal use. It contains no game data
+and has no licence from the owners of Area 51; please do not redistribute it.

@@ -741,6 +741,7 @@ protected:
             void        LoadAimAssistTweaks         ( void );
 
     virtual xbool       UsingLoco                   ( void );
+            void        PrepLocalCoopAvatar         ( void );
 
 //==============================================================================
 //  OLD PLAYER_ALL_STRAINS STUFF

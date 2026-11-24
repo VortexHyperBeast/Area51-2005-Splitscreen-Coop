@@ -900,6 +900,12 @@ void actor::OnDeathLogic( f32 DeltaTime )
 
 //=============================================================================
 
+#ifdef A51_LOCAL_COOP_QA
+// TEST ONLY: player bodies actually submitted for drawing, counted per view by
+// Apps/GameApp/main.cpp (see tools/coop-qa).
+s32 g_QaPlayerBodyDraws = 0;
+#endif
+
 void actor::OnRender( void )
 {
     #ifndef X_EDITOR
@@ -976,6 +982,11 @@ void actor::OnRender( void )
     {
         Ambient = GetFloorColor();
     }
+
+#ifdef A51_LOCAL_COOP_QA
+    if( GetType() == object::TYPE_PLAYER )
+        g_QaPlayerBodyDraws++;
+#endif
 
     // Render
     if ( (m_CloakState == CLOAKING_ON) ||

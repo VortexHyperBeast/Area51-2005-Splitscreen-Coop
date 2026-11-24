@@ -155,6 +155,7 @@ VIEW_RE = re.compile(
     r"^view (\d+) viewport=(-?\d+),(-?\d+),(-?\d+),(-?\d+) eye=(-?\d+),(-?\d+),(-?\d+) "
     r"frames=(\d+) views=(\d+)$")
 CTRL_RE = re.compile(r"^pad (\d+) (\w+) = (-?\d+)$")
+BODY_RE = re.compile(r"^bodies view=(\d+) drawn=(\d+) frames=(\d+) others=(\d+) with_body=(\d+)$")
 STATE_RE = re.compile(r"^state (\S+) -> (\S+)$")
 
 
@@ -162,6 +163,7 @@ class Log(object):
     def __init__(self):
         self.players = {}       # index -> list of sample dicts (sorted by qt)
         self.views = {}         # index -> list of view dicts
+        self.bodies = {}        # view index -> list of (drawn frames, frames, others, others with a body)
         self.controls = []      # (qt, pad, name, raw)
         self.states = []        # (wall, from, to)
         self.armed_wall = None
@@ -209,6 +211,11 @@ def parse_log(text):
                 "qt": qt, "wall": wall, "vp": (g[1], g[2], g[3], g[4]),
                 "eye": (g[5], g[6], g[7]), "frames": g[8], "views": g[9],
             })
+            continue
+        bm_ = BODY_RE.match(msg)
+        if bm_:
+            g = [int(v) for v in bm_.groups()]
+            log.bodies.setdefault(g[0], []).append((g[1], g[2], g[3], g[4]))
             continue
         cm = CTRL_RE.match(msg)
         if cm:
@@ -296,7 +303,8 @@ PASS, FAIL, NOEV, INFO = "PASS", "FAIL", "NO-EVIDENCE", "INFO"
 
 REQUIRED_COOP = ["startup", "two_players", "separate_pads", "no_fall", "alive", "bot_drove",
                  "completed", "walk0", "walk1", "walkboth", "look0", "look1",
-                 "fire0", "fire1", "reload0", "reload1", "pad_mapping", "split_view", "split_pixels"]
+                 "fire0", "fire1", "reload0", "reload1", "pad_mapping", "split_view", "split_pixels",
+                 "partner_body"]
 INFO_COOP = ["jump0", "jump1"]
 REQUIRED_SINGLE = ["startup", "one_player", "bot_drove", "completed", "walk_single"]
 
@@ -603,6 +611,32 @@ def check_pad_mapping(results_meta):
         drivers[0], drivers[1], sum(len(t) for p in mapping.values() for t in p.values())))
 
 
+def check_partner_body(log):
+    """Each view draws the other player's body.  The game counts, per view and second, the frames
+    in which a player body was submitted for drawing, and whether every other player has a body
+    (skin) at all.  A player with no body is invisible to the other one: the bug seen on the
+    owner's PC on 2026-11-24, before the co-op players got the avatar body."""
+    if not log.bodies:
+        return Result("partner_body", NOEV, "no body lines in the log (older build?)")
+    parts, bad = [], []
+    for v in (0, 1):
+        lst = log.bodies.get(v, [])
+        if not lst:
+            bad.append("view %d: no body lines" % v)
+            continue
+        drawn = sum(d for (d, f, o, w) in lst)
+        frames = sum(f for (d, f, o, w) in lst)
+        missing = len([1 for (d, f, o, w) in lst if w < o or o < 1])
+        if missing:
+            bad.append("view %d: the other player had no body in %d of %d seconds" % (v, missing, len(lst)))
+        if drawn == 0:
+            bad.append("view %d: the other player's body was never drawn (%d frames)" % (v, frames))
+        parts.append("view %d: other player's body drawn in %d of %d frames" % (v, drawn, frames))
+    if bad:
+        return Result("partner_body", FAIL, "; ".join(bad))
+    return Result("partner_body", PASS, "; ".join(parts))
+
+
 def check_perf(log):
     """Information only: how fast the game ran (a software renderer can be slow)."""
     if not log.perf:
@@ -862,6 +896,7 @@ def score(log, phases, expect="coop", shots=None):
     results.append(check_pad_mapping(meta))
     results.append(check_split_view(log))
     results.append(check_split_pixels(shots))
+    results.append(check_partner_body(log))
     return results, REQUIRED_COOP
 
 
@@ -916,6 +951,7 @@ FAULTS = [
     "no_gap_line",         # the screenshots show one continuous picture (no line between two views)
     "bottom_blank",        # the bottom half of the screen stays empty
     "identical_halves",    # both halves show the same picture
+    "partner_invisible",   # the players have no 3rd person body, so neither sees the other
 ]
 
 # fault -> names that must NOT be PASS in coop mode ("*ok*" = the run is a good one)
@@ -941,6 +977,7 @@ EXPECTED = {
     "no_gap_line": ["split_pixels"],
     "bottom_blank": ["split_pixels"],
     "identical_halves": ["split_pixels"],
+    "partner_invisible": ["partner_body"],
 }
 
 
@@ -1103,6 +1140,11 @@ def simulate(faults=(), settle_ms=DEFAULT_SETTLE_MS, cycles=DEFAULT_CYCLES, play
                     vp = (0, 0, SIM_W, SIM_GAP0) if i == 0 else (0, SIM_GAP1, SIM_W, SIM_H)
                 emit(30000 + t, t, "view %d viewport=%d,%d,%d,%d eye=%d,%d,%d frames=%d views=%d" % (
                     i, vp[0], vp[1], vp[2], vp[3], ex, ey, ez, frames, n_views))
+                others = n_views - 1
+                body = 0 if "partner_invisible" in faults else others
+                drawn = 0 if (body == 0 or (t // view_every) % 3 == 0) else 20
+                emit(30000 + t, t, "bodies view=%d drawn=%d frames=30 others=%d with_body=%d" % (
+                    i, drawn, others, body))
         t += step
 
     if "timeout" in faults:

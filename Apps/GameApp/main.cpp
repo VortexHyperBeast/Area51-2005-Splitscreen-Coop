@@ -1001,9 +1001,45 @@ void RenderGame( void )
         }
     #endif
 
+    #ifdef A51_LOCAL_COOP_QA
+        extern s32 g_QaPlayerBodyDraws;
+        g_QaPlayerBodyDraws = 0;
+    #endif
+
         // render all objects
         xbool DoPortalWalk = TRUE;
         g_ObjMgr.Render( DoPortalWalk, g_View, pPlayers[i]->GetPlayerViewZoneTracker() );
+
+    #ifdef A51_LOCAL_COOP_QA
+        {
+            // TEST ONLY: once a second per view, in how many frames a player body
+            // (the other player, drawn 3rd person) was submitted for drawing, and
+            // whether every other player has a body to draw at all.
+            static unsigned s_QaBodyLastMs[MAX_LOCAL_PLAYERS] = { 0 };
+            static unsigned s_QaBodyFrames[MAX_LOCAL_PLAYERS] = { 0 };
+            static unsigned s_QaBodyDrawn [MAX_LOCAL_PLAYERS] = { 0 };
+
+            s_QaBodyFrames[i]++;
+            if( g_QaPlayerBodyDraws > 0 )
+                s_QaBodyDrawn[i]++;
+
+            s32 nGeom = 0;
+            for( s32 j = 0; j < nPlayers; j++ )
+                if( (j != i) && pPlayers[j]->GetSkinInst().GetSkinGeom() )
+                    nGeom++;
+
+            unsigned const NowMs = qa_bot_WallMs();
+            if( (NowMs - s_QaBodyLastMs[i]) >= 1000 )
+            {
+                s_QaBodyLastMs[i] = NowMs;
+                qa_bot_Log( "bodies view=%d drawn=%u frames=%u others=%d with_body=%d",
+                            (int)i, s_QaBodyDrawn[i], s_QaBodyFrames[i],
+                            (int)(nPlayers - 1), (int)nGeom );
+                s_QaBodyDrawn[i]  = 0;
+                s_QaBodyFrames[i] = 0;
+            }
+        }
+    #endif
 
         if( !render::EndRenderScope() )
             return;
