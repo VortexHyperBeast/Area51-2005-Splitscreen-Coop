@@ -639,8 +639,12 @@ def check_completed(log, phases):
 
 def check_split_view(log):
     # only while the script runs: during a scene before it, both players share one full-screen view
-    v0 = [v for v in log.views.get(0, []) if v["qt"] >= 0]
-    v1 = [v for v in log.views.get(1, []) if v["qt"] >= 0]
+    # only the walk/look/fire phases: later sections teleport a player (join button)
+    last = max([s["qt"] for s in log.players.get(0, [])] or [0])
+    if log.scanner_cmd_qt is not None:
+        last = log.scanner_cmd_qt
+    v0 = [v for v in log.views.get(0, []) if 0 <= v["qt"] < last]
+    v1 = [v for v in log.views.get(1, []) if 0 <= v["qt"] < last]
     if len(v0) < 3 or len(v1) < 3:
         return Result("split_view", NOEV, "view lines: view0=%d view1=%d" % (len(v0), len(v1)))
     vp0, vp1 = set(v["vp"] for v in v0), set(v["vp"] for v in v1)

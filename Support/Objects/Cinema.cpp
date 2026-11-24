@@ -19,6 +19,7 @@
 #include "Animation/AnimPlayer.hpp"
 #include "Objects/Player/Player.hpp"
 #include "Input/backend/sdl/qa_bot.hpp"
+#include "NetworkMgr/Game/LocalCoop.hpp"
 
 //=========================================================================
 // DATA
@@ -1968,6 +1969,11 @@ void cinema_object::OnAdvanceSimulation( f32 DeltaTime )
             qa_bot_Log( "cinema audio start %s length=%d ms", m_Descriptor,
                         (int)(g_AudioMgr.GetLengthSeconds( m_Descriptor ) * 1000.0f) );
 #endif
+#ifdef A51_LOCAL_COOP
+            if( LocalCoop_IsActive() )
+                LocalCoop_Probe( "t=%.1f cinema sound start %s length=%.1f s", x_GetTimeSec(), m_Descriptor,
+                                 g_AudioMgr.GetLengthSeconds( m_Descriptor ) );
+#endif
             LOG_MESSAGE( "cinema_object::OnAdvanceSimulation", "AUDIO_STATUS_PLAYING" );
             m_AudioStatus = AUDIO_STATUS_PLAYING;
         }
@@ -1978,6 +1984,10 @@ void cinema_object::OnAdvanceSimulation( f32 DeltaTime )
         {
 #ifdef A51_LOCAL_COOP_QA
             qa_bot_Log( "cinema audio end %s", m_Descriptor );
+#endif
+#ifdef A51_LOCAL_COOP
+            if( LocalCoop_IsActive() )
+                LocalCoop_Probe( "t=%.1f cinema sound end %s", x_GetTimeSec(), m_Descriptor );
 #endif
             g_ConverseMgr.Stop( m_VoiceID );
             m_VoiceID = 0;

@@ -384,6 +384,15 @@ void logic_campaign::WriteProbe( f32 DeltaTime )
     }
     m_ProbeTimer = 2.0f;
 
+    // Sound: voices in use (to compare with the cutscene sound on a real PC).
+    {
+        s32         nUsed = 0, TopCount = 0;
+        const char* pTop  = "";
+        g_AudioMgr.DebugVoiceStats( nUsed, pTop, TopCount );
+        LocalCoop_Probe( "t=%.1f sound voices=%d top=%s x%d", x_GetTimeSec(), (int)nUsed,
+                         (pTop && pTop[0]) ? pTop : "-", (int)TopCount );
+    }
+
     for( s32 i = 0; i < LocalCoop_PlayerCount(); i++ )
     {
         player* pPlayer = (player*)g_ObjMgr.GetObjectByGuid( m_PlayerGuid[i] );
