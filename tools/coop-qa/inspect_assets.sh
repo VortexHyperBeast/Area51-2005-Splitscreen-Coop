@@ -83,3 +83,19 @@ df -h "$WORK" | tee -a "$OUT/inspect.txt"
   } >> "$OUT/guides.txt"
 done
 say "guide-like files: $(grep -c '^=== ' "$OUT/guides.txt")"
+
+# Which campaign level holds which kind of enemy (text counts only): the type names the levels'
+# files mention, e.g. "NPC - Mutant_Tank" for the Theta boss.  Helps to send the owner to the
+# right level for a test.
+: > "$OUT/level-enemies.txt"
+( cd "$WORK/data" && find . -maxdepth 3 -type d -ipath '*levels*' | sort ) | while read -r d; do
+  n=$(find "$WORK/data/$d" -maxdepth 1 -type f | wc -l)
+  [ "$n" -gt 0 ] || continue
+  line="$d:"
+  for t in "Mutant_Tank" "NPC - Gray" "NPC - BlackOpps" "NPC - Grunt" "NPC - Hazmat" "NPC - GENERIC" "Alien Glob" "Turret"; do
+    c=$(cat "$WORK/data/$d"/* 2>/dev/null | grep -a -o -i -- "$t" | wc -l)
+    line="$line  $t=$c"
+  done
+  echo "$line" >> "$OUT/level-enemies.txt"
+done
+say "level enemy scan: $(wc -l < "$OUT/level-enemies.txt") level folders"
