@@ -104,7 +104,7 @@ jobs:
         run: |
           $ErrorActionPreference = 'Continue'
           New-Item -ItemType Directory -Force logs | Out-Null
-          cmake --preset windows-msvc-x64 -DA51_LOCAL_COOP=ON 2>&1 | Tee-Object -FilePath logs/configure.txt
+          cmake --preset windows-msvc-x64 -DA51_LOCAL_COOP=ON -DA51_COOP_BUILD=${{ github.run_number }} 2>&1 | Tee-Object -FilePath logs/configure.txt
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           $hit = Select-String -Path build/windows-msvc-x64/CMakeCache.txt -Pattern '^A51_LOCAL_COOP:BOOL=ON$'
           if (-not $hit) { throw 'A51_LOCAL_COOP is not ON in the CMake cache' }
@@ -225,7 +225,7 @@ jobs:
       - name: Configure game (co-op switch and test bot on)
         run: |
           mkdir -p logs
-          cmake --preset linux-gcc-x64 -DA51_LOCAL_COOP=ON -DA51_LOCAL_COOP_QA=ON \
+          cmake --preset linux-gcc-x64 -DA51_LOCAL_COOP=ON -DA51_LOCAL_COOP_QA=ON -DA51_COOP_BUILD=${{ github.run_number }} \
             -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
             2>&1 | tee logs/configure.txt
           grep -q '^A51_LOCAL_COOP:BOOL=ON$' build/linux-gcc-x64/CMakeCache.txt

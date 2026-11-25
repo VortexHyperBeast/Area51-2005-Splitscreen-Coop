@@ -11,6 +11,7 @@
 #include "UI/ui_control.hpp"
 #include "UI/ui_combo.hpp"
 #include "UI/ui_button.hpp"
+#include "UI/ui_renderer.hpp"
 
 #include "dlg_MainMenu.hpp"
 #include "StateMgr/StateMgr.hpp"
@@ -275,6 +276,22 @@ void dlg_main_menu::Render( s32 ox, s32 oy )
     // render the glow bar
     g_UiMgr->RenderGlowBar();
 
+#if defined(A51_LOCAL_COOP)
+    // "SPLITSCREEN CO-OP  v0.87" in the top-left corner of the main menu only: the version is
+    // the co-op build number (build 87 = 0.87, build 100 = 1.00).
+    {
+#if defined(A51_COOP_BUILD)
+        const s32 Build = A51_COOP_BUILD;
+#else
+        const s32 Build = 0;
+#endif
+        const irect Screen = g_UIRenderer.GetViewport().GetLogicalClipBounds();
+        const irect TextRect( Screen.l + 24, Screen.t + 16, Screen.l + 424, Screen.t + 40 );
+        g_UiMgr->RenderText( g_UiMgr->FindFont( "small" ), TextRect, ui_font::h_left | ui_font::v_top,
+                             xcolor( 230, 255, 220, 255 ),
+                             (const char*)xfs( "SPLITSCREEN CO-OP  v%d.%02d", Build / 100, Build % 100 ) );
+    }
+#endif
 }
 
 //=========================================================================

@@ -117,6 +117,12 @@ if( A51_LOCAL_COOP )
     target_compile_definitions( a51_build_options INTERFACE A51_LOCAL_COOP )
 endif()
 
+# The co-op build number shown on the main menu (CI passes the workflow run number).
+set( A51_COOP_BUILD "0" CACHE STRING "Co-op build number shown on the main menu (87 = v0.87)" )
+if( A51_LOCAL_COOP AND NOT A51_COOP_BUILD STREQUAL "0" )
+    target_compile_definitions( a51_build_options INTERFACE A51_COOP_BUILD=${A51_COOP_BUILD} )
+endif()
+
 option( A51_LOCAL_COOP_QA "TEST ONLY: build the controller bot and the per-player test log used by tools/coop-qa (needs A51_LOCAL_COOP, never ship this build)" OFF )
 if( A51_LOCAL_COOP_QA )
     if( NOT A51_LOCAL_COOP )
