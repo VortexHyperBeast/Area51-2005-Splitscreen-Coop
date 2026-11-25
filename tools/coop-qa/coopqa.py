@@ -26,6 +26,7 @@ import argparse
 import bisect
 import json
 import math
+import os
 import re
 import sys
 
@@ -99,7 +100,10 @@ def build_phases(settle_ms=DEFAULT_SETTLE_MS, cycles=DEFAULT_CYCLES):
     return phases, t
 
 
-def make_script(settle_ms=DEFAULT_SETTLE_MS, cycles=DEFAULT_CYCLES):
+SWEEP_TAIL_MS = 45000                       # level sweep: play on this long after the moves
+
+
+def make_script(settle_ms=DEFAULT_SETTLE_MS, cycles=DEFAULT_CYCLES, sweep=False):
     phases, end = build_phases(settle_ms, cycles)
     lines = [
         "# coopqa script v1 settle=%d cycles=%d" % (settle_ms, cycles),
@@ -109,6 +113,14 @@ def make_script(settle_ms=DEFAULT_SETTLE_MS, cycles=DEFAULT_CYCLES):
         lines.append("# %s cycle %d" % (p.kind, p.cycle))
         for (pad, ctrl, val) in p.actions:
             lines.append("%d %d %d %s %d" % (p.start, p.end, pad, ctrl, val))
+    if sweep:
+        # all-levels sweep: the moves once, then both stand and look around while the level runs
+        t = end
+        for k in range(SWEEP_TAIL_MS // 6000):
+            for pad in (0, 1):
+                lines.append("%d %d %d rx %d" % (t + 6000 * k, t + 6000 * k + 1500, pad, 40 if k % 2 else -40))
+        lines.append("quit %d" % (t + SWEEP_TAIL_MS))
+        return "\n".join(lines) + "\n"
     # the scanner: the owner's game crashed when R1 was pressed with it (2026-11-24).  The game
     # gives it the way the level script does and switches both players to it; then each pad holds
     # the trigger (rt) and the right bumper (rb, "R1") while turning a little.
@@ -1359,6 +1371,47 @@ def check_warp_view(log, shots):
     return Result("warp_view", PASS, "%d screenshots after the shot: both views drawn (%s)" % (len(after), detail))
 
 
+def sweep_report(log, level, probe_text="", shots=None):
+    """One line for the all-levels sweep: did the level start, run and keep both players alive?"""
+    problems, notes = [], []
+    begins = [q for q in log.begins if q is not None] + ([None] if None in log.begins else [])
+    if not log.begins:
+        problems.append("the level never started")
+    restarts = max(0, len(log.begins) - 1)
+    if restarts:
+        problems.append("%d checkpoint restart(s) (a player died)" % restarts)
+    if not log.finished:
+        problems.append("the game did not finish the run (crash or hang)")
+    if log.asserts:
+        problems.append("%d assertion(s): %s" % (len(log.asserts), "; ".join(sorted(set(log.asserts)))[:300]))
+    fails = sorted(set(l.split("render failure:", 1)[1].strip() for l in probe_text.splitlines() if "render failure:" in l))
+    if fails:
+        problems.append("render failure: " + " | ".join(fails)[:300])
+    for i in sorted(log.players):
+        smp = [x for x in log.players[i] if x["qt"] is not None and x["qt"] >= 0]
+        if not smp:
+            continue
+        low = min(x["y"] for x in smp)
+        if smp[0]["y"] - low > 1500:
+            problems.append("player %d fell %d m" % (i + 1, (smp[0]["y"] - low) // 100))
+        notes.append("player %d hp %d" % (i + 1, smp[-1]["hp"]))
+    if len(log.players) < 2:
+        problems.append("only %d player(s) in the level" % len(log.players))
+    et = check_enemy_targets(log)
+    notes.append("enemies: " + et.detail.split(";")[0])
+    if log.npc:
+        on = set(n[5] for n in log.npc if n[1] == "set")
+        notes.append("targeted: %s" % ",".join("player %d" % (t + 1) for t in sorted(on) if t in (0, 1)) or "no player")
+    cines = [l for l in check_cinema(log).detail.split(";")]
+    notes.append(check_cinema(log).detail[:80])
+    if shots:
+        dark = [x for x in shots if x.get("top_left_mean", 99) < 2 and x.get("bot_left_mean", 99) < 2]
+        if len(dark) > len(shots) // 2:
+            problems.append("most screenshots are black")
+    verdict = "OK" if not problems else "PROBLEM"
+    return "level %d: %s - %s%s" % (level, verdict, "; ".join(problems) + (" | " if problems else ""), "; ".join(notes))
+
+
 def check_split_pixels(shots):
     if shots is None:
         return Result("split_pixels", NOEV, "no screenshot statistics were given")
@@ -2053,6 +2106,12 @@ def main(argv=None):
     g.add_argument("out")
     g.add_argument("--settle", type=int, default=DEFAULT_SETTLE_MS)
     g.add_argument("--cycles", type=int, default=DEFAULT_CYCLES)
+    g.add_argument("--sweep", action="store_true", help="the short script of the all-levels sweep")
+    sw = sub.add_parser("sweep")
+    sw.add_argument("log")
+    sw.add_argument("--level", type=int, required=True)
+    sw.add_argument("--probe")
+    sw.add_argument("--shots")
 
     s = sub.add_parser("score")
     s.add_argument("log")
@@ -2078,9 +2137,15 @@ def main(argv=None):
     a = ap.parse_args(argv)
     if a.cmd == "gen":
         with open(a.out, "w") as f:
-            f.write(make_script(a.settle, a.cycles))
+            f.write(make_script(a.settle, a.cycles, sweep=getattr(a, "sweep", False)))
         phases, end = build_phases(a.settle, a.cycles)
         print("wrote %s: %d phases, %.0f s of game time" % (a.out, len(phases), end / 1000.0))
+        return 0
+    if a.cmd == "sweep":
+        text = open(a.log, errors="replace").read() if os.path.exists(a.log) else ""
+        probe = open(a.probe, errors="replace").read() if a.probe and os.path.exists(a.probe) else ""
+        shots = parse_shots(open(a.shots).read()) if a.shots and os.path.exists(a.shots) else None
+        print(sweep_report(parse_log(text), a.level, probe, shots))
         return 0
     if a.cmd == "audio":
         sys.stdout.write(audio_report(open(a.log, encoding="utf-8", errors="replace").read()))

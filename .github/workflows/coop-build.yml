@@ -14,6 +14,10 @@ on:
         description: 'Publish the Windows package even if the two-controller test did not pass (marked as pre-release)'
         type: boolean
         default: false
+      level_sweep:
+        description: 'Also start every campaign level in co-op through the level select and report each one (about 20 extra jobs)'
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -346,6 +350,93 @@ jobs:
           echo "sha: $GITHUB_SHA" >> qa-out/meta.txt
           echo "job status: ${{ job.status }}" >> qa-out/meta.txt
           bash tools/coop-qa/publish_results.sh qa-out "runs/${{ github.run_number }}/linux-test-${{ matrix.mode }}"
+
+  level-sweep:
+    name: Level sweep (co-op, map ${{ matrix.level }})
+    needs: linux-build
+    if: github.event_name == 'workflow_dispatch' && inputs.level_sweep
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      max-parallel: 10
+      matrix:
+        level: [1000, 1010, 1020, 1030, 1040, 1050, 1060, 1070, 1075, 1080, 1090, 1095, 1100, 1105, 1110, 1115, 1120, 1125, 1130]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install runtime dependencies (virtual display, software Vulkan, gdb)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            xvfb mesa-vulkan-drivers libvulkan1 vulkan-tools gdb unzip imagemagick \
+            libx11-6 libxext6 libxrandr2 libxcursor1 libxfixes3 libxi6 libxss1 libxtst6 \
+            libxkbcommon0 libasound2t64 libpulse0 libudev1 libusb-1.0-0 libdbus-1-3
+
+      - name: Download the test build
+        uses: actions/download-artifact@v4
+        with:
+          name: A51-coop-test-linux-x64
+          path: pkg
+
+      - name: Download the Asset Pack and merge the PC textures
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          sudo mkdir -p /mnt/pack
+          sudo chown "$USER" /mnt/pack
+          gh release download "$ASSET_TAG" --repo "$ASSET_REPO" --dir /mnt/pack/dl --clobber
+          unzip -q /mnt/pack/dl/*.zip -d /mnt/pack/data
+          ROOT="$(find /mnt/pack/data -maxdepth 2 -type d -name Main-Assets | head -n 1)"
+          test -d "$ROOT"
+          TEX="$(dirname "$ROOT")/PC-Textures"
+          test -d "$TEX"
+          cp -a "$TEX"/. "$ROOT"/
+          rm -rf /mnt/pack/dl
+          echo "DATA_DIR=$ROOT" >> "$GITHUB_ENV"
+
+      - name: Play the level
+        run: |
+          chmod +x pkg/A51
+          export QA_WORK=/mnt/pack/work
+          export QA_GDB=1
+          export QA_LEVEL_ID=${{ matrix.level }}
+          export QA_MAX_SECONDS=1500
+          bash tools/coop-qa/run_linux.sh sweep pkg "$DATA_DIR" qa-out 2>&1 | tee -a qa-out/launcher-console.txt
+          exit 0
+
+      - name: Publish results (text only)
+        if: always()
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p qa-out
+          test -s qa-out/sweep.txt || echo "level ${{ matrix.level }}: PROBLEM - no report (the job did not finish: ${{ job.status }})" > qa-out/sweep.txt
+          echo "run: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" > qa-out/meta.txt
+          bash tools/coop-qa/publish_results.sh qa-out "runs/${{ github.run_number }}/sweep-${{ matrix.level }}"
+
+  sweep-report:
+    name: Level sweep report
+    needs: level-sweep
+    if: always() && github.event_name == 'workflow_dispatch' && inputs.level_sweep
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Collect the per-level lines
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          git fetch --quiet origin qa-results:refs/remotes/origin/qa-results
+          mkdir -p report
+          for f in $(git ls-tree --name-only origin/qa-results "runs/${{ github.run_number }}/" | grep '/sweep-' | sort); do
+            git show "origin/qa-results:$f/sweep.txt" 2>/dev/null || echo "$(basename "$f"): no report"
+          done > report/sweep-report.txt
+          cat report/sweep-report.txt
+          echo "## Level sweep" >> "$GITHUB_STEP_SUMMARY"
+          sed 's/^/    /' report/sweep-report.txt >> "$GITHUB_STEP_SUMMARY"
+          bash tools/coop-qa/publish_results.sh report "runs/${{ github.run_number }}/sweep-report"
 
   windows-smoke:
     name: Windows start-up check (play build, real setup script)

@@ -48,7 +48,8 @@ case "$MODE" in
   single) EXPECT=single ;;
   coop-l2|single-l2) EXPECT=probe ;;   # the second campaign level: cutscene sound report only, never fails
   coop-exit|single-exit) EXPECT=probe; QA_LEVEL_ID="${QA_LEVEL_ID:-1130}" ;;   # The Last Exit (owner's crash, train start): report only
-  *) echo "mode must be coop, swap, single, coop-l2, single-l2, coop-exit or single-exit"; exit 2 ;;
+  sweep) EXPECT=probe; [ -n "${QA_LEVEL_ID:-}" ] || { echo "sweep needs QA_LEVEL_ID"; exit 2; } ;;   # one level of the all-levels sweep (co-op), report only
+  *) echo "mode must be coop, swap, single, coop-l2, single-l2, coop-exit, single-exit or sweep"; exit 2 ;;
 esac
 
 say() { echo "$@" | tee -a "$OUT/run.txt"; }
@@ -89,7 +90,11 @@ if [ -n "$SCREENS_SRC" ]; then mkdir -p "$INSTALL/SCREENS"; cp -f "$SCREENS_SRC"
 printf 'AutoCampaign=1\n' > "$INSTALL/Config.ini"
 say "install ready ($(find "$INSTALL/SHADERS" -name '*.ecs' | wc -l) shader packages)"
 
-python3 -I "$HERE/coopqa.py" gen "$WORK/script.txt" --cycles "$CYCLES" | tee -a "$OUT/run.txt"
+if [ "$MODE" = sweep ]; then
+  python3 -I "$HERE/coopqa.py" gen "$WORK/script.txt" --cycles 1 --sweep | tee -a "$OUT/run.txt"
+else
+  python3 -I "$HERE/coopqa.py" gen "$WORK/script.txt" --cycles "$CYCLES" | tee -a "$OUT/run.txt"
+fi
 cp "$WORK/script.txt" "$OUT/script.txt"
 
 #------------------------------------------------------------------------------
@@ -102,7 +107,7 @@ export A51_QA_WINDOW="$WINDOW"
 export SDL_AUDIODRIVER=dummy
 export SDL_VIDEODRIVER=x11
 export SDL_JOYSTICK_ALLOW_BACKGROUND_EVENTS=1
-if [ "$MODE" = coop ] || [ "$MODE" = swap ] || [ "$MODE" = coop-l2 ] || [ "$MODE" = coop-exit ]; then export A51_LOCAL_COOP=2; else unset A51_LOCAL_COOP; fi
+if [ "$MODE" = coop ] || [ "$MODE" = swap ] || [ "$MODE" = coop-l2 ] || [ "$MODE" = coop-exit ] || [ "$MODE" = sweep ]; then export A51_LOCAL_COOP=2; else unset A51_LOCAL_COOP; fi
 if [ "$EXPECT" = probe ]; then export A51_QA_LEVEL_ID="${QA_LEVEL_ID:-1010}"; else unset A51_QA_LEVEL_ID; fi
 if [ "$MODE" = swap ]; then
   export A51_COOP_SWAP_PADS=1 A51_COOP_SKIN_P1=6 A51_COOP_SKIN_P2=9
@@ -215,6 +220,10 @@ say "screenshots taken: $NSHOTS"
 python3 -I "$HERE/coopqa.py" shots "$SHOTS" --log "$OUT/a51_qa_bot.log" --out "$OUT/shots.txt" 2>&1 | tee -a "$OUT/run.txt"
 python3 -I "$HERE/coopqa.py" audio "$OUT/a51_qa_bot.log" > "$OUT/audio.txt" 2>&1
 say "cutscene sound: $(head -c 2000 "$OUT/audio.txt")"
+if [ "$MODE" = sweep ]; then
+  python3 -I "$HERE/coopqa.py" sweep "$OUT/a51_qa_bot.log" --level "$QA_LEVEL_ID" --probe "$RUN/a51_local_coop_probe.log" --shots "$OUT/shots.txt" > "$OUT/sweep.txt" 2>&1
+  cat "$OUT/sweep.txt" | tee -a "$OUT/run.txt"
+fi
 if [ "$EXPECT" = probe ]; then
   grep "level list\|campaign BeginGame" "$OUT/a51_qa_bot.log" | head -30 >> "$OUT/run.txt"
   echo "RESULT: PASS (probe run, report only)" | tee -a "$OUT/run.txt"

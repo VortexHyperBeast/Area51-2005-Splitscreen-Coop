@@ -130,7 +130,16 @@ Helpers `SMP_UTIL_GetNearestPlayer(pos)` and `SMP_UTIL_IsPlayerGuid(guid)` in `S
    get targeted during the run.
 4. Downed/revive: implemented (see section 1). Mutants: first pass (see section 1). Next: bosses.
 
-## 4. On hold (owner, 2026-11-25): remind the owner when the campaign work is further along
+## 4. Level sweep (all campaign levels)
+
+Start "Co-op build and test" by hand on GitHub (Actions tab, Run workflow) with "level sweep" ticked:
+every campaign map starts in co-op through the level select, the bot plays the opening ~2 minutes,
+and `runs/<N>/sweep-report/sweep-report.txt` on the qa-results branch (and the run summary) lists
+each level: started, restarts (deaths), falls, crashes/hangs, assertions, render failures, enemy targets.
+Level-select starts can differ from the story path (see The Last Exit); a problem there is checked
+against single player before it is called a co-op bug.
+
+## 5. On hold (owner, 2026-11-25): remind the owner when the campaign work is further along
 
 Making Splitscreen Co-op harder (each a number in `a51_coop.cfg`, co-op only):
 
@@ -142,7 +151,7 @@ Making Splitscreen Co-op harder (each a number in `a51_coop.cfg`, co-op only):
 
 Suggested start: 1-3.
 
-## 5. Biggest risks
+## 6. Biggest risks
 
 - About 85 "the player" lookups across the game: triggers, AI, cinemas, lore, alien platforms.
   Each is a possible co-op progression bug that only shows in that level.
