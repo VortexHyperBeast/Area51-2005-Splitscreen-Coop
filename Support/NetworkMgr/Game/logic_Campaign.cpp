@@ -155,6 +155,8 @@ void logic_campaign::AdvanceTime( f32 DeltaTime )
             m_LevelSelectLoadoutTimer = 0.0f;
     }
 
+    UpdateStartSurfaceHold( m_PlayerGuid, LocalCoop_PlayerCount(), DeltaTime );
+
 #ifdef A51_LOCAL_COOP
     WriteProbe( DeltaTime );
     SyncCoopCinema( DeltaTime );
@@ -199,8 +201,77 @@ void logic_campaign::SetPlayerSpawnInfo( const vector3& Position,
 
 //==============================================================================
 
+//==============================================================================
+//  The Last Exit started from Level Select: the players appear on the train, but it is
+//  already moving and leaves before they land on it (same in single player).  For the first
+//  seconds of a level, a rideable animated surface right under a player who is not standing
+//  on anything is held still until every player stands on something (or 8 s pass).
+
+extern guid g_HoldAnimSurfaceGuid;
+static f32  s_StartHoldTime = 0.0f;         // seconds left to look for / hold a start surface
+static f32  s_StartHoldSettled = 0.0f;      // how long every player has stood on something
+
+static void UpdateStartSurfaceHold( const guid* pGuids, s32 nPlayers, f32 DeltaTime )
+{
+    if( s_StartHoldTime <= 0.0f )
+        return;
+    s_StartHoldTime -= DeltaTime;
+
+    xbool AllSupported = TRUE;
+    for( s32 i = 0; i < nPlayers; i++ )
+    {
+        player* pPlayer = (player*)g_ObjMgr.GetObjectByGuid( pGuids[i] );
+        if( !pPlayer || !pPlayer->GetLocoPointer() )
+            continue;
+        const character_physics& Phys = pPlayer->GetLocoPointer()->m_Physics;
+        const xbool Supported = ( Phys.GetSupportState() == CharacterSupportState::Walkable ) || ( Phys.GetMovingPlatformGuid() != 0 );
+        if( Supported )
+            continue;
+        AllSupported = FALSE;
+
+        // Not standing on anything: a rideable surface within 3 m?  Hold it.
+        if( g_HoldAnimSurfaceGuid == 0 )
+        {
+            const vector3 Pos = pPlayer->GetPosition();
+            for( slot_id Slot = g_ObjMgr.GetFirst( object::TYPE_ANIM_SURFACE ); Slot != SLOT_NULL; Slot = g_ObjMgr.GetNext( Slot ) )
+            {
+                object* pObj = g_ObjMgr.GetObjectBySlot( Slot );
+                if( pObj && ( pObj->GetAttrBits() & object::ATTR_ACTOR_RIDEABLE ) &&
+                    ( ( pObj->GetPosition() - Pos ).LengthSquared() < 300.0f * 300.0f ) )
+                {
+                    g_HoldAnimSurfaceGuid = pObj->GetGuid();
+#ifdef A51_LOCAL_COOP
+                    LocalCoop_Probe( "start: holding moving surface %08X under player %d until everyone stands on it",
+                                     (unsigned)g_HoldAnimSurfaceGuid.GetLow(), (int)i );
+#endif
+                    break;
+                }
+            }
+        }
+    }
+
+    s_StartHoldSettled = AllSupported ? ( s_StartHoldSettled + DeltaTime ) : 0.0f;
+    if( ( g_HoldAnimSurfaceGuid != 0 ) && ( ( s_StartHoldSettled > 1.0f ) || ( s_StartHoldTime <= 0.0f ) ) )
+    {
+#ifdef A51_LOCAL_COOP
+        LocalCoop_Probe( "start: released surface %08X (%s)", (unsigned)g_HoldAnimSurfaceGuid.GetLow(),
+                         ( s_StartHoldSettled > 1.0f ) ? "everyone is standing" : "time is up" );
+#endif
+        g_HoldAnimSurfaceGuid = 0;
+        s_StartHoldTime = 0.0f;
+    }
+    else if( ( g_HoldAnimSurfaceGuid == 0 ) && ( s_StartHoldSettled > 1.0f ) )
+    {
+        s_StartHoldTime = 0.0f;             // everyone stands: nothing to hold this level
+    }
+}
+
 void logic_campaign::BeginGame( void )
 {
+    g_HoldAnimSurfaceGuid = 0;
+    s_StartHoldTime       = 8.0f;
+    s_StartHoldSettled    = 0.0f;
+
     // Level Select: the level's starting weapons a few seconds in (see GiveLevelSelectLoadout).
     if( g_StateMgr.LevelSelectLoadoutPending() )
     {

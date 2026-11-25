@@ -151,6 +151,11 @@ void anim_surface::OnTransform( const matrix4& L2W )
 
 xbool g_RunAnimSurfaceLogic = TRUE;
 
+// A surface held still at a level start until the players are standing on it (The Last Exit:
+// a Level Select start places the players on the train, which left before they landed on it).
+// Set by logic_campaign; 0 = none.
+guid g_HoldAnimSurfaceGuid = 0;
+
 void anim_surface::OnAdvanceSimulation( f32 DeltaTime )
 {
     X_PROFILE_SCOPE_CATEGORY( "Context", "anim_surface::OnAdvanceSimulation" );
@@ -159,7 +164,7 @@ void anim_surface::OnAdvanceSimulation( f32 DeltaTime )
         return;
 
     // Update animation?
-    if( m_hAnimGroup.IsLoaded() )
+    if( m_hAnimGroup.IsLoaded() && ( ( g_HoldAnimSurfaceGuid == 0 ) || ( GetGuid() != g_HoldAnimSurfaceGuid ) ) )
     {
 
         m_AnimPlayer.Advance( DeltaTime );
