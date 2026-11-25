@@ -1149,7 +1149,7 @@ namespace qa
 
     static script_event  s_Events[MAX_EVENTS];
 
-    static s32 const MAX_COMMANDS = 16;
+    static s32 const MAX_COMMANDS = 64;
     struct script_command
     {
         s32   AtMs;
