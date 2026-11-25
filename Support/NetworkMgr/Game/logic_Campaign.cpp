@@ -744,7 +744,7 @@ void logic_campaign::QaCommand( const char* pName )
 
     if( x_strcmp( pName, "dmgtest" ) == 0 )
     {
-        // Enemy health rule: player 1 hits the nearest living NPC with a small generic pain
+        // Enemy health rule: player 1 hits the nearest living enemy with a small generic pain
         // three times; the "enemy damage:" lines show raw vs taken damage and the health.
         player* p0 = (player*)g_ObjMgr.GetObjectByGuid( s_pQaCampaign->m_PlayerGuid[0] );
         character* pBest = NULL;
@@ -757,11 +757,13 @@ void logic_campaign::QaCommand( const char* pName )
                 if( !pObj || !pObj->IsKindOf( character::GetRTTI() ) ) continue;
                 character& C = character::GetSafeType( *pObj );
                 if( C.GetHealth() <= 0.0f ) continue;
+                // an enemy of the players (friendly NPCs ignore the players' pain)
+                if( !C.IsEnemyFaction( C.GetFactionForGuid( p0->GetGuid() ) ) ) continue;
                 const f32 D = ( pObj->GetPosition() - p0->GetPosition() ).LengthSquared();
                 if( D < Best ) { Best = D; pBest = &C; }
             }
         }
-        if( !pBest ) { qa_bot_Log( "dmgtest: no living NPC" ); return; }
+        if( !pBest ) { qa_bot_Log( "dmgtest: no living enemy in this level" ); return; }
         for( s32 k = 0; k < 3; k++ )
         {
             const f32 Before = pBest->GetHealth();
