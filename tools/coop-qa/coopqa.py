@@ -351,11 +351,12 @@ def parse_log(text):
             if dm:
                 log.downstats.append((qt, int(dm.group(1)), int(dm.group(2)), int(dm.group(3))))
         elif msg.startswith("mutstat "):
-            mm = re.match(r"^mutstat p0=(-?\d+) p1=(-?\d+) speed=(-?\d+)(?: abil0=(-?\d+) abil1=(-?\d+))?$", msg)
+            mm = re.match(r"^mutstat p0=(-?\d+) p1=(-?\d+) speed=(-?\d+)(?: abil0=(-?\d+) abil1=(-?\d+))?(?: body1=([0-9a-fA-F]+))?$", msg)
             if mm:
                 g = mm.groups()
                 log.mutstats.append((qt, int(g[0]), int(g[1]), int(g[2]),
-                                     int(g[3]) if g[3] is not None else None, int(g[4]) if g[4] is not None else None))
+                                     int(g[3]) if g[3] is not None else None, int(g[4]) if g[4] is not None else None,
+                                     int(g[5], 16) if g[5] is not None else None))
         elif msg.startswith("down player 1"):
             log.down_cmds.append(qt)
         elif msg.startswith("coop downed ") or msg.startswith("coop revived ") or \
@@ -885,7 +886,14 @@ def check_mutation_independent(log):
     if a[4] is not None and a[5] is not None and a[4] != a[5]:
         return Result("mutation_independent", FAIL, "player 2's mutant attacks differ from player 1's "
                       "(abilities %d vs %d: melee 1, primary 2, secondary 4, toggle 8)" % (a[5], a[4]))
-    return Result("mutation_independent", PASS, "player 2 mutated alone and turned back; player 1 stayed human, the world ran at %d%%" % a[3])
+    ODD = 2 | 8 | 32 | 128
+    if a[6] is not None and b[6] is not None:
+        if not (a[6] & ODD):
+            return Result("mutation_independent", FAIL, "player 2 mutated but his body stayed human (mesh mask %x)" % a[6])
+        if b[6] & ODD:
+            return Result("mutation_independent", FAIL, "player 2 turned back but his body stayed a mutant (mesh mask %x)" % b[6])
+    body = " His body showed the mutant form and went back." if a[6] is not None else ""
+    return Result("mutation_independent", PASS, "player 2 mutated alone and turned back; player 1 stayed human, the world ran at %d%%.%s" % (a[3], body))
 
 
 def check_death_restart(log):
@@ -1394,6 +1402,7 @@ FAULTS = [
     "mutation_shared",     # player 2's mutation also mutates player 1 and slows the world
     "mutation_failed",     # player 2 cannot turn into the mutant
     "mutant_no_attack",    # player 2 mutates but lacks player 1's mutant attacks
+    "mutant_body_missing", # player 2 mutates but his body stays human
 ]
 
 # fault -> names that must NOT be PASS in coop mode ("*ok*" = the run is a good one)
@@ -1435,6 +1444,7 @@ EXPECTED = {
     "mutation_shared": ["mutation_independent"],
     "mutation_failed": ["mutation_independent"],
     "mutant_no_attack": ["mutation_independent"],
+    "mutant_body_missing": ["mutation_independent"],
 }
 
 
@@ -1652,8 +1662,8 @@ def simulate(faults=(), settle_ms=DEFAULT_SETTLE_MS, cycles=DEFAULT_CYCLES, play
         elif "mutant_no_attack" in faults:
             emit(30000 + mt + MUT_STAT1_MS, mt + MUT_STAT1_MS, "mutstat p0=0 p1=1 speed=100 abil0=15 abil1=8")
         else:
-            emit(30000 + mt + MUT_STAT1_MS, mt + MUT_STAT1_MS, "mutstat p0=0 p1=1 speed=100 abil0=15 abil1=15")
-        emit(30000 + mt + MUT_STAT2_MS, mt + MUT_STAT2_MS, "mutstat p0=0 p1=0 speed=100")
+            emit(30000 + mt + MUT_STAT1_MS, mt + MUT_STAT1_MS, "mutstat p0=0 p1=1 speed=100 abil0=15 abil1=15 body1=%x" % (1 if "mutant_body_missing" in faults else 2))
+        emit(30000 + mt + MUT_STAT2_MS, mt + MUT_STAT2_MS, "mutstat p0=0 p1=0 speed=100 abil0=15 abil1=15 body1=1")
         d = end + SCANNER_MS + JOIN_MS + MUT_MS
         emit(30000 + d, d, "down player 1: lethal damage")
         if "not_downed" not in faults:

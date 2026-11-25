@@ -4468,8 +4468,18 @@ void actor::SetSkinVMesh( xbool Mutant )
 #else
 
     // Exit if this is a single player game otherwise characters literally loose their heads!
+    // Local co-op: the players wear the multiplayer body, which has the mutant
+    // meshes, so a mutated player looks like the multiplayer mutant (owner request).
     if( GameMgr.IsGameMultiplayer() == FALSE )
+    {
+#ifdef A51_LOCAL_COOP
+        if( !( LocalCoop_IsActive() && IsKindOf( player::GetRTTI() ) && UsingLoco() &&
+               (((player*)this)->GetLocalSlot() != -1) ) )
+            return;
+#else
         return;
+#endif
+    }
 
     // Update skin mesh
     virtual_mesh_mask VMeshMask = m_SkinInst.GetVMeshMask();

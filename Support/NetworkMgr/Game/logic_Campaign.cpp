@@ -491,10 +491,11 @@ void logic_campaign::QaCommand( const char* pName )
     {
         player* p0 = (player*)g_ObjMgr.GetObjectByGuid( s_pQaCampaign->m_PlayerGuid[0] );
         player* p1 = (player*)g_ObjMgr.GetObjectByGuid( s_pQaCampaign->m_PlayerGuid[1] );
-        qa_bot_Log( "mutstat p0=%d p1=%d speed=%d abil0=%d abil1=%d",
+        qa_bot_Log( "mutstat p0=%d p1=%d speed=%d abil0=%d abil1=%d body1=%x",
                     p0 ? (int)p0->IsMutated() : -1, p1 ? (int)p1->IsMutated() : -1,
                     (int)( g_PerceptionMgr.GetGlobalTimeDialation() * 100.0f ),
-                    p0 ? (int)p0->CoopMutationAbilities() : -1, p1 ? (int)p1->CoopMutationAbilities() : -1 );
+                    p0 ? (int)p0->CoopMutationAbilities() : -1, p1 ? (int)p1->CoopMutationAbilities() : -1,
+                    p1 ? (unsigned)p1->CoopBodyMeshMask() : 0u );
         return;
     }
 
