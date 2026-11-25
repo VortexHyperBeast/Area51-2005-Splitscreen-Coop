@@ -1,0 +1,22 @@
+mode=sweep expect=probe window=640x360 cycles=3 max=1500s startup-gate=1200s
+host: Linux 7.0.0-1020-azure x86_64, 4 cpus
+install ready (7 shader packages)
+wrote /mnt/pack/work/sweep/script.txt: 11 phases, 46 s of game time
+running under gdb
+game started, pid 3682
+game ended: exit code 1 after 454s (124 = stopped by timeout, 137/143 = killed, 139 = crash)
+game output: 6160 lines, a51_qa_bot.log: 4104 lines
+screenshots taken: 74
+coopqa shots: 74 lines written to /home/runner/work/area51-pc/area51-pc/qa-out/shots.txt
+cutscene sound: dialog lines started: 220 (0 could not start), stop calls: 1644
+  stream AMB_STRM_BATTLE_FAR                      x3
+  voice  Mutant1_PainGrunt                        x1
+  voice  Mutant1_Vox_Evade                        x3
+  voice  Mutant1_Vox_Idle                         x24
+  voice  Mutant1_Vox_MeleeAttack01                x13
+  voice  Mutant1_Vox_ReactRage                    x1
+  voice  Mutant1_Vox_Run                          x158
+  voice  Mutant1_Vox_Walk                         x17
+voices in use: max 24 (top BULLETIMPACTMETAL x8), last 5
+level 1050: OK - 2 checkpoint restart(s): 3 downed, 0 bled out (the bot does not fight or revive); player 1 hp 20; player 2 hp 1; enemies: 4 enemies (NPC - Grunt); targeted: player 1,player 2; no cinematic during the script
+RESULT: PASS (probe run, report only)
