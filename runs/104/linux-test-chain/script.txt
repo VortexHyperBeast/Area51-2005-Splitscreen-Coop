@@ -1,0 +1,8 @@
+# start_ms end_ms pad control value   (game time since the bot was armed)
+# each level runs, then the test quits to the menu (the script clock pauses there)
+5000 6500 0 rx 40
+cmd 20000 tomenu
+cmd 40000 tomenu
+cmd 60000 tomenu
+cmd 80000 tomenu
+quit 130000
