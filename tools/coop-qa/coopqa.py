@@ -154,6 +154,7 @@ def make_script(settle_ms=DEFAULT_SETTLE_MS, cycles=DEFAULT_CYCLES, sweep=False)
             lines.append("%d %d %d %s 100" % (t, t + hold, pad, ctrl))
             lines.append("%d %d %d rx 25" % (t, t + hold, pad))
             t += hold + 500
+    lines.append("cmd %d geominfo" % t)       # player and NPC body geometry (owner: brighter face, no visor)
     lines.append("# a level change's inventory store and restore, after the scanner was given")
     lines.append("cmd %d carryover" % t)
     t += 2000

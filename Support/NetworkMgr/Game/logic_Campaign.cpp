@@ -741,6 +741,48 @@ void logic_campaign::QaCommand( const char* pName )
         return;
     }
 
+    if( x_strcmp( pName, "geominfo" ) == 0 )
+    {
+        // The owner's hazmat players look brighter than the hazmat NPCs and have no visor:
+        // list the skin geometry of player 1 and of the nearest NPC (meshes, virtual meshes
+        // and the mask in use, virtual textures, materials) to compare them.
+        object* pTargets[2] = { g_ObjMgr.GetObjectByGuid( s_pQaCampaign->m_PlayerGuid[0] ), NULL };
+        {
+            f32 Best = F32_MAX;
+            const vector3 P0 = pTargets[0] ? pTargets[0]->GetPosition() : vector3( 0, 0, 0 );
+            for( s32 t = 0; t < object::TYPE_END_OF_LIST; t++ )
+            {
+                for( slot_id Slot = g_ObjMgr.GetFirst( (object::type)t ); Slot != SLOT_NULL; Slot = g_ObjMgr.GetNext( Slot ) )
+                {
+                    object* pObj = g_ObjMgr.GetObjectBySlot( Slot );
+                    if( !pObj || !pObj->IsKindOf( actor::GetRTTI() ) || pObj->IsKindOf( player::GetRTTI() ) )
+                        continue;
+                    const f32 D = ( pObj->GetPosition() - P0 ).LengthSquared();
+                    if( D < Best ) { Best = D; pTargets[1] = pObj; }
+                }
+            }
+        }
+        for( s32 k = 0; k < 2; k++ )
+        {
+            if( !pTargets[k] ) { qa_bot_Log( "geominfo %d: none", k ); continue; }
+            actor&     A  = actor::GetSafeType( *pTargets[k] );
+            skin_inst& SI = A.GetSkinInst();
+            skin_geom* pG = SI.GetSkinGeom();
+            qa_bot_Log( "geominfo %d: %s geom=%s mask=%08X", k, pTargets[k]->GetTypeDesc().GetTypeName(),
+                        SI.GetSkinGeomName() ? SI.GetSkinGeomName() : "?", (unsigned)SI.GetVMeshMask().VMeshMask );
+            if( !pG ) continue;
+            for( s32 i = 0; i < pG->m_nMeshes; i++ )
+                qa_bot_Log( "geominfo %d: mesh %d %s", k, (int)i, pG->GetMeshName( i ) );
+            for( s32 i = 0; i < pG->m_nVirtualMeshes; i++ )
+                qa_bot_Log( "geominfo %d: vmesh %d %s", k, (int)i, pG->GetVMeshName( i ) );
+            for( s32 i = 0; i < pG->m_nVirtualTextures; i++ )
+                qa_bot_Log( "geominfo %d: vtexture %d %s materials=%08X", k, (int)i,
+                            &pG->m_pStringData[ pG->m_pVirtualTextures[i].NameOffset ], (unsigned)pG->m_pVirtualTextures[i].MaterialMask );
+            qa_bot_Log( "geominfo %d: %d materials", k, (int)pG->m_nMaterials );
+        }
+        return;
+    }
+
     if( x_strcmp( pName, "tomenu" ) == 0 )
     {
         // Quit to the main menu the way the pause menu's Quit does; the bot then presses A
