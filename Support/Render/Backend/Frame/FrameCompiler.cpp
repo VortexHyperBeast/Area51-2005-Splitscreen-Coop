@@ -3875,9 +3875,15 @@ s32 FrameCompiler::AppendForwardCommands( s32 PacketIndex )
 
 xbool FrameCompiler::UploadForwardCommands( FrameGraphBuilder& Graph )
 {
+    // Size the buffer once with plenty of room.  Growing it replaces the buffer, and in split
+    // screen a second view (or a second batch in the same frame) could grow it after the first
+    // had already imported it into its frame graph: "external graph resource was invalidated
+    // before execution" (resource=ForwardIndirect), a crash on loading The Last Exit after other
+    // levels.  64k commands = 1.25 MB.
+    static const u32 k_MinForwardCommands = 65536u;
     const u32 Count = m_ForwardCommands.GetCount();
     return !Count ||
-           ( EnsureBuffer( m_ForwardCommandBuffer, m_ForwardCommandCapacity, Count,
+           ( EnsureBuffer( m_ForwardCommandBuffer, m_ForwardCommandCapacity, MAX( Count, k_MinForwardCommands ),
                            sizeof( rdraw_indexed_indirect_command ), "ForwardIndirect", RBUFFER_USAGE_INDIRECT ) &&
              Graph.QueueUpload( m_ForwardCommandBuffer, m_ForwardCommands.GetPtr(),
                              Count * sizeof( rdraw_indexed_indirect_command ), 0, TRUE ) );
