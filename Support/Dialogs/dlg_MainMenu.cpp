@@ -211,8 +211,9 @@ void dlg_main_menu::Destroy( void )
 //=========================================================================
 
 #if defined(A51_LOCAL_COOP)
-// "SPLITSCREEN CO-OP  v0.90" in the top-left corner (the version is the co-op build number:
-// build 90 = 0.90, build 100 = 1.00).  On the Splitscreen Co-op page the owner's thank-you lines
+// "SPLITSCREEN CO-OP  v0.90" in the top-left corner.  The version follows the co-op build number
+// up to 0.95 (build 90 = 0.90), then stays at 0.95 with a patch number (build 96 = 0.95.1,
+// build 97 = 0.95.2, ...), as the owner asked.  On the Splitscreen Co-op page the owner's thank-you lines
 // follow underneath (both pages, owner request).  Not shown anywhere else.
 void LocalCoop_RenderMenuBanner( xbool bThanks )
 {
@@ -236,7 +237,8 @@ void LocalCoop_RenderMenuBanner( xbool bThanks )
     s32         y      = Screen.t + 16;
     g_UiMgr->RenderText( iFont, irect( Screen.l + 24, y, Screen.l + 524, y + Line + 6 ),
                          ui_font::h_left | ui_font::v_top, xcolor( 230, 255, 220, 255 ),
-                         (const char*)xfs( "SPLITSCREEN CO-OP  v%d.%02d", Build / 100, Build % 100 ) );
+                         ( Build <= 95 ) ? (const char*)xfs( "SPLITSCREEN CO-OP  v0.%02d", Build )
+                                         : (const char*)xfs( "SPLITSCREEN CO-OP  v0.95.%d", Build - 95 ) );
     if( !bThanks )
         return;
     y += Line + 10;
