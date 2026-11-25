@@ -1,0 +1,71 @@
+mode=sweep expect=probe window=640x360 cycles=3 max=1500s startup-gate=1200s
+host: Linux 7.0.0-1014-aws x86_64, 4 cpus
+install ready (7 shader packages)
+wrote /mnt/pack/work/sweep/script.txt: 11 phases, 46 s of game time
+running under gdb
+game started, pid 8918
+game ended: exit code 1 after 256s (124 = stopped by timeout, 137/143 = killed, 139 = crash)
+game output: 6544 lines, a51_qa_bot.log: 2955 lines
+screenshots taken: 39
+coopqa shots: 39 lines written to /home/runner/work/area51-pc/area51-pc/qa-out/shots.txt
+cutscene sound: dialog lines started: 732 (9 could not start), stop calls: 260
+  stream BATTLE_AMBIENCE                          x2
+  stream CRISPYA_KILL                             x1  (1 failed)
+  stream CRISPYA_UNDERFIRE                        x4
+  stream RAMIREZA_HITMELEE                        x1
+  stream RAMIREZA_KILL                            x1  (1 failed)
+  stream RAMIREZA_RELOAD                          x1
+  stream RAMIREZ_BLUSL1_76                        x1
+  stream RAMIREZ_BLUSL1_79                        x1
+  stream SPEC41A_ALERT                            x3  (1 failed)
+  stream SPEC41A_COVER                            x1
+  stream SPEC41A_GRENADETHROW                     x3  (1 failed)
+  stream SPEC41A_HIT                              x3  (2 failed)
+  stream SPEC41A_HITMELEE                         x1
+  stream SPEC41A_KILL                             x10  (3 failed)
+  stream SPEC41A_RELOAD                           x1
+  stream SPEC41A_UNDERFIRE                        x3
+  stream SPEC42_BLUSL1_04A                        x1
+  voice  Mutant1_PainGrunt                        x14
+  voice  Mutant1_Vox_Death01                      x3
+  voice  Mutant1_Vox_Death03                      x5
+  voice  Mutant1_Vox_Evade                        x20
+  voice  Mutant1_Vox_MeleeAttack01                x25
+  voice  Mutant1_Vox_ReactRage                    x3
+  voice  Mutant1_Vox_ReactSight                   x2
+  voice  Mutant1_Vox_ReactSound                   x8
+  voice  Mutant1_Vox_Run                          x561
+  voice  Mutant1_Vox_Walk                         x53
+voices in use: max 45 (top EXPLOSION_DEBRIS_IMPACT x20), last 29
+level 1040: PROBLEM - 1 checkpoint restart(s) (a player died) | player 1 hp 1; player 2 hp 100; enemies: 39 enemies (NPC - Grunt,NPC - Hazmat); targeted: player 1,player 2; no cinematic during the script
+wall=1541 qt=-1 level list 0: id=1000
+wall=1541 qt=-1 level list 1: id=1010
+wall=1541 qt=-1 level list 2: id=1020
+wall=1541 qt=-1 level list 3: id=1030
+wall=1541 qt=-1 level list 4: id=1040
+wall=1541 qt=-1 level list 5: id=1050
+wall=1541 qt=-1 level list 6: id=1060
+wall=1541 qt=-1 level list 7: id=1070
+wall=1541 qt=-1 level list 8: id=1075
+wall=1541 qt=-1 level list 9: id=1080
+wall=1541 qt=-1 level list 10: id=1090
+wall=1541 qt=-1 level list 11: id=1095
+wall=1541 qt=-1 level list 12: id=1100
+wall=1541 qt=-1 level list 13: id=1105
+wall=1541 qt=-1 level list 14: id=1110
+wall=1541 qt=-1 level list 15: id=1115
+wall=1541 qt=-1 level list 16: id=1120
+wall=1541 qt=-1 level list 17: id=1125
+wall=1541 qt=-1 level list 18: id=1130
+wall=1541 qt=-1 level list 19: id=2000
+wall=1541 qt=-1 level list 20: id=2010
+wall=1541 qt=-1 level list 21: id=2020
+wall=1541 qt=-1 level list 22: id=2030
+wall=1541 qt=-1 level list 23: id=2040
+wall=1541 qt=-1 level list 24: id=2050
+wall=1541 qt=-1 level list 25: id=2060
+wall=1541 qt=-1 level list 26: id=2070
+wall=1541 qt=-1 level list 27: id=2080
+wall=1541 qt=-1 level list 28: id=2090
+wall=1541 qt=-1 level list 29: id=2100
+RESULT: PASS (probe run, report only)
