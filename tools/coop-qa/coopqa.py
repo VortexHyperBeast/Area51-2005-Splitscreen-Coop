@@ -103,6 +103,23 @@ def build_phases(settle_ms=DEFAULT_SETTLE_MS, cycles=DEFAULT_CYCLES):
 SWEEP_TAIL_MS = 45000                       # level sweep: play on this long after the moves
 
 
+CHAIN_FIRST_MS = 20000                      # the first level runs this long, then quit to the menu
+CHAIN_SECOND_MS = 50000                     # script time the second level runs
+
+
+def make_chain_script():
+    """Owner (build 90): Invader started after another level (or after itself) drops both
+    players through the floor.  Start a level, quit to the main menu, start the next level of
+    A51_QA_LEVEL_ID through the menus, and watch the players there."""
+    return "\n".join([
+        "# start_ms end_ms pad control value   (game time since the bot was armed)",
+        "# the first level runs, then the test quits to the main menu (script clock pauses)",
+        "cmd %d tomenu" % CHAIN_FIRST_MS,
+        "# the next level starts; both players stand still",
+        "quit %d" % (CHAIN_FIRST_MS + CHAIN_SECOND_MS),
+    ]) + "\n"
+
+
 def make_script(settle_ms=DEFAULT_SETTLE_MS, cycles=DEFAULT_CYCLES, sweep=False):
     phases, end = build_phases(settle_ms, cycles)
     lines = [
@@ -2179,6 +2196,7 @@ def main(argv=None):
     g.add_argument("--settle", type=int, default=DEFAULT_SETTLE_MS)
     g.add_argument("--cycles", type=int, default=DEFAULT_CYCLES)
     g.add_argument("--sweep", action="store_true", help="the short script of the all-levels sweep")
+    g.add_argument("--chain", action="store_true", help="a level, the main menu, then the next level")
     sw = sub.add_parser("sweep")
     sw.add_argument("log")
     sw.add_argument("--level", type=int, required=True)
@@ -2207,6 +2225,11 @@ def main(argv=None):
     au.add_argument("log")
 
     a = ap.parse_args(argv)
+    if a.cmd == "gen" and a.chain:
+        with open(a.out, "w") as f:
+            f.write(make_chain_script())
+        print("wrote %s: level, main menu, next level" % a.out)
+        return 0
     if a.cmd == "gen":
         with open(a.out, "w") as f:
             f.write(make_script(a.settle, a.cycles, sweep=getattr(a, "sweep", False)))

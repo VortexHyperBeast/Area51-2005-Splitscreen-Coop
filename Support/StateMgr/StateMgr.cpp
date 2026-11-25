@@ -6187,7 +6187,17 @@ void state_mgr::UpdateLevelSelect( void )
 #ifdef A51_LOCAL_COOP_QA
                 // TEST ONLY: A51_QA_LEVEL_ID starts that campaign level (e.g. 1010, the second).
                 {
+                    // "1090,1100" picks 1090 the first time and 1100 the next (the test goes back
+                    // to the main menu in between: the owner's "other level, then Invader" fall).
+                    static s32  s_QaPick = 0;
                     const char* pID = x_getenv( "A51_QA_LEVEL_ID" );
+                    for( s32 k = 0; pID && ( k < s_QaPick ); k++ )
+                    {
+                        const char* pComma = x_strchr( pID, ',' );
+                        if( pComma ) pID = pComma + 1;      // the last id repeats
+                        else break;
+                    }
+                    s_QaPick++;
                     if( pID && (pID[0] >= '0') && (pID[0] <= '9') )
                     {
                         const s32 LevelID = x_atoi( pID );

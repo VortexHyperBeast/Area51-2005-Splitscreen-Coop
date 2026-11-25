@@ -23,6 +23,7 @@
 #ifdef A51_LOCAL_COOP_QA
 
 void qa_bot_Arm      ( const char* pWhy );          // the level has started: start the script clock
+void qa_bot_Disarm   ( const char* pWhy );          // back to the menus: pause the script clock, press A again
 void qa_bot_Tick     ( float DeltaSeconds );        // once per game frame, advances the script clock
 int  qa_bot_ScriptMs ( void );                      // script time in ms since arming, -1 before that
 unsigned qa_bot_WallMs ( void );                    // wall-clock ms since the game started
@@ -35,6 +36,7 @@ void qa_bot_SetCommandHook( qa_bot_command_fn pHook );
 #else
 
 inline void qa_bot_Arm      ( const char* ) {}
+inline void qa_bot_Disarm   ( const char* ) {}
 inline void qa_bot_Tick     ( float )       {}
 inline int  qa_bot_ScriptMs ( void )        { return -1; }
 inline unsigned qa_bot_WallMs ( void )      { return 0; }

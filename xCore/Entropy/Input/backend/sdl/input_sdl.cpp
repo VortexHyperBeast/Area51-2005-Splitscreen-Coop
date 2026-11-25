@@ -1163,6 +1163,7 @@ namespace qa
     static s32           s_QuitMs     = 0;
     static xbool         s_Enabled    = FALSE;
     static xbool         s_Armed      = FALSE;
+    static xbool         s_KeepClock  = FALSE;
     static xbool         s_Finished   = FALSE;
     static double        s_ScriptSec  = 0.0;
     static Uint64        s_MaxWallMs  = 1500000;
@@ -1603,8 +1604,21 @@ void qa_bot_Arm( char const* pWhy )
     }
 
     qa::s_Armed     = TRUE;
-    qa::s_ScriptSec = 0.0;
-    qa_bot_Log( "armed: %s", pWhy ? pWhy : "" );
+    if( !qa::s_KeepClock )
+        qa::s_ScriptSec = 0.0;      // a re-arm after qa_bot_Disarm carries on from where it was
+    qa_bot_Log( "armed: %s (script %d ms)", pWhy ? pWhy : "", (int)( qa::s_ScriptSec * 1000.0 ) );
+}
+
+void qa_bot_Disarm( const char* pWhy )
+{
+    if( !qa::s_Enabled || !qa::s_Armed )
+    {
+        return;
+    }
+
+    qa::s_Armed     = FALSE;
+    qa::s_KeepClock = TRUE;
+    qa_bot_Log( "disarmed: %s (script %d ms)", pWhy ? pWhy : "", (int)( qa::s_ScriptSec * 1000.0 ) );
 }
 
 void qa_bot_Tick( float DeltaSeconds )

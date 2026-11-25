@@ -588,6 +588,16 @@ void logic_campaign::QaCommand( const char* pName )
         return;
     }
 
+    if( x_strcmp( pName, "tomenu" ) == 0 )
+    {
+        // Quit to the main menu the way the pause menu's Quit does; the bot then presses A
+        // through the menus again and the next level of A51_QA_LEVEL_ID starts.
+        qa_bot_Log( "to menu" );
+        qa_bot_Disarm( "quit to the main menu" );
+        g_ActiveConfig.SetExitReason( GAME_EXIT_PLAYER_QUIT );
+        return;
+    }
+
     if( x_strcmp( pName, "warpmark" ) == 0 )
     {
         qa_bot_Log( "warp mark: the trigger is pulled" );
