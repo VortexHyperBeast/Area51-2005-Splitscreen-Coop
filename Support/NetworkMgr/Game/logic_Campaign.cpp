@@ -136,6 +136,8 @@ static xbool GiveLevelSelectLoadout( const guid* pGuids, s32 nPlayers )
     return bAllArmed;
 }
 
+static void UpdateStartSurfaceHold( const guid* pGuids, s32 nPlayers, f32 DeltaTime );   // below BeginGame
+
 void logic_campaign::AdvanceTime( f32 DeltaTime )
 {
     // Level Select: every 2 s for the first minute, any player without a
