@@ -8,6 +8,7 @@
 //  INCLUDES
 //=========================================================================
 
+#include "NetworkMgr/Game/LocalCoop.hpp"
 #include "Font/FontMgr.hpp"
 #include "ResourceMgr/ResourceMgr.hpp"
 #include "Entropy.hpp"
@@ -400,6 +401,11 @@ void render::render_ReportFailure( char const* pFile, s32 Line, char const* pSub
     xfs error( "[RENDER][%s] %s (%s:%d)", pSubsystem ? pSubsystem : "Unknown",
                (char const*)detail, pFile ? pFile : "<unknown>", Line );
     s_isRenderFailureActive = TRUE;
+#ifdef A51_LOCAL_COOP
+    // Keep the message for the owner's reports (the play build stops at the
+    // assert below; its crash report has only the call stack).
+    LocalCoop_Probe( "render failure: %s", (const char*)error );
+#endif
     if ( GetRenderPipeline().GetFrame() )
     {
         platform_ResetFrameState();

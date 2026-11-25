@@ -85,6 +85,7 @@ A passing bot test is not a played game. Statuses:
 | Crash: switching to the scanner in a level without a lore vault (owner, Invader, build 65) | IMPLEMENTED, NOT FULLY TESTED | Crash report: `lore_list::GetVaultByMapID` -> `state_mgr::GetLevelLoreAcquired` -> scanner lore count. No vault gives index -1; the profile read with it out of range (and the play build turns the failed assert into undefined behaviour). Lookups now return no lore for such a level | `PlayerProfile.cpp`, `LoreList.cpp` |
 | Screen-warping blue gun fired up close freezes both views (top black) | BROKEN / INVESTIGATE | Owner (build 65): only when fired at the players' feet. Bot fires it at range: views keep drawing, no renderer error. Needs a close-range bot shot | `GravChargeProjectile.cpp`, `PostProcessFeature*.cpp` |
 | The Last Exit (started from Level Select): both players fall onto the rails and the train leaves without them | BROKEN / INVESTIGATE | Owner (build 65). Not yet known whether this also happens in single player or only after Level Select | - |
+| Crash loading The Last Exit from Level Select (after Invader) | BROKEN / INVESTIGATE | Owner (build 73). Crash report: the renderer's frame graph check "external graph resource was invalidated before execution" (`FrameGraph_Compile.cpp:1044`) stops the play build. Render failures now go to the co-op probe log; a new bot mode `coop-exit` starts The Last Exit | `Render.cpp`, `FrameGraph_Compile.cpp` |
 | Performance with two views | NOT MEASURED on a real GPU | Owner reports nothing bad | - |
 
 ### Delivery and diagnostics

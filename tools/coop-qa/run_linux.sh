@@ -47,7 +47,8 @@ case "$MODE" in
   swap)   EXPECT=coop-swapped ;;   # co-op with the CO-OP-SETTINGS options: controllers swapped, other skins
   single) EXPECT=single ;;
   coop-l2|single-l2) EXPECT=probe ;;   # the second campaign level: cutscene sound report only, never fails
-  *) echo "mode must be coop, swap, single, coop-l2 or single-l2"; exit 2 ;;
+  coop-exit) EXPECT=probe; QA_LEVEL_ID="${QA_LEVEL_ID:-1130}" ;;   # The Last Exit (owner's crash): report only
+  *) echo "mode must be coop, swap, single, coop-l2, single-l2 or coop-exit"; exit 2 ;;
 esac
 
 say() { echo "$@" | tee -a "$OUT/run.txt"; }
@@ -101,7 +102,7 @@ export A51_QA_WINDOW="$WINDOW"
 export SDL_AUDIODRIVER=dummy
 export SDL_VIDEODRIVER=x11
 export SDL_JOYSTICK_ALLOW_BACKGROUND_EVENTS=1
-if [ "$MODE" = coop ] || [ "$MODE" = swap ] || [ "$MODE" = coop-l2 ]; then export A51_LOCAL_COOP=2; else unset A51_LOCAL_COOP; fi
+if [ "$MODE" = coop ] || [ "$MODE" = swap ] || [ "$MODE" = coop-l2 ] || [ "$MODE" = coop-exit ]; then export A51_LOCAL_COOP=2; else unset A51_LOCAL_COOP; fi
 if [ "$EXPECT" = probe ]; then export A51_QA_LEVEL_ID="${QA_LEVEL_ID:-1010}"; else unset A51_QA_LEVEL_ID; fi
 if [ "$MODE" = swap ]; then
   export A51_COOP_SWAP_PADS=1 A51_COOP_SKIN_P1=6 A51_COOP_SKIN_P2=9
