@@ -166,3 +166,13 @@ Suggested start: 1-3.
 - Retail builds turn `ASSERT(x)` into `__assume(x)`: an assertion that is harmless in the test build
   can crash the owner's build. Co-op runs now fail on any assertion during play.
 - No licence on the original code: the fork is for personal, non-commercial testing.
+
+### On hold: 3 and 4 player split-screen co-op (owner, 2026-11-25: "remind me of that too when we are done")
+
+Possible: the engine keeps 4 local players (MAX_LOCAL_PLAYERS 4: pads, views, post effects).
+Our co-op code assumes 2 in places: views top/bottom (needs quadrants), spawning and checkpoint
+placement of players 3-4, pad assignment and swap, pause page bodies P3/P4, profiles
+"Splitscreen P3/P4", mutation mirroring, cinematic sync, the train hold, revive by anyone and
+restart only when all are down.  Each view renders the scene again: 4 players is about twice
+today's render work.  Suggested first step: a 4-player test build with only the views and the
+pads, bot-tested (the bot can drive 4 virtual pads), to measure performance.
