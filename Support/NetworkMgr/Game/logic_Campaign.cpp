@@ -438,6 +438,29 @@ void logic_campaign::WriteProbe( f32 DeltaTime )
         return;
     }
 
+    // Once per level start: how much static world the level has (the owner fell through every
+    // floor after a few level loads in one session; a load that leaves out the play surfaces
+    // shows up here as a low count).
+    {
+        static guid s_LastP2 = 0;
+        if( ( LocalCoop_PlayerCount() > 1 ) && ( m_PlayerGuid[1] != s_LastP2 ) && ( m_PlayerGuid[1] != 0 ) )
+        {
+            s_LastP2 = m_PlayerGuid[1];
+            s32 nSurf = 0, nSurfCollide = 0;
+            for( slot_id Slot = g_ObjMgr.GetFirst( object::TYPE_PLAY_SURFACE ); Slot != SLOT_NULL; Slot = g_ObjMgr.GetNext( Slot ) )
+            {
+                object* pObj = g_ObjMgr.GetObjectBySlot( Slot );
+                if( !pObj ) continue;
+                nSurf++;
+                if( pObj->GetAttrBits() & object::ATTR_COLLIDABLE ) nSurfCollide++;
+            }
+#ifdef A51_LOCAL_COOP_QA
+            qa_bot_Log( "world: level %d play surfaces %d (collidable %d)", (int)g_ActiveConfig.GetLevelID(), (int)nSurf, (int)nSurfCollide );
+#endif
+            LocalCoop_Probe( "world: level %d play surfaces %d (collidable %d)", (int)g_ActiveConfig.GetLevelID(), (int)nSurf, (int)nSurfCollide );
+        }
+    }
+
     m_ProbeTimer -= DeltaTime;
     if( m_ProbeTimer > 0.0f )
     {

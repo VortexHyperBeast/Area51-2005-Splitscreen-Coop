@@ -103,25 +103,23 @@ def build_phases(settle_ms=DEFAULT_SETTLE_MS, cycles=DEFAULT_CYCLES):
 SWEEP_TAIL_MS = 45000                       # level sweep: play on this long after the moves
 
 
-CHAIN_FIRST_MS = 20000                      # the first level runs this long, then quit to the menu
+CHAIN_FIRST_MS = 20000                      # each level runs this long, then quit to the menu
+CHAIN_LEVELS = 5                            # levels started one after another in one session
 CHAIN_SECOND_MS = 50000                     # script time the second level runs
 
 
 def make_chain_script():
-    """Owner (build 90): Invader started after another level (or after itself) drops both
-    players through the floor.  Start a level, quit to the main menu, start the next level of
-    A51_QA_LEVEL_ID through the menus, and watch the players there."""
-    return "\n".join([
-        "# start_ms end_ms pad control value   (game time since the bot was armed)",
-        "# the first level runs, then the test quits to the main menu (script clock pauses)",
-        "cmd %d tomenu" % CHAIN_FIRST_MS,
-        # the bot needs at least one stick event or it switches itself off: a short look around
-        # in each level
-        "5000 6500 0 rx 40",
-        "%d %d 0 rx -40" % (CHAIN_FIRST_MS + 10000, CHAIN_FIRST_MS + 11500),
-        "# the next level starts; both players stand still",
-        "quit %d" % (CHAIN_FIRST_MS + CHAIN_SECOND_MS),
-    ]) + "\n"
+    """Owner (build 101): after a few levels in one session (level, menu, level, menu, Invader)
+    every further level drops both players through the floor.  Start the levels of
+    A51_QA_LEVEL_ID one after another, quitting to the menu after each, and watch the players."""
+    lines = ["# start_ms end_ms pad control value   (game time since the bot was armed)",
+             "# each level runs, then the test quits to the menu (the script clock pauses there)",
+             # the bot needs a stick event or it switches itself off
+             "5000 6500 0 rx 40"]
+    for k in range(1, CHAIN_LEVELS):
+        lines.append("cmd %d tomenu" % (k * CHAIN_FIRST_MS))
+    lines.append("quit %d" % ((CHAIN_LEVELS - 1) * CHAIN_FIRST_MS + CHAIN_SECOND_MS))
+    return "\n".join(lines) + "\n"
 
 
 def make_script(settle_ms=DEFAULT_SETTLE_MS, cycles=DEFAULT_CYCLES, sweep=False):
