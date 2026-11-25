@@ -227,7 +227,12 @@ void LocalCoop_RenderMenuBanner( xbool bThanks )
         "Thank you all for playing this passion",
         "project, this mod will ALWAYS be free.",
         "made with love and passion",
+        "",
         "by VortexHyperBeast",
+        "",
+        "",
+        "Consider supporting me on my Kofi page",
+        "or endorsing this mod on NexusMods!",
     };
     const s32   iFont  = g_UiMgr->FindFont( "small" );
     const irect Screen = g_UIRenderer.GetViewport().GetLogicalClipBounds();
@@ -243,6 +248,8 @@ void LocalCoop_RenderMenuBanner( xbool bThanks )
     y += Line + 10;
     for( s32 i = 0; i < (s32)( sizeof( s_Thanks ) / sizeof( s_Thanks[0] ) ); i++, y += Line )
     {
+        if( s_Thanks[i][0] == 0 )
+            continue;                   // an empty line: just the space
         g_UiMgr->RenderText( iFont, irect( Screen.l + 24, y, Screen.l + 524, y + Line + 6 ),
                              ui_font::h_left | ui_font::v_top, xcolor( 200, 235, 200, 255 ), s_Thanks[i] );
     }
