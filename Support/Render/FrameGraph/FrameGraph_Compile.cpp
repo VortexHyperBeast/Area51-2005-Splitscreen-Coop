@@ -1040,6 +1040,7 @@ xbool FrameGraphBuilder::Compile( void )
                ResourceData.Desc.IsBuffer() ? GetBuffer( ResourceData.Handle ) != NULL :
                                               m_Resources.Get( ResourceData.Physical ) != NULL ) )
         {
+            m_pFailureResource = ResourceData.Desc.pDebugName;
             Fail( "external graph resource was invalidated before execution" );
             return FALSE;
         }
