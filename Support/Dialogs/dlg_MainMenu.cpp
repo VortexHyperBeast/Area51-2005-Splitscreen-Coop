@@ -254,6 +254,22 @@ void LocalCoop_RenderMenuBanner( xbool bThanks )
                              ui_font::h_left | ui_font::v_top, xcolor( 200, 235, 200, 255 ), s_Thanks[i] );
     }
 }
+
+// Called by the UI manager every frame after the dialogs: the banner stays on every front-end
+// screen (the menus' "background1" backdrop: main menu, Splitscreen Co-op, settings, profiles,
+// level select, ...) until a game starts.  Not in a game or its pause menu (no backdrop there),
+// not on the loading screen, the Credits or the Settings pages (owner request).
+void LocalCoop_RenderFrontEndBanner( const char* pBackground )
+{
+    if( !pBackground || ( x_strcmp( pBackground, "background1" ) != 0 ) )
+        return;
+    const s32 State = g_StateMgr.GetState();
+    if( State == SM_CREDITS_SCREEN )
+        return;
+    if( ( State >= SM_SETTINGS_MENU ) && ( State <= SM_SETTINGS_SAVE_DATA_SELECT ) )
+        return;                                 // the Settings pages (owner request)
+    LocalCoop_RenderMenuBanner( TRUE );
+}
 #endif
 
 void dlg_main_menu::Render( s32 ox, s32 oy )
@@ -322,9 +338,6 @@ void dlg_main_menu::Render( s32 ox, s32 oy )
     // render the glow bar
     g_UiMgr->RenderGlowBar();
 
-#if defined(A51_LOCAL_COOP)
-    LocalCoop_RenderMenuBanner( TRUE );
-#endif
 }
 
 //=========================================================================
