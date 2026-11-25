@@ -1,0 +1,1813 @@
+wall=464 qt=-1 QA bot starting (wall limit 3300 s, menu pulses 1)
+wall=465 qt=-1 script '/mnt/pack/work/single-exit/script.txt' loaded: 54 events, quit at 193700 ms
+wall=465 qt=-1 pad 0 attached: instance id 3, is_gamepad=1
+wall=465 qt=-1 pad 1 attached: instance id 4, is_gamepad=1
+wall=2124 qt=-1 state SM_IDLE -> SM_PRESS_START_SCREEN
+wall=2151 qt=-1 state SM_PRESS_START_SCREEN -> SM_MAIN_MENU
+wall=2337 qt=-1 state SM_MAIN_MENU -> SM_PROFILE_SELECT
+wall=2348 qt=-1 state SM_PROFILE_SELECT -> SM_CAMPAIGN_MENU
+wall=2363 qt=-1 state SM_CAMPAIGN_MENU -> SM_LEVEL_SELECT
+wall=2363 qt=-1 level list 0: id=1000
+wall=2363 qt=-1 level list 1: id=1010
+wall=2363 qt=-1 level list 2: id=1020
+wall=2363 qt=-1 level list 3: id=1030
+wall=2363 qt=-1 level list 4: id=1040
+wall=2363 qt=-1 level list 5: id=1050
+wall=2363 qt=-1 level list 6: id=1060
+wall=2363 qt=-1 level list 7: id=1070
+wall=2363 qt=-1 level list 8: id=1075
+wall=2363 qt=-1 level list 9: id=1080
+wall=2363 qt=-1 level list 10: id=1090
+wall=2363 qt=-1 level list 11: id=1095
+wall=2363 qt=-1 level list 12: id=1100
+wall=2363 qt=-1 level list 13: id=1105
+wall=2363 qt=-1 level list 14: id=1110
+wall=2363 qt=-1 level list 15: id=1115
+wall=2363 qt=-1 level list 16: id=1120
+wall=2363 qt=-1 level list 17: id=1125
+wall=2363 qt=-1 level list 18: id=1130
+wall=2363 qt=-1 level list 19: id=2000
+wall=2363 qt=-1 level list 20: id=2010
+wall=2363 qt=-1 level list 21: id=2020
+wall=2363 qt=-1 level list 22: id=2030
+wall=2363 qt=-1 level list 23: id=2040
+wall=2363 qt=-1 level list 24: id=2050
+wall=2363 qt=-1 level list 25: id=2060
+wall=2363 qt=-1 level list 26: id=2070
+wall=2363 qt=-1 level list 27: id=2080
+wall=2363 qt=-1 level list 28: id=2090
+wall=2363 qt=-1 level list 29: id=2100
+wall=2363 qt=-1 level list 30: id=2110
+wall=2363 qt=-1 level list 31: id=2120
+wall=2363 qt=-1 level list 32: id=2130
+wall=2363 qt=-1 level list 33: id=2140
+wall=2363 qt=-1 level list 34: id=2150
+wall=2363 qt=-1 level list 35: id=2160
+wall=2363 qt=-1 level list 36: id=2190
+wall=5010 qt=-1 level picked by the test: 1130
+wall=5010 qt=-1 state SM_LEVEL_SELECT -> SM_START_GAME
+wall=5305 qt=-1 state SM_START_GAME -> SM_SINGLE_PLAYER_LOAD_MISSION
+wall=10073 qt=-1 perf frames=259 in 5071 ms
+wall=15076 qt=-1 perf frames=139 in 5003 ms
+wall=20076 qt=-1 perf frames=236 in 5000 ms
+wall=25081 qt=-1 perf frames=311 in 5005 ms
+wall=30086 qt=-1 perf frames=457 in 5005 ms
+wall=31343 qt=-1 campaign BeginGame done: players=1 level=1130
+wall=32452 qt=-1 state SM_SINGLE_PLAYER_LOAD_MISSION -> SM_SERVER_SYNC
+wall=32454 qt=-1 state SM_SERVER_SYNC -> SM_PLAYING_GAME
+wall=32481 qt=-1 dialog stop - id=00000000
+wall=32482 qt=-1 dialog stop - id=00000000
+wall=32486 qt=-1 audio voices=0 top=- x0
+wall=32486 qt=-1 player 0 guid=35053801 slot=0 pad=0 pos=12150,-40,22100 yaw=-899 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=32486 qt=-1 platform 0: on=00000000 support=0 nearest=C8D1B800 at 12199,-75,22100 top=9265 dist=60 collidable=1 rideable=1
+wall=32820 qt=-1 view 0 viewport=0,0,640,360 eye=11889,92,22097 frames=1 views=1
+wall=32825 qt=-1 bodies view=0 drawn=0 frames=1 others=0 with_body=0
+wall=36812 qt=-1 perf frames=647 in 6726 ms
+wall=36831 qt=-1 view 0 viewport=0,0,640,360 eye=11890,87,22097 frames=2 views=1
+wall=36833 qt=-1 bodies view=0 drawn=0 frames=1 others=0 with_body=0
+wall=37198 qt=-1 player 0 guid=35053801 slot=0 pad=0 pos=11877,-93,22097 yaw=-899 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=37198 qt=-1 platform 0: on=00000000 support=0 nearest=C8D1B800 at 10947,-75,22100 top=9265 dist=930 collidable=1 rideable=1
+wall=37930 qt=-1 view 0 viewport=0,0,640,360 eye=11890,-9,22097 frames=7 views=1
+wall=37932 qt=-1 bodies view=0 drawn=0 frames=5 others=0 with_body=0
+wall=38300 qt=-1 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=98 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=38300 qt=-1 platform 0: on=00000000 support=0 nearest=C8D1B800 at 8911,-75,22100 top=9265 dist=2967 collidable=1 rideable=1
+wall=38962 qt=-1 view 0 viewport=0,0,640,360 eye=11889,-5,22097 frames=13 views=1
+wall=38964 qt=-1 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=39351 qt=-1 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=96 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=39351 qt=-1 platform 0: on=00000000 nearest=none
+wall=40008 qt=-1 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=19 views=1
+wall=40010 qt=-1 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=40385 qt=-1 audio voices=4 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=40385 qt=-1 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=94 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=40385 qt=-1 platform 0: on=00000000 nearest=none
+wall=41043 qt=-1 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=25 views=1
+wall=41045 qt=-1 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=41432 qt=-1 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=92 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=41432 qt=-1 platform 0: on=00000000 nearest=none
+wall=41921 qt=-1 perf frames=28 in 5109 ms
+wall=42100 qt=-1 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=31 views=1
+wall=42102 qt=-1 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=42427 qt=-1 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=90 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=42427 qt=-1 platform 0: on=00000000 nearest=none
+wall=43128 qt=-1 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=37 views=1
+wall=43130 qt=-1 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=43458 qt=-1 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=88 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=43458 qt=-1 platform 0: on=00000000 nearest=none
+wall=44163 qt=-1 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=43 views=1
+wall=44165 qt=-1 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=44499 qt=-1 audio voices=4 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=44499 qt=-1 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=86 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=44499 qt=-1 platform 0: on=00000000 nearest=none
+wall=45044 qt=0 armed: level running, no cinematic on any local player (script 0 ms)
+wall=45044 qt=0 loadout player 0: scanner=1 smp=1 pistol=1
+wall=45044 qt=0 equip player 0: pistol, 8 rounds per clip
+wall=45044 qt=0 profile player 0: index=0 name=Empty avatar=0
+wall=45205 qt=200 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=49 views=1
+wall=45207 qt=200 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=45682 qt=400 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=84 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=45682 qt=400 platform 0: on=00000000 nearest=none
+wall=46334 qt=800 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=55 views=1
+wall=46336 qt=800 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=46658 qt=1000 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=82 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=46658 qt=1000 platform 0: on=00000000 nearest=none
+wall=47012 qt=1100 perf frames=29 in 5091 ms
+wall=47363 qt=1400 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=61 views=1
+wall=47365 qt=1400 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=47688 qt=1600 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=80 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=47688 qt=1600 platform 0: on=00000000 nearest=none
+wall=48377 qt=2000 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=67 views=1
+wall=48379 qt=2000 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=48703 qt=2200 audio voices=4 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=48703 qt=2200 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=78 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=48703 qt=2200 platform 0: on=00000000 nearest=none
+wall=49410 qt=2600 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=73 views=1
+wall=49412 qt=2600 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=49738 qt=2800 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=76 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=49738 qt=2800 platform 0: on=00000000 nearest=none
+wall=50432 qt=3200 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=79 views=1
+wall=50434 qt=3200 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=50761 qt=3400 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=74 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=50761 qt=3400 platform 0: on=00000000 nearest=none
+wall=51462 qt=3800 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=85 views=1
+wall=51464 qt=3800 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=51790 qt=4000 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=72 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=51790 qt=4000 platform 0: on=00000000 nearest=none
+wall=52144 qt=4100 perf frames=30 in 5132 ms
+wall=52485 qt=4400 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=91 views=1
+wall=52486 qt=4400 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=52809 qt=4600 audio voices=4 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=52809 qt=4600 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=70 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=52809 qt=4600 platform 0: on=00000000 nearest=none
+wall=53513 qt=5000 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=97 views=1
+wall=53515 qt=5000 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=53847 qt=5200 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=68 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=53847 qt=5200 platform 0: on=00000000 nearest=none
+wall=54588 qt=5600 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=103 views=1
+wall=54590 qt=5600 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=54920 qt=5800 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=66 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=54920 qt=5800 platform 0: on=00000000 nearest=none
+wall=55613 qt=6200 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=109 views=1
+wall=55615 qt=6200 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=55940 qt=6400 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=64 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=55940 qt=6400 platform 0: on=00000000 nearest=none
+wall=56642 qt=6800 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=115 views=1
+wall=56644 qt=6800 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=56965 qt=7000 audio voices=4 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=56965 qt=7000 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=62 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=56965 qt=7000 platform 0: on=00000000 nearest=none
+wall=57325 qt=7100 perf frames=30 in 5181 ms
+wall=57668 qt=7400 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=121 views=1
+wall=57670 qt=7400 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=58001 qt=7600 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=60 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=58001 qt=7600 platform 0: on=00000000 nearest=none
+wall=58708 qt=8000 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=127 views=1
+wall=58710 qt=8000 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=59038 qt=8200 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=58 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=59038 qt=8200 platform 0: on=00000000 nearest=none
+wall=59730 qt=8600 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=133 views=1
+wall=59732 qt=8600 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=60054 qt=8800 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=56 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=60054 qt=8800 platform 0: on=00000000 nearest=none
+wall=60747 qt=9200 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=139 views=1
+wall=60749 qt=9200 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=61067 qt=9400 audio voices=4 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=61067 qt=9400 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=54 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=61067 qt=9400 platform 0: on=00000000 nearest=none
+wall=61769 qt=9800 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=145 views=1
+wall=61771 qt=9800 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=62097 qt=10000 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=52 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=62097 qt=10000 platform 0: on=00000000 nearest=none
+wall=62410 qt=10100 perf frames=30 in 5085 ms
+wall=62800 qt=10400 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=151 views=1
+wall=62801 qt=10400 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=63129 qt=10600 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=50 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=63129 qt=10600 platform 0: on=00000000 nearest=none
+wall=63830 qt=11000 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=157 views=1
+wall=63832 qt=11000 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=64158 qt=11200 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=48 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=64158 qt=11200 platform 0: on=00000000 nearest=none
+wall=64884 qt=11600 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=163 views=1
+wall=64886 qt=11600 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=65211 qt=11800 audio voices=4 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=65211 qt=11800 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=46 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=65211 qt=11800 platform 0: on=00000000 nearest=none
+wall=65914 qt=12200 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=169 views=1
+wall=65916 qt=12200 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=66249 qt=12400 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=44 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=66249 qt=12400 platform 0: on=00000000 nearest=none
+wall=66948 qt=12800 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=175 views=1
+wall=66950 qt=12800 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=67274 qt=13000 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=42 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=67274 qt=13000 platform 0: on=00000000 nearest=none
+wall=67421 qt=13000 perf frames=29 in 5011 ms
+wall=67980 qt=13400 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=181 views=1
+wall=67982 qt=13400 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=68307 qt=13600 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=40 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=68307 qt=13600 platform 0: on=00000000 nearest=none
+wall=69015 qt=14000 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=187 views=1
+wall=69017 qt=14000 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=69336 qt=14200 audio voices=4 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=69336 qt=14200 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=38 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=69336 qt=14200 platform 0: on=00000000 nearest=none
+wall=70039 qt=14600 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=193 views=1
+wall=70041 qt=14600 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=70361 qt=14800 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=36 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=70361 qt=14800 platform 0: on=00000000 nearest=none
+wall=70839 qt=15000 pad 0 ly = -32767
+wall=71067 qt=15200 view 0 viewport=0,0,640,360 eye=11829,-6,22097 frames=199 views=1
+wall=71069 qt=15200 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=71401 qt=15400 player 0 guid=35053801 slot=0 pad=0 pos=11697,-174,22097 yaw=-899 pitch=0 hp=34 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=71401 qt=15400 platform 0: on=00000000 nearest=none
+wall=72255 qt=15900 view 0 viewport=0,0,640,360 eye=11409,-4,22097 frames=206 views=1
+wall=72258 qt=15900 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=72417 qt=16000 player 0 guid=35053801 slot=0 pad=0 pos=11337,-173,22097 yaw=-899 pitch=0 hp=32 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=72417 qt=16000 platform 0: on=00000000 nearest=none
+wall=72568 qt=16000 perf frames=30 in 5147 ms
+wall=73355 qt=16500 view 0 viewport=0,0,640,360 eye=11049,-4,22097 frames=212 views=1
+wall=73358 qt=16500 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=73517 qt=16600 audio voices=5 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=73517 qt=16600 player 0 guid=35053801 slot=0 pad=0 pos=10977,-173,22097 yaw=-899 pitch=0 hp=30 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=73517 qt=16600 platform 0: on=00000000 nearest=none
+wall=74366 qt=17100 view 0 viewport=0,0,640,360 eye=10689,-4,22097 frames=218 views=1
+wall=74368 qt=17100 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=74537 qt=17200 player 0 guid=35053801 slot=0 pad=0 pos=10617,-173,22097 yaw=-899 pitch=0 hp=28 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=74537 qt=17200 platform 0: on=00000000 nearest=none
+wall=75174 qt=17500 pad 0 ly = 0
+wall=75396 qt=17700 view 0 viewport=0,0,640,360 eye=10389,-5,22097 frames=224 views=1
+wall=75398 qt=17700 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=75567 qt=17800 player 0 guid=35053801 slot=0 pad=0 pos=10377,-173,22097 yaw=-899 pitch=0 hp=26 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=75568 qt=17800 platform 0: on=00000000 nearest=none
+wall=76448 qt=18300 view 0 viewport=0,0,640,360 eye=10389,-5,22097 frames=230 views=1
+wall=76450 qt=18300 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=76615 qt=18400 player 0 guid=35053801 slot=0 pad=0 pos=10377,-173,22097 yaw=-899 pitch=0 hp=24 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=76615 qt=18400 platform 0: on=00000000 nearest=none
+wall=76929 qt=18500 pad 1 ly = -32767
+wall=77506 qt=18900 view 0 viewport=0,0,640,360 eye=10389,-5,22097 frames=236 views=1
+wall=77508 qt=18900 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=77659 qt=18900 perf frames=29 in 5091 ms
+wall=77676 qt=19000 audio voices=4 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=77676 qt=19000 player 0 guid=35053801 slot=0 pad=0 pos=10377,-173,22097 yaw=-899 pitch=0 hp=22 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=77676 qt=19000 platform 0: on=00000000 nearest=none
+wall=78566 qt=19500 view 0 viewport=0,0,640,360 eye=10389,-5,22097 frames=242 views=1
+wall=78569 qt=19500 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=78741 qt=19600 player 0 guid=35053801 slot=0 pad=0 pos=10377,-173,22097 yaw=-899 pitch=0 hp=20 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=78741 qt=19600 platform 0: on=00000000 nearest=none
+wall=79630 qt=20100 view 0 viewport=0,0,640,360 eye=10389,-5,22097 frames=248 views=1
+wall=79633 qt=20100 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=79801 qt=20200 player 0 guid=35053801 slot=0 pad=0 pos=10377,-173,22097 yaw=-899 pitch=0 hp=18 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=79802 qt=20200 platform 0: on=00000000 nearest=none
+wall=80693 qt=20700 view 0 viewport=0,0,640,360 eye=10389,-5,22097 frames=254 views=1
+wall=80695 qt=20700 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=80857 qt=20800 player 0 guid=35053801 slot=0 pad=0 pos=10377,-173,22097 yaw=-899 pitch=0 hp=16 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=80857 qt=20800 platform 0: on=00000000 nearest=none
+wall=81344 qt=21000 pad 1 ly = 0
+wall=81751 qt=21300 view 0 viewport=0,0,640,360 eye=10389,-5,22097 frames=260 views=1
+wall=81753 qt=21300 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=81920 qt=21400 audio voices=4 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=81920 qt=21400 player 0 guid=35053801 slot=0 pad=0 pos=10377,-173,22097 yaw=-899 pitch=0 hp=14 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=81920 qt=21400 platform 0: on=00000000 nearest=none
+wall=82791 qt=21800 perf frames=29 in 5132 ms
+wall=82808 qt=21900 view 0 viewport=0,0,640,360 eye=10389,-5,22097 frames=266 views=1
+wall=82810 qt=21900 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=82976 qt=22000 player 0 guid=35053801 slot=0 pad=0 pos=10377,-173,22097 yaw=-899 pitch=0 hp=12 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=82976 qt=22000 platform 0: on=00000000 nearest=none
+wall=83126 qt=22000 pad 0 lx = 32767
+wall=83126 qt=22000 pad 1 lx = -32767
+wall=83856 qt=22500 view 0 viewport=0,0,640,360 eye=10389,3,21855 frames=272 views=1
+wall=83858 qt=22500 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=84024 qt=22600 player 0 guid=35053801 slot=0 pad=0 pos=10360,-160,21837 yaw=-899 pitch=0 hp=10 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=84024 qt=22600 platform 0: on=00000000 nearest=none
+wall=84909 qt=23100 view 0 viewport=0,0,640,360 eye=10329,77,21702 frames=278 views=1
+wall=84911 qt=23100 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=85184 qt=23200 player 0 guid=35053801 slot=0 pad=0 pos=10316,-88,21644 yaw=-899 pitch=0 hp=7 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=85184 qt=23200 platform 0: on=00000000 nearest=none
+wall=85954 qt=23700 view 0 viewport=0,0,640,360 eye=10328,-61,21342 frames=284 views=1
+wall=85956 qt=23700 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=86093 qt=23800 audio voices=5 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x3
+wall=86093 qt=23800 player 0 guid=35053801 slot=0 pad=0 pos=10316,-288,21284 yaw=-899 pitch=0 hp=7 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=86093 qt=23800 platform 0: on=00000000 nearest=none
+wall=86504 qt=24000 pad 0 lx = 0
+wall=86504 qt=24000 pad 1 lx = 0
+wall=86969 qt=24400 player 0 guid=35053801 slot=0 pad=0 pos=10316,-848,20979 yaw=-899 pitch=0 hp=7 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=86970 qt=24400 platform 0: on=00000000 nearest=none
+wall=86970 qt=24400 view 0 viewport=0,0,640,360 eye=10328,-679,20979 frames=291 views=1
+wall=86971 qt=24400 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=87796 qt=24900 perf frames=31 in 5005 ms
+wall=87809 qt=25000 player 0 guid=35053801 slot=0 pad=0 pos=10316,-1768,20890 yaw=-899 pitch=0 hp=0 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=87809 qt=25000 platform 0: on=00000000 nearest=none
+wall=87992 qt=25000 pad 0 rx = 32767
+wall=88004 qt=25100 view 0 viewport=0,0,640,360 eye=10328,-1758,20898 frames=298 views=1
+wall=88006 qt=25100 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=88804 qt=25600 player 0 guid=35053801 slot=0 pad=0 pos=10316,-3048,20870 yaw=-899 pitch=0 hp=0 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=88804 qt=25600 platform 0: on=00000000 nearest=none
+wall=89131 qt=25800 view 0 viewport=0,0,640,360 eye=10314,-3205,20869 frames=305 views=1
+wall=89132 qt=25800 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=89637 qt=26200 audio voices=6 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=89637 qt=26200 player 0 guid=35053801 slot=0 pad=0 pos=10316,-3299,20869 yaw=-899 pitch=0 hp=0 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=89637 qt=26200 platform 0: on=00000000 nearest=none
+wall=90140 qt=26568 pad 0 rx = 0
+wall=90152 qt=26668 view 0 viewport=0,0,640,360 eye=10306,-3291,20869 frames=314 views=1
+wall=90153 qt=26668 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=90249 qt=26765 player 0 guid=35053801 slot=0 pad=0 pos=10316,-3299,20869 yaw=-899 pitch=0 hp=0 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=90249 qt=26765 platform 0: on=00000000 nearest=none
+wall=90824 qt=27337 player 0 guid=35053801 slot=0 pad=0 pos=10316,-3299,20869 yaw=-899 pitch=0 hp=0 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=90824 qt=27337 platform 0: on=00000000 nearest=none
+wall=91097 qt=27528 pad 1 rx = -32767
+wall=91253 qt=27723 view 0 viewport=0,0,640,360 eye=10306,-3291,20869 frames=325 views=1
+wall=91253 qt=27723 bodies view=0 drawn=0 frames=11 others=0 with_body=0
+wall=91439 qt=27910 player 0 guid=35053801 slot=0 pad=0 pos=10316,-3299,20869 yaw=-899 pitch=0 hp=0 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=91439 qt=27910 platform 0: on=00000000 nearest=none
+wall=91993 qt=28464 audio voices=3 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=91993 qt=28464 player 0 guid=35053801 slot=0 pad=0 pos=10316,-3299,20869 yaw=-899 pitch=0 hp=0 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=91993 qt=28464 platform 0: on=00000000 nearest=none
+wall=92325 qt=28750 view 0 viewport=0,0,640,360 eye=10306,-3291,20869 frames=336 views=1
+wall=92325 qt=28750 bodies view=0 drawn=0 frames=11 others=0 with_body=0
+wall=92427 qt=28850 state SM_PLAYING_GAME -> SM_SERVER_COOLDOWN
+wall=92430 qt=28850 dialog stop - id=00000000
+wall=92431 qt=28850 dialog stop - id=00000000
+wall=92436 qt=28850 state SM_SERVER_COOLDOWN -> SM_POST_GAME
+wall=92446 qt=28850 state SM_POST_GAME -> SM_RELOAD_CHECKPOINT
+wall=92615 qt=28850 state SM_RELOAD_CHECKPOINT -> SM_SINGLE_PLAYER_LOAD_MISSION
+wall=92620 qt=28850 campaign BeginGame done: players=1 level=1130
+wall=92652 qt=28850 state SM_SINGLE_PLAYER_LOAD_MISSION -> SM_SERVER_SYNC
+wall=92655 qt=28850 state SM_SERVER_SYNC -> SM_PLAYING_GAME
+wall=92702 qt=28850 dialog stop - id=00000000
+wall=92703 qt=28850 dialog stop - id=00000000
+wall=92707 qt=28850 player 0 guid=35053801 slot=0 pad=0 pos=12150,-40,22100 yaw=-899 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=92707 qt=28850 platform 0: on=00000000 support=0 nearest=C8D1B800 at 12199,-75,22100 top=9265 dist=60 collidable=1 rideable=1
+wall=92798 qt=28943 perf frames=89 in 5002 ms
+wall=92856 qt=29001 pad 1 rx = 0
+wall=93415 qt=29387 player 0 guid=35053801 slot=0 pad=0 pos=11875,-93,22100 yaw=-899 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=93415 qt=29387 platform 0: on=00000000 support=0 nearest=C8D1B800 at 10944,-75,22100 top=9265 dist=930 collidable=1 rideable=1
+wall=93416 qt=29387 view 0 viewport=0,0,640,360 eye=11887,73,22100 frames=339 views=1
+wall=93417 qt=29387 bodies view=0 drawn=0 frames=3 others=0 with_body=0
+wall=94417 qt=29987 player 0 guid=35053801 slot=0 pad=0 pos=11875,-174,22100 yaw=-899 pitch=0 hp=98 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=94417 qt=29987 platform 0: on=00000000 support=0 nearest=C8D1B800 at 8909,-75,22100 top=9265 dist=2968 collidable=1 rideable=1
+wall=94417 qt=29987 view 0 viewport=0,0,640,360 eye=11888,-8,22100 frames=345 views=1
+wall=94419 qt=29987 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=94752 qt=30087 pad 0 a = 1
+wall=95253 qt=30387 pad 0 a = 0
+wall=95486 qt=30587 audio voices=4 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=95486 qt=30587 player 0 guid=35053801 slot=0 pad=0 pos=11875,-174,22100 yaw=-899 pitch=0 hp=96 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=95486 qt=30587 platform 0: on=00000000 nearest=none
+wall=95486 qt=30587 view 0 viewport=0,0,640,360 eye=11887,-6,22100 frames=351 views=1
+wall=95488 qt=30587 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=96518 qt=31187 player 0 guid=35053801 slot=0 pad=0 pos=11875,-174,22100 yaw=-899 pitch=0 hp=94 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=96518 qt=31187 platform 0: on=00000000 nearest=none
+wall=96518 qt=31187 view 0 viewport=0,0,640,360 eye=11887,-6,22100 frames=357 views=1
+wall=96520 qt=31187 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=97550 qt=31787 player 0 guid=35053801 slot=0 pad=0 pos=11875,-174,22100 yaw=-899 pitch=0 hp=92 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=97550 qt=31787 platform 0: on=00000000 nearest=none
+wall=97550 qt=31787 view 0 viewport=0,0,640,360 eye=11887,-6,22100 frames=363 views=1
+wall=97552 qt=31787 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=97864 qt=31887 perf frames=93 in 5066 ms
+wall=98190 qt=32087 pad 1 a = 1
+wall=98524 qt=32387 player 0 guid=35053801 slot=0 pad=0 pos=11875,-174,22100 yaw=-899 pitch=0 hp=90 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=98524 qt=32387 platform 0: on=00000000 nearest=none
+wall=98723 qt=32387 pad 1 a = 0
+wall=98737 qt=32487 view 0 viewport=0,0,640,360 eye=11887,-6,22100 frames=370 views=1
+wall=98739 qt=32487 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=99560 qt=32987 audio voices=4 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=99560 qt=32987 player 0 guid=35053801 slot=0 pad=0 pos=11875,-174,22100 yaw=-899 pitch=0 hp=88 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=99560 qt=32987 platform 0: on=00000000 nearest=none
+wall=99775 qt=33087 view 0 viewport=0,0,640,360 eye=11887,-6,22100 frames=376 views=1
+wall=99777 qt=33087 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=100595 qt=33587 player 0 guid=35053801 slot=0 pad=0 pos=11875,-174,22100 yaw=-899 pitch=0 hp=86 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=100595 qt=33587 platform 0: on=00000000 nearest=none
+wall=100808 qt=33687 view 0 viewport=0,0,640,360 eye=11887,-6,22100 frames=382 views=1
+wall=100810 qt=33687 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=101138 qt=33787 loadout player 0: scanner=1 smp=1 pistol=1
+wall=101138 qt=33787 equip player 0: pistol, 8 rounds per clip
+wall=101138 qt=33787 profile player 0: index=0 name=Empty avatar=0
+wall=101608 qt=34087 pad 0 rt = 32767
+wall=101622 qt=34187 player 0 guid=35053801 slot=0 pad=0 pos=11875,-174,22100 yaw=-899 pitch=0 hp=84 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=101622 qt=34187 platform 0: on=00000000 nearest=none
+wall=101821 qt=34287 view 0 viewport=0,0,640,360 eye=11887,-6,22100 frames=388 views=1
+wall=101823 qt=34287 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=102652 qt=34787 player 0 guid=35053801 slot=0 pad=0 pos=11875,-174,22100 yaw=-899 pitch=0 hp=82 weapon=EGL ammo=63 inclip=5 perclip=8 cinema=0
+wall=102652 qt=34787 platform 0: on=00000000 nearest=none
+wall=103019 qt=34787 perf frames=29 in 5155 ms
+wall=103033 qt=34887 view 0 viewport=0,0,640,360 eye=11887,-6,22100 frames=394 views=1
+wall=103035 qt=34887 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=104104 qt=35387 audio voices=8 top=EGL_FIRE x2
+wall=104104 qt=35387 player 0 guid=35053801 slot=0 pad=0 pos=11875,-174,22100 yaw=-899 pitch=0 hp=80 weapon=EGL ammo=62 inclip=4 perclip=8 cinema=0
+wall=104104 qt=35387 platform 0: on=00000000 nearest=none
+wall=104104 qt=35387 view 0 viewport=0,0,640,360 eye=11887,-6,22100 frames=399 views=1
+wall=104106 qt=35387 bodies view=0 drawn=0 frames=5 others=0 with_body=0
+wall=104596 qt=35587 pad 0 rt = -32768
+wall=105197 qt=35987 player 0 guid=35053801 slot=0 pad=0 pos=11875,-174,22100 yaw=-899 pitch=0 hp=78 weapon=EGL ammo=61 inclip=3 perclip=8 cinema=0
+wall=105197 qt=35987 platform 0: on=00000000 nearest=none
+wall=105197 qt=35987 view 0 viewport=0,0,640,360 eye=11887,-6,22100 frames=405 views=1
+wall=105199 qt=35987 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=106278 qt=36587 player 0 guid=35053801 slot=0 pad=0 pos=11875,-174,22100 yaw=-899 pitch=0 hp=76 weapon=EGL ammo=61 inclip=3 perclip=8 cinema=0
+wall=106278 qt=36587 platform 0: on=00000000 nearest=none
+wall=106278 qt=36587 view 0 viewport=0,0,640,360 eye=11887,-6,22100 frames=411 views=1
+wall=106280 qt=36587 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=106428 qt=36587 pad 1 rt = 32767
+wall=107334 qt=37187 player 0 guid=35053801 slot=0 pad=0 pos=11875,-174,22100 yaw=-899 pitch=0 hp=74 weapon=EGL ammo=61 inclip=3 perclip=8 cinema=0
+wall=107335 qt=37187 platform 0: on=00000000 nearest=none
+wall=107335 qt=37187 view 0 viewport=0,0,640,360 eye=11887,-6,22100 frames=417 views=1
+wall=107337 qt=37187 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=108179 qt=37587 perf frames=28 in 5160 ms
+wall=108363 qt=37787 audio voices=4 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=108363 qt=37787 player 0 guid=35053801 slot=0 pad=0 pos=11875,-174,22100 yaw=-899 pitch=0 hp=72 weapon=EGL ammo=61 inclip=3 perclip=8 cinema=0
+wall=108363 qt=37787 platform 0: on=00000000 nearest=none
+wall=108363 qt=37787 view 0 viewport=0,0,640,360 eye=11887,-6,22100 frames=423 views=1
+wall=108365 qt=37787 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=109011 qt=38087 pad 1 rt = -32768
+wall=109414 qt=38387 player 0 guid=35053801 slot=0 pad=0 pos=11875,-174,22100 yaw=-899 pitch=0 hp=70 weapon=EGL ammo=61 inclip=3 perclip=8 cinema=0
+wall=109414 qt=38387 platform 0: on=00000000 nearest=none
+wall=109415 qt=38387 view 0 viewport=0,0,640,360 eye=11887,-6,22100 frames=429 views=1
+wall=109416 qt=38387 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=110460 qt=38987 player 0 guid=35053801 slot=0 pad=0 pos=11875,-174,22100 yaw=-899 pitch=0 hp=68 weapon=EGL ammo=61 inclip=3 perclip=8 cinema=0
+wall=110461 qt=38987 platform 0: on=00000000 nearest=none
+wall=110461 qt=38987 view 0 viewport=0,0,640,360 eye=11887,-6,22100 frames=435 views=1
+wall=110463 qt=38987 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=110775 qt=39087 pad 0 x = 1
+wall=111332 qt=39387 pad 0 x = 0
+wall=111514 qt=39587 player 0 guid=35053801 slot=0 pad=0 pos=11875,-174,22100 yaw=-899 pitch=0 hp=66 weapon=EGL ammo=61 inclip=3 perclip=8 cinema=0
+wall=111514 qt=39587 platform 0: on=00000000 nearest=none
+wall=111514 qt=39587 view 0 viewport=0,0,640,360 eye=11887,-6,22100 frames=441 views=1
+wall=111516 qt=39587 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=112539 qt=40187 audio voices=4 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=112539 qt=40187 player 0 guid=35053801 slot=0 pad=0 pos=11875,-174,22100 yaw=-899 pitch=0 hp=64 weapon=EGL ammo=61 inclip=3 perclip=8 cinema=0
+wall=112539 qt=40187 platform 0: on=00000000 nearest=none
+wall=112539 qt=40187 view 0 viewport=0,0,640,360 eye=11887,-6,22100 frames=447 views=1
+wall=112541 qt=40187 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=113185 qt=40487 perf frames=29 in 5006 ms
+wall=113566 qt=40787 player 0 guid=35053801 slot=0 pad=0 pos=11875,-174,22100 yaw=-899 pitch=0 hp=62 weapon=EGL ammo=61 inclip=3 perclip=8 cinema=0
+wall=113566 qt=40787 platform 0: on=00000000 nearest=none
+wall=113566 qt=40787 view 0 viewport=0,0,640,360 eye=11887,-6,22100 frames=453 views=1
+wall=113568 qt=40787 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=114620 qt=41387 player 0 guid=35053801 slot=0 pad=0 pos=11875,-174,22100 yaw=-899 pitch=0 hp=60 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=114620 qt=41387 platform 0: on=00000000 nearest=none
+wall=114620 qt=41387 view 0 viewport=0,0,640,360 eye=11887,-6,22100 frames=459 views=1
+wall=114622 qt=41387 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=115660 qt=41987 player 0 guid=35053801 slot=0 pad=0 pos=11875,-174,22100 yaw=-899 pitch=0 hp=58 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=115660 qt=41987 platform 0: on=00000000 nearest=none
+wall=115660 qt=41987 view 0 viewport=0,0,640,360 eye=11887,-6,22100 frames=465 views=1
+wall=115662 qt=41987 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=116693 qt=42587 audio voices=4 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=116693 qt=42587 player 0 guid=35053801 slot=0 pad=0 pos=11875,-174,22100 yaw=-899 pitch=0 hp=56 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=116694 qt=42587 platform 0: on=00000000 nearest=none
+wall=116694 qt=42587 view 0 viewport=0,0,640,360 eye=11887,-6,22100 frames=471 views=1
+wall=116695 qt=42587 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=117007 qt=42687 pad 1 x = 1
+wall=117501 qt=42987 pad 1 x = 0
+wall=117729 qt=43187 player 0 guid=35053801 slot=0 pad=0 pos=11875,-174,22100 yaw=-899 pitch=0 hp=54 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=117729 qt=43187 platform 0: on=00000000 nearest=none
+wall=117729 qt=43187 view 0 viewport=0,0,640,360 eye=11887,-6,22100 frames=477 views=1
+wall=117731 qt=43187 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=118204 qt=43387 perf frames=29 in 5019 ms
+wall=118713 qt=43787 player 0 guid=35053801 slot=0 pad=0 pos=11875,-174,22100 yaw=-899 pitch=0 hp=52 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=118713 qt=43787 platform 0: on=00000000 nearest=none
+wall=118922 qt=43887 view 0 viewport=0,0,640,360 eye=11887,-6,22100 frames=484 views=1
+wall=118924 qt=43887 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=119749 qt=44387 player 0 guid=35053801 slot=0 pad=0 pos=11875,-174,22100 yaw=-899 pitch=0 hp=50 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=119749 qt=44387 platform 0: on=00000000 nearest=none
+wall=119950 qt=44487 view 0 viewport=0,0,640,360 eye=11887,-6,22100 frames=490 views=1
+wall=119952 qt=44487 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=120780 qt=44987 audio voices=4 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=120780 qt=44987 player 0 guid=35053801 slot=0 pad=0 pos=11875,-174,22100 yaw=-899 pitch=0 hp=48 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=120780 qt=44987 platform 0: on=00000000 nearest=none
+wall=121001 qt=45087 view 0 viewport=0,0,640,360 eye=11887,-6,22100 frames=496 views=1
+wall=121003 qt=45087 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=121830 qt=45587 player 0 guid=35053801 slot=0 pad=0 pos=11875,-174,22100 yaw=-899 pitch=0 hp=46 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=121830 qt=45587 platform 0: on=00000000 nearest=none
+wall=122045 qt=45687 view 0 viewport=0,0,640,360 eye=11887,-6,22100 frames=502 views=1
+wall=122047 qt=45687 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=122878 qt=46187 player 0 guid=35053801 slot=0 pad=0 pos=11875,-174,22100 yaw=-899 pitch=0 hp=44 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=122878 qt=46187 platform 0: on=00000000 nearest=none
+wall=123103 qt=46287 view 0 viewport=0,0,640,360 eye=11887,-6,22100 frames=508 views=1
+wall=123105 qt=46287 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=123255 qt=46287 perf frames=29 in 5051 ms
+wall=123255 qt=46287 pad 0 ly = 32767
+wall=123938 qt=46787 player 0 guid=35053801 slot=0 pad=0 pos=12115,-173,22100 yaw=-899 pitch=0 hp=42 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=123938 qt=46787 platform 0: on=00000000 nearest=none
+wall=124160 qt=46887 view 0 viewport=0,0,640,360 eye=12187,-5,22100 frames=514 views=1
+wall=124162 qt=46887 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=124999 qt=47387 audio voices=5 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=124999 qt=47387 player 0 guid=35053801 slot=0 pad=0 pos=12475,-173,22100 yaw=-899 pitch=0 hp=40 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=124999 qt=47387 platform 0: on=00000000 nearest=none
+wall=125222 qt=47487 view 0 viewport=0,0,640,360 eye=12547,-5,22100 frames=520 views=1
+wall=125223 qt=47487 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=126042 qt=47987 player 0 guid=35053801 slot=0 pad=0 pos=12835,-173,22100 yaw=-899 pitch=0 hp=38 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=126042 qt=47987 platform 0: on=00000000 nearest=none
+wall=126245 qt=48087 view 0 viewport=0,0,640,360 eye=12907,-5,22100 frames=526 views=1
+wall=126247 qt=48087 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=127079 qt=48587 player 0 guid=35053801 slot=0 pad=0 pos=13195,-173,22100 yaw=-899 pitch=0 hp=36 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=127079 qt=48587 platform 0: on=00000000 nearest=none
+wall=127290 qt=48687 view 0 viewport=0,0,640,360 eye=13267,-5,22100 frames=532 views=1
+wall=127292 qt=48687 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=127616 qt=48787 pad 0 ly = 0
+wall=128140 qt=49187 player 0 guid=35053801 slot=0 pad=0 pos=13375,-173,22100 yaw=-899 pitch=0 hp=34 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=128140 qt=49187 platform 0: on=00000000 nearest=none
+wall=128337 qt=49187 perf frames=29 in 5082 ms
+wall=128351 qt=49287 view 0 viewport=0,0,640,360 eye=13387,-5,22100 frames=538 views=1
+wall=128353 qt=49287 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=129185 qt=49787 audio voices=5 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=129185 qt=49787 player 0 guid=35053801 slot=0 pad=0 pos=13375,-173,22100 yaw=-899 pitch=0 hp=32 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=129185 qt=49787 platform 0: on=00000000 nearest=none
+wall=129392 qt=49787 pad 1 ly = 32767
+wall=129407 qt=49887 view 0 viewport=0,0,640,360 eye=13387,-5,22100 frames=544 views=1
+wall=129409 qt=49887 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=130245 qt=50387 player 0 guid=35053801 slot=0 pad=0 pos=13375,-173,22100 yaw=-899 pitch=0 hp=30 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=130245 qt=50387 platform 0: on=00000000 nearest=none
+wall=130467 qt=50487 view 0 viewport=0,0,640,360 eye=13387,-5,22100 frames=550 views=1
+wall=130469 qt=50487 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=131312 qt=50987 player 0 guid=35053801 slot=0 pad=0 pos=13375,-173,22100 yaw=-899 pitch=0 hp=28 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=131312 qt=50987 platform 0: on=00000000 nearest=none
+wall=131534 qt=51087 view 0 viewport=0,0,640,360 eye=13387,-5,22100 frames=556 views=1
+wall=131536 qt=51087 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=132400 qt=51587 player 0 guid=35053801 slot=0 pad=0 pos=13375,-173,22100 yaw=-899 pitch=0 hp=26 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=132400 qt=51587 platform 0: on=00000000 nearest=none
+wall=132618 qt=51687 view 0 viewport=0,0,640,360 eye=13387,-5,22100 frames=562 views=1
+wall=132620 qt=51687 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=133487 qt=52087 perf frames=29 in 5150 ms
+wall=133501 qt=52187 audio voices=4 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=133501 qt=52187 player 0 guid=35053801 slot=0 pad=0 pos=13375,-173,22100 yaw=-899 pitch=0 hp=24 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=133501 qt=52187 platform 0: on=00000000 nearest=none
+wall=133714 qt=52287 view 0 viewport=0,0,640,360 eye=13387,-5,22100 frames=568 views=1
+wall=133716 qt=52287 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=133862 qt=52287 pad 1 ly = 0
+wall=134549 qt=52787 player 0 guid=35053801 slot=0 pad=0 pos=13375,-173,22100 yaw=-899 pitch=0 hp=22 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=134549 qt=52787 platform 0: on=00000000 nearest=none
+wall=134770 qt=52887 view 0 viewport=0,0,640,360 eye=13387,-5,22100 frames=574 views=1
+wall=134772 qt=52887 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=135603 qt=53287 pad 0 lx = -32767
+wall=135603 qt=53287 pad 1 lx = 32767
+wall=135618 qt=53387 player 0 guid=35053801 slot=0 pad=0 pos=13375,-173,22100 yaw=-899 pitch=0 hp=20 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=135618 qt=53387 platform 0: on=00000000 nearest=none
+wall=135839 qt=53487 view 0 viewport=0,0,640,360 eye=13387,-5,22161 frames=580 views=1
+wall=135841 qt=53487 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=136698 qt=53987 player 0 guid=35053801 slot=0 pad=0 pos=13324,-146,22405 yaw=-899 pitch=0 hp=17 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=136698 qt=53987 platform 0: on=00000000 nearest=none
+wall=136926 qt=54087 view 0 viewport=0,0,640,360 eye=13337,20,22407 frames=586 views=1
+wall=136928 qt=54087 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=137792 qt=54587 audio voices=4 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=137792 qt=54587 player 0 guid=35053801 slot=0 pad=0 pos=13325,-147,22405 yaw=-899 pitch=0 hp=15 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=137792 qt=54587 platform 0: on=00000000 nearest=none
+wall=138003 qt=54687 view 0 viewport=0,0,640,360 eye=13337,20,22407 frames=592 views=1
+wall=138005 qt=54687 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=138505 qt=54887 perf frames=28 in 5018 ms
+wall=138863 qt=55187 player 0 guid=35053801 slot=0 pad=0 pos=13325,-147,22405 yaw=-899 pitch=0 hp=13 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=138863 qt=55187 platform 0: on=00000000 nearest=none
+wall=139070 qt=55287 view 0 viewport=0,0,640,360 eye=13337,20,22407 frames=598 views=1
+wall=139072 qt=55287 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=139219 qt=55287 pad 0 lx = 0
+wall=139219 qt=55287 pad 1 lx = 0
+wall=139911 qt=55787 player 0 guid=35053801 slot=0 pad=0 pos=13325,-147,22405 yaw=-899 pitch=0 hp=11 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=139911 qt=55787 platform 0: on=00000000 nearest=none
+wall=140127 qt=55887 view 0 viewport=0,0,640,360 eye=13337,20,22405 frames=604 views=1
+wall=140129 qt=55887 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=140966 qt=56287 pad 0 rx = -32767
+wall=140981 qt=56387 player 0 guid=35053801 slot=0 pad=0 pos=13325,-147,22405 yaw=-899 pitch=0 hp=9 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=140981 qt=56387 platform 0: on=00000000 nearest=none
+wall=141192 qt=56487 view 0 viewport=0,0,640,360 eye=13336,20,22402 frames=610 views=1
+wall=141195 qt=56487 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=141898 qt=56987 audio voices=4 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=141898 qt=56987 player 0 guid=35053801 slot=0 pad=0 pos=13325,-147,22405 yaw=829 pitch=0 hp=7 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=141898 qt=56987 platform 0: on=00000000 nearest=none
+wall=142206 qt=57187 view 0 viewport=0,0,640,360 eye=13319,20,22415 frames=617 views=1
+wall=142207 qt=57187 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=142774 qt=57587 player 0 guid=35053801 slot=0 pad=0 pos=13325,-147,22405 yaw=2718 pitch=0 hp=5 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=142774 qt=57587 platform 0: on=00000000 nearest=none
+wall=143266 qt=57787 pad 0 rx = 0
+wall=143281 qt=57887 view 0 viewport=0,0,640,360 eye=13324,20,22394 frames=624 views=1
+wall=143282 qt=57887 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=143515 qt=57987 perf frames=31 in 5010 ms
+wall=143659 qt=58187 player 0 guid=35053801 slot=0 pad=0 pos=13325,-147,22405 yaw=3663 pitch=0 hp=3 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=143659 qt=58187 platform 0: on=00000000 nearest=none
+wall=144355 qt=58687 view 0 viewport=0,0,640,360 eye=13324,20,22394 frames=632 views=1
+wall=144356 qt=58687 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=144480 qt=58787 player 0 guid=35053801 slot=0 pad=0 pos=13325,-147,22405 yaw=3663 pitch=0 hp=1 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=144481 qt=58787 platform 0: on=00000000 nearest=none
+wall=144597 qt=58787 pad 1 rx = 32767
+wall=145234 qt=59387 audio voices=4 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=145234 qt=59387 player 0 guid=35053801 slot=0 pad=0 pos=13325,-147,22405 yaw=3663 pitch=0 hp=0 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=145234 qt=59387 platform 0: on=00000000 nearest=none
+wall=145393 qt=59487 view 0 viewport=0,0,640,360 eye=13325,22,22405 frames=640 views=1
+wall=145394 qt=59487 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=145913 qt=59987 player 0 guid=35053801 slot=0 pad=0 pos=13325,-147,22405 yaw=3663 pitch=0 hp=0 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=145913 qt=59987 platform 0: on=00000000 nearest=none
+wall=146457 qt=60287 pad 1 rx = 0
+wall=146472 qt=60387 view 0 viewport=0,0,640,360 eye=13326,-139,22415 frames=649 views=1
+wall=146474 qt=60387 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=146754 qt=60587 player 0 guid=35053801 slot=0 pad=0 pos=13325,-147,22405 yaw=3663 pitch=0 hp=0 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=146754 qt=60587 platform 0: on=00000000 nearest=none
+wall=147531 qt=61087 view 0 viewport=0,0,640,360 eye=13326,-139,22415 frames=656 views=1
+wall=147532 qt=61087 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=147675 qt=61187 player 0 guid=35053801 slot=0 pad=0 pos=13325,-147,22405 yaw=3663 pitch=0 hp=0 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=147675 qt=61187 platform 0: on=00000000 nearest=none
+wall=147958 qt=61287 pad 0 a = 1
+wall=148398 qt=61587 pad 0 a = 0
+wall=148584 qt=61687 perf frames=37 in 5069 ms
+wall=148599 qt=61787 audio voices=4 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=148599 qt=61787 player 0 guid=35053801 slot=0 pad=0 pos=13325,-147,22405 yaw=3663 pitch=0 hp=0 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=148599 qt=61787 platform 0: on=00000000 nearest=none
+wall=148600 qt=61787 view 0 viewport=0,0,640,360 eye=13326,-139,22415 frames=663 views=1
+wall=148601 qt=61787 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=149474 qt=62387 player 0 guid=35053801 slot=0 pad=0 pos=13325,-147,22405 yaw=3663 pitch=0 hp=0 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=149474 qt=62387 platform 0: on=00000000 nearest=none
+wall=149657 qt=62487 view 0 viewport=0,0,640,360 eye=13326,-139,22415 frames=670 views=1
+wall=149659 qt=62487 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=150407 qt=62987 player 0 guid=35053801 slot=0 pad=0 pos=13325,-147,22405 yaw=3663 pitch=0 hp=0 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=150408 qt=62987 platform 0: on=00000000 nearest=none
+wall=150410 qt=62987 state SM_PLAYING_GAME -> SM_SERVER_COOLDOWN
+wall=150417 qt=62987 dialog stop - id=00000000
+wall=150418 qt=62987 dialog stop - id=00000000
+wall=150425 qt=62987 state SM_SERVER_COOLDOWN -> SM_POST_GAME
+wall=150436 qt=62987 state SM_POST_GAME -> SM_RELOAD_CHECKPOINT
+wall=150607 qt=62987 state SM_RELOAD_CHECKPOINT -> SM_SINGLE_PLAYER_LOAD_MISSION
+wall=150618 qt=62987 campaign BeginGame done: players=1 level=1130
+wall=150647 qt=62987 state SM_SINGLE_PLAYER_LOAD_MISSION -> SM_SERVER_SYNC
+wall=150650 qt=62987 state SM_SERVER_SYNC -> SM_PLAYING_GAME
+wall=150699 qt=62987 dialog stop - id=00000000
+wall=150699 qt=62987 dialog stop - id=00000000
+wall=150703 qt=62987 player 0 guid=35053801 slot=0 pad=0 pos=12150,-40,22100 yaw=-899 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=150703 qt=62987 platform 0: on=00000000 support=0 nearest=C8D1B800 at 12199,-75,22100 top=9265 dist=60 collidable=1 rideable=1
+wall=150915 qt=63201 pad 1 a = 1
+wall=151038 qt=63321 view 0 viewport=0,0,640,360 eye=11896,93,22097 frames=675 views=1
+wall=151040 qt=63321 bodies view=0 drawn=0 frames=5 others=0 with_body=0
+wall=151360 qt=63521 audio voices=5 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=151360 qt=63521 player 0 guid=35053801 slot=0 pad=0 pos=11883,-93,22097 yaw=-899 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=151360 qt=63521 platform 0: on=00000000 support=0 nearest=C8D1B800 at 10953,-75,22100 top=9265 dist=929 collidable=1 rideable=1
+wall=151491 qt=63521 pad 1 a = 0
+wall=152047 qt=63921 view 0 viewport=0,0,640,360 eye=11896,-9,22097 frames=681 views=1
+wall=152049 qt=63921 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=152380 qt=64121 player 0 guid=35053801 slot=0 pad=0 pos=11883,-174,22097 yaw=-899 pitch=0 hp=98 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=152380 qt=64121 platform 0: on=00000000 support=0 nearest=C8D1B800 at 8919,-75,22100 top=9265 dist=2965 collidable=1 rideable=1
+wall=153105 qt=64521 view 0 viewport=0,0,640,360 eye=11895,-5,22097 frames=687 views=1
+wall=153107 qt=64521 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=153441 qt=64721 player 0 guid=35053801 slot=0 pad=0 pos=11883,-174,22097 yaw=-899 pitch=0 hp=96 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=153441 qt=64721 platform 0: on=00000000 nearest=none
+wall=153596 qt=64721 perf frames=138 in 5012 ms
+wall=154163 qt=65121 view 0 viewport=0,0,640,360 eye=11895,-6,22097 frames=693 views=1
+wall=154165 qt=65121 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=154486 qt=65221 pad 0 rt = 32767
+wall=154503 qt=65321 player 0 guid=35053801 slot=0 pad=0 pos=11883,-174,22097 yaw=-899 pitch=0 hp=94 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=154503 qt=65321 platform 0: on=00000000 nearest=none
+wall=155245 qt=65721 view 0 viewport=0,0,640,360 eye=11895,-6,22097 frames=699 views=1
+wall=155247 qt=65721 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=155590 qt=65921 audio voices=9 top=BULLETIMPACTHOLLOWMETAL x2
+wall=155590 qt=65921 player 0 guid=35053801 slot=0 pad=0 pos=11883,-174,22097 yaw=-899 pitch=0 hp=92 weapon=SMP ammo=145 inclip=25 perclip=30 cinema=0
+wall=155590 qt=65921 platform 0: on=00000000 nearest=none
+wall=156333 qt=66321 view 0 viewport=0,0,640,360 eye=11895,-6,22097 frames=705 views=1
+wall=156335 qt=66321 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=156682 qt=66521 player 0 guid=35053801 slot=0 pad=0 pos=11883,-174,22097 yaw=-899 pitch=0 hp=90 weapon=SMP ammo=141 inclip=21 perclip=30 cinema=0
+wall=156682 qt=66521 platform 0: on=00000000 nearest=none
+wall=157281 qt=66721 pad 0 rt = -32768
+wall=157480 qt=66921 view 0 viewport=0,0,640,360 eye=11895,-6,22097 frames=711 views=1
+wall=157482 qt=66921 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=157922 qt=67121 player 0 guid=35053801 slot=0 pad=0 pos=11883,-174,22097 yaw=-899 pitch=0 hp=88 weapon=SMP ammo=139 inclip=19 perclip=30 cinema=0
+wall=157922 qt=67121 platform 0: on=00000000 nearest=none
+wall=158481 qt=67421 view 0 viewport=0,0,640,360 eye=11895,-6,22097 frames=716 views=1
+wall=158483 qt=67421 bodies view=0 drawn=0 frames=5 others=0 with_body=0
+wall=158633 qt=67421 perf frames=27 in 5037 ms
+wall=158991 qt=67721 player 0 guid=35053801 slot=0 pad=0 pos=11883,-174,22097 yaw=-899 pitch=0 hp=86 weapon=SMP ammo=139 inclip=19 perclip=30 cinema=0
+wall=158991 qt=67721 platform 0: on=00000000 nearest=none
+wall=159197 qt=67721 pad 1 rt = 32767
+wall=159543 qt=67921 loadout player 0: scanner=1 smp=1 pistol=1
+wall=159543 qt=67921 equip player 0: pistol, 8 rounds per clip
+wall=159543 qt=67921 profile player 0: index=0 name=Empty avatar=0
+wall=159543 qt=68021 view 0 viewport=0,0,640,360 eye=11895,-6,22097 frames=722 views=1
+wall=159545 qt=68021 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=160027 qt=68321 audio voices=5 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=160027 qt=68321 player 0 guid=35053801 slot=0 pad=0 pos=11883,-174,22097 yaw=-899 pitch=0 hp=84 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=160027 qt=68321 platform 0: on=00000000 nearest=none
+wall=160576 qt=68621 view 0 viewport=0,0,640,360 eye=11895,-6,22097 frames=728 views=1
+wall=160578 qt=68621 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=161061 qt=68921 player 0 guid=35053801 slot=0 pad=0 pos=11883,-174,22097 yaw=-899 pitch=0 hp=82 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=161061 qt=68921 platform 0: on=00000000 nearest=none
+wall=161604 qt=69221 view 0 viewport=0,0,640,360 eye=11895,-6,22097 frames=734 views=1
+wall=161605 qt=69221 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=161760 qt=69221 pad 1 rt = -32768
+wall=162110 qt=69521 player 0 guid=35053801 slot=0 pad=0 pos=11883,-174,22097 yaw=-899 pitch=0 hp=80 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=162110 qt=69521 platform 0: on=00000000 nearest=none
+wall=162666 qt=69821 view 0 viewport=0,0,640,360 eye=11895,-6,22097 frames=740 views=1
+wall=162668 qt=69821 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=163157 qt=70121 player 0 guid=35053801 slot=0 pad=0 pos=11883,-174,22097 yaw=-899 pitch=0 hp=78 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=163157 qt=70121 platform 0: on=00000000 nearest=none
+wall=163512 qt=70221 pad 0 x = 1
+wall=163676 qt=70321 perf frames=29 in 5043 ms
+wall=163693 qt=70421 view 0 viewport=0,0,640,360 eye=11895,-6,22097 frames=746 views=1
+wall=163695 qt=70421 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=164012 qt=70521 pad 0 x = 0
+wall=164198 qt=70721 audio voices=5 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=164198 qt=70721 player 0 guid=35053801 slot=0 pad=0 pos=11883,-174,22097 yaw=-899 pitch=0 hp=76 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=164198 qt=70721 platform 0: on=00000000 nearest=none
+wall=164724 qt=71021 view 0 viewport=0,0,640,360 eye=11895,-6,22097 frames=752 views=1
+wall=164726 qt=71021 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=165231 qt=71321 player 0 guid=35053801 slot=0 pad=0 pos=11883,-174,22097 yaw=-899 pitch=0 hp=74 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=165231 qt=71321 platform 0: on=00000000 nearest=none
+wall=165781 qt=71621 view 0 viewport=0,0,640,360 eye=11895,-6,22097 frames=758 views=1
+wall=165783 qt=71621 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=166275 qt=71921 player 0 guid=35053801 slot=0 pad=0 pos=11883,-174,22097 yaw=-899 pitch=0 hp=72 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=166275 qt=71921 platform 0: on=00000000 nearest=none
+wall=166825 qt=72221 view 0 viewport=0,0,640,360 eye=11895,-6,22097 frames=764 views=1
+wall=166827 qt=72221 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=167324 qt=72521 player 0 guid=35053801 slot=0 pad=0 pos=11883,-174,22097 yaw=-899 pitch=0 hp=70 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=167325 qt=72521 platform 0: on=00000000 nearest=none
+wall=167883 qt=72821 view 0 viewport=0,0,640,360 eye=11895,-6,22097 frames=770 views=1
+wall=167885 qt=72821 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=168378 qt=73121 audio voices=4 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=168378 qt=73121 player 0 guid=35053801 slot=0 pad=0 pos=11883,-174,22097 yaw=-899 pitch=0 hp=68 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=168378 qt=73121 platform 0: on=00000000 nearest=none
+wall=168736 qt=73221 perf frames=29 in 5060 ms
+wall=168922 qt=73421 view 0 viewport=0,0,640,360 eye=11895,-6,22097 frames=776 views=1
+wall=168925 qt=73421 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=169418 qt=73721 player 0 guid=35053801 slot=0 pad=0 pos=11883,-174,22097 yaw=-899 pitch=0 hp=66 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=169418 qt=73721 platform 0: on=00000000 nearest=none
+wall=169777 qt=73821 pad 1 x = 1
+wall=169956 qt=74021 view 0 viewport=0,0,640,360 eye=11895,-6,22097 frames=782 views=1
+wall=169958 qt=74021 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=170283 qt=74121 pad 1 x = 0
+wall=170465 qt=74321 player 0 guid=35053801 slot=0 pad=0 pos=11883,-174,22097 yaw=-899 pitch=0 hp=64 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=170465 qt=74321 platform 0: on=00000000 nearest=none
+wall=171023 qt=74621 view 0 viewport=0,0,640,360 eye=11895,-6,22097 frames=788 views=1
+wall=171024 qt=74621 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=171523 qt=74921 player 0 guid=35053801 slot=0 pad=0 pos=11883,-174,22097 yaw=-899 pitch=0 hp=62 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=171523 qt=74921 platform 0: on=00000000 nearest=none
+wall=172072 qt=75221 view 0 viewport=0,0,640,360 eye=11895,-6,22097 frames=794 views=1
+wall=172075 qt=75221 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=172568 qt=75521 audio voices=4 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=172568 qt=75521 player 0 guid=35053801 slot=0 pad=0 pos=11883,-174,22097 yaw=-899 pitch=0 hp=60 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=172568 qt=75521 platform 0: on=00000000 nearest=none
+wall=173102 qt=75821 view 0 viewport=0,0,640,360 eye=11895,-6,22097 frames=800 views=1
+wall=173104 qt=75821 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=173601 qt=76121 player 0 guid=35053801 slot=0 pad=0 pos=11883,-174,22097 yaw=-899 pitch=0 hp=58 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=173601 qt=76121 platform 0: on=00000000 nearest=none
+wall=173754 qt=76121 perf frames=29 in 5018 ms
+wall=174149 qt=76421 view 0 viewport=0,0,640,360 eye=11895,-6,22097 frames=806 views=1
+wall=174151 qt=76421 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=174655 qt=76721 player 0 guid=35053801 slot=0 pad=0 pos=11883,-174,22097 yaw=-899 pitch=0 hp=56 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=174655 qt=76721 platform 0: on=00000000 nearest=none
+wall=175199 qt=77021 view 0 viewport=0,0,640,360 eye=11895,-6,22097 frames=812 views=1
+wall=175201 qt=77021 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=175695 qt=77321 player 0 guid=35053801 slot=0 pad=0 pos=11883,-174,22097 yaw=-899 pitch=0 hp=54 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=175695 qt=77321 platform 0: on=00000000 nearest=none
+wall=176014 qt=77421 pad 0 ly = -32767
+wall=176252 qt=77621 view 0 viewport=0,0,640,360 eye=11835,-6,22097 frames=818 views=1
+wall=176254 qt=77621 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=176747 qt=77921 audio voices=5 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=176747 qt=77921 player 0 guid=35053801 slot=0 pad=0 pos=11643,-174,22097 yaw=-899 pitch=0 hp=52 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=176747 qt=77921 platform 0: on=00000000 nearest=none
+wall=177299 qt=78221 view 0 viewport=0,0,640,360 eye=11475,-5,22097 frames=824 views=1
+wall=177301 qt=78221 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=177790 qt=78521 player 0 guid=35053801 slot=0 pad=0 pos=11283,-174,22097 yaw=-899 pitch=0 hp=50 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=177790 qt=78521 platform 0: on=00000000 nearest=none
+wall=178330 qt=78821 view 0 viewport=0,0,640,360 eye=11115,-5,22097 frames=830 views=1
+wall=178332 qt=78821 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=178802 qt=79021 perf frames=29 in 5048 ms
+wall=178818 qt=79121 player 0 guid=35053801 slot=0 pad=0 pos=10923,-174,22097 yaw=-899 pitch=0 hp=48 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=178818 qt=79121 platform 0: on=00000000 nearest=none
+wall=179365 qt=79421 view 0 viewport=0,0,640,360 eye=10755,-5,22097 frames=836 views=1
+wall=179367 qt=79421 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=179858 qt=79721 player 0 guid=35053801 slot=0 pad=0 pos=10563,-174,22097 yaw=-899 pitch=0 hp=46 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=179858 qt=79721 platform 0: on=00000000 nearest=none
+wall=180344 qt=79921 pad 0 ly = 0
+wall=180563 qt=80121 view 0 viewport=0,0,640,360 eye=10395,-5,22097 frames=843 views=1
+wall=180565 qt=80121 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=180904 qt=80321 audio voices=7 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=180904 qt=80321 player 0 guid=35053801 slot=0 pad=0 pos=10383,-174,22097 yaw=-899 pitch=0 hp=44 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=180904 qt=80321 platform 0: on=00000000 nearest=none
+wall=181619 qt=80721 view 0 viewport=0,0,640,360 eye=10395,-6,22097 frames=849 views=1
+wall=181621 qt=80721 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=181953 qt=80921 player 0 guid=35053801 slot=0 pad=0 pos=10383,-174,22097 yaw=-899 pitch=0 hp=42 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=181953 qt=80921 platform 0: on=00000000 nearest=none
+wall=182107 qt=80921 pad 1 ly = -32767
+wall=182677 qt=81321 view 0 viewport=0,0,640,360 eye=10395,-6,22097 frames=855 views=1
+wall=182679 qt=81321 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=183017 qt=81521 player 0 guid=35053801 slot=0 pad=0 pos=10383,-174,22097 yaw=-899 pitch=0 hp=40 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=183017 qt=81521 platform 0: on=00000000 nearest=none
+wall=183734 qt=81921 view 0 viewport=0,0,640,360 eye=10395,-6,22097 frames=861 views=1
+wall=183737 qt=81921 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=183887 qt=81921 perf frames=29 in 5085 ms
+wall=184077 qt=82121 player 0 guid=35053801 slot=0 pad=0 pos=10383,-174,22097 yaw=-899 pitch=0 hp=38 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=184077 qt=82121 platform 0: on=00000000 nearest=none
+wall=184794 qt=82521 view 0 viewport=0,0,640,360 eye=10395,-6,22097 frames=867 views=1
+wall=184797 qt=82521 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=185132 qt=82721 audio voices=4 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=185132 qt=82721 player 0 guid=35053801 slot=0 pad=0 pos=10383,-174,22097 yaw=-899 pitch=0 hp=36 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=185132 qt=82721 platform 0: on=00000000 nearest=none
+wall=185857 qt=83121 view 0 viewport=0,0,640,360 eye=10395,-6,22097 frames=873 views=1
+wall=185859 qt=83121 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=186199 qt=83321 player 0 guid=35053801 slot=0 pad=0 pos=10383,-174,22097 yaw=-899 pitch=0 hp=34 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=186199 qt=83321 platform 0: on=00000000 nearest=none
+wall=186513 qt=83421 pad 1 ly = 0
+wall=186918 qt=83721 view 0 viewport=0,0,640,360 eye=10395,-6,22097 frames=879 views=1
+wall=186920 qt=83721 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=187249 qt=83921 player 0 guid=35053801 slot=0 pad=0 pos=10383,-174,22097 yaw=-899 pitch=0 hp=32 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=187249 qt=83921 platform 0: on=00000000 nearest=none
+wall=187959 qt=84321 view 0 viewport=0,0,640,360 eye=10395,-6,22097 frames=885 views=1
+wall=187961 qt=84321 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=188279 qt=84421 pad 0 lx = 32767
+wall=188279 qt=84421 pad 1 lx = -32767
+wall=188297 qt=84521 player 0 guid=35053801 slot=0 pad=0 pos=10383,-174,22097 yaw=-899 pitch=0 hp=30 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=188297 qt=84521 platform 0: on=00000000 nearest=none
+wall=188986 qt=84821 perf frames=29 in 5099 ms
+wall=189001 qt=84921 view 0 viewport=0,0,640,360 eye=10395,1,21856 frames=891 views=1
+wall=189003 qt=84921 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=189341 qt=85121 audio voices=4 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=189341 qt=85121 player 0 guid=35053801 slot=0 pad=0 pos=10346,-155,21827 yaw=-899 pitch=0 hp=27 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=189341 qt=85121 platform 0: on=00000000 nearest=none
+wall=190042 qt=85521 view 0 viewport=0,0,640,360 eye=10328,66,21732 frames=897 views=1
+wall=190044 qt=85521 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=190383 qt=85721 player 0 guid=35053801 slot=0 pad=0 pos=10315,-91,21614 yaw=-899 pitch=0 hp=25 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=190383 qt=85721 platform 0: on=00000000 nearest=none
+wall=191132 qt=86221 view 0 viewport=0,0,640,360 eye=10327,-89,21312 frames=904 views=1
+wall=191133 qt=86221 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=191271 qt=86321 player 0 guid=35053801 slot=0 pad=0 pos=10315,-321,21254 yaw=-899 pitch=0 hp=25 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=191272 qt=86321 platform 0: on=00000000 nearest=none
+wall=191538 qt=86421 pad 0 lx = 0
+wall=191539 qt=86421 pad 1 lx = 0
+wall=192167 qt=86921 player 0 guid=35053801 slot=0 pad=0 pos=10315,-911,20984 yaw=-899 pitch=0 hp=25 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=192167 qt=86921 platform 0: on=00000000 nearest=none
+wall=192167 qt=86921 view 0 viewport=0,0,640,360 eye=10327,-742,20984 frames=911 views=1
+wall=192169 qt=86921 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=193012 qt=87421 pad 0 rx = 32767
+wall=193025 qt=87521 audio voices=5 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x3
+wall=193025 qt=87521 player 0 guid=35053801 slot=0 pad=0 pos=10315,-1861,20915 yaw=-899 pitch=0 hp=0 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=193025 qt=87521 platform 0: on=00000000 nearest=none
+wall=193232 qt=87621 view 0 viewport=0,0,640,360 eye=10327,-1856,20920 frames=918 views=1
+wall=193234 qt=87621 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=194023 qt=88021 perf frames=32 in 5037 ms
+wall=194036 qt=88121 player 0 guid=35053801 slot=0 pad=0 pos=10315,-3171,20899 yaw=-899 pitch=0 hp=0 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=194036 qt=88121 platform 0: on=00000000 nearest=none
+wall=194361 qt=88321 view 0 viewport=0,0,640,360 eye=10314,-3205,20898 frames=925 views=1
+wall=194362 qt=88321 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=194857 qt=88721 player 0 guid=35053801 slot=0 pad=0 pos=10315,-3299,20898 yaw=-899 pitch=0 hp=0 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=194857 qt=88721 platform 0: on=00000000 nearest=none
+wall=195261 qt=88990 pad 0 rx = 0
+wall=195381 qt=89190 view 0 viewport=0,0,640,360 eye=10306,-3291,20898 frames=934 views=1
+wall=195382 qt=89190 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=195480 qt=89290 player 0 guid=35053801 slot=0 pad=0 pos=10315,-3299,20898 yaw=-899 pitch=0 hp=0 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=195480 qt=89290 platform 0: on=00000000 nearest=none
+wall=196071 qt=89878 audio voices=3 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=196071 qt=89878 player 0 guid=35053801 slot=0 pad=0 pos=10315,-3299,20898 yaw=-899 pitch=0 hp=0 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=196071 qt=89878 platform 0: on=00000000 nearest=none
+wall=196248 qt=89973 pad 1 rx = -32767
+wall=196402 qt=90168 view 0 viewport=0,0,640,360 eye=10306,-3291,20898 frames=944 views=1
+wall=196403 qt=90168 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=196695 qt=90462 player 0 guid=35053801 slot=0 pad=0 pos=10315,-3299,20898 yaw=-899 pitch=0 hp=0 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=196695 qt=90462 platform 0: on=00000000 nearest=none
+wall=197302 qt=91060 player 0 guid=35053801 slot=0 pad=0 pos=10315,-3299,20898 yaw=-899 pitch=0 hp=0 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=197303 qt=91060 platform 0: on=00000000 nearest=none
+wall=197440 qt=91160 view 0 viewport=0,0,640,360 eye=10306,-3291,20898 frames=954 views=1
+wall=197440 qt=91160 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=197635 qt=91353 state SM_PLAYING_GAME -> SM_SERVER_COOLDOWN
+wall=197643 qt=91353 dialog stop - id=00000000
+wall=197643 qt=91353 dialog stop - id=00000000
+wall=197650 qt=91353 state SM_SERVER_COOLDOWN -> SM_POST_GAME
+wall=197661 qt=91353 state SM_POST_GAME -> SM_RELOAD_CHECKPOINT
+wall=197832 qt=91353 state SM_RELOAD_CHECKPOINT -> SM_SINGLE_PLAYER_LOAD_MISSION
+wall=197836 qt=91353 campaign BeginGame done: players=1 level=1130
+wall=197864 qt=91353 state SM_SINGLE_PLAYER_LOAD_MISSION -> SM_SERVER_SYNC
+wall=197867 qt=91353 state SM_SERVER_SYNC -> SM_PLAYING_GAME
+wall=197916 qt=91353 dialog stop - id=00000000
+wall=197916 qt=91353 dialog stop - id=00000000
+wall=197920 qt=91354 player 0 guid=35053801 slot=0 pad=0 pos=12150,-40,22100 yaw=-899 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=197920 qt=91354 platform 0: on=00000000 support=0 nearest=C8D1B800 at 12199,-74,22099 top=9265 dist=60 collidable=1 rideable=1
+wall=197966 qt=91402 pad 1 rx = 0
+wall=198467 qt=91787 view 0 viewport=0,0,640,360 eye=11897,87,22097 frames=957 views=1
+wall=198469 qt=91787 bodies view=0 drawn=0 frames=3 others=0 with_body=0
+wall=198628 qt=91887 audio voices=5 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=198628 qt=91887 player 0 guid=35053801 slot=0 pad=0 pos=11885,-93,22097 yaw=-899 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=198628 qt=91887 platform 0: on=00000000 support=0 nearest=C8D1B800 at 10955,-75,22100 top=9265 dist=929 collidable=1 rideable=1
+wall=199066 qt=92087 perf frames=152 in 5043 ms
+wall=199624 qt=92487 player 0 guid=35053801 slot=0 pad=0 pos=11885,-174,22097 yaw=-899 pitch=0 hp=98 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=199624 qt=92487 platform 0: on=00000000 support=0 nearest=C8D1B800 at 8921,-75,22100 top=9265 dist=2964 collidable=1 rideable=1
+wall=199624 qt=92487 view 0 viewport=0,0,640,360 eye=11897,-8,22097 frames=964 views=1
+wall=199626 qt=92487 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=199773 qt=92487 pad 0 a = 1
+wall=200273 qt=92787 pad 0 a = 0
+wall=200692 qt=93087 player 0 guid=35053801 slot=0 pad=0 pos=11885,-174,22097 yaw=-899 pitch=0 hp=96 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=200692 qt=93087 platform 0: on=00000000 nearest=none
+wall=200692 qt=93087 view 0 viewport=0,0,640,360 eye=11896,-6,22097 frames=970 views=1
+wall=200694 qt=93087 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=201751 qt=93687 player 0 guid=35053801 slot=0 pad=0 pos=11885,-174,22097 yaw=-899 pitch=0 hp=94 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=201751 qt=93687 platform 0: on=00000000 nearest=none
+wall=201751 qt=93687 view 0 viewport=0,0,640,360 eye=11896,-6,22097 frames=976 views=1
+wall=201753 qt=93687 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=202822 qt=94287 audio voices=4 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=202822 qt=94287 player 0 guid=35053801 slot=0 pad=0 pos=11885,-174,22097 yaw=-899 pitch=0 hp=92 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=202822 qt=94287 platform 0: on=00000000 nearest=none
+wall=202822 qt=94287 view 0 viewport=0,0,640,360 eye=11896,-6,22097 frames=982 views=1
+wall=202824 qt=94287 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=203312 qt=94487 pad 1 a = 1
+wall=203867 qt=94787 pad 1 a = 0
+wall=203885 qt=94887 player 0 guid=35053801 slot=0 pad=0 pos=11885,-174,22097 yaw=-899 pitch=0 hp=90 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=203885 qt=94887 platform 0: on=00000000 nearest=none
+wall=203885 qt=94887 view 0 viewport=0,0,640,360 eye=11896,-6,22097 frames=988 views=1
+wall=203887 qt=94887 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=204203 qt=94987 perf frames=29 in 5137 ms
+wall=204941 qt=95487 player 0 guid=35053801 slot=0 pad=0 pos=11885,-174,22097 yaw=-899 pitch=0 hp=88 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=204941 qt=95487 platform 0: on=00000000 nearest=none
+wall=204942 qt=95487 view 0 viewport=0,0,640,360 eye=11896,-6,22097 frames=994 views=1
+wall=204943 qt=95487 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=206016 qt=96087 player 0 guid=35053801 slot=0 pad=0 pos=11885,-174,22097 yaw=-899 pitch=0 hp=86 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=206016 qt=96087 platform 0: on=00000000 nearest=none
+wall=206016 qt=96087 view 0 viewport=0,0,640,360 eye=11896,-6,22097 frames=1000 views=1
+wall=206018 qt=96087 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=206527 qt=96287 loadout player 0: scanner=1 smp=1 pistol=1
+wall=206527 qt=96287 equip player 0: pistol, 8 rounds per clip
+wall=206527 qt=96287 profile player 0: index=0 name=Empty avatar=0
+wall=206837 qt=96487 pad 0 rt = 32767
+wall=207061 qt=96687 audio voices=5 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=207062 qt=96687 player 0 guid=35053801 slot=0 pad=0 pos=11885,-174,22097 yaw=-899 pitch=0 hp=84 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=207062 qt=96687 platform 0: on=00000000 nearest=none
+wall=207062 qt=96687 view 0 viewport=0,0,640,360 eye=11896,-6,22097 frames=1006 views=1
+wall=207064 qt=96687 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=208129 qt=97287 player 0 guid=35053801 slot=0 pad=0 pos=11885,-174,22097 yaw=-899 pitch=0 hp=82 weapon=EGL ammo=63 inclip=5 perclip=8 cinema=0
+wall=208129 qt=97287 platform 0: on=00000000 nearest=none
+wall=208129 qt=97287 view 0 viewport=0,0,640,360 eye=11896,-6,22097 frames=1012 views=1
+wall=208131 qt=97287 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=209204 qt=97887 player 0 guid=35053801 slot=0 pad=0 pos=11885,-174,22097 yaw=-899 pitch=0 hp=80 weapon=EGL ammo=62 inclip=4 perclip=8 cinema=0
+wall=209204 qt=97887 platform 0: on=00000000 nearest=none
+wall=209204 qt=97887 view 0 viewport=0,0,640,360 eye=11896,-6,22097 frames=1018 views=1
+wall=209207 qt=97887 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=209360 qt=97887 perf frames=29 in 5157 ms
+wall=209530 qt=97987 pad 0 rt = -32768
+wall=210270 qt=98487 player 0 guid=35053801 slot=0 pad=0 pos=11885,-174,22097 yaw=-899 pitch=0 hp=78 weapon=EGL ammo=62 inclip=4 perclip=8 cinema=0
+wall=210270 qt=98487 platform 0: on=00000000 nearest=none
+wall=210270 qt=98487 view 0 viewport=0,0,640,360 eye=11896,-6,22097 frames=1024 views=1
+wall=210272 qt=98487 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=211310 qt=98987 pad 1 rt = 32767
+wall=211326 qt=99087 audio voices=6 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=211326 qt=99087 player 0 guid=35053801 slot=0 pad=0 pos=11885,-174,22097 yaw=-899 pitch=0 hp=76 weapon=EGL ammo=62 inclip=4 perclip=8 cinema=0
+wall=211326 qt=99087 platform 0: on=00000000 nearest=none
+wall=211326 qt=99087 view 0 viewport=0,0,640,360 eye=11896,-6,22097 frames=1030 views=1
+wall=211328 qt=99087 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=212370 qt=99687 player 0 guid=35053801 slot=0 pad=0 pos=11885,-174,22097 yaw=-899 pitch=0 hp=74 weapon=EGL ammo=62 inclip=4 perclip=8 cinema=0
+wall=212370 qt=99687 platform 0: on=00000000 nearest=none
+wall=212370 qt=99687 view 0 viewport=0,0,640,360 eye=11896,-6,22097 frames=1036 views=1
+wall=212372 qt=99687 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=213394 qt=100287 player 0 guid=35053801 slot=0 pad=0 pos=11885,-174,22097 yaw=-899 pitch=0 hp=72 weapon=EGL ammo=62 inclip=4 perclip=8 cinema=0
+wall=213394 qt=100287 platform 0: on=00000000 nearest=none
+wall=213394 qt=100287 view 0 viewport=0,0,640,360 eye=11896,-6,22097 frames=1042 views=1
+wall=213396 qt=100287 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=213868 qt=100487 pad 1 rt = -32768
+wall=214416 qt=100787 perf frames=29 in 5056 ms
+wall=214430 qt=100887 player 0 guid=35053801 slot=0 pad=0 pos=11885,-174,22097 yaw=-899 pitch=0 hp=70 weapon=EGL ammo=62 inclip=4 perclip=8 cinema=0
+wall=214430 qt=100887 platform 0: on=00000000 nearest=none
+wall=214430 qt=100887 view 0 viewport=0,0,640,360 eye=11896,-6,22097 frames=1048 views=1
+wall=214432 qt=100887 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=215416 qt=101487 audio voices=4 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=215416 qt=101487 player 0 guid=35053801 slot=0 pad=0 pos=11885,-174,22097 yaw=-899 pitch=0 hp=68 weapon=EGL ammo=62 inclip=4 perclip=8 cinema=0
+wall=215416 qt=101487 platform 0: on=00000000 nearest=none
+wall=215620 qt=101487 pad 0 x = 1
+wall=215635 qt=101587 view 0 viewport=0,0,640,360 eye=11896,-6,22097 frames=1055 views=1
+wall=215637 qt=101587 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=216123 qt=101787 pad 0 x = 0
+wall=216470 qt=102087 player 0 guid=35053801 slot=0 pad=0 pos=11885,-174,22097 yaw=-899 pitch=0 hp=66 weapon=EGL ammo=62 inclip=4 perclip=8 cinema=0
+wall=216470 qt=102087 platform 0: on=00000000 nearest=none
+wall=216682 qt=102187 view 0 viewport=0,0,640,360 eye=11896,-6,22097 frames=1061 views=1
+wall=216684 qt=102187 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=217507 qt=102687 player 0 guid=35053801 slot=0 pad=0 pos=11885,-174,22097 yaw=-899 pitch=0 hp=64 weapon=EGL ammo=62 inclip=4 perclip=8 cinema=0
+wall=217508 qt=102687 platform 0: on=00000000 nearest=none
+wall=217716 qt=102787 view 0 viewport=0,0,640,360 eye=11896,-6,22097 frames=1067 views=1
+wall=217718 qt=102787 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=218554 qt=103287 player 0 guid=35053801 slot=0 pad=0 pos=11885,-174,22097 yaw=-899 pitch=0 hp=62 weapon=EGL ammo=62 inclip=4 perclip=8 cinema=0
+wall=218554 qt=103287 platform 0: on=00000000 nearest=none
+wall=218776 qt=103387 view 0 viewport=0,0,640,360 eye=11896,-6,22097 frames=1073 views=1
+wall=218778 qt=103387 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=219434 qt=103687 perf frames=29 in 5018 ms
+wall=219613 qt=103887 audio voices=5 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=219613 qt=103887 player 0 guid=35053801 slot=0 pad=0 pos=11885,-174,22097 yaw=-899 pitch=0 hp=60 weapon=EGL ammo=62 inclip=8 perclip=8 cinema=0
+wall=219613 qt=103887 platform 0: on=00000000 nearest=none
+wall=219832 qt=103987 view 0 viewport=0,0,640,360 eye=11896,-6,22097 frames=1079 views=1
+wall=219834 qt=103987 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=220655 qt=104487 player 0 guid=35053801 slot=0 pad=0 pos=11885,-174,22097 yaw=-899 pitch=0 hp=58 weapon=EGL ammo=62 inclip=8 perclip=8 cinema=0
+wall=220655 qt=104487 platform 0: on=00000000 nearest=none
+wall=220886 qt=104587 view 0 viewport=0,0,640,360 eye=11896,-6,22097 frames=1085 views=1
+wall=220888 qt=104587 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=221722 qt=105087 player 0 guid=35053801 slot=0 pad=0 pos=11885,-174,22097 yaw=-899 pitch=0 hp=56 weapon=EGL ammo=62 inclip=8 perclip=8 cinema=0
+wall=221722 qt=105087 platform 0: on=00000000 nearest=none
+wall=221927 qt=105087 pad 1 x = 1
+wall=221942 qt=105187 view 0 viewport=0,0,640,360 eye=11896,-6,22097 frames=1091 views=1
+wall=221944 qt=105187 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=222422 qt=105387 pad 1 x = 0
+wall=222771 qt=105687 player 0 guid=35053801 slot=0 pad=0 pos=11885,-174,22097 yaw=-899 pitch=0 hp=54 weapon=EGL ammo=62 inclip=8 perclip=8 cinema=0
+wall=222771 qt=105687 platform 0: on=00000000 nearest=none
+wall=222978 qt=105787 view 0 viewport=0,0,640,360 eye=11896,-6,22097 frames=1097 views=1
+wall=222980 qt=105787 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=223811 qt=106287 audio voices=4 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=223812 qt=106287 player 0 guid=35053801 slot=0 pad=0 pos=11885,-174,22097 yaw=-899 pitch=0 hp=52 weapon=EGL ammo=62 inclip=8 perclip=8 cinema=0
+wall=223812 qt=106287 platform 0: on=00000000 nearest=none
+wall=224021 qt=106387 view 0 viewport=0,0,640,360 eye=11896,-6,22097 frames=1103 views=1
+wall=224023 qt=106387 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=224500 qt=106587 perf frames=29 in 5066 ms
+wall=224852 qt=106887 player 0 guid=35053801 slot=0 pad=0 pos=11885,-174,22097 yaw=-899 pitch=0 hp=50 weapon=EGL ammo=62 inclip=8 perclip=8 cinema=0
+wall=224852 qt=106887 platform 0: on=00000000 nearest=none
+wall=225087 qt=106987 view 0 viewport=0,0,640,360 eye=11896,-6,22097 frames=1109 views=1
+wall=225089 qt=106987 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=225929 qt=107487 player 0 guid=35053801 slot=0 pad=0 pos=11885,-174,22097 yaw=-899 pitch=0 hp=48 weapon=EGL ammo=62 inclip=8 perclip=8 cinema=0
+wall=225929 qt=107487 platform 0: on=00000000 nearest=none
+wall=226152 qt=107587 view 0 viewport=0,0,640,360 eye=11896,-6,22097 frames=1115 views=1
+wall=226154 qt=107587 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=226988 qt=108087 player 0 guid=35053801 slot=0 pad=0 pos=11885,-174,22097 yaw=-899 pitch=0 hp=46 weapon=EGL ammo=62 inclip=8 perclip=8 cinema=0
+wall=226988 qt=108087 platform 0: on=00000000 nearest=none
+wall=227217 qt=108187 view 0 viewport=0,0,640,360 eye=11896,-6,22097 frames=1121 views=1
+wall=227219 qt=108187 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=228067 qt=108687 audio voices=5 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=228067 qt=108687 player 0 guid=35053801 slot=0 pad=0 pos=11885,-174,22097 yaw=-899 pitch=0 hp=44 weapon=EGL ammo=62 inclip=8 perclip=8 cinema=0
+wall=228067 qt=108687 platform 0: on=00000000 nearest=none
+wall=228270 qt=108687 command swaptest (hook set)
+wall=228270 qt=108687 swaptest flipped: player 0 pad=1 player 1 pad=0
+wall=228270 qt=108687 swaptest restored: player 0 pad=0 player 1 pad=1
+wall=228270 qt=108687 command scanner (hook set)
+wall=228270 qt=108687 scanner player 0: in inventory=1
+wall=228285 qt=108787 view 0 viewport=0,0,640,360 eye=11896,-6,22097 frames=1127 views=1
+wall=228287 qt=108787 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=229232 qt=109287 player 0 guid=35053801 slot=0 pad=0 pos=11885,-174,22097 yaw=-899 pitch=0 hp=42 weapon=SCN ammo=0 inclip=0 perclip=0 cinema=0
+wall=229232 qt=109287 platform 0: on=00000000 nearest=none
+wall=229441 qt=109387 view 0 viewport=0,0,640,360 eye=11896,-6,22097 frames=1133 views=1
+wall=229443 qt=109387 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=229591 qt=109387 perf frames=28 in 5091 ms
+wall=230293 qt=109887 player 0 guid=35053801 slot=0 pad=0 pos=11885,-174,22097 yaw=-899 pitch=0 hp=40 weapon=SCN ammo=0 inclip=0 perclip=0 cinema=0
+wall=230293 qt=109887 platform 0: on=00000000 nearest=none
+wall=230508 qt=109987 view 0 viewport=0,0,640,360 eye=11896,-6,22097 frames=1139 views=1
+wall=230510 qt=109987 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=231500 qt=110487 player 0 guid=35053801 slot=0 pad=0 pos=11885,-174,22097 yaw=-899 pitch=0 hp=38 weapon=SCN ammo=0 inclip=0 perclip=0 cinema=0
+wall=231500 qt=110487 platform 0: on=00000000 nearest=none
+wall=231671 qt=110587 view 0 viewport=0,0,640,360 eye=11896,-6,22097 frames=1145 views=1
+wall=231673 qt=110587 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=232575 qt=111087 audio voices=5 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=232576 qt=111087 player 0 guid=35053801 slot=0 pad=0 pos=11885,-174,22097 yaw=-899 pitch=0 hp=36 weapon=SCN ammo=0 inclip=0 perclip=0 cinema=0
+wall=232576 qt=111087 platform 0: on=00000000 nearest=none
+wall=232750 qt=111187 view 0 viewport=0,0,640,360 eye=11896,-6,22097 frames=1151 views=1
+wall=232752 qt=111187 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=233686 qt=111687 player 0 guid=35053801 slot=0 pad=0 pos=11885,-174,22097 yaw=-899 pitch=0 hp=34 weapon=SCN ammo=0 inclip=0 perclip=0 cinema=0
+wall=233686 qt=111687 platform 0: on=00000000 nearest=none
+wall=233867 qt=111787 view 0 viewport=0,0,640,360 eye=11896,-6,22097 frames=1157 views=1
+wall=233868 qt=111787 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=234758 qt=112187 perf frames=28 in 5167 ms
+wall=234774 qt=112287 player 0 guid=35053801 slot=0 pad=0 pos=11885,-174,22097 yaw=-899 pitch=0 hp=32 weapon=SCN ammo=0 inclip=0 perclip=0 cinema=0
+wall=234774 qt=112287 platform 0: on=00000000 nearest=none
+wall=234950 qt=112387 view 0 viewport=0,0,640,360 eye=11896,-6,22097 frames=1163 views=1
+wall=234951 qt=112387 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=235621 qt=112687 pad 0 rx = 8191
+wall=235621 qt=112687 pad 0 rt = 32767
+wall=235849 qt=112887 player 0 guid=35053801 slot=0 pad=0 pos=11885,-174,22097 yaw=-899 pitch=0 hp=30 weapon=SCN ammo=0 inclip=0 perclip=0 cinema=0
+wall=235849 qt=112887 platform 0: on=00000000 nearest=none
+wall=236131 qt=112987 view 0 viewport=0,0,640,360 eye=11896,-6,22097 frames=1169 views=1
+wall=236133 qt=112987 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=237033 qt=113487 audio voices=5 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=237033 qt=113487 player 0 guid=35053801 slot=0 pad=0 pos=11885,-174,22097 yaw=-899 pitch=0 hp=28 weapon=SCN ammo=0 inclip=0 perclip=0 cinema=0
+wall=237033 qt=113487 platform 0: on=00000000 nearest=none
+wall=237207 qt=113587 view 0 viewport=0,0,640,360 eye=11896,-6,22097 frames=1175 views=1
+wall=237209 qt=113587 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=238145 qt=114087 player 0 guid=35053801 slot=0 pad=0 pos=11885,-174,22097 yaw=-899 pitch=0 hp=26 weapon=SCN ammo=0 inclip=0 perclip=0 cinema=0
+wall=238145 qt=114087 platform 0: on=00000000 nearest=none
+wall=238320 qt=114187 view 0 viewport=0,0,640,360 eye=11896,-6,22097 frames=1181 views=1
+wall=238321 qt=114187 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=239232 qt=114687 player 0 guid=35053801 slot=0 pad=0 pos=11885,-174,22097 yaw=-899 pitch=0 hp=24 weapon=SCN ammo=0 inclip=0 perclip=0 cinema=0
+wall=239232 qt=114687 platform 0: on=00000000 nearest=none
+wall=239404 qt=114787 view 0 viewport=0,0,640,360 eye=11896,-6,22097 frames=1187 views=1
+wall=239406 qt=114787 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=239908 qt=114987 perf frames=28 in 5150 ms
+wall=240324 qt=115287 player 0 guid=35053801 slot=0 pad=0 pos=11885,-174,22097 yaw=-899 pitch=0 hp=22 weapon=SCN ammo=0 inclip=0 perclip=0 cinema=0
+wall=240324 qt=115287 platform 0: on=00000000 nearest=none
+wall=240498 qt=115387 view 0 viewport=0,0,640,360 eye=11896,-6,22097 frames=1193 views=1
+wall=240500 qt=115387 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=241234 qt=115687 pad 0 rx = 0
+wall=241234 qt=115687 pad 0 rt = -32768
+wall=241423 qt=115887 audio voices=4 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=241423 qt=115887 player 0 guid=35053801 slot=0 pad=0 pos=11885,-174,22097 yaw=-899 pitch=0 hp=20 weapon=SCN ammo=0 inclip=0 perclip=0 cinema=0
+wall=241423 qt=115887 platform 0: on=00000000 nearest=none
+wall=241601 qt=115987 view 0 viewport=0,0,640,360 eye=11896,-6,22097 frames=1199 views=1
+wall=241604 qt=115987 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=242156 qt=116187 pad 0 rx = 8191
+wall=242156 qt=116187 pad 0 rb = 1
+wall=242518 qt=116487 player 0 guid=35053801 slot=0 pad=0 pos=11885,-174,22097 yaw=-899 pitch=0 hp=18 weapon=other ammo=1 inclip=1 perclip=1 cinema=0
+wall=242518 qt=116487 platform 0: on=00000000 nearest=none
+wall=242678 qt=116587 view 0 viewport=0,0,640,360 eye=11896,-6,22097 frames=1205 views=1
+wall=242681 qt=116587 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=243563 qt=117087 player 0 guid=35053801 slot=0 pad=0 pos=11885,-174,22097 yaw=-899 pitch=0 hp=16 weapon=other ammo=1 inclip=1 perclip=1 cinema=0
+wall=243563 qt=117087 platform 0: on=00000000 nearest=none
+wall=243732 qt=117187 view 0 viewport=0,0,640,360 eye=11896,-6,22097 frames=1211 views=1
+wall=243735 qt=117187 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=244630 qt=117687 player 0 guid=35053801 slot=0 pad=0 pos=11885,-174,22097 yaw=-899 pitch=0 hp=14 weapon=other ammo=1 inclip=1 perclip=1 cinema=0
+wall=244631 qt=117687 platform 0: on=00000000 nearest=none
+wall=244783 qt=117687 pad 0 rx = 0
+wall=244783 qt=117687 pad 0 rb = 0
+wall=244799 qt=117787 view 0 viewport=0,0,640,360 eye=11896,-6,22097 frames=1217 views=1
+wall=244803 qt=117787 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=244956 qt=117787 perf frames=28 in 5048 ms
+wall=245684 qt=118187 pad 1 rx = 8191
+wall=245684 qt=118187 pad 1 rt = 32767
+wall=245701 qt=118287 audio voices=4 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=245701 qt=118287 player 0 guid=35053801 slot=0 pad=0 pos=11885,-174,22097 yaw=-899 pitch=0 hp=12 weapon=other ammo=1 inclip=1 perclip=1 cinema=0
+wall=245701 qt=118287 platform 0: on=00000000 nearest=none
+wall=245880 qt=118387 view 0 viewport=0,0,640,360 eye=11896,-6,22097 frames=1223 views=1
+wall=245883 qt=118387 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=246784 qt=118887 player 0 guid=35053801 slot=0 pad=0 pos=11885,-174,22097 yaw=-899 pitch=0 hp=10 weapon=other ammo=1 inclip=1 perclip=1 cinema=0
+wall=246784 qt=118887 platform 0: on=00000000 nearest=none
+wall=246962 qt=118987 view 0 viewport=0,0,640,360 eye=11896,-6,22097 frames=1229 views=1
+wall=246965 qt=118987 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=247863 qt=119487 player 0 guid=35053801 slot=0 pad=0 pos=11885,-174,22097 yaw=-899 pitch=0 hp=8 weapon=other ammo=1 inclip=1 perclip=1 cinema=0
+wall=247863 qt=119487 platform 0: on=00000000 nearest=none
+wall=248034 qt=119587 view 0 viewport=0,0,640,360 eye=11896,-6,22097 frames=1235 views=1
+wall=248038 qt=119587 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=248916 qt=120087 player 0 guid=35053801 slot=0 pad=0 pos=11885,-174,22097 yaw=-899 pitch=0 hp=6 weapon=other ammo=1 inclip=1 perclip=1 cinema=0
+wall=248916 qt=120087 platform 0: on=00000000 nearest=none
+wall=249085 qt=120187 view 0 viewport=0,0,640,360 eye=11896,-6,22097 frames=1241 views=1
+wall=249087 qt=120187 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=249969 qt=120587 perf frames=28 in 5013 ms
+wall=249985 qt=120687 audio voices=4 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=249985 qt=120687 player 0 guid=35053801 slot=0 pad=0 pos=11885,-174,22097 yaw=-899 pitch=0 hp=4 weapon=other ammo=1 inclip=1 perclip=1 cinema=0
+wall=249985 qt=120687 platform 0: on=00000000 nearest=none
+wall=250152 qt=120787 view 0 viewport=0,0,640,360 eye=11896,-6,22097 frames=1247 views=1
+wall=250154 qt=120787 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=251029 qt=121187 pad 1 rx = 0
+wall=251029 qt=121187 pad 1 rt = -32768
+wall=251045 qt=121287 player 0 guid=35053801 slot=0 pad=0 pos=11885,-174,22097 yaw=-899 pitch=0 hp=2 weapon=other ammo=1 inclip=1 perclip=1 cinema=0
+wall=251045 qt=121287 platform 0: on=00000000 nearest=none
+wall=251207 qt=121387 view 0 viewport=0,0,640,360 eye=11896,-6,22097 frames=1253 views=1
+wall=251210 qt=121387 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=251919 qt=121687 pad 1 rx = 8191
+wall=251920 qt=121687 pad 1 rb = 1
+wall=252095 qt=121887 player 0 guid=35053801 slot=0 pad=0 pos=11885,-174,22097 yaw=-899 pitch=0 hp=0 weapon=other ammo=1 inclip=1 perclip=1 cinema=0
+wall=252095 qt=121887 platform 0: on=00000000 nearest=none
+wall=252249 qt=121987 view 0 viewport=0,0,640,360 eye=11896,11,22097 frames=1259 views=1
+wall=252251 qt=121987 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=253204 qt=122487 player 0 guid=35053801 slot=0 pad=0 pos=11885,-174,22097 yaw=-899 pitch=0 hp=0 weapon=other ammo=1 inclip=1 perclip=1 cinema=0
+wall=253204 qt=122487 platform 0: on=00000000 nearest=none
+wall=253354 qt=122587 view 0 viewport=0,0,640,360 eye=11884,-61,22097 frames=1265 views=1
+wall=253356 qt=122587 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=254031 qt=123087 audio voices=4 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=254031 qt=123087 player 0 guid=35053801 slot=0 pad=0 pos=11885,-174,22097 yaw=-899 pitch=0 hp=0 weapon=other ammo=1 inclip=1 perclip=1 cinema=0
+wall=254031 qt=123087 platform 0: on=00000000 nearest=none
+wall=254235 qt=123187 pad 1 rx = 0
+wall=254235 qt=123187 pad 1 rb = 0
+wall=254450 qt=123485 view 0 viewport=0,0,640,360 eye=11875,-167,22097 frames=1274 views=1
+wall=254451 qt=123485 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=254665 qt=123685 player 0 guid=35053801 slot=0 pad=0 pos=11885,-174,22097 yaw=-899 pitch=0 hp=0 weapon=other ammo=1 inclip=1 perclip=1 cinema=0
+wall=254665 qt=123685 platform 0: on=00000000 nearest=none
+wall=254756 qt=123685 command carryover (hook set)
+wall=254756 qt=123685 carryover player 0: scanner=1 pistol=1
+wall=255024 qt=123885 perf frames=33 in 5055 ms
+wall=255378 qt=124285 player 0 guid=35053801 slot=0 pad=0 pos=11885,-174,22097 yaw=-899 pitch=0 hp=0 weapon=other ammo=1 inclip=1 perclip=1 cinema=0
+wall=255378 qt=124285 platform 0: on=00000000 nearest=none
+wall=255498 qt=124385 view 0 viewport=0,0,640,360 eye=11875,-167,22097 frames=1283 views=1
+wall=255499 qt=124385 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=256113 qt=124885 player 0 guid=35053801 slot=0 pad=0 pos=11885,-174,22097 yaw=-899 pitch=0 hp=0 weapon=other ammo=1 inclip=1 perclip=1 cinema=0
+wall=256113 qt=124885 platform 0: on=00000000 nearest=none
+wall=256560 qt=125285 view 0 viewport=0,0,640,360 eye=11875,-167,22097 frames=1292 views=1
+wall=256560 qt=125285 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=256779 qt=125485 audio voices=4 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=256779 qt=125485 player 0 guid=35053801 slot=0 pad=0 pos=11885,-174,22097 yaw=-899 pitch=0 hp=0 weapon=other ammo=1 inclip=1 perclip=1 cinema=0
+wall=256779 qt=125485 platform 0: on=00000000 nearest=none
+wall=257141 qt=125685 pad 1 ly = -32767
+wall=257158 qt=125785 state SM_PLAYING_GAME -> SM_SERVER_COOLDOWN
+wall=257165 qt=125785 dialog stop - id=00000000
+wall=257166 qt=125785 dialog stop - id=00000000
+wall=257172 qt=125785 state SM_SERVER_COOLDOWN -> SM_POST_GAME
+wall=257183 qt=125785 state SM_POST_GAME -> SM_RELOAD_CHECKPOINT
+wall=257356 qt=125785 state SM_RELOAD_CHECKPOINT -> SM_SINGLE_PLAYER_LOAD_MISSION
+wall=257360 qt=125785 campaign BeginGame done: players=1 level=1130
+wall=257388 qt=125785 state SM_SINGLE_PLAYER_LOAD_MISSION -> SM_SERVER_SYNC
+wall=257391 qt=125785 state SM_SERVER_SYNC -> SM_PLAYING_GAME
+wall=257439 qt=125785 dialog stop - id=00000000
+wall=257439 qt=125785 dialog stop - id=00000000
+wall=257443 qt=125785 player 0 guid=35053801 slot=0 pad=0 pos=12150,-40,22100 yaw=-899 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=257443 qt=125785 platform 0: on=00000000 support=0 nearest=C8D1B800 at 12199,-74,22100 top=9265 dist=60 collidable=1 rideable=1
+wall=257779 qt=126120 view 0 viewport=0,0,640,360 eye=11894,93,22097 frames=1297 views=1
+wall=257781 qt=126120 bodies view=0 drawn=0 frames=5 others=0 with_body=0
+wall=258137 qt=126320 player 0 guid=35053801 slot=0 pad=0 pos=11882,-93,22097 yaw=-899 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=258137 qt=126320 platform 0: on=00000000 support=0 nearest=C8D1B800 at 10952,-75,22100 top=9265 dist=930 collidable=1 rideable=1
+wall=258935 qt=126820 view 0 viewport=0,0,640,360 eye=11894,-9,22097 frames=1304 views=1
+wall=258937 qt=126820 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=259107 qt=126920 player 0 guid=35053801 slot=0 pad=0 pos=11882,-174,22097 yaw=-899 pitch=0 hp=98 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=259107 qt=126920 platform 0: on=00000000 support=0 nearest=C8D1B800 at 8917,-75,22100 top=9265 dist=2966 collidable=1 rideable=1
+wall=259985 qt=127420 view 0 viewport=0,0,640,360 eye=11893,-6,22097 frames=1310 views=1
+wall=259987 qt=127420 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=260132 qt=127420 perf frames=146 in 5108 ms
+wall=260149 qt=127520 audio voices=4 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=260149 qt=127520 player 0 guid=35053801 slot=0 pad=0 pos=11882,-174,22097 yaw=-899 pitch=0 hp=96 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=260150 qt=127520 platform 0: on=00000000 nearest=none
+wall=261054 qt=128020 view 0 viewport=0,0,640,360 eye=11893,-6,22097 frames=1316 views=1
+wall=261056 qt=128020 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=261220 qt=128120 player 0 guid=35053801 slot=0 pad=0 pos=11882,-174,22097 yaw=-899 pitch=0 hp=94 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=261220 qt=128120 platform 0: on=00000000 nearest=none
+wall=262094 qt=128620 view 0 viewport=0,0,640,360 eye=11893,-6,22097 frames=1322 views=1
+wall=262096 qt=128620 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=262249 qt=128620 pad 1 ly = 0
+wall=262266 qt=128720 player 0 guid=35053801 slot=0 pad=0 pos=11882,-174,22097 yaw=-899 pitch=0 hp=92 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=262266 qt=128720 platform 0: on=00000000 nearest=none
+wall=263160 qt=129120 pad 1 back = 1
+wall=263178 qt=129220 view 0 viewport=0,0,640,360 eye=11893,-6,22097 frames=1328 views=1
+wall=263180 qt=129220 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=263346 qt=129320 player 0 guid=35053801 slot=0 pad=0 pos=11882,-174,22097 yaw=-899 pitch=0 hp=90 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=263346 qt=129320 platform 0: on=00000000 nearest=none
+wall=263712 qt=129420 pad 1 back = 0
+wall=264248 qt=129820 view 0 viewport=0,0,640,360 eye=11893,-6,22097 frames=1334 views=1
+wall=264250 qt=129820 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=264421 qt=129920 audio voices=4 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=264421 qt=129920 player 0 guid=35053801 slot=0 pad=0 pos=11882,-174,22097 yaw=-899 pitch=0 hp=88 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=264421 qt=129920 platform 0: on=00000000 nearest=none
+wall=265300 qt=130320 perf frames=29 in 5168 ms
+wall=265319 qt=130420 view 0 viewport=0,0,640,360 eye=11893,-6,22097 frames=1340 views=1
+wall=265321 qt=130420 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=265486 qt=130520 player 0 guid=35053801 slot=0 pad=0 pos=11882,-174,22097 yaw=-899 pitch=0 hp=86 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=265486 qt=130520 platform 0: on=00000000 nearest=none
+wall=266062 qt=130720 loadout player 0: scanner=1 smp=1 pistol=1
+wall=266062 qt=130720 equip player 0: pistol, 8 rounds per clip
+wall=266062 qt=130720 profile player 0: index=0 name=Empty avatar=0
+wall=266396 qt=131020 view 0 viewport=0,0,640,360 eye=11893,-6,22097 frames=1346 views=1
+wall=266398 qt=131020 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=266558 qt=131120 player 0 guid=35053801 slot=0 pad=0 pos=11882,-174,22097 yaw=-899 pitch=0 hp=84 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=266558 qt=131120 platform 0: on=00000000 nearest=none
+wall=266751 qt=131120 command mutate1 (hook set)
+wall=266751 qt=131120 mutate1 player 1: no player
+wall=267441 qt=131620 view 0 viewport=0,0,640,360 eye=11893,-6,22097 frames=1352 views=1
+wall=267443 qt=131620 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=267609 qt=131720 player 0 guid=35053801 slot=0 pad=0 pos=11882,-174,22097 yaw=-899 pitch=0 hp=82 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=267609 qt=131720 platform 0: on=00000000 nearest=none
+wall=268500 qt=132220 view 0 viewport=0,0,640,360 eye=11893,-6,22097 frames=1358 views=1
+wall=268502 qt=132220 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=268666 qt=132320 audio voices=5 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=268666 qt=132320 player 0 guid=35053801 slot=0 pad=0 pos=11882,-174,22097 yaw=-899 pitch=0 hp=80 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=268666 qt=132320 platform 0: on=00000000 nearest=none
+wall=269567 qt=132820 view 0 viewport=0,0,640,360 eye=11893,-6,22097 frames=1364 views=1
+wall=269569 qt=132820 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=269740 qt=132920 player 0 guid=35053801 slot=0 pad=0 pos=11882,-174,22097 yaw=-899 pitch=0 hp=78 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=269740 qt=132920 platform 0: on=00000000 nearest=none
+wall=270442 qt=133220 perf frames=29 in 5142 ms
+wall=270629 qt=133420 view 0 viewport=0,0,640,360 eye=11893,-6,22097 frames=1370 views=1
+wall=270631 qt=133420 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=270798 qt=133520 player 0 guid=35053801 slot=0 pad=0 pos=11882,-174,22097 yaw=-899 pitch=0 hp=76 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=270798 qt=133520 platform 0: on=00000000 nearest=none
+wall=271699 qt=134020 view 0 viewport=0,0,640,360 eye=11893,-6,22097 frames=1376 views=1
+wall=271701 qt=134020 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=271866 qt=134120 player 0 guid=35053801 slot=0 pad=0 pos=11882,-174,22097 yaw=-899 pitch=0 hp=74 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=271866 qt=134120 platform 0: on=00000000 nearest=none
+wall=272070 qt=134120 command mutstat (hook set)
+wall=272070 qt=134120 mutstat p0=0 p1=-1 speed=100 abil0=15 abil1=-1 body1=0
+wall=272759 qt=134620 view 0 viewport=0,0,640,360 eye=11893,-6,22097 frames=1382 views=1
+wall=272761 qt=134620 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=272908 qt=134620 command unmutate1 (hook set)
+wall=272908 qt=134620 unmutate1 player 1: no player
+wall=272927 qt=134720 audio voices=4 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=272927 qt=134720 player 0 guid=35053801 slot=0 pad=0 pos=11882,-174,22097 yaw=-899 pitch=0 hp=72 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=272927 qt=134720 platform 0: on=00000000 nearest=none
+wall=273816 qt=135220 view 0 viewport=0,0,640,360 eye=11893,-6,22097 frames=1388 views=1
+wall=273818 qt=135220 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=273986 qt=135320 player 0 guid=35053801 slot=0 pad=0 pos=11882,-174,22097 yaw=-899 pitch=0 hp=70 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=273986 qt=135320 platform 0: on=00000000 nearest=none
+wall=274896 qt=135820 view 0 viewport=0,0,640,360 eye=11893,-6,22097 frames=1394 views=1
+wall=274898 qt=135820 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=275068 qt=135920 player 0 guid=35053801 slot=0 pad=0 pos=11882,-174,22097 yaw=-899 pitch=0 hp=68 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=275068 qt=135920 platform 0: on=00000000 nearest=none
+wall=275609 qt=136120 perf frames=29 in 5167 ms
+wall=275969 qt=136420 view 0 viewport=0,0,640,360 eye=11893,-6,22097 frames=1400 views=1
+wall=275971 qt=136420 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=276141 qt=136520 player 0 guid=35053801 slot=0 pad=0 pos=11882,-174,22097 yaw=-899 pitch=0 hp=66 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=276141 qt=136520 platform 0: on=00000000 nearest=none
+wall=277032 qt=137020 view 0 viewport=0,0,640,360 eye=11893,-6,22097 frames=1406 views=1
+wall=277034 qt=137020 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=277200 qt=137120 audio voices=4 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=277200 qt=137120 player 0 guid=35053801 slot=0 pad=0 pos=11882,-174,22097 yaw=-899 pitch=0 hp=64 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=277200 qt=137120 platform 0: on=00000000 nearest=none
+wall=278081 qt=137620 view 0 viewport=0,0,640,360 eye=11893,-6,22097 frames=1412 views=1
+wall=278083 qt=137620 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=278232 qt=137620 command mutstat (hook set)
+wall=278232 qt=137620 mutstat p0=0 p1=-1 speed=100 abil0=15 abil1=-1 body1=0
+wall=278251 qt=137720 player 0 guid=35053801 slot=0 pad=0 pos=11882,-174,22097 yaw=-899 pitch=0 hp=62 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=278251 qt=137720 platform 0: on=00000000 nearest=none
+wall=279137 qt=138120 command down1 (hook set)
+wall=279137 qt=138120 down player 1: no player
+wall=279156 qt=138220 view 0 viewport=0,0,640,360 eye=11893,-6,22097 frames=1418 views=1
+wall=279158 qt=138220 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=279329 qt=138320 player 0 guid=35053801 slot=0 pad=0 pos=11882,-174,22097 yaw=-899 pitch=0 hp=60 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=279329 qt=138320 platform 0: on=00000000 nearest=none
+wall=280225 qt=138820 view 0 viewport=0,0,640,360 eye=11893,-6,22097 frames=1424 views=1
+wall=280227 qt=138820 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=280397 qt=138920 player 0 guid=35053801 slot=0 pad=0 pos=11882,-174,22097 yaw=-899 pitch=0 hp=58 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=280397 qt=138920 platform 0: on=00000000 nearest=none
+wall=280756 qt=139020 perf frames=29 in 5147 ms
+wall=280931 qt=139120 pad 0 x = 1
+wall=280931 qt=139120 pad 1 x = 1
+wall=281299 qt=139420 view 0 viewport=0,0,640,360 eye=11893,-6,22097 frames=1430 views=1
+wall=281301 qt=139420 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=281473 qt=139520 audio voices=6 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=281473 qt=139520 player 0 guid=35053801 slot=0 pad=0 pos=11882,-174,22097 yaw=-899 pitch=0 hp=56 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=281473 qt=139520 platform 0: on=00000000 nearest=none
+wall=282360 qt=140020 view 0 viewport=0,0,640,360 eye=11893,-6,22097 frames=1436 views=1
+wall=282362 qt=140020 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=282529 qt=140120 player 0 guid=35053801 slot=0 pad=0 pos=11882,-174,22097 yaw=-899 pitch=0 hp=54 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=282529 qt=140120 platform 0: on=00000000 nearest=none
+wall=283420 qt=140620 view 0 viewport=0,0,640,360 eye=11893,-6,22097 frames=1442 views=1
+wall=283422 qt=140620 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=283590 qt=140720 player 0 guid=35053801 slot=0 pad=0 pos=11882,-174,22097 yaw=-899 pitch=0 hp=52 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=283590 qt=140720 platform 0: on=00000000 nearest=none
+wall=284485 qt=141220 view 0 viewport=0,0,640,360 eye=11893,-6,22097 frames=1448 views=1
+wall=284487 qt=141220 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=284659 qt=141320 player 0 guid=35053801 slot=0 pad=0 pos=11882,-174,22097 yaw=-899 pitch=0 hp=50 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=284659 qt=141320 platform 0: on=00000000 nearest=none
+wall=285543 qt=141820 view 0 viewport=0,0,640,360 eye=11893,-6,22097 frames=1454 views=1
+wall=285545 qt=141820 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=285714 qt=141920 audio voices=4 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=285714 qt=141920 player 0 guid=35053801 slot=0 pad=0 pos=11882,-174,22097 yaw=-899 pitch=0 hp=48 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=285714 qt=141920 platform 0: on=00000000 nearest=none
+wall=285916 qt=141920 perf frames=29 in 5160 ms
+wall=286615 qt=142420 view 0 viewport=0,0,640,360 eye=11893,-6,22097 frames=1460 views=1
+wall=286617 qt=142420 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=286787 qt=142520 player 0 guid=35053801 slot=0 pad=0 pos=11882,-174,22097 yaw=-899 pitch=0 hp=46 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=286787 qt=142520 platform 0: on=00000000 nearest=none
+wall=287680 qt=143020 view 0 viewport=0,0,640,360 eye=11893,-6,22097 frames=1466 views=1
+wall=287682 qt=143020 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=287850 qt=143120 player 0 guid=35053801 slot=0 pad=0 pos=11882,-174,22097 yaw=-899 pitch=0 hp=44 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=287850 qt=143120 platform 0: on=00000000 nearest=none
+wall=288754 qt=143620 view 0 viewport=0,0,640,360 eye=11893,-6,22097 frames=1472 views=1
+wall=288756 qt=143620 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=288923 qt=143720 player 0 guid=35053801 slot=0 pad=0 pos=11882,-174,22097 yaw=-899 pitch=0 hp=42 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=288923 qt=143720 platform 0: on=00000000 nearest=none
+wall=289810 qt=144220 view 0 viewport=0,0,640,360 eye=11893,-6,22097 frames=1478 views=1
+wall=289812 qt=144220 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=289980 qt=144320 audio voices=4 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=289980 qt=144320 player 0 guid=35053801 slot=0 pad=0 pos=11882,-174,22097 yaw=-899 pitch=0 hp=40 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=289980 qt=144320 platform 0: on=00000000 nearest=none
+wall=290685 qt=144620 pad 0 x = 0
+wall=290685 qt=144620 pad 1 x = 0
+wall=290872 qt=144820 view 0 viewport=0,0,640,360 eye=11893,-6,22097 frames=1484 views=1
+wall=290874 qt=144820 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=291026 qt=144820 perf frames=29 in 5110 ms
+wall=291047 qt=144920 player 0 guid=35053801 slot=0 pad=0 pos=11882,-174,22097 yaw=-899 pitch=0 hp=38 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=291047 qt=144920 platform 0: on=00000000 nearest=none
+wall=291244 qt=144920 command pistol1 (hook set)
+wall=291244 qt=144920 pistol player 1: no player
+wall=291946 qt=145420 view 0 viewport=0,0,640,360 eye=11893,-6,22097 frames=1490 views=1
+wall=291948 qt=145420 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=292117 qt=145520 player 0 guid=35053801 slot=0 pad=0 pos=11882,-174,22097 yaw=-899 pitch=0 hp=36 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=292117 qt=145520 platform 0: on=00000000 nearest=none
+wall=293014 qt=146020 view 0 viewport=0,0,640,360 eye=11893,-6,22097 frames=1496 views=1
+wall=293016 qt=146020 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=293181 qt=146120 player 0 guid=35053801 slot=0 pad=0 pos=11882,-174,22097 yaw=-899 pitch=0 hp=34 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=293181 qt=146120 platform 0: on=00000000 nearest=none
+wall=293382 qt=146120 command down1 (hook set)
+wall=293382 qt=146120 down player 1: no player
+wall=293717 qt=146320 command downstat (hook set)
+wall=294050 qt=146520 pad 0 rt = 32767
+wall=294050 qt=146520 pad 0 b = 1
+wall=294050 qt=146520 pad 1 rt = 32767
+wall=294050 qt=146520 pad 1 b = 1
+wall=294069 qt=146620 view 0 viewport=0,0,640,360 eye=11893,-6,22097 frames=1502 views=1
+wall=294071 qt=146620 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=294231 qt=146720 audio voices=5 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=294231 qt=146720 player 0 guid=35053801 slot=0 pad=0 pos=11882,-174,22097 yaw=-899 pitch=0 hp=32 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=294231 qt=146720 platform 0: on=00000000 nearest=none
+wall=294591 qt=146820 pad 0 b = 0
+wall=294591 qt=146820 pad 1 b = 0
+wall=295117 qt=147220 view 0 viewport=0,0,640,360 eye=11893,-6,22097 frames=1508 views=1
+wall=295119 qt=147220 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=295283 qt=147320 player 0 guid=35053801 slot=0 pad=0 pos=11882,-174,22097 yaw=-899 pitch=0 hp=30 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=295283 qt=147320 platform 0: on=00000000 nearest=none
+wall=295498 qt=147320 pad 0 rt = -32768
+wall=295498 qt=147320 pad 1 rt = -32768
+wall=295831 qt=147520 command downstat (hook set)
+wall=296176 qt=147720 perf frames=29 in 5150 ms
+wall=296176 qt=147720 command kill0 (hook set)
+wall=296176 qt=147720 kill player 0: dying
+wall=296194 qt=147820 view 0 viewport=0,0,640,360 eye=11893,11,22097 frames=1514 views=1
+wall=296196 qt=147820 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=296364 qt=147920 player 0 guid=35053801 slot=0 pad=0 pos=11882,-174,22097 yaw=-899 pitch=0 hp=0 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=296364 qt=147920 platform 0: on=00000000 nearest=none
+wall=297308 qt=148420 view 0 viewport=0,0,640,360 eye=11882,-42,22097 frames=1520 views=1
+wall=297310 qt=148420 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=297454 qt=148520 player 0 guid=35053801 slot=0 pad=0 pos=11882,-174,22097 yaw=-899 pitch=0 hp=0 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=297454 qt=148520 platform 0: on=00000000 nearest=none
+wall=299573 qt=148820 view 0 viewport=0,0,640,360 eye=11875,-124,22097 frames=1524 views=1
+wall=299574 qt=148820 bodies view=0 drawn=0 frames=4 others=0 with_body=0
+wall=300561 qt=149120 audio voices=8 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=300561 qt=149120 player 0 guid=35053801 slot=0 pad=0 pos=11882,-174,22097 yaw=-899 pitch=0 hp=0 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=300561 qt=149120 platform 0: on=00000000 nearest=none
+wall=300670 qt=149220 view 0 viewport=0,0,640,360 eye=11872,-167,22097 frames=1528 views=1
+wall=300671 qt=149220 bodies view=0 drawn=0 frames=4 others=0 with_body=0
+wall=301282 qt=149620 perf frames=19 in 5106 ms
+wall=301301 qt=149720 player 0 guid=35053801 slot=0 pad=0 pos=11882,-174,22097 yaw=-899 pitch=0 hp=0 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=301301 qt=149720 platform 0: on=00000000 nearest=none
+wall=301833 qt=150120 view 0 viewport=0,0,640,360 eye=11872,-167,22097 frames=1537 views=1
+wall=301834 qt=150120 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=302069 qt=150320 player 0 guid=35053801 slot=0 pad=0 pos=11882,-174,22097 yaw=-899 pitch=0 hp=0 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=302069 qt=150320 platform 0: on=00000000 nearest=none
+wall=302901 qt=150920 player 0 guid=35053801 slot=0 pad=0 pos=11882,-174,22097 yaw=-899 pitch=0 hp=0 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=302901 qt=150920 platform 0: on=00000000 nearest=none
+wall=302901 qt=150920 view 0 viewport=0,0,640,360 eye=11872,-167,22097 frames=1545 views=1
+wall=302902 qt=150920 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=303617 qt=151520 audio voices=7 top=EXPLOSION_DEBRIS_IMPACT x3
+wall=303617 qt=151520 player 0 guid=35053801 slot=0 pad=0 pos=11882,-174,22097 yaw=-899 pitch=0 hp=0 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=303617 qt=151520 platform 0: on=00000000 nearest=none
+wall=304006 qt=151820 state SM_PLAYING_GAME -> SM_SERVER_COOLDOWN
+wall=304013 qt=151820 dialog stop - id=00000000
+wall=304014 qt=151820 dialog stop - id=00000000
+wall=304021 qt=151820 state SM_SERVER_COOLDOWN -> SM_POST_GAME
+wall=304032 qt=151820 state SM_POST_GAME -> SM_RELOAD_CHECKPOINT
+wall=304201 qt=151820 state SM_RELOAD_CHECKPOINT -> SM_SINGLE_PLAYER_LOAD_MISSION
+wall=304205 qt=151820 campaign BeginGame done: players=1 level=1130
+wall=304233 qt=151820 state SM_SINGLE_PLAYER_LOAD_MISSION -> SM_SERVER_SYNC
+wall=304236 qt=151820 state SM_SERVER_SYNC -> SM_PLAYING_GAME
+wall=304284 qt=151820 dialog stop - id=00000000
+wall=304284 qt=151820 dialog stop - id=00000000
+wall=304288 qt=151820 player 0 guid=35053801 slot=0 pad=0 pos=12150,-40,22100 yaw=-899 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=304288 qt=151820 platform 0: on=00000000 support=0 nearest=C8D1B800 at 12199,-75,22100 top=9265 dist=60 collidable=1 rideable=1
+wall=304626 qt=152156 view 0 viewport=0,0,640,360 eye=11890,92,22097 frames=1554 views=1
+wall=304628 qt=152156 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=304938 qt=152356 player 0 guid=35053801 slot=0 pad=0 pos=11877,-93,22097 yaw=-899 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=304938 qt=152356 platform 0: on=00000000 support=0 nearest=C8D1B800 at 10947,-75,22100 top=9265 dist=930 collidable=1 rideable=1
+wall=305791 qt=152856 view 0 viewport=0,0,640,360 eye=11890,-9,22097 frames=1561 views=1
+wall=305792 qt=152856 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=305957 qt=152956 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=98 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=305957 qt=152956 platform 0: on=00000000 support=0 nearest=C8D1B800 at 8911,-75,22100 top=9265 dist=2967 collidable=1 rideable=1
+wall=306335 qt=153056 perf frames=144 in 5053 ms
+wall=306854 qt=153456 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=1567 views=1
+wall=306856 qt=153456 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=307025 qt=153556 audio voices=4 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=307025 qt=153556 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=96 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=307025 qt=153556 platform 0: on=00000000 nearest=none
+wall=307911 qt=154056 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=1573 views=1
+wall=307913 qt=154056 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=308076 qt=154156 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=94 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=308076 qt=154156 platform 0: on=00000000 nearest=none
+wall=308970 qt=154656 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=1579 views=1
+wall=308972 qt=154656 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=309142 qt=154756 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=92 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=309142 qt=154756 platform 0: on=00000000 nearest=none
+wall=310041 qt=155256 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=1585 views=1
+wall=310043 qt=155256 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=310215 qt=155356 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=90 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=310215 qt=155356 platform 0: on=00000000 nearest=none
+wall=311105 qt=155856 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=1591 views=1
+wall=311107 qt=155856 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=311282 qt=155956 audio voices=4 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=311282 qt=155956 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=88 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=311282 qt=155956 platform 0: on=00000000 nearest=none
+wall=311480 qt=155956 perf frames=29 in 5145 ms
+wall=312170 qt=156456 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=1597 views=1
+wall=312172 qt=156456 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=312337 qt=156556 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=86 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=312337 qt=156556 platform 0: on=00000000 nearest=none
+wall=312904 qt=156756 loadout player 0: scanner=1 smp=1 pistol=1
+wall=312904 qt=156756 equip player 0: pistol, 8 rounds per clip
+wall=312904 qt=156756 profile player 0: index=0 name=Empty avatar=0
+wall=313224 qt=157056 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=1603 views=1
+wall=313226 qt=157056 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=313381 qt=157156 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=84 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=313381 qt=157156 platform 0: on=00000000 nearest=none
+wall=314266 qt=157656 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=1609 views=1
+wall=314268 qt=157656 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=314431 qt=157756 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=82 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=314431 qt=157756 platform 0: on=00000000 nearest=none
+wall=315309 qt=158256 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=1615 views=1
+wall=315311 qt=158256 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=315471 qt=158356 audio voices=5 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=315471 qt=158356 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=80 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=315471 qt=158356 platform 0: on=00000000 nearest=none
+wall=316366 qt=158856 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=1621 views=1
+wall=316368 qt=158856 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=316515 qt=158856 perf frames=29 in 5035 ms
+wall=316533 qt=158956 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=78 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=316533 qt=158956 platform 0: on=00000000 nearest=none
+wall=317423 qt=159456 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=1627 views=1
+wall=317425 qt=159456 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=317588 qt=159556 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=76 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=317588 qt=159556 platform 0: on=00000000 nearest=none
+wall=318496 qt=160056 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=1633 views=1
+wall=318498 qt=160056 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=318665 qt=160156 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=74 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=318665 qt=160156 platform 0: on=00000000 nearest=none
+wall=319547 qt=160656 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=1639 views=1
+wall=319549 qt=160656 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=319716 qt=160756 audio voices=4 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=319716 qt=160756 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=72 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=319716 qt=160756 platform 0: on=00000000 nearest=none
+wall=320580 qt=161256 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=1645 views=1
+wall=320582 qt=161256 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=320752 qt=161356 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=70 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=320752 qt=161356 platform 0: on=00000000 nearest=none
+wall=321630 qt=161756 perf frames=29 in 5115 ms
+wall=321648 qt=161856 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=1651 views=1
+wall=321650 qt=161856 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=321811 qt=161956 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=68 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=321811 qt=161956 platform 0: on=00000000 nearest=none
+wall=322707 qt=162456 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=1657 views=1
+wall=322709 qt=162456 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=322871 qt=162556 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=66 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=322871 qt=162556 platform 0: on=00000000 nearest=none
+wall=323741 qt=163056 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=1663 views=1
+wall=323743 qt=163056 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=323913 qt=163156 audio voices=4 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=323913 qt=163156 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=64 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=323913 qt=163156 platform 0: on=00000000 nearest=none
+wall=324798 qt=163656 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=1669 views=1
+wall=324799 qt=163656 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=324972 qt=163756 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=62 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=324972 qt=163756 platform 0: on=00000000 nearest=none
+wall=325867 qt=164256 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=1675 views=1
+wall=325869 qt=164256 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=326041 qt=164356 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=60 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=326041 qt=164356 platform 0: on=00000000 nearest=none
+wall=326760 qt=164656 perf frames=29 in 5130 ms
+wall=326947 qt=164856 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=1681 views=1
+wall=326949 qt=164856 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=327117 qt=164956 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=58 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=327117 qt=164956 platform 0: on=00000000 nearest=none
+wall=328017 qt=165456 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=1687 views=1
+wall=328019 qt=165456 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=328190 qt=165556 audio voices=5 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=328190 qt=165556 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=56 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=328190 qt=165556 platform 0: on=00000000 nearest=none
+wall=329062 qt=166056 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=1693 views=1
+wall=329064 qt=166056 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=329232 qt=166156 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=54 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=329232 qt=166156 platform 0: on=00000000 nearest=none
+wall=330122 qt=166656 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=1699 views=1
+wall=330124 qt=166656 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=330284 qt=166756 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=52 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=330284 qt=166756 platform 0: on=00000000 nearest=none
+wall=331201 qt=167256 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=1705 views=1
+wall=331203 qt=167256 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=331384 qt=167356 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=50 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=331384 qt=167356 platform 0: on=00000000 nearest=none
+wall=331929 qt=167556 perf frames=29 in 5169 ms
+wall=332265 qt=167756 command pause (hook set)
+wall=332266 qt=167756 state SM_PLAYING_GAME -> SM_PAUSE_MAIN_MENU
+wall=332267 qt=167756 pause: on paused=1
+wall=332267 qt=167756 pause beat: paused=1
+wall=332267 qt=167756 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=1711 views=1
+wall=332269 qt=167756 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=333283 qt=167756 pause beat: paused=1
+wall=333283 qt=167756 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=1718 views=1
+wall=333284 qt=167756 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=334397 qt=167756 pause beat: paused=1
+wall=334397 qt=167756 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=1726 views=1
+wall=334399 qt=167756 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=335497 qt=167756 pause beat: paused=1
+wall=335497 qt=167756 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=1734 views=1
+wall=335498 qt=167756 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=336597 qt=167756 pause beat: paused=1
+wall=336597 qt=167756 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=1742 views=1
+wall=336599 qt=167756 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=337043 qt=167756 perf frames=36 in 5114 ms
+wall=337703 qt=167756 pause beat: paused=1
+wall=337703 qt=167756 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=1750 views=1
+wall=337704 qt=167756 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=338787 qt=167756 pause beat: paused=1
+wall=338787 qt=167756 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=1758 views=1
+wall=338789 qt=167756 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=339860 qt=167756 pause beat: paused=1
+wall=339860 qt=167756 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=1766 views=1
+wall=339862 qt=167756 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=340954 qt=167756 pause beat: paused=1
+wall=340954 qt=167756 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=1774 views=1
+wall=340955 qt=167756 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=342079 qt=167756 perf frames=37 in 5036 ms
+wall=342080 qt=167756 pause beat: paused=1
+wall=342080 qt=167756 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=1782 views=1
+wall=342081 qt=167756 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=343190 qt=167756 pause beat: paused=1
+wall=343190 qt=167756 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=1790 views=1
+wall=343192 qt=167756 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=344273 qt=167756 pause beat: paused=1
+wall=344273 qt=167756 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=1798 views=1
+wall=344275 qt=167756 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=345355 qt=167756 pause beat: paused=1
+wall=345355 qt=167756 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=1806 views=1
+wall=345357 qt=167756 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=346453 qt=167756 pause beat: paused=1
+wall=346453 qt=167756 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=1814 views=1
+wall=346457 qt=167756 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=347157 qt=167756 perf frames=37 in 5078 ms
+wall=347290 qt=167756 state SM_PAUSE_MAIN_MENU -> SM_END_PAUSE
+wall=347290 qt=167756 pause: off paused=1
+wall=347549 qt=167756 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=1822 views=1
+wall=347551 qt=167756 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=347990 qt=167756 state SM_END_PAUSE -> SM_PLAYING_GAME
+wall=348172 qt=167956 audio voices=4 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=348172 qt=167956 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=48 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=348172 qt=167956 platform 0: on=00000000 nearest=none
+wall=348679 qt=168256 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=1829 views=1
+wall=348681 qt=168256 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=349237 qt=168556 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=46 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=349237 qt=168556 platform 0: on=00000000 nearest=none
+wall=349719 qt=168756 command bbg0 (hook set)
+wall=349719 qt=168756 bbg player 0: switching
+wall=349719 qt=168756 bbg player 0: have=1 weapon_object=1 current=2
+wall=349737 qt=168856 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=1835 views=1
+wall=349739 qt=168856 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=350305 qt=169156 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=44 weapon=other ammo=200 inclip=50 perclip=50 cinema=0
+wall=350305 qt=169156 platform 0: on=00000000 nearest=none
+wall=350818 qt=169456 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=1841 views=1
+wall=350820 qt=169456 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=351389 qt=169756 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=42 weapon=other ammo=200 inclip=50 perclip=50 cinema=0
+wall=351389 qt=169756 platform 0: on=00000000 nearest=none
+wall=351912 qt=170056 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=1847 views=1
+wall=351914 qt=170056 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=352260 qt=170156 perf frames=30 in 5103 ms
+wall=352451 qt=170356 audio voices=4 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=352451 qt=170356 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=40 weapon=other ammo=200 inclip=50 perclip=50 cinema=0
+wall=352451 qt=170356 platform 0: on=00000000 nearest=none
+wall=352960 qt=170656 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=1853 views=1
+wall=352962 qt=170656 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=353517 qt=170956 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=38 weapon=other ammo=200 inclip=50 perclip=50 cinema=0
+wall=353517 qt=170956 platform 0: on=00000000 nearest=none
+wall=354100 qt=171256 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=1859 views=1
+wall=354102 qt=171256 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=354608 qt=171556 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=36 weapon=other ammo=200 inclip=50 perclip=50 cinema=0
+wall=354608 qt=171556 platform 0: on=00000000 nearest=none
+wall=355151 qt=171756 command warpmark (hook set)
+wall=355151 qt=171756 warp mark: the trigger is pulled
+wall=355151 qt=171756 pad 0 rt = 32767
+wall=355151 qt=171756 pad 1 rt = 32767
+wall=355170 qt=171856 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=1865 views=1
+wall=355172 qt=171856 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=355681 qt=172156 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=34 weapon=other ammo=197 inclip=47 perclip=50 cinema=0
+wall=355681 qt=172156 platform 0: on=00000000 nearest=none
+wall=356241 qt=172356 pad 0 rt = -32768
+wall=356242 qt=172356 pad 1 rt = -32768
+wall=356260 qt=172456 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=1871 views=1
+wall=356262 qt=172456 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=356780 qt=172756 audio voices=5 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=356780 qt=172756 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=32 weapon=other ammo=197 inclip=47 perclip=50 cinema=0
+wall=356780 qt=172756 platform 0: on=00000000 nearest=none
+wall=357319 qt=172956 perf frames=28 in 5059 ms
+wall=357337 qt=173056 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=1877 views=1
+wall=357339 qt=173056 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=357851 qt=173356 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=30 weapon=other ammo=197 inclip=47 perclip=50 cinema=0
+wall=357851 qt=173356 platform 0: on=00000000 nearest=none
+wall=358408 qt=173656 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=1883 views=1
+wall=358410 qt=173656 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=358920 qt=173956 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=28 weapon=other ammo=197 inclip=47 perclip=50 cinema=0
+wall=358920 qt=173956 platform 0: on=00000000 nearest=none
+wall=359447 qt=174156 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=1888 views=1
+wall=359449 qt=174156 bodies view=0 drawn=0 frames=5 others=0 with_body=0
+wall=360127 qt=174556 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=26 weapon=other ammo=197 inclip=47 perclip=50 cinema=0
+wall=360127 qt=174556 platform 0: on=00000000 nearest=none
+wall=360522 qt=174756 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=1894 views=1
+wall=360524 qt=174756 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=361770 qt=175056 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=1897 views=1
+wall=361773 qt=175056 bodies view=0 drawn=0 frames=3 others=0 with_body=0
+wall=362057 qt=175156 audio voices=7 top=MSN_PROJECTILE_EXPLODE x3
+wall=362057 qt=175156 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=24 weapon=other ammo=197 inclip=47 perclip=50 cinema=0
+wall=362057 qt=175156 platform 0: on=00000000 nearest=none
+wall=362383 qt=175156 perf frames=22 in 5064 ms
+wall=363003 qt=175356 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=1900 views=1
+wall=363006 qt=175356 bodies view=0 drawn=0 frames=3 others=0 with_body=0
+wall=363739 qt=175756 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=22 weapon=other ammo=197 inclip=47 perclip=50 cinema=0
+wall=363740 qt=175756 platform 0: on=00000000 nearest=none
+wall=364082 qt=175956 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=1906 views=1
+wall=364084 qt=175956 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=364841 qt=176356 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=20 weapon=other ammo=197 inclip=47 perclip=50 cinema=0
+wall=364841 qt=176356 platform 0: on=00000000 nearest=none
+wall=365177 qt=176556 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=1912 views=1
+wall=365179 qt=176556 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=365664 qt=176756 command warpraw (hook set)
+wall=365664 qt=176756 warp feet: on raw=1
+wall=366149 qt=176956 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=18 weapon=other ammo=197 inclip=47 perclip=50 cinema=0
+wall=366149 qt=176956 platform 0: on=00000000 nearest=none
+wall=366324 qt=177056 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=1917 views=1
+wall=366326 qt=177056 bodies view=0 drawn=0 frames=5 others=0 with_body=0
+wall=367267 qt=177556 audio voices=4 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=367267 qt=177556 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=16 weapon=other ammo=197 inclip=47 perclip=50 cinema=0
+wall=367267 qt=177556 platform 0: on=00000000 nearest=none
+wall=367429 qt=177556 perf frames=24 in 5046 ms
+wall=367447 qt=177656 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=1923 views=1
+wall=367449 qt=177656 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=368366 qt=178156 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=14 weapon=other ammo=197 inclip=47 perclip=50 cinema=0
+wall=368366 qt=178156 platform 0: on=00000000 nearest=none
+wall=368540 qt=178256 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=1929 views=1
+wall=368542 qt=178256 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=369480 qt=178756 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=12 weapon=other ammo=197 inclip=47 perclip=50 cinema=0
+wall=369480 qt=178756 platform 0: on=00000000 nearest=none
+wall=369655 qt=178856 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=1935 views=1
+wall=369657 qt=178856 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=370566 qt=179356 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=10 weapon=other ammo=197 inclip=47 perclip=50 cinema=0
+wall=370566 qt=179356 platform 0: on=00000000 nearest=none
+wall=370741 qt=179456 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=1941 views=1
+wall=370744 qt=179456 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=371677 qt=179956 audio voices=4 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=371677 qt=179956 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=8 weapon=other ammo=197 inclip=47 perclip=50 cinema=0
+wall=371677 qt=179956 platform 0: on=00000000 nearest=none
+wall=371845 qt=180056 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=1947 views=1
+wall=371847 qt=180056 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=372575 qt=180356 perf frames=28 in 5146 ms
+wall=372762 qt=180556 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=6 weapon=other ammo=197 inclip=47 perclip=50 cinema=0
+wall=372762 qt=180556 platform 0: on=00000000 nearest=none
+wall=372934 qt=180656 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=1953 views=1
+wall=372936 qt=180656 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=373839 qt=181156 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=4 weapon=other ammo=197 inclip=47 perclip=50 cinema=0
+wall=373839 qt=181156 platform 0: on=00000000 nearest=none
+wall=374006 qt=181256 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=1959 views=1
+wall=374008 qt=181256 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=374905 qt=181756 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=2 weapon=other ammo=197 inclip=47 perclip=50 cinema=0
+wall=374905 qt=181756 platform 0: on=00000000 nearest=none
+wall=375077 qt=181856 view 0 viewport=0,0,640,360 eye=11889,-6,22097 frames=1965 views=1
+wall=375079 qt=181856 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=375971 qt=182356 audio voices=4 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=375971 qt=182356 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=0 weapon=other ammo=197 inclip=47 perclip=50 cinema=0
+wall=375971 qt=182356 platform 0: on=00000000 nearest=none
+wall=376132 qt=182456 view 0 viewport=0,0,640,360 eye=11889,11,22097 frames=1971 views=1
+wall=376134 qt=182456 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=376994 qt=182956 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=0 weapon=other ammo=197 inclip=47 perclip=50 cinema=0
+wall=376994 qt=182956 platform 0: on=00000000 nearest=none
+wall=377151 qt=183056 view 0 viewport=0,0,640,360 eye=11877,-61,22097 frames=1977 views=1
+wall=377152 qt=183056 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=377619 qt=183256 perf frames=29 in 5044 ms
+wall=377862 qt=183556 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=0 weapon=other ammo=197 inclip=47 perclip=50 cinema=0
+wall=377862 qt=183556 platform 0: on=00000000 nearest=none
+wall=378195 qt=183856 view 0 viewport=0,0,640,360 eye=11867,-167,22097 frames=1985 views=1
+wall=378195 qt=183856 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=378525 qt=184156 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=0 weapon=other ammo=197 inclip=47 perclip=50 cinema=0
+wall=378525 qt=184156 platform 0: on=00000000 nearest=none
+wall=379251 qt=184756 audio voices=4 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=379251 qt=184756 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=0 weapon=other ammo=197 inclip=47 perclip=50 cinema=0
+wall=379251 qt=184756 platform 0: on=00000000 nearest=none
+wall=379251 qt=184756 view 0 viewport=0,0,640,360 eye=11867,-167,22097 frames=1994 views=1
+wall=379252 qt=184756 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=379349 qt=184756 command warpfeet (hook set)
+wall=379349 qt=184756 warp feet: on raw=0
+wall=380013 qt=185356 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=0 weapon=other ammo=197 inclip=47 perclip=50 cinema=0
+wall=380013 qt=185356 platform 0: on=00000000 nearest=none
+wall=380372 qt=185656 view 0 viewport=0,0,640,360 eye=11867,-167,22097 frames=2003 views=1
+wall=380372 qt=185656 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=380716 qt=185956 player 0 guid=35053801 slot=0 pad=0 pos=11877,-174,22097 yaw=-899 pitch=0 hp=0 weapon=other ammo=197 inclip=47 perclip=50 cinema=0
+wall=380716 qt=185956 platform 0: on=00000000 nearest=none
+wall=381125 qt=186256 state SM_PLAYING_GAME -> SM_SERVER_COOLDOWN
+wall=381132 qt=186256 dialog stop - id=00000000
+wall=381133 qt=186256 dialog stop - id=00000000
+wall=381139 qt=186256 state SM_SERVER_COOLDOWN -> SM_POST_GAME
+wall=381150 qt=186256 state SM_POST_GAME -> SM_RELOAD_CHECKPOINT
+wall=381323 qt=186256 state SM_RELOAD_CHECKPOINT -> SM_SINGLE_PLAYER_LOAD_MISSION
+wall=381327 qt=186256 campaign BeginGame done: players=1 level=1130
+wall=381357 qt=186256 state SM_SINGLE_PLAYER_LOAD_MISSION -> SM_SERVER_SYNC
+wall=381360 qt=186256 state SM_SERVER_SYNC -> SM_PLAYING_GAME
+wall=381409 qt=186256 dialog stop - id=00000000
+wall=381410 qt=186256 dialog stop - id=00000000
+wall=381414 qt=186257 player 0 guid=35053801 slot=0 pad=0 pos=12150,-40,22100 yaw=-899 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=381414 qt=186257 platform 0: on=00000000 support=0 nearest=C8D1B800 at 12199,-74,22099 top=9265 dist=60 collidable=1 rideable=1
+wall=381749 qt=186591 view 0 viewport=0,0,640,360 eye=11895,92,22097 frames=2009 views=1
+wall=381751 qt=186591 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=382118 qt=186791 audio voices=5 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=382118 qt=186791 player 0 guid=35053801 slot=0 pad=0 pos=11883,-93,22097 yaw=-899 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=382118 qt=186791 platform 0: on=00000000 support=0 nearest=C8D1B800 at 10953,-75,22100 top=9265 dist=929 collidable=1 rideable=1
+wall=382754 qt=187091 perf frames=145 in 5135 ms
+wall=382771 qt=187191 view 0 viewport=0,0,640,360 eye=11895,-8,22097 frames=2015 views=1
+wall=382773 qt=187191 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=383162 qt=187391 player 0 guid=35053801 slot=0 pad=0 pos=11883,-173,22097 yaw=-899 pitch=0 hp=98 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=383162 qt=187391 platform 0: on=00000000 support=0 nearest=C8D1B800 at 8919,-75,22100 top=9265 dist=2965 collidable=1 rideable=1
+wall=383857 qt=187791 view 0 viewport=0,0,640,360 eye=11894,-4,22097 frames=2021 views=1
+wall=383859 qt=187791 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=384244 qt=187991 player 0 guid=35053801 slot=0 pad=0 pos=11883,-173,22097 yaw=-899 pitch=0 hp=96 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=384244 qt=187991 platform 0: on=00000000 nearest=none
+wall=384942 qt=188391 view 0 viewport=0,0,640,360 eye=11894,-5,22097 frames=2027 views=1
+wall=384944 qt=188391 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=385340 qt=188591 player 0 guid=35053801 slot=0 pad=0 pos=11883,-173,22097 yaw=-899 pitch=0 hp=94 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=385340 qt=188591 platform 0: on=00000000 nearest=none
+wall=386031 qt=188991 view 0 viewport=0,0,640,360 eye=11894,-5,22097 frames=2033 views=1
+wall=386033 qt=188991 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=386427 qt=189191 audio voices=4 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=386427 qt=189191 player 0 guid=35053801 slot=0 pad=0 pos=11883,-173,22097 yaw=-899 pitch=0 hp=92 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=386427 qt=189191 platform 0: on=00000000 nearest=none
+wall=387123 qt=189591 view 0 viewport=0,0,640,360 eye=11894,-5,22097 frames=2039 views=1
+wall=387125 qt=189591 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=387496 qt=189791 player 0 guid=35053801 slot=0 pad=0 pos=11883,-173,22097 yaw=-899 pitch=0 hp=90 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=387496 qt=189791 platform 0: on=00000000 nearest=none
+wall=387815 qt=189891 perf frames=28 in 5061 ms
+wall=388170 qt=190191 view 0 viewport=0,0,640,360 eye=11894,-5,22097 frames=2045 views=1
+wall=388172 qt=190191 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=388562 qt=190391 player 0 guid=35053801 slot=0 pad=0 pos=11883,-173,22097 yaw=-899 pitch=0 hp=88 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=388562 qt=190391 platform 0: on=00000000 nearest=none
+wall=389245 qt=190791 view 0 viewport=0,0,640,360 eye=11894,-5,22097 frames=2051 views=1
+wall=389246 qt=190791 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=389634 qt=190991 player 0 guid=35053801 slot=0 pad=0 pos=11883,-173,22097 yaw=-899 pitch=0 hp=86 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=389634 qt=190991 platform 0: on=00000000 nearest=none
+wall=390141 qt=191191 loadout player 0: scanner=1 smp=1 pistol=1
+wall=390141 qt=191191 equip player 0: pistol, 8 rounds per clip
+wall=390141 qt=191191 profile player 0: index=0 name=Empty avatar=0
+wall=390306 qt=191391 view 0 viewport=0,0,640,360 eye=11894,-5,22097 frames=2057 views=1
+wall=390308 qt=191391 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=390691 qt=191591 audio voices=5 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=390691 qt=191591 player 0 guid=35053801 slot=0 pad=0 pos=11883,-173,22097 yaw=-899 pitch=0 hp=84 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=390691 qt=191591 platform 0: on=00000000 nearest=none
+wall=391365 qt=191991 view 0 viewport=0,0,640,360 eye=11894,-5,22097 frames=2063 views=1
+wall=391367 qt=191991 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=391757 qt=192191 player 0 guid=35053801 slot=0 pad=0 pos=11883,-173,22097 yaw=-899 pitch=0 hp=82 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=391757 qt=192191 platform 0: on=00000000 nearest=none
+wall=392445 qt=192591 view 0 viewport=0,0,640,360 eye=11894,-5,22097 frames=2069 views=1
+wall=392447 qt=192591 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=392825 qt=192791 player 0 guid=35053801 slot=0 pad=0 pos=11883,-173,22097 yaw=-899 pitch=0 hp=80 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=392825 qt=192791 platform 0: on=00000000 nearest=none
+wall=392978 qt=192791 perf frames=29 in 5163 ms
+wall=393502 qt=193191 view 0 viewport=0,0,640,360 eye=11894,-5,22097 frames=2075 views=1
+wall=393504 qt=193191 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=393902 qt=193391 player 0 guid=35053801 slot=0 pad=0 pos=11883,-173,22097 yaw=-899 pitch=0 hp=78 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=393902 qt=193391 platform 0: on=00000000 nearest=none
+wall=394577 qt=193791 view 0 viewport=0,0,640,360 eye=11894,-5,22097 frames=2081 views=1
+wall=394579 qt=193791 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=394784 qt=193791 script finished, asking the game to exit
+wall=394794 qt=193791 dialog stop - id=00000000
+wall=394794 qt=193791 dialog stop - id=00000000
+wall=395802 qt=193791 QA bot shutting down (armed=1 finished=1)
+wall=396025 qt=193791 ASSERT #1 /home/runner/work/area51-pc/area51-pc/Support/NetworkMgr/Voice/VoiceMgr.cpp:38 expr=[!m_Initialized] msg=[]
+wall=396025 qt=193791 ASSERT #2 /home/runner/work/area51-pc/area51-pc/xCore/Entropy/Network/FiFo.cpp:25 expr=[m_Initialized==FALSE] msg=[]
+wall=396025 qt=193791 ASSERT #3 /home/runner/work/area51-pc/area51-pc/xCore/Entropy/Network/FiFo.cpp:25 expr=[m_Initialized==FALSE] msg=[]
