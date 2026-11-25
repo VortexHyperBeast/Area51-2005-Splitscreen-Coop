@@ -210,6 +210,44 @@ void dlg_main_menu::Destroy( void )
 
 //=========================================================================
 
+#if defined(A51_LOCAL_COOP)
+// "SPLITSCREEN CO-OP  v0.90" in the top-left corner (the version is the co-op build number:
+// build 90 = 0.90, build 100 = 1.00).  On the Splitscreen Co-op page the owner's thank-you lines
+// follow underneath (both pages, owner request).  Not shown anywhere else.
+void LocalCoop_RenderMenuBanner( xbool bThanks )
+{
+#if defined(A51_COOP_BUILD)
+    const s32 Build = A51_COOP_BUILD;
+#else
+    const s32 Build = 0;
+#endif
+    static const char* s_Thanks[] =
+    {
+        "Thank you all for playing this passion project,",
+        "This mod will ALWAYS be free,",
+        "made with love and passion by VortexHyperBeast.",
+        "Consider supporting me on my Kofi page",
+        "or endorsing this mod on NexusMods!",
+    };
+    const s32   iFont  = g_UiMgr->FindFont( "small" );
+    const irect Screen = g_UIRenderer.GetViewport().GetLogicalClipBounds();
+    ui_font*    pFont  = g_UiMgr->GetFont( iFont );
+    const s32   Line   = pFont ? MAX( 12, pFont->GetLineHeight() + 2 ) : 18;
+    s32         y      = Screen.t + 16;
+    g_UiMgr->RenderText( iFont, irect( Screen.l + 24, y, Screen.l + 524, y + Line + 6 ),
+                         ui_font::h_left | ui_font::v_top, xcolor( 230, 255, 220, 255 ),
+                         (const char*)xfs( "SPLITSCREEN CO-OP  v%d.%02d", Build / 100, Build % 100 ) );
+    if( !bThanks )
+        return;
+    y += Line + 10;
+    for( s32 i = 0; i < (s32)( sizeof( s_Thanks ) / sizeof( s_Thanks[0] ) ); i++, y += Line )
+    {
+        g_UiMgr->RenderText( iFont, irect( Screen.l + 24, y, Screen.l + 524, y + Line + 6 ),
+                             ui_font::h_left | ui_font::v_top, xcolor( 200, 235, 200, 255 ), s_Thanks[i] );
+    }
+}
+#endif
+
 void dlg_main_menu::Render( s32 ox, s32 oy )
 {
     const s32 offset = (s32)(g_UiMgr->GetAlphaTime() * 60.0f) % 10;
@@ -277,20 +315,7 @@ void dlg_main_menu::Render( s32 ox, s32 oy )
     g_UiMgr->RenderGlowBar();
 
 #if defined(A51_LOCAL_COOP)
-    // "SPLITSCREEN CO-OP  v0.87" in the top-left corner of the main menu only: the version is
-    // the co-op build number (build 87 = 0.87, build 100 = 1.00).
-    {
-#if defined(A51_COOP_BUILD)
-        const s32 Build = A51_COOP_BUILD;
-#else
-        const s32 Build = 0;
-#endif
-        const irect Screen = g_UIRenderer.GetViewport().GetLogicalClipBounds();
-        const irect TextRect( Screen.l + 24, Screen.t + 16, Screen.l + 424, Screen.t + 40 );
-        g_UiMgr->RenderText( g_UiMgr->FindFont( "small" ), TextRect, ui_font::h_left | ui_font::v_top,
-                             xcolor( 230, 255, 220, 255 ),
-                             (const char*)xfs( "SPLITSCREEN CO-OP  v%d.%02d", Build / 100, Build % 100 ) );
-    }
+    LocalCoop_RenderMenuBanner( TRUE );
 #endif
 }
 

@@ -337,6 +337,14 @@ void dlg_campaign_menu::Render( s32 ox, s32 oy )
     // render the glow bar
     g_UiMgr->RenderGlowBar();
 
+#if defined(A51_LOCAL_COOP)
+    // the Splitscreen Co-op page: version and the owner's thank-you lines, top left
+    if( LocalCoop_IsActive() )
+    {
+        extern void LocalCoop_RenderMenuBanner( xbool bThanks );
+        LocalCoop_RenderMenuBanner( TRUE );
+    }
+#endif
 }
 
 //=========================================================================
