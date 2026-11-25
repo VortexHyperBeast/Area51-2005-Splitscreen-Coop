@@ -472,9 +472,40 @@ f32 player::CoopReviveProgress( void ) const
     return (T > 1.0f) ? 1.0f : T;
 }
 
+//  Where the downed player's body lies: the limp body can be thrown away by an
+//  explosion (owner, 2026-11-25), so revive and the HUD go by the body.
+vector3 player::CoopDownSpot( void ) const
+{
+    if( m_CoopCorpseGuid != NULL_GUID )
+    {
+        object* pObj = g_ObjMgr.GetObjectByGuid( m_CoopCorpseGuid );
+        if( pObj )
+            return pObj->GetPosition();
+    }
+    return GetPosition();
+}
+
 void player::CoopRevive( void )
 {
     const local_coop_revive_rules& Rules = LocalCoop_ReviveRules();
+
+    // Stand up where the body lies (on the floor under it), not where he fell.
+    const vector3 Body = CoopDownSpot();
+    if( (Body - GetPosition()).LengthSquared() > x_sqr( 50.0f ) )
+    {
+        vector3 Spot = Body;
+        g_CollisionMgr.RaySetup( GetGuid(), Body + vector3( 0.0f, 100.0f, 0.0f ), Body - vector3( 0.0f, 300.0f, 0.0f ) );
+        g_CollisionMgr.CheckCollisions( object::TYPE_ALL_TYPES, object::ATTR_BLOCKS_PLAYER, object::ATTR_LIVING );
+        if( g_CollisionMgr.m_nCollisions > 0 )
+        {
+            Spot = g_CollisionMgr.m_Collisions[0].Point;
+            Teleport( Spot, m_Pitch, m_Yaw,
+                      static_cast<zone_mgr::zone_id>( GetZone1() ),
+                      static_cast<zone_mgr::zone_id>( GetZone2() ),
+                      PlayerTeleportVelocityPolicy::Clear, FALSE, FALSE );
+        }
+    }
+
     CoopClearDowned();
     f32 Health = GetMaxHealth() * Rules.ReviveHealthPct / 100.0f;
     if( Health < 1.0f )
@@ -555,6 +586,18 @@ void player::CoopUpdate( f32 DeltaTime )
         }
     }
 
+    // The level's own player (player 1) gets the mutation abilities from the
+    // level file and scripts before player 2 exists, so player 2 could mutate
+    // but not attack (owner, 2026-11-25).  Player 2 follows player 1's
+    // mutation permissions.
+    if( pPartner && (m_LocalSlot > 0) && (pPartner->GetLocalSlot() == 0) )
+    {
+        m_bMutationMeleeEnabled         = pPartner->m_bMutationMeleeEnabled;
+        m_bPrimaryMutationFireEnabled   = pPartner->m_bPrimaryMutationFireEnabled;
+        m_bSecondaryMutationFireEnabled = pPartner->m_bSecondaryMutationFireEnabled;
+        m_bCanToggleMutation            = pPartner->m_bCanToggleMutation;
+    }
+
     if( !pPartner || IsCinemaRunning() || pPartner->IsCinemaRunning() )
     {
         m_CoopFallTime = 0.0f;
@@ -566,7 +609,7 @@ void player::CoopUpdate( f32 DeltaTime )
     {
         const local_coop_revive_rules& Rules = LocalCoop_ReviveRules();
         const f32 Range = Rules.ReviveRange;
-        const xbool bNear = (pPartner->GetPosition() - GetPosition()).LengthSquared() < Range * Range;
+        const xbool bNear = (pPartner->CoopDownSpot() - GetPosition()).LengthSquared() < Range * Range;
         if( bNear && m_Input.GetState().IsHeld( PlayerAction::Use ) )
         {
             if( pPartner->m_CoopReviveTime <= 0.0f )

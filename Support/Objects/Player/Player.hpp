@@ -752,6 +752,10 @@ public:
             xbool       CoopIsDowned                ( void ) const { return m_CoopDowned; }
             f32         CoopBleedoutLeft            ( void ) const { return m_CoopBleedLeft; }
             f32         CoopReviveProgress          ( void ) const;     // 0..1
+            vector3     CoopDownSpot                ( void ) const;     // where the downed body lies
+            u32         CoopMutationAbilities       ( void ) const      // melee | primary<<1 | secondary<<2 | toggle<<3
+                        { return (m_bMutationMeleeEnabled ? 1u : 0u) | (m_bPrimaryMutationFireEnabled ? 2u : 0u) |
+                                 (m_bSecondaryMutationFireEnabled ? 4u : 0u) | (m_bCanToggleMutation ? 8u : 0u); }
             xbool       CoopTryGoDown               ( void );           // instead of dying; FALSE = die
             void        CoopClearDowned             ( void );
             // Mutate / turn back this player only (no property mirroring; tests).

@@ -665,7 +665,7 @@ static void CoopRenderDowned( player* pSelf, const rect& View )
             x_strncpy( Line2, xfs( "Reviving... %d%%", (s32)(pPartner->CoopReviveProgress() * 100.0f) ), 127 );
         else
         {
-            const f32 Dist = (pPartner->GetPosition() - pSelf->GetPosition()).Length() / 100.0f;
+            const f32 Dist = (pPartner->CoopDownSpot() - pSelf->GetPosition()).Length() / 100.0f;
             x_strncpy( Line2, xfs( "Go to Player %d and hold USE (%d m, %d s left)", pPartner->GetLocalSlot() + 1,
                          (s32)Dist, (s32)x_ceil( pPartner->CoopBleedoutLeft() ) ), 127 );
         }
