@@ -909,9 +909,13 @@ void logic_campaign::WriteQaProbe( f32 DeltaTime )
             if( pNear )
             {
                 const vector3 NP = pNear->GetPosition();
-                qa_bot_Log( "platform %d: on=%08X nearest=%08X at %d,%d,%d dist=%d",
-                            (int)i, (unsigned)Plat.GetLow(), (unsigned)pNear->GetGuid().GetLow(),
-                            (int)NP.GetX(), (int)NP.GetY(), (int)NP.GetZ(), (int)x_sqrt( Best ) );
+                const bbox    NB = pNear->GetBBox();
+                const u32     A  = pNear->GetAttrBits();
+                const s32     Sup = pPlayer->GetLocoPointer() ? (s32)pPlayer->GetLocoPointer()->m_Physics.GetSupportState() : -1;
+                qa_bot_Log( "platform %d: on=%08X support=%d nearest=%08X at %d,%d,%d top=%d dist=%d collidable=%d rideable=%d",
+                            (int)i, (unsigned)Plat.GetLow(), (int)Sup, (unsigned)pNear->GetGuid().GetLow(),
+                            (int)NP.GetX(), (int)NP.GetY(), (int)NP.GetZ(), (int)NB.Max.GetY(), (int)x_sqrt( Best ),
+                            ( A & object::ATTR_COLLIDABLE ) ? 1 : 0, ( A & object::ATTR_ACTOR_RIDEABLE ) ? 1 : 0 );
             }
             else
             {
