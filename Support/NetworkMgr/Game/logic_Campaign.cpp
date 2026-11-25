@@ -580,11 +580,11 @@ void logic_campaign::QaCommand( const char* pName )
         // draws it the old way (camera inside the sphere not skipped) to show the stall.
         extern unsigned g_QaWarpUntilWall;
         extern guid     g_QaWarpPlayer;
-        extern xbool    g_QaWarpNoSkip;
+        extern xbool    g_RenderWarpKeepInside;
         g_QaWarpPlayer    = s_pQaCampaign->m_PlayerGuid[0];
-        g_QaWarpNoSkip    = ( x_strcmp( pName, "warpraw" ) == 0 );
+        g_RenderWarpKeepInside = ( x_strcmp( pName, "warpraw" ) == 0 );
         g_QaWarpUntilWall = qa_bot_WallMs() + 6000;
-        qa_bot_Log( "warp feet: on raw=%d", (int)g_QaWarpNoSkip );
+        qa_bot_Log( "warp feet: on raw=%d", (int)g_RenderWarpKeepInside );
         return;
     }
 

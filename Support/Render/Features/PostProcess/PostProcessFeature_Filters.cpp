@@ -61,12 +61,9 @@ static void BuildFilterConstants( PostFilterConstants& Constants,
 
 //=========================================================================
 
-#if defined(A51_LOCAL_COOP_QA)
-xbool g_QaWarpNoSkip = FALSE;               // QA: draw a warp even with the camera inside it (the old way)
-#define k_QaWarpNoSkip g_QaWarpNoSkip
-#else
-#define k_QaWarpNoSkip FALSE
-#endif
+// Draw a screen warp even with the camera inside its sphere (the old behaviour).  Off; the
+// co-op QA bot turns it on briefly to compare.  (The render library has no QA define.)
+xbool g_RenderWarpKeepInside = FALSE;
 
 static void BuildScreenWarpConstants( PostFilterConstants&        Constants,
                                       const PostScreenWarpParams& ScreenWarp,
@@ -138,7 +135,7 @@ static void BuildScreenWarpConstants( PostFilterConstants&        Constants,
         // fired at the player's own feet: the projection below blows up (centre behind or at
         // the near plane), the warp covers the whole view and every pixel runs the full probe
         // loop.  In split screen that stalled both views and blacked out the top one.  Skip it.
-        if( !k_QaWarpNoSkip &&
+        if( !g_RenderWarpKeepInside &&
             ( ( Center.GetZ() <= NearZ ) || ( Center.LengthSquared() <= ( Radius * 1.25f ) * ( Radius * 1.25f ) ) ) )
         {
             continue;
