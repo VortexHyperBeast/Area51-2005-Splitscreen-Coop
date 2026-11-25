@@ -1156,7 +1156,23 @@ void player::InitInventory( void )
             // Clear inventory
             m_Inventory2.Clear();
             DebugEnableWeapons( g_ActiveConfig.GetLevelPath() );
+#ifdef A51_LOCAL_COOP
+            // Local co-op: every local player gets the level's starting
+            // weapons (level select); the first one used to switch it off
+            // for the second (owner: no scanner in later levels, 2026-11-25).
+            static s32 s_CoopLoadouts = 0;
+            if( LocalCoop_IsActive() && (++s_CoopLoadouts < LocalCoop_PlayerCount()) )
+            {
+                // leave it on for the other player
+            }
+            else
+            {
+                s_CoopLoadouts = 0;
+                g_StateMgr.DisableDefaultLoadOut();
+            }
+#else
             g_StateMgr.DisableDefaultLoadOut();
+#endif
         }
 #endif
     }

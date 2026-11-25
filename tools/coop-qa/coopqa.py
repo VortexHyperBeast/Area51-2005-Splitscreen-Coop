@@ -254,6 +254,7 @@ class Log(object):
         self.swaptest = {}      # "flipped"/"restored" -> (player 0 pad, player 1 pad)
         self.kill_qt = None
         self.down_cmds = []     # script times of the "down1" command
+        self.loadout = {}        # player -> scanner count at the level start
         self.warp_mark = None    # wall ms when the screen-warping gun was fired
         self.pause_on = None     # (wall ms, paused) when the test pause began
         self.pause_off = None    # wall ms when the game resumed
@@ -368,6 +369,10 @@ def parse_log(text):
             dm = re.match(r"^downstat player 1: downed=(\d) grenades=(-?\d+) rounds=(-?\d+)$", msg)
             if dm:
                 log.downstats.append((qt, int(dm.group(1)), int(dm.group(2)), int(dm.group(3))))
+        elif msg.startswith("loadout player "):
+            lm = re.match(r"^loadout player (\d+): scanner=(-?\d+)", msg)
+            if lm:
+                log.loadout[int(lm.group(1))] = int(lm.group(2))
         elif msg.startswith("warp mark"):
             log.warp_mark = wall
         elif msg.startswith("pause: on"):
@@ -1302,6 +1307,18 @@ def check_pause_view(log, shots):
         len(during), detail))
 
 
+def check_loadout(log):
+    """Report: at the level start (level select gives the level's starting weapons), both
+    players must have the scanner (the owner had none in later levels, 2026-11-25)."""
+    if not log.loadout:
+        return Result("loadout", INFO, "the start inventory was not logged")
+    missing = [p for p, n in sorted(log.loadout.items()) if n <= 0]
+    text = ", ".join("player %d scanner=%d" % (p + 1, n) for p, n in sorted(log.loadout.items()))
+    if missing:
+        return Result("loadout", FAIL, "a player started without the scanner (%s)" % text)
+    return Result("loadout", PASS, text)
+
+
 def check_warp_view(log, shots):
     """After the screen-warping blue gun is fired, both views must keep showing the game (the
     owner's views froze and the top one went black, 2026-11-25)."""
@@ -1414,6 +1431,7 @@ def score(log, phases, expect="coop", shots=None):
     if expect != "single":
         results.append(check_pause_view(log, shots))
         results.append(check_warp_view(log, shots))
+        results.append(check_loadout(log))
     results.append(check_partner_body(log))
     results.append(check_shared_cinema(log))
     results.append(check_shared_items(log))

@@ -663,6 +663,18 @@ void logic_campaign::ArmQaBot( f32 DeltaTime )
 
 void logic_campaign::QaEquipPlayers( void )
 {
+    // What each player starts the level with (level select gives the level's
+    // starting weapons, scanner included).
+    for( s32 i = 0; i < LocalCoop_PlayerCount(); i++ )
+    {
+        player* pPlayer = (player*)g_ObjMgr.GetObjectByGuid( m_PlayerGuid[i] );
+        if( pPlayer )
+            qa_bot_Log( "loadout player %d: scanner=%d smp=%d pistol=%d", (int)i,
+                        (int)pPlayer->GetInventory2().GetAmount( INVEN_WEAPON_SCANNER ),
+                        (int)pPlayer->GetInventory2().GetAmount( INVEN_WEAPON_SMP ),
+                        (int)pPlayer->GetInventory2().GetAmount( INVEN_WEAPON_DESERT_EAGLE ) );
+    }
+
     for( s32 i = 0; i < LocalCoop_PlayerCount(); i++ )
     {
         player* pPlayer = (player*)g_ObjMgr.GetObjectByGuid( m_PlayerGuid[i] );

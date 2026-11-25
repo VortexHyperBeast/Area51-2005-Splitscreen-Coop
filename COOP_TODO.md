@@ -81,6 +81,7 @@ A passing bot test is not a played game. Statuses:
 | HUD: downed and revive indicators | IMPLEMENTED, NOT FULLY TESTED | Text in each view: "YOU ARE DOWN" with the seconds left or the revive percentage; "YOUR PARTNER IS DOWN" with the distance, seconds left and the revive percentage | `HudObject.cpp` (`CoopRenderDowned`) |
 | Main menu: "Single Player" and "Splitscreen Co-op" (own saves: profiles "Splitscreen P1" with the progress, "Splitscreen P2") | DONE+VERIFIED | Owner (build 49): menu entries and the separate Splitscreen P1/P2 saves work. The bot starts the campaign without the menu | `dlg_MainMenu.cpp`, `StateMgr.cpp` (`CoopPrepareSplitscreenProfile`), `LocalCoop.hpp` (`LocalCoop_SetPlayerCount`) |
 | Level Select in the Splitscreen Co-op campaign menu (the developers' level select, compiled into the play build for co-op only) | IMPLEMENTED, NOT FULLY TESTED | Owner request: start later parts of the story without a save. The bot already starts level 1010 through the same level select path | `dlg_CampaignMenu.cpp`, `dlg_LevelSelect.cpp`, `StateMgr.cpp` |
+| Level Select gives both players the level's starting weapons (scanner included) | IMPLEMENTED, NOT FULLY TESTED | Owner (build 62): no scanner in later levels. The default loadout was switched off after the first player. Bot `loadout` reports both players' scanner at the level start | `PlayerInventory.cpp` (`InitInventory`) |
 | Performance with two views | NOT MEASURED on a real GPU | Owner reports nothing bad | - |
 
 ### Delivery and diagnostics
