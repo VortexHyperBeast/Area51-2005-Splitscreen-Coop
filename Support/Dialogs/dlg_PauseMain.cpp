@@ -8,7 +8,6 @@
 
 #include "UI/ui_font.hpp"
 #include "UI/ui_manager.hpp"
-#include "UI/ui_renderer.hpp"
 #include "UI/ui_control.hpp"
 #include "UI/ui_combo.hpp"
 #include "UI/ui_button.hpp"
@@ -365,18 +364,17 @@ void dlg_pause_main::Render( s32 ox, s32 oy )
     u8 FilterAlpha = 180;
 #ifdef A51_LOCAL_COOP
     // Local co-op: the menu's user area is player 1's half only, so the top
-    // view went dark and the bottom one did not (owner, 2026-11-25).  Dim the
-    // whole screen evenly, a little lighter, so both views show the paused game.
+    // view went dark and the bottom one did not (owner, 2026-11-25).  The
+    // owner wants both views left as they are: the game is paused for both,
+    // the menu shows over the clear picture, no dimming.
     if( LocalCoop_IsActive() )
-    {
-        rb = g_UIRenderer.GetViewport().GetLogicalClipBounds();
-        FilterAlpha = 130;
-    }
+        FilterAlpha = 0;
 #endif
-    g_UiMgr->RenderGouraudRect(rb, xcolor(0,0,0,FilterAlpha),
-                                   xcolor(0,0,0,FilterAlpha),
-                                   xcolor(0,0,0,FilterAlpha),
-                                   xcolor(0,0,0,FilterAlpha),FALSE);
+    if( FilterAlpha > 0 )
+        g_UiMgr->RenderGouraudRect(rb, xcolor(0,0,0,FilterAlpha),
+                                       xcolor(0,0,0,FilterAlpha),
+                                       xcolor(0,0,0,FilterAlpha),
+                                       xcolor(0,0,0,FilterAlpha),FALSE);
     
     // render the screen (if we're correctly sized)
     if (g_UiMgr->IsScreenOn())
