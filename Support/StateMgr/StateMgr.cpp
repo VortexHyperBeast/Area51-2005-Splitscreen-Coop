@@ -3637,6 +3637,7 @@ void state_mgr::UpdateCampaignMenu( void )
                 {
                     case IDC_CAMPAIGN_MENU_NEW_CAMPAIGN:
                     {
+                        ClearLevelSelectLoadout();      // a normal start: no level-select loadout
                         // Start new campaign.
                         player_profile& ActiveProfile = GetActiveProfile(0);
                         // Flag difficulty as unchanged.
@@ -3662,6 +3663,7 @@ void state_mgr::UpdateCampaignMenu( void )
 
                     case IDC_CAMPAIGN_MENU_RESUME_CAMPAIGN:
                     {
+                        ClearLevelSelectLoadout();      // a normal start: no level-select loadout
                         // Set campaign game type.
                         m_CampaignType = SM_LOAD_CAMPAIGN_GAME;
                         // Go to the campaign load screen.

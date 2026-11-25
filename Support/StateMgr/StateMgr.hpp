@@ -369,7 +369,10 @@ public:
     void                    EnableDefaultLoadOut            ( void )                                { m_bDoDefaultLoadOut = TRUE;  }
     // Level Select: give the level's starting weapons once the level runs (logic_campaign).
     void                    SetLevelSelectLoadout           ( void )                                { m_bLevelSelectLoadout = TRUE; }
-    xbool                   TakeLevelSelectLoadout          ( void )                                { xbool b = m_bLevelSelectLoadout; m_bLevelSelectLoadout = FALSE; return b; }
+    // TRUE for every level start of a game begun from the level select (also after a death),
+    // until the next game starts from the menus.
+    xbool                   LevelSelectLoadoutPending       ( void )                                { return m_bLevelSelectLoadout; }
+    void                    ClearLevelSelectLoadout         ( void )                                { m_bLevelSelectLoadout = FALSE; }
     void                    DisableDefaultLoadOut           ( void )                                { m_bDoDefaultLoadOut = FALSE; }
     xbool                   UseDefaultLoadOut               ( void )                                { return m_bDoDefaultLoadOut;  }
 
