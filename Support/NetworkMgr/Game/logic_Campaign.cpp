@@ -10,7 +10,8 @@
 
 #include "logic_Campaign.hpp"
 #include "PerceptionMgr/PerceptionMgr.hpp"
-#include "Objects/Actor/Actor.hpp"  // For actor class
+#include "Objects/Actor/Actor.hpp"
+#include "Animation/AnimData.hpp"  // For actor class
 #include "Objects/Render/PostEffectMgr.hpp"
 #include "StateMgr/StateMgr.hpp"
 #ifdef A51_LOCAL_COOP
@@ -438,26 +439,22 @@ void logic_campaign::WriteProbe( f32 DeltaTime )
         return;
     }
 
-    // Once per level start: how much static world the level has (the owner fell through every
-    // floor after a few level loads in one session; a load that leaves out the play surfaces
-    // shows up here as a low count).
+    // Once per level start: how full the shared animation-data pool is.  It is only emptied when
+    // every anim group is unloaded; the owner's game crashed filling it after many level loads in
+    // one session (Now Boarding, Dr. Cray), and levels there also lost their floors.
     {
         static guid s_LastP2 = 0;
         if( ( LocalCoop_PlayerCount() > 1 ) && ( m_PlayerGuid[1] != s_LastP2 ) && ( m_PlayerGuid[1] != 0 ) )
         {
             s_LastP2 = m_PlayerGuid[1];
-            s32 nSurf = 0, nSurfCollide = 0;
-            for( slot_id Slot = g_ObjMgr.GetFirst( object::TYPE_PLAY_SURFACE ); Slot != SLOT_NULL; Slot = g_ObjMgr.GetNext( Slot ) )
-            {
-                object* pObj = g_ObjMgr.GetObjectBySlot( Slot );
-                if( !pObj ) continue;
-                nSurf++;
-                if( pObj->GetAttrBits() & object::ATTR_COLLIDABLE ) nSurfCollide++;
-            }
+            s32 nGroups = 0, nPools = 0, nBytes = 0;
+            anim_group::DebugPoolStats( nGroups, nPools, nBytes );
 #ifdef A51_LOCAL_COOP_QA
-            qa_bot_Log( "world: level %d play surfaces %d (collidable %d)", (int)g_ActiveConfig.GetLevelID(), (int)nSurf, (int)nSurfCollide );
+            qa_bot_Log( "level %d start: anim groups %d, anim pool %d of 256 blocks, %d KB", (int)g_ActiveConfig.GetLevelID(),
+                        (int)nGroups, (int)nPools, (int)( nBytes / 1024 ) );
 #endif
-            LocalCoop_Probe( "world: level %d play surfaces %d (collidable %d)", (int)g_ActiveConfig.GetLevelID(), (int)nSurf, (int)nSurfCollide );
+            LocalCoop_Probe( "level %d start: anim groups %d, anim pool %d of 256 blocks, %d KB", (int)g_ActiveConfig.GetLevelID(),
+                             (int)nGroups, (int)nPools, (int)( nBytes / 1024 ) );
         }
     }
 

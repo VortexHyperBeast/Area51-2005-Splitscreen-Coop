@@ -1368,6 +1368,23 @@ void anim_group::ReleaseCompDataPool( void )
 
 //=========================================================================
 
+void anim_group::DebugPoolStats( s32& nGroups, s32& nPools, s32& nBytes )
+{
+    nGroups = GetAnimGroups().GetCount();
+    nPools  = 0;
+    nBytes  = 0;
+    for( s32 i=0; i<256; i++ )
+    {
+        if( m_CompDataPool[i].pCompData )
+        {
+            nPools++;
+            nBytes += m_CompDataPool[i].nBytesUsed;
+        }
+    }
+}
+
+//=========================================================================
+
 byte* anim_group::MoveCompDataIntoPool( byte* pSrc, s32 nSrcBytes )
 {
     s32 i;
@@ -1397,8 +1414,16 @@ byte* anim_group::MoveCompDataIntoPool( byte* pSrc, s32 nSrcBytes )
         }
     }
 
-    ASSERT(FALSE);
-    return NULL;
+    // Every pool is full (or the block is bigger than a pool).  The original returned NULL
+    // here and the animation then read and wrote through it; after many level loads in one
+    // session that crashed the game (owner: "Now Boarding", "Dr. Cray").  Give the block its own
+    // allocation instead; it is never freed, like the pools while any group is loaded.
+    {
+        byte* pDst = (byte*)x_malloc( MAX( nSrcBytes, 1 ) );
+        if( pDst )
+            x_memcpy( pDst, pSrc, nSrcBytes );
+        return pDst;
+    }
 }
 
 //=========================================================================

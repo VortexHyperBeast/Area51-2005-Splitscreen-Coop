@@ -730,6 +730,10 @@ public:
                         anim_group          ( void );
                        ~anim_group          ( void );
 
+    // How full the shared pool of compressed animation data is (it is only emptied when every
+    // anim group is unloaded, so it grows level after level while some group stays loaded).
+    static void         DebugPoolStats      ( s32& nGroups, s32& nPools, s32& nBytes );
+
     s32                 GetNAnims           ( void ) const;
     
     s32                 GetAnimIndex        ( const char* pAnimName ) const;

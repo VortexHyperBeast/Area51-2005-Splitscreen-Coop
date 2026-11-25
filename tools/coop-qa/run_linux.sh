@@ -49,7 +49,7 @@ case "$MODE" in
   coop-l2|single-l2) EXPECT=probe ;;   # the second campaign level: cutscene sound report only, never fails
   coop-exit|single-exit) EXPECT=probe; QA_LEVEL_ID="${QA_LEVEL_ID:-1130}" ;;   # The Last Exit (owner's crash, train start): report only
   coop-descent) EXPECT=probe; QA_LEVEL_ID="${QA_LEVEL_ID:-1125}" ;;   # Descent: a train start that works (owner), to compare with The Last Exit
-  chain) EXPECT=probe; QA_LEVEL_ID="${QA_LEVEL_ID:-1090,1095,1100,1095,1090}" ;;   # Invader again after a level and the main menu (owner's fall): report only
+  chain) EXPECT=probe; QA_LEVEL_ID="${QA_LEVEL_ID:-1000,1010,1020,1030,1040,1050,1060,1070,1075,1080,1090,1095,1100}" ;;   # Invader again after a level and the main menu (owner's fall): report only
   sweep) EXPECT=probe; [ -n "${QA_LEVEL_ID:-}" ] || { echo "sweep needs QA_LEVEL_ID"; exit 2; } ;;   # one level of the all-levels sweep (co-op), report only
   *) echo "mode must be coop, swap, single, coop-l2, single-l2, coop-exit, single-exit, coop-descent, chain or sweep"; exit 2 ;;
 esac

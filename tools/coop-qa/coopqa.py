@@ -103,8 +103,8 @@ def build_phases(settle_ms=DEFAULT_SETTLE_MS, cycles=DEFAULT_CYCLES):
 SWEEP_TAIL_MS = 45000                       # level sweep: play on this long after the moves
 
 
-CHAIN_FIRST_MS = 20000                      # each level runs this long, then quit to the menu
-CHAIN_LEVELS = 5                            # levels started one after another in one session
+CHAIN_FIRST_MS = 12000                      # each level runs this long, then quit to the menu
+CHAIN_LEVELS = 13                           # levels started one after another in one session
 CHAIN_SECOND_MS = 50000                     # script time the second level runs
 
 
