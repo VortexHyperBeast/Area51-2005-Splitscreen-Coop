@@ -609,7 +609,9 @@ void player::CoopUpdate( f32 DeltaTime )
     {
         const local_coop_revive_rules& Rules = LocalCoop_ReviveRules();
         const f32 Range = Rules.ReviveRange;
-        const xbool bNear = (pPartner->CoopDownSpot() - GetPosition()).LengthSquared() < Range * Range;
+        // Beside the lying body (an explosion can throw it away) or where he fell.
+        const xbool bNear = ((pPartner->CoopDownSpot() - GetPosition()).LengthSquared() < Range * Range) ||
+                            ((pPartner->GetPosition()  - GetPosition()).LengthSquared() < Range * Range);
         if( bNear && m_Input.GetState().IsHeld( PlayerAction::Use ) )
         {
             if( pPartner->m_CoopReviveTime <= 0.0f )

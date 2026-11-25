@@ -255,6 +255,7 @@ class Log(object):
         self.kill_qt = None
         self.down_cmds = []     # script times of the "down1" command
         self.loadout = {}        # player -> scanner count at the level start
+        self.loadout_given = False  # the level-select loadout ran
         self.warp_mark = None    # wall ms when the screen-warping gun was fired
         self.pause_on = None     # (wall ms, paused) when the test pause began
         self.pause_off = None    # wall ms when the game resumed
@@ -373,6 +374,8 @@ def parse_log(text):
             lm = re.match(r"^loadout player (\d+): scanner=(-?\d+)", msg)
             if lm:
                 log.loadout[int(lm.group(1))] = int(lm.group(2))
+                if msg.endswith("given=1"):
+                    log.loadout_given = True
         elif msg.startswith("warp mark"):
             log.warp_mark = wall
         elif msg.startswith("pause: on"):
@@ -1327,6 +1330,8 @@ def check_loadout(log):
     players must have the scanner (the owner had none in later levels, 2026-11-25)."""
     if not log.loadout:
         return Result("loadout", INFO, "the start inventory was not logged")
+    if not log.loadout_given:
+        return Result("loadout", INFO, "not a level-select start (the first level starts unarmed by design)")
     missing = [p for p, n in sorted(log.loadout.items()) if n <= 0]
     text = ", ".join("player %d scanner=%d" % (p + 1, n) for p, n in sorted(log.loadout.items()))
     if missing:
