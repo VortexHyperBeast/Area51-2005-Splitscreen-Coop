@@ -1,0 +1,41 @@
+software Vulkan driver found: C:\Program Files\Google\Chrome\Application\157.0.8103.79\vk_swiftshader_icd.json
+copied its Vulkan loader next to the exe (this check only, it is not in the package)
+SMOKE RESULT: EXITED with a software Vulkan driver, exit code 
+--- _out.txt (last 80 lines)
+--- _err.txt (last 80 lines)
+A51 Vulkan swapchain: video=windows present=vsync requested-images=2 actual-images=2 frames-in-flight=2 surface-min=1 surface-max=0 size=1024x768
+A51 Vulkan swapchain: video=windows present=vsync requested-images=2 actual-images=2 frames-in-flight=2 surface-min=1 surface-max=0 size=1024x768
+A51 Vulkan swapchain: video=windows present=vsync requested-images=2 actual-images=2 frames-in-flight=2 surface-min=1 surface-max=0 size=1024x768
+A51 pipeline begin: request=1 name='CompositePipeline' vs=026a8efc3109a449 ps=38df17b316be168d
+A51 pipeline ready: request=1 ms=11.72
+A51 pipeline begin: request=2 name='UIPipeline' vs=69dddb2b63560002 ps=40f8654faa07a36c
+A51 pipeline ready: request=2 ms=1.17
+A51 pipeline begin: request=3 name='UIPipeline' vs=69dddb2b63560002 ps=40f8654faa07a36c
+A51 pipeline ready: request=3 ms=0.18
+A51 pipeline begin: request=4 name='UIPipeline' vs=69dddb2b63560002 ps=40f8654faa07a36c
+A51 pipeline ready: request=4 ms=0.14
+A51 pipeline begin: request=5 name='UIPipeline' vs=69dddb2b63560002 ps=40f8654faa07a36c
+A51 pipeline ready: request=5 ms=0.08
+A51 pipeline begin: request=6 name='UIPipeline' vs=69dddb2b63560002 ps=40f8654faa07a36c
+A51 pipeline ready: request=6 ms=0.07
+A51 pipeline begin: request=7 name='UIPipeline' vs=69dddb2b63560002 ps=40f8654faa07a36c
+A51 pipeline ready: request=7 ms=0.08
+--- files the game wrote next to the exe (names only)
+.coop-assets-ok
+a51_crash.dmp
+a51_crash.txt
+a51_local_coop_probe.log
+_err.txt
+_out.txt
+--- Windows application error events in the last 15 minutes that mention A51
+Faulting application name: A51.exe, version: 0.0.0.0, time stamp: 0x6b076644
+Faulting module name: A51.exe, version: 0.0.0.0, time stamp: 0x6b076644
+Exception code: 0x80000003
+Fault offset: 0x00000000003c7ebe
+Faulting process id: 0x910
+Faulting application start time: 0x01dd7d2f9ed80db2
+Faulting application path: D:\a\_temp\play\A51.exe
+Faulting module path: D:\a\_temp\play\A51.exe
+Report Id: c254728f-8300-4189-a095-405167167c9d
+Faulting package full name: 
+Faulting package-relative application ID: 
