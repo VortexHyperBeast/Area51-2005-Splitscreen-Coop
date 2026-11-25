@@ -274,6 +274,13 @@ static void UpdateStartSurfaceHold( const guid* pGuids, s32 nPlayers, f32 DeltaT
     if( ( g_HoldAnimSurfaceGuid != 0 ) && ( ( s_StartHoldSettled > 1.0f ) || ( s_StartHoldTime <= 0.0f ) ) )
     {
 #ifdef A51_LOCAL_COOP
+        for( s32 k = 0; k < 4; k++ )
+        {
+            object* pMover = g_ObjMgr.GetObjectByGuid( g_HoldStartMovers[k] );
+            if( pMover )
+                LocalCoop_Probe( "start: also held %08X (%s)", (unsigned)g_HoldStartMovers[k].GetLow(),
+                                 pMover->GetTypeDesc().GetTypeName() );
+        }
         LocalCoop_Probe( "start: released surface %08X (%s)", (unsigned)g_HoldAnimSurfaceGuid.GetLow(),
                          ( s_StartHoldSettled > 1.0f ) ? "everyone is standing" : "time is up" );
 #endif

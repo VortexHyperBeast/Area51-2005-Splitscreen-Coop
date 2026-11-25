@@ -168,6 +168,18 @@ void controller::MoveObject( s32 Index, const matrix4& L2W ) const
     if( !pObject )
         return;
 
+    // A level start holds the train the players stand on (see logic_campaign): then this
+    // controller holds still too, so it does not jump ahead when the train is released.
+    {
+        extern xbool IsHeldStartMover( guid Guid );
+        extern void  AddHeldStartMover( guid Guid );
+        if( IsHeldStartMover( m_ObjectInfo[Index].Guid ) )
+        {
+            AddHeldStartMover( GetGuid() );
+            return;
+        }
+    }
+
     if( m_ObjectInfo[Index].bPivot )
     {
         matrix4 FL2W;
@@ -258,6 +270,12 @@ void controller::OnInit( void )
 void controller::OnAdvanceSimulation( f32 DeltaTime )
 {
     X_PROFILE_SCOPE_CATEGORY( "Context", "controller::OnAdvanceSimulation" );
+
+    {
+        extern xbool IsHeldStartMover( guid Guid );
+        if( IsHeldStartMover( GetGuid() ) )
+            return;
+    }
 
     // Call base class for controller position
     tracker::OnAdvanceSimulation(DeltaTime) ;

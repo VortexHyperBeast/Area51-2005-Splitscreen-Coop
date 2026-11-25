@@ -156,6 +156,14 @@ xbool g_RunAnimSurfaceLogic = TRUE;
 // Set by logic_campaign; 0 = none.
 guid g_HoldAnimSurfaceGuid = 0;
 guid g_HoldStartMovers[4]  = { 0, 0, 0, 0 };   // the train and what moves it (couplers' parents)
+xbool IsHeldStartMover( guid Guid );
+
+void AddHeldStartMover( guid Guid )
+{
+    if( ( g_HoldAnimSurfaceGuid == 0 ) || IsHeldStartMover( Guid ) ) return;
+    for( s32 i = 0; i < 4; i++ )
+        if( g_HoldStartMovers[i] == 0 ) { g_HoldStartMovers[i] = Guid; return; }
+}
 
 xbool IsHeldStartMover( guid Guid )
 {
