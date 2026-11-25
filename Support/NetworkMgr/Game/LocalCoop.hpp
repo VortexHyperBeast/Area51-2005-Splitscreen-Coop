@@ -64,8 +64,8 @@ inline void LocalCoop_SetPlayerCount( s32 Count )
 //    Controllers: swapped or not.  Changed in the pause menu ("Co-op"), kept
 //    in the file a51_coop.cfg next to the game.  The environment variable
 //    A51_COOP_SWAP_PADS=0/1 (tests) overrides the file at start-up.
-//    Bodies: each player's multiplayer avatar skin (0..15: 0-3 hazmat, 4-7
-//    special forces, 8-11 technician, 12-15 grey) comes from that player's
+//    Bodies: each player's multiplayer avatar skin (0..11: 0-3 hazmat, 4-7
+//    special forces, 8-11 technician; the 12-15 grey aliens are not offered) comes from that player's
 //    profile (saved with it).  A51_COOP_SKIN_P1/P2 (tests) override it.
 //------------------------------------------------------------------------------
 

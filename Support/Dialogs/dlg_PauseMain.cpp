@@ -507,7 +507,11 @@ static s32 CoopBodyOf( s32 LocalSlot )
         const s32 ProfileIndex = g_StateMgr.GetProfileListIndex( LocalSlot );
         Skin = (ProfileIndex >= 0) ? g_StateMgr.GetActiveProfile( ProfileIndex ).GetAvatarID() : LocalSlot;
     }
-    return ((Skin >= 0) && (Skin <= 15)) ? Skin : LocalSlot;
+    // Only the 12 human bodies (owner: no Grey aliens); an old Grey choice
+    // shows as the Hazmat of the same colour.
+    if( (Skin >= 12) && (Skin <= 15) )
+        Skin -= 12;
+    return ((Skin >= 0) && (Skin <= 11)) ? Skin : LocalSlot;
 }
 
 void dlg_pause_main::CoopUpdateLabels( void )
@@ -559,12 +563,12 @@ void dlg_pause_main::CoopOnAccept( s32 Row )
     }
     else
     {
-        // Next body for that player (16 multiplayer skins), saved in its profile.
+        // Next body for that player (12 human multiplayer skins), saved in its profile.
         const s32 Slot         = Row - 1;
         const s32 ProfileIndex = g_StateMgr.GetProfileListIndex( Slot );
         if( ProfileIndex >= 0 )
         {
-            const s32 Skin = (CoopBodyOf( Slot ) + 1) % 16;
+            const s32 Skin = (CoopBodyOf( Slot ) + 1) % 12;   // human bodies only
             g_StateMgr.GetActiveProfile( ProfileIndex ).SetAvatarID( Skin );
             for( s32 Other = 0; Other < 2; Other++ )
             {

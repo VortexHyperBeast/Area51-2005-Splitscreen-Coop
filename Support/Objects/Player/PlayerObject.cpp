@@ -469,7 +469,9 @@ void player::CoopApplySkin( void )
         Skin = (ProfileIndex >= 0) ? g_StateMgr.GetActiveProfile( ProfileIndex ).GetAvatarID() : Slot;
     }
 #endif
-    if( (Skin < 0) || (Skin > 15) )
+    if( (Skin >= 12) && (Skin <= 15) )
+        Skin -= 12;                     // no Grey aliens in co-op (owner): same colour Hazmat
+    if( (Skin < 0) || (Skin > 11) )
         Skin = Slot;
     const s32 Mesh    = Skin >> 2;
     const s32 Texture = Skin & 3;

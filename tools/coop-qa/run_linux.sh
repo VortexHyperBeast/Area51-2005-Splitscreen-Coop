@@ -104,7 +104,7 @@ export SDL_JOYSTICK_ALLOW_BACKGROUND_EVENTS=1
 if [ "$MODE" = coop ] || [ "$MODE" = swap ] || [ "$MODE" = coop-l2 ]; then export A51_LOCAL_COOP=2; else unset A51_LOCAL_COOP; fi
 if [ "$EXPECT" = probe ]; then export A51_QA_LEVEL_ID="${QA_LEVEL_ID:-1010}"; else unset A51_QA_LEVEL_ID; fi
 if [ "$MODE" = swap ]; then
-  export A51_COOP_SWAP_PADS=1 A51_COOP_SKIN_P1=6 A51_COOP_SKIN_P2=13
+  export A51_COOP_SWAP_PADS=1 A51_COOP_SKIN_P1=6 A51_COOP_SKIN_P2=9
 else
   unset A51_COOP_SWAP_PADS A51_COOP_SKIN_P1 A51_COOP_SKIN_P2
 fi
