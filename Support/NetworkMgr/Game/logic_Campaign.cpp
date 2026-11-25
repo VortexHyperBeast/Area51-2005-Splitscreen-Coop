@@ -879,6 +879,35 @@ void logic_campaign::WriteQaProbe( f32 DeltaTime )
                     pWeaponName,
                     (int)Ammo, (int)InClip, (int)PerClip,
                     (int)(pPlayer->IsCinemaRunning() ? 1 : 0) );
+
+        // Moving platforms (The Last Exit train): what the player stands on, and the nearest
+        // animated surface within 40 m with its position, so a run shows whether the train is
+        // there at the start and leaves without him.
+        {
+            guid Plat = 0;
+            if( pPlayer->GetLocoPointer() )
+                Plat = pPlayer->GetLocoPointer()->m_Physics.GetMovingPlatformGuid();
+            object* pNear = NULL;
+            f32     Best  = 4000.0f * 4000.0f;
+            for( slot_id Slot = g_ObjMgr.GetFirst( object::TYPE_ANIM_SURFACE ); Slot != SLOT_NULL; Slot = g_ObjMgr.GetNext( Slot ) )
+            {
+                object* pObj = g_ObjMgr.GetObjectBySlot( Slot );
+                if( !pObj ) continue;
+                const f32 D = ( pObj->GetPosition() - Pos ).LengthSquared();
+                if( D < Best ) { Best = D; pNear = pObj; }
+            }
+            if( pNear )
+            {
+                const vector3 NP = pNear->GetPosition();
+                qa_bot_Log( "platform %d: on=%08X nearest=%08X at %d,%d,%d dist=%d",
+                            (int)i, (unsigned)Plat.GetLow(), (unsigned)pNear->GetGuid().GetLow(),
+                            (int)NP.GetX(), (int)NP.GetY(), (int)NP.GetZ(), (int)x_sqrt( Best ) );
+            }
+            else
+            {
+                qa_bot_Log( "platform %d: on=%08X nearest=none", (int)i, (unsigned)Plat.GetLow() );
+            }
+        }
     }
 }
 
