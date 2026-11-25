@@ -40,7 +40,8 @@ A passing bot test is not a played game. Statuses:
 | Profiles saved on change, on leaving the campaign, at shutdown | IMPLEMENTED, NOT FULLY TESTED | Code (create/load bot-tested, the save at shutdown is not) | `StateMgr.cpp` (`CoopSaveProfilesNow`), `main.cpp` (`DoShutdown`) |
 | Controller swap in the pause menu, kept in `a51_coop.cfg` | DONE+VERIFIED | Bot (`live_swap`, swap run); owner used it | `StateMgr.cpp` (`CoopSetSwapPads`), `dlg_PauseMain.cpp`, `LocalCoop.hpp` |
 | Character (12 human multiplayer skins; the 4 Grey aliens removed at the owner's request) per player in the pause menu, with picture | IMPLEMENTED, NOT FULLY TESTED | Owner: "working well" for skins; picture not confirmed | `dlg_PauseMain.cpp`, `PlayerObject.cpp` (`CoopApplySkin`) |
-| Pause menu layout: highlight bar follows the co-op rows, rows fit inside the frame, no build number/date | DONE+VERIFIED | Owner (build 41): the highlight follows the controller and body rows | `dlg_PauseMain.cpp` |
+| Pause menu layout: highlight bar follows the co-op rows, rows fit inside the frame, no build number/date | DONE+VERIFIED (layout changed again in build 61+: see the next row) | Owner (build 41): the highlight follows the controller and body rows | `dlg_PauseMain.cpp` |
+| Pause menu: "Splitscreen Co-op" entry below Settings opens a co-op page (Controllers, P1 body, P2 body, Back; B also goes back) | IMPLEMENTED, NOT FULLY TESTED | Owner request. The bot does not open the pause menu | `dlg_PauseMain.cpp` (`CoopShowPage`) |
 | Start screen says "Splitscreen co-op" (the owner's picture, `SCREENS/UI_COOP_WARNINGSCREEN.XBMP` in the zip; the original screen if the file is missing) | DONE+VERIFIED | Owner (build 48): the picture shows. Builds 41-47: the picture never loaded (black, then the original screen). Cause found with the probe: the play build's file system reads only the packed archives, loose files are not passed through. Now read with stdio and made into a texture directly | `StateMgr.cpp` (`EnterStartupInfo`), workflow, `tools/coop-play/SCREENS` |
 
 ### Shared world, scenes and items
@@ -123,7 +124,19 @@ Helpers `SMP_UTIL_GetNearestPlayer(pos)` and `SMP_UTIL_IsPlayerGuid(guid)` in `S
    get targeted during the run.
 4. Downed/revive: implemented (see section 1). Mutants: first pass (see section 1). Next: bosses.
 
-## 4. Biggest risks
+## 4. On hold (owner, 2026-11-25): remind the owner when the campaign work is further along
+
+Making Splitscreen Co-op harder (each a number in `a51_coop.cfg`, co-op only):
+
+1. Enemies with about 1.5x health.
+2. Enemies dealing about 1.25x damage.
+3. Stricter revive: 15 s bleedout, 5 s revive, 25% health.
+4. Smaller ammo pickups (about 60% each); weapons, grenades and unlocks stay shared.
+5. Co-op starts one difficulty level higher.
+
+Suggested start: 1-3.
+
+## 5. Biggest risks
 
 - About 85 "the player" lookups across the game: triggers, AI, cinemas, lore, alien platforms.
   Each is a possible co-op progression bug that only shows in that level.

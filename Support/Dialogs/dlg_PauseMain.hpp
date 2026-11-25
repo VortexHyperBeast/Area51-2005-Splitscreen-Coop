@@ -37,6 +37,8 @@ enum pause_main_controls
     IDC_PAUSE_MENU_COOP_SWAP,       // local co-op: swap the controllers
     IDC_PAUSE_MENU_COOP_BODY1,      // local co-op: player 1's body
     IDC_PAUSE_MENU_COOP_BODY2,      // local co-op: player 2's body
+    IDC_PAUSE_MENU_COOP_OPEN,       // local co-op: "Splitscreen Co-op" (opens the co-op page)
+    IDC_PAUSE_MENU_COOP_BACK,       // local co-op: back to the main page
 };
 
 #ifndef CONFIG_RETAIL
@@ -83,6 +85,10 @@ protected:
     ui_button*          m_pButtonInvert;
     ui_button*          m_pButtonVibration;
     ui_button*          m_pButtonCoop[3];       // swap, body 1, body 2 (NULL when not co-op)
+    ui_button*          m_pButtonCoopOpen;      // "Splitscreen Co-op" on the main page
+    ui_button*          m_pButtonCoopBack;      // "Back" on the co-op page
+    xbool               m_bCoopPage;            // the co-op page is showing
+    void                CoopShowPage        ( xbool bCoopPage );
     void                CoopUpdateLabels    ( void );
     void                CoopOnAccept        ( s32 Row );
     void                CoopRenderPortrait  ( void );

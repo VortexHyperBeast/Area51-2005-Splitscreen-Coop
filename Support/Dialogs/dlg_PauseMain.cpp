@@ -54,16 +54,20 @@ ui_manager::control_tem PauseMenuControls[] =
     { IDC_PAUSE_MENU_OPTIONS,   "IDS_PAUSE_MENU_OPTIONS",   "button",   60, 140, 120, 40, 0, 2, 1, 1, ui_win::WF_VISIBLE },
     { IDC_PAUSE_MENU_SETTINGS,  "IDS_PAUSE_MENU_SETTINGS",  "button",   60, 180, 120, 40, 0, 3, 1, 1, ui_win::WF_VISIBLE },
 #else
-    // Co-op build: seven rows, a little closer together so the last one stays
-    // inside the frame.
-    { IDC_PAUSE_MENU_RESUME,    "IDS_PAUSE_MENU_RESUME",    "button",   60,  48, 120, 38, 0, 0, 1, 1, ui_win::WF_VISIBLE },
-    { IDC_PAUSE_MENU_QUIT,      "IDS_PAUSE_MENU_QUIT",      "button",   60,  86, 120, 38, 0, 1, 1, 1, ui_win::WF_VISIBLE },
-    { IDC_PAUSE_MENU_OPTIONS,   "IDS_PAUSE_MENU_OPTIONS",   "button",   60, 124, 120, 38, 0, 2, 1, 1, ui_win::WF_VISIBLE },
-    { IDC_PAUSE_MENU_SETTINGS,  "IDS_PAUSE_MENU_SETTINGS",  "button",   60, 162, 120, 38, 0, 3, 1, 1, ui_win::WF_VISIBLE },
-    // Local co-op rows (hidden unless co-op is running); labels are set in code.
-    { IDC_PAUSE_MENU_COOP_SWAP, "IDS_NULL",                 "button",   10, 200, 220, 38, 0, 4, 1, 1, ui_win::WF_VISIBLE },
-    { IDC_PAUSE_MENU_COOP_BODY1,"IDS_NULL",                 "button",   10, 238, 220, 38, 0, 5, 1, 1, ui_win::WF_VISIBLE },
-    { IDC_PAUSE_MENU_COOP_BODY2,"IDS_NULL",                 "button",   10, 276, 220, 38, 0, 6, 1, 1, ui_win::WF_VISIBLE },
+    // Co-op build: two pages.  Main page: the four rows of the game plus
+    // "Splitscreen Co-op"; co-op page (in its place): controllers, P1 body,
+    // P2 body, Back.  The hidden page's rows are disabled, so the controller
+    // moves only over the page that shows.
+    { IDC_PAUSE_MENU_RESUME,    "IDS_PAUSE_MENU_RESUME",    "button",   60,  60, 120, 40, 0, 0, 1, 1, ui_win::WF_VISIBLE },
+    { IDC_PAUSE_MENU_QUIT,      "IDS_PAUSE_MENU_QUIT",      "button",   60, 100, 120, 40, 0, 1, 1, 1, ui_win::WF_VISIBLE },
+    { IDC_PAUSE_MENU_OPTIONS,   "IDS_PAUSE_MENU_OPTIONS",   "button",   60, 140, 120, 40, 0, 2, 1, 1, ui_win::WF_VISIBLE },
+    { IDC_PAUSE_MENU_SETTINGS,  "IDS_PAUSE_MENU_SETTINGS",  "button",   60, 180, 120, 40, 0, 3, 1, 1, ui_win::WF_VISIBLE },
+    { IDC_PAUSE_MENU_COOP_OPEN, "IDS_NULL",                 "button",   10, 220, 220, 40, 0, 4, 1, 1, ui_win::WF_VISIBLE },
+    // The co-op page (hidden unless co-op is running); labels are set in code.
+    { IDC_PAUSE_MENU_COOP_SWAP, "IDS_NULL",                 "button",   10,  60, 220, 40, 0, 5, 1, 1, ui_win::WF_VISIBLE },
+    { IDC_PAUSE_MENU_COOP_BODY1,"IDS_NULL",                 "button",   10, 100, 220, 40, 0, 6, 1, 1, ui_win::WF_VISIBLE },
+    { IDC_PAUSE_MENU_COOP_BODY2,"IDS_NULL",                 "button",   10, 140, 220, 40, 0, 7, 1, 1, ui_win::WF_VISIBLE },
+    { IDC_PAUSE_MENU_COOP_BACK, "IDS_NULL",                 "button",   10, 180, 220, 40, 0, 8, 1, 1, ui_win::WF_VISIBLE },
 #endif
 #endif
 
@@ -176,6 +180,8 @@ xbool dlg_pause_main::Create( s32                        UserID,
 #endif
 
     m_pButtonCoop[0] = m_pButtonCoop[1] = m_pButtonCoop[2] = NULL;
+    m_pButtonCoopOpen = m_pButtonCoopBack = NULL;
+    m_bCoopPage = FALSE;
     for( s32 i = 0; i < 16; i++ )
         m_CoopPortrait[i] = -1;
 #if defined( A51_LOCAL_COOP ) && !CONFIG_IS_DEMO
@@ -189,6 +195,22 @@ xbool dlg_pause_main::Create( s32                        UserID,
             m_pButtonCoop[Row] = pButton;
         else
             pButton->SetFlag( ui_win::WF_DISABLED, TRUE );
+    }
+    for( s32 i = 0; i < 2; i++ )
+    {
+        ui_button* pButton = (ui_button*)FindChildByID( (i == 0) ? IDC_PAUSE_MENU_COOP_OPEN : IDC_PAUSE_MENU_COOP_BACK );
+        if( !pButton )
+            continue;
+        pButton->SetFlag( ui_win::WF_VISIBLE, FALSE );
+        if( LocalCoop_IsActive() )
+        {
+            pButton->SetLabel( xwstring( (i == 0) ? "Splitscreen Co-op" : "Back" ) );
+            if( i == 0 ) m_pButtonCoopOpen = pButton; else m_pButtonCoopBack = pButton;
+        }
+        else
+        {
+            pButton->SetFlag( ui_win::WF_DISABLED, TRUE );
+        }
     }
     if( LocalCoop_IsActive() )
     {
@@ -466,6 +488,16 @@ void dlg_pause_main::OnAccept( ui_win* pWin )
             g_AudioMgr.Play("Select_Norm");
         }
 #endif
+        else if( m_pButtonCoopOpen && (pWin == (ui_win*)m_pButtonCoopOpen) )
+        {
+            g_AudioMgr.Play("Select_Norm");
+            CoopShowPage( TRUE );
+        }
+        else if( m_pButtonCoopBack && (pWin == (ui_win*)m_pButtonCoopBack) )
+        {
+            g_AudioMgr.Play("Select_Norm");
+            CoopShowPage( FALSE );
+        }
         else
         {
             for( s32 Row = 0; Row < 3; Row++ )
@@ -537,8 +569,11 @@ void dlg_pause_main::CoopUpdateLabels( void )
 void dlg_pause_main::CoopRenderPortrait( void )
 {
 #ifdef A51_LOCAL_COOP
-    const s32 Row = m_NavY - 4;                 // 0 swap, 1 body 1, 2 body 2 (see PauseMenuControls)
-    if( (Row < 1) || (Row > 2) || !m_pButtonCoop[Row] || !(m_pButtonCoop[Row]->GetFlags() & ui_win::WF_VISIBLE) )
+    s32 Row = -1;                               // 1 body 1, 2 body 2 (the focused body row)
+    for( s32 r = 1; r <= 2; r++ )
+        if( m_pButtonCoop[r] && m_pButtonCoop[r]->IsFocused() && (m_pButtonCoop[r]->GetFlags() & ui_win::WF_VISIBLE) )
+            Row = r;
+    if( Row < 0 )
         return;
 
     const s32 Skin = CoopBodyOf( Row - 1 );
@@ -590,6 +625,39 @@ void dlg_pause_main::CoopOnAccept( s32 Row )
 void dlg_pause_main::OnCancel( ui_win* pWin )
 {
     (void)pWin;
+    // Back on the co-op page returns to the main page.
+    if( m_bCoopPage )
+        CoopShowPage( FALSE );
+}
+
+//  Switch between the main page and the co-op page (local co-op only).
+void dlg_pause_main::CoopShowPage( xbool bCoopPage )
+{
+    if( !m_pButtonCoopOpen || !m_pButtonCoopBack )
+        return;
+
+    m_bCoopPage = bCoopPage;
+
+    ui_button* const pMain[5] = { m_pButtonResume, m_pButtonQuit, m_pButtonOptions, m_pButtonSettings, m_pButtonCoopOpen };
+    for( s32 i = 0; i < 5; i++ )
+    {
+        if( !pMain[i] )
+            continue;
+        pMain[i]->SetFlag( ui_win::WF_VISIBLE,  !bCoopPage );
+        pMain[i]->SetFlag( ui_win::WF_DISABLED,  bCoopPage );
+    }
+    ui_button* const pCoop[4] = { m_pButtonCoop[0], m_pButtonCoop[1], m_pButtonCoop[2], m_pButtonCoopBack };
+    for( s32 i = 0; i < 4; i++ )
+    {
+        if( !pCoop[i] )
+            continue;
+        pCoop[i]->SetFlag( ui_win::WF_VISIBLE,   bCoopPage );
+        pCoop[i]->SetFlag( ui_win::WF_DISABLED, !bCoopPage );
+    }
+
+    ui_button* pFocus = bCoopPage ? (m_pButtonCoop[0] ? m_pButtonCoop[0] : m_pButtonCoopBack) : m_pButtonCoopOpen;
+    GotoControl( (ui_control*)pFocus );
+    g_UiMgr->SetScreenHighlight( pFocus->GetPosition() );
 }
 
 //=========================================================================
@@ -634,10 +702,15 @@ void dlg_pause_main::OnUpdate ( ui_win* pWin, f32 DeltaTime )
             m_pButtonOptions    ->SetFlag(ui_win::WF_VISIBLE, TRUE);
             m_pButtonSettings   ->SetFlag(ui_win::WF_VISIBLE, TRUE);
 #endif
-            for( s32 Row = 0; Row < 3; Row++ )
+            if( m_pButtonCoopOpen )
             {
-                if( m_pButtonCoop[Row] )
-                    m_pButtonCoop[Row]->SetFlag( ui_win::WF_VISIBLE, TRUE );
+                // main page first; the co-op rows wait behind "Splitscreen Co-op"
+                m_pButtonCoopOpen->SetFlag( ui_win::WF_VISIBLE, TRUE );
+                for( s32 Row = 0; Row < 3; Row++ )
+                    if( m_pButtonCoop[Row] )
+                        m_pButtonCoop[Row]->SetFlag( ui_win::WF_DISABLED, TRUE );
+                if( m_pButtonCoopBack )
+                    m_pButtonCoopBack->SetFlag( ui_win::WF_DISABLED, TRUE );
             }
 
 #if defined( DISPLAY_DEBUG_INFO )
@@ -745,6 +818,16 @@ void dlg_pause_main::OnUpdate ( ui_win* pWin, f32 DeltaTime )
     else
     {
         // Local co-op rows: the highlight bar follows them too.
+        if( m_pButtonCoopOpen && m_pButtonCoopOpen->IsFocused() )
+        {
+            highLight = 7;
+            g_UiMgr->SetScreenHighlight( m_pButtonCoopOpen->GetPosition() );
+        }
+        else if( m_pButtonCoopBack && m_pButtonCoopBack->IsFocused() )
+        {
+            highLight = 8;
+            g_UiMgr->SetScreenHighlight( m_pButtonCoopBack->GetPosition() );
+        }
         for( s32 Row = 0; Row < 3; Row++ )
         {
             if( m_pButtonCoop[Row] && m_pButtonCoop[Row]->IsFocused() )
