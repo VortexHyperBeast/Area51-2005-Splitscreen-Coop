@@ -249,7 +249,7 @@ static void UpdateStartSurfaceHold( const guid* pGuids, s32 nPlayers, f32 DeltaT
                         guid Child = g_HoldAnimSurfaceGuid;
                         for( s32 k = 0; k < 4; k++ )
                         {
-                            const guid Parent = coupler::FindParentOf( Child );
+                            guid Parent = coupler::FindParentOf( Child );
                             g_HoldStartMovers[k] = Parent;
                             if( Parent == 0 ) break;
 #ifdef A51_LOCAL_COOP
