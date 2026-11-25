@@ -288,7 +288,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        mode: [coop, swap, single, coop-l2, single-l2, coop-exit, single-exit, chain]
+        mode: [coop, swap, single, coop-l2, single-l2, coop-exit, single-exit, coop-descent, chain]
     steps:
       - name: Checkout
         uses: actions/checkout@v4

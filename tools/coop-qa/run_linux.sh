@@ -48,9 +48,10 @@ case "$MODE" in
   single) EXPECT=single ;;
   coop-l2|single-l2) EXPECT=probe ;;   # the second campaign level: cutscene sound report only, never fails
   coop-exit|single-exit) EXPECT=probe; QA_LEVEL_ID="${QA_LEVEL_ID:-1130}" ;;   # The Last Exit (owner's crash, train start): report only
+  coop-descent) EXPECT=probe; QA_LEVEL_ID="${QA_LEVEL_ID:-1125}" ;;   # Descent: a train start that works (owner), to compare with The Last Exit
   chain) EXPECT=probe; QA_LEVEL_ID="${QA_LEVEL_ID:-1100,1100}" ;;   # Invader again after a level and the main menu (owner's fall): report only
   sweep) EXPECT=probe; [ -n "${QA_LEVEL_ID:-}" ] || { echo "sweep needs QA_LEVEL_ID"; exit 2; } ;;   # one level of the all-levels sweep (co-op), report only
-  *) echo "mode must be coop, swap, single, coop-l2, single-l2, coop-exit, single-exit, chain or sweep"; exit 2 ;;
+  *) echo "mode must be coop, swap, single, coop-l2, single-l2, coop-exit, single-exit, coop-descent, chain or sweep"; exit 2 ;;
 esac
 
 say() { echo "$@" | tee -a "$OUT/run.txt"; }
@@ -110,7 +111,7 @@ export A51_QA_WINDOW="$WINDOW"
 export SDL_AUDIODRIVER=dummy
 export SDL_VIDEODRIVER=x11
 export SDL_JOYSTICK_ALLOW_BACKGROUND_EVENTS=1
-if [ "$MODE" = coop ] || [ "$MODE" = swap ] || [ "$MODE" = coop-l2 ] || [ "$MODE" = coop-exit ] || [ "$MODE" = sweep ] || [ "$MODE" = chain ]; then export A51_LOCAL_COOP=2; else unset A51_LOCAL_COOP; fi
+if [ "$MODE" = coop ] || [ "$MODE" = swap ] || [ "$MODE" = coop-l2 ] || [ "$MODE" = coop-exit ] || [ "$MODE" = sweep ] || [ "$MODE" = chain ] || [ "$MODE" = coop-descent ]; then export A51_LOCAL_COOP=2; else unset A51_LOCAL_COOP; fi
 if [ "$EXPECT" = probe ]; then export A51_QA_LEVEL_ID="${QA_LEVEL_ID:-1010}"; else unset A51_QA_LEVEL_ID; fi
 if [ "$MODE" = swap ]; then
   export A51_COOP_SWAP_PADS=1 A51_COOP_SKIN_P1=6 A51_COOP_SKIN_P2=9
