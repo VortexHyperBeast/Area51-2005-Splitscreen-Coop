@@ -1050,6 +1050,16 @@ void actor::OnRender( void )
                 }
             }
             const u64 FaceMask = LODMask & HeadBits;
+            {
+                static xbool s_Logged = FALSE;
+                if( !s_Logged )
+                {
+                    s_Logged = TRUE;
+                    LocalCoop_Probe( "face: head meshes %08X%08X, drawn now %08X%08X",
+                                     (unsigned)( HeadBits >> 32 ), (unsigned)HeadBits,
+                                     (unsigned)( FaceMask >> 32 ), (unsigned)FaceMask );
+                }
+            }
             if( FaceMask )
             {
                 static const f32 s_FacePct = LocalCoop_ConfigF32( "face_brightness_percent", "A51_COOP_FACE_BRIGHTNESS", 55.0f );
@@ -1060,7 +1070,10 @@ void actor::OnRender( void )
                 FaceAmbient.B = (u8)MIN( 255.0f, Ambient.B * k );
                 if( LODMask & ~HeadBits )
                     GetSkinInst().Render( &GetL2W(), pMatrices, nActiveBones, Flags, LODMask & ~HeadBits, Ambient );
+                extern f32 g_SkinLightingScale;
+                g_SkinLightingScale = k;            // the lights too, not only the ambient
                 GetSkinInst().Render( &GetL2W(), pMatrices, nActiveBones, Flags, FaceMask, FaceAmbient );
+                g_SkinLightingScale = 1.0f;
             }
             else
             {

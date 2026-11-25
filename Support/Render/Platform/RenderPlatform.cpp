@@ -26,6 +26,10 @@
 #include "../../GameLib/RenderContext.hpp"
 #include "e_Engine.hpp"
 
+// Scales all the light a skin instance receives (ambient and scene/character lights) while it
+// is set; 1 = normal.  Co-op sets it around the players' head meshes to darken their faces.
+f32 g_SkinLightingScale = 1.0f;
+
 namespace render
 {
 namespace platform
@@ -456,6 +460,18 @@ RenderLightingHandle platform_CalculateSkinLighting( u32            Flags,
 
     SetCollectedSceneLights( *pLighting, NSceneLights );
     AddCharacterLights( *pLighting, L2W, BBox );
+
+    if( ::g_SkinLightingScale != 1.0f )
+    {
+        const f32 k = ::g_SkinLightingScale;
+        pLighting->AmbCol.Set( pLighting->AmbCol.GetX() * k, pLighting->AmbCol.GetY() * k,
+                               pLighting->AmbCol.GetZ() * k, pLighting->AmbCol.GetW() );
+        for( s32 i = 0; ( i < pLighting->LightCount ) && ( i < MAX_GEOM_LIGHTS ); i++ )
+        {
+            vector4& C = pLighting->LightCol[i];
+            C.Set( C.GetX() * k, C.GetY() * k, C.GetZ() * k, C.GetW() );
+        }
+    }
 
     return Result;
 }
