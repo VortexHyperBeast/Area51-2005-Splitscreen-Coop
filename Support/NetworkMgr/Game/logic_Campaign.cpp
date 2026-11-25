@@ -11,7 +11,8 @@
 #include "logic_Campaign.hpp"
 #include "PerceptionMgr/PerceptionMgr.hpp"
 #include "Objects/Actor/Actor.hpp"
-#include "Animation/AnimData.hpp"  // For actor class
+#include "Animation/AnimData.hpp"
+#include "CollisionMgr/CollisionMgr.hpp"  // For actor class
 #include "Objects/Render/PostEffectMgr.hpp"
 #include "StateMgr/StateMgr.hpp"
 #ifdef A51_LOCAL_COOP
@@ -562,6 +563,31 @@ void logic_campaign::WriteProbe( f32 DeltaTime )
 #endif
             LocalCoop_Probe( "level %d start: anim groups %d, anim pool %d of 256 blocks, %d KB", (int)g_ActiveConfig.GetLevelID(),
                              (int)nGroups, (int)nPools, (int)( nBytes / 1024 ) );
+
+            // Is there a floor under each player?  (The owner fell through every floor after
+            // a long session; this shows whether the level's collision is there at all.)
+            for( s32 i = 0; i < LocalCoop_PlayerCount(); i++ )
+            {
+                player* pPlayer = (player*)g_ObjMgr.GetObjectByGuid( m_PlayerGuid[i] );
+                if( !pPlayer )
+                    continue;
+                const vector3 Top    = pPlayer->GetPosition() + vector3( 0.0f, 100.0f, 0.0f );
+                const vector3 Bottom = Top - vector3( 0.0f, 3000.0f, 0.0f );
+                g_CollisionMgr.RaySetup( pPlayer->GetGuid(), Top, Bottom );
+                g_CollisionMgr.CheckCollisions( object::TYPE_ALL_TYPES, object::ATTR_COLLIDABLE,
+                                                object::ATTR_LIVING | object::ATTR_COLLISION_PERMEABLE );
+                if( g_CollisionMgr.m_nCollisions > 0 )
+                {
+                    const collision_mgr::collision& C = g_CollisionMgr.m_Collisions[0];
+                    object* pHit = g_ObjMgr.GetObjectByGuid( C.ObjectHitGuid );
+                    LocalCoop_Probe( "level %d start: player %d floor %d cm below (%s)", (int)g_ActiveConfig.GetLevelID(), (int)i,
+                                     (int)( C.T * 3000.0f - 100.0f ), pHit ? pHit->GetTypeDesc().GetTypeName() : "static" );
+                }
+                else
+                {
+                    LocalCoop_Probe( "level %d start: player %d NO FLOOR within 29 m below", (int)g_ActiveConfig.GetLevelID(), (int)i );
+                }
+            }
         }
     }
 
