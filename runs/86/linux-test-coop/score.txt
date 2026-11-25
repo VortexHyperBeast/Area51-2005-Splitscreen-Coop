@@ -1,0 +1,43 @@
+coopqa score: expect=coop log=/home/runner/work/area51-pc/area51-pc/qa-out/a51_qa_bot.log (4633 lines, 0 not understood)
+ PASS        startup               level 1000 started, bot armed at wall=54630ms, samples per player [351, 351]
+ PASS        asserts               the game hit no assertion
+ INFO        cinema                a cinematic ran during the script (player 0: 17 samples; player 1: 17 samples)  (info)
+ INFO        enemy_targets         no enemy picked a target while the log was written  (info)
+ INFO        perf                  92 samples, frame rate min 0.6, mean 12.5, max 238.5 per second  (info)
+ PASS        two_players           two player objects 2B99E001 and 00000003, first seen 90cm apart
+ PASS        separate_pads         game-side pad P0=[0] P1=[1], local slots P0=[0] P1=[1]
+ PASS        no_fall               no player sank below its start
+ PASS        alive                 every sample has hp > 0
+ PASS        bot_drove             36 of 36 scheduled control changes seen, both pads attached
+ PASS        completed             script played to the end, last sample at 193233ms
+ PASS        walk0                 c0: P0 1500cm P1 0cm; c1: P0 1443cm P1 0cm; c2: P0 784cm P1 0cm
+ PASS        walk1                 c0: P0 0cm P1 1500cm; c1: P0 0cm P1 505cm; c2: P0 57cm P1 732cm (pushed by the walker's body)
+ PASS        walkboth              c0: P0 1200cm P1 574cm, displacement difference 1598cm; c1: P0 1145cm P1 1189cm, displacement difference 309cm; c2: P0 365cm P1 970cm, displacement difference 1311cm
+ PASS        look0                 c0: P0 96.2deg P1 0.0deg; c1: P0 96.2deg P1 0.0deg; c2: P0 96.2deg P1 0.0deg
+ PASS        look1                 c0: P0 0.0deg P1 96.4deg; c1: P0 0.0deg P1 96.4deg; c2: P0 0.0deg P1 96.4deg
+ PASS        jump0                 c0: P0 +120cm P1 +0cm; c1: P0 +120cm P1 +0cm; c2: P0 +120cm P1 +0cm  (info)
+ PASS        jump1                 c0: P0 +0cm P1 +80cm; c1: P0 +0cm P1 +80cm; c2: P0 +0cm P1 +80cm  (info)
+ PASS        fire0                 c0: P0 spent 3 P1 spent 0; c1: P0 spent 3 P1 spent 0; c2: P0 spent 3 P1 spent 0
+ PASS        fire1                 c0: P0 spent 0 P1 spent 3; c1: P0 spent 0 P1 spent 3; c2: P0 spent 0 P1 spent 3
+ PASS        reload0               c0: P0 clip+5 P1 clip+0; c1: P0 clip+3 P1 clip+0; c2: P0 clip+3 P1 clip+0
+ PASS        reload1               c0: P0 clip+0 P1 clip+5; c1: P0 clip+0 P1 clip+3; c2: P0 clip+0 P1 clip+3
+ PASS        pad_mapping           pad 0 -> player 0, pad 1 -> player 1, in all 30 judged actions
+ PASS        split_view            view 0 (0, 0, 640, 180) above view 1 (0, 180, 640, 360), 234 eye samples near their own player, both cameras moved
+ PASS        split_pixels          69 of 73 screenshots: a uniform line between two drawn halves, halves differ by up to 40
+ PASS        pause_view            2 paused screenshots: both views drawn (edge mean/spread: top 15.2/5.6 bottom 24.1/9.7; top 15.2/5.7 bottom 24.1/9.7 (before the pause: top 16.1/8.7 bottom 24.7/11.3)); the game resumed
+ NO-EVIDENCE warp_view             player 1 never had the blue gun in his hands, so nothing was fired  (info)
+ PASS        warp_feet             both views drawn at normal speed: views top 16.1/8.8 bottom 24.7/11.1; fps 4.8 (before 4.8/4.9) | the old way: views top 16.1/7.8 bottom 24.7/11.0; fps 4.8 (before 5.0/4.9)  (info)
+ FAIL        loadout               a player started without the scanner (player 1 scanner=0, player 2 scanner=0)  (info)
+ PASS        partner_body          view 0: other player's body drawn in 285 of 2228 frames; view 1: other player's body drawn in 1033 of 1992 frames
+ PASS        shared_cinema         scene seen by both players (34 and 34 samples)
+ PASS        shared_items          grenade given to player 0: player 0 0->1, player 1 0->1
+ PASS        scanner               both players got the scanner, held it and fired it with RT and R1; the game ran on
+ PASS        own_profiles          player 1: slot 0 'Empty' body 0; player 2: slot 1 'Splitscreen P2' body 1
+ PASS        live_swap             swapped: player 0 pad 1, player 1 pad 0; back: 0, 1
+ PASS        carry_over            player 0: scanner 1, pistol 1; player 1: scanner 1, pistol 1
+ PASS        mutation_independent  player 2 mutated alone and turned back; player 1 stayed human, the world ran at 100%. His body showed the mutant form and went back.
+ PASS        downed_revive         player 2 went down, was revived after 5200 ms of play, and went down again. The lying-down body animation played 2 of 2 times.
+ PASS        downed_no_attack      the downed player fired nothing and threw nothing (grenades 1, rounds 8)
+ PASS        death_restart         the level restarted 4100 ms after player 1 died, and the game ran on
+ PASS        join_button           player 2 was 1556 cm away, 99 cm after pressing Back
+RESULT: PASS
