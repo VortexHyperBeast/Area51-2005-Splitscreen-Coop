@@ -1188,6 +1188,25 @@ void coupler::OnAdvanceSimulation( f32 DeltaTime )
 
 //=========================================================================
 
+guid coupler::FindParentOf( guid Child )
+{
+    for( slot_id Slot = g_ObjMgr.GetFirst( object::TYPE_COUPLER ); Slot != SLOT_NULL; Slot = g_ObjMgr.GetNext( Slot ) )
+    {
+        object* pObj = g_ObjMgr.GetObjectBySlot( Slot );
+        if( !pObj || !pObj->IsKindOf( coupler::GetRTTI() ) )
+            continue;
+        coupler& C = coupler::GetSafeType( *pObj );
+        for( s32 i = 0; i < COUPLER_MAX_CHILDREN; i++ )
+        {
+            if( C.m_Child[i].m_Guid == Child )
+                return C.m_ParentGuid;
+        }
+    }
+    return 0;
+}
+
+//=========================================================================
+
 void coupler::OnActivate( xbool bFlag )
 {
     m_bFirstTimeThrough = TRUE;

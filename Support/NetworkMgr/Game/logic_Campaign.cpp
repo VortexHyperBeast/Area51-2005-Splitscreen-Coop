@@ -210,6 +210,8 @@ void logic_campaign::SetPlayerSpawnInfo( const vector3& Position,
 //  on anything is held still until every player stands on something (or 8 s pass).
 
 extern guid g_HoldAnimSurfaceGuid;
+extern guid g_HoldStartMovers[4];
+#include "Objects/Coupler.hpp"
 static f32  s_StartHoldTime = 0.0f;         // seconds left to look for / hold a start surface
 static f32  s_StartHoldSettled = 0.0f;      // how long every player has stood on something
 
@@ -242,6 +244,22 @@ static void UpdateStartSurfaceHold( const guid* pGuids, s32 nPlayers, f32 DeltaT
                     ( ( pObj->GetPosition() - Pos ).LengthSquared() < 300.0f * 300.0f ) )
                 {
                     g_HoldAnimSurfaceGuid = pObj->GetGuid();
+                    // what moves it: the parents of the couplers it hangs on, up to 4 levels
+                    {
+                        guid Child = g_HoldAnimSurfaceGuid;
+                        for( s32 k = 0; k < 4; k++ )
+                        {
+                            const guid Parent = coupler::FindParentOf( Child );
+                            g_HoldStartMovers[k] = Parent;
+                            if( Parent == 0 ) break;
+#ifdef A51_LOCAL_COOP
+                            object* pParent = g_ObjMgr.GetObjectByGuid( Parent );
+                            LocalCoop_Probe( "start: it is moved by %08X (%s)", (unsigned)Parent.GetLow(),
+                                             pParent ? pParent->GetTypeDesc().GetTypeName() : "?" );
+#endif
+                            Child = Parent;
+                        }
+                    }
 #ifdef A51_LOCAL_COOP
                     LocalCoop_Probe( "start: holding moving surface %08X under player %d until everyone stands on it",
                                      (unsigned)g_HoldAnimSurfaceGuid.GetLow(), (int)i );
@@ -260,6 +278,7 @@ static void UpdateStartSurfaceHold( const guid* pGuids, s32 nPlayers, f32 DeltaT
                          ( s_StartHoldSettled > 1.0f ) ? "everyone is standing" : "time is up" );
 #endif
         g_HoldAnimSurfaceGuid = 0;
+        for( s32 k = 0; k < 4; k++ ) g_HoldStartMovers[k] = 0;
         s_StartHoldTime = 0.0f;
     }
     else if( ( g_HoldAnimSurfaceGuid == 0 ) && ( s_StartHoldSettled > 1.0f ) )
@@ -271,6 +290,7 @@ static void UpdateStartSurfaceHold( const guid* pGuids, s32 nPlayers, f32 DeltaT
 void logic_campaign::BeginGame( void )
 {
     g_HoldAnimSurfaceGuid = 0;
+    for( s32 k = 0; k < 4; k++ ) g_HoldStartMovers[k] = 0;
     s_StartHoldTime       = 8.0f;
     s_StartHoldSettled    = 0.0f;
 

@@ -853,6 +853,13 @@ void animation_obj::OnAdvanceSimulation( f32 DelaTime )
 {
     X_PROFILE_SCOPE_CATEGORY( "Context", "animation_obj::OnAdvanceSimulation" );
 
+    // held at a level start until the players stand on what it moves (see logic_campaign)
+    {
+        extern xbool IsHeldStartMover( guid Guid );
+        if( IsHeldStartMover( GetGuid() ) )
+            return;
+    }
+
     // OKay advance everything that we need to
     f32 ParamTime;
     s32 iNext;

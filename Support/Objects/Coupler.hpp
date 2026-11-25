@@ -28,6 +28,9 @@ public:
 public:
 
     CREATE_RTTI( coupler, object, object )
+
+    // The object a coupler moves Child with (its parent), or 0 if no coupler moves it.
+    static guid         FindParentOf    ( guid Child );
     
                             coupler         ( void );
                             ~coupler        ( void );

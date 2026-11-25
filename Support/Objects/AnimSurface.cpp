@@ -155,6 +155,16 @@ xbool g_RunAnimSurfaceLogic = TRUE;
 // a Level Select start places the players on the train, which left before they landed on it).
 // Set by logic_campaign; 0 = none.
 guid g_HoldAnimSurfaceGuid = 0;
+guid g_HoldStartMovers[4]  = { 0, 0, 0, 0 };   // the train and what moves it (couplers' parents)
+
+xbool IsHeldStartMover( guid Guid )
+{
+    if( Guid == 0 ) return FALSE;
+    if( Guid == g_HoldAnimSurfaceGuid ) return TRUE;
+    for( s32 i = 0; i < 4; i++ )
+        if( g_HoldStartMovers[i] == Guid ) return TRUE;
+    return FALSE;
+}
 
 void anim_surface::OnAdvanceSimulation( f32 DeltaTime )
 {
@@ -164,7 +174,7 @@ void anim_surface::OnAdvanceSimulation( f32 DeltaTime )
         return;
 
     // Update animation?
-    if( m_hAnimGroup.IsLoaded() && ( ( g_HoldAnimSurfaceGuid == 0 ) || ( GetGuid() != g_HoldAnimSurfaceGuid ) ) )
+    if( m_hAnimGroup.IsLoaded() && !IsHeldStartMover( GetGuid() ) )
     {
 
         m_AnimPlayer.Advance( DeltaTime );
