@@ -20,6 +20,7 @@
 #endif
 #ifdef A51_LOCAL_COOP_QA
 #include "Objects/NewWeapon.hpp"
+#include "Characters/Character.hpp"
 #include "Input/backend/sdl/qa_bot.hpp"
 #endif
 
