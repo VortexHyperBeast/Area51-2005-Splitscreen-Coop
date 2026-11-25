@@ -814,8 +814,32 @@ static void LogThreadDebugStats( f32 DeltaTime )
 
 //==============================================================================
 
+#ifdef A51_LOCAL_COOP_QA
+// TEST ONLY: the bot's "pause" command pauses the game until this wall-clock
+// time (the bot's own clock stops while the game is paused).
+unsigned g_QaUnpauseAtWall = 0;
+#endif
+
 void RenderGame( void )
 {
+#ifdef A51_LOCAL_COOP_QA
+    if( g_QaUnpauseAtWall != 0 )
+    {
+        static unsigned s_LastBeat = 0;
+        const unsigned Now = qa_bot_WallMs();
+        if( (Now - s_LastBeat) >= 1000 )
+        {
+            s_LastBeat = Now;
+            qa_bot_Log( "pause beat: paused=%d", (int)g_StateMgr.IsPaused() );
+        }
+        if( Now >= g_QaUnpauseAtWall )
+        {
+            g_QaUnpauseAtWall = 0;
+            g_StateMgr.SetPaused( FALSE, g_StateMgr.GetActiveControllerID() );
+            qa_bot_Log( "pause: off paused=%d", (int)g_StateMgr.IsPaused() );
+        }
+    }
+#endif
     s32 i;
 
     X_PROFILE_SCOPE_CATEGORY( "Context", "Render" );
@@ -990,6 +1014,13 @@ void RenderGame( void )
         // leave its picture in the line between the split views afterwards.
         if( nPlayers < nAllPlayers )
             Scope.ScopeId = MAX_LOCAL_PLAYERS;
+
+        // Paused: the pause menu is drawn in a UI-only frame on top of the last
+        // view scope's retained picture, which holds only that scope's half
+        // (the top view showed black, owner 2026-11-25).  While paused both
+        // views draw into one scope, so its picture holds both halves.
+        if( (nPlayers == 2) && (nAllPlayers == 2) && g_StateMgr.IsPaused() )
+            Scope.ScopeId = 0;
     #endif
         render::ScopedRenderView RenderViewScope( Scope );
 

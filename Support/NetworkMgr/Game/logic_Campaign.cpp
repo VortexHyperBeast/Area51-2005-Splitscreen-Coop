@@ -499,6 +499,18 @@ void logic_campaign::QaCommand( const char* pName )
         return;
     }
 
+    if( x_strcmp( pName, "pause" ) == 0 )
+    {
+        // The pause menu, as a player's Start press opens it; the game resumes
+        // by itself after 15 s of wall-clock time (main.cpp).  Screenshots in
+        // that time show what both views look like while paused.
+        extern unsigned g_QaUnpauseAtWall;
+        g_StateMgr.SetPaused( TRUE, 0 );
+        g_QaUnpauseAtWall = qa_bot_WallMs() + 15000;
+        qa_bot_Log( "pause: on paused=%d", (int)g_StateMgr.IsPaused() );
+        return;
+    }
+
     if( x_strcmp( pName, "pistol1" ) == 0 )
     {
         // Player 2 takes the pistol out (so a shot while downed would show in his rounds).

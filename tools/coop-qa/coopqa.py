@@ -161,6 +161,12 @@ def make_script(settle_ms=DEFAULT_SETTLE_MS, cycles=DEFAULT_CYCLES):
     lines.append("# player 1 dies, the level restarts")
     lines.append("cmd %d kill0" % t)
     t += DEATH_MS
+    # the pause menu: both views must stay drawn behind it (the top view went black, owner
+    # 2026-11-25).  The game resumes by itself after 15 s of wall-clock time; the script clock
+    # stands still while it is paused.
+    lines.append("# pause; the game resumes by itself")
+    lines.append("cmd %d pause" % t)
+    t += 1000
     lines.append("quit %d" % (t + 1000))
     return "\n".join(lines) + "\n"
 
@@ -239,6 +245,8 @@ class Log(object):
         self.swaptest = {}      # "flipped"/"restored" -> (player 0 pad, player 1 pad)
         self.kill_qt = None
         self.down_cmds = []     # script times of the "down1" command
+        self.pause_on = None     # (wall ms, paused) when the test pause began
+        self.pause_off = None    # wall ms when the game resumed
         self.mutstats = []      # (qt, player 1 mutated, player 2 mutated, global time x100)
         self.downstats = []     # (qt, downed, grenades, rounds) of player 2 while downed
         self.downs = []         # (qt, downed/revive_start/revived/bledout, local slot)
@@ -350,6 +358,10 @@ def parse_log(text):
             dm = re.match(r"^downstat player 1: downed=(\d) grenades=(-?\d+) rounds=(-?\d+)$", msg)
             if dm:
                 log.downstats.append((qt, int(dm.group(1)), int(dm.group(2)), int(dm.group(3))))
+        elif msg.startswith("pause: on"):
+            log.pause_on = (wall, msg.endswith("paused=1"))
+        elif msg.startswith("pause: off"):
+            log.pause_off = wall
         elif msg.startswith("mutstat "):
             mm = re.match(r"^mutstat p0=(-?\d+) p1=(-?\d+) speed=(-?\d+)(?: abil0=(-?\d+) abil1=(-?\d+))?(?: body1=([0-9a-fA-F]+))?$", msg)
             if mm:
@@ -462,7 +474,7 @@ PASS, FAIL, NOEV, INFO = "PASS", "FAIL", "NO-EVIDENCE", "INFO"
 REQUIRED_COOP = ["startup", "two_players", "separate_pads", "no_fall", "alive", "bot_drove",
                  "completed", "walk0", "walk1", "walkboth", "look0", "look1",
                  "fire0", "fire1", "reload0", "reload1", "pad_mapping", "split_view", "split_pixels",
-                 "partner_body", "shared_cinema", "shared_items", "scanner", "own_profiles", "live_swap", "asserts", "carry_over", "join_button", "mutation_independent", "downed_revive", "downed_no_attack", "death_restart"]
+                 "partner_body", "shared_cinema", "shared_items", "scanner", "own_profiles", "live_swap", "asserts", "carry_over", "join_button", "pause_view", "mutation_independent", "downed_revive", "downed_no_attack", "death_restart"]
 INFO_COOP = ["jump0", "jump1"]
 REQUIRED_SINGLE = ["startup", "one_player", "bot_drove", "completed", "walk_single"]
 
@@ -1169,6 +1181,16 @@ def shot_stats(path, vp0, vp1):
         tops.extend(a)
         bots.extend(b)
         diffs.extend(abs(p - q) for p, q in zip(a, b))
+    # the left edge of each view (the pause menu and its bars stay clear of it)
+    edge_w = max(1, w // 12)
+    lt, lb = [], []
+    for k in range(0, n, 4):
+        lt.extend(_lum_row(body, w, k)[:edge_w])
+        lb.extend(_lum_row(body, w, bot_start + k)[:edge_w])
+    out["top_left_std"] = _mean_std(lt)[1]
+    out["bot_left_std"] = _mean_std(lb)[1]
+    out["top_left_mean"] = _mean_std(lt)[0]
+    out["bot_left_mean"] = _mean_std(lb)[0]
     out["top_std"] = _mean_std(tops)[1]
     out["bot_std"] = _mean_std(bots)[1]
     out["diff"] = (sum(diffs) / float(len(diffs))) if diffs else 0.0
@@ -1191,15 +1213,27 @@ def shots_from_dir(directory, log):
     else:
         vp0, vp1 = v0[-1]["vp"], v1[-1]["vp"]
     names = sorted(f for f in os.listdir(directory) if f.endswith(".ppm"))
+    walls = {}
+    try:
+        for tl in open(os.path.join(directory, "times.txt")):
+            parts = tl.split()
+            if len(parts) == 2 and parts[1].isdigit():
+                walls[parts[0] + ".ppm"] = int(parts[1])
+    except IOError:
+        pass
     for i, name in enumerate(names):
         try:
             s = shot_stats(os.path.join(directory, name), vp0, vp1)
         except (ValueError, IOError) as e:
             lines.append("shot %d unreadable: %s" % (i, e))
             continue
-        lines.append("shot %d size=%dx%d gap_rows=%d-%d %s" % (
+        extra = " top_left_std=%.1f bot_left_std=%.1f top_left_mean=%.1f bot_left_mean=%.1f" % (
+            s["top_left_std"], s["bot_left_std"], s["top_left_mean"], s["bot_left_mean"])
+        if name in walls:
+            extra += " wall=%d" % walls[name]
+        lines.append("shot %d size=%dx%d gap_rows=%d-%d %s%s" % (
             i, s["w"], s["h"], s["bar_y0"], s["bar_y1"],
-            " ".join("%s=%.1f" % (k, s[k]) for k in SHOT_KEYS)))
+            " ".join("%s=%.1f" % (k, s[k]) for k in SHOT_KEYS), extra))
     return lines
 
 
@@ -1228,6 +1262,32 @@ def _split_counts(shots):
     usable = [s for s in shots if s["gap"] > 0 and s["above_std"] >= SHOT_CONTENT_STD and s["below_std"] >= SHOT_CONTENT_STD]
     bar = [s for s in usable if s["bar_std"] < SHOT_BAR_STD]
     return usable, bar
+
+
+def check_pause_view(log, shots):
+    """While the pause menu is open, both views must still show the game: the left edge of each
+    view (clear of the menu) has picture detail, not a black or smeared area."""
+    if log.pause_on is None:
+        return Result("pause_view", NOEV, "the pause command never ran")
+    if not log.pause_on[1]:
+        return Result("pause_view", FAIL, "the game did not pause")
+    if shots is None:
+        return Result("pause_view", NOEV, "no screenshot statistics were given")
+    on = log.pause_on[0]
+    off = log.pause_off if log.pause_off is not None else on + 15000
+    during = [s for s in shots if "wall" in s and on + 1500 <= s["wall"] <= off and "top_left_std" in s]
+    if not during:
+        return Result("pause_view", NOEV, "no screenshot was taken while the game was paused")
+    bad = [s for s in during if s["top_left_std"] < SHOT_CONTENT_STD or s["bot_left_std"] < SHOT_CONTENT_STD]
+    detail = "; ".join("top %.1f/%.1f bottom %.1f/%.1f" % (s["top_left_mean"], s["top_left_std"],
+                                                           s["bot_left_mean"], s["bot_left_std"]) for s in during)
+    if bad:
+        return Result("pause_view", FAIL, "%d of %d paused screenshots have an empty view (edge mean/spread: %s)" % (
+            len(bad), len(during), detail))
+    if log.pause_off is None:
+        return Result("pause_view", FAIL, "both views stayed drawn, but the game never resumed (%s)" % detail)
+    return Result("pause_view", PASS, "%d paused screenshots: both views drawn (edge mean/spread: %s); the game resumed" % (
+        len(during), detail))
 
 
 def check_split_pixels(shots):
@@ -1319,6 +1379,8 @@ def score(log, phases, expect="coop", shots=None):
             r.detail = "controller swap on: " + r.detail
     results.append(check_split_view(log))
     results.append(check_split_pixels(shots))
+    if expect != "single":
+        results.append(check_pause_view(log, shots))
     results.append(check_partner_body(log))
     results.append(check_shared_cinema(log))
     results.append(check_shared_items(log))
@@ -1403,6 +1465,7 @@ FAULTS = [
     "mutation_failed",     # player 2 cannot turn into the mutant
     "mutant_no_attack",    # player 2 mutates but lacks player 1's mutant attacks
     "mutant_body_missing", # player 2 mutates but his body stays human
+    "pause_black",         # a view goes black behind the pause menu
 ]
 
 # fault -> names that must NOT be PASS in coop mode ("*ok*" = the run is a good one)
@@ -1445,6 +1508,7 @@ EXPECTED = {
     "mutation_failed": ["mutation_independent"],
     "mutant_no_attack": ["mutation_independent"],
     "mutant_body_missing": ["mutation_independent"],
+    "pause_black": ["pause_view"],
 }
 
 
@@ -1455,7 +1519,7 @@ def simulate(faults=(), settle_ms=DEFAULT_SETTLE_MS, cycles=DEFAULT_CYCLES, play
     for ph in phases:
         for (pad, ctrl, val) in ph.actions:
             events.append((ph.start, ph.end, pad, ctrl, val))
-    quit_ms = end + SCANNER_MS + JOIN_MS + MUT_MS + DOWN_MS + DEATH_MS + 1000
+    quit_ms = end + SCANNER_MS + JOIN_MS + MUT_MS + DOWN_MS + DEATH_MS + 1000 + 1000
     lines = []
 
     def emit(wall, qt, msg):
@@ -1687,11 +1751,15 @@ def simulate(faults=(), settle_ms=DEFAULT_SETTLE_MS, cycles=DEFAULT_CYCLES, play
     elif "scanner_crash" in faults or "death_crash" in faults:
         pass
     else:
-        emit(30000 + quit_ms, quit_ms, "script finished, asking the game to exit")
+        if players > 1 and "single_player" not in faults:
+            pq = end + SCANNER_MS + JOIN_MS + MUT_MS + DOWN_MS + DEATH_MS
+            emit(30000 + pq, pq, "pause: on paused=1")
+            emit(30000 + pq + 15000, pq, "pause: off paused=0")
+        emit(30000 + quit_ms + 15000, quit_ms, "script finished, asking the game to exit")
     return "\n".join(lines) + "\n"
 
 
-def synth_shots(directory, faults=(), n=8, w=SIM_W, h=SIM_H):
+def synth_shots(directory, faults=(), n=8, w=SIM_W, h=SIM_H, pause_wall=None):
     """Screenshots the way a correct split screen looks (two noisy halves, a black gap), or broken."""
     import os
     import random
@@ -1713,6 +1781,13 @@ def synth_shots(directory, faults=(), n=8, w=SIM_W, h=SIM_H):
         gap = bytes(rows_gap * w * 3)
         if "no_gap_line" in faults:
             gap = noise(rnd, rows_gap)
+        paused_shot = pause_wall is not None and i >= n - 2
+        if paused_shot and "pause_black" in faults:
+            top = bytes(len(top))
+        if pause_wall is not None:
+            wall = (pause_wall + 3000 + 5000 * (i - (n - 2))) if paused_shot else (pause_wall - 60000 + 5000 * i)
+            with open(os.path.join(directory, "times.txt"), "a") as tf:
+                tf.write("shot%02d %d\n" % (i, wall))
         with open(os.path.join(directory, "shot%02d.ppm" % i), "wb") as f:
             f.write(b"P6\n%d %d\n255\n" % (w, h))
             f.write(top + gap + bot)
@@ -1723,7 +1798,7 @@ def sim_shots(log, faults=()):
     import tempfile
     d = tempfile.mkdtemp(prefix="coopqa-shots-")
     try:
-        synth_shots(d, faults)
+        synth_shots(d, faults, pause_wall=(log.pause_on[0] if log.pause_on else None))
         return parse_shots("\n".join(shots_from_dir(d, log)))
     finally:
         shutil.rmtree(d, ignore_errors=True)
