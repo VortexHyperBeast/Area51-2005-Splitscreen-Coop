@@ -1,0 +1,213 @@
+{
+ "expect": "coop",
+ "ok": true,
+ "failed": [],
+ "no_evidence": [],
+ "results": [
+  {
+   "name": "startup",
+   "status": "PASS",
+   "detail": "level 1000 started, bot armed at wall=55117ms, samples per player [351, 351]"
+  },
+  {
+   "name": "asserts",
+   "status": "PASS",
+   "detail": "the game hit no assertion"
+  },
+  {
+   "name": "cinema",
+   "status": "INFO",
+   "detail": "a cinematic ran during the script (player 0: 16 samples; player 1: 16 samples)"
+  },
+  {
+   "name": "enemy_targets",
+   "status": "INFO",
+   "detail": "no enemy picked a target while the log was written"
+  },
+  {
+   "name": "perf",
+   "status": "INFO",
+   "detail": "91 samples, frame rate min 0.9, mean 12.2, max 235.2 per second"
+  },
+  {
+   "name": "two_players",
+   "status": "PASS",
+   "detail": "two player objects 2B99E001 and 00000003, first seen 90cm apart"
+  },
+  {
+   "name": "separate_pads",
+   "status": "PASS",
+   "detail": "game-side pad P0=[0] P1=[1], local slots P0=[0] P1=[1]"
+  },
+  {
+   "name": "no_fall",
+   "status": "PASS",
+   "detail": "no player sank below its start"
+  },
+  {
+   "name": "alive",
+   "status": "PASS",
+   "detail": "every sample has hp > 0"
+  },
+  {
+   "name": "bot_drove",
+   "status": "PASS",
+   "detail": "36 of 36 scheduled control changes seen, both pads attached"
+  },
+  {
+   "name": "completed",
+   "status": "PASS",
+   "detail": "script played to the end, last sample at 193393ms"
+  },
+  {
+   "name": "walk0",
+   "status": "PASS",
+   "detail": "c0: P0 1500cm P1 0cm; c1: P0 1443cm P1 0cm; c2: P0 784cm P1 0cm"
+  },
+  {
+   "name": "walk1",
+   "status": "PASS",
+   "detail": "c0: P0 0cm P1 1500cm; c1: P0 0cm P1 505cm; c2: P0 57cm P1 732cm (pushed by the walker's body)"
+  },
+  {
+   "name": "walkboth",
+   "status": "PASS",
+   "detail": "c0: P0 1200cm P1 574cm, displacement difference 1598cm; c1: P0 1145cm P1 1189cm, displacement difference 309cm; c2: P0 365cm P1 970cm, displacement difference 1311cm"
+  },
+  {
+   "name": "look0",
+   "status": "PASS",
+   "detail": "c0: P0 96.2deg P1 0.0deg; c1: P0 96.2deg P1 0.0deg; c2: P0 96.2deg P1 0.0deg"
+  },
+  {
+   "name": "look1",
+   "status": "PASS",
+   "detail": "c0: P0 0.0deg P1 96.4deg; c1: P0 0.0deg P1 96.4deg; c2: P0 0.0deg P1 96.4deg"
+  },
+  {
+   "name": "jump0",
+   "status": "PASS",
+   "detail": "c0: P0 +120cm P1 +0cm; c1: P0 +120cm P1 +0cm; c2: P0 +120cm P1 +0cm"
+  },
+  {
+   "name": "jump1",
+   "status": "PASS",
+   "detail": "c0: P0 +0cm P1 +80cm; c1: P0 +0cm P1 +80cm; c2: P0 +0cm P1 +80cm"
+  },
+  {
+   "name": "fire0",
+   "status": "PASS",
+   "detail": "c0: P0 spent 3 P1 spent 0; c1: P0 spent 3 P1 spent 0; c2: P0 spent 3 P1 spent 0"
+  },
+  {
+   "name": "fire1",
+   "status": "PASS",
+   "detail": "c0: P0 spent 0 P1 spent 3; c1: P0 spent 0 P1 spent 3; c2: P0 spent 0 P1 spent 3"
+  },
+  {
+   "name": "reload0",
+   "status": "PASS",
+   "detail": "c0: P0 clip+5 P1 clip+0; c1: P0 clip+3 P1 clip+0; c2: P0 clip+3 P1 clip+0"
+  },
+  {
+   "name": "reload1",
+   "status": "PASS",
+   "detail": "c0: P0 clip+0 P1 clip+5; c1: P0 clip+0 P1 clip+3; c2: P0 clip+0 P1 clip+3"
+  },
+  {
+   "name": "pad_mapping",
+   "status": "PASS",
+   "detail": "pad 0 -> player 0, pad 1 -> player 1, in all 30 judged actions"
+  },
+  {
+   "name": "split_view",
+   "status": "PASS",
+   "detail": "view 0 (0, 0, 640, 180) above view 1 (0, 180, 640, 360), 228 eye samples near their own player, both cameras moved"
+  },
+  {
+   "name": "split_pixels",
+   "status": "PASS",
+   "detail": "68 of 73 screenshots: a uniform line between two drawn halves, halves differ by up to 42"
+  },
+  {
+   "name": "pause_view",
+   "status": "PASS",
+   "detail": "3 paused screenshots: both views drawn (edge mean/spread: top 15.2/5.6 bottom 23.6/9.6; top 15.2/5.7 bottom 23.5/9.6; top 15.2/5.7 bottom 23.6/9.6 (before the pause: top 16.1/8.5 bottom 24.3/11.2)); the game resumed"
+  },
+  {
+   "name": "warp_view",
+   "status": "NO-EVIDENCE",
+   "detail": "player 1 never had the blue gun in his hands, so nothing was fired"
+  },
+  {
+   "name": "warp_feet",
+   "status": "PASS",
+   "detail": "both views drawn at normal speed: views top 16.2/8.4 bottom 24.3/11.0; fps 4.8 (before 4.6/4.9/4.9) | the old way: views top 16.0/8.4 bottom 24.3/11.8; fps 4.6 (before 4.9/4.9)"
+  },
+  {
+   "name": "loadout",
+   "status": "FAIL",
+   "detail": "a player started without the scanner (player 1 scanner=0, player 2 scanner=0)"
+  },
+  {
+   "name": "partner_body",
+   "status": "PASS",
+   "detail": "view 0: other player's body drawn in 285 of 2225 frames; view 1: other player's body drawn in 1034 of 1993 frames"
+  },
+  {
+   "name": "shared_cinema",
+   "status": "PASS",
+   "detail": "scene seen by both players (33 and 33 samples)"
+  },
+  {
+   "name": "shared_items",
+   "status": "PASS",
+   "detail": "grenade given to player 0: player 0 0->1, player 1 0->1"
+  },
+  {
+   "name": "scanner",
+   "status": "PASS",
+   "detail": "both players got the scanner, held it and fired it with RT and R1; the game ran on"
+  },
+  {
+   "name": "own_profiles",
+   "status": "PASS",
+   "detail": "player 1: slot 0 'Empty' body 0; player 2: slot 1 'Splitscreen P2' body 1"
+  },
+  {
+   "name": "live_swap",
+   "status": "PASS",
+   "detail": "swapped: player 0 pad 1, player 1 pad 0; back: 0, 1"
+  },
+  {
+   "name": "carry_over",
+   "status": "PASS",
+   "detail": "player 0: scanner 1, pistol 1; player 1: scanner 1, pistol 1"
+  },
+  {
+   "name": "mutation_independent",
+   "status": "PASS",
+   "detail": "player 2 mutated alone and turned back; player 1 stayed human, the world ran at 100%. His body showed the mutant form and went back."
+  },
+  {
+   "name": "downed_revive",
+   "status": "PASS",
+   "detail": "player 2 went down, was revived after 5200 ms of play, and went down again. The lying-down body animation played 2 of 2 times."
+  },
+  {
+   "name": "downed_no_attack",
+   "status": "PASS",
+   "detail": "the downed player fired nothing and threw nothing (grenades 1, rounds 8)"
+  },
+  {
+   "name": "death_restart",
+   "status": "PASS",
+   "detail": "the level restarted 4100 ms after player 1 died, and the game ran on"
+  },
+  {
+   "name": "join_button",
+   "status": "PASS",
+   "detail": "player 2 was 1556 cm away, 99 cm after pressing Back"
+  }
+ ]
+}
