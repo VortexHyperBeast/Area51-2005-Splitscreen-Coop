@@ -1,0 +1,120 @@
+t=480.1 dialog stream SPEC41A_ALERT id=00088005
+t=480.2 dialog voice Mutant1_Vox_Run id=00088006
+t=480.2 dialog stop - id=000781fa
+t=480.2 dialog voice Mutant1_Vox_Run id=0008800a
+t=481.0 dialog stop - id=00088000
+t=481.0 dialog voice Mutant1_Vox_Run id=00088011
+t=481.4 dialog stop - id=0008800a
+t=481.4 dialog voice Mutant1_Vox_Run id=00088017
+t=481.4 sound voices=12 top=SMP_FIRE_OS_NPC x2
+player 0: guid=6E89E001 localslot=0 netslot=0 pad=0 pos=(11825,-598,-200) health=100
+player 1: guid=00000D01 localslot=1 netslot=1 pad=1 pos=(11825,-598,-100) health=100
+t=481.6 dialog stop - id=00088017
+t=481.6 dialog voice Mutant1_Vox_LeapSpawn id=0003801b
+t=482.1 dialog voice Mutant1_Vox_Run id=0008801e
+t=482.1 dialog stop - id=00088011
+t=482.1 dialog voice Mutant1_Vox_Run id=00088020
+t=482.3 dialog voice Mutant1_Vox_Run id=00038025
+t=482.7 dialog stream CRISPYA_GRENADETHROW id=0008802b
+t=482.7 dialog stop - id=0008801e
+t=482.7 dialog voice Mutant1_Vox_Run id=0008802c
+t=483.3 dialog stop - id=00088020
+t=483.3 dialog voice Mutant1_Vox_Run id=00088038
+t=483.3 dialog stop - id=00038025
+t=483.3 dialog voice Mutant1_PainGrunt id=0008803b
+t=483.9 dialog voice Mutant1_Vox_Walk id=0008804a
+t=484.5 dialog stop - id=00088038
+t=484.5 dialog voice Mutant1_Vox_Run id=00088053
+t=484.8 dialog voice Mutant1_Vox_Run id=0008805b
+t=484.8 sound voices=23 top=MUTANT1_FOOTFALL_HEEL_CONCRETE x4
+player 0: guid=6E89E001 localslot=0 netslot=0 pad=0 pos=(11825,-598,-200) health=100
+player 1: guid=00000D01 localslot=1 netslot=1 pad=1 pos=(11825,-598,-100) health=100
+t=485.4 dialog stop - id=0008804a
+t=485.4 dialog voice Mutant1_Vox_Run id=0008806c
+t=485.6 dialog stream McCanA_COVER id=00088074
+t=485.7 dialog stop - id=00088053
+t=485.7 dialog voice Mutant1_Vox_Run id=00088078
+t=485.9 dialog voice Mutant1_Vox_Run id=00088080
+t=486.6 dialog stop - id=0008806c
+t=486.6 dialog voice Mutant1_Vox_Run id=00088092
+t=486.9 dialog voice Mutant1_Vox_Run id=0008809e
+t=487.9 dialog stream McCanA_RELOAD id=000880c9
+t=487.9 dialog stop - id=00088092
+t=487.9 dialog voice Mutant1_Vox_Run id=000880cd
+t=488.1 dialog voice Mutant1_Vox_Run id=000880d4
+t=488.3 sound voices=32 top=GRENADEBOUNCECONCRETE x7
+player 0: guid=6E89E001 localslot=0 netslot=0 pad=0 pos=(11825,-598,-200) health=100
+player 1: guid=00000D01 localslot=1 netslot=1 pad=1 pos=(11825,-598,-100) health=100
+t=488.4 dialog stream CRISPYA_KILL id=000880e5
+t=488.8 dialog stop - id=000880d4
+t=488.8 dialog voice Mutant1_Vox_Death01 id=000880e8
+t=488.8 dialog stop - id=000880cd
+t=488.8 dialog voice Mutant1_PainGrunt id=000880e9
+t=489.3 dialog voice Mutant1_Vox_Run id=000880fb
+t=489.5 dialog stop - id=000880e9
+t=489.5 dialog voice Mutant1_PainGrunt id=0008810a
+t=492.7 dialog voice Mutant1_Vox_Run id=0008814c
+t=493.8 sound voices=19 top=EXPLOSION_DEBRIS_IMPACT x3
+player 0: guid=6E89E001 localslot=0 netslot=0 pad=0 pos=(11825,-598,-200) health=100
+player 1: guid=00000D01 localslot=1 netslot=1 pad=1 pos=(11825,-598,-100) health=100
+t=494.1 dialog voice Mutant1_Vox_Run id=0008815a
+t=495.4 dialog voice Mutant1_Vox_Run id=00088178
+t=495.6 dialog stop - id=0008815a
+t=495.6 dialog voice Mutant1_Vox_Run id=0008817b
+t=497.2 dialog voice Mutant1_Vox_Run id=00088192
+t=497.7 dialog voice Mutant1_Vox_Run id=0008819b
+t=497.9 sound voices=18 top=SMP_FIRE_OS_NPC x3
+player 0: guid=6E89E001 localslot=0 netslot=0 pad=0 pos=(11825,-598,-200) health=100
+player 1: guid=00000D01 localslot=1 netslot=1 pad=1 pos=(11825,-598,-100) health=100
+t=498.7 dialog voice Mutant1_Vox_Run id=000881a1
+t=499.9 dialog stop - id=000881a1
+t=499.9 dialog voice Mutant1_Vox_Run id=000881b0
+t=499.9 dialog voice Mutant1_Vox_Run id=000881b1
+t=500.5 dialog stream SPEC41A_RELOAD id=000881ba
+t=501.3 dialog stop - id=000881b0
+t=501.3 dialog voice Mutant1_Vox_Run id=000881c7
+t=501.7 sound voices=20 top=SMP_FIRE_OS_NPC x3
+player 0: guid=6E89E001 localslot=0 netslot=0 pad=0 pos=(11825,-598,-200) health=100
+player 1: guid=00000D01 localslot=1 netslot=1 pad=1 pos=(11825,-598,-100) health=100
+t=502.2 dialog voice Mutant1_Vox_Run id=000881d2
+t=502.5 dialog voice Mutant1_Vox_Walk id=000881d5
+t=502.8 dialog voice Mutant1_Vox_Run id=000881d8
+t=502.8 dialog stop - id=000881c7
+t=502.8 dialog voice Mutant1_Vox_Run id=000881db
+t=503.1 dialog stop - id=000881db
+t=503.1 dialog voice Mutant1_Vox_LeapSpawn id=000881de
+t=503.3 dialog stream RAMIREZA_COVER id=000881e2
+t=503.9 dialog voice Mutant1_PainGrunt id=000881ec
+t=504.4 dialog voice Mutant1_Vox_Run id=000881f3
+t=505.3 dialog stop - id=000881ec
+t=505.3 dialog voice Mutant1_Vox_ReactRage id=00098000
+t=505.3 sound voices=17 top=SMP_FIRE_OS_NPC x3
+player 0: guid=6E89E001 localslot=0 netslot=0 pad=0 pos=(11825,-598,-200) health=100
+player 1: guid=00000D01 localslot=1 netslot=1 pad=1 pos=(11825,-598,-100) health=100
+t=505.6 dialog voice Mutant1_Vox_Walk id=00098002
+t=505.9 dialog voice Mutant1_Vox_Run id=00098006
+t=506.0 dialog stop - id=00098002
+t=506.0 dialog voice Mutant1_Vox_Run id=0009800c
+t=507.5 dialog voice Mutant1_Vox_Run id=0004801b
+t=507.8 dialog voice Mutant1_Vox_Walk id=0004801f
+t=508.0 dialog stream CRISPYA_RELOAD id=00098022
+t=508.3 dialog voice Mutant1_Vox_Leapspawn id=0009802c
+t=508.7 sound voices=18 top=SMP_FIRE_OS_NPC x3
+player 0: guid=6E89E001 localslot=0 netslot=0 pad=0 pos=(11825,-598,-200) health=100
+player 1: guid=00000D01 localslot=1 netslot=1 pad=1 pos=(11825,-598,-100) health=100
+t=508.9 dialog stop - id=0004801b
+t=508.9 dialog voice Mutant1_Vox_Run id=00098037
+t=509.0 dialog stream McCanA_KILL id=0009803d
+t=509.9 dialog voice Mutant1_Vox_Run id=00098051
+t=510.2 dialog stop - id=00098037
+t=510.2 dialog voice Mutant1_Vox_Run id=00098055
+t=511.2 dialog voice Mutant1_Vox_Run id=00098062
+t=511.5 dialog stop - id=00098055
+t=511.5 dialog voice Mutant1_Vox_Run id=00098065
+t=511.7 dialog stop - id=00098065
+t=511.7 dialog voice Mutant1_Vox_MeleeAttack01 id=00098068
+t=512.1 dialog voice Mutant1_Vox_Run id=0009806d
+t=512.1 dialog stream McCanA_HITMELEE id=00098070
+t=512.3 dialog stop - id=00000000
+t=512.3 dialog stop - id=00000000
+t=512.3 dialog stop - id=00000000
