@@ -772,7 +772,20 @@ void logic_campaign::QaCommand( const char* pName )
                         SI.GetSkinGeomName() ? SI.GetSkinGeomName() : "?", (unsigned)SI.GetVMeshMask().VMeshMask );
             if( !pG ) continue;
             for( s32 i = 0; i < pG->m_nMeshes; i++ )
+            {
+                const geom::mesh& M = pG->m_pMesh[i];
                 qa_bot_Log( "geominfo %d: mesh %d %s", k, (int)i, pG->GetMeshName( i ) );
+                for( s32 j = 0; j < M.nSubMeshes; j++ )
+                {
+                    const s32 iMat = pG->m_pSubMesh[ M.iSubMesh + j ].iMaterial;
+                    if( ( iMat < 0 ) || ( iMat >= pG->m_nMaterials ) ) continue;
+                    const geom::material& Mat = pG->m_pMaterial[iMat];
+                    const char* pTex = ( Mat.nTextures > 0 )
+                                     ? &pG->m_pStringData[ pG->m_pTexture[ Mat.iTexture ].FileNameOffset ] : "-";
+                    qa_bot_Log( "geominfo %d:   submesh %d material %d type %d flags %04X tex %s", k, (int)j, (int)iMat,
+                                (int)Mat.Type, (unsigned)Mat.Flags, pTex );
+                }
+            }
             for( s32 i = 0; i < pG->m_nVirtualMeshes; i++ )
                 qa_bot_Log( "geominfo %d: vmesh %d %s", k, (int)i, pG->GetVMeshName( i ) );
             for( s32 i = 0; i < pG->m_nVirtualTextures; i++ )
