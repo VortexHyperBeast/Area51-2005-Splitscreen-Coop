@@ -185,6 +185,12 @@ def make_script(settle_ms=DEFAULT_SETTLE_MS, cycles=DEFAULT_CYCLES, sweep=False)
     for pad in (0, 1):
         lines.append("%d %d %d rt 100" % (t + WARP_FIRE_MS, t + WARP_FIRE_MS + 600, pad))
     lines.append("cmd %d warpmark" % (t + WARP_FIRE_MS))
+    # then at the players' own feet (the owner's views froze only for a close shot): look
+    # straight down and fire again
+    for pad in (0, 1):
+        lines.append("%d %d %d ry 100" % (t + WARP_CLOSE_MS - 1500, t + WARP_CLOSE_MS, pad))
+        lines.append("%d %d %d rt 100" % (t + WARP_CLOSE_MS, t + WARP_CLOSE_MS + 600, pad))
+    lines.append("cmd %d warpmark" % (t + WARP_CLOSE_MS))
     t += WARP_MS
     lines.append("quit %d" % (t + 1000))
     return "\n".join(lines) + "\n"
@@ -195,7 +201,8 @@ SCANNER_MS = SCANNER_SWITCH_MS + 2 * (3500 + 2000) + 2000
 JOIN_PRESS_MS = 3500                        # after the start of the join section
 JOIN_MS = 5500
 WARP_FIRE_MS = 3000                         # after "bbg0" (the weapon switch takes a moment)
-WARP_MS = 9000
+WARP_CLOSE_MS = 12000                       # the second shot, at the feet
+WARP_MS = 22000
 MUT_STAT1_MS = 3000                         # after "mutate1"
 MUT_BACK_MS = 3500
 MUT_STAT2_MS = 6500
