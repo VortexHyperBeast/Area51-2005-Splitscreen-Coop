@@ -135,6 +135,7 @@ def make_script(settle_ms=DEFAULT_SETTLE_MS, cycles=DEFAULT_CYCLES, sweep=False)
     if sweep:
         # all-levels sweep: the moves once, then both stand and look around while the level runs
         t = end
+        lines.append("cmd %d dmgtest" % (t + 2000))   # enemy health rule in every level
         for k in range(SWEEP_TAIL_MS // 6000):
             for pad in (0, 1):
                 lines.append("%d %d %d rx %d" % (t + 6000 * k, t + 6000 * k + 1500, pad, 40 if k % 2 else -40))
@@ -154,6 +155,7 @@ def make_script(settle_ms=DEFAULT_SETTLE_MS, cycles=DEFAULT_CYCLES, sweep=False)
             lines.append("%d %d %d %s 100" % (t, t + hold, pad, ctrl))
             lines.append("%d %d %d rx 25" % (t, t + hold, pad))
             t += hold + 500
+    lines.append("cmd %d dmgtest" % t)        # enemy health rule: damage players deal to enemies
     lines.append("cmd %d geominfo" % t)       # player and NPC body geometry (owner: brighter face, no visor)
     lines.append("# a level change's inventory store and restore, after the scanner was given")
     lines.append("cmd %d carryover" % t)
@@ -329,6 +331,7 @@ class Log(object):
 
 def parse_log(text):
     log = Log()
+    log.raw = text.splitlines()
     for line in text.splitlines():
         line = line.rstrip("\r")
         if not line:
@@ -1444,6 +1447,31 @@ def check_warp_feet(log, shots):
     return Result("warp_feet", PASS, "both views drawn at normal speed: " + detail)
 
 
+def check_enemy_health(log_lines, pct=150.0):
+    """Co-op enemy health rule (owner): damage players deal to enemies is scaled to 100/pct, so
+    enemies and bosses take 1.5x as many hits; a hit of at least the target's full health is not
+    scaled.  Every 'enemy damage:' line must show taken = raw * 100/pct."""
+    import re
+    rx = re.compile(r"enemy damage: (.*?) from player raw=([0-9.]+) taken=([0-9.]+)")
+    seen, bad = 0, []
+    for ln in log_lines:
+        m = rx.search(ln)
+        if not m:
+            continue
+        seen += 1
+        raw, taken = float(m.group(2)), float(m.group(3))
+        want = raw * 100.0 / pct
+        if abs(taken - want) > max(0.02, want * 0.01):
+            bad.append("%s raw %.2f taken %.2f (want %.2f)" % (m.group(1), raw, taken, want))
+    tests = [ln for ln in log_lines if "dmgtest:" in ln]
+    detail = "%d hits on enemies scaled; %s" % (seen, "; ".join(t.split("dmgtest: ", 1)[1] for t in tests[:3]) or "no dmgtest")
+    if seen == 0:
+        return Result("enemy_health", NOEV, "no player hit an enemy: " + detail)
+    if bad:
+        return Result("enemy_health", FAIL, "%d hits not scaled to %.0f%%: %s" % (len(bad), pct, "; ".join(bad[:3])))
+    return Result("enemy_health", PASS, detail)
+
+
 def sweep_report(log, level, probe_text="", shots=None):
     """One line for the all-levels sweep: did the level start, run and keep both players alive?"""
     problems, notes = [], []
@@ -1596,6 +1624,7 @@ def score(log, phases, expect="coop", shots=None):
         results.append(check_pause_view(log, shots))
         results.append(check_warp_view(log, shots))
         results.append(check_warp_feet(log, shots))
+        results.append(check_enemy_health(getattr(log, "raw", [])))
         results.append(check_loadout(log))
     results.append(check_partner_body(log))
     results.append(check_shared_cinema(log))

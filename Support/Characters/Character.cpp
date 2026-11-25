@@ -6116,6 +6116,29 @@ xbool character::TakeDamage( const pain& Pain )
 
     Damage = ModifyDamageByDifficulty(Damage);
 
+    // Local co-op (owner): enemies and bosses take players' damage as if they had 1.5x health
+    // (enemy_health_percent in a51_coop.cfg).  Done on the damage, not the health, so boss
+    // stages, health bars and scripts that read health as a fraction stay right.  A hit that
+    // was meant to kill outright (at least the full health) still does.
+    if( LocalCoop_IsActive() && ( Damage > 0.0f ) && ( Damage < GetMaxHealth() ) &&
+        SMP_UTIL_IsPlayerGuid( Pain.GetOriginGuid() ) )
+    {
+        const f32 Pct = LocalCoop_ReviveRules().EnemyHealthPct;
+#ifdef A51_LOCAL_COOP_QA
+        const f32 Raw = Damage;
+#endif
+        Damage *= 100.0f / Pct;
+#ifdef A51_LOCAL_COOP_QA
+        static s32 s_nLogged = 0;
+        if( s_nLogged < 200 )
+        {
+            s_nLogged++;
+            qa_bot_Log( "enemy damage: %s from player raw=%.2f taken=%.2f health=%.1f max=%.1f",
+                        GetTypeDesc().GetTypeName(), Raw, Damage, GetHealth(), GetMaxHealth() );
+        }
+#endif
+    }
+
     m_Health.Sub( Damage );
 
     factions sourceFaction = GetFactionForGuid(Pain.GetOriginGuid());

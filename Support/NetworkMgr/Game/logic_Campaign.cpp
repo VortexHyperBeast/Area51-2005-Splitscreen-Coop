@@ -741,6 +741,39 @@ void logic_campaign::QaCommand( const char* pName )
         return;
     }
 
+    if( x_strcmp( pName, "dmgtest" ) == 0 )
+    {
+        // Enemy health rule: player 1 hits the nearest living NPC with a small generic pain
+        // three times; the "enemy damage:" lines show raw vs taken damage and the health.
+        player* p0 = (player*)g_ObjMgr.GetObjectByGuid( s_pQaCampaign->m_PlayerGuid[0] );
+        character* pBest = NULL;
+        f32 Best = F32_MAX;
+        for( s32 t = 0; p0 && ( t < object::TYPE_END_OF_LIST ); t++ )
+        {
+            for( slot_id Slot = g_ObjMgr.GetFirst( (object::type)t ); Slot != SLOT_NULL; Slot = g_ObjMgr.GetNext( Slot ) )
+            {
+                object* pObj = g_ObjMgr.GetObjectBySlot( Slot );
+                if( !pObj || !pObj->IsKindOf( character::GetRTTI() ) ) continue;
+                character& C = character::GetSafeType( *pObj );
+                if( C.GetHealth() <= 0.0f ) continue;
+                const f32 D = ( pObj->GetPosition() - p0->GetPosition() ).LengthSquared();
+                if( D < Best ) { Best = D; pBest = &C; }
+            }
+        }
+        if( !pBest ) { qa_bot_Log( "dmgtest: no living NPC" ); return; }
+        for( s32 k = 0; k < 3; k++ )
+        {
+            const f32 Before = pBest->GetHealth();
+            pain Pain;
+            Pain.Setup( "GENERIC_1", p0->GetGuid(), pBest->GetPosition() );
+            Pain.SetDirectHitGuid( pBest->GetGuid() );
+            Pain.ApplyToObject( pBest );
+            qa_bot_Log( "dmgtest: %s health %.1f -> %.1f (max %.1f)", pBest->GetTypeDesc().GetTypeName(),
+                        Before, pBest->GetHealth(), pBest->GetMaxHealth() );
+        }
+        return;
+    }
+
     if( x_strcmp( pName, "geominfo" ) == 0 )
     {
         // The owner's hazmat players look brighter than the hazmat NPCs and have no visor:
