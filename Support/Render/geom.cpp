@@ -194,6 +194,16 @@ xbool geom::PrepareMaterials( void )
 
             Destination.m_DiffuseMap.SetName( GetTextureName( Source.iTexture + Variant ), FALSE );
 
+            // (No build-option check: the render library does not see A51_LOCAL_COOP.)
+            // The multiplayer hazmat face (MP_HazFace_*) is a self-illuminated material, so the
+            // co-op players' faces glowed in the dark while the NPCs' faces (plain lit diffuse)
+            // sit in shadow (owner request).  Light it like the NPC faces.
+            if( ( Source.Type == Material_Diff_PerPixelIllum ) &&
+                ( x_strncmp( GetTextureName( Source.iTexture + Variant ), "MP_HazFace", 10 ) == 0 ) )
+            {
+                Destination.m_Type = Material_Diff;
+            }
+
             if( Source.Flags & MATERIAL_FLAG_HAS_ENV_MAP )
                 Destination.m_EnvironmentMap.SetName( GetTextureName( Environment ), FALSE );
 

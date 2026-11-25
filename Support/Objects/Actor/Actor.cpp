@@ -1032,56 +1032,6 @@ void actor::OnRender( void )
             Flags |= render::FADING_ALPHA;
         }
 
-#ifdef A51_LOCAL_COOP
-        // Co-op players wear the multiplayer body, whose faces are much brighter than the NPC
-        // hazmats' (owner request): draw the human head meshes ("..._Human_L*") with a darker
-        // ambient.  a51_coop.cfg face_brightness_percent (default 55).
-        if( LocalCoop_IsActive() && IsKindOf( player::GetRTTI() ) && !( Flags & render::GLOWING ) )
-        {
-            u64 HeadBits = 0;
-            skin_geom* pGeom = GetSkinInst().GetSkinGeom();
-            if( pGeom )
-            {
-                for( s32 m = 0; ( m < pGeom->m_nMeshes ) && ( m < 64 ); m++ )
-                {
-                    const char* pName = pGeom->GetMeshName( m );
-                    if( pName && x_strstr( pName, "_Human_" ) )
-                        HeadBits |= ( (u64)1 << m );
-                }
-            }
-            const u64 FaceMask = LODMask & HeadBits;
-            {
-                static xbool s_Logged = FALSE;
-                if( !s_Logged )
-                {
-                    s_Logged = TRUE;
-                    LocalCoop_Probe( "face: head meshes %08X%08X, drawn now %08X%08X",
-                                     (unsigned)( HeadBits >> 32 ), (unsigned)HeadBits,
-                                     (unsigned)( FaceMask >> 32 ), (unsigned)FaceMask );
-                }
-            }
-            if( FaceMask )
-            {
-                static const f32 s_FacePct = LocalCoop_ConfigF32( "face_brightness_percent", "A51_COOP_FACE_BRIGHTNESS", 55.0f );
-                const f32 k = MINMAX( 0.0f, s_FacePct / 100.0f, 2.0f );
-                xcolor FaceAmbient = Ambient;
-                FaceAmbient.R = (u8)MIN( 255.0f, Ambient.R * k );
-                FaceAmbient.G = (u8)MIN( 255.0f, Ambient.G * k );
-                FaceAmbient.B = (u8)MIN( 255.0f, Ambient.B * k );
-                if( LODMask & ~HeadBits )
-                    GetSkinInst().Render( &GetL2W(), pMatrices, nActiveBones, Flags, LODMask & ~HeadBits, Ambient );
-                extern f32 g_SkinLightingScale;
-                g_SkinLightingScale = k;            // the lights too, not only the ambient
-                GetSkinInst().Render( &GetL2W(), pMatrices, nActiveBones, Flags, FaceMask, FaceAmbient );
-                g_SkinLightingScale = 1.0f;
-            }
-            else
-            {
-                GetSkinInst().Render( &GetL2W(), pMatrices, nActiveBones, Flags, LODMask, Ambient );
-            }
-        }
-        else
-#endif
         GetSkinInst().Render(&GetL2W(), 
             pMatrices, 
             nActiveBones,
