@@ -3,7 +3,7 @@
 An experimental community co-op project for **Area-51 (2005) on PC**. The goal is to bring two-player local split-screen play to the PC version while building on the modernized engine, compatibility work, and gameplay fixes from **Dreamland-51**.
 
 <blockquote>
-  **Current public build:** [Co-op Stage 1 · build 35](https://github.com/VortexHyperBeast/area51-pc/releases/tag/coop-stage1-run35)  
+  **Current public build:** [Co-op Stage 1 · build 115](https://github.com/VortexHyperBeast/area51-pc/releases/)  
   **Platform:** Windows x64  
   **Mode:** Experimental two-player local split-screen
 </blockquote>
