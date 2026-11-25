@@ -337,6 +337,13 @@ void dlg_campaign_menu::Render( s32 ox, s32 oy )
     // render the glow bar
     g_UiMgr->RenderGlowBar();
 
+#if defined(A51_LOCAL_COOP)
+    {
+        extern void LocalCoop_RenderFrontEndBanner( const char* pBackground );
+        LocalCoop_RenderFrontEndBanner( NULL );     // only in Splitscreen Co-op
+    }
+#endif
+
 }
 
 //=========================================================================

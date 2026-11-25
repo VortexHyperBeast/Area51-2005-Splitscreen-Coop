@@ -256,12 +256,11 @@ void LocalCoop_RenderMenuBanner( xbool bThanks )
     }
 }
 
-// Called by the UI manager every frame after the dialogs: the banner on the main menu and on the
-// Splitscreen Co-op menu only (owner request).
+// Drawn by the main menu and the campaign menu dialogs: on the main menu, and on the campaign menu
+// only in Splitscreen Co-op (owner request).
 void LocalCoop_RenderFrontEndBanner( const char* pBackground )
 {
-    if( !pBackground || ( x_strcmp( pBackground, "background1" ) != 0 ) )
-        return;
+    (void)pBackground;      // the menus show a movie behind them, not "background1": go by state
     // Only the main menu and the Splitscreen Co-op menu (the campaign menu in co-op), as the
     // owner asked; every other screen stays clean.
     const s32 State = g_StateMgr.GetState();
@@ -339,6 +338,9 @@ void dlg_main_menu::Render( s32 ox, s32 oy )
     // render the glow bar
     g_UiMgr->RenderGlowBar();
 
+#if defined(A51_LOCAL_COOP)
+    LocalCoop_RenderFrontEndBanner( NULL );
+#endif
 }
 
 //=========================================================================

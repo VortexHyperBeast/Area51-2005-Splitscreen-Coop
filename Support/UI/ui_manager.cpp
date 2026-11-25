@@ -2703,13 +2703,6 @@ void ui_manager::Render( void )
 
                 RenderNavText( pUser );
 
-#if defined(A51_LOCAL_COOP)
-                // the co-op version and thank-you lines on the front-end menus
-                {
-                    extern void LocalCoop_RenderFrontEndBanner( const char* pBackground );
-                    LocalCoop_RenderFrontEndBanner( pUser->Background );
-                }
-#endif
             }
         }
 
