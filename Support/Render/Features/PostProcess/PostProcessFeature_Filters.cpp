@@ -19,6 +19,10 @@
 
 #include "PostProcessFeature.hpp"
 
+// Draw a screen warp even with the camera inside its sphere (the old behaviour).  Off; the
+// co-op QA bot turns it on briefly to compare.  (The render library has no QA define.)
+xbool g_RenderWarpKeepInside = FALSE;
+
 namespace render
 {
 
@@ -61,9 +65,6 @@ static void BuildFilterConstants( PostFilterConstants& Constants,
 
 //=========================================================================
 
-// Draw a screen warp even with the camera inside its sphere (the old behaviour).  Off; the
-// co-op QA bot turns it on briefly to compare.  (The render library has no QA define.)
-xbool g_RenderWarpKeepInside = FALSE;
 
 static void BuildScreenWarpConstants( PostFilterConstants&        Constants,
                                       const PostScreenWarpParams& ScreenWarp,
