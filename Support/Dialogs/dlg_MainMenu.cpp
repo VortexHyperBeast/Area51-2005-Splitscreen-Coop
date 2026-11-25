@@ -226,7 +226,7 @@ void LocalCoop_RenderMenuBanner( xbool bThanks )
     {
         "Thank you all for playing this passion",
         "project, this mod will ALWAYS be free.",
-        "made with love and passion",
+        "Made with love and passion",
         "",
         "by VortexHyperBeast",
         "",
