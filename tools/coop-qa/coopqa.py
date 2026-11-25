@@ -185,12 +185,10 @@ def make_script(settle_ms=DEFAULT_SETTLE_MS, cycles=DEFAULT_CYCLES, sweep=False)
     for pad in (0, 1):
         lines.append("%d %d %d rt 100" % (t + WARP_FIRE_MS, t + WARP_FIRE_MS + 600, pad))
     lines.append("cmd %d warpmark" % (t + WARP_FIRE_MS))
-    # then at the players' own feet (the owner's views froze only for a close shot): look
-    # straight down and fire again
-    for pad in (0, 1):
-        lines.append("%d %d %d ry 100" % (t + WARP_CLOSE_MS - 1500, t + WARP_CLOSE_MS, pad))
-        lines.append("%d %d %d rt 100" % (t + WARP_CLOSE_MS, t + WARP_CLOSE_MS + 600, pad))
-    lines.append("cmd %d warpmark" % (t + WARP_CLOSE_MS))
+    # then the grav charge's screen warp right at player 1's feet (the owner's views froze only
+    # for a close shot): first the old way, then as the game now draws it, 6 s each
+    lines.append("cmd %d warpraw" % (t + WARP_RAW_MS))
+    lines.append("cmd %d warpfeet" % (t + WARP_FEET_MS))
     t += WARP_MS
     lines.append("quit %d" % (t + 1000))
     return "\n".join(lines) + "\n"
@@ -201,8 +199,9 @@ SCANNER_MS = SCANNER_SWITCH_MS + 2 * (3500 + 2000) + 2000
 JOIN_PRESS_MS = 3500                        # after the start of the join section
 JOIN_MS = 5500
 WARP_FIRE_MS = 3000                         # after "bbg0" (the weapon switch takes a moment)
-WARP_CLOSE_MS = 12000                       # the second shot, at the feet
-WARP_MS = 22000
+WARP_RAW_MS = 8000                          # warp at the feet, drawn the old way
+WARP_FEET_MS = 16000                        # warp at the feet, as now drawn
+WARP_MS = 24000
 MUT_STAT1_MS = 3000                         # after "mutate1"
 MUT_BACK_MS = 3500
 MUT_STAT2_MS = 6500
@@ -276,6 +275,8 @@ class Log(object):
         self.loadout = {}        # player -> scanner count at the level start
         self.loadout_given = False  # the level-select loadout ran
         self.warp_mark = None    # wall ms when the screen-warping gun was fired
+        self.warp_raw = None     # wall ms when the warp at the feet began, drawn the old way
+        self.warp_feet = None    # wall ms when the warp at the feet began, as now drawn
         self.pause_on = None     # (wall ms, paused) when the test pause began
         self.pause_off = None    # wall ms when the game resumed
         self.mutstats = []      # (qt, player 1 mutated, player 2 mutated, global time x100)
@@ -399,6 +400,11 @@ def parse_log(text):
                     log.loadout_given = True
         elif msg.startswith("warp mark"):
             log.warp_mark = wall
+        elif msg.startswith("warp feet: on"):
+            if msg.endswith("raw=1"):
+                log.warp_raw = wall
+            else:
+                log.warp_feet = wall
         elif msg.startswith("pause: on"):
             log.pause_on = (wall, msg.endswith("paused=1"))
         elif msg.startswith("pause: off"):
@@ -1383,6 +1389,41 @@ def check_warp_view(log, shots):
     return Result("warp_view", PASS, "%d screenshots after the shot: both views drawn (%s)" % (len(after), detail))
 
 
+def _warp_window(log, shots, start):
+    """Screenshots and frame rate in the 6 s a warp at the feet is drawn."""
+    after = [x for x in (shots or []) if "wall" in x and start + 1000 <= x["wall"] <= start + 6000
+             and "top_left_std" in x]
+    rates = [1000.0 * f / max(1, ms) for (w, f, ms) in log.perf if start + 1000 <= w <= start + 7500]
+    base = [1000.0 * f / max(1, ms) for (w, f, ms) in log.perf if start - 12000 <= w < start - 500]
+    return after, rates, base
+
+
+def check_warp_feet(log, shots):
+    """A grav-charge screen warp right at player 1's feet (the owner's close blue-gun shot): both
+    views must keep being drawn and the game must not slow to a crawl.  The same warp drawn the
+    old way is reported next to it for comparison."""
+    if log.warp_feet is None:
+        return Result("warp_feet", NOEV, "the warp at the feet was never drawn")
+    after, rates, base = _warp_window(log, shots, log.warp_feet)
+    if not after:
+        return Result("warp_feet", NOEV, "no screenshot was taken during the warp")
+    def desc(a, r, b):
+        return "views %s; fps %s (before %s)" % (
+            "; ".join("top %.1f/%.1f bottom %.1f/%.1f" % (x["top_left_mean"], x["top_left_std"],
+                                                         x["bot_left_mean"], x["bot_left_std"]) for x in a) or "-",
+            "/".join("%.1f" % v for v in r) or "-", "/".join("%.1f" % v for v in b) or "-")
+    detail = desc(after, rates, base)
+    if log.warp_raw is not None:
+        detail += " | the old way: " + desc(*_warp_window(log, shots, log.warp_raw))
+    bad = [x for x in after if x["top_left_std"] < SHOT_CONTENT_STD or x["bot_left_std"] < SHOT_CONTENT_STD]
+    if bad:
+        return Result("warp_feet", FAIL, "%d of %d screenshots during the warp have an empty view: %s" % (
+            len(bad), len(after), detail))
+    if rates and base and min(rates) < 0.5 * (sum(base) / len(base)):
+        return Result("warp_feet", FAIL, "the game slowed to under half speed during the warp: " + detail)
+    return Result("warp_feet", PASS, "both views drawn at normal speed: " + detail)
+
+
 def sweep_report(log, level, probe_text="", shots=None):
     """One line for the all-levels sweep: did the level start, run and keep both players alive?"""
     problems, notes = [], []
@@ -1534,6 +1575,7 @@ def score(log, phases, expect="coop", shots=None):
     if expect != "single":
         results.append(check_pause_view(log, shots))
         results.append(check_warp_view(log, shots))
+        results.append(check_warp_feet(log, shots))
         results.append(check_loadout(log))
     results.append(check_partner_body(log))
     results.append(check_shared_cinema(log))

@@ -499,6 +499,9 @@ void logic_campaign::WriteProbe( f32 DeltaTime )
 
 static logic_campaign* s_pQaCampaign = NULL;
 
+unsigned g_QaWarpUntilWall = 0;
+guid     g_QaWarpPlayer    = 0;
+
 void logic_campaign::QaCommand( const char* pName )
 {
     if( !s_pQaCampaign || !pName )
@@ -568,6 +571,20 @@ void logic_campaign::QaCommand( const char* pName )
         g_StateMgr.SetPaused( TRUE, 0 );
         g_QaUnpauseAtWall = qa_bot_WallMs() + 15000;
         qa_bot_Log( "pause: on paused=%d", (int)g_StateMgr.IsPaused() );
+        return;
+    }
+
+    if( ( x_strcmp( pName, "warpfeet" ) == 0 ) || ( x_strcmp( pName, "warpraw" ) == 0 ) )
+    {
+        // A grav-charge screen warp at player 1's feet for 6 s, drawn in both views.  "warpraw"
+        // draws it the old way (camera inside the sphere not skipped) to show the stall.
+        extern unsigned g_QaWarpUntilWall;
+        extern guid     g_QaWarpPlayer;
+        extern xbool    g_QaWarpNoSkip;
+        g_QaWarpPlayer    = s_pQaCampaign->m_PlayerGuid[0];
+        g_QaWarpNoSkip    = ( x_strcmp( pName, "warpraw" ) == 0 );
+        g_QaWarpUntilWall = qa_bot_WallMs() + 6000;
+        qa_bot_Log( "warp feet: on raw=%d", (int)g_QaWarpNoSkip );
         return;
     }
 

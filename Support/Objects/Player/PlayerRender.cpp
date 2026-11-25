@@ -204,9 +204,27 @@ void player::UpdateFirstPersonArmsVisibility( void )
 
 //=============================================================================
 
+#if defined(A51_LOCAL_COOP_QA)
+#include "Input/backend/sdl/qa_bot.hpp"
+#endif
+
 void player::OnRender( void )
 {
     X_PROFILE_SCOPE_CATEGORY( "Context", "player::OnRender" );
+
+#if defined(A51_LOCAL_COOP_QA)
+    {
+        // QA: a grav-charge screen warp at this player's feet, in every view that draws him
+        // (the owner's split-screen views froze for a close blue-gun shot).
+        extern unsigned g_QaWarpUntilWall;
+        extern guid     g_QaWarpPlayer;
+        if( ( g_QaWarpUntilWall != 0 ) && ( GetGuid() == g_QaWarpPlayer ) && ( qa_bot_WallMs() < g_QaWarpUntilWall ) &&
+            render::GetActiveRenderScopeDesc().EnablePostProcessing )
+        {
+            render::AddScreenWarp( GetPosition() + vector3( 0.0f, 20.0f, 0.0f ), 400.0f, 0.7f );
+        }
+    }
+#endif
 
     if( render::GetActiveRenderScopeDesc().Purpose == render::RENDER_VIEW_SCENE_CAPTURE && !IsAvatar() )
     {
