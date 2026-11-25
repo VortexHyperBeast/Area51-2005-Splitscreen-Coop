@@ -1,0 +1,58 @@
+{
+ "expect": "single",
+ "ok": true,
+ "failed": [],
+ "no_evidence": [],
+ "results": [
+  {
+   "name": "startup",
+   "status": "PASS",
+   "detail": "level 1000 started, bot armed at wall=52985ms, samples per player [368]"
+  },
+  {
+   "name": "asserts",
+   "status": "INFO",
+   "detail": "the game hit no assertion"
+  },
+  {
+   "name": "cinema",
+   "status": "INFO",
+   "detail": "a cinematic ran during the script (player 0: 17 samples)"
+  },
+  {
+   "name": "enemy_targets",
+   "status": "INFO",
+   "detail": "no enemy picked a target while the log was written"
+  },
+  {
+   "name": "perf",
+   "status": "INFO",
+   "detail": "58 samples, frame rate min 1.2, mean 19.7, max 226.0 per second"
+  },
+  {
+   "name": "one_player",
+   "status": "PASS",
+   "detail": "only player 0 exists, renderer drew 1 view"
+  },
+  {
+   "name": "bot_drove",
+   "status": "PASS",
+   "detail": "36 of 36 scheduled control changes seen, both pads attached"
+  },
+  {
+   "name": "completed",
+   "status": "PASS",
+   "detail": "script played to the end, last sample at 193760ms"
+  },
+  {
+   "name": "walk_single",
+   "status": "PASS",
+   "detail": "the single player walked 1500cm in the best walk phase"
+  },
+  {
+   "name": "no_split_line",
+   "status": "INFO",
+   "detail": "0 of 45 screenshots show a uniform line across the middle (a one-view run should show none)"
+  }
+ ]
+}
