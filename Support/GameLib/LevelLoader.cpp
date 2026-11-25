@@ -1202,6 +1202,7 @@ void level_loader::UnloadLevel( xbool bFullUnload )
         g_TemplateStringMgr.Reset();
         g_ZoneMgr.Reset();
         anim_group::CompactEventData();
+        anim_group::CompactCompDataPool();     // frees the last level's animation data
 
         MsgMgr.Reset();
         g_BinLevelMgr.ClearData( TRUE );

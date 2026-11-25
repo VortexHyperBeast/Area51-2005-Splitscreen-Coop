@@ -774,13 +774,16 @@ public:
     void                GetEventNames       ( xarray<xstring>& Names ) const;
     void                GetPropNames        ( xarray<xstring>& Names ) const;
     static void         CompactEventData    ( void );
+    // Rebuilds the shared compressed-animation pool from the groups still loaded, freeing the
+    // data of groups unloaded with the last level (the pool used to grow with every level).
+    static void         CompactCompDataPool ( void );
 
     // Anim key block refactoring
     void                RefactorAnimKeyBlocks               ( void );
     void                ResizeAnimKeyBlockHashTable         ( s32 nHashEntries );
     void                RemoveAnimKeyBlocksFromHashTable    ( void );
-    void                ReleaseCompDataPool                 ( void );
-    byte*               MoveCompDataIntoPool                ( byte* pSrc, s32 nSrcBytes );
+    static void         ReleaseCompDataPool                 ( void );
+    static byte*        MoveCompDataIntoPool                ( byte* pSrc, s32 nSrcBytes );
 
 //-------------------------------------------------------------------------
 private:

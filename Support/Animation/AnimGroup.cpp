@@ -1352,6 +1352,7 @@ anim_group::comp_data_pool   anim_group::m_CompDataPool[] = {{0,0}};
 s32 COMP_DATA_SIZE_SAVED = 0;
 s32 COMP_DATA_SIZE_POOLED = 0;
 #define COMP_DATA_POOL_SIZE     (128*1024)
+static xarray<byte*> s_CompDataLoose;      // blocks that did not fit in the pool
 
 //=========================================================================
 
@@ -1364,6 +1365,86 @@ void anim_group::ReleaseCompDataPool( void )
         m_CompDataPool[i].pCompData = NULL;
         m_CompDataPool[i].nBytesUsed = 0;
     }
+}
+
+//=========================================================================
+
+void anim_group::CompactCompDataPool( void )
+{
+    xarray<anim_group*>& Groups = GetAnimGroups();
+    if( Groups.GetCount() == 0 )
+    {
+        ReleaseCompDataPool();
+        for( s32 i=0; i<s_CompDataLoose.GetCount(); i++ )
+            x_free( s_CompDataLoose[i] );
+        s_CompDataLoose.Clear();
+        return;
+    }
+
+    // Count the blocks still in use, for the old -> new pointer table
+    s32 nBlocks = 0;
+    for( s32 g=0; g<Groups.GetCount(); g++ )
+        nBlocks += Groups[g]->m_nKeyBlocks;
+    if( nBlocks <= 0 )
+        return;
+
+    const s32 TableSize = nBlocks * 2 + 1;
+    byte**    pOld      = (byte**)x_malloc( sizeof(byte*) * TableSize );
+    byte**    pNew      = (byte**)x_malloc( sizeof(byte*) * TableSize );
+    if( !pOld || !pNew )
+    {
+        x_free( pOld );
+        x_free( pNew );
+        return;                         // keep the pool as it is
+    }
+    x_memset( pOld, 0, sizeof(byte*) * TableSize );
+
+    // Move the old pool aside and fill a fresh one with the blocks still referenced
+    comp_data_pool OldPool[256];
+    x_memcpy( OldPool, m_CompDataPool, sizeof( OldPool ) );
+    x_memset( m_CompDataPool, 0, sizeof( m_CompDataPool ) );
+    xarray<byte*> OldLoose;
+    for( s32 i=0; i<s_CompDataLoose.GetCount(); i++ )
+        OldLoose.Append( s_CompDataLoose[i] );
+    s_CompDataLoose.Clear();
+
+    for( s32 g=0; g<Groups.GetCount(); g++ )
+    {
+        anim_group& AG = *Groups[g];
+        for( s32 i=0; i<AG.m_nKeyBlocks; i++ )
+        {
+            anim_key_block& BK = AG.m_pKeyBlock[i];
+            byte* pData = BK.pFactoredCompressedData;
+            if( !pData )
+                continue;
+
+            // Already moved (shared between blocks)?
+            u32 h = (u32)( ( (uaddr)pData >> 2 ) % (uaddr)TableSize );
+            while( pOld[h] && ( pOld[h] != pData ) )
+                h = ( h + 1 ) % TableSize;
+            if( pOld[h] == pData )
+            {
+                BK.pFactoredCompressedData = pNew[h];
+                continue;
+            }
+
+            const s32 Size = ( i < AG.m_nKeyBlocks - 1 )
+                           ? ( AG.m_pKeyBlock[i+1].CompressedDataOffset - BK.CompressedDataOffset )
+                           : ( AG.m_CompressedDataSize - BK.CompressedDataOffset );
+            byte* pMoved = MoveCompDataIntoPool( pData, MAX( Size, 0 ) );
+            pOld[h] = pData;
+            pNew[h] = pMoved;
+            BK.pFactoredCompressedData = pMoved;
+        }
+    }
+
+    // Free what the unloaded groups left behind
+    for( s32 i=0; i<256; i++ )
+        x_free( OldPool[i].pCompData );
+    for( s32 i=0; i<OldLoose.GetCount(); i++ )
+        x_free( OldLoose[i] );
+    x_free( pOld );
+    x_free( pNew );
 }
 
 //=========================================================================
@@ -1421,7 +1502,10 @@ byte* anim_group::MoveCompDataIntoPool( byte* pSrc, s32 nSrcBytes )
     {
         byte* pDst = (byte*)x_malloc( MAX( nSrcBytes, 1 ) );
         if( pDst )
+        {
             x_memcpy( pDst, pSrc, nSrcBytes );
+            s_CompDataLoose.Append( pDst );     // moved into the pool by the next compaction
+        }
         return pDst;
     }
 }
