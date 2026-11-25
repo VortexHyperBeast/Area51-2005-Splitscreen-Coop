@@ -1,0 +1,15 @@
+mode=chain expect=probe window=640x360 cycles=3 max=3300s startup-gate=1200s
+host: Linux 7.0.0-1017-azure x86_64, 4 cpus
+install ready (7 shader packages)
+wrote /mnt/pack/work/chain/script.txt: level, main menu, next level
+running under gdb
+game started, pid 8734
+game ended: exit code 0 after 470s (124 = stopped by timeout, 137/143 = killed, 139 = crash)
+game output: 13608 lines, a51_qa_bot.log: 4975 lines
+screenshots taken: 76
+coopqa shots: 76 lines written to /home/runner/work/area51-pc/area51-pc/qa-out/shots.txt
+cutscene sound: dialog lines started: 8 (0 could not start), stop calls: 3065
+  stream AMB_STRM_COMM6                           x8
+voices in use: max 10 (top ILLUMINATI_AMB_COMBO_1 x2), last 9
+level 1100: PROBLEM - 1 checkpoint restart(s): nobody went down first | player 1 hp 100; player 2 hp 100; enemies: no enemy picked a target while the log was written; no cinematic during the script
+RESULT: PASS (probe run, report only)
