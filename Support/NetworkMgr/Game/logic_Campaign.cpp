@@ -511,6 +511,32 @@ void logic_campaign::QaCommand( const char* pName )
         return;
     }
 
+    if( x_strcmp( pName, "warpmark" ) == 0 )
+    {
+        qa_bot_Log( "warp mark: the trigger is pulled" );
+        return;
+    }
+
+    if( x_strcmp( pName, "bbg0" ) == 0 )
+    {
+        // Player 1 takes the blue gun whose shot warps the screen (the owner's
+        // views froze when it was fired, 2026-11-25).
+        player* p0 = (player*)g_ObjMgr.GetObjectByGuid( s_pQaCampaign->m_PlayerGuid[0] );
+        qa_bot_Log( "bbg player 0: %s", p0 ? "switching" : "no player" );
+        if( p0 )
+        {
+            p0->AddNewWeapon2( INVEN_WEAPON_BBG );
+            new_weapon* pWeapon = p0->GetWeaponPtr( INVEN_WEAPON_BBG );
+            if( pWeapon )
+            {
+                const s32 PerClip = pWeapon->GetAmmoPerClip( new_weapon::AMMO_PRIMARY );
+                pWeapon->SetAmmoState2( new_weapon::AMMO_PRIMARY, PerClip * 4, PerClip );
+            }
+            p0->SetNextWeapon2( INVEN_WEAPON_BBG, TRUE );
+        }
+        return;
+    }
+
     if( x_strcmp( pName, "pistol1" ) == 0 )
     {
         // Player 2 takes the pistol out (so a shot while downed would show in his rounds).

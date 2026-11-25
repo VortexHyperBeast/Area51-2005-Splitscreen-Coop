@@ -167,6 +167,13 @@ def make_script(settle_ms=DEFAULT_SETTLE_MS, cycles=DEFAULT_CYCLES):
     lines.append("# pause; the game resumes by itself")
     lines.append("cmd %d pause" % t)
     t += 1000
+    # the blue gun whose shot warps the screen: both views must keep drawing after the shot
+    lines.append("# player 1 fires the screen-warping blue gun")
+    lines.append("cmd %d bbg0" % t)
+    for pad in (0, 1):
+        lines.append("%d %d %d rt 100" % (t + WARP_FIRE_MS, t + WARP_FIRE_MS + 600, pad))
+    lines.append("cmd %d warpmark" % (t + WARP_FIRE_MS))
+    t += WARP_MS
     lines.append("quit %d" % (t + 1000))
     return "\n".join(lines) + "\n"
 
@@ -175,6 +182,8 @@ SCANNER_SWITCH_MS = 4000
 SCANNER_MS = SCANNER_SWITCH_MS + 2 * (3500 + 2000) + 2000
 JOIN_PRESS_MS = 3500                        # after the start of the join section
 JOIN_MS = 5500
+WARP_FIRE_MS = 3000                         # after "bbg0" (the weapon switch takes a moment)
+WARP_MS = 9000
 MUT_STAT1_MS = 3000                         # after "mutate1"
 MUT_BACK_MS = 3500
 MUT_STAT2_MS = 6500
@@ -245,6 +254,7 @@ class Log(object):
         self.swaptest = {}      # "flipped"/"restored" -> (player 0 pad, player 1 pad)
         self.kill_qt = None
         self.down_cmds = []     # script times of the "down1" command
+        self.warp_mark = None    # wall ms when the screen-warping gun was fired
         self.pause_on = None     # (wall ms, paused) when the test pause began
         self.pause_off = None    # wall ms when the game resumed
         self.mutstats = []      # (qt, player 1 mutated, player 2 mutated, global time x100)
@@ -358,6 +368,8 @@ def parse_log(text):
             dm = re.match(r"^downstat player 1: downed=(\d) grenades=(-?\d+) rounds=(-?\d+)$", msg)
             if dm:
                 log.downstats.append((qt, int(dm.group(1)), int(dm.group(2)), int(dm.group(3))))
+        elif msg.startswith("warp mark"):
+            log.warp_mark = wall
         elif msg.startswith("pause: on"):
             log.pause_on = (wall, msg.endswith("paused=1"))
         elif msg.startswith("pause: off"):
@@ -1290,6 +1302,26 @@ def check_pause_view(log, shots):
         len(during), detail))
 
 
+def check_warp_view(log, shots):
+    """After the screen-warping blue gun is fired, both views must keep showing the game (the
+    owner's views froze and the top one went black, 2026-11-25)."""
+    if log.warp_mark is None:
+        return Result("warp_view", NOEV, "the blue gun was never fired")
+    if shots is None:
+        return Result("warp_view", NOEV, "no screenshot statistics were given")
+    after = [s for s in shots if "wall" in s and log.warp_mark + 1500 <= s["wall"] <= log.warp_mark + 9000
+             and "top_left_std" in s]
+    if not after:
+        return Result("warp_view", NOEV, "no screenshot was taken after the shot")
+    detail = "; ".join("top %.1f/%.1f bottom %.1f/%.1f" % (s["top_left_mean"], s["top_left_std"],
+                                                           s["bot_left_mean"], s["bot_left_std"]) for s in after)
+    bad = [s for s in after if s["top_left_std"] < SHOT_CONTENT_STD or s["bot_left_std"] < SHOT_CONTENT_STD]
+    if bad:
+        return Result("warp_view", FAIL, "%d of %d screenshots after the shot have an empty view (edge mean/spread: %s)" % (
+            len(bad), len(after), detail))
+    return Result("warp_view", PASS, "%d screenshots after the shot: both views drawn (%s)" % (len(after), detail))
+
+
 def check_split_pixels(shots):
     if shots is None:
         return Result("split_pixels", NOEV, "no screenshot statistics were given")
@@ -1381,6 +1413,7 @@ def score(log, phases, expect="coop", shots=None):
     results.append(check_split_pixels(shots))
     if expect != "single":
         results.append(check_pause_view(log, shots))
+        results.append(check_warp_view(log, shots))
     results.append(check_partner_body(log))
     results.append(check_shared_cinema(log))
     results.append(check_shared_items(log))
@@ -1519,7 +1552,7 @@ def simulate(faults=(), settle_ms=DEFAULT_SETTLE_MS, cycles=DEFAULT_CYCLES, play
     for ph in phases:
         for (pad, ctrl, val) in ph.actions:
             events.append((ph.start, ph.end, pad, ctrl, val))
-    quit_ms = end + SCANNER_MS + JOIN_MS + MUT_MS + DOWN_MS + DEATH_MS + 1000 + 1000
+    quit_ms = end + SCANNER_MS + JOIN_MS + MUT_MS + DOWN_MS + DEATH_MS + 1000 + WARP_MS + 1000
     lines = []
 
     def emit(wall, qt, msg):
