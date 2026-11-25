@@ -226,9 +226,9 @@ void LocalCoop_RenderMenuBanner( xbool bThanks )
     {
         "Thank you all for playing this passion",
         "project, this mod will ALWAYS be free.",
-        "Made with love and passion",
+        "Made with love and passion,",
         "",
-        "by VortexHyperBeast",
+        "by VortexHyperBeast.",
         "",
         "",
         "Consider supporting me on my Kofi page",
@@ -245,7 +245,7 @@ void LocalCoop_RenderMenuBanner( xbool bThanks )
                                          : (const char*)xfs( "SPLITSCREEN CO-OP  v0.95.%d", Build - 95 ) );
     if( !bThanks )
         return;
-    y += Line + 10;
+    y += 2 * Line;                      // the title, then one empty line
     for( s32 i = 0; i < (s32)( sizeof( s_Thanks ) / sizeof( s_Thanks[0] ) ); i++, y += Line )
     {
         if( s_Thanks[i][0] == 0 )
