@@ -224,11 +224,10 @@ void LocalCoop_RenderMenuBanner( xbool bThanks )
 #endif
     static const char* s_Thanks[] =
     {
-        "Thank you all for playing this passion project,",
-        "This mod will ALWAYS be free,",
-        "made with love and passion by VortexHyperBeast.",
-        "Consider supporting me on my Kofi page",
-        "or endorsing this mod on NexusMods!",
+        "Thank you all for playing this passion",
+        "project, this mod will ALWAYS be free.",
+        "made with love and passion",
+        "by VortexHyperBeast",
     };
     const s32   iFont  = g_UiMgr->FindFont( "small" );
     const irect Screen = g_UIRenderer.GetViewport().GetLogicalClipBounds();
