@@ -1,0 +1,120 @@
+t=233.0 sound voices=28 top=BO_FOOTFALL_HEEL_METAL x6
+player 0: guid=35053801 localslot=0 netslot=0 pad=0 pos=(100,-72,22100) health=48
+player 1: guid=00000A84 localslot=1 netslot=1 pad=1 pos=(200,-72,22100) health=69
+t=235.4 sound voices=19 top=CLOAK_LOOP x5
+player 0: guid=35053801 localslot=0 netslot=0 pad=0 pos=(100,-72,22100) health=48
+player 1: guid=00000A84 localslot=1 netslot=1 pad=1 pos=(200,-72,22100) health=57
+coop down_pose slot=1 played=1
+coop downed slot=1 bleedout=25.0
+t=237.9 sound voices=36 top=BULLETFLYBY x10
+player 0: guid=35053801 localslot=0 netslot=0 pad=0 pos=(100,-72,22100) health=32
+player 1: guid=00000A84 localslot=1 netslot=1 pad=1 pos=(200,-72,22100) health=1
+coop revive_start slot=1 left=23.7
+t=240.4 sound voices=37 top=BULLETFLYBY x11
+player 0: guid=35053801 localslot=0 netslot=0 pad=0 pos=(100,-72,22100) health=12
+player 1: guid=00000A84 localslot=1 netslot=1 pad=1 pos=(200,-72,22100) health=1
+t=243.1 sound voices=22 top=BO_FOOTFALL_HEEL_METAL x6
+player 0: guid=35053801 localslot=0 netslot=0 pad=0 pos=(100,-72,22100) health=0
+player 1: guid=00000A84 localslot=1 netslot=1 pad=1 pos=(200,-72,22100) health=1
+t=246.0 sound voices=7 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+player 0: guid=35053801 localslot=0 netslot=0 pad=0 pos=(100,-72,22100) health=0
+player 1: guid=00000A84 localslot=1 netslot=1 pad=1 pos=(200,-72,22100) health=1
+t=247.5 dialog stop - id=00000000
+t=247.5 dialog stop - id=00000000
+t=247.7 dialog stop - id=00000000
+t=247.7 dialog stop - id=00000000
+start: holding moving surface C8D1B800 under player 0 until everyone stands on it
+level 1130 start: anim groups 47, anim pool 12 of 256 blocks, 1483 KB
+level 1130 start: player 0 floor 34 cm below (Anim Surface)
+level 1130 start: player 1 floor 34 cm below (Anim Surface)
+t=247.7 sound voices=0 top=- x0
+player 0: guid=35053801 localslot=0 netslot=0 pad=0 pos=(12150,-40,22100) health=100
+player 1: guid=00001135 localslot=1 netslot=1 pad=1 pos=(12150,-40,22200) health=100
+coop down_pose slot=1 played=1
+coop downed slot=1 bleedout=25.0
+start: also held D1C97C00 (Controller)
+start: released surface C8D1B800 (everyone is standing)
+t=251.1 sound voices=7 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+player 0: guid=35053801 localslot=0 netslot=0 pad=0 pos=(10362,-72,22100) health=100
+player 1: guid=00001135 localslot=1 netslot=1 pad=1 pos=(10362,-72,22200) health=1
+t=256.4 sound voices=21 top=EXPLOSION_DEBRIS_IMPACT x10
+player 0: guid=35053801 localslot=0 netslot=0 pad=0 pos=(10261,-173,22113) health=0
+player 1: guid=00001135 localslot=1 netslot=1 pad=1 pos=(4659,-72,22200) health=1
+t=259.5 sound voices=14 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x6
+player 0: guid=35053801 localslot=0 netslot=0 pad=0 pos=(10261,-173,22113) health=0
+player 1: guid=00001135 localslot=1 netslot=1 pad=1 pos=(2023,-72,22200) health=1
+t=259.7 dialog stop - id=00000000
+t=259.7 dialog stop - id=00000000
+t=259.9 dialog stop - id=00000000
+t=259.9 dialog stop - id=00000000
+start: holding moving surface C8D1B800 under player 0 until everyone stands on it
+level 1130 start: anim groups 47, anim pool 12 of 256 blocks, 1483 KB
+level 1130 start: player 0 floor 34 cm below (Anim Surface)
+level 1130 start: player 1 floor 34 cm below (Anim Surface)
+t=259.9 sound voices=0 top=- x0
+player 0: guid=35053801 localslot=0 netslot=0 pad=0 pos=(12150,-40,22100) health=100
+player 1: guid=0000121C localslot=1 netslot=1 pad=1 pos=(12150,-40,22200) health=100
+start: also held D1C97C00 (Controller)
+start: released surface C8D1B800 (everyone is standing)
+t=263.2 sound voices=6 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+player 0: guid=35053801 localslot=0 netslot=0 pad=0 pos=(10362,-72,22100) health=100
+player 1: guid=0000121C localslot=1 netslot=1 pad=1 pos=(10362,-72,22200) health=100
+t=266.6 sound voices=7 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x4
+player 0: guid=35053801 localslot=0 netslot=0 pad=0 pos=(4659,-72,22100) health=100
+player 1: guid=0000121C localslot=1 netslot=1 pad=1 pos=(4659,-72,22200) health=100
+t=269.8 sound voices=9 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x4
+player 0: guid=35053801 localslot=0 netslot=0 pad=0 pos=(2023,-72,22100) health=100
+player 1: guid=0000121C localslot=1 netslot=1 pad=1 pos=(2023,-72,22200) health=100
+t=272.9 sound voices=11 top=BO_FOOTFALL_TOE_METAL x3
+player 0: guid=35053801 localslot=0 netslot=0 pad=0 pos=(904,-72,22100) health=100
+player 1: guid=0000121C localslot=1 netslot=1 pad=1 pos=(904,-72,22200) health=100
+t=275.8 sound voices=10 top=BO_FOOTFALL_HEEL_METAL x2
+player 0: guid=35053801 localslot=0 netslot=0 pad=0 pos=(363,-72,22100) health=100
+player 1: guid=0000121C localslot=1 netslot=1 pad=1 pos=(363,-72,22200) health=100
+t=278.6 sound voices=9 top=BO_FOOTFALL_HEEL_METAL x2
+player 0: guid=35053801 localslot=0 netslot=0 pad=0 pos=(100,-72,22100) health=100
+player 1: guid=0000121C localslot=1 netslot=1 pad=1 pos=(100,-72,22200) health=100
+t=281.4 sound voices=9 top=BO_FOOTFALL_HEEL_METAL x2
+player 0: guid=35053801 localslot=0 netslot=0 pad=0 pos=(100,-72,22100) health=100
+player 1: guid=0000121C localslot=1 netslot=1 pad=1 pos=(100,-72,22200) health=100
+t=299.7 sound voices=6 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+player 0: guid=35053801 localslot=0 netslot=0 pad=0 pos=(100,-72,22100) health=100
+player 1: guid=0000121C localslot=1 netslot=1 pad=1 pos=(100,-72,22200) health=100
+t=302.4 sound voices=11 top=BO_FOOTFALL_TOE_METAL x3
+player 0: guid=35053801 localslot=0 netslot=0 pad=0 pos=(100,-72,22100) health=100
+player 1: guid=0000121C localslot=1 netslot=1 pad=1 pos=(100,-72,22200) health=100
+t=305.2 sound voices=9 top=BO_FOOTFALL_HEEL_METAL x2
+player 0: guid=35053801 localslot=0 netslot=0 pad=0 pos=(100,-72,22100) health=100
+player 1: guid=0000121C localslot=1 netslot=1 pad=1 pos=(100,-72,22200) health=100
+t=308.1 sound voices=14 top=BO_FOOTFALL_HEEL_METAL x3
+player 0: guid=35053801 localslot=0 netslot=0 pad=0 pos=(100,-72,22100) health=100
+player 1: guid=0000121C localslot=1 netslot=1 pad=1 pos=(100,-72,22200) health=100
+t=311.7 sound voices=10 top=MSN_PROJECTILE_EXPLODE x3
+player 0: guid=35053801 localslot=0 netslot=0 pad=0 pos=(100,-72,22100) health=100
+player 1: guid=0000121C localslot=1 netslot=1 pad=1 pos=(100,-72,22200) health=100
+t=315.0 sound voices=5 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+player 0: guid=35053801 localslot=0 netslot=0 pad=0 pos=(100,-72,22100) health=100
+player 1: guid=0000121C localslot=1 netslot=1 pad=1 pos=(100,-72,22200) health=100
+t=317.9 sound voices=5 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+player 0: guid=35053801 localslot=0 netslot=0 pad=0 pos=(100,-72,22100) health=100
+player 1: guid=0000121C localslot=1 netslot=1 pad=1 pos=(100,-72,22200) health=100
+t=320.7 sound voices=5 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+player 0: guid=35053801 localslot=0 netslot=0 pad=0 pos=(100,-72,22100) health=100
+player 1: guid=0000121C localslot=1 netslot=1 pad=1 pos=(100,-72,22200) health=100
+t=323.5 sound voices=5 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+player 0: guid=35053801 localslot=0 netslot=0 pad=0 pos=(100,-72,22100) health=100
+player 1: guid=0000121C localslot=1 netslot=1 pad=1 pos=(100,-72,22200) health=100
+t=326.3 sound voices=6 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+player 0: guid=35053801 localslot=0 netslot=0 pad=0 pos=(100,-72,22100) health=100
+player 1: guid=0000121C localslot=1 netslot=1 pad=1 pos=(100,-72,22200) health=100
+t=329.1 sound voices=5 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+player 0: guid=35053801 localslot=0 netslot=0 pad=0 pos=(100,-72,22100) health=100
+player 1: guid=0000121C localslot=1 netslot=1 pad=1 pos=(100,-72,22200) health=100
+t=332.0 sound voices=5 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+player 0: guid=35053801 localslot=0 netslot=0 pad=0 pos=(100,-72,22100) health=100
+player 1: guid=0000121C localslot=1 netslot=1 pad=1 pos=(100,-72,22200) health=100
+t=334.8 sound voices=5 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+player 0: guid=35053801 localslot=0 netslot=0 pad=0 pos=(100,-72,22100) health=100
+player 1: guid=0000121C localslot=1 netslot=1 pad=1 pos=(100,-72,22200) health=100
+t=337.6 dialog stop - id=00000000
+t=337.6 dialog stop - id=00000000
