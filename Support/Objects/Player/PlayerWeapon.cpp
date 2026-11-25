@@ -60,6 +60,41 @@ mtwt s_MapToWeaponTable[] =
 };
 
 //=========================================================================
+//  Level Select (play build): the level's starting weapons with some ammo,
+//  given while the level already runs, so the current weapon is switched the
+//  normal way instead of being set directly.
+void player::CoopGiveLevelLoadout( const char* pLevelName )
+{
+    const inven_item Current = m_CurrentWeaponItem;
+    DebugSetupInventory( pLevelName );          // amounts; it also sets m_CurrentWeaponItem
+    m_CurrentWeaponItem = Current;
+
+    const s32 Weapons = GetStartWeaponsForLevel( pLevelName );
+    if( Weapons & WB_MM ) m_bMutationMeleeEnabled         = TRUE;
+    if( Weapons & WB_MP ) m_bPrimaryMutationFireEnabled   = TRUE;
+    if( Weapons & WB_MS ) m_bSecondaryMutationFireEnabled = TRUE;
+
+    for( s32 i = 0; i < INVEN_NUM_WEAPONS; i++ )
+    {
+        const inven_item Item = inventory2::WeaponIndexToItem( i );
+        if( (Item == INVEN_WEAPON_MUTATION) || (Item == INVEN_WEAPON_SCANNER) || (m_Inventory2.GetAmount( Item ) <= 0) )
+            continue;
+        new_weapon* pWeapon = GetWeaponPtr( Item );
+        if( !pWeapon )
+            continue;
+        const s32 PerClip = pWeapon->GetAmmoPerClip( new_weapon::AMMO_PRIMARY );
+        if( PerClip > 0 )
+            pWeapon->SetAmmoState2( new_weapon::AMMO_PRIMARY, PerClip * 3, PerClip );
+    }
+
+    inven_item Start = GetEquipedWeaponForLevel( pLevelName );
+    if( (Start == INVEN_NULL) || (Start == INVEN_WEAPON_MUTATION) || (m_Inventory2.GetAmount( Start ) <= 0) )
+        Start = (m_Inventory2.GetAmount( INVEN_WEAPON_SMP ) > 0) ? INVEN_WEAPON_SMP : INVEN_WEAPON_DESERT_EAGLE;
+    if( m_Inventory2.GetAmount( Start ) > 0 )
+        SetNextWeapon2( Start, TRUE );
+}
+
+//=========================================================================
 void player::DebugEnableWeapons( const char* pLevelName )
 {
     DebugSetupInventory( pLevelName );

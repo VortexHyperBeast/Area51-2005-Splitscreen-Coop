@@ -309,6 +309,7 @@ void state_mgr::Init( void )
     m_CampaignType              = SM_NEW_CAMPAIGN_GAME;
     m_bInventoryIsStored        = FALSE;
     m_bDoDefaultLoadOut         = FALSE;
+    m_bLevelSelectLoadout       = FALSE;
     m_bCreatingProfile          = FALSE;
     m_NetworkDisconnectDestination = SM_IDLE;
     m_pLeaderboardDialog        = NULL;
@@ -6206,6 +6207,7 @@ void state_mgr::UpdateLevelSelect( void )
 
                 g_NetworkMgr.BecomeServer();
                 EnableDefaultLoadOut();
+                SetLevelSelectLoadout();
                 SetState( SM_START_GAME );
             }
             break;

@@ -31,7 +31,8 @@ logic_campaign::logic_campaign( void ) :
     m_PlayerSpawnPosition   ( 0.0f, 0.0f, 0.0f  ),
     m_PlayerSpawnPitch      ( 0.0f              ),
     m_PlayerSpawnYaw        ( 0.0f              ),
-    m_PlayerSpawnZone       ( -1                )
+    m_PlayerSpawnZone       ( -1                ),
+    m_LevelSelectLoadoutTimer( 0.0f             )
 {
 }
 
@@ -99,8 +100,42 @@ void logic_campaign::RequestSpawn( s32 PlayerIndex, xbool /*Immediate*/ )
 
 //==============================================================================
 
+//  Level Select starts a level without the weapons the earlier levels would
+//  have given (the owner had no scanner).  The level's own start-up scripts
+//  set the inventory too, so a few seconds after the start, every local player
+//  who still holds no weapon gets the level's starting weapons.
+static void GiveLevelSelectLoadout( const guid* pGuids, s32 nPlayers )
+{
+    for( s32 i = 0; i < nPlayers; i++ )
+    {
+        player* pPlayer = (player*)g_ObjMgr.GetObjectByGuid( pGuids[i] );
+        if( !pPlayer )
+            continue;
+        inventory2& Inv = pPlayer->GetInventory2();
+        const xbool bArmed = (Inv.GetAmount( INVEN_WEAPON_SCANNER ) > 0) || (Inv.GetAmount( INVEN_WEAPON_DESERT_EAGLE ) > 0) ||
+                             (Inv.GetAmount( INVEN_WEAPON_SMP ) > 0);
+        if( !bArmed )
+            pPlayer->CoopGiveLevelLoadout( g_ActiveConfig.GetLevelPath() );
+#ifdef A51_LOCAL_COOP_QA
+        qa_bot_Log( "loadout player %d: scanner=%d smp=%d pistol=%d given=%d", (int)i,
+                    (int)Inv.GetAmount( INVEN_WEAPON_SCANNER ), (int)Inv.GetAmount( INVEN_WEAPON_SMP ),
+                    (int)Inv.GetAmount( INVEN_WEAPON_DESERT_EAGLE ), (int)!bArmed );
+#endif
+    }
+}
+
 void logic_campaign::AdvanceTime( f32 DeltaTime )
 {
+    if( m_LevelSelectLoadoutTimer > 0.0f )
+    {
+        m_LevelSelectLoadoutTimer -= DeltaTime;
+        if( m_LevelSelectLoadoutTimer <= 0.0f )
+        {
+            m_LevelSelectLoadoutTimer = 0.0f;
+            GiveLevelSelectLoadout( m_PlayerGuid, LocalCoop_PlayerCount() );
+        }
+    }
+
 #ifdef A51_LOCAL_COOP
     WriteProbe( DeltaTime );
     SyncCoopCinema( DeltaTime );
@@ -147,6 +182,9 @@ void logic_campaign::SetPlayerSpawnInfo( const vector3& Position,
 
 void logic_campaign::BeginGame( void )
 {
+    // Level Select: the level's starting weapons a few seconds in (see GiveLevelSelectLoadout).
+    m_LevelSelectLoadoutTimer = g_StateMgr.TakeLevelSelectLoadout() ? 3.0f : 0.0f;
+
     player* pPlayer = NULL;
 #ifdef A51_LOCAL_COOP
     vector3 CoopPosition = m_PlayerSpawnPosition;

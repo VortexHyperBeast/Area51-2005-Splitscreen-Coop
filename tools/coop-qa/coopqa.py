@@ -1295,9 +1295,24 @@ def check_pause_view(log, shots):
     during = [s for s in shots if "wall" in s and on + 1500 <= s["wall"] <= off and "top_left_std" in s]
     if not during:
         return Result("pause_view", NOEV, "no screenshot was taken while the game was paused")
-    bad = [s for s in during if s["top_left_std"] < SHOT_CONTENT_STD or s["bot_left_std"] < SHOT_CONTENT_STD]
+    # Compare with the last screenshot before the pause (same spot, same light): a view that is
+    # still drawn keeps most of its brightness and detail; the bug left it black (mean ~0).
+    before = [s for s in shots if "wall" in s and s["wall"] < on and "top_left_std" in s and
+              s["top_left_mean"] > 2.0 and s["bot_left_mean"] > 2.0]
+    ref = before[-1] if before else None
+
+    def empty(s, half):
+        mean, std = s[half + "_left_mean"], s[half + "_left_std"]
+        if ref is None:
+            return std < SHOT_CONTENT_STD
+        return mean < 0.5 * ref[half + "_left_mean"] or std < 0.4 * ref[half + "_left_std"] or mean < 2.0
+
+    bad = [s for s in during if empty(s, "top") or empty(s, "bot")]
     detail = "; ".join("top %.1f/%.1f bottom %.1f/%.1f" % (s["top_left_mean"], s["top_left_std"],
                                                            s["bot_left_mean"], s["bot_left_std"]) for s in during)
+    if ref is not None:
+        detail += " (before the pause: top %.1f/%.1f bottom %.1f/%.1f)" % (
+            ref["top_left_mean"], ref["top_left_std"], ref["bot_left_mean"], ref["bot_left_std"])
     if bad:
         return Result("pause_view", FAIL, "%d of %d paused screenshots have an empty view (edge mean/spread: %s)" % (
             len(bad), len(during), detail))

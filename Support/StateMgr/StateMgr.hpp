@@ -367,6 +367,9 @@ public:
     void                    RestorePlayerInventory          ( void );
 
     void                    EnableDefaultLoadOut            ( void )                                { m_bDoDefaultLoadOut = TRUE;  }
+    // Level Select: give the level's starting weapons once the level runs (logic_campaign).
+    void                    SetLevelSelectLoadout           ( void )                                { m_bLevelSelectLoadout = TRUE; }
+    xbool                   TakeLevelSelectLoadout          ( void )                                { xbool b = m_bLevelSelectLoadout; m_bLevelSelectLoadout = FALSE; return b; }
     void                    DisableDefaultLoadOut           ( void )                                { m_bDoDefaultLoadOut = FALSE; }
     xbool                   UseDefaultLoadOut               ( void )                                { return m_bDoDefaultLoadOut;  }
 
@@ -1156,6 +1159,7 @@ private:
     f32                     m_PlayerMaxHealth;
     f32                     m_Mutagen;
     xbool                   m_bDoDefaultLoadOut;
+    xbool                   m_bLevelSelectLoadout;
     xbool                   m_PlayerMutantMelee;
     xbool                   m_PlayerMutantPrimary;
     xbool                   m_PlayerMutantSecondary;

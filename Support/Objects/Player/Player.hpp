@@ -806,6 +806,7 @@ public:
 
             void                DebugSetupInventory         ( const char* pLevelName );
             void                DebugEnableWeapons          ( const char* pLevelName );
+            void                CoopGiveLevelLoadout        ( const char* pLevelName );  // level select, after the level began
     virtual void                InitInventory               ( void );
             void                ReInitInventory             ( void );
     virtual xbool               IsRunning                   ( void )    { return m_IsRunning; }        

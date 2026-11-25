@@ -93,6 +93,7 @@ virtual void    ProvideUpdate   (       bitstream& BitStream, u32& DirtyBits );
 #ifdef A51_LOCAL_COOP
         guid    m_PlayerGuid[ LOCAL_COOP_MAX_PLAYERS ];     // [0] is m_PlayerSpawnGuid
         f32     m_ProbeTimer;
+        f32     m_LevelSelectLoadoutTimer;  // > 0: give the level's starting weapons when it runs out
         f32     m_CoopCinemaMismatch[ LOCAL_COOP_MAX_PLAYERS ];
 #endif
 #ifdef A51_LOCAL_COOP_QA
