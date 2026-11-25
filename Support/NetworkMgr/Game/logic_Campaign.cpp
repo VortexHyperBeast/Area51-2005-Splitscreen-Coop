@@ -228,7 +228,14 @@ static void UpdateStartSurfaceHold( const guid* pGuids, s32 nPlayers, f32 DeltaT
         if( !pPlayer || !pPlayer->GetLocoPointer() )
             continue;
         const character_physics& Phys = pPlayer->GetLocoPointer()->m_Physics;
-        const xbool Supported = ( Phys.GetSupportState() == CharacterSupportState::Walkable ) || ( Phys.GetMovingPlatformGuid() != 0 );
+        // Standing: the physics says so, or the player has stopped dropping (the bot showed a
+        // player resting on the held train while the support state still read "none").
+        static f32 s_LastY[4] = { 0, 0, 0, 0 };
+        const f32  Y          = pPlayer->GetPosition().GetY();
+        const xbool NotFalling = ( i < 4 ) && ( x_abs( Y - s_LastY[i] ) < 0.5f );
+        if( i < 4 ) s_LastY[i] = Y;
+        const xbool Supported = ( Phys.GetSupportState() == CharacterSupportState::Walkable ) ||
+                                ( Phys.GetMovingPlatformGuid() != 0 ) || NotFalling;
         if( Supported )
             continue;
         AllSupported = FALSE;
