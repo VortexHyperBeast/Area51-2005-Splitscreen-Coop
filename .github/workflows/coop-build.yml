@@ -398,6 +398,7 @@ jobs:
 
       - name: Play the level
         run: |
+          mkdir -p qa-out
           chmod +x pkg/A51
           export QA_WORK=/mnt/pack/work
           export QA_GDB=1

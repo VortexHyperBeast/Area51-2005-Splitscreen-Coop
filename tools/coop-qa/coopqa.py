@@ -276,6 +276,7 @@ class Log(object):
         self.downs = []         # (qt, downed/revive_start/revived/bledout, local slot)
         self.finished_wall = None
         self.begins = []        # script times of "campaign BeginGame done"
+        self.begin_levels = []  # the level of each of them
         self.scanner_cmd_qt = None
         self.scanner_has = {}
         self.shares = []        # (p0 before, p0 after, p1 before, p1 after) of the shared-item probe
@@ -360,6 +361,7 @@ def parse_log(text):
             log.declared_players = int(bm.group(1))
             log.level = int(bm.group(2))
             log.begins.append(qt)
+            log.begin_levels.append(int(bm.group(2)))
         elif msg.startswith("armed:"):
             if log.armed_wall is None:
                 log.armed_wall = wall
@@ -1377,9 +1379,18 @@ def sweep_report(log, level, probe_text="", shots=None):
     begins = [q for q in log.begins if q is not None] + ([None] if None in log.begins else [])
     if not log.begins:
         problems.append("the level never started")
-    restarts = max(0, len(log.begins) - 1)
+    lv = log.begin_levels
+    restarts = sum(1 for k in range(1, len(lv)) if lv[k] == lv[k - 1])
+    changes = ["%d -> %d" % (lv[k - 1], lv[k]) for k in range(1, len(lv)) if lv[k] != lv[k - 1]]
+    if changes:
+        notes.append("level change: " + ", ".join(changes))
+    downs = [d for d in log.downs if d[1] == "downed"]
+    bled = [d for d in log.downs if d[1] == "bledout"]
     if restarts:
-        problems.append("%d checkpoint restart(s) (a player died)" % restarts)
+        # The bot stands still and never revives, so a downed player bleeds out: that is not
+        # a level problem by itself, a restart without anyone going down is.
+        why = "%d downed, %d bled out (the bot does not fight or revive)" % (len(downs), len(bled)) if downs else "nobody went down first"
+        (notes if downs else problems).append("%d checkpoint restart(s): %s" % (restarts, why))
     if not log.finished:
         problems.append("the game did not finish the run (crash or hang)")
     if log.asserts:
@@ -1391,9 +1402,18 @@ def sweep_report(log, level, probe_text="", shots=None):
         smp = [x for x in log.players[i] if x["qt"] is not None and x["qt"] >= 0]
         if not smp:
             continue
-        low = min(x["y"] for x in smp)
-        if smp[0]["y"] - low > 1500:
-            problems.append("player %d fell %d m" % (i + 1, (smp[0]["y"] - low) // 100))
+        # a fall: a drop of more than 15 m that ends in death (hp 0) - lifts go down too
+        for k in range(1, len(smp)):
+            if smp[k]["hp"] > 0:
+                continue
+            recent = [x for x in smp[:k] if smp[k]["qt"] - x["qt"] <= 5000]
+            if recent and max(x["y"] for x in recent) - smp[k]["y"] > 1500:
+                problems.append("player %d fell %d m to his death" % (i + 1, (max(x["y"] for x in recent) - smp[k]["y"]) // 100))
+                break
+        else:
+            low = min(x["y"] for x in smp)
+            if smp[0]["y"] - low > 1500:
+                notes.append("player %d went %d m down (lift?) and lived" % (i + 1, (smp[0]["y"] - low) // 100))
         notes.append("player %d hp %d" % (i + 1, smp[-1]["hp"]))
     if len(log.players) < 2:
         problems.append("only %d player(s) in the level" % len(log.players))

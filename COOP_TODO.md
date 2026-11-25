@@ -105,7 +105,7 @@ A passing bot test is not a played game. Statuses:
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | 1000 | dreamlnd | bot+owner | n/a (none early) | owner: progressed to the elevator | bot+owner | owner | owner (scanner) | bot (death restart) | owner: elevator to 1010 | - | owner, whole level |
 | 1010 | undrgrnd | owner (part) | owner (part), not verified for player 2 | ? | owner: elevator voices OK (build 28) | bot: same lines as single | ? | owner: death restart OK for both players (build 28) | ? | fall after cutscene (fix pending) | owner, part |
-| 1020-1130 | hotzone ... exit (17 maps) | not tested | not tested | not tested | not tested | not tested | not tested | not tested | not tested | unknown | no |
+| 1020-1130 | hotzone ... exit (17 maps) | bot sweep (build 77): both players in every level | bot sweep: enemies target both players where they meet the bot (1010, 1020, 1040-1070); 1030 only player 1 seen | not tested | bot sweep: cinematics in 1090, 1095, 1105 shown to both | not tested | level select gives the starting weapons (build 73+) | bot sweep: downed and checkpoint restarts work in 1040-1115 | bot sweep: 1010 -> 1020 level change worked in co-op | 1130 (The Last Exit): level-select start drops the players off the train (same in single player) | owner: Invader (1115?), parts of later levels |
 
 ## 3. Next milestone: Stage 2, co-op enemy AI
 
@@ -138,6 +138,11 @@ and `runs/<N>/sweep-report/sweep-report.txt` on the qa-results branch (and the r
 each level: started, restarts (deaths), falls, crashes/hangs, assertions, render failures, enemy targets.
 Level-select starts can differ from the story path (see The Last Exit); a problem there is checked
 against single player before it is called a co-op bug.
+
+First sweep (run 77, build of 2026-11-25): all 19 levels started in co-op, no crash, no hang, no
+assertion, no render failure in any level. Checkpoint restarts came from the bot standing still
+(downed by enemies, never revived). Only 1130 has a real start problem, and it is the level-select
+start (single player does the same).
 
 ## 5. On hold (owner, 2026-11-25): remind the owner when the campaign work is further along
 
