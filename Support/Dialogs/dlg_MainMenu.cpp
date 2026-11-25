@@ -12,6 +12,7 @@
 #include "UI/ui_combo.hpp"
 #include "UI/ui_button.hpp"
 #include "UI/ui_renderer.hpp"
+#include "NetworkMgr/Game/LocalCoop.hpp"
 
 #include "dlg_MainMenu.hpp"
 #include "StateMgr/StateMgr.hpp"
@@ -255,19 +256,19 @@ void LocalCoop_RenderMenuBanner( xbool bThanks )
     }
 }
 
-// Called by the UI manager every frame after the dialogs: the banner stays on every front-end
-// screen (the menus' "background1" backdrop: main menu, Splitscreen Co-op, settings, profiles,
-// level select, ...) until a game starts.  Not in a game or its pause menu (no backdrop there),
-// not on the loading screen, the Credits or the Settings pages (owner request).
+// Called by the UI manager every frame after the dialogs: the banner on the main menu and on the
+// Splitscreen Co-op menu only (owner request).
 void LocalCoop_RenderFrontEndBanner( const char* pBackground )
 {
     if( !pBackground || ( x_strcmp( pBackground, "background1" ) != 0 ) )
         return;
+    // Only the main menu and the Splitscreen Co-op menu (the campaign menu in co-op), as the
+    // owner asked; every other screen stays clean.
     const s32 State = g_StateMgr.GetState();
-    if( State == SM_CREDITS_SCREEN )
+    const xbool bMain = ( State == SM_MAIN_MENU );
+    const xbool bCoop = ( State == SM_CAMPAIGN_MENU ) && LocalCoop_IsActive();
+    if( !bMain && !bCoop )
         return;
-    if( ( State >= SM_SETTINGS_MENU ) && ( State <= SM_SETTINGS_SAVE_DATA_SELECT ) )
-        return;                                 // the Settings pages (owner request)
     LocalCoop_RenderMenuBanner( TRUE );
 }
 #endif
