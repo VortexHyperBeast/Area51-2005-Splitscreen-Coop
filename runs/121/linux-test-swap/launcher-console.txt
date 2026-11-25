@@ -1,0 +1,65 @@
+mode=swap expect=coop-swapped window=640x360 cycles=3 max=3300s startup-gate=1200s
+host: Linux 7.0.0-1017-azure x86_64, 4 cpus
+install ready (7 shader packages)
+wrote /mnt/pack/work/swap/script.txt: 33 phases, 109 s of game time
+running under gdb
+game started, pid 8803
+game ended: exit code 1 after 619s (124 = stopped by timeout, 137/143 = killed, 139 = crash)
+game output: 6720 lines, a51_qa_bot.log: 5929 lines
+screenshots taken: 110
+coopqa shots: 110 lines written to /home/runner/work/area51-pc/area51-pc/qa-out/shots.txt
+cutscene sound: dialog lines started: 11 (0 could not start), stop calls: 1908
+  stream RAMIREZ_BLUSL0_45                        x2
+  stream RAMIREZ_BLUSL0_47                        x2
+  stream RAMIREZ_BLUSL0_77                        x1
+  stream RAMIREZ_BLUSL0_78B                       x1
+  stream SCIENTIST1_BLUSL0_09                     x1
+  stream SCIENTIST2_BLUSL0_02                     x1
+  stream SCIENTIST2_BLUSL0_03                     x1
+  stream SCIENTIST3_BLUSL0_01                     x1
+  stream SPEC41_BLUSL0_02                         x1
+voices in use: max 12 (top SCN_ACTIVATE04 x2), last 2
+coopqa score: expect=coop-swapped log=/home/runner/work/area51-pc/area51-pc/qa-out/a51_qa_bot.log (5929 lines, 0 not understood)
+ PASS        startup               level 1000 started, bot armed at wall=67705ms, samples per player [350, 350]
+ PASS        asserts               the game hit no assertion
+ INFO        cinema                a cinematic ran during the script (player 0: 15 samples; player 1: 15 samples)  (info)
+ INFO        enemy_targets         no enemy picked a target while the log was written  (info)
+ INFO        perf                  117 samples, frame rate min 1.0, mean 8.3, max 186.0 per second  (info)
+ PASS        two_players           two player objects 2B99E001 and 00000003, first seen 90cm apart
+ PASS        separate_pads         game-side pad P0=[1] P1=[0], local slots P0=[0] P1=[1]
+ PASS        no_fall               no player sank below its start
+ PASS        alive                 every sample has hp > 0
+ PASS        bot_drove             36 of 36 scheduled control changes seen, both pads attached
+ PASS        completed             script played to the end, last sample at 193295ms
+ PASS        walk0                 c0: P0 0cm P1 0cm; c1: P0 0cm P1 221cm; c2: P0 0cm P1 1500cm
+ PASS        walk1                 c0: P0 1439cm P1 0cm; c1: P0 499cm P1 0cm; c2: P0 732cm P1 0cm
+ PASS        walkboth              c0: P0 495cm P1 110cm, displacement difference 573cm; c1: P0 1130cm P1 1120cm, displacement difference 327cm; c2: P0 996cm P1 1140cm, displacement difference 2131cm
+ PASS        look0                 c0: P0 0.0deg P1 96.2deg; c1: P0 0.0deg P1 96.2deg; c2: P0 0.0deg P1 96.2deg
+ PASS        look1                 c0: P0 96.4deg P1 0.0deg; c1: P0 96.4deg P1 0.0deg; c2: P0 96.4deg P1 0.0deg
+ PASS        jump0                 c0: P0 +0cm P1 +125cm; c1: P0 +0cm P1 +125cm; c2: P0 +0cm P1 +125cm  (info)
+ PASS        jump1                 c0: P0 +105cm P1 +0cm; c1: P0 +105cm P1 +0cm; c2: P0 +105cm P1 +0cm  (info)
+ PASS        fire0                 c0: P0 spent 0 P1 spent 3; c1: P0 spent 0 P1 spent 3; c2: P0 spent 0 P1 spent 3
+ PASS        fire1                 c0: P0 spent 3 P1 spent 0; c1: P0 spent 3 P1 spent 0; c2: P0 spent 3 P1 spent 0
+ PASS        reload0               c0: P0 clip+0 P1 clip+5; c1: P0 clip+0 P1 clip+3; c2: P0 clip+0 P1 clip+3
+ PASS        reload1               c0: P0 clip+5 P1 clip+0; c1: P0 clip+3 P1 clip+0; c2: P0 clip+3 P1 clip+0
+ PASS        pad_mapping           controller swap on: pad 0 -> player 1, pad 1 -> player 0, in all 29 judged actions
+ PASS        split_view            view 0 (0, 0, 640, 180) above view 1 (0, 180, 640, 360), 466 eye samples near their own player, both cameras moved
+ PASS        split_pixels          100 of 105 screenshots: a uniform line between two drawn halves, halves differ by up to 68
+ PASS        pause_view            2 paused screenshots: both views drawn (edge mean/spread: top 15.2/5.7 bottom 24.1/9.9; top 15.2/5.6 bottom 24.0/9.9 (before the pause: top 16.1/8.6 bottom 24.8/11.3)); the game resumed
+ NO-EVIDENCE warp_view             player 1 never had the blue gun in his hands, so nothing was fired  (info)
+ PASS        warp_feet             both views drawn at normal speed: views top 16.0/8.0 bottom 24.8/11.1; fps 3.5 (before 3.6/3.7) | the old way: views top 16.1/8.5 bottom 24.8/11.5; fps 3.3 (before 3.6/3.6)  (info)
+ FAIL        loadout               a player started without the scanner (player 1 scanner=0, player 2 scanner=0)  (info)
+ PASS        partner_body          view 0: other player's body drawn in 127 of 2154 frames; view 1: other player's body drawn in 966 of 1971 frames
+ PASS        shared_cinema         scene seen by both players (32 and 32 samples)
+ PASS        shared_items          grenade given to player 0: player 0 0->1, player 1 0->1
+ PASS        scanner               both players got the scanner, held it and fired it with RT and R1; the game ran on
+ PASS        own_profiles          player 1: slot 0 'Empty' body 0; player 2: slot 1 'Splitscreen P2' body 1
+ PASS        live_swap             swapped: player 0 pad 0, player 1 pad 1; back: 1, 0
+ PASS        carry_over            player 0: scanner 1, pistol 1; player 1: scanner 1, pistol 1
+ PASS        mutation_independent  player 2 mutated alone and turned back; player 1 stayed human, the world ran at 100%. His body showed the mutant form and went back.
+ PASS        downed_revive         player 2 went down, was revived after 5200 ms of play, and went down again. The lying-down body animation played 2 of 2 times.
+ PASS        downed_no_attack      the downed player fired nothing and threw nothing (grenades 1, rounds 8)
+ PASS        death_restart         the level restarted 4100 ms after player 1 died, and the game ran on
+ PASS        join_button           player 2 was 2564 cm away, 100 cm after pressing Back
+RESULT: PASS
+RESULT: PASS
