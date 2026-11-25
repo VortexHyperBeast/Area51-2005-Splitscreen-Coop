@@ -329,6 +329,13 @@ void dlg_level_select::FillLevelList( void )
         const map_entry& Entry = *g_MapList.GetByIndex( i );
 
         // check if of the correct game type
+#if defined(A51_LOCAL_COOP)
+        // Only the story levels (1000-1130).  The list also held the multiplayer arenas
+        // (2000 and up, e.g. Blaze), marked as campaign maps; started as a campaign they have
+        // no floor under the start point and the players fall forever (owner, build 115).
+        if( Entry.GetMapID() >= 2000 )
+            continue;
+#endif
         if( Entry.GetGameType() == GAME_CAMPAIGN )
         {
             // check if loaded
