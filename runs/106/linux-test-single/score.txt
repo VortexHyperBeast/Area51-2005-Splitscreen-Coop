@@ -1,0 +1,12 @@
+coopqa score: expect=single log=/home/runner/work/area51-pc/area51-pc/qa-out/a51_qa_bot.log (3597 lines, 0 not understood)
+ PASS        startup        level 1000 started, bot armed at wall=52871ms, samples per player [360]
+ INFO        asserts        the game hit no assertion  (info)
+ INFO        cinema         a cinematic ran during the script (player 0: 17 samples)  (info)
+ INFO        enemy_targets  no enemy picked a target while the log was written  (info)
+ INFO        perf           59 samples, frame rate min 1.0, mean 18.8, max 234.2 per second  (info)
+ PASS        one_player     only player 0 exists, renderer drew 1 view
+ PASS        bot_drove      36 of 36 scheduled control changes seen, both pads attached
+ PASS        completed      script played to the end, last sample at 193264ms
+ PASS        walk_single    the single player walked 1500cm in the best walk phase
+ INFO        no_split_line  0 of 49 screenshots show a uniform line across the middle (a one-view run should show none)  (info)
+RESULT: PASS
