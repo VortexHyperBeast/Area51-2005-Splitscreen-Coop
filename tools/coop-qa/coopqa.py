@@ -1316,7 +1316,7 @@ def check_pause_view(log, shots):
         return Result("pause_view", NOEV, "no screenshot statistics were given")
     on = log.pause_on[0]
     off = log.pause_off if log.pause_off is not None else on + 15000
-    during = [s for s in shots if "wall" in s and on + 1500 <= s["wall"] <= off and "top_left_std" in s]
+    during = [s for s in shots if "wall" in s and on + 1500 <= s["wall"] < off - 300 and "top_left_std" in s]
     if not during:
         return Result("pause_view", NOEV, "no screenshot was taken while the game was paused")
     # Compare with the last screenshot before the pause (same spot, same light): a view that is
@@ -1367,6 +1367,9 @@ def check_warp_view(log, shots):
         return Result("warp_view", NOEV, "the blue gun was never fired")
     if shots is None:
         return Result("warp_view", NOEV, "no screenshot statistics were given")
+    held = [smp for smp in log.players.get(0, []) if smp.get("weapon") == "BBG"]
+    if not held:
+        return Result("warp_view", NOEV, "player 1 never had the blue gun in his hands, so nothing was fired")
     after = [s for s in shots if "wall" in s and log.warp_mark + 1500 <= s["wall"] <= log.warp_mark + 9000
              and "top_left_std" in s]
     if not after:

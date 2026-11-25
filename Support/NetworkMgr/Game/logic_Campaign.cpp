@@ -593,6 +593,8 @@ void logic_campaign::QaCommand( const char* pName )
                 pWeapon->SetAmmoState2( new_weapon::AMMO_PRIMARY, PerClip * 4, PerClip );
             }
             p0->SetNextWeapon2( INVEN_WEAPON_BBG, TRUE );
+            qa_bot_Log( "bbg player 0: have=%d weapon_object=%d current=%d", (int)p0->GetInventory2().HasItem( INVEN_WEAPON_BBG ),
+                        pWeapon ? 1 : 0, (int)p0->GetCurrentWeaponItem() );
         }
         return;
     }
@@ -842,6 +844,7 @@ void logic_campaign::WriteQaProbe( f32 DeltaTime )
             case object::TYPE_WEAPON_SCANNER:      pWeaponName = "SCN"; break;
             case object::TYPE_WEAPON_SMP:          pWeaponName = "SMP"; break;
             case object::TYPE_WEAPON_SHOTGUN:      pWeaponName = "SHT"; break;
+            case object::TYPE_WEAPON_GAUSS:        pWeaponName = "BBG"; break;
             default:                               pWeaponName = "other"; break;
             }
             pWeapon->GetAmmoState( new_weapon::AMMO_PRIMARY, Ammo, AmmoMax, PerClip, InClip );
