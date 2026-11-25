@@ -1,0 +1,1990 @@
+wall=464 qt=-1 QA bot starting (wall limit 3300 s, menu pulses 1)
+wall=464 qt=-1 script '/mnt/pack/work/single-l2/script.txt' loaded: 58 events, quit at 191700 ms
+wall=464 qt=-1 pad 0 attached: instance id 3, is_gamepad=1
+wall=464 qt=-1 pad 1 attached: instance id 4, is_gamepad=1
+wall=1511 qt=-1 state SM_IDLE -> SM_PRESS_START_SCREEN
+wall=1531 qt=-1 state SM_PRESS_START_SCREEN -> SM_MAIN_MENU
+wall=1635 qt=-1 state SM_MAIN_MENU -> SM_PROFILE_SELECT
+wall=1642 qt=-1 state SM_PROFILE_SELECT -> SM_CAMPAIGN_MENU
+wall=1649 qt=-1 state SM_CAMPAIGN_MENU -> SM_LEVEL_SELECT
+wall=1649 qt=-1 level list 0: id=1000
+wall=1649 qt=-1 level list 1: id=1010
+wall=1649 qt=-1 level list 2: id=1020
+wall=1649 qt=-1 level list 3: id=1030
+wall=1649 qt=-1 level list 4: id=1040
+wall=1649 qt=-1 level list 5: id=1050
+wall=1649 qt=-1 level list 6: id=1060
+wall=1649 qt=-1 level list 7: id=1070
+wall=1649 qt=-1 level list 8: id=1075
+wall=1649 qt=-1 level list 9: id=1080
+wall=1649 qt=-1 level list 10: id=1090
+wall=1649 qt=-1 level list 11: id=1095
+wall=1649 qt=-1 level list 12: id=1100
+wall=1649 qt=-1 level list 13: id=1105
+wall=1649 qt=-1 level list 14: id=1110
+wall=1649 qt=-1 level list 15: id=1115
+wall=1649 qt=-1 level list 16: id=1120
+wall=1649 qt=-1 level list 17: id=1125
+wall=1649 qt=-1 level list 18: id=1130
+wall=1649 qt=-1 level list 19: id=2000
+wall=1649 qt=-1 level list 20: id=2010
+wall=1649 qt=-1 level list 21: id=2020
+wall=1649 qt=-1 level list 22: id=2030
+wall=1649 qt=-1 level list 23: id=2040
+wall=1649 qt=-1 level list 24: id=2050
+wall=1649 qt=-1 level list 25: id=2060
+wall=1649 qt=-1 level list 26: id=2070
+wall=1649 qt=-1 level list 27: id=2080
+wall=1649 qt=-1 level list 28: id=2090
+wall=1649 qt=-1 level list 29: id=2100
+wall=1649 qt=-1 level list 30: id=2110
+wall=1649 qt=-1 level list 31: id=2120
+wall=1649 qt=-1 level list 32: id=2130
+wall=1649 qt=-1 level list 33: id=2140
+wall=1649 qt=-1 level list 34: id=2150
+wall=1649 qt=-1 level list 35: id=2160
+wall=1649 qt=-1 level list 36: id=2190
+wall=5007 qt=-1 level picked by the test: 1010
+wall=5007 qt=-1 state SM_LEVEL_SELECT -> SM_START_GAME
+wall=5305 qt=-1 state SM_START_GAME -> SM_SINGLE_PLAYER_LOAD_MISSION
+wall=10014 qt=-1 perf frames=321 in 5012 ms
+wall=15015 qt=-1 perf frames=279 in 5001 ms
+wall=20021 qt=-1 perf frames=396 in 5006 ms
+wall=25023 qt=-1 perf frames=655 in 5002 ms
+wall=25856 qt=-1 campaign BeginGame done: players=1 level=1010
+wall=26966 qt=-1 state SM_SINGLE_PLAYER_LOAD_MISSION -> SM_SERVER_SYNC
+wall=26968 qt=-1 state SM_SERVER_SYNC -> SM_PLAYING_GAME
+wall=26984 qt=-1 audio voices=0 top=- x0
+wall=26984 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10110,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=27256 qt=-1 dialog stream SEQ_BLUSL0_ELEVATOR id=00018012
+wall=27270 qt=-1 cinema audio start SEQ_BLUSL0_ELEVATOR length=57494 ms
+wall=27274 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=27323 qt=-1 view 0 viewport=0,0,640,360 eye=-15090,7213,-2136 frames=1 views=1
+wall=27326 qt=-1 bodies view=0 drawn=0 frames=1 others=0 with_body=0
+wall=30727 qt=-1 perf frames=745 in 5704 ms
+wall=30728 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=30749 qt=-1 view 0 viewport=0,0,640,360 eye=-15089,7215,-2136 frames=2 views=1
+wall=30750 qt=-1 bodies view=0 drawn=0 frames=1 others=0 with_body=0
+wall=30902 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=31314 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=31765 qt=-1 view 0 viewport=0,0,640,360 eye=-15058,7227,-2124 frames=8 views=1
+wall=31765 qt=-1 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=32721 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=32737 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=32814 qt=-1 view 0 viewport=0,0,640,360 eye=-15040,7232,-2117 frames=10 views=1
+wall=32814 qt=-1 bodies view=0 drawn=0 frames=2 others=0 with_body=0
+wall=33227 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=33576 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=33832 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=33849 qt=-1 view 0 viewport=0,0,640,360 eye=-14949,7247,-2077 frames=17 views=1
+wall=33850 qt=-1 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=34542 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=34561 qt=-1 audio voices=1 top=SEQ_BLUSL0_ELEVATOR x1
+wall=34561 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=34944 qt=-1 view 0 viewport=0,0,640,360 eye=-14811,7261,-2007 frames=24 views=1
+wall=34945 qt=-1 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=35100 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=35452 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=35719 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=35946 qt=-1 perf frames=27 in 5219 ms
+wall=35961 qt=-1 view 0 viewport=0,0,640,360 eye=-14691,7269,-1936 frames=29 views=1
+wall=35962 qt=-1 bodies view=0 drawn=0 frames=5 others=0 with_body=0
+wall=36411 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=36975 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=36993 qt=-1 view 0 viewport=0,0,640,360 eye=-14639,7271,-1902 frames=31 views=1
+wall=36995 qt=-1 bodies view=0 drawn=0 frames=2 others=0 with_body=0
+wall=37903 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=38093 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=38094 qt=-1 view 0 viewport=0,0,640,360 eye=-14586,7273,-1866 frames=33 views=1
+wall=38095 qt=-1 bodies view=0 drawn=0 frames=2 others=0 with_body=0
+wall=38426 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=39364 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=39379 qt=-1 view 0 viewport=0,0,640,360 eye=-14475,7274,-1784 frames=37 views=1
+wall=39382 qt=-1 bodies view=0 drawn=0 frames=4 others=0 with_body=0
+wall=40044 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=40405 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=40405 qt=-1 view 0 viewport=0,0,640,360 eye=-14416,7270,-1738 frames=39 views=1
+wall=40407 qt=-1 bodies view=0 drawn=0 frames=2 others=0 with_body=0
+wall=40603 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=41018 qt=-1 perf frames=13 in 5072 ms
+wall=41236 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=41497 qt=-1 view 0 viewport=0,0,640,360 eye=-14252,7237,-1613 frames=44 views=1
+wall=41500 qt=-1 bodies view=0 drawn=0 frames=5 others=0 with_body=0
+wall=41705 qt=-1 audio voices=1 top=SEQ_BLUSL0_ELEVATOR x1
+wall=41705 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=41881 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=42491 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=42507 qt=-1 view 0 viewport=0,0,640,360 eye=-14070,7174,-1473 frames=49 views=1
+wall=42509 qt=-1 bodies view=0 drawn=0 frames=5 others=0 with_body=0
+wall=42857 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=43015 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=43626 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=43642 qt=-1 view 0 viewport=0,0,640,360 eye=-13835,7062,-1289 frames=55 views=1
+wall=43644 qt=-1 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=44027 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=44197 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=44808 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=44828 qt=-1 view 0 viewport=0,0,640,360 eye=-13634,6942,-1127 frames=60 views=1
+wall=44831 qt=-1 bodies view=0 drawn=0 frames=5 others=0 with_body=0
+wall=45462 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=45481 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=45976 qt=-1 view 0 viewport=0,0,640,360 eye=-13433,6801,-959 frames=65 views=1
+wall=45979 qt=-1 bodies view=0 drawn=0 frames=5 others=0 with_body=0
+wall=46177 qt=-1 perf frames=24 in 5159 ms
+wall=46177 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=46911 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=46929 qt=-1 audio voices=4 top=SPECOPS_FOOTFALL_HEEL_METAL x2
+wall=46929 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=47144 qt=-1 view 0 viewport=0,0,640,360 eye=-13239,6642,-787 frames=70 views=1
+wall=47146 qt=-1 bodies view=0 drawn=0 frames=5 others=0 with_body=0
+wall=47552 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=48160 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=48178 qt=-1 view 0 viewport=0,0,640,360 eye=-13092,6505,-648 frames=74 views=1
+wall=48182 qt=-1 bodies view=0 drawn=0 frames=4 others=0 with_body=0
+wall=48455 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=48769 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=49295 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=49315 qt=-1 view 0 viewport=0,0,640,360 eye=-12957,6359,-511 frames=78 views=1
+wall=49319 qt=-1 bodies view=0 drawn=0 frames=4 others=0 with_body=0
+wall=50420 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=50436 qt=-1 view 0 viewport=0,0,640,360 eye=-12894,6284,-443 frames=80 views=1
+wall=50439 qt=-1 bodies view=0 drawn=0 frames=2 others=0 with_body=0
+wall=50707 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=51032 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=51261 qt=-1 perf frames=19 in 5084 ms
+wall=51499 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=51499 qt=-1 view 0 viewport=0,0,640,360 eye=-10323,-2892,1048 frames=87 views=1
+wall=51500 qt=-1 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=51595 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=52194 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=52215 qt=-1 audio voices=1 top=SEQ_BLUSL0_ELEVATOR x1
+wall=52215 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=52556 qt=-1 view 0 viewport=0,0,640,360 eye=-10326,-3019,1039 frames=96 views=1
+wall=52557 qt=-1 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=52762 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=52892 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=53417 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=53557 qt=-1 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=53685 qt=-1 view 0 viewport=0,0,640,360 eye=-13591,151,1044 frames=103 views=1
+wall=53927 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=53942 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=54454 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=54576 qt=-1 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=54688 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=54688 qt=-1 view 0 viewport=0,0,640,360 eye=-13581,69,1061 frames=111 views=1
+wall=55030 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=55487 qt=-1 audio voices=1 top=SEQ_BLUSL0_ELEVATOR x1
+wall=55487 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=55611 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=55626 qt=-1 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=55753 qt=-1 view 0 viewport=0,0,640,360 eye=-13570,-12,1077 frames=119 views=1
+wall=56391 qt=-1 perf frames=37 in 5130 ms
+wall=56392 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=56472 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=56662 qt=-1 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=56840 qt=-1 view 0 viewport=0,0,640,360 eye=-13003,-7916,1428 frames=128 views=1
+wall=56913 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=57011 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=57453 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=57524 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=57677 qt=-1 bodies view=0 drawn=0 frames=13 others=0 with_body=0
+wall=57857 qt=-1 view 0 viewport=0,0,640,360 eye=-12989,-7953,1342 frames=141 views=1
+wall=58032 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=58044 qt=-1 audio voices=1 top=SEQ_BLUSL0_ELEVATOR x1
+wall=58044 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=58543 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=58653 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=58749 qt=-1 bodies view=0 drawn=0 frames=11 others=0 with_body=0
+wall=58943 qt=-1 view 0 viewport=0,0,640,360 eye=-12987,-7960,1320 frames=152 views=1
+wall=59123 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=59224 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=59643 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=60159 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=60172 qt=-1 view 0 viewport=0,0,640,360 eye=-12952,-5335,1180 frames=157 views=1
+wall=60173 qt=-1 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=60663 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=60679 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=61181 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=61195 qt=-1 view 0 viewport=0,0,640,360 eye=-12951,-5340,1179 frames=166 views=1
+wall=61196 qt=-1 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=61305 qt=-1 audio voices=1 top=SEQ_BLUSL0_ELEVATOR x1
+wall=61305 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=61399 qt=-1 perf frames=46 in 5008 ms
+wall=61764 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=62005 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=62228 qt=-1 view 0 viewport=0,0,640,360 eye=-12949,-5346,1178 frames=175 views=1
+wall=62229 qt=-1 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=62327 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=62693 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=62881 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=63303 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=63303 qt=-1 view 0 viewport=0,0,640,360 eye=-12947,-5351,1176 frames=185 views=1
+wall=63305 qt=-1 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=63406 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=64139 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=64152 qt=-1 audio voices=5 top=SMP_FIRE_OS_NPC x2
+wall=64152 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=64400 qt=-1 view 0 viewport=0,0,640,360 eye=-12945,-5356,1175 frames=193 views=1
+wall=64401 qt=-1 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=64667 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=64896 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=65257 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=65462 qt=-1 view 0 viewport=0,0,640,360 eye=-14552,-5306,1130 frames=201 views=1
+wall=65463 qt=-1 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=65750 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=65813 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=66256 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=66317 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=66463 qt=-1 perf frames=45 in 5064 ms
+wall=66475 qt=-1 view 0 viewport=0,0,640,360 eye=-14537,-5311,1130 frames=213 views=1
+wall=66476 qt=-1 bodies view=0 drawn=0 frames=12 others=0 with_body=0
+wall=66814 qt=-1 audio voices=11 top=SMP_FIRE_OS_NPC x10
+wall=66814 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=66877 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=67335 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=67399 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=67484 qt=-1 view 0 viewport=0,0,640,360 eye=-14521,-5317,1131 frames=226 views=1
+wall=67485 qt=-1 bodies view=0 drawn=0 frames=13 others=0 with_body=0
+wall=67898 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=67959 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=68506 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=68521 qt=-1 view 0 viewport=0,0,640,360 eye=-13256,-11023,1902 frames=236 views=1
+wall=68522 qt=-1 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=68624 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=69058 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=69259 qt=-1 audio voices=1 top=SEQ_BLUSL0_ELEVATOR x1
+wall=69259 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=69582 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=69598 qt=-1 view 0 viewport=0,0,640,360 eye=-13197,-11285,2174 frames=245 views=1
+wall=69601 qt=-1 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=70211 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=70225 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=70746 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=70762 qt=-1 view 0 viewport=0,0,640,360 eye=-13200,-11558,2169 frames=252 views=1
+wall=70764 qt=-1 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=71273 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=71286 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=71505 qt=-1 perf frames=43 in 5042 ms
+wall=71866 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=71880 qt=-1 view 0 viewport=0,0,640,360 eye=-13202,-11792,2164 frames=258 views=1
+wall=71882 qt=-1 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=72426 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=72440 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=72931 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=72944 qt=-1 view 0 viewport=0,0,640,360 eye=-13205,-12026,2159 frames=264 views=1
+wall=72946 qt=-1 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=73445 qt=-1 audio voices=1 top=SEQ_BLUSL0_ELEVATOR x1
+wall=73445 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=73577 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=74020 qt=-1 view 0 viewport=0,0,640,360 eye=-14217,-14264,-522 frames=270 views=1
+wall=74022 qt=-1 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=74207 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=74529 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=74805 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=75141 qt=-1 view 0 viewport=0,0,640,360 eye=-14217,-14287,-459 frames=277 views=1
+wall=75142 qt=-1 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=75463 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=75478 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=76055 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=76213 qt=-1 view 0 viewport=0,0,640,360 eye=-14217,-14309,-348 frames=284 views=1
+wall=76214 qt=-1 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=76346 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=76663 qt=-1 perf frames=31 in 5158 ms
+wall=76664 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=77265 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=77278 qt=-1 audio voices=1 top=SEQ_BLUSL0_ELEVATOR x1
+wall=77278 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=77279 qt=-1 view 0 viewport=0,0,640,360 eye=-14217,-14330,-234 frames=291 views=1
+wall=77281 qt=-1 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=77908 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=78213 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=78379 qt=-1 view 0 viewport=0,0,640,360 eye=-14223,-14347,-145 frames=298 views=1
+wall=78381 qt=-1 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=78559 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=79169 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=79183 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=79423 qt=-1 view 0 viewport=0,0,640,360 eye=-14247,-14359,-62 frames=305 views=1
+wall=79424 qt=-1 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=79741 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=80013 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=80329 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=80455 qt=-1 view 0 viewport=0,0,640,360 eye=-14263,-14364,-25 frames=312 views=1
+wall=80456 qt=-1 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=80956 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=80970 qt=-1 audio voices=1 top=SEQ_BLUSL0_ELEVATOR x1
+wall=80970 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=81458 qt=-1 view 0 viewport=0,0,640,360 eye=-13202,-26171,-3593 frames=318 views=1
+wall=81459 qt=-1 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=81623 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=81753 qt=-1 perf frames=33 in 5090 ms
+wall=81897 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=82169 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=82482 qt=-1 view 0 viewport=0,0,640,360 eye=-13230,-26090,-3316 frames=325 views=1
+wall=82484 qt=-1 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=82787 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=82802 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=83351 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=83500 qt=-1 view 0 viewport=0,0,640,360 eye=-13274,-25987,-2906 frames=331 views=1
+wall=83502 qt=-1 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=83964 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=83979 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=84515 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=84530 qt=-1 view 0 viewport=0,0,640,360 eye=-13312,-25930,-2579 frames=336 views=1
+wall=84532 qt=-1 bodies view=0 drawn=0 frames=5 others=0 with_body=0
+wall=84959 qt=-1 audio voices=2 top=SEQ_BLUSL0_ELEVATOR x1
+wall=84959 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=85139 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=85568 qt=-1 view 0 viewport=0,0,640,360 eye=-13372,-26049,-2318 frames=343 views=1
+wall=85570 qt=-1 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=85684 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=85886 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=86218 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=86895 qt=-1 perf frames=30 in 5142 ms
+wall=86895 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=86909 qt=-1 view 0 viewport=0,0,640,360 eye=-12160,-32737,-733 frames=350 views=1
+wall=86909 qt=-1 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=86974 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=87458 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=87576 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=88004 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=88020 qt=-1 view 0 viewport=0,0,640,360 eye=-12160,-32737,-733 frames=360 views=1
+wall=88021 qt=-1 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=88765 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=88781 qt=-1 audio voices=2 top=SEQ_BLUSL0_ELEVATOR x1
+wall=88781 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=89101 qt=-1 view 0 viewport=0,0,640,360 eye=-12160,-32737,-733 frames=367 views=1
+wall=89102 qt=-1 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=89361 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=89482 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=89923 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=90157 qt=-1 view 0 viewport=0,0,640,360 eye=-11849,-32731,-938 frames=372 views=1
+wall=90158 qt=-1 bodies view=0 drawn=0 frames=5 others=0 with_body=0
+wall=90425 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=90770 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=90925 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=91318 qt=-1 view 0 viewport=0,0,640,360 eye=-11773,-32742,-950 frames=379 views=1
+wall=91319 qt=-1 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=91483 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=91834 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=91967 qt=-1 perf frames=33 in 5072 ms
+wall=92130 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=92350 qt=-1 view 0 viewport=0,0,640,360 eye=-11673,-32756,-966 frames=385 views=1
+wall=92351 qt=-1 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=92648 qt=-1 cinema audio level SEQ_BLUSL0_ELEVATOR vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=92801 qt=-1 audio voices=1 top=SEQ_BLUSL0_ELEVATOR x1
+wall=92801 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=93100 qt=-1 cinema audio end SEQ_BLUSL0_ELEVATOR
+wall=93100 qt=-1 dialog stop - id=00018012
+wall=93454 qt=-1 view 0 viewport=0,0,640,360 eye=-11583,-32769,-980 frames=392 views=1
+wall=93455 qt=-1 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=93749 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=94564 qt=-1 view 0 viewport=0,0,640,360 eye=-11551,-32773,-985 frames=399 views=1
+wall=94565 qt=-1 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=94699 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=95572 qt=-1 view 0 viewport=0,0,640,360 eye=-13284,-32574,1995 frames=405 views=1
+wall=95573 qt=-1 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=95644 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=96212 qt=-1 audio voices=0 top=- x0
+wall=96212 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=96623 qt=-1 view 0 viewport=0,0,640,360 eye=-13284,-32578,1995 frames=418 views=1
+wall=96623 qt=-1 bodies view=0 drawn=0 frames=13 others=0 with_body=0
+wall=96766 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=96973 qt=-1 perf frames=40 in 5006 ms
+wall=97341 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=97684 qt=-1 view 0 viewport=0,0,640,360 eye=-13284,-32584,1995 frames=432 views=1
+wall=97685 qt=-1 bodies view=0 drawn=0 frames=14 others=0 with_body=0
+wall=97900 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=98401 qt=-1 audio voices=0 top=- x0
+wall=98401 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=98740 qt=-1 view 0 viewport=0,0,640,360 eye=-13284,-32589,1995 frames=446 views=1
+wall=98740 qt=-1 bodies view=0 drawn=0 frames=14 others=0 with_body=0
+wall=98958 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=99514 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=99785 qt=-1 view 0 viewport=0,0,640,360 eye=-13284,-32592,1995 frames=459 views=1
+wall=99786 qt=-1 bodies view=0 drawn=0 frames=13 others=0 with_body=0
+wall=100071 qt=-1 player 0 guid=4E3DC095 slot=0 pad=0 pos=-13100,10073,2100 yaw=1700 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=1
+wall=100132 qt=-1 dialog stop - id=00000000
+wall=100498 qt=-1 state SM_PLAYING_GAME -> SM_END_PAUSE
+wall=100498 qt=-1 state SM_END_PAUSE -> SM_SERVER_COOLDOWN
+wall=101334 qt=-1 state SM_SERVER_COOLDOWN -> SM_POST_GAME
+wall=101380 qt=-1 state SM_POST_GAME -> SM_ADVANCE_LEVEL
+wall=101382 qt=-1 state SM_ADVANCE_LEVEL -> SM_SINGLE_PLAYER_LOAD_MISSION
+wall=101987 qt=-1 perf frames=93 in 5014 ms
+wall=106998 qt=-1 perf frames=124 in 5011 ms
+wall=112007 qt=-1 perf frames=236 in 5009 ms
+wall=117009 qt=-1 perf frames=435 in 5002 ms
+wall=121453 qt=-1 campaign BeginGame done: players=1 level=1020
+wall=122010 qt=-1 perf frames=883 in 5001 ms
+wall=122564 qt=-1 state SM_SINGLE_PLAYER_LOAD_MISSION -> SM_SERVER_SYNC
+wall=122567 qt=-1 state SM_SERVER_SYNC -> SM_PLAYING_GAME
+wall=122805 qt=-1 dialog stop - id=00000000
+wall=122805 qt=-1 dialog stop - id=00000000
+wall=122805 qt=-1 dialog stop - id=00000000
+wall=122808 qt=-1 audio voices=0 top=- x0
+wall=122808 qt=-1 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-590,-200 yaw=-899 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=123140 qt=-1 view 0 viewport=0,0,640,360 eye=11837,-430,-200 frames=469 views=1
+wall=123142 qt=-1 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=124144 qt=-1 view 0 viewport=0,0,640,360 eye=11836,-430,-200 frames=470 views=1
+wall=124145 qt=-1 bodies view=0 drawn=0 frames=1 others=0 with_body=0
+wall=124255 qt=-1 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-553,-200 yaw=-899 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=124830 qt=-1 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-483,-200 yaw=-899 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=125197 qt=-1 view 0 viewport=0,0,640,360 eye=11836,-429,-200 frames=483 views=1
+wall=125198 qt=-1 bodies view=0 drawn=0 frames=13 others=0 with_body=0
+wall=125336 qt=-1 dialog stream SPEC41A_ALERT id=0001815e
+wall=125337 qt=-1 dialog voice Mutant1_Vox_Walk id=0001815f
+wall=125341 qt=-1 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=125975 qt=-1 audio voices=8 top=LITE_FLOURESCENT_A x2
+wall=125975 qt=-1 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=126042 qt=-1 dialog stop - id=0001815f
+wall=126042 qt=-1 dialog voice Mutant1_Vox_Run id=00018161
+wall=127689 qt=-1 perf frames=430 in 5679 ms
+wall=127700 qt=-1 view 0 viewport=0,0,640,360 eye=11836,-385,-200 frames=496 views=1
+wall=127701 qt=-1 bodies view=0 drawn=0 frames=13 others=0 with_body=0
+wall=127964 qt=-1 dialog voice Mutant1_Vox_Walk id=00018169
+wall=127964 qt=-1 dialog voice Mutant1_Vox_Walk id=0001816a
+wall=127969 qt=-1 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-493,-200 yaw=-899 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=128120 qt=-1 dialog stop - id=0001816a
+wall=128120 qt=-1 dialog voice Mutant1_Vox_Run id=00018172
+wall=128549 qt=-1 loadout player 0: scanner=1 smp=1 pistol=1 given=1
+wall=129715 qt=-1 dialog stop - id=00018169
+wall=129715 qt=-1 dialog voice Mutant1_Vox_Run id=0001817b
+wall=129722 qt=-1 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-530,-200 yaw=-899 pitch=0 hp=100 weapon=SMP ammo=90 inclip=30 perclip=30 cinema=0
+wall=129722 qt=-1 view 0 viewport=0,0,640,360 eye=11836,-361,-199 frames=504 views=1
+wall=129723 qt=-1 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=130076 qt=-1 dialog voice Mutant1_Vox_Run id=0001818a
+wall=130384 qt=-1 dialog voice Mutant1_Vox_Run id=00018194
+wall=130391 qt=-1 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-553,-200 yaw=-899 pitch=0 hp=100 weapon=SMP ammo=90 inclip=30 perclip=30 cinema=0
+wall=130919 qt=-1 view 0 viewport=0,0,640,360 eye=11836,-324,-199 frames=512 views=1
+wall=130920 qt=-1 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=131233 qt=-1 dialog stream SPEC41A_KILL id=000181a0
+wall=131432 qt=-1 dialog voice Mutant1_Vox_Run id=000181ab
+wall=131540 qt=-1 audio voices=26 top=LITE_FLOURESCENT_A x2
+wall=131540 qt=-1 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-493,-200 yaw=-899 pitch=0 hp=100 weapon=SMP ammo=90 inclip=30 perclip=30 cinema=0
+wall=131999 qt=-1 dialog stop - id=00018194
+wall=131999 qt=-1 dialog voice Mutant1_Vox_Run id=000181bd
+wall=132006 qt=-1 view 0 viewport=0,0,640,360 eye=11837,-433,-199 frames=520 views=1
+wall=132007 qt=-1 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=132211 qt=-1 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=SMP ammo=90 inclip=30 perclip=30 cinema=0
+wall=132304 qt=-1 dialog stop - id=000181ab
+wall=132314 qt=0 armed: level running, no cinematic on any local player
+wall=132314 qt=0 loadout player 0: scanner=1 smp=1 pistol=1
+wall=132314 qt=0 equip player 0: pistol, 8 rounds per clip
+wall=132314 qt=0 profile player 0: index=0 name=Empty avatar=0
+wall=132401 qt=100 pad 0 a = 0
+wall=132747 qt=299 perf frames=30 in 5058 ms
+wall=133017 qt=597 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-473,-200 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=133017 qt=597 view 0 viewport=0,0,640,360 eye=11836,-304,-199 frames=528 views=1
+wall=133018 qt=597 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=133438 qt=697 dialog voice Mutant1_Vox_Run id=000181e1
+wall=133535 qt=797 dialog stop - id=000181e1
+wall=133874 qt=1190 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=134134 qt=1389 view 0 viewport=0,0,640,360 eye=11837,-433,-199 frames=536 views=1
+wall=134135 qt=1389 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=134532 qt=1782 audio voices=14 top=SMP_FIRE_OS_NPC x2
+wall=134532 qt=1782 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=135168 qt=2368 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=135169 qt=2368 view 0 viewport=0,0,640,360 eye=11836,-430,-199 frames=546 views=1
+wall=135170 qt=2368 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=135753 qt=2953 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=136194 qt=3342 view 0 viewport=0,0,640,360 eye=11836,-429,-199 frames=556 views=1
+wall=136195 qt=3342 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=136384 qt=3532 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=136957 qt=4104 audio voices=12 top=RAMIREZ_FOOTFALL_HEEL_CONCRETE x3
+wall=136957 qt=4104 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=137302 qt=4396 view 0 viewport=0,0,640,360 eye=11836,-429,-199 frames=567 views=1
+wall=137303 qt=4396 bodies view=0 drawn=0 frames=11 others=0 with_body=0
+wall=137587 qt=4682 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=137766 qt=4776 perf frames=46 in 5019 ms
+wall=137863 qt=4870 dialog stream SEQ_BLUSL1_GATTACK id=0002800c
+wall=138056 qt=5063 cinema audio start SEQ_BLUSL1_GATTACK length=14432 ms
+wall=138150 qt=5159 cinema audio level SEQ_BLUSL1_GATTACK vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=138155 qt=5253 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=138395 qt=5446 view 0 viewport=0,0,640,360 eye=11836,-429,-199 frames=578 views=1
+wall=138396 qt=5446 bodies view=0 drawn=0 frames=11 others=0 with_body=0
+wall=138669 qt=5634 cinema audio level SEQ_BLUSL1_GATTACK vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=138767 qt=5818 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=139220 qt=6184 cinema audio level SEQ_BLUSL1_GATTACK vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=139383 qt=6377 audio voices=5 top=LITE_FLOURESCENT_A x2
+wall=139383 qt=6377 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=139479 qt=6473 view 0 viewport=0,0,640,360 eye=11836,-429,-199 frames=589 views=1
+wall=139480 qt=6473 bodies view=0 drawn=0 frames=11 others=0 with_body=0
+wall=139749 qt=6659 cinema audio level SEQ_BLUSL1_GATTACK vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=139941 qt=6936 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=140490 qt=7218 cinema audio level SEQ_BLUSL1_GATTACK vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=140496 qt=7318 view 0 viewport=0,0,640,360 eye=11836,-429,-199 frames=598 views=1
+wall=140498 qt=7318 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=140682 qt=7504 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=141048 qt=7783 cinema audio level SEQ_BLUSL1_GATTACK vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=141238 qt=8060 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=141561 qt=8246 cinema audio level SEQ_BLUSL1_GATTACK vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=141567 qt=8346 view 0 viewport=0,0,640,360 eye=11836,-429,-199 frames=609 views=1
+wall=141568 qt=8346 bodies view=0 drawn=0 frames=11 others=0 with_body=0
+wall=141836 qt=8616 audio voices=5 top=LITE_FLOURESCENT_A x2
+wall=141836 qt=8616 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=142109 qt=8805 cinema audio level SEQ_BLUSL1_GATTACK vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=142394 qt=9174 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=142625 qt=9265 cinema audio level SEQ_BLUSL1_GATTACK vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=142631 qt=9365 view 0 viewport=0,0,640,360 eye=11836,-429,-199 frames=620 views=1
+wall=142632 qt=9365 bodies view=0 drawn=0 frames=11 others=0 with_body=0
+wall=142808 qt=9457 perf frames=50 in 5042 ms
+wall=142996 qt=9730 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=143174 qt=9823 cinema audio level SEQ_BLUSL1_GATTACK vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=143538 qt=10272 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=143676 qt=10272 cinema audio level SEQ_BLUSL1_GATTACK vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=143682 qt=10372 view 0 viewport=0,0,640,360 eye=11836,-429,-199 frames=631 views=1
+wall=143683 qt=10372 bodies view=0 drawn=0 frames=11 others=0 with_body=0
+wall=144144 qt=10835 audio voices=5 top=LITE_FLOURESCENT_A x2
+wall=144144 qt=10835 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=144228 qt=10835 cinema audio level SEQ_BLUSL1_GATTACK vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=144746 qt=11289 cinema audio level SEQ_BLUSL1_GATTACK vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=144752 qt=11389 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=144752 qt=11389 view 0 viewport=0,0,640,360 eye=11836,-429,-199 frames=642 views=1
+wall=144753 qt=11389 bodies view=0 drawn=0 frames=11 others=0 with_body=0
+wall=145299 qt=11848 cinema audio level SEQ_BLUSL1_GATTACK vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=145305 qt=11943 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=145815 qt=12306 cinema audio level SEQ_BLUSL1_GATTACK vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=145821 qt=12406 view 0 viewport=0,0,640,360 eye=11836,-429,-199 frames=653 views=1
+wall=145822 qt=12406 bodies view=0 drawn=0 frames=11 others=0 with_body=0
+wall=145911 qt=12497 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=146346 qt=12854 cinema audio level SEQ_BLUSL1_GATTACK vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=146439 qt=13025 audio voices=5 top=LITE_FLOURESCENT_A x2
+wall=146439 qt=13025 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=146858 qt=13303 cinema audio level SEQ_BLUSL1_GATTACK vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=146864 qt=13403 view 0 viewport=0,0,640,360 eye=11836,-429,-199 frames=664 views=1
+wall=146865 qt=13403 bodies view=0 drawn=0 frames=11 others=0 with_body=0
+wall=147053 qt=13592 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=147408 qt=13862 cinema audio level SEQ_BLUSL1_GATTACK vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=147601 qt=14140 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=147926 qt=14330 perf frames=53 in 5118 ms
+wall=147927 qt=14330 cinema audio level SEQ_BLUSL1_GATTACK vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=147933 qt=14430 view 0 viewport=0,0,640,360 eye=11836,-429,-199 frames=675 views=1
+wall=147934 qt=14430 bodies view=0 drawn=0 frames=11 others=0 with_body=0
+wall=148208 qt=14706 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=148479 qt=14890 cinema audio level SEQ_BLUSL1_GATTACK vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=148660 qt=15072 pad 0 ly = -32767
+wall=148756 qt=15254 audio voices=5 top=LITE_FLOURESCENT_A x2
+wall=148756 qt=15254 player 0 guid=6E89E001 slot=0 pad=0 pos=11771,-598,-200 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=148989 qt=15341 cinema audio level SEQ_BLUSL1_GATTACK vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=148995 qt=15441 view 0 viewport=0,0,640,360 eye=11670,-429,-199 frames=686 views=1
+wall=148996 qt=15441 bodies view=0 drawn=0 frames=11 others=0 with_body=0
+wall=149370 qt=15816 player 0 guid=6E89E001 slot=0 pad=0 pos=11433,-598,-200 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=149554 qt=15916 cinema audio level SEQ_BLUSL1_GATTACK vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=149963 qt=16379 player 0 guid=6E89E001 slot=0 pad=0 pos=11095,-598,-200 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=150098 qt=16379 cinema audio level SEQ_BLUSL1_GATTACK vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=150104 qt=16479 view 0 viewport=0,0,640,360 eye=11047,-429,-199 frames=697 views=1
+wall=150105 qt=16479 bodies view=0 drawn=0 frames=11 others=0 with_body=0
+wall=150195 qt=16479 dialog voice Mutant1_Vox_Walk id=00028012
+wall=150603 qt=16858 cinema audio level SEQ_BLUSL1_GATTACK vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=150606 qt=16858 dialog voice Mutant1_Vox_Walk id=00028017
+wall=150611 qt=16958 player 0 guid=6E89E001 slot=0 pad=0 pos=10748,-598,-200 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=150986 qt=17241 dialog stop - id=00028012
+wall=150986 qt=17241 dialog voice Mutant1_Vox_Run id=0002801c
+wall=151132 qt=17337 cinema audio level SEQ_BLUSL1_GATTACK vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=151143 qt=17437 view 0 viewport=0,0,640,360 eye=10472,-429,-199 frames=707 views=1
+wall=151144 qt=17437 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=151237 qt=17437 dialog stop - id=00028017
+wall=151237 qt=17437 dialog voice Mutant1_Vox_Run id=00028020
+wall=151243 qt=17537 audio voices=12 top=LITE_FLOURESCENT_A x3
+wall=151243 qt=17537 player 0 guid=6E89E001 slot=0 pad=0 pos=10401,-598,-200 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=151336 qt=17537 pad 0 ly = 0
+wall=151710 qt=17737 cinema audio level SEQ_BLUSL1_GATTACK vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=151812 qt=17837 dialog stream RAMIREZA_ALERT id=00028027
+wall=152019 qt=18037 dialog stop - id=0002801c
+wall=152019 qt=18037 dialog voice Mutant1_Vox_Run id=0002802e
+wall=152023 qt=18137 player 0 guid=6E89E001 slot=0 pad=0 pos=10341,-598,-200 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=152267 qt=18233 cinema audio level SEQ_BLUSL1_GATTACK vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=152276 qt=18333 view 0 viewport=0,0,640,360 eye=10353,-429,-199 frames=716 views=1
+wall=152277 qt=18333 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=152370 qt=18333 dialog voice Mutant1_Vox_Run id=00028035
+wall=152527 qt=18433 dialog stop - id=00028020
+wall=152527 qt=18433 dialog voice Mutant1_Vox_Run id=00028039
+wall=152623 qt=18533 pad 1 ly = -32767
+wall=152734 qt=18732 player 0 guid=6E89E001 slot=0 pad=0 pos=10341,-598,-200 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=152824 qt=18732 cinema audio level SEQ_BLUSL1_GATTACK vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=152925 qt=18832 cinema audio end SEQ_BLUSL1_GATTACK
+wall=152925 qt=18832 dialog stop - id=0002800c
+wall=152925 qt=18832 dialog stop - id=00000000
+wall=153022 qt=18932 perf frames=48 in 5096 ms
+wall=153027 qt=18932 dialog stop - id=0002802e
+wall=153027 qt=18932 dialog voice Mutant1_Vox_Run id=00028048
+wall=153116 qt=19030 dialog stop - id=00028027
+wall=153116 qt=19030 dialog stream RAMIREZ_BLUSL1_13 id=0002804b
+wall=153120 qt=19030 dialog stop - id=00028035
+wall=153120 qt=19030 dialog voice Mutant1_Vox_Run id=0002804e
+wall=153287 qt=19224 view 0 viewport=0,0,640,360 eye=10353,-429,-199 frames=725 views=1
+wall=153288 qt=19224 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=153390 qt=19324 player 0 guid=6E89E001 slot=0 pad=0 pos=10341,-598,-200 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=153488 qt=19324 dialog stop - id=00028039
+wall=153488 qt=19324 dialog voice Mutant1_Vox_Run id=00028055
+wall=153885 qt=19722 dialog stop - id=0002804e
+wall=153885 qt=19722 dialog voice Mutant1_Vox_Run id=0002805e
+wall=153886 qt=19722 dialog stop - id=00028048
+wall=153886 qt=19722 dialog voice Mutant1_Vox_Run id=0002805f
+wall=153988 qt=19917 audio voices=29 top=MUTANT1_FOOTFALL_TOE_CONCRETE x5
+wall=153988 qt=19917 player 0 guid=6E89E001 slot=0 pad=0 pos=10341,-598,-200 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=154679 qt=20017 view 0 viewport=0,0,640,360 eye=10353,-429,-199 frames=733 views=1
+wall=154680 qt=20017 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=154775 qt=20017 dialog voice Mutant1_Vox_Walk id=0002806e
+wall=154876 qt=20117 dialog stop - id=0002806e
+wall=154876 qt=20117 dialog voice Mutant1_PainGrunt id=00028073
+wall=155182 qt=20512 player 0 guid=6E89E001 slot=0 pad=0 pos=10341,-598,-200 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=155279 qt=20512 dialog stop - id=0002805e
+wall=155279 qt=20512 dialog voice Mutant1_Vox_Run id=00028080
+wall=155281 qt=20512 dialog stop - id=0002805f
+wall=155281 qt=20512 dialog voice Mutant1_PainGrunt id=00028084
+wall=155646 qt=20812 dialog stop - id=00028073
+wall=155646 qt=20812 dialog voice Mutant1_Vox_Leapspawn id=0002808c
+wall=155755 qt=21012 view 0 viewport=0,0,640,360 eye=10353,-429,-199 frames=743 views=1
+wall=155756 qt=21012 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=155847 qt=21012 pad 1 ly = 0
+wall=155857 qt=21112 player 0 guid=6E89E001 slot=0 pad=0 pos=10341,-598,-200 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=156051 qt=21212 dialog stop - id=00028080
+wall=156051 qt=21212 dialog voice Mutant1_Vox_Run id=00028091
+wall=156143 qt=21311 dialog stream CRISPY_BLUSL1_12 id=00028095
+wall=156623 qt=21704 player 0 guid=6E89E001 slot=0 pad=0 pos=10341,-598,-200 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=156828 qt=21904 view 0 viewport=0,0,640,360 eye=10353,-429,-199 frames=752 views=1
+wall=156830 qt=21904 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=157016 qt=22003 pad 0 lx = 32767
+wall=157016 qt=22003 pad 1 lx = -32767
+wall=157019 qt=22003 dialog stop - id=00028091
+wall=157019 qt=22003 dialog voice Mutant1_Vox_Run id=000280b2
+wall=157120 qt=22100 dialog voice Mutant1_Vox_Run id=000280b6
+wall=157365 qt=22199 dialog stop - id=000280b6
+wall=157365 qt=22199 dialog voice Mutant1_Vox_Run id=000280b8
+wall=157371 qt=22299 audio voices=23 top=SMP_FIRE_OS_NPC x4
+wall=157371 qt=22299 player 0 guid=6E89E001 slot=0 pad=0 pos=10341,-598,-319 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=157629 qt=22399 dialog voice Mutant1_Vox_Run id=000280bf
+wall=157629 qt=22399 dialog stop - id=000280b8
+wall=157629 qt=22399 dialog voice Mutant1_PainGrunt id=000280c2
+wall=157855 qt=22695 view 0 viewport=0,0,640,360 eye=10352,-430,-541 frames=760 views=1
+wall=157856 qt=22695 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=157951 qt=22695 dialog stop - id=000280b2
+wall=157951 qt=22695 dialog voice Mutant1_Vox_Run id=000280cd
+wall=158041 qt=22795 perf frames=39 in 5019 ms
+wall=158052 qt=22889 player 0 guid=6E89E001 slot=0 pad=0 pos=10341,-598,-540 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=158636 qt=23273 dialog stop - id=000280bf
+wall=158636 qt=23273 dialog voice Mutant1_Vox_Run id=000280e5
+wall=158740 qt=23469 player 0 guid=6E89E001 slot=0 pad=0 pos=10341,-598,-540 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=158922 qt=23563 dialog stop - id=000280c2
+wall=158922 qt=23563 dialog voice Mutant1_Vox_MeleeAttack01 id=000280ea
+wall=158928 qt=23563 dialog stream McCanA_KILL id=000280eb
+wall=158929 qt=23657 view 0 viewport=0,0,640,360 eye=10352,-430,-541 frames=770 views=1
+wall=158930 qt=23657 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=159038 qt=23657 dialog stop - id=000280ea
+wall=159132 qt=23757 dialog stop - id=000280cd
+wall=159132 qt=23757 dialog voice Mutant1_Vox_Run id=000280ef
+wall=159349 qt=24046 player 0 guid=6E89E001 slot=0 pad=0 pos=10341,-598,-540 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=159453 qt=24046 pad 0 lx = 0
+wall=159453 qt=24046 pad 1 lx = 0
+wall=159559 qt=24146 dialog stop - id=000280ef
+wall=159559 qt=24146 dialog voice Mutant1_Vox_LeapSpawn id=00028104
+wall=159704 qt=24246 dialog stop - id=000280e5
+wall=159704 qt=24246 dialog voice Mutant1_Vox_Run id=00028107
+wall=159989 qt=24626 audio voices=25 top=SMP_FIRE_OS_NPC x4
+wall=159989 qt=24626 player 0 guid=6E89E001 slot=0 pad=0 pos=10341,-598,-540 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=159989 qt=24626 view 0 viewport=0,0,640,360 eye=10353,-429,-540 frames=780 views=1
+wall=159990 qt=24626 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=160442 qt=24915 dialog stop - id=00028107
+wall=160442 qt=24915 dialog voice Mutant1_Vox_Run id=00028118
+wall=160561 qt=25015 pad 0 rx = 32767
+wall=160660 qt=25115 dialog stop - id=00028118
+wall=160660 qt=25115 dialog voice Mutant1_PainGrunt id=00028126
+wall=160667 qt=25209 player 0 guid=6E89E001 slot=0 pad=0 pos=10341,-598,-540 yaw=-1079 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=161090 qt=25578 view 0 viewport=0,0,640,360 eye=10333,-429,-531 frames=790 views=1
+wall=161091 qt=25578 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=161275 qt=25659 dialog voice Mutant1_Vox_Walk id=0002813d
+wall=161281 qt=25759 player 0 guid=6E89E001 slot=0 pad=0 pos=10341,-598,-540 yaw=-2765 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=162088 qt=26232 dialog stop - id=0002813d
+wall=162088 qt=26232 dialog voice Mutant1_Vox_Run id=0002814d
+wall=162095 qt=26332 player 0 guid=6E89E001 slot=0 pad=0 pos=10341,-598,-540 yaw=-4568 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=162095 qt=26332 view 0 viewport=0,0,640,360 eye=10352,-429,-538 frames=798 views=1
+wall=162096 qt=26332 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=162528 qt=26529 pad 0 rx = 0
+wall=162696 qt=26694 dialog voice Mutant1_Vox_Walk id=00028159
+wall=162697 qt=26694 dialog voice Mutant1_Vox_Run id=0002815b
+wall=162801 qt=26873 audio voices=28 top=GLASS_IMPACT x4
+wall=162801 qt=26873 player 0 guid=6E89E001 slot=0 pad=0 pos=10341,-598,-540 yaw=-5447 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=163000 qt=26973 dialog stop - id=0002814d
+wall=163000 qt=26973 dialog voice Mutant1_Vox_Run id=00028166
+wall=163093 qt=27056 perf frames=45 in 5052 ms
+wall=163107 qt=27153 view 0 viewport=0,0,640,360 eye=10340,-429,-528 frames=807 views=1
+wall=163109 qt=27153 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=163229 qt=27153 dialog stop - id=00028159
+wall=163229 qt=27153 dialog voice Mutant1_Vox_Run id=00028173
+wall=163445 qt=27336 dialog stop - id=0002815b
+wall=163445 qt=27336 dialog voice Mutant1_Vox_MeleeAttack01 id=00028186
+wall=163452 qt=27436 player 0 guid=6E89E001 slot=0 pad=0 pos=10341,-598,-540 yaw=-5447 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=163631 qt=27519 pad 1 rx = -32767
+wall=163637 qt=27519 dialog stop - id=00028166
+wall=163637 qt=27519 dialog voice Mutant1_PainGrunt id=00028190
+wall=163637 qt=27519 dialog stop - id=00028186
+wall=164076 qt=27986 player 0 guid=6E89E001 slot=0 pad=0 pos=10341,-598,-540 yaw=-5447 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=164203 qt=27986 dialog stop - id=00028173
+wall=164203 qt=27986 dialog voice Mutant1_Vox_Run id=000281b0
+wall=164215 qt=28086 view 0 viewport=0,0,640,360 eye=10340,-429,-528 frames=817 views=1
+wall=164216 qt=28086 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=164673 qt=28536 player 0 guid=6E89E001 slot=0 pad=0 pos=10341,-598,-540 yaw=-5447 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=164861 qt=28636 dialog stop - id=00028190
+wall=164861 qt=28636 dialog voice Mutant1_Vox_MeleeAttack01 id=000281d0
+wall=164997 qt=28721 dialog stop - id=000281b0
+wall=164997 qt=28721 dialog voice Mutant1_Vox_Run id=000281d1
+wall=165160 qt=28903 dialog stream CRISPYA_KILL id=000281d6
+wall=165162 qt=28903 dialog stop - id=000281d0
+wall=165246 qt=29066 audio voices=27 top=SMP_FIRE_OS_NPC x3
+wall=165246 qt=29066 player 0 guid=6E89E001 slot=0 pad=0 pos=10341,-598,-540 yaw=-5447 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=165246 qt=29066 view 0 viewport=0,0,640,360 eye=10340,-429,-528 frames=828 views=1
+wall=165247 qt=29066 bodies view=0 drawn=0 frames=11 others=0 with_body=0
+wall=165317 qt=29066 pad 1 rx = 0
+wall=165401 qt=29145 dialog voice Mutant1_Vox_Walk id=000281e0
+wall=165481 qt=29225 dialog voice Mutant1_Vox_Walk id=000281e3
+wall=165559 qt=29304 dialog stop - id=000281e0
+wall=165559 qt=29304 dialog voice Mutant1_Vox_Walk id=000281e4
+wall=165800 qt=29542 dialog stop - id=000281d1
+wall=165800 qt=29542 dialog voice Mutant1_Vox_Run id=000281e8
+wall=165807 qt=29622 player 0 guid=6E89E001 slot=0 pad=0 pos=10341,-598,-540 yaw=-5447 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=165966 qt=29706 dialog voice Mutant1_Vox_Walk id=000281ef
+wall=166185 qt=29889 dialog stop - id=000281ef
+wall=166185 qt=29889 dialog voice Mutant1_Vox_Run id=000281f4
+wall=166186 qt=29889 dialog stop - id=000281e4
+wall=166186 qt=29889 dialog voice Mutant1_Vox_Run id=000281f6
+wall=166188 qt=29889 dialog stop - id=000281e3
+wall=166188 qt=29889 dialog voice Mutant1_Vox_Run id=000281f7
+wall=166281 qt=30062 view 0 viewport=0,0,640,360 eye=10340,-429,-528 frames=840 views=1
+wall=166282 qt=30062 bodies view=0 drawn=0 frames=12 others=0 with_body=0
+wall=166350 qt=30062 pad 0 a = 1
+wall=166365 qt=30146 player 0 guid=6E89E001 slot=0 pad=0 pos=10341,-598,-540 yaw=-5447 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=166442 qt=30146 dialog stop - id=000281f6
+wall=166442 qt=30146 dialog voice Mutant1_Vox_Run id=000281fe
+wall=166597 qt=30315 pad 0 a = 0
+wall=166603 qt=30315 dialog stop - id=000281e8
+wall=166603 qt=30315 dialog voice Mutant1_Vox_Run id=00038005
+wall=166900 qt=30592 dialog stream SPEC41A_RELOAD id=00038015
+wall=166902 qt=30592 dialog stop - id=000281f7
+wall=166902 qt=30592 dialog voice Mutant1_Vox_Run id=00038018
+wall=166911 qt=30692 player 0 guid=6E89E001 slot=0 pad=0 pos=10341,-474,-540 yaw=-5447 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=167330 qt=31059 view 0 viewport=0,0,640,360 eye=10340,-390,-528 frames=851 views=1
+wall=167331 qt=31059 bodies view=0 drawn=0 frames=11 others=0 with_body=0
+wall=167423 qt=31059 dialog voice Mutant1_Vox_Run id=00038031
+wall=167425 qt=31059 dialog stop - id=00038005
+wall=167425 qt=31059 dialog voice Mutant1_Vox_Run id=00038033
+wall=167512 qt=31241 audio voices=39 top=MUTANT1_FOOTFALL_HEEL_CONCRETE x5
+wall=167512 qt=31241 player 0 guid=6E89E001 slot=0 pad=0 pos=10341,-598,-540 yaw=-5447 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=167623 qt=31241 dialog voice Mutant1_Vox_Run id=0003803f
+wall=167624 qt=31241 dialog stop - id=00038018
+wall=167624 qt=31241 dialog voice Mutant1_Vox_Run id=00038041
+wall=167700 qt=31341 dialog voice Mutant1_Vox_Run id=00038046
+wall=168081 qt=31784 player 0 guid=6E89E001 slot=0 pad=0 pos=10341,-598,-540 yaw=-5447 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=168229 qt=31784 perf frames=53 in 5136 ms
+wall=168236 qt=31784 dialog stop - id=00038033
+wall=168236 qt=31784 dialog voice Mutant1_PainGrunt id=00038066
+wall=168396 qt=31966 dialog stop - id=00038041
+wall=168396 qt=31966 dialog voice Mutant1_Vox_Run id=00038069
+wall=168402 qt=32045 view 0 viewport=0,0,640,360 eye=10340,-429,-528 frames=862 views=1
+wall=168403 qt=32045 bodies view=0 drawn=0 frames=11 others=0 with_body=0
+wall=168502 qt=32045 pad 1 a = 1
+wall=168588 qt=32145 dialog stop - id=00038046
+wall=168588 qt=32145 dialog voice Mutant1_Vox_Run id=00038074
+wall=168702 qt=32227 dialog stream CRISPYA_COVER id=00038081
+wall=168705 qt=32327 player 0 guid=6E89E001 slot=0 pad=0 pos=10341,-598,-540 yaw=-5447 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=168771 qt=32327 pad 1 a = 0
+wall=168775 qt=32327 dialog voice Mutant1_Vox_Run id=00038084
+wall=168938 qt=32488 dialog voice Mutant1_Vox_Run id=00038089
+wall=169126 qt=32670 dialog stop - id=00038066
+wall=169275 qt=32854 player 0 guid=6E89E001 slot=0 pad=0 pos=10341,-598,-540 yaw=-5447 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=169430 qt=32934 dialog stop - id=00038074
+wall=169430 qt=32934 dialog voice Mutant1_Vox_Run id=00038099
+wall=169436 qt=33016 view 0 viewport=0,0,640,360 eye=10340,-429,-528 frames=873 views=1
+wall=169436 qt=33016 bodies view=0 drawn=0 frames=11 others=0 with_body=0
+wall=169507 qt=33016 dialog stop - id=00038069
+wall=169507 qt=33016 dialog voice Mutant1_Vox_Leapspawn id=0003809e
+wall=169837 qt=33419 audio voices=24 top=LITE_FLOURESCENT_A x3
+wall=169838 qt=33419 player 0 guid=6E89E001 slot=0 pad=0 pos=10341,-598,-540 yaw=-5447 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=170011 qt=33518 dialog voice Mutant1_Vox_Run id=000380a9
+wall=170189 qt=33698 dialog voice Mutant1_Vox_Run id=000380b0
+wall=170335 qt=33773 dialog stop - id=00038099
+wall=170335 qt=33773 dialog voice Mutant1_Vox_Run id=000380b3
+wall=170421 qt=33954 player 0 guid=6E89E001 slot=0 pad=0 pos=10341,-598,-540 yaw=-5447 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=170534 qt=34054 view 0 viewport=0,0,640,360 eye=10340,-429,-528 frames=885 views=1
+wall=170534 qt=34054 bodies view=0 drawn=0 frames=12 others=0 with_body=0
+wall=170603 qt=34054 pad 0 rt = 32767
+wall=171546 qt=34330 view 0 viewport=0,0,640,360 eye=10340,-429,-528 frames=888 views=1
+wall=171547 qt=34330 bodies view=0 drawn=0 frames=3 others=0 with_body=0
+wall=171759 qt=34525 player 0 guid=6E89E001 slot=0 pad=0 pos=10341,-598,-540 yaw=-5447 pitch=0 hp=100 weapon=EGL ammo=63 inclip=5 perclip=8 cinema=0
+wall=171840 qt=34525 dialog voice Mutant1_Vox_Run id=000380ca
+wall=171951 qt=34615 dialog stream CRISPYA_RELOAD id=000380cd
+wall=172041 qt=34715 dialog voice Mutant1_Vox_Run id=000380d5
+wall=172043 qt=34715 dialog voice Mutant1_Vox_Run id=000380d7
+wall=172394 qt=35098 player 0 guid=6E89E001 slot=0 pad=0 pos=10341,-598,-540 yaw=-5447 pitch=0 hp=100 weapon=EGL ammo=62 inclip=4 perclip=8 cinema=0
+wall=172625 qt=35287 view 0 viewport=0,0,640,360 eye=10340,-429,-528 frames=898 views=1
+wall=172627 qt=35287 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=172838 qt=35387 dialog stop - id=000380ca
+wall=172838 qt=35387 dialog voice Mutant1_Vox_Run id=000380fe
+wall=173031 qt=35578 pad 0 rt = -32768
+wall=173042 qt=35663 audio voices=40 top=BULLETIMPACTFLESH x5
+wall=173042 qt=35663 player 0 guid=6E89E001 slot=0 pad=0 pos=10341,-598,-540 yaw=-5447 pitch=0 hp=100 weapon=EGL ammo=60 inclip=2 perclip=8 cinema=0
+wall=173154 qt=35663 dialog voice Mutant1_Vox_Run id=0003810f
+wall=173242 qt=35763 perf frames=44 in 5013 ms
+wall=173446 qt=35956 dialog voice Mutant1_Vox_Run id=0003811c
+wall=173697 qt=36143 dialog stop - id=000380fe
+wall=173697 qt=36143 dialog voice Mutant1_Vox_Run id=00038124
+wall=173704 qt=36231 player 0 guid=6E89E001 slot=0 pad=0 pos=10341,-598,-540 yaw=-5447 pitch=0 hp=100 weapon=EGL ammo=60 inclip=2 perclip=8 cinema=0
+wall=173704 qt=36231 view 0 viewport=0,0,640,360 eye=10340,-429,-528 frames=908 views=1
+wall=173705 qt=36231 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=174154 qt=36592 pad 1 rt = 32767
+wall=174244 qt=36757 player 0 guid=6E89E001 slot=0 pad=0 pos=10341,-598,-540 yaw=-5447 pitch=0 hp=100 weapon=EGL ammo=60 inclip=2 perclip=8 cinema=0
+wall=174674 qt=37021 dialog voice Mutant1_Vox_Run id=0003813e
+wall=174760 qt=37203 view 0 viewport=0,0,640,360 eye=10340,-429,-528 frames=919 views=1
+wall=174762 qt=37203 bodies view=0 drawn=0 frames=11 others=0 with_body=0
+wall=174856 qt=37203 dialog voice Mutant1_Vox_Run id=00038142
+wall=174856 qt=37203 dialog voice Mutant1_Vox_Run id=00038143
+wall=174862 qt=37303 player 0 guid=6E89E001 slot=0 pad=0 pos=10341,-598,-540 yaw=-5447 pitch=0 hp=100 weapon=EGL ammo=60 inclip=2 perclip=8 cinema=0
+wall=175214 qt=37562 dialog stop - id=00038142
+wall=175214 qt=37562 dialog voice Mutant1_Vox_LeapSpawn id=0003814d
+wall=175379 qt=37820 audio voices=19 top=LITE_FLOURESCENT_A x3
+wall=175379 qt=37820 player 0 guid=6E89E001 slot=0 pad=0 pos=10341,-598,-540 yaw=-5447 pitch=0 hp=100 weapon=EGL ammo=60 inclip=2 perclip=8 cinema=0
+wall=175741 qt=38073 pad 1 rt = -32768
+wall=175825 qt=38153 dialog voice Mutant1_Vox_Run id=00038153
+wall=175829 qt=38231 view 0 viewport=0,0,640,360 eye=10340,-429,-528 frames=931 views=1
+wall=175831 qt=38231 bodies view=0 drawn=0 frames=12 others=0 with_body=0
+wall=175935 qt=38331 player 0 guid=6E89E001 slot=0 pad=0 pos=10341,-598,-540 yaw=-5447 pitch=0 hp=100 weapon=EGL ammo=60 inclip=2 perclip=8 cinema=0
+wall=176115 qt=38414 dialog voice Mutant1_Vox_Run id=0003815f
+wall=176487 qt=38875 player 0 guid=6E89E001 slot=0 pad=0 pos=10341,-598,-540 yaw=-5447 pitch=0 hp=100 weapon=EGL ammo=60 inclip=2 perclip=8 cinema=0
+wall=176794 qt=39032 pad 0 x = 1
+wall=176877 qt=39132 dialog voice Mutant1_Vox_Walk id=0003816f
+wall=176884 qt=39213 view 0 viewport=0,0,640,360 eye=10340,-429,-528 frames=942 views=1
+wall=176885 qt=39213 bodies view=0 drawn=0 frames=11 others=0 with_body=0
+wall=177112 qt=39371 pad 0 x = 0
+wall=177121 qt=39451 player 0 guid=6E89E001 slot=0 pad=0 pos=10341,-598,-540 yaw=-5447 pitch=0 hp=100 weapon=EGL ammo=60 inclip=2 perclip=8 cinema=0
+wall=177355 qt=39609 dialog voice Mutant1_Vox_Run id=00038176
+wall=177639 qt=39953 audio voices=22 top=SMP_FIRE_OS_NPC x3
+wall=177639 qt=39953 player 0 guid=6E89E001 slot=0 pad=0 pos=10341,-598,-540 yaw=-5447 pitch=0 hp=100 weapon=EGL ammo=60 inclip=2 perclip=8 cinema=0
+wall=177887 qt=40033 dialog stop - id=0003816f
+wall=177887 qt=40033 dialog voice Mutant1_Vox_Run id=00038186
+wall=177894 qt=40133 view 0 viewport=0,0,640,360 eye=10340,-429,-528 frames=953 views=1
+wall=177895 qt=40133 bodies view=0 drawn=0 frames=11 others=0 with_body=0
+wall=178051 qt=40217 dialog voice Mutant1_Vox_Run id=0003818f
+wall=178223 qt=40463 player 0 guid=6E89E001 slot=0 pad=0 pos=10341,-598,-540 yaw=-5447 pitch=0 hp=100 weapon=EGL ammo=60 inclip=2 perclip=8 cinema=0
+wall=178312 qt=40463 perf frames=54 in 5070 ms
+wall=178907 qt=40834 dialog stop - id=00038186
+wall=178907 qt=40834 dialog voice Mutant1_Vox_Run id=000381aa
+wall=178908 qt=40834 dialog voice Mutant1_Vox_Run id=000381ad
+wall=178918 qt=40934 view 0 viewport=0,0,640,360 eye=10340,-429,-528 frames=962 views=1
+wall=178919 qt=40934 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=179004 qt=41023 player 0 guid=6E89E001 slot=0 pad=0 pos=10341,-598,-540 yaw=-5447 pitch=0 hp=100 weapon=EGL ammo=60 inclip=2 perclip=8 cinema=0
+wall=179201 qt=41123 dialog stop - id=000381aa
+wall=179201 qt=41123 dialog voice Mutant1_Vox_ReactRage id=000381c9
+wall=179398 qt=41309 dialog stop - id=000381c9
+wall=179398 qt=41309 dialog voice Mutant1_Vox_MeleeAttack01 id=000381db
+wall=179475 qt=41391 dialog voice Mutant1_Vox_Run id=000381e3
+wall=179623 qt=41567 player 0 guid=6E89E001 slot=0 pad=0 pos=10341,-598,-540 yaw=-5447 pitch=0 hp=100 weapon=EGL ammo=60 inclip=8 perclip=8 cinema=0
+wall=179713 qt=41567 dialog stream McCanA_HITMELEE id=000381f0
+wall=179721 qt=41567 dialog stream SPEC41A_KILL id=000381f3
+wall=179826 qt=41666 dialog stop - id=000381db
+wall=179977 qt=41866 view 0 viewport=0,0,640,360 eye=10340,-429,-528 frames=972 views=1
+wall=179978 qt=41866 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=180213 qt=42027 dialog voice Mutant1_Vox_Run id=00048007
+wall=180219 qt=42109 audio voices=46 top=EXPLOSION_DEBRIS_IMPACT x14
+wall=180219 qt=42109 player 0 guid=6E89E001 slot=0 pad=0 pos=10341,-598,-540 yaw=-5447 pitch=0 hp=100 weapon=EGL ammo=60 inclip=8 perclip=8 cinema=0
+wall=180692 qt=42509 dialog voice Mutant1_Vox_Run id=00048017
+wall=180776 qt=42666 player 0 guid=6E89E001 slot=0 pad=0 pos=10341,-598,-540 yaw=-5447 pitch=0 hp=100 weapon=EGL ammo=60 inclip=8 perclip=8 cinema=0
+wall=180845 qt=42666 pad 1 x = 1
+wall=181070 qt=42925 view 0 viewport=0,0,640,360 eye=10340,-429,-528 frames=985 views=1
+wall=181071 qt=42925 bodies view=0 drawn=0 frames=13 others=0 with_body=0
+wall=181140 qt=42925 pad 1 x = 0
+wall=181314 qt=43170 player 0 guid=6E89E001 slot=0 pad=0 pos=10341,-598,-540 yaw=-5447 pitch=0 hp=100 weapon=EGL ammo=60 inclip=8 perclip=8 cinema=0
+wall=181470 qt=43251 dialog voice Mutant1_Vox_Run id=00048028
+wall=181875 qt=43695 player 0 guid=6E89E001 slot=0 pad=0 pos=10341,-598,-540 yaw=-5447 pitch=0 hp=100 weapon=EGL ammo=60 inclip=8 perclip=8 cinema=0
+wall=181973 qt=43695 dialog voice Mutant1_Vox_Run id=00048036
+wall=182108 qt=43795 dialog stream SPEC41A_RELOAD id=0004803a
+wall=182116 qt=43895 view 0 viewport=0,0,640,360 eye=10340,-429,-528 frames=996 views=1
+wall=182116 qt=43895 bodies view=0 drawn=0 frames=11 others=0 with_body=0
+wall=182479 qt=44255 audio voices=27 top=SMP_FIRE_OS_NPC x5
+wall=182479 qt=44255 player 0 guid=6E89E001 slot=0 pad=0 pos=10341,-598,-540 yaw=-5447 pitch=0 hp=100 weapon=EGL ammo=60 inclip=8 perclip=8 cinema=0
+wall=182659 qt=44355 dialog voice Mutant1_Vox_Run id=0004804f
+wall=182878 qt=44539 dialog voice Mutant1_Vox_Run id=0004805f
+wall=182995 qt=44623 dialog stop - id=0004805f
+wall=182995 qt=44623 dialog voice Mutant1_Vox_ReactRage id=00048065
+wall=183084 qt=44805 player 0 guid=6E89E001 slot=0 pad=0 pos=10341,-598,-540 yaw=-5447 pitch=0 hp=100 weapon=EGL ammo=60 inclip=8 perclip=8 cinema=0
+wall=183244 qt=44905 view 0 viewport=0,0,640,360 eye=10340,-429,-528 frames=1007 views=1
+wall=183245 qt=44905 bodies view=0 drawn=0 frames=11 others=0 with_body=0
+wall=183314 qt=44905 perf frames=50 in 5002 ms
+wall=183320 qt=44905 dialog voice Mutant1_Vox_Run id=00048075
+wall=183514 qt=45089 dialog stop - id=0004804f
+wall=183514 qt=45089 dialog voice Mutant1_Vox_Run id=00048081
+wall=183726 qt=45355 player 0 guid=6E89E001 slot=0 pad=0 pos=10341,-598,-540 yaw=-5447 pitch=0 hp=100 weapon=EGL ammo=60 inclip=8 perclip=8 cinema=0
+wall=184254 qt=45722 dialog stream CRISPYA_KILL id=000480a2
+wall=184255 qt=45822 view 0 viewport=0,0,640,360 eye=10340,-429,-528 frames=1017 views=1
+wall=184256 qt=45822 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=184330 qt=45822 dialog stop - id=00048081
+wall=184330 qt=45822 dialog voice Mutant1_Vox_Run id=000480a6
+wall=184330 qt=45822 dialog stop - id=00048065
+wall=184337 qt=45906 player 0 guid=6E89E001 slot=0 pad=0 pos=10341,-598,-540 yaw=-5447 pitch=0 hp=100 weapon=EGL ammo=60 inclip=8 perclip=8 cinema=0
+wall=184589 qt=46084 dialog voice Mutant1_Vox_Run id=000480b7
+wall=184771 qt=46263 pad 0 ly = 32767
+wall=184880 qt=46440 audio voices=30 top=BULLETIMPACTFLESH x5
+wall=184880 qt=46440 player 0 guid=6E89E001 slot=0 pad=0 pos=10336,-598,-481 yaw=-5447 pitch=0 hp=100 weapon=EGL ammo=60 inclip=8 perclip=8 cinema=0
+wall=185072 qt=46526 dialog stop - id=000480a6
+wall=185072 qt=46526 dialog voice Mutant1_Vox_Run id=000480c2
+wall=185328 qt=46709 dialog voice Mutant1_Vox_Walk id=000480cc
+wall=185337 qt=46809 view 0 viewport=0,0,640,360 eye=10316,-430,-249 frames=1028 views=1
+wall=185338 qt=46809 bodies view=0 drawn=0 frames=11 others=0 with_body=0
+wall=185560 qt=46999 player 0 guid=6E89E001 slot=0 pad=0 pos=10308,-598,-147 yaw=-5447 pitch=0 hp=100 weapon=EGL ammo=60 inclip=8 perclip=8 cinema=0
+wall=185647 qt=46999 dialog stop - id=000480cc
+wall=185647 qt=46999 dialog voice Mutant1_Vox_Run id=000480e0
+wall=186003 qt=47293 dialog stop - id=000480c2
+wall=186003 qt=47293 dialog voice Mutant1_Vox_Run id=000480f4
+wall=186004 qt=47293 dialog voice Mutant1_Vox_Death03 id=000480f6
+wall=186256 qt=47593 player 0 guid=6E89E001 slot=0 pad=0 pos=10278,-598,140 yaw=-5447 pitch=0 hp=100 weapon=EGL ammo=60 inclip=8 perclip=8 cinema=0
+wall=186410 qt=47693 view 0 viewport=0,0,640,360 eye=10272,-430,151 frames=1037 views=1
+wall=186412 qt=47693 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=186785 qt=47893 dialog stop - id=000480e0
+wall=186785 qt=47893 dialog voice Mutant1_Vox_Run id=00048114
+wall=186998 qt=48093 dialog stop - id=000480f4
+wall=186998 qt=48093 dialog voice Mutant1_Vox_Run id=0004811f
+wall=187011 qt=48193 player 0 guid=6E89E001 slot=0 pad=0 pos=10260,-598,140 yaw=-5447 pitch=0 hp=100 weapon=EGL ammo=60 inclip=8 perclip=8 cinema=0
+wall=187478 qt=48593 view 0 viewport=0,0,640,360 eye=10259,-430,151 frames=1046 views=1
+wall=187479 qt=48593 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=187802 qt=48689 dialog stop - id=00048114
+wall=187802 qt=48689 dialog voice Mutant1_Vox_Run id=00048137
+wall=187810 qt=48789 audio voices=26 top=SMP_FIRE_OS_NPC x3
+wall=187810 qt=48789 player 0 guid=6E89E001 slot=0 pad=0 pos=10260,-598,140 yaw=-5447 pitch=0 hp=100 weapon=EGL ammo=60 inclip=8 perclip=8 cinema=0
+wall=187898 qt=48789 pad 0 ly = 0
+wall=187904 qt=48789 dialog stop - id=0004811f
+wall=187904 qt=48789 dialog voice Mutant1_Vox_Run id=0004813b
+wall=188207 qt=49089 dialog voice Mutant1_Vox_Walk id=00048147
+wall=188399 qt=49289 perf frames=46 in 5085 ms
+wall=188405 qt=49289 dialog stop - id=00048137
+wall=188405 qt=49289 dialog voice Mutant1_PainGrunt id=00048151
+wall=188412 qt=49387 player 0 guid=6E89E001 slot=0 pad=0 pos=10260,-598,140 yaw=-5447 pitch=0 hp=100 weapon=EGL ammo=60 inclip=8 perclip=8 cinema=0
+wall=188554 qt=49487 view 0 viewport=0,0,640,360 eye=10259,-429,151 frames=1055 views=1
+wall=188555 qt=49487 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=188961 qt=49786 pad 1 ly = 32767
+wall=188967 qt=49786 dialog stop - id=00048147
+wall=188967 qt=49786 dialog voice Mutant1_Vox_Run id=00048167
+wall=189070 qt=49983 player 0 guid=6E89E001 slot=0 pad=0 pos=10260,-598,140 yaw=-5447 pitch=0 hp=100 weapon=EGL ammo=60 inclip=8 perclip=8 cinema=0
+wall=189186 qt=49983 dialog voice Mutant1_Vox_Run id=0004816e
+wall=189571 qt=50382 view 0 viewport=0,0,640,360 eye=10259,-429,151 frames=1064 views=1
+wall=189572 qt=50382 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=189660 qt=50382 dialog stop - id=0004816e
+wall=189660 qt=50382 dialog voice Mutant1_Vox_LeapSpawn id=00048180
+wall=189799 qt=50577 player 0 guid=6E89E001 slot=0 pad=0 pos=10260,-598,140 yaw=-5447 pitch=0 hp=100 weapon=EGL ammo=60 inclip=8 perclip=8 cinema=0
+wall=189888 qt=50577 dialog stop - id=00048167
+wall=189888 qt=50577 dialog voice Mutant1_Vox_Run id=00048189
+wall=190668 qt=50972 view 0 viewport=0,0,640,360 eye=10259,-429,151 frames=1070 views=1
+wall=190669 qt=50972 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=190757 qt=50972 dialog voice Mutant1_PainGrunt id=0004819b
+wall=190900 qt=51168 audio voices=25 top=SMP_FIRE_OS_NPC x3
+wall=190900 qt=51168 player 0 guid=6E89E001 slot=0 pad=0 pos=10260,-598,140 yaw=-5447 pitch=0 hp=100 weapon=EGL ammo=60 inclip=8 perclip=8 cinema=0
+wall=191190 qt=51367 dialog stop - id=00048189
+wall=191190 qt=51367 dialog voice Mutant1_Vox_Run id=000481a8
+wall=191548 qt=51664 dialog stop - id=0004819b
+wall=191548 qt=51664 dialog voice Mutant1_Vox_Leapspawn id=000481b1
+wall=191554 qt=51764 player 0 guid=6E89E001 slot=0 pad=0 pos=10260,-598,140 yaw=-5447 pitch=0 hp=100 weapon=EGL ammo=60 inclip=8 perclip=8 cinema=0
+wall=191705 qt=51864 view 0 viewport=0,0,640,360 eye=10259,-429,151 frames=1079 views=1
+wall=191706 qt=51864 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=191794 qt=51864 dialog voice Mutant1_Vox_Walk id=000481b5
+wall=191916 qt=51958 dialog stop - id=000481b5
+wall=191916 qt=51958 dialog voice Mutant1_PainGrunt id=000481ba
+wall=192224 qt=52255 pad 1 ly = 0
+wall=192234 qt=52351 player 0 guid=6E89E001 slot=0 pad=0 pos=10260,-598,140 yaw=-5447 pitch=0 hp=100 weapon=EGL ammo=60 inclip=8 perclip=8 cinema=0
+wall=192775 qt=52835 view 0 viewport=0,0,640,360 eye=10259,-429,151 frames=1089 views=1
+wall=192776 qt=52835 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=192866 qt=52835 dialog voice Mutant1_Vox_Leapspawn id=000481cf
+wall=192873 qt=52935 player 0 guid=6E89E001 slot=0 pad=0 pos=10260,-598,140 yaw=-5447 pitch=0 hp=100 weapon=EGL ammo=60 inclip=8 perclip=8 cinema=0
+wall=193269 qt=53222 pad 0 lx = -32767
+wall=193269 qt=53222 pad 1 lx = 32767
+wall=193471 qt=53421 perf frames=42 in 5072 ms
+wall=193484 qt=53521 audio voices=20 top=LITE_FLOURESCENT_A x3
+wall=193484 qt=53521 player 0 guid=6E89E001 slot=0 pad=0 pos=10260,-598,129 yaw=-5447 pitch=0 hp=100 weapon=EGL ammo=60 inclip=8 perclip=8 cinema=0
+wall=194273 qt=53721 view 0 viewport=0,0,640,360 eye=10257,-430,131 frames=1098 views=1
+wall=194274 qt=53721 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=194510 qt=53821 dialog voice Mutant1_Vox_MeleeAttack01 id=000481f5
+wall=194971 qt=54018 dialog stream McCanA_HITMELEE id=00058002
+wall=194979 qt=54118 player 0 guid=6E89E001 slot=0 pad=0 pos=10260,-598,100 yaw=-5447 pitch=0 hp=100 weapon=EGL ammo=60 inclip=8 perclip=8 cinema=0
+wall=195284 qt=54418 view 0 viewport=0,0,640,360 eye=10257,-430,96 frames=1105 views=1
+wall=195285 qt=54418 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=195481 qt=54518 dialog voice Mutant1_Vox_Run id=00058025
+wall=195589 qt=54718 player 0 guid=6E89E001 slot=0 pad=0 pos=10260,-598,69 yaw=-5447 pitch=0 hp=100 weapon=EGL ammo=60 inclip=8 perclip=8 cinema=0
+wall=196240 qt=55218 pad 0 lx = 0
+wall=196240 qt=55218 pad 1 lx = 0
+wall=196246 qt=55218 dialog stop - id=000481f5
+wall=196254 qt=55318 player 0 guid=6E89E001 slot=0 pad=0 pos=10258,-598,33 yaw=-5447 pitch=0 hp=100 weapon=EGL ammo=60 inclip=8 perclip=8 cinema=0
+wall=196347 qt=55318 dialog stop - id=00058025
+wall=196348 qt=55318 dialog voice Mutant1_Vox_Run id=00058046
+wall=196354 qt=55418 view 0 viewport=0,0,640,360 eye=10256,-429,44 frames=1115 views=1
+wall=196355 qt=55418 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=196851 qt=55914 audio voices=20 top=LITE_FLOURESCENT_A x3
+wall=196851 qt=55914 player 0 guid=6E89E001 slot=0 pad=0 pos=10258,-598,33 yaw=-5447 pitch=0 hp=100 weapon=EGL ammo=60 inclip=8 perclip=8 cinema=0
+wall=197188 qt=56112 dialog stop - id=00058046
+wall=197188 qt=56112 dialog voice Mutant1_Vox_Run id=00058058
+wall=197283 qt=56212 pad 0 rx = -32767
+wall=197392 qt=56409 view 0 viewport=0,0,640,360 eye=10261,-429,44 frames=1125 views=1
+wall=197393 qt=56409 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=197490 qt=56508 player 0 guid=6E89E001 slot=0 pad=0 pos=10258,-598,33 yaw=-4992 pitch=0 hp=100 weapon=EGL ammo=60 inclip=8 perclip=8 cinema=0
+wall=197954 qt=56808 dialog stop - id=00058058
+wall=197954 qt=56808 dialog voice Mutant1_Vox_Run id=00058064
+wall=198179 qt=57083 player 0 guid=6E89E001 slot=0 pad=0 pos=10258,-598,33 yaw=-3183 pitch=0 hp=100 weapon=EGL ammo=60 inclip=8 perclip=8 cinema=0
+wall=198482 qt=57369 view 0 viewport=0,0,640,360 eye=10249,-429,40 frames=1135 views=1
+wall=198485 qt=57369 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=198615 qt=57369 perf frames=40 in 5144 ms
+wall=199245 qt=57667 player 0 guid=6E89E001 slot=0 pad=0 pos=10258,-598,33 yaw=-1343 pitch=0 hp=100 weapon=EGL ammo=60 inclip=8 perclip=8 cinema=0
+wall=199454 qt=57767 pad 0 rx = 0
+wall=199603 qt=57967 view 0 viewport=0,0,640,360 eye=10269,-429,29 frames=1141 views=1
+wall=199605 qt=57967 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=199907 qt=58265 audio voices=37 top=SMP_FIRE_OS_NPC x6
+wall=199908 qt=58265 player 0 guid=6E89E001 slot=0 pad=0 pos=10258,-598,33 yaw=-713 pitch=0 hp=100 weapon=EGL ammo=60 inclip=8 perclip=8 cinema=0
+wall=200677 qt=58763 pad 1 rx = 32767
+wall=200694 qt=58863 player 0 guid=6E89E001 slot=0 pad=0 pos=10258,-598,33 yaw=-713 pitch=0 hp=100 weapon=EGL ammo=60 inclip=8 perclip=8 cinema=0
+wall=200694 qt=58863 view 0 viewport=0,0,640,360 eye=10269,-429,29 frames=1150 views=1
+wall=200695 qt=58863 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=200888 qt=58963 dialog voice Mutant1_Vox_MeleeAttack01 id=000580b9
+wall=201081 qt=59160 dialog stream CRISPYA_HITMELEE id=000580bc
+wall=201206 qt=59257 dialog stop - id=000580b9
+wall=201363 qt=59457 player 0 guid=6E89E001 slot=0 pad=0 pos=10258,-598,33 yaw=-713 pitch=0 hp=100 weapon=EGL ammo=60 inclip=8 perclip=8 cinema=0
+wall=201741 qt=59835 view 0 viewport=0,0,640,360 eye=10269,-429,29 frames=1160 views=1
+wall=201742 qt=59835 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=201929 qt=60022 player 0 guid=6E89E001 slot=0 pad=0 pos=10258,-598,33 yaw=-713 pitch=0 hp=100 weapon=EGL ammo=60 inclip=8 perclip=8 cinema=0
+wall=202205 qt=60214 pad 1 rx = 0
+wall=202560 qt=60599 audio voices=12 top=LITE_FLOURESCENT_A x3
+wall=202560 qt=60599 player 0 guid=6E89E001 slot=0 pad=0 pos=10258,-598,33 yaw=-713 pitch=0 hp=100 weapon=EGL ammo=60 inclip=8 perclip=8 cinema=0
+wall=202749 qt=60789 view 0 viewport=0,0,640,360 eye=10269,-429,29 frames=1170 views=1
+wall=202751 qt=60789 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=203126 qt=61166 player 0 guid=6E89E001 slot=0 pad=0 pos=10258,-598,33 yaw=-713 pitch=0 hp=100 weapon=EGL ammo=60 inclip=8 perclip=8 cinema=0
+wall=203308 qt=61262 pad 0 a = 1
+wall=203644 qt=61557 perf frames=43 in 5029 ms
+wall=203644 qt=61557 pad 0 a = 0
+wall=203740 qt=61650 dialog stream SPEC44_BLUSL1_04 id=000580d1
+wall=203745 qt=61743 player 0 guid=6E89E001 slot=0 pad=0 pos=10258,-480,33 yaw=-713 pitch=0 hp=100 weapon=EGL ammo=60 inclip=8 perclip=8 cinema=0
+wall=203842 qt=61839 view 0 viewport=0,0,640,360 eye=10269,-305,29 frames=1181 views=1
+wall=203844 qt=61839 bodies view=0 drawn=0 frames=11 others=0 with_body=0
+wall=204350 qt=62320 player 0 guid=6E89E001 slot=0 pad=0 pos=10258,-580,33 yaw=-713 pitch=0 hp=100 weapon=EGL ammo=60 inclip=8 perclip=8 cinema=0
+wall=204883 qt=62801 view 0 viewport=0,0,640,360 eye=10269,-431,29 frames=1191 views=1
+wall=204884 qt=62801 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=204978 qt=62896 audio voices=9 top=LITE_FLOURESCENT_A x3
+wall=204978 qt=62896 player 0 guid=6E89E001 slot=0 pad=0 pos=10258,-598,33 yaw=-713 pitch=0 hp=100 weapon=EGL ammo=60 inclip=8 perclip=8 cinema=0
+wall=205445 qt=63277 pad 1 a = 1
+wall=205601 qt=63471 player 0 guid=6E89E001 slot=0 pad=0 pos=10258,-598,33 yaw=-713 pitch=0 hp=100 weapon=EGL ammo=60 inclip=8 perclip=8 cinema=0
+wall=205777 qt=63565 pad 1 a = 0
+wall=205971 qt=63840 view 0 viewport=0,0,640,360 eye=10269,-429,29 frames=1202 views=1
+wall=205972 qt=63840 bodies view=0 drawn=0 frames=11 others=0 with_body=0
+wall=206154 qt=64023 player 0 guid=6E89E001 slot=0 pad=0 pos=10258,-598,33 yaw=-713 pitch=0 hp=100 weapon=EGL ammo=60 inclip=8 perclip=8 cinema=0
+wall=206769 qt=64583 player 0 guid=6E89E001 slot=0 pad=0 pos=10258,-598,33 yaw=-713 pitch=0 hp=100 weapon=EGL ammo=60 inclip=8 perclip=8 cinema=0
+wall=207045 qt=64859 view 0 viewport=0,0,640,360 eye=10269,-429,29 frames=1213 views=1
+wall=207046 qt=64859 bodies view=0 drawn=0 frames=11 others=0 with_body=0
+wall=207318 qt=65046 dialog stream SPEC44_BLUSL1_03 id=000580de
+wall=207323 qt=65137 audio voices=6 top=LITE_FLOURESCENT_A x3
+wall=207323 qt=65137 player 0 guid=6E89E001 slot=0 pad=0 pos=10258,-598,33 yaw=-713 pitch=0 hp=100 weapon=EGL ammo=60 inclip=8 perclip=8 cinema=0
+wall=207499 qt=65228 pad 0 rt = 32767
+wall=207973 qt=65715 player 0 guid=6E89E001 slot=0 pad=0 pos=10258,-598,33 yaw=-713 pitch=0 hp=100 weapon=EGL ammo=59 inclip=7 perclip=8 cinema=0
+wall=208070 qt=65813 view 0 viewport=0,0,640,360 eye=10269,-429,29 frames=1223 views=1
+wall=208072 qt=65813 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=208594 qt=66311 player 0 guid=6E89E001 slot=0 pad=0 pos=10258,-598,33 yaw=-713 pitch=0 hp=100 weapon=EGL ammo=58 inclip=6 perclip=8 cinema=0
+wall=208684 qt=66311 perf frames=50 in 5040 ms
+wall=209074 qt=66708 view 0 viewport=0,0,640,360 eye=10269,-429,29 frames=1232 views=1
+wall=209075 qt=66708 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=209169 qt=66708 pad 0 rt = -32768
+wall=209277 qt=66908 player 0 guid=6E89E001 slot=0 pad=0 pos=10258,-598,33 yaw=-713 pitch=0 hp=100 weapon=EGL ammo=57 inclip=5 perclip=8 cinema=0
+wall=209906 qt=67489 audio voices=10 top=LITE_FLOURESCENT_A x3
+wall=209906 qt=67489 player 0 guid=6E89E001 slot=0 pad=0 pos=10258,-598,33 yaw=-713 pitch=0 hp=100 weapon=EGL ammo=57 inclip=5 perclip=8 cinema=0
+wall=210096 qt=67680 view 0 viewport=0,0,640,360 eye=10269,-429,29 frames=1242 views=1
+wall=210098 qt=67680 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=210275 qt=67773 pad 1 rt = 32767
+wall=210471 qt=68055 player 0 guid=6E89E001 slot=0 pad=0 pos=10258,-598,33 yaw=-713 pitch=0 hp=100 weapon=EGL ammo=57 inclip=5 perclip=8 cinema=0
+wall=211072 qt=68616 player 0 guid=6E89E001 slot=0 pad=0 pos=10258,-598,33 yaw=-713 pitch=0 hp=100 weapon=EGL ammo=57 inclip=5 perclip=8 cinema=0
+wall=211167 qt=68710 view 0 viewport=0,0,640,360 eye=10269,-429,29 frames=1253 views=1
+wall=211168 qt=68710 bodies view=0 drawn=0 frames=11 others=0 with_body=0
+wall=211633 qt=69177 player 0 guid=6E89E001 slot=0 pad=0 pos=10258,-598,33 yaw=-713 pitch=0 hp=100 weapon=EGL ammo=57 inclip=5 perclip=8 cinema=0
+wall=211719 qt=69177 dialog stream SPEC42_BLUSL1_03B id=000580ea
+wall=211810 qt=69267 pad 1 rt = -32768
+wall=212237 qt=69740 audio voices=9 top=LITE_FLOURESCENT_A x3
+wall=212237 qt=69740 player 0 guid=6E89E001 slot=0 pad=0 pos=10258,-598,33 yaw=-713 pitch=0 hp=100 weapon=EGL ammo=57 inclip=5 perclip=8 cinema=0
+wall=212237 qt=69740 view 0 viewport=0,0,640,360 eye=10269,-429,29 frames=1264 views=1
+wall=212238 qt=69740 bodies view=0 drawn=0 frames=11 others=0 with_body=0
+wall=212799 qt=70217 pad 0 x = 1
+wall=212807 qt=70311 player 0 guid=6E89E001 slot=0 pad=0 pos=10258,-598,33 yaw=-713 pitch=0 hp=100 weapon=EGL ammo=57 inclip=5 perclip=8 cinema=0
+wall=213148 qt=70504 pad 0 x = 0
+wall=213253 qt=70700 view 0 viewport=0,0,640,360 eye=10269,-429,29 frames=1274 views=1
+wall=213255 qt=70700 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=213445 qt=70894 player 0 guid=6E89E001 slot=0 pad=0 pos=10258,-598,33 yaw=-713 pitch=0 hp=100 weapon=EGL ammo=57 inclip=5 perclip=8 cinema=0
+wall=213719 qt=71083 perf frames=50 in 5035 ms
+wall=214022 qt=71470 player 0 guid=6E89E001 slot=0 pad=0 pos=10258,-598,33 yaw=-713 pitch=0 hp=100 weapon=EGL ammo=57 inclip=5 perclip=8 cinema=0
+wall=214278 qt=71666 view 0 viewport=0,0,640,360 eye=10269,-429,29 frames=1284 views=1
+wall=214279 qt=71666 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=214666 qt=72055 audio voices=20 top=MCCAN_FOOTFALL_HEEL_CONCRETE x4
+wall=214666 qt=72055 player 0 guid=6E89E001 slot=0 pad=0 pos=10258,-598,33 yaw=-713 pitch=0 hp=100 weapon=EGL ammo=57 inclip=5 perclip=8 cinema=0
+wall=215328 qt=72646 player 0 guid=6E89E001 slot=0 pad=0 pos=10258,-598,33 yaw=-713 pitch=0 hp=100 weapon=EGL ammo=57 inclip=8 perclip=8 cinema=0
+wall=215328 qt=72646 view 0 viewport=0,0,640,360 eye=10269,-429,29 frames=1294 views=1
+wall=215329 qt=72646 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=215904 qt=73223 player 0 guid=6E89E001 slot=0 pad=0 pos=10258,-598,33 yaw=-713 pitch=0 hp=100 weapon=EGL ammo=57 inclip=8 perclip=8 cinema=0
+wall=216345 qt=73613 view 0 viewport=0,0,640,360 eye=10269,-429,29 frames=1304 views=1
+wall=216347 qt=73613 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=216536 qt=73804 player 0 guid=6E89E001 slot=0 pad=0 pos=10258,-598,33 yaw=-713 pitch=0 hp=100 weapon=EGL ammo=57 inclip=8 perclip=8 cinema=0
+wall=216624 qt=73804 pad 1 x = 1
+wall=217002 qt=74183 pad 1 x = 0
+wall=217107 qt=74376 audio voices=15 top=LITE_FLOURESCENT_A x3
+wall=217107 qt=74376 player 0 guid=6E89E001 slot=0 pad=0 pos=10258,-598,33 yaw=-713 pitch=0 hp=100 weapon=EGL ammo=57 inclip=8 perclip=8 cinema=0
+wall=217361 qt=74571 view 0 viewport=0,0,640,360 eye=10269,-429,29 frames=1314 views=1
+wall=217362 qt=74571 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=217962 qt=74964 player 0 guid=6E89E001 slot=0 pad=0 pos=10258,-598,33 yaw=-713 pitch=0 hp=100 weapon=EGL ammo=57 inclip=8 perclip=8 cinema=0
+wall=218402 qt=75350 view 0 viewport=0,0,640,360 eye=10269,-429,29 frames=1322 views=1
+wall=218403 qt=75350 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=218587 qt=75536 player 0 guid=6E89E001 slot=0 pad=0 pos=10258,-598,33 yaw=-713 pitch=0 hp=100 weapon=EGL ammo=57 inclip=8 perclip=8 cinema=0
+wall=218770 qt=75629 perf frames=47 in 5051 ms
+wall=219165 qt=76113 player 0 guid=6E89E001 slot=0 pad=0 pos=10258,-598,33 yaw=-713 pitch=0 hp=100 weapon=EGL ammo=57 inclip=8 perclip=8 cinema=0
+wall=219510 qt=76405 view 0 viewport=0,0,640,360 eye=10269,-429,29 frames=1333 views=1
+wall=219512 qt=76405 bodies view=0 drawn=0 frames=11 others=0 with_body=0
+wall=219793 qt=76593 dialog voice Mutant1_Vox_ReactSound id=00058149
+wall=219798 qt=76691 audio voices=16 top=MCCAN_FOOTFALL_HEEL_CONCRETE x4
+wall=219798 qt=76691 player 0 guid=6E89E001 slot=0 pad=0 pos=10258,-598,33 yaw=-713 pitch=0 hp=100 weapon=EGL ammo=57 inclip=8 perclip=8 cinema=0
+wall=220288 qt=77086 dialog stream McCanA_ALERT id=00058150
+wall=220403 qt=77284 player 0 guid=6E89E001 slot=0 pad=0 pos=10258,-598,33 yaw=-713 pitch=0 hp=100 weapon=EGL ammo=57 inclip=8 perclip=8 cinema=0
+wall=220559 qt=77384 view 0 viewport=0,0,640,360 eye=10269,-429,29 frames=1343 views=1
+wall=220561 qt=77384 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=220743 qt=77480 pad 0 ly = -32767
+wall=221288 qt=77871 player 0 guid=6E89E001 slot=0 pad=0 pos=10156,-598,13 yaw=-713 pitch=0 hp=100 weapon=EGL ammo=57 inclip=8 perclip=8 cinema=0
+wall=221654 qt=78168 view 0 viewport=0,0,640,360 eye=10004,-429,6 frames=1351 views=1
+wall=221655 qt=78168 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=221959 qt=78468 player 0 guid=6E89E001 slot=0 pad=0 pos=9951,-598,23 yaw=-713 pitch=0 hp=100 weapon=EGL ammo=57 inclip=8 perclip=8 cinema=0
+wall=222658 qt=78964 dialog stream McCanA_KILL id=00058185
+wall=222669 qt=79064 audio voices=23 top=LITE_FLOURESCENT_A x3
+wall=222669 qt=79064 player 0 guid=6E89E001 slot=0 pad=0 pos=9951,-598,25 yaw=-713 pitch=0 hp=100 weapon=EGL ammo=57 inclip=8 perclip=8 cinema=0
+wall=222669 qt=79064 view 0 viewport=0,0,640,360 eye=9962,-429,22 frames=1360 views=1
+wall=222670 qt=79064 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=223271 qt=79661 player 0 guid=6E89E001 slot=0 pad=0 pos=9951,-598,25 yaw=-713 pitch=0 hp=100 weapon=EGL ammo=57 inclip=8 perclip=8 cinema=0
+wall=223362 qt=79661 dialog stream CRISPY_BLUSL1_92 id=0005818f
+wall=223658 qt=79958 pad 0 ly = 0
+wall=223669 qt=80058 view 0 viewport=0,0,640,360 eye=9962,-429,22 frames=1370 views=1
+wall=223670 qt=80058 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=223803 qt=80058 perf frames=45 in 5033 ms
+wall=223910 qt=80255 player 0 guid=6E89E001 slot=0 pad=0 pos=9950,-598,21 yaw=-713 pitch=0 hp=100 weapon=EGL ammo=57 inclip=8 perclip=8 cinema=0
+wall=224505 qt=80846 player 0 guid=6E89E001 slot=0 pad=0 pos=9950,-598,21 yaw=-713 pitch=0 hp=100 weapon=EGL ammo=57 inclip=8 perclip=8 cinema=0
+wall=224689 qt=80941 pad 1 ly = -32767
+wall=224699 qt=81041 view 0 viewport=0,0,640,360 eye=9961,-430,17 frames=1380 views=1
+wall=224701 qt=81041 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=225159 qt=81438 audio voices=16 top=LITE_FLOURESCENT_A x3
+wall=225159 qt=81438 player 0 guid=6E89E001 slot=0 pad=0 pos=9950,-598,21 yaw=-713 pitch=0 hp=100 weapon=EGL ammo=57 inclip=8 perclip=8 cinema=0
+wall=225771 qt=82038 player 0 guid=6E89E001 slot=0 pad=0 pos=9950,-598,21 yaw=-713 pitch=0 hp=100 weapon=EGL ammo=57 inclip=8 perclip=8 cinema=0
+wall=225771 qt=82038 view 0 viewport=0,0,640,360 eye=9961,-430,17 frames=1390 views=1
+wall=225772 qt=82038 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=226418 qt=82633 player 0 guid=6E89E001 slot=0 pad=0 pos=9950,-598,21 yaw=-713 pitch=0 hp=100 weapon=EGL ammo=57 inclip=8 perclip=8 cinema=0
+wall=226821 qt=83033 view 0 viewport=0,0,640,360 eye=9961,-430,17 frames=1400 views=1
+wall=226822 qt=83033 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=227075 qt=83233 player 0 guid=6E89E001 slot=0 pad=0 pos=9950,-598,21 yaw=-713 pitch=0 hp=100 weapon=EGL ammo=57 inclip=8 perclip=8 cinema=0
+wall=227362 qt=83432 pad 1 ly = 0
+wall=227675 qt=83828 audio voices=11 top=LITE_FLOURESCENT_A x3
+wall=227675 qt=83828 player 0 guid=6E89E001 slot=0 pad=0 pos=9950,-598,21 yaw=-713 pitch=0 hp=100 weapon=EGL ammo=57 inclip=8 perclip=8 cinema=0
+wall=227880 qt=84028 view 0 viewport=0,0,640,360 eye=9961,-430,17 frames=1410 views=1
+wall=227881 qt=84028 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=228124 qt=84128 dialog stream McCanA_CLEAR id=000581b9
+wall=228333 qt=84426 player 0 guid=6E89E001 slot=0 pad=0 pos=9950,-598,21 yaw=-713 pitch=0 hp=100 weapon=EGL ammo=57 inclip=8 perclip=8 cinema=0
+wall=228417 qt=84426 pad 0 lx = 32767
+wall=228417 qt=84426 pad 1 lx = -32767
+wall=228818 qt=84816 perf frames=48 in 5015 ms
+wall=228931 qt=85016 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-713 pitch=0 hp=100 weapon=EGL ammo=57 inclip=8 perclip=8 cinema=0
+wall=228931 qt=85016 view 0 viewport=0,0,640,360 eye=9957,-430,-36 frames=1420 views=1
+wall=228933 qt=85016 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=229591 qt=85614 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-713 pitch=0 hp=100 weapon=EGL ammo=57 inclip=8 perclip=8 cinema=0
+wall=230003 qt=86013 view 0 viewport=0,0,640,360 eye=9957,-430,-36 frames=1430 views=1
+wall=230004 qt=86013 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=230254 qt=86213 audio voices=7 top=LITE_FLOURESCENT_A x3
+wall=230254 qt=86213 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-713 pitch=0 hp=100 weapon=EGL ammo=57 inclip=8 perclip=8 cinema=0
+wall=230541 qt=86412 pad 0 lx = 0
+wall=230541 qt=86412 pad 1 lx = 0
+wall=230849 qt=86807 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-713 pitch=0 hp=100 weapon=EGL ammo=57 inclip=8 perclip=8 cinema=0
+wall=231044 qt=87002 view 0 viewport=0,0,640,360 eye=9958,-430,-35 frames=1440 views=1
+wall=231045 qt=87002 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=231484 qt=87397 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-713 pitch=0 hp=100 weapon=EGL ammo=57 inclip=8 perclip=8 cinema=0
+wall=231672 qt=87495 pad 0 rx = 32767
+wall=232072 qt=87984 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-1779 pitch=0 hp=100 weapon=EGL ammo=57 inclip=8 perclip=8 cinema=0
+wall=232072 qt=87984 view 0 viewport=0,0,640,360 eye=9947,-430,-19 frames=1450 views=1
+wall=232073 qt=87984 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=232691 qt=88553 audio voices=5 top=LITE_FLOURESCENT_A x3
+wall=232691 qt=88553 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-3571 pitch=0 hp=100 weapon=EGL ammo=57 inclip=8 perclip=8 cinema=0
+wall=233147 qt=88922 pad 0 rx = 0
+wall=233158 qt=89021 view 0 viewport=0,0,640,360 eye=9954,-430,-22 frames=1461 views=1
+wall=233159 qt=89021 bodies view=0 drawn=0 frames=11 others=0 with_body=0
+wall=233250 qt=89112 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=EGL ammo=57 inclip=8 perclip=8 cinema=0
+wall=233858 qt=89595 perf frames=49 in 5040 ms
+wall=233869 qt=89690 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=EGL ammo=57 inclip=8 perclip=8 cinema=0
+wall=234244 qt=89978 pad 1 rx = -32767
+wall=234254 qt=90075 view 0 viewport=0,0,640,360 eye=9954,-430,-22 frames=1472 views=1
+wall=234256 qt=90075 bodies view=0 drawn=0 frames=11 others=0 with_body=0
+wall=234507 qt=90269 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=EGL ammo=57 inclip=8 perclip=8 cinema=0
+wall=235092 qt=90848 audio voices=5 top=LITE_FLOURESCENT_A x3
+wall=235092 qt=90848 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=EGL ammo=57 inclip=8 perclip=8 cinema=0
+wall=235280 qt=91036 view 0 viewport=0,0,640,360 eye=9954,-430,-22 frames=1482 views=1
+wall=235281 qt=91036 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=235713 qt=91418 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=EGL ammo=57 inclip=8 perclip=8 cinema=0
+wall=235801 qt=91418 pad 1 rx = 0
+wall=236294 qt=91997 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=EGL ammo=57 inclip=8 perclip=8 cinema=0
+wall=236294 qt=91997 view 0 viewport=0,0,640,360 eye=9954,-430,-22 frames=1492 views=1
+wall=236295 qt=91997 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=236917 qt=92479 pad 0 a = 1
+wall=236927 qt=92576 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=EGL ammo=57 inclip=8 perclip=8 cinema=0
+wall=237197 qt=92766 pad 0 a = 0
+wall=237294 qt=92945 view 0 viewport=0,0,640,360 eye=9954,-314,-22 frames=1502 views=1
+wall=237295 qt=92945 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=237472 qt=93122 audio voices=6 top=LITE_FLOURESCENT_A x3
+wall=237472 qt=93122 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-475,-31 yaw=-5043 pitch=0 hp=100 weapon=EGL ammo=57 inclip=8 perclip=8 cinema=0
+wall=238076 qt=93680 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=EGL ammo=57 inclip=8 perclip=8 cinema=0
+wall=238348 qt=93952 view 0 viewport=0,0,640,360 eye=9954,-431,-21 frames=1513 views=1
+wall=238349 qt=93952 bodies view=0 drawn=0 frames=11 others=0 with_body=0
+wall=238685 qt=94238 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=EGL ammo=57 inclip=8 perclip=8 cinema=0
+wall=238862 qt=94334 perf frames=50 in 5004 ms
+wall=238956 qt=94426 pad 1 a = 1
+wall=239234 qt=94708 pad 1 a = 0
+wall=239245 qt=94799 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=EGL ammo=57 inclip=8 perclip=8 cinema=0
+wall=239430 qt=94984 view 0 viewport=0,0,640,360 eye=9954,-430,-22 frames=1524 views=1
+wall=239431 qt=94984 bodies view=0 drawn=0 frames=11 others=0 with_body=0
+wall=239868 qt=95368 audio voices=6 top=LITE_FLOURESCENT_A x3
+wall=239868 qt=95368 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=EGL ammo=57 inclip=8 perclip=8 cinema=0
+wall=240450 qt=95943 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=EGL ammo=57 inclip=8 perclip=8 cinema=0
+wall=240450 qt=95943 view 0 viewport=0,0,640,360 eye=9954,-430,-22 frames=1534 views=1
+wall=240451 qt=95943 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=241066 qt=96423 pad 0 rt = 32767
+wall=241077 qt=96518 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=EGL ammo=57 inclip=8 perclip=8 cinema=0
+wall=241515 qt=96905 view 0 viewport=0,0,640,360 eye=9954,-430,-22 frames=1544 views=1
+wall=241516 qt=96905 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=241712 qt=97102 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=EGL ammo=55 inclip=6 perclip=8 cinema=0
+wall=242368 qt=97687 audio voices=10 top=EGL_FIRE x3
+wall=242368 qt=97687 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=EGL ammo=54 inclip=5 perclip=8 cinema=0
+wall=242564 qt=97883 view 0 viewport=0,0,640,360 eye=9954,-430,-22 frames=1554 views=1
+wall=242565 qt=97883 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=242744 qt=97979 pad 0 rt = -32768
+wall=243029 qt=98274 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=EGL ammo=53 inclip=4 perclip=8 cinema=0
+wall=243606 qt=98851 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=EGL ammo=53 inclip=4 perclip=8 cinema=0
+wall=243606 qt=98851 view 0 viewport=0,0,640,360 eye=9954,-430,-22 frames=1564 views=1
+wall=243608 qt=98851 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=243784 qt=98943 pad 1 rt = 32767
+wall=243880 qt=99039 perf frames=49 in 5018 ms
+wall=244237 qt=99428 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=EGL ammo=53 inclip=4 perclip=8 cinema=0
+wall=244620 qt=99812 view 0 viewport=0,0,640,360 eye=9954,-430,-22 frames=1574 views=1
+wall=244621 qt=99812 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=244810 qt=100001 audio voices=7 top=LITE_FLOURESCENT_A x3
+wall=244810 qt=100001 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=EGL ammo=53 inclip=4 perclip=8 cinema=0
+wall=245434 qt=100484 pad 1 rt = -32768
+wall=245445 qt=100576 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=EGL ammo=53 inclip=4 perclip=8 cinema=0
+wall=245629 qt=100760 view 0 viewport=0,0,640,360 eye=9954,-430,-22 frames=1584 views=1
+wall=245630 qt=100760 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=246005 qt=101137 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=EGL ammo=53 inclip=4 perclip=8 cinema=0
+wall=246438 qt=101428 pad 0 x = 1
+wall=246639 qt=101717 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=EGL ammo=53 inclip=4 perclip=8 cinema=0
+wall=246639 qt=101717 view 0 viewport=0,0,640,360 eye=9954,-430,-22 frames=1594 views=1
+wall=246640 qt=101717 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=246728 qt=101717 pad 0 x = 0
+wall=247267 qt=102295 audio voices=6 top=LITE_FLOURESCENT_A x3
+wall=247267 qt=102295 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=EGL ammo=53 inclip=4 perclip=8 cinema=0
+wall=247650 qt=102677 view 0 viewport=0,0,640,360 eye=9954,-430,-22 frames=1604 views=1
+wall=247651 qt=102677 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=247841 qt=102868 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=EGL ammo=53 inclip=4 perclip=8 cinema=0
+wall=248475 qt=103440 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=EGL ammo=53 inclip=4 perclip=8 cinema=0
+wall=248665 qt=103630 view 0 viewport=0,0,640,360 eye=9954,-430,-22 frames=1614 views=1
+wall=248666 qt=103630 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=248941 qt=103822 perf frames=50 in 5061 ms
+wall=249045 qt=104011 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=EGL ammo=53 inclip=8 perclip=8 cinema=0
+wall=249671 qt=104583 audio voices=6 top=LITE_FLOURESCENT_A x3
+wall=249671 qt=104583 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=EGL ammo=53 inclip=8 perclip=8 cinema=0
+wall=249671 qt=104583 view 0 viewport=0,0,640,360 eye=9954,-430,-22 frames=1624 views=1
+wall=249672 qt=104583 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=250232 qt=105060 pad 1 x = 1
+wall=250242 qt=105154 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=EGL ammo=53 inclip=8 perclip=8 cinema=0
+wall=250567 qt=105349 pad 1 x = 0
+wall=250675 qt=105544 view 0 viewport=0,0,640,360 eye=9954,-430,-22 frames=1634 views=1
+wall=250676 qt=105544 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=250869 qt=105738 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=EGL ammo=53 inclip=8 perclip=8 cinema=0
+wall=251496 qt=106309 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=EGL ammo=53 inclip=8 perclip=8 cinema=0
+wall=251686 qt=106499 view 0 viewport=0,0,640,360 eye=9954,-430,-22 frames=1644 views=1
+wall=251687 qt=106499 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=252062 qt=106876 audio voices=5 top=LITE_FLOURESCENT_A x3
+wall=252063 qt=106876 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=EGL ammo=53 inclip=8 perclip=8 cinema=0
+wall=252685 qt=107450 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=EGL ammo=53 inclip=8 perclip=8 cinema=0
+wall=252778 qt=107543 view 0 viewport=0,0,640,360 eye=9954,-430,-22 frames=1655 views=1
+wall=252779 qt=107543 bodies view=0 drawn=0 frames=11 others=0 with_body=0
+wall=253259 qt=108024 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=EGL ammo=53 inclip=8 perclip=8 cinema=0
+wall=253802 qt=108511 view 0 viewport=0,0,640,360 eye=9954,-430,-22 frames=1665 views=1
+wall=253803 qt=108511 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=253898 qt=108607 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=EGL ammo=53 inclip=8 perclip=8 cinema=0
+wall=253982 qt=108607 perf frames=50 in 5041 ms
+wall=253982 qt=108607 command swaptest (hook set)
+wall=253982 qt=108607 swaptest flipped: player 0 pad=1 player 1 pad=0
+wall=253983 qt=108607 swaptest restored: player 0 pad=0 player 1 pad=1
+wall=253983 qt=108607 command scanner (hook set)
+wall=253983 qt=108607 scanner player 0: in inventory=1
+wall=254702 qt=109183 audio voices=7 top=LITE_FLOURESCENT_A x3
+wall=254702 qt=109183 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=SCN ammo=0 inclip=0 perclip=0 cinema=0
+wall=254900 qt=109381 view 0 viewport=0,0,640,360 eye=9954,-430,-22 frames=1674 views=1
+wall=254901 qt=109381 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=255299 qt=109776 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=SCN ammo=0 inclip=0 perclip=0 cinema=0
+wall=255954 qt=110372 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=SCN ammo=0 inclip=0 perclip=0 cinema=0
+wall=255954 qt=110372 view 0 viewport=0,0,640,360 eye=9954,-430,-22 frames=1684 views=1
+wall=255955 qt=110372 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=256557 qt=110970 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=SCN ammo=0 inclip=0 perclip=0 cinema=0
+wall=257031 qt=111369 view 0 viewport=0,0,640,360 eye=9954,-430,-22 frames=1694 views=1
+wall=257031 qt=111369 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=257230 qt=111568 audio voices=5 top=LITE_FLOURESCENT_A x3
+wall=257230 qt=111568 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=SCN ammo=0 inclip=0 perclip=0 cinema=0
+wall=257808 qt=112146 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=SCN ammo=0 inclip=0 perclip=0 cinema=0
+wall=258051 qt=112345 view 0 viewport=0,0,640,360 eye=9954,-430,-22 frames=1704 views=1
+wall=258052 qt=112345 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=258438 qt=112641 pad 0 rx = 8191
+wall=258438 qt=112641 pad 0 rt = 32767
+wall=258449 qt=112741 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=SCN ammo=0 inclip=0 perclip=0 cinema=0
+wall=259055 qt=113038 perf frames=45 in 5073 ms
+wall=259066 qt=113137 view 0 viewport=0,0,640,360 eye=9954,-430,-22 frames=1712 views=1
+wall=259067 qt=113137 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=259271 qt=113337 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=SCN ammo=0 inclip=0 perclip=0 cinema=0
+wall=259876 qt=113934 audio voices=7 top=LITE_FLOURESCENT_A x3
+wall=259876 qt=113934 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=SCN ammo=0 inclip=0 perclip=0 cinema=0
+wall=260142 qt=114134 view 0 viewport=0,0,640,360 eye=9954,-430,-22 frames=1722 views=1
+wall=260143 qt=114134 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=260548 qt=114534 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=SCN ammo=0 inclip=0 perclip=0 cinema=0
+wall=261207 qt=115133 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=SCN ammo=0 inclip=0 perclip=0 cinema=0
+wall=261207 qt=115133 view 0 viewport=0,0,640,360 eye=9954,-430,-22 frames=1732 views=1
+wall=261209 qt=115133 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=261824 qt=115633 pad 0 rx = 0
+wall=261824 qt=115633 pad 0 rt = -32768
+wall=261835 qt=115733 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=SCN ammo=0 inclip=0 perclip=0 cinema=0
+wall=262295 qt=116132 view 0 viewport=0,0,640,360 eye=9954,-430,-22 frames=1742 views=1
+wall=262296 qt=116132 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=262385 qt=116132 pad 0 rx = 8191
+wall=262385 qt=116132 pad 0 rb = 1
+wall=262497 qt=116332 audio voices=5 top=LITE_FLOURESCENT_A x3
+wall=262497 qt=116332 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=SCN ammo=0 inclip=0 perclip=0 cinema=0
+wall=263081 qt=116914 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=SMP ammo=90 inclip=30 perclip=30 cinema=0
+wall=263333 qt=117111 view 0 viewport=0,0,640,360 eye=9954,-430,-22 frames=1752 views=1
+wall=263335 qt=117111 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=263731 qt=117508 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=SMP ammo=90 inclip=30 perclip=30 cinema=0
+wall=263919 qt=117607 pad 0 rx = 0
+wall=263919 qt=117607 pad 0 rb = 0
+wall=264119 qt=117807 perf frames=48 in 5064 ms
+wall=264379 qt=118107 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=SMP ammo=90 inclip=30 perclip=30 cinema=0
+wall=264379 qt=118107 view 0 viewport=0,0,640,360 eye=9954,-430,-22 frames=1762 views=1
+wall=264381 qt=118107 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=264470 qt=118107 pad 1 rx = 8191
+wall=264470 qt=118107 pad 1 rt = 32767
+wall=264971 qt=118695 audio voices=6 top=LITE_FLOURESCENT_A x3
+wall=264971 qt=118695 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=SMP ammo=90 inclip=30 perclip=30 cinema=0
+wall=265425 qt=119094 view 0 viewport=0,0,640,360 eye=9954,-430,-22 frames=1772 views=1
+wall=265427 qt=119094 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=265621 qt=119290 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=SMP ammo=90 inclip=30 perclip=30 cinema=0
+wall=266201 qt=119871 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=SMP ammo=90 inclip=30 perclip=30 cinema=0
+wall=266457 qt=120067 view 0 viewport=0,0,640,360 eye=9954,-430,-22 frames=1782 views=1
+wall=266458 qt=120067 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=266842 qt=120453 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=SMP ammo=90 inclip=30 perclip=30 cinema=0
+wall=267414 qt=121025 audio voices=5 top=LITE_FLOURESCENT_A x3
+wall=267415 qt=121025 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=SMP ammo=90 inclip=30 perclip=30 cinema=0
+wall=267570 qt=121125 view 0 viewport=0,0,640,360 eye=9954,-430,-22 frames=1793 views=1
+wall=267571 qt=121125 bodies view=0 drawn=0 frames=11 others=0 with_body=0
+wall=267655 qt=121125 pad 1 rx = 0
+wall=267655 qt=121125 pad 1 rt = -32768
+wall=268054 qt=121610 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=SMP ammo=90 inclip=30 perclip=30 cinema=0
+wall=268139 qt=121610 pad 1 rx = 8191
+wall=268139 qt=121610 pad 1 rb = 1
+wall=268588 qt=122089 view 0 viewport=0,0,640,360 eye=9954,-430,-22 frames=1803 views=1
+wall=268589 qt=122089 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=268686 qt=122187 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=SMP ammo=90 inclip=30 perclip=30 cinema=0
+wall=269151 qt=122566 perf frames=49 in 5032 ms
+wall=269257 qt=122758 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=SMP ammo=90 inclip=30 perclip=30 cinema=0
+wall=269689 qt=123142 view 0 viewport=0,0,640,360 eye=9954,-430,-22 frames=1814 views=1
+wall=269690 qt=123142 bodies view=0 drawn=0 frames=11 others=0 with_body=0
+wall=269772 qt=123142 pad 1 rx = 0
+wall=269772 qt=123142 pad 1 rb = 0
+wall=269878 qt=123332 audio voices=6 top=LITE_FLOURESCENT_A x3
+wall=269878 qt=123332 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=SMP ammo=90 inclip=30 perclip=30 cinema=0
+wall=270255 qt=123616 command carryover (hook set)
+wall=270255 qt=123616 carryover player 0: scanner=1 pistol=1
+wall=270427 qt=123878 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=270692 qt=124114 view 0 viewport=0,0,640,360 eye=9954,-430,-22 frames=1825 views=1
+wall=270693 qt=124114 bodies view=0 drawn=0 frames=11 others=0 with_body=0
+wall=270967 qt=124390 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=271528 qt=124952 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=271786 qt=125191 view 0 viewport=0,0,640,360 eye=9954,-430,-22 frames=1840 views=1
+wall=271787 qt=125191 bodies view=0 drawn=0 frames=15 others=0 with_body=0
+wall=272066 qt=125472 audio voices=5 top=LITE_FLOURESCENT_A x3
+wall=272066 qt=125472 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=272266 qt=125611 pad 1 ly = -32767
+wall=272627 qt=126033 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=272829 qt=126205 view 0 viewport=0,0,640,360 eye=9954,-430,-22 frames=1854 views=1
+wall=272830 qt=126205 bodies view=0 drawn=0 frames=14 others=0 with_body=0
+wall=273180 qt=126556 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=273747 qt=127124 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=273943 qt=127293 view 0 viewport=0,0,640,360 eye=9954,-430,-22 frames=1869 views=1
+wall=273944 qt=127293 bodies view=0 drawn=0 frames=15 others=0 with_body=0
+wall=274216 qt=127508 perf frames=64 in 5065 ms
+wall=274293 qt=127644 audio voices=5 top=LITE_FLOURESCENT_A x3
+wall=274293 qt=127644 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=274845 qt=128196 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=274966 qt=128296 view 0 viewport=0,0,640,360 eye=9954,-430,-22 frames=1883 views=1
+wall=274968 qt=128296 bodies view=0 drawn=0 frames=14 others=0 with_body=0
+wall=275397 qt=128664 pad 1 ly = 0
+wall=275407 qt=128738 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=275898 qt=129168 pad 1 back = 1
+wall=275908 qt=129239 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=276034 qt=129339 view 0 viewport=0,0,640,360 eye=9954,-430,-22 frames=1897 views=1
+wall=276035 qt=129339 bodies view=0 drawn=0 frames=14 others=0 with_body=0
+wall=276167 qt=129409 pad 1 back = 0
+wall=276457 qt=129762 audio voices=6 top=LITE_FLOURESCENT_A x3
+wall=276457 qt=129762 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=277009 qt=130314 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=277127 qt=130414 view 0 viewport=0,0,640,360 eye=9954,-430,-22 frames=1912 views=1
+wall=277128 qt=130414 bodies view=0 drawn=0 frames=15 others=0 with_body=0
+wall=277552 qt=130840 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=277896 qt=131122 command mutate1 (hook set)
+wall=277896 qt=131122 mutate1 player 1: no player
+wall=278174 qt=131433 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=278174 qt=131433 view 0 viewport=0,0,640,360 eye=9954,-430,-22 frames=1926 views=1
+wall=278175 qt=131433 bodies view=0 drawn=0 frames=14 others=0 with_body=0
+wall=278731 qt=131990 audio voices=5 top=LITE_FLOURESCENT_A x3
+wall=278731 qt=131990 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=279251 qt=132403 perf frames=68 in 5035 ms
+wall=279262 qt=132503 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=279262 qt=132503 view 0 viewport=0,0,640,360 eye=9954,-430,-22 frames=1941 views=1
+wall=279263 qt=132503 bodies view=0 drawn=0 frames=15 others=0 with_body=0
+wall=279824 qt=133065 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=280308 qt=133517 view 0 viewport=0,0,640,360 eye=9954,-430,-22 frames=1955 views=1
+wall=280309 qt=133517 bodies view=0 drawn=0 frames=14 others=0 with_body=0
+wall=280379 qt=133588 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=280944 qt=134153 audio voices=6 top=LITE_FLOURESCENT_A x3
+wall=280944 qt=134153 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=281009 qt=134153 command mutstat (hook set)
+wall=281009 qt=134153 mutstat p0=0 p1=-1 speed=100 abil0=8 abil1=-1 body1=0
+wall=281422 qt=134604 view 0 viewport=0,0,640,360 eye=9954,-430,-22 frames=1970 views=1
+wall=281423 qt=134604 bodies view=0 drawn=0 frames=15 others=0 with_body=0
+wall=281482 qt=134604 command unmutate1 (hook set)
+wall=281482 qt=134604 unmutate1 player 1: no player
+wall=281492 qt=134675 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=282058 qt=135242 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=282459 qt=135616 view 0 viewport=0,0,640,360 eye=9954,-430,-22 frames=1984 views=1
+wall=282460 qt=135616 bodies view=0 drawn=0 frames=14 others=0 with_body=0
+wall=282599 qt=135757 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=283163 qt=136321 audio voices=5 top=LITE_FLOURESCENT_A x3
+wall=283163 qt=136321 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=283504 qt=136633 view 0 viewport=0,0,640,360 eye=9954,-430,-22 frames=1998 views=1
+wall=283505 qt=136633 bodies view=0 drawn=0 frames=14 others=0 with_body=0
+wall=283715 qt=136845 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=284255 qt=137325 perf frames=68 in 5004 ms
+wall=284265 qt=137395 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=284583 qt=137604 command mutstat (hook set)
+wall=284583 qt=137604 mutstat p0=0 p1=-1 speed=100 abil0=8 abil1=-1 body1=0
+wall=284594 qt=137704 view 0 viewport=0,0,640,360 eye=9954,-430,-22 frames=2013 views=1
+wall=284595 qt=137704 bodies view=0 drawn=0 frames=15 others=0 with_body=0
+wall=284802 qt=137913 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=285069 qt=138121 command down1 (hook set)
+wall=285069 qt=138121 down player 1: no player
+wall=285365 qt=138477 audio voices=6 top=LITE_FLOURESCENT_A x3
+wall=285366 qt=138477 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=285643 qt=138719 view 0 viewport=0,0,640,360 eye=9954,-430,-22 frames=2027 views=1
+wall=285644 qt=138719 bodies view=0 drawn=0 frames=14 others=0 with_body=0
+wall=285928 qt=139005 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=286132 qt=139147 pad 0 x = 1
+wall=286132 qt=139147 pad 1 x = 1
+wall=286491 qt=139568 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=286755 qt=139807 view 0 viewport=0,0,640,360 eye=9954,-430,-22 frames=2042 views=1
+wall=286756 qt=139807 bodies view=0 drawn=0 frames=15 others=0 with_body=0
+wall=287033 qt=140087 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=287600 qt=140653 audio voices=5 top=LITE_FLOURESCENT_A x3
+wall=287600 qt=140653 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=287795 qt=140824 view 0 viewport=0,0,640,360 eye=9954,-430,-22 frames=2056 views=1
+wall=287796 qt=140824 bodies view=0 drawn=0 frames=14 others=0 with_body=0
+wall=288143 qt=141173 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=288706 qt=141736 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=288835 qt=141836 view 0 viewport=0,0,640,360 eye=9954,-430,-22 frames=2070 views=1
+wall=288836 qt=141836 bodies view=0 drawn=0 frames=14 others=0 with_body=0
+wall=289256 qt=142257 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=289316 qt=142257 perf frames=68 in 5061 ms
+wall=289818 qt=142819 audio voices=5 top=LITE_FLOURESCENT_A x3
+wall=289818 qt=142819 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=289934 qt=142919 view 0 viewport=0,0,640,360 eye=9954,-430,-22 frames=2085 views=1
+wall=289935 qt=142919 bodies view=0 drawn=0 frames=15 others=0 with_body=0
+wall=290370 qt=143356 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=290980 qt=143943 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=290980 qt=143943 view 0 viewport=0,0,640,360 eye=9954,-430,-22 frames=2099 views=1
+wall=290981 qt=143943 bodies view=0 drawn=0 frames=14 others=0 with_body=0
+wall=291541 qt=144505 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=291743 qt=144647 pad 0 x = 0
+wall=291743 qt=144647 pad 1 x = 0
+wall=292081 qt=144931 command pistol1 (hook set)
+wall=292081 qt=144931 pistol player 1: no player
+wall=292092 qt=145031 audio voices=6 top=LITE_FLOURESCENT_A x3
+wall=292092 qt=145031 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=292092 qt=145031 view 0 viewport=0,0,640,360 eye=9954,-430,-22 frames=2114 views=1
+wall=292093 qt=145031 bodies view=0 drawn=0 frames=15 others=0 with_body=0
+wall=292649 qt=145589 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=293129 qt=146042 view 0 viewport=0,0,640,360 eye=9954,-430,-22 frames=2128 views=1
+wall=293130 qt=146042 bodies view=0 drawn=0 frames=14 others=0 with_body=0
+wall=293198 qt=146113 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=293258 qt=146113 command down1 (hook set)
+wall=293258 qt=146113 down player 1: no player
+wall=293473 qt=146327 command downstat (hook set)
+wall=293685 qt=146540 pad 0 rt = 32767
+wall=293685 qt=146540 pad 0 b = 1
+wall=293685 qt=146540 pad 1 rt = 32767
+wall=293685 qt=146540 pad 1 b = 1
+wall=293766 qt=146681 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=293966 qt=146819 pad 0 b = 0
+wall=293966 qt=146819 pad 1 b = 0
+wall=294174 qt=147059 view 0 viewport=0,0,640,360 eye=9954,-430,-22 frames=2142 views=1
+wall=294175 qt=147059 bodies view=0 drawn=0 frames=14 others=0 with_body=0
+wall=294313 qt=147199 audio voices=5 top=LITE_FLOURESCENT_A x3
+wall=294313 qt=147199 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=294371 qt=147199 perf frames=68 in 5055 ms
+wall=294511 qt=147338 pad 0 rt = -32768
+wall=294511 qt=147338 pad 1 rt = -32768
+wall=294723 qt=147547 command downstat (hook set)
+wall=294873 qt=147760 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=294934 qt=147760 command kill0 (hook set)
+wall=294934 qt=147760 kill player 0: dying
+wall=295284 qt=148030 view 0 viewport=0,0,640,360 eye=9954,-413,-22 frames=2155 views=1
+wall=295285 qt=148030 bodies view=0 drawn=0 frames=13 others=0 with_body=0
+wall=295613 qt=148330 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=0 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=296166 qt=148872 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=0 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=296310 qt=148972 view 0 viewport=0,0,640,360 eye=9941,-593,-39 frames=2165 views=1
+wall=296310 qt=148972 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=296768 qt=149431 audio voices=6 top=LITE_FLOURESCENT_A x3
+wall=296768 qt=149431 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=0 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=297373 qt=149986 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=0 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=297373 qt=149986 view 0 viewport=0,0,640,360 eye=9941,-593,-39 frames=2176 views=1
+wall=297374 qt=149986 bodies view=0 drawn=0 frames=11 others=0 with_body=0
+wall=297921 qt=150534 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=0 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=298509 qt=151079 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=0 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=298509 qt=151079 view 0 viewport=0,0,640,360 eye=9941,-593,-39 frames=2188 views=1
+wall=298510 qt=151079 bodies view=0 drawn=0 frames=12 others=0 with_body=0
+wall=299056 qt=151626 audio voices=5 top=LITE_FLOURESCENT_A x3
+wall=299056 qt=151626 player 0 guid=6E89E001 slot=0 pad=0 pos=9947,-598,-31 yaw=-5043 pitch=0 hp=0 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=299244 qt=151811 state SM_PLAYING_GAME -> SM_SERVER_COOLDOWN
+wall=299245 qt=151811 dialog stop - id=00000000
+wall=299245 qt=151811 dialog stop - id=00000000
+wall=299245 qt=151811 dialog stop - id=00000000
+wall=299251 qt=151811 state SM_SERVER_COOLDOWN -> SM_POST_GAME
+wall=299258 qt=151811 state SM_POST_GAME -> SM_RELOAD_CHECKPOINT
+wall=299378 qt=151811 perf frames=65 in 5007 ms
+wall=299428 qt=151811 state SM_RELOAD_CHECKPOINT -> SM_SINGLE_PLAYER_LOAD_MISSION
+wall=299473 qt=151811 campaign BeginGame done: players=1 level=1020
+wall=299497 qt=151811 state SM_SINGLE_PLAYER_LOAD_MISSION -> SM_SERVER_SYNC
+wall=299500 qt=151811 state SM_SERVER_SYNC -> SM_PLAYING_GAME
+wall=299749 qt=151811 dialog stop - id=00000000
+wall=299749 qt=151811 dialog stop - id=00000000
+wall=299749 qt=151811 dialog stop - id=00000000
+wall=299752 qt=151811 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-590,-200 yaw=-899 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=300085 qt=152146 view 0 viewport=0,0,640,360 eye=11837,-430,-200 frames=2196 views=1
+wall=300086 qt=152146 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=300327 qt=152381 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=300889 qt=152929 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=301109 qt=153148 view 0 viewport=0,0,640,360 eye=11836,-429,-200 frames=2209 views=1
+wall=301110 qt=153148 bodies view=0 drawn=0 frames=13 others=0 with_body=0
+wall=301328 qt=153299 dialog voice Mutant1_Vox_Walk id=0006801a
+wall=301408 qt=153447 audio voices=7 top=LITE_FLOURESCENT_A x2
+wall=301408 qt=153447 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=301767 qt=153697 dialog stop - id=0006801a
+wall=301767 qt=153697 dialog voice Mutant1_Vox_Run id=0006801c
+wall=301999 qt=153998 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=302134 qt=154098 view 0 viewport=0,0,640,360 eye=11836,-429,-200 frames=2221 views=1
+wall=302135 qt=154098 bodies view=0 drawn=0 frames=12 others=0 with_body=0
+wall=302479 qt=154353 dialog voice Mutant1_Vox_Walk id=00068026
+wall=302479 qt=154353 dialog voice Mutant1_Vox_Walk id=00068027
+wall=302556 qt=154451 dialog stop - id=00068026
+wall=302556 qt=154451 dialog voice Mutant1_Vox_Run id=0006802b
+wall=302559 qt=154451 dialog stream SPEC41A_KILL id=0006802e
+wall=302560 qt=154528 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=302712 qt=154528 dialog stop - id=0006801c
+wall=302713 qt=154528 dialog stop - id=00068027
+wall=302713 qt=154528 dialog voice Mutant1_Vox_Run id=00068031
+wall=302948 qt=154781 loadout player 0: scanner=1 smp=1 pistol=1 given=1
+wall=303129 qt=155035 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=SMP ammo=90 inclip=30 perclip=30 cinema=0
+wall=303236 qt=155135 view 0 viewport=0,0,640,360 eye=11836,-429,-199 frames=2233 views=1
+wall=303237 qt=155135 bodies view=0 drawn=0 frames=12 others=0 with_body=0
+wall=303543 qt=155335 dialog stop - id=0006802b
+wall=303543 qt=155335 dialog voice Mutant1_Vox_Run id=0006804a
+wall=303818 qt=155635 audio voices=30 top=MCCAN_FOOTFALL_HEEL_CONCRETE x3
+wall=303818 qt=155635 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=SMP ammo=90 inclip=30 perclip=30 cinema=0
+wall=304018 qt=155735 dialog voice Mutant1_Vox_Run id=00068055
+wall=304122 qt=155835 dialog stop - id=0006804a
+wall=304123 qt=155835 dialog voice Mutant1_Vox_Death03 id=0006805d
+wall=304334 qt=156135 view 0 viewport=0,0,640,360 eye=11836,-429,-199 frames=2243 views=1
+wall=304335 qt=156135 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=304425 qt=156135 perf frames=198 in 5047 ms
+wall=304437 qt=156235 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=SMP ammo=90 inclip=30 perclip=30 cinema=0
+wall=305104 qt=156732 loadout player 0: scanner=1 smp=1 pistol=1
+wall=305104 qt=156732 equip player 0: pistol, 8 rounds per clip
+wall=305104 qt=156732 profile player 0: index=0 name=Empty avatar=0
+wall=305104 qt=156832 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=SMP ammo=90 inclip=30 perclip=30 cinema=0
+wall=305424 qt=157031 dialog voice Mutant1_Vox_Run id=00068088
+wall=305434 qt=157131 view 0 viewport=0,0,640,360 eye=11836,-429,-199 frames=2253 views=1
+wall=305435 qt=157131 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=305740 qt=157431 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=305833 qt=157431 dialog stop - id=00068088
+wall=305834 qt=157431 dialog voice Mutant1_Vox_Death03 id=00068096
+wall=306426 qt=158030 audio voices=28 top=MCCAN_FOOTFALL_HEEL_CONCRETE x4
+wall=306426 qt=158030 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=306528 qt=158130 view 0 viewport=0,0,640,360 eye=11836,-429,-199 frames=2263 views=1
+wall=306529 qt=158130 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=307124 qt=158630 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=307507 qt=158922 dialog stream SEQ_BLUSL1_GATTACK id=000680bc
+wall=307617 qt=159119 view 0 viewport=0,0,640,360 eye=11836,-429,-199 frames=2273 views=1
+wall=307619 qt=159119 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=307705 qt=159119 cinema audio start SEQ_BLUSL1_GATTACK length=14432 ms
+wall=307714 qt=159219 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=307801 qt=159219 cinema audio level SEQ_BLUSL1_GATTACK vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=308329 qt=159696 cinema audio level SEQ_BLUSL1_GATTACK vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=308334 qt=159789 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=308709 qt=160163 view 0 viewport=0,0,640,360 eye=11836,-429,-199 frames=2284 views=1
+wall=308710 qt=160163 bodies view=0 drawn=0 frames=11 others=0 with_body=0
+wall=308890 qt=160256 cinema audio level SEQ_BLUSL1_GATTACK vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=308896 qt=160351 audio voices=7 top=LITE_FLOURESCENT_A x2
+wall=308896 qt=160351 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=309402 qt=160727 cinema audio level SEQ_BLUSL1_GATTACK vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=309496 qt=160820 perf frames=48 in 5071 ms
+wall=309502 qt=160914 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=309780 qt=161192 view 0 viewport=0,0,640,360 eye=11836,-429,-199 frames=2295 views=1
+wall=309781 qt=161192 bodies view=0 drawn=0 frames=11 others=0 with_body=0
+wall=309960 qt=161283 cinema audio level SEQ_BLUSL1_GATTACK vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=310060 qt=161472 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=310485 qt=161755 cinema audio level SEQ_BLUSL1_GATTACK vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=310678 qt=162043 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=310863 qt=162227 view 0 viewport=0,0,640,360 eye=11836,-429,-199 frames=2306 views=1
+wall=310864 qt=162227 bodies view=0 drawn=0 frames=11 others=0 with_body=0
+wall=311046 qt=162324 cinema audio level SEQ_BLUSL1_GATTACK vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=311293 qt=162610 audio voices=5 top=LITE_FLOURESCENT_A x2
+wall=311293 qt=162610 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=311567 qt=162797 cinema audio level SEQ_BLUSL1_GATTACK vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=311852 qt=163170 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=311947 qt=163264 view 0 viewport=0,0,640,360 eye=11836,-429,-199 frames=2317 views=1
+wall=311948 qt=163264 bodies view=0 drawn=0 frames=11 others=0 with_body=0
+wall=312128 qt=163357 cinema audio level SEQ_BLUSL1_GATTACK vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=312471 qt=163733 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=312652 qt=163826 cinema audio level SEQ_BLUSL1_GATTACK vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=313026 qt=164288 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=313027 qt=164288 view 0 viewport=0,0,640,360 eye=11836,-429,-199 frames=2328 views=1
+wall=313028 qt=164288 bodies view=0 drawn=0 frames=11 others=0 with_body=0
+wall=313204 qt=164379 cinema audio level SEQ_BLUSL1_GATTACK vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=313642 qt=164855 audio voices=5 top=LITE_FLOURESCENT_A x2
+wall=313642 qt=164855 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=313729 qt=164855 cinema audio level SEQ_BLUSL1_GATTACK vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=314117 qt=165330 view 0 viewport=0,0,640,360 eye=11836,-429,-199 frames=2339 views=1
+wall=314118 qt=165330 bodies view=0 drawn=0 frames=11 others=0 with_body=0
+wall=314209 qt=165423 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=314295 qt=165423 cinema audio level SEQ_BLUSL1_GATTACK vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=314522 qt=165607 perf frames=51 in 5026 ms
+wall=314799 qt=165889 cinema audio level SEQ_BLUSL1_GATTACK vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=314805 qt=165983 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=315181 qt=166360 view 0 viewport=0,0,640,360 eye=11836,-429,-199 frames=2350 views=1
+wall=315182 qt=166360 bodies view=0 drawn=0 frames=11 others=0 with_body=0
+wall=315360 qt=166452 cinema audio level SEQ_BLUSL1_GATTACK vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=315366 qt=166544 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=315877 qt=166922 cinema audio level SEQ_BLUSL1_GATTACK vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=315977 qt=167108 audio voices=5 top=LITE_FLOURESCENT_A x2
+wall=315977 qt=167108 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=316254 qt=167385 view 0 viewport=0,0,640,360 eye=11836,-429,-199 frames=2361 views=1
+wall=316255 qt=167385 bodies view=0 drawn=0 frames=11 others=0 with_body=0
+wall=316434 qt=167476 cinema audio level SEQ_BLUSL1_GATTACK vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=316534 qt=167665 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=316764 qt=167765 command pause (hook set)
+wall=316765 qt=167765 state SM_PLAYING_GAME -> SM_PAUSE_MAIN_MENU
+wall=316765 qt=167765 pause: on paused=1
+wall=316765 qt=167765 pause beat: paused=1
+wall=317333 qt=167765 view 0 viewport=0,0,640,360 eye=11836,-429,-199 frames=2372 views=1
+wall=317334 qt=167765 bodies view=0 drawn=0 frames=11 others=0 with_body=0
+wall=317828 qt=167765 pause beat: paused=1
+wall=318353 qt=167765 view 0 viewport=0,0,640,360 eye=11836,-429,-199 frames=2383 views=1
+wall=318354 qt=167765 bodies view=0 drawn=0 frames=11 others=0 with_body=0
+wall=318855 qt=167765 pause beat: paused=1
+wall=319380 qt=167765 view 0 viewport=0,0,640,360 eye=11836,-429,-199 frames=2394 views=1
+wall=319381 qt=167765 bodies view=0 drawn=0 frames=11 others=0 with_body=0
+wall=319556 qt=167765 perf frames=53 in 5034 ms
+wall=319878 qt=167765 pause beat: paused=1
+wall=320414 qt=167765 view 0 viewport=0,0,640,360 eye=11836,-429,-199 frames=2405 views=1
+wall=320415 qt=167765 bodies view=0 drawn=0 frames=11 others=0 with_body=0
+wall=320932 qt=167765 pause beat: paused=1
+wall=321464 qt=167765 view 0 viewport=0,0,640,360 eye=11836,-429,-199 frames=2416 views=1
+wall=321465 qt=167765 bodies view=0 drawn=0 frames=11 others=0 with_body=0
+wall=321972 qt=167765 pause beat: paused=1
+wall=322511 qt=167765 view 0 viewport=0,0,640,360 eye=11836,-429,-199 frames=2427 views=1
+wall=322512 qt=167765 bodies view=0 drawn=0 frames=11 others=0 with_body=0
+wall=323094 qt=167765 pause beat: paused=1
+wall=323538 qt=167765 view 0 viewport=0,0,640,360 eye=11836,-429,-199 frames=2438 views=1
+wall=323539 qt=167765 bodies view=0 drawn=0 frames=11 others=0 with_body=0
+wall=324123 qt=167765 pause beat: paused=1
+wall=324568 qt=167765 perf frames=53 in 5012 ms
+wall=324568 qt=167765 view 0 viewport=0,0,640,360 eye=11836,-429,-199 frames=2449 views=1
+wall=324569 qt=167765 bodies view=0 drawn=0 frames=11 others=0 with_body=0
+wall=325241 qt=167765 pause beat: paused=1
+wall=325605 qt=167765 view 0 viewport=0,0,640,360 eye=11836,-429,-199 frames=2460 views=1
+wall=325606 qt=167765 bodies view=0 drawn=0 frames=11 others=0 with_body=0
+wall=326287 qt=167765 pause beat: paused=1
+wall=326647 qt=167765 view 0 viewport=0,0,640,360 eye=11836,-429,-199 frames=2471 views=1
+wall=326648 qt=167765 bodies view=0 drawn=0 frames=11 others=0 with_body=0
+wall=327328 qt=167765 pause beat: paused=1
+wall=327693 qt=167765 view 0 viewport=0,0,640,360 eye=11836,-429,-199 frames=2482 views=1
+wall=327694 qt=167765 bodies view=0 drawn=0 frames=11 others=0 with_body=0
+wall=328474 qt=167765 pause beat: paused=1
+wall=328753 qt=167765 view 0 viewport=0,0,640,360 eye=11836,-429,-199 frames=2493 views=1
+wall=328754 qt=167765 bodies view=0 drawn=0 frames=11 others=0 with_body=0
+wall=329515 qt=167765 pause beat: paused=1
+wall=329607 qt=167765 perf frames=53 in 5039 ms
+wall=329792 qt=167765 view 0 viewport=0,0,640,360 eye=11836,-429,-199 frames=2504 views=1
+wall=329793 qt=167765 bodies view=0 drawn=0 frames=11 others=0 with_body=0
+wall=330585 qt=167765 pause beat: paused=1
+wall=330862 qt=167765 view 0 viewport=0,0,640,360 eye=11836,-429,-199 frames=2515 views=1
+wall=330864 qt=167765 bodies view=0 drawn=0 frames=11 others=0 with_body=0
+wall=331647 qt=167765 pause beat: paused=1
+wall=331826 qt=167765 state SM_PAUSE_MAIN_MENU -> SM_END_PAUSE
+wall=331826 qt=167765 pause: off paused=1
+wall=331908 qt=167765 view 0 viewport=0,0,640,360 eye=11836,-429,-199 frames=2526 views=1
+wall=331909 qt=167765 bodies view=0 drawn=0 frames=11 others=0 with_body=0
+wall=332237 qt=167765 state SM_END_PAUSE -> SM_PLAYING_GAME
+wall=332237 qt=167765 cinema audio level SEQ_BLUSL1_GATTACK vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=332604 qt=168208 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=332747 qt=168208 cinema audio level SEQ_BLUSL1_GATTACK vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=332945 qt=168501 view 0 viewport=0,0,640,360 eye=11836,-429,-199 frames=2537 views=1
+wall=332946 qt=168501 bodies view=0 drawn=0 frames=11 others=0 with_body=0
+wall=333229 qt=168785 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=333316 qt=168785 command bbg0 (hook set)
+wall=333316 qt=168785 bbg player 0: switching
+wall=333316 qt=168785 bbg player 0: have=1 weapon_object=0 current=2
+wall=333317 qt=168785 cinema audio level SEQ_BLUSL1_GATTACK vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=333808 qt=169340 audio voices=5 top=LITE_FLOURESCENT_A x2
+wall=333808 qt=169340 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=333871 qt=169340 cinema audio level SEQ_BLUSL1_GATTACK vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=333945 qt=169475 view 0 viewport=0,0,640,360 eye=11836,-429,-199 frames=2549 views=1
+wall=333946 qt=169475 bodies view=0 drawn=0 frames=12 others=0 with_body=0
+wall=334354 qt=169885 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=334416 qt=169885 cinema audio level SEQ_BLUSL1_GATTACK vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=334616 qt=170087 perf frames=57 in 5009 ms
+wall=334941 qt=170384 cinema audio level SEQ_BLUSL1_GATTACK vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=334945 qt=170452 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=334945 qt=170452 view 0 viewport=0,0,640,360 eye=11836,-429,-199 frames=2563 views=1
+wall=334946 qt=170452 bodies view=0 drawn=0 frames=14 others=0 with_body=0
+wall=335215 qt=170656 dialog voice Mutant1_Vox_Run id=000680cc
+wall=335487 qt=170928 cinema audio level SEQ_BLUSL1_GATTACK vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=335492 qt=170998 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=335963 qt=171442 view 0 viewport=0,0,640,360 eye=11836,-429,-199 frames=2577 views=1
+wall=335964 qt=171442 bodies view=0 drawn=0 frames=14 others=0 with_body=0
+wall=336027 qt=171442 cinema audio level SEQ_BLUSL1_GATTACK vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=336032 qt=171509 audio voices=8 top=LITE_FLOURESCENT_A x2
+wall=336032 qt=171509 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=336163 qt=171575 dialog stop - id=000680cc
+wall=336163 qt=171575 dialog voice Mutant1_Vox_Run id=000680d1
+wall=336291 qt=171706 command warpmark (hook set)
+wall=336291 qt=171706 warp mark: the trigger is pulled
+wall=336291 qt=171706 pad 0 rt = 32767
+wall=336291 qt=171706 pad 1 rt = 32767
+wall=336567 qt=171980 cinema audio level SEQ_BLUSL1_GATTACK vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=336573 qt=172050 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=336777 qt=172186 dialog voice Mutant1_Vox_Walk id=000680d8
+wall=336843 qt=172256 dialog voice Mutant1_Vox_Walk id=000680d9
+wall=336962 qt=172323 pad 0 rt = -32768
+wall=336962 qt=172323 pad 1 rt = -32768
+wall=336966 qt=172323 dialog voice Mutant1_Vox_Walk id=000680da
+wall=336972 qt=172423 view 0 viewport=0,0,640,360 eye=11836,-429,-199 frames=2591 views=1
+wall=336973 qt=172423 bodies view=0 drawn=0 frames=14 others=0 with_body=0
+wall=337106 qt=172496 cinema audio level SEQ_BLUSL1_GATTACK vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=337109 qt=172496 dialog stop - id=000680d1
+wall=337109 qt=172496 dialog voice Mutant1_Vox_Run id=000380db
+wall=337114 qt=172566 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=337254 qt=172639 dialog voice Mutant1_Vox_Run id=000680de
+wall=337612 qt=173000 cinema audio level SEQ_BLUSL1_GATTACK vol=-1.00 pos3d=-1.00 zone=-1 marker=-1 at=0,0,0 2d=1
+wall=337612 qt=173000 cinema audio end SEQ_BLUSL1_GATTACK
+wall=337612 qt=173000 dialog stop - id=000680bc
+wall=337612 qt=173000 dialog stop - id=00000000
+wall=337615 qt=173000 dialog voice Mutant1_Vox_Run id=000680e4
+wall=337622 qt=173072 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=337756 qt=173144 dialog stream RAMIREZ_BLUSL1_13 id=000680e8
+wall=338038 qt=173463 view 0 viewport=0,0,640,360 eye=11836,-429,-199 frames=2605 views=1
+wall=338039 qt=173463 bodies view=0 drawn=0 frames=14 others=0 with_body=0
+wall=338107 qt=173463 dialog stop - id=000380db
+wall=338107 qt=173463 dialog voice Mutant1_Vox_Run id=000680ee
+wall=338177 qt=173539 dialog voice Mutant1_Vox_Walk id=000680f1
+wall=338177 qt=173539 dialog voice Mutant1_Vox_Run id=000680f2
+wall=338182 qt=173610 audio voices=12 top=LITE_FLOURESCENT_A x2
+wall=338182 qt=173610 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=338685 qt=174113 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=338824 qt=174185 dialog voice Mutant1_Vox_Run id=000680fa
+wall=339089 qt=174398 dialog voice Mutant1_Vox_Run id=000680fc
+wall=339089 qt=174398 dialog stop - id=000680ee
+wall=339089 qt=174398 dialog voice Mutant1_Vox_Run id=000680fd
+wall=339095 qt=174498 view 0 viewport=0,0,640,360 eye=11836,-429,-199 frames=2619 views=1
+wall=339096 qt=174498 bodies view=0 drawn=0 frames=14 others=0 with_body=0
+wall=339238 qt=174643 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=339658 qt=174998 perf frames=68 in 5042 ms
+wall=339741 qt=175145 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=340021 qt=175322 dialog voice Mutant1_Vox_Run id=0006810e
+wall=340021 qt=175322 dialog stop - id=000680fc
+wall=340021 qt=175322 dialog voice Mutant1_Vox_Run id=00068110
+wall=340185 qt=175498 view 0 viewport=0,0,640,360 eye=11836,-429,-199 frames=2632 views=1
+wall=340186 qt=175498 bodies view=0 drawn=0 frames=13 others=0 with_body=0
+wall=340331 qt=175647 audio voices=12 top=SMP_FIRE_OS_NPC x2
+wall=340331 qt=175647 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=340563 qt=175789 dialog stream CRISPY_BLUSL1_12 id=0006811a
+wall=340568 qt=175789 dialog voice Mutant1_Vox_Run id=0006811b
+wall=340751 qt=175974 dialog stop - id=0006811b
+wall=340751 qt=175974 dialog voice Mutant1_PainGrunt id=00068120
+wall=340832 qt=176149 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=340902 qt=176149 dialog stop - id=00068120
+wall=340902 qt=176149 dialog voice Mutant1_Vox_LeapSpawn id=00068122
+wall=341254 qt=176545 view 0 viewport=0,0,640,360 eye=11836,-429,-199 frames=2645 views=1
+wall=341256 qt=176545 bodies view=0 drawn=0 frames=13 others=0 with_body=0
+wall=341322 qt=176545 dialog voice Mutant1_Vox_Run id=0006812c
+wall=341395 qt=176618 dialog voice Mutant1_Vox_Leapspawn id=00068130
+wall=341398 qt=176691 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=341973 qt=177259 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=342330 qt=177552 view 0 viewport=0,0,640,360 eye=11836,-429,-199 frames=2657 views=1
+wall=342331 qt=177552 bodies view=0 drawn=0 frames=12 others=0 with_body=0
+wall=342475 qt=177628 dialog voice Mutant1_Vox_Walk id=00068149
+wall=342583 qt=177702 dialog voice Mutant1_Vox_Run id=0006814f
+wall=342589 qt=177802 audio voices=23 top=BULLETIMPACTMETAL x6
+wall=342589 qt=177802 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=343064 qt=178206 dialog stop - id=00068149
+wall=343064 qt=178206 dialog voice Mutant1_Vox_Run id=0006815b
+wall=343138 qt=178280 dialog voice Mutant1_Vox_Run id=0006815e
+wall=343143 qt=178353 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=343378 qt=178525 view 0 viewport=0,0,640,360 eye=11836,-429,-199 frames=2669 views=1
+wall=343380 qt=178525 bodies view=0 drawn=0 frames=12 others=0 with_body=0
+wall=343764 qt=178912 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=343833 qt=178912 dialog voice Mutant1_Vox_Run id=0006816a
+wall=343906 qt=178990 dialog voice Mutant1_Vox_Walk id=0006816c
+wall=344058 qt=179138 dialog stop - id=0006815e
+wall=344058 qt=179138 dialog voice Mutant1_Vox_Run id=0006816f
+wall=344155 qt=179213 pad 0 ry = -32767
+wall=344155 qt=179213 pad 1 ry = -32767
+wall=344158 qt=179213 dialog voice Mutant1_Vox_Run id=00068171
+wall=344345 qt=179491 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=-152 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=344505 qt=179591 view 0 viewport=0,0,640,360 eye=11836,-429,-199 frames=2682 views=1
+wall=344506 qt=179591 bodies view=0 drawn=0 frames=13 others=0 with_body=0
+wall=344571 qt=179591 dialog stream McCanA_GRENADETHROW id=0006817c
+wall=344679 qt=179669 perf frames=57 in 5021 ms
+wall=344923 qt=180002 audio voices=24 top=BULLETIMPACTFLESH x5
+wall=344923 qt=180002 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=-592 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=344975 qt=180002 dialog stop - id=0006816f
+wall=344976 qt=180002 dialog voice Mutant1_Vox_Run id=00068193
+wall=345034 qt=180061 dialog voice Mutant1_Vox_Run id=00068196
+wall=345034 qt=180061 dialog voice Mutant1_Vox_Run id=00068199
+wall=345202 qt=180234 dialog voice Mutant1_Vox_Run id=000681a7
+wall=345426 qt=180454 dialog stop - id=00068199
+wall=345426 qt=180454 dialog voice Mutant1_PainGrunt id=000681b9
+wall=345431 qt=180511 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=-870 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=345541 qt=180611 view 0 viewport=0,0,640,360 eye=11836,-429,-199 frames=2697 views=1
+wall=345541 qt=180611 bodies view=0 drawn=0 frames=15 others=0 with_body=0
+wall=345713 qt=180728 pad 0 ry = 0
+wall=345713 qt=180728 pad 0 rt = 32767
+wall=345713 qt=180728 pad 1 ry = 0
+wall=345713 qt=180728 pad 1 rt = 32767
+wall=345775 qt=180796 dialog stop - id=00068196
+wall=345775 qt=180796 dialog voice Mutant1_Vox_Run id=000681d5
+wall=345837 qt=180856 dialog stop - id=000681a7
+wall=345837 qt=180856 dialog voice Mutant1_Vox_Run id=000681de
+wall=345842 qt=180856 dialog stream SPEC41A_KILL id=000681df
+wall=345895 qt=180917 dialog stop - id=00068193
+wall=345959 qt=181033 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=-870 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=346012 qt=181033 dialog stop - id=000681de
+wall=346012 qt=181033 dialog voice Mutant1_PainGrunt id=000681ec
+wall=346296 qt=181322 pad 0 rt = -32768
+wall=346296 qt=181322 pad 1 rt = -32768
+wall=346479 qt=181553 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=-870 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=346587 qt=181553 dialog stop - id=000681d5
+wall=346587 qt=181553 dialog voice Mutant1_Vox_Run id=00078006
+wall=346596 qt=181653 view 0 viewport=0,0,640,360 eye=11836,-429,-199 frames=2714 views=1
+wall=346597 qt=181653 bodies view=0 drawn=0 frames=17 others=0 with_body=0
+wall=346878 qt=181885 dialog voice Mutant1_Vox_Walk id=00048016
+wall=346935 qt=181944 dialog stop - id=000681ec
+wall=347000 qt=182062 audio voices=43 top=EXPLOSION_DEBRIS_IMPACT x16
+wall=347000 qt=182062 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=-870 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=347229 qt=182239 dialog voice Mutant1_Vox_Run id=00078029
+wall=347343 qt=182353 dialog stop - id=00078006
+wall=347343 qt=182353 dialog voice Mutant1_Vox_Run id=0007802f
+wall=347523 qt=182584 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=-870 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=347686 qt=182744 view 0 viewport=0,0,640,360 eye=11836,-429,-199 frames=2732 views=1
+wall=347687 qt=182744 bodies view=0 drawn=0 frames=18 others=0 with_body=0
+wall=347855 qt=182863 dialog stop - id=0007802f
+wall=347855 qt=182863 dialog voice Mutant1_Vox_Death01 id=00078044
+wall=348037 qt=183043 dialog stream SPEC41A_RELOAD id=00078054
+wall=348042 qt=183104 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=-870 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=348096 qt=183104 dialog voice Mutant1_Vox_Walk id=0007805b
+wall=348159 qt=183162 dialog voice Mutant1_Vox_Run id=00078062
+wall=348275 qt=183283 dialog voice Mutant1_Vox_Run id=00078068
+wall=348581 qt=183641 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=-870 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=348758 qt=183801 view 0 viewport=0,0,640,360 eye=11836,-429,-199 frames=2749 views=1
+wall=348759 qt=183801 bodies view=0 drawn=0 frames=17 others=0 with_body=0
+wall=348811 qt=183801 dialog voice Mutant1_Vox_Run id=0007808a
+wall=348989 qt=183984 dialog stop - id=00078068
+wall=348989 qt=183984 dialog voice Mutant1_Vox_Run id=00078092
+wall=349106 qt=184101 dialog voice Mutant1_Vox_Run id=0007809b
+wall=349111 qt=184160 audio voices=46 top=EXPLOSION_DEBRIS_IMPACT x19
+wall=349111 qt=184160 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=-870 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=349465 qt=184457 dialog stream McCanA_COVER id=000780ac
+wall=349644 qt=184694 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=-870 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=349693 qt=184694 perf frames=81 in 5014 ms
+wall=349698 qt=184694 dialog voice Mutant1_Vox_Run id=000780b8
+wall=349698 qt=184694 dialog stop - id=00078092
+wall=349698 qt=184694 dialog voice Mutant1_Vox_Run id=000780bb
+wall=349814 qt=184852 view 0 viewport=0,0,640,360 eye=11836,-429,-199 frames=2766 views=1
+wall=349815 qt=184852 bodies view=0 drawn=0 frames=17 others=0 with_body=0
+wall=350044 qt=185031 dialog stop - id=0007809b
+wall=350044 qt=185031 dialog voice Mutant1_Vox_Run id=000780c7
+wall=350103 qt=185091 dialog voice Mutant1_Vox_Walk id=000780ca
+wall=350165 qt=185208 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=-870 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=350389 qt=185378 dialog stop - id=000780bb
+wall=350389 qt=185378 dialog voice Mutant1_Vox_Run id=000780d9
+wall=350677 qt=185719 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=-870 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=350905 qt=185942 view 0 viewport=0,0,640,360 eye=11836,-429,-199 frames=2784 views=1
+wall=350906 qt=185942 bodies view=0 drawn=0 frames=18 others=0 with_body=0
+wall=350958 qt=185942 dialog stop - id=000780c7
+wall=350958 qt=185942 dialog voice Mutant1_Vox_Run id=000780f1
+wall=351076 qt=186062 dialog stop - id=000780d9
+wall=351076 qt=186062 dialog voice Mutant1_Vox_Run id=000780f6
+wall=351132 qt=186122 dialog stop - id=000780ca
+wall=351133 qt=186122 dialog voice Mutant1_Vox_Death01 id=000780fa
+wall=351133 qt=186122 dialog stop - id=000780f1
+wall=351133 qt=186122 dialog voice Mutant1_PainGrunt id=000780fd
+wall=351196 qt=186237 audio voices=33 top=EXPLOSION_DEBRIS_IMPACT x6
+wall=351196 qt=186237 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=-870 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=351720 qt=186761 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=-870 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=351950 qt=186974 view 0 viewport=0,0,640,360 eye=11836,-429,-199 frames=2801 views=1
+wall=351951 qt=186974 bodies view=0 drawn=0 frames=17 others=0 with_body=0
+wall=352059 qt=187035 dialog stream RAMIREZA_RELOAD id=00078126
+wall=352174 qt=187147 dialog voice Mutant1_Vox_Walk id=00078129
+wall=352235 qt=187262 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=-870 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=352286 qt=187262 dialog voice Mutant1_Vox_Run id=0007812e
+wall=352461 qt=187434 dialog stop - id=0007812e
+wall=352461 qt=187434 dialog voice Mutant1_Vox_LeapSpawn id=00078134
+wall=352691 qt=187662 dialog voice Mutant1_Vox_Run id=0007813b
+wall=352756 qt=187781 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=-870 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=353036 qt=188058 view 0 viewport=0,0,640,360 eye=11836,-429,-199 frames=2819 views=1
+wall=353037 qt=188058 bodies view=0 drawn=0 frames=18 others=0 with_body=0
+wall=353261 qt=188231 dialog voice Mutant1_Vox_Run id=0007814f
+wall=353265 qt=188289 audio voices=27 top=EXPLOSION_DEBRIS_IMPACT x3
+wall=353265 qt=188289 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=-870 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=353430 qt=188404 dialog voice Mutant1_Vox_Run id=00078152
+wall=353774 qt=188799 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=-870 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=353879 qt=188853 dialog voice Mutant1_Vox_Walk id=00078164
+wall=353992 qt=188964 dialog stop - id=0007814f
+wall=353992 qt=188964 dialog voice Mutant1_PainGrunt id=00078169
+wall=354108 qt=189120 view 0 viewport=0,0,640,360 eye=11836,-429,-199 frames=2837 views=1
+wall=354109 qt=189120 bodies view=0 drawn=0 frames=18 others=0 with_body=0
+wall=354160 qt=189120 dialog voice Mutant1_Vox_Run id=0007816a
+wall=354338 qt=189353 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=-870 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=354562 qt=189525 dialog stop - id=0007816a
+wall=354563 qt=189525 dialog stop - id=00078164
+wall=354563 qt=189525 dialog stop - id=00078169
+wall=354735 qt=189700 perf frames=83 in 5042 ms
+wall=354856 qt=189872 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=-870 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=355190 qt=190200 view 0 viewport=0,0,640,360 eye=11836,-429,-199 frames=2855 views=1
+wall=355191 qt=190200 bodies view=0 drawn=0 frames=18 others=0 with_body=0
+wall=355417 qt=190430 audio voices=29 top=EXPLOSION_DEBRIS_IMPACT x14
+wall=355417 qt=190430 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=-870 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=355943 qt=190957 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=-870 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=356265 qt=191180 dialog voice Mutant1_Vox_Walk id=0007819a
+wall=356270 qt=191280 view 0 viewport=0,0,640,360 eye=11836,-429,-199 frames=2873 views=1
+wall=356271 qt=191280 bodies view=0 drawn=0 frames=18 others=0 with_body=0
+wall=356324 qt=191280 dialog voice Mutant1_Vox_Walk id=0007819b
+wall=356381 qt=191340 dialog voice Mutant1_Vox_Walk id=0007819c
+wall=356445 qt=191458 player 0 guid=6E89E001 slot=0 pad=0 pos=11825,-598,-200 yaw=-899 pitch=-870 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=356557 qt=191514 dialog voice Mutant1_Vox_Run id=0007819d
+wall=356670 qt=191630 dialog voice Mutant1_Vox_Run id=000781a0
+wall=356784 qt=191746 script finished, asking the game to exit
+wall=356788 qt=191746 dialog stop - id=00000000
+wall=356788 qt=191746 dialog stop - id=00000000
+wall=356788 qt=191746 dialog stop - id=00000000
+wall=357750 qt=191746 QA bot shutting down (armed=1 finished=1)
+wall=357870 qt=191746 ASSERT #1 /home/runner/work/area51-pc/area51-pc/Support/NetworkMgr/Voice/VoiceMgr.cpp:38 expr=[!m_Initialized] msg=[]
+wall=357870 qt=191746 ASSERT #2 /home/runner/work/area51-pc/area51-pc/xCore/Entropy/Network/FiFo.cpp:25 expr=[m_Initialized==FALSE] msg=[]
+wall=357870 qt=191746 ASSERT #3 /home/runner/work/area51-pc/area51-pc/xCore/Entropy/Network/FiFo.cpp:25 expr=[m_Initialized==FALSE] msg=[]
