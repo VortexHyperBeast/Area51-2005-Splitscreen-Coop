@@ -47,8 +47,8 @@ case "$MODE" in
   swap)   EXPECT=coop-swapped ;;   # co-op with the CO-OP-SETTINGS options: controllers swapped, other skins
   single) EXPECT=single ;;
   coop-l2|single-l2) EXPECT=probe ;;   # the second campaign level: cutscene sound report only, never fails
-  coop-exit) EXPECT=probe; QA_LEVEL_ID="${QA_LEVEL_ID:-1130}" ;;   # The Last Exit (owner's crash): report only
-  *) echo "mode must be coop, swap, single, coop-l2, single-l2 or coop-exit"; exit 2 ;;
+  coop-exit|single-exit) EXPECT=probe; QA_LEVEL_ID="${QA_LEVEL_ID:-1130}" ;;   # The Last Exit (owner's crash, train start): report only
+  *) echo "mode must be coop, swap, single, coop-l2, single-l2, coop-exit or single-exit"; exit 2 ;;
 esac
 
 say() { echo "$@" | tee -a "$OUT/run.txt"; }
