@@ -115,6 +115,10 @@ def make_chain_script():
         "# start_ms end_ms pad control value   (game time since the bot was armed)",
         "# the first level runs, then the test quits to the main menu (script clock pauses)",
         "cmd %d tomenu" % CHAIN_FIRST_MS,
+        # the bot needs at least one stick event or it switches itself off: a short look around
+        # in each level
+        "5000 6500 0 rx 40",
+        "%d %d 0 rx -40" % (CHAIN_FIRST_MS + 10000, CHAIN_FIRST_MS + 11500),
         "# the next level starts; both players stand still",
         "quit %d" % (CHAIN_FIRST_MS + CHAIN_SECOND_MS),
     ]) + "\n"
