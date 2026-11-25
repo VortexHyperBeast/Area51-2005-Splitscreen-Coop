@@ -274,7 +274,9 @@ lore_vault* lore_list::GetVaultByMapID( s32 MapID, s32& Index )
         Index++;
     }
 
-    ASSERTS( FALSE, "Could not look up vault from mapID" );
+    // No vault for this map (e.g. a level started from the level select):
+    // callers get Index -1 and NULL.  (An ASSERTS here is undefined behaviour
+    // in the play build, which turns asserts into __assume.)
     Index = -1;
     return NULL;
 }

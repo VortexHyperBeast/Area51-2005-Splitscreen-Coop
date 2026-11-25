@@ -301,8 +301,11 @@ void player_profile::SetProfileName( char const* pProfileName )
 
 xbool player_profile::GetLoreAcquired( u32 Vault, s32 Index ) const
 {
-    ASSERT( Vault < NUM_VAULTS );
-    ASSERT( (Index == -1) || ((Index >= 0) && (Index < NUM_PER_VAULT)) );
+    // A level without a lore vault gives Vault = -1 (as u32: huge).  The play
+    // build turns failed asserts into undefined behaviour, and the scanner of
+    // such a level crashed the owner's game (2026-11-25): no vault, no lore.
+    if( (Vault >= NUM_VAULTS) || !((Index == -1) || ((Index >= 0) && (Index < NUM_PER_VAULT))) )
+        return FALSE;
 
     // check if this is a general inquiry
     if( Index == -1 )
@@ -318,6 +321,8 @@ xbool player_profile::GetLoreAcquired( u32 Vault, s32 Index ) const
 
 void player_profile::SetLoreAcquired( u32 Vault, u32 Index )
 {
+    if( (Vault >= NUM_VAULTS) || (Index >= NUM_PER_VAULT) )
+        return;                         // no vault for this level (see GetLoreAcquired)
     // range checks
     ASSERT( Vault < NUM_VAULTS );
     ASSERT( Index < NUM_PER_VAULT );

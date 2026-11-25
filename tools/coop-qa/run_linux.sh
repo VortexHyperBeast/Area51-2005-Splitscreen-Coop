@@ -162,7 +162,7 @@ REASON=""
 while kill -0 "$GPID" 2>/dev/null; do
   sleep 5
   ELAPSED=$(( $(date +%s) - START ))
-  if [ "$NSHOTS" -lt 60 ] && grep -q ' armed: ' "$RUN/a51_qa_bot.log" 2>/dev/null && command -v import >/dev/null 2>&1; then
+  if [ "$NSHOTS" -lt 150 ] && grep -q ' armed: ' "$RUN/a51_qa_bot.log" 2>/dev/null && command -v import >/dev/null 2>&1; then
     if timeout 20 import -window root -depth 8 "ppm:$SHOTS/$(printf '%03d' "$NSHOTS").ppm" 2>/dev/null; then
       # the game's clock at about the time of the shot (its last log line), to place the shot
       printf '%03d %s\n' "$NSHOTS" "$(grep -a -o 'wall=[0-9]*' "$RUN/a51_qa_bot.log" 2>/dev/null | tail -n 1 | cut -d= -f2)" >> "$SHOTS/times.txt"
