@@ -421,7 +421,10 @@ xbool debris_meson_explosion::lash::HarmTarget( void )
             }
 
 #ifndef X_EDITOR
-            if (GameMgr.IsGameMultiplayer())
+            // Co-op: never OnKill a player (it frees his local slot: his view goes black and both
+            // views stop drawing - the "blue gun" freeze).  A player gets the pain instead, which
+            // goes through the downed/revive rules and the friendly-fire filter.
+            if (GameMgr.IsGameMultiplayer() || Actor.IsPlayer())
             {
                 CLOG_MESSAGE( ENABLE_LOGGING, "debris_meson_explosion::lash::HarmTarget","%08X Doing multiplayer harm via pain",this);
 
