@@ -1,0 +1,1662 @@
+wall=649 qt=-1 QA bot starting (wall limit 3300 s, menu pulses 1)
+wall=649 qt=-1 script '/mnt/pack/work/single-exit/script.txt' loaded: 54 events, quit at 193700 ms
+wall=649 qt=-1 pad 0 attached: instance id 3, is_gamepad=1
+wall=649 qt=-1 pad 1 attached: instance id 4, is_gamepad=1
+wall=2776 qt=-1 state SM_IDLE -> SM_PRESS_START_SCREEN
+wall=2807 qt=-1 state SM_PRESS_START_SCREEN -> SM_MAIN_MENU
+wall=2971 qt=-1 state SM_MAIN_MENU -> SM_PROFILE_SELECT
+wall=2984 qt=-1 state SM_PROFILE_SELECT -> SM_CAMPAIGN_MENU
+wall=2995 qt=-1 state SM_CAMPAIGN_MENU -> SM_LEVEL_SELECT
+wall=2995 qt=-1 level list 0: id=1000
+wall=2995 qt=-1 level list 1: id=1010
+wall=2995 qt=-1 level list 2: id=1020
+wall=2995 qt=-1 level list 3: id=1030
+wall=2995 qt=-1 level list 4: id=1040
+wall=2995 qt=-1 level list 5: id=1050
+wall=2995 qt=-1 level list 6: id=1060
+wall=2995 qt=-1 level list 7: id=1070
+wall=2995 qt=-1 level list 8: id=1075
+wall=2995 qt=-1 level list 9: id=1080
+wall=2995 qt=-1 level list 10: id=1090
+wall=2995 qt=-1 level list 11: id=1095
+wall=2995 qt=-1 level list 12: id=1100
+wall=2995 qt=-1 level list 13: id=1105
+wall=2995 qt=-1 level list 14: id=1110
+wall=2995 qt=-1 level list 15: id=1115
+wall=2995 qt=-1 level list 16: id=1120
+wall=2995 qt=-1 level list 17: id=1125
+wall=2995 qt=-1 level list 18: id=1130
+wall=5011 qt=-1 level picked by the test: 1130
+wall=5011 qt=-1 state SM_LEVEL_SELECT -> SM_START_GAME
+wall=5306 qt=-1 state SM_START_GAME -> SM_SINGLE_PLAYER_LOAD_MISSION
+wall=10048 qt=-1 perf frames=257 in 5047 ms
+wall=15059 qt=-1 perf frames=115 in 5011 ms
+wall=20064 qt=-1 perf frames=198 in 5005 ms
+wall=25065 qt=-1 perf frames=274 in 5001 ms
+wall=30068 qt=-1 perf frames=416 in 5003 ms
+wall=32571 qt=-1 campaign BeginGame done: players=1 level=1130
+wall=33681 qt=-1 state SM_SINGLE_PLAYER_LOAD_MISSION -> SM_SERVER_SYNC
+wall=33683 qt=-1 state SM_SERVER_SYNC -> SM_PLAYING_GAME
+wall=33714 qt=-1 dialog stop - id=00000000
+wall=33714 qt=-1 dialog stop - id=00000000
+wall=33720 qt=-1 audio voices=0 top=- x0
+wall=33720 qt=-1 player 0 guid=35053801 slot=0 pad=0 pos=12150,-40,22100 yaw=-899 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=33720 qt=-1 platform 0: on=00000000 support=0 nearest=C8D1B800 at 12199,-75,22100 top=9265 dist=60 collidable=1 rideable=1
+wall=34052 qt=-1 view 0 viewport=0,0,640,360 eye=12161,93,22100 frames=1 views=1
+wall=34058 qt=-1 bodies view=0 drawn=0 frames=1 others=0 with_body=0
+wall=38126 qt=-1 perf frames=790 in 8058 ms
+wall=38148 qt=-1 view 0 viewport=0,0,640,360 eye=12162,93,22100 frames=2 views=1
+wall=38150 qt=-1 bodies view=0 drawn=0 frames=1 others=0 with_body=0
+wall=38492 qt=-1 player 0 guid=35053801 slot=0 pad=0 pos=12150,-72,22100 yaw=-899 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=38492 qt=-1 platform 0: on=00000000 support=0 nearest=C8D1B800 at 12199,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=39282 qt=-1 view 0 viewport=0,0,640,360 eye=12161,95,22100 frames=8 views=1
+wall=39284 qt=-1 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=39438 qt=-1 player 0 guid=35053801 slot=0 pad=0 pos=12150,-72,22100 yaw=-899 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=39438 qt=-1 platform 0: on=00000000 support=0 nearest=C8D1B800 at 12199,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=40321 qt=-1 view 0 viewport=0,0,640,360 eye=11537,95,22100 frames=14 views=1
+wall=40323 qt=-1 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=40470 qt=-1 player 0 guid=35053801 slot=0 pad=0 pos=11264,-72,22100 yaw=-899 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=40470 qt=-1 platform 0: on=00000000 support=0 nearest=C8D1B800 at 11313,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=41446 qt=-1 audio voices=5 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=41446 qt=-1 player 0 guid=35053801 slot=0 pad=0 pos=9317,-72,22100 yaw=-899 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=41446 qt=-1 platform 0: on=00000000 support=0 nearest=C8D1B800 at 9367,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=41447 qt=-1 view 0 viewport=0,0,640,360 eye=9329,95,22100 frames=21 views=1
+wall=41449 qt=-1 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=42394 qt=-1 player 0 guid=35053801 slot=0 pad=0 pos=7228,-72,22100 yaw=-899 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=42394 qt=-1 platform 0: on=00000000 support=0 nearest=C8D1B800 at 7278,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=42545 qt=-1 view 0 viewport=0,0,640,360 eye=6927,95,22100 frames=28 views=1
+wall=42547 qt=-1 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=43148 qt=-1 perf frames=30 in 5022 ms
+wall=43305 qt=-1 player 0 guid=35053801 slot=0 pad=0 pos=5651,-72,22100 yaw=-899 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=43305 qt=-1 platform 0: on=00000000 support=0 nearest=C8D1B800 at 5701,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=43593 qt=-1 view 0 viewport=0,0,640,360 eye=5242,95,22100 frames=35 views=1
+wall=43595 qt=-1 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=44201 qt=-1 player 0 guid=35053801 slot=0 pad=0 pos=4474,-72,22100 yaw=-899 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=44201 qt=-1 platform 0: on=00000000 support=0 nearest=C8D1B800 at 4524,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=44635 qt=-1 view 0 viewport=0,0,640,360 eye=3985,95,22100 frames=42 views=1
+wall=44637 qt=-1 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=45107 qt=-1 audio voices=5 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=45107 qt=-1 player 0 guid=35053801 slot=0 pad=0 pos=3520,-72,22100 yaw=-899 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=45107 qt=-1 platform 0: on=00000000 support=0 nearest=C8D1B800 at 3570,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=45528 qt=0 armed: level running, no cinematic on any local player (script 0 ms)
+wall=45528 qt=0 loadout player 0: scanner=1 smp=1 pistol=1
+wall=45528 qt=0 equip player 0: pistol, 8 rounds per clip
+wall=45528 qt=0 profile player 0: index=0 name=Empty avatar=0
+wall=45662 qt=200 view 0 viewport=0,0,640,360 eye=2987,95,22100 frames=49 views=1
+wall=45664 qt=200 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=46084 qt=400 player 0 guid=35053801 slot=0 pad=0 pos=2725,-72,22099 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=46084 qt=400 platform 0: on=00000000 support=0 nearest=C8D1B800 at 2774,-75,22099 top=9265 dist=49 collidable=1 rideable=1
+wall=46761 qt=900 view 0 viewport=0,0,640,360 eye=2205,95,22100 frames=56 views=1
+wall=46763 qt=900 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=46904 qt=1000 player 0 guid=35053801 slot=0 pad=0 pos=2104,-72,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=46904 qt=1000 platform 0: on=00000000 support=0 nearest=C8D1B800 at 2154,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=47779 qt=1600 player 0 guid=35053801 slot=0 pad=0 pos=1659,-72,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=47779 qt=1600 platform 0: on=00000000 support=0 nearest=C8D1B800 at 1709,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=47779 qt=1600 view 0 viewport=0,0,640,360 eye=1671,95,22100 frames=63 views=1
+wall=47781 qt=1600 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=48212 qt=1800 perf frames=34 in 5064 ms
+wall=48636 qt=2200 audio voices=9 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x4
+wall=48636 qt=2200 player 0 guid=35053801 slot=0 pad=0 pos=1310,-72,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=48636 qt=2200 platform 0: on=00000000 support=0 nearest=C8D1B800 at 1360,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=48901 qt=2400 view 0 viewport=0,0,640,360 eye=1213,95,22100 frames=71 views=1
+wall=48902 qt=2400 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=49486 qt=2800 player 0 guid=35053801 slot=0 pad=0 pos=1013,-72,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=49486 qt=2800 platform 0: on=00000000 support=0 nearest=C8D1B800 at 1063,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=50003 qt=3200 view 0 viewport=0,0,640,360 eye=883,95,22100 frames=79 views=1
+wall=50004 qt=3200 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=50310 qt=3400 player 0 guid=35053801 slot=0 pad=0 pos=812,-72,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=50310 qt=3400 platform 0: on=00000000 support=0 nearest=C8D1B800 at 862,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=51065 qt=4000 player 0 guid=35053801 slot=0 pad=0 pos=658,-72,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=51065 qt=4000 platform 0: on=00000000 support=0 nearest=C8D1B800 at 708,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=51065 qt=4000 view 0 viewport=0,0,640,360 eye=670,95,22100 frames=87 views=1
+wall=51066 qt=4000 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=51900 qt=4600 audio voices=6 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=51900 qt=4600 player 0 guid=35053801 slot=0 pad=0 pos=499,-72,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=51900 qt=4600 platform 0: on=00000000 support=0 nearest=C8D1B800 at 549,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=52163 qt=4800 view 0 viewport=0,0,640,360 eye=455,95,22100 frames=95 views=1
+wall=52164 qt=4800 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=52722 qt=5200 player 0 guid=35053801 slot=0 pad=0 pos=336,-72,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=52722 qt=5200 platform 0: on=00000000 support=0 nearest=C8D1B800 at 386,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=53214 qt=5600 view 0 viewport=0,0,640,360 eye=250,95,22100 frames=103 views=1
+wall=53216 qt=5600 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=53375 qt=5600 perf frames=38 in 5163 ms
+wall=53516 qt=5800 player 0 guid=35053801 slot=0 pad=0 pos=195,-72,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=53516 qt=5800 platform 0: on=00000000 support=0 nearest=C8D1B800 at 245,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=54266 qt=6300 view 0 viewport=0,0,640,360 eye=122,95,22100 frames=110 views=1
+wall=54267 qt=6300 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=54446 qt=6400 player 0 guid=35053801 slot=0 pad=0 pos=100,-72,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=54446 qt=6400 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=55198 qt=7000 audio voices=10 top=BO_FOOTFALL_HEEL_METAL x2
+wall=55198 qt=7000 player 0 guid=35053801 slot=0 pad=0 pos=100,-72,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=55198 qt=7000 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=55312 qt=7100 view 0 viewport=0,0,640,360 eye=111,95,22100 frames=118 views=1
+wall=55313 qt=7100 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=55938 qt=7600 player 0 guid=35053801 slot=0 pad=0 pos=100,-72,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=55938 qt=7600 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=56408 qt=8000 view 0 viewport=0,0,640,360 eye=111,93,22100 frames=127 views=1
+wall=56409 qt=8000 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=56684 qt=8200 player 0 guid=35053801 slot=0 pad=0 pos=100,-74,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=56684 qt=8200 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=57389 qt=8800 player 0 guid=35053801 slot=0 pad=0 pos=100,-72,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=57389 qt=8800 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=57512 qt=8900 view 0 viewport=0,0,640,360 eye=111,95,22100 frames=136 views=1
+wall=57513 qt=8900 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=58129 qt=9400 audio voices=8 top=BO_FOOTFALL_HEEL_METAL x3
+wall=58129 qt=9400 player 0 guid=35053801 slot=0 pad=0 pos=100,-72,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=58129 qt=9400 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=58472 qt=9600 perf frames=40 in 5097 ms
+wall=58603 qt=9800 view 0 viewport=0,0,640,360 eye=111,95,22100 frames=145 views=1
+wall=58604 qt=9800 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=58873 qt=10000 player 0 guid=35053801 slot=0 pad=0 pos=100,-72,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=58873 qt=10000 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=59580 qt=10600 player 0 guid=35053801 slot=0 pad=0 pos=100,-72,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=59580 qt=10600 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=59747 qt=10700 view 0 viewport=0,0,640,360 eye=111,95,22100 frames=154 views=1
+wall=59748 qt=10700 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=60335 qt=11200 player 0 guid=35053801 slot=0 pad=0 pos=100,-72,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=60335 qt=11200 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=60837 qt=11600 view 0 viewport=0,0,640,360 eye=111,95,22100 frames=163 views=1
+wall=60838 qt=11600 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=61079 qt=11800 audio voices=9 top=BO_FOOTFALL_HEEL_METAL x2
+wall=61079 qt=11800 player 0 guid=35053801 slot=0 pad=0 pos=100,-72,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=61079 qt=11800 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=61777 qt=12400 player 0 guid=35053801 slot=0 pad=0 pos=100,-72,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=61777 qt=12400 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=61931 qt=12500 view 0 viewport=0,0,640,360 eye=111,95,22100 frames=172 views=1
+wall=61932 qt=12500 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=62518 qt=13000 player 0 guid=35053801 slot=0 pad=0 pos=100,-72,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=62518 qt=13000 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=63038 qt=13400 view 0 viewport=0,0,640,360 eye=111,95,22100 frames=181 views=1
+wall=63039 qt=13400 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=63282 qt=13600 player 0 guid=35053801 slot=0 pad=0 pos=100,-72,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=63282 qt=13600 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=63496 qt=13700 perf frames=41 in 5024 ms
+wall=64023 qt=14200 audio voices=9 top=BO_FOOTFALL_HEEL_METAL x2
+wall=64023 qt=14200 player 0 guid=35053801 slot=0 pad=0 pos=100,-72,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=64023 qt=14200 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=64139 qt=14300 view 0 viewport=0,0,640,360 eye=111,95,22100 frames=190 views=1
+wall=64140 qt=14300 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=64725 qt=14800 player 0 guid=35053801 slot=0 pad=0 pos=100,-72,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=64725 qt=14800 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=65109 qt=15000 pad 0 ly = -32767
+wall=65237 qt=15200 view 0 viewport=0,0,640,360 eye=51,95,22100 frames=199 views=1
+wall=65238 qt=15200 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=65458 qt=15400 player 0 guid=35053801 slot=0 pad=0 pos=-79,-75,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=65458 qt=15400 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=229 collidable=1 rideable=1
+wall=66169 qt=16000 player 0 guid=35053801 slot=0 pad=0 pos=-275,-80,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=66169 qt=16000 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=425 collidable=1 rideable=1
+wall=66280 qt=16100 view 0 viewport=0,0,640,360 eye=-263,88,22100 frames=208 views=1
+wall=66281 qt=16100 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=66860 qt=16600 audio voices=11 top=BO_FOOTFALL_HEEL_METAL x2
+wall=66860 qt=16600 player 0 guid=35053801 slot=0 pad=0 pos=-275,-80,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=66860 qt=16600 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=425 collidable=1 rideable=1
+wall=67355 qt=17000 view 0 viewport=0,0,640,360 eye=-263,88,22100 frames=217 views=1
+wall=67356 qt=17000 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=67585 qt=17200 player 0 guid=35053801 slot=0 pad=0 pos=-275,-80,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=67585 qt=17200 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=425 collidable=1 rideable=1
+wall=68021 qt=17500 pad 0 ly = 0
+wall=68309 qt=17800 player 0 guid=35053801 slot=0 pad=0 pos=-275,-80,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=68309 qt=17800 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=425 collidable=1 rideable=1
+wall=68424 qt=17900 view 0 viewport=0,0,640,360 eye=-263,87,22100 frames=226 views=1
+wall=68425 qt=17900 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=68523 qt=17900 perf frames=42 in 5027 ms
+wall=68982 qt=18400 player 0 guid=35053801 slot=0 pad=0 pos=-275,-80,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=68982 qt=18400 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=425 collidable=1 rideable=1
+wall=69243 qt=18500 pad 1 ly = -32767
+wall=69487 qt=18800 view 0 viewport=0,0,640,360 eye=-263,87,22100 frames=235 views=1
+wall=69488 qt=18800 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=69714 qt=19000 audio voices=5 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=69714 qt=19000 player 0 guid=35053801 slot=0 pad=0 pos=-275,-80,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=69714 qt=19000 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=425 collidable=1 rideable=1
+wall=70430 qt=19600 player 0 guid=35053801 slot=0 pad=0 pos=-275,-80,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=70430 qt=19600 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=425 collidable=1 rideable=1
+wall=70538 qt=19700 view 0 viewport=0,0,640,360 eye=-263,87,22100 frames=244 views=1
+wall=70539 qt=19700 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=71102 qt=20200 player 0 guid=35053801 slot=0 pad=0 pos=-275,-80,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=71102 qt=20200 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=425 collidable=1 rideable=1
+wall=71607 qt=20600 view 0 viewport=0,0,640,360 eye=-263,87,22100 frames=253 views=1
+wall=71608 qt=20600 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=71818 qt=20800 player 0 guid=35053801 slot=0 pad=0 pos=-275,-80,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=71818 qt=20800 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=425 collidable=1 rideable=1
+wall=72131 qt=21000 pad 1 ly = 0
+wall=72519 qt=21400 audio voices=5 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=72519 qt=21400 player 0 guid=35053801 slot=0 pad=0 pos=-275,-80,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=72519 qt=21400 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=425 collidable=1 rideable=1
+wall=72633 qt=21500 view 0 viewport=0,0,640,360 eye=-263,87,22100 frames=262 views=1
+wall=72634 qt=21500 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=73214 qt=22000 player 0 guid=35053801 slot=0 pad=0 pos=-275,-80,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=73214 qt=22000 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=425 collidable=1 rideable=1
+wall=73317 qt=22000 pad 0 lx = 32767
+wall=73317 qt=22000 pad 1 lx = -32767
+wall=73596 qt=22200 perf frames=43 in 5073 ms
+wall=73728 qt=22400 view 0 viewport=0,0,640,360 eye=-262,131,21918 frames=271 views=1
+wall=73729 qt=22400 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=73940 qt=22600 player 0 guid=35053801 slot=0 pad=0 pos=-275,0,21806 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=73941 qt=22600 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=521 collidable=1 rideable=1
+wall=74663 qt=23200 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,21446 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=74663 qt=23200 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=724 collidable=1 rideable=1
+wall=74776 qt=23300 view 0 viewport=0,0,640,360 eye=-263,169,21384 frames=280 views=1
+wall=74777 qt=23300 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=75318 qt=23800 audio voices=11 top=BO_FOOTFALL_HEEL_METAL x3
+wall=75318 qt=23800 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,21086 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=75318 qt=23800 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=510 collidable=1 rideable=1
+wall=75679 qt=24000 pad 0 lx = 0
+wall=75679 qt=24000 pad 1 lx = 0
+wall=75809 qt=24200 view 0 viewport=0,0,640,360 eye=-263,169,20970 frames=289 views=1
+wall=75810 qt=24200 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=76026 qt=24400 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=76026 qt=24400 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=76724 qt=25000 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=76724 qt=25000 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=76815 qt=25000 pad 0 rx = 32767
+wall=76829 qt=25100 view 0 viewport=0,0,640,360 eye=-263,169,20971 frames=298 views=1
+wall=76830 qt=25100 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=77789 qt=25600 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-2314 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=77789 qt=25600 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=77938 qt=25700 view 0 viewport=0,0,640,360 eye=-286,169,20972 frames=304 views=1
+wall=77941 qt=25700 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=78596 qt=26100 perf frames=39 in 5000 ms
+wall=78609 qt=26200 audio voices=10 top=BO_FOOTFALL_TOE_METAL x3
+wall=78609 qt=26200 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-4203 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=78609 qt=26200 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=78983 qt=26500 view 0 viewport=0,0,640,360 eye=-270,169,20981 frames=312 views=1
+wall=78985 qt=26500 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=79087 qt=26500 pad 0 rx = 0
+wall=79341 qt=26800 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=79341 qt=26800 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=80021 qt=27300 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=320 views=1
+wall=80023 qt=27300 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=80141 qt=27400 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=80141 qt=27400 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=80369 qt=27500 pad 1 rx = -32767
+wall=80928 qt=28000 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=80928 qt=28000 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=81054 qt=28100 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=328 views=1
+wall=81055 qt=28100 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=81652 qt=28600 audio voices=10 top=BO_FOOTFALL_TOE_METAL x3
+wall=81652 qt=28600 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=81652 qt=28600 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=82067 qt=28900 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=336 views=1
+wall=82069 qt=28900 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=82294 qt=29000 pad 1 rx = 0
+wall=82428 qt=29200 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=82428 qt=29200 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=83075 qt=29700 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=344 views=1
+wall=83077 qt=29700 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=83199 qt=29800 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=83199 qt=29800 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=83566 qt=30000 pad 0 a = 1
+wall=83691 qt=30100 perf frames=40 in 5095 ms
+wall=83939 qt=30300 pad 0 a = 0
+wall=83952 qt=30400 player 0 guid=35053801 slot=0 pad=0 pos=-275,106,20971 yaw=-5463 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=83952 qt=30400 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=491 collidable=1 rideable=1
+wall=84116 qt=30500 view 0 viewport=0,0,640,360 eye=-276,289,20982 frames=352 views=1
+wall=84118 qt=30500 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=84728 qt=31000 audio voices=7 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=84728 qt=31000 player 0 guid=35053801 slot=0 pad=0 pos=-275,46,20971 yaw=-5463 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=84728 qt=31000 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=482 collidable=1 rideable=1
+wall=85138 qt=31300 view 0 viewport=0,0,640,360 eye=-276,165,20983 frames=360 views=1
+wall=85140 qt=31300 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=85506 qt=31600 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=85506 qt=31600 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=86106 qt=32000 pad 1 a = 1
+wall=86283 qt=32200 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=86283 qt=32200 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=86283 qt=32200 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=369 views=1
+wall=86285 qt=32200 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=86512 qt=32300 pad 1 a = 0
+wall=87009 qt=32800 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=87009 qt=32800 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=87301 qt=33000 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=377 views=1
+wall=87302 qt=33000 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=87796 qt=33400 audio voices=8 top=BO_FOOTFALL_HEEL_METAL x3
+wall=87796 qt=33400 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=87796 qt=33400 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=88330 qt=33800 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=385 views=1
+wall=88331 qt=33800 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=88569 qt=34000 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=88570 qt=34000 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=88677 qt=34000 pad 0 rt = 32767
+wall=88797 qt=34100 perf frames=40 in 5106 ms
+wall=89522 qt=34400 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=391 views=1
+wall=89524 qt=34400 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=89804 qt=34600 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=EGL ammo=63 inclip=5 perclip=8 cinema=0
+wall=89804 qt=34600 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=90573 qt=35100 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=398 views=1
+wall=90574 qt=35100 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=90713 qt=35200 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=EGL ammo=61 inclip=3 perclip=8 cinema=0
+wall=90713 qt=35200 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=91264 qt=35500 pad 0 rt = -32768
+wall=91577 qt=35800 audio voices=15 top=BO_FOOTFALL_TOE_METAL x3
+wall=91577 qt=35800 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=EGL ammo=61 inclip=3 perclip=8 cinema=0
+wall=91577 qt=35800 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=91577 qt=35800 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=405 views=1
+wall=91579 qt=35800 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=92343 qt=36400 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=EGL ammo=61 inclip=3 perclip=8 cinema=0
+wall=92343 qt=36400 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=92605 qt=36500 pad 1 rt = 32767
+wall=92619 qt=36600 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=413 views=1
+wall=92621 qt=36600 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=93119 qt=37000 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=EGL ammo=61 inclip=3 perclip=8 cinema=0
+wall=93119 qt=37000 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=93658 qt=37400 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=421 views=1
+wall=93660 qt=37400 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=93896 qt=37500 perf frames=34 in 5099 ms
+wall=93912 qt=37600 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=EGL ammo=61 inclip=3 perclip=8 cinema=0
+wall=93912 qt=37600 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=94514 qt=38000 pad 1 rt = -32768
+wall=94704 qt=38200 audio voices=13 top=BO_FOOTFALL_HEEL_METAL x4
+wall=94704 qt=38200 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=EGL ammo=61 inclip=3 perclip=8 cinema=0
+wall=94704 qt=38200 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=94704 qt=38200 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=429 views=1
+wall=94706 qt=38200 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=95426 qt=38800 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=EGL ammo=61 inclip=3 perclip=8 cinema=0
+wall=95427 qt=38800 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=95719 qt=39000 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=437 views=1
+wall=95720 qt=39000 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=95833 qt=39000 pad 0 x = 1
+wall=96213 qt=39300 pad 0 x = 0
+wall=96228 qt=39400 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=EGL ammo=61 inclip=3 perclip=8 cinema=0
+wall=96228 qt=39400 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=96782 qt=39800 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=445 views=1
+wall=96783 qt=39800 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=97038 qt=40000 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=EGL ammo=61 inclip=3 perclip=8 cinema=0
+wall=97038 qt=40000 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=97842 qt=40600 audio voices=10 top=BO_FOOTFALL_HEEL_METAL x2
+wall=97842 qt=40600 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=EGL ammo=61 inclip=3 perclip=8 cinema=0
+wall=97842 qt=40600 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=97842 qt=40600 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=453 views=1
+wall=97844 qt=40600 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=98603 qt=41200 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=EGL ammo=61 inclip=3 perclip=8 cinema=0
+wall=98603 qt=41200 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=98897 qt=41400 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=461 views=1
+wall=98899 qt=41400 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=99009 qt=41400 perf frames=39 in 5113 ms
+wall=99388 qt=41800 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=99388 qt=41800 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=100048 qt=42300 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=470 views=1
+wall=100050 qt=42300 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=100177 qt=42400 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=100177 qt=42400 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=100540 qt=42600 pad 1 x = 1
+wall=100923 qt=42900 pad 1 x = 0
+wall=100938 qt=43000 audio voices=9 top=BO_FOOTFALL_HEEL_METAL x2
+wall=100938 qt=43000 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=100938 qt=43000 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=101096 qt=43100 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=478 views=1
+wall=101098 qt=43100 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=101725 qt=43600 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=101725 qt=43600 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=102135 qt=43900 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=486 views=1
+wall=102137 qt=43900 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=102510 qt=44200 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=102510 qt=44200 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=103182 qt=44700 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=494 views=1
+wall=103184 qt=44700 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=103304 qt=44800 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=103304 qt=44800 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=104031 qt=45300 perf frames=39 in 5022 ms
+wall=104045 qt=45400 audio voices=7 top=BO_FOOTFALL_HEEL_METAL x2
+wall=104045 qt=45400 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=104045 qt=45400 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=104216 qt=45500 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=502 views=1
+wall=104217 qt=45500 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=104849 qt=46000 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=104849 qt=46000 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=105248 qt=46200 pad 0 ly = 32767
+wall=105264 qt=46300 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=510 views=1
+wall=105265 qt=46300 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=105639 qt=46600 player 0 guid=35053801 slot=0 pad=0 pos=-294,1,21149 yaw=-5463 pitch=0 hp=100 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=105639 qt=46600 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=519 collidable=1 rideable=1
+wall=106388 qt=47000 view 0 viewport=0,0,640,360 eye=-322,169,21400 frames=517 views=1
+wall=106390 qt=47000 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=106650 qt=47200 player 0 guid=35053801 slot=0 pad=0 pos=-334,1,21507 yaw=-5463 pitch=0 hp=100 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=106650 qt=47200 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=735 collidable=1 rideable=1
+wall=107389 qt=47700 view 0 viewport=0,0,640,360 eye=-369,168,21817 frames=524 views=1
+wall=107390 qt=47700 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=107530 qt=47800 audio voices=10 top=BO_FOOTFALL_HEEL_METAL x2
+wall=107530 qt=47800 player 0 guid=35053801 slot=0 pad=0 pos=-374,-36,21861 yaw=-5463 pitch=0 hp=100 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=107530 qt=47800 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=577 collidable=1 rideable=1
+wall=108354 qt=48400 player 0 guid=35053801 slot=0 pad=0 pos=-479,-173,22084 yaw=-5463 pitch=0 hp=99 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=108354 qt=48400 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=637 collidable=1 rideable=1
+wall=108644 qt=48500 view 0 viewport=0,0,640,360 eye=-487,-8,22156 frames=532 views=1
+wall=108645 qt=48500 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=109125 qt=48700 perf frames=34 in 5094 ms
+wall=109125 qt=48700 pad 0 ly = 0
+wall=109562 qt=49000 player 0 guid=35053801 slot=0 pad=0 pos=-505,-169,22322 yaw=-5463 pitch=0 hp=97 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=109562 qt=49000 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=698 collidable=1 rideable=1
+wall=109935 qt=49100 view 0 viewport=0,0,640,360 eye=-507,0,22333 frames=538 views=1
+wall=109936 qt=49100 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=110802 qt=49600 player 0 guid=35053801 slot=0 pad=0 pos=-505,-169,22322 yaw=-5463 pitch=0 hp=93 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=110802 qt=49600 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=698 collidable=1 rideable=1
+wall=110964 qt=49700 view 0 viewport=0,0,640,360 eye=-507,0,22334 frames=544 views=1
+wall=110965 qt=49700 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=111104 qt=49700 pad 1 ly = 32767
+wall=111823 qt=50200 audio voices=18 top=CLOAK_LOOP x5
+wall=111823 qt=50200 player 0 guid=35053801 slot=0 pad=0 pos=-505,-169,22322 yaw=-5463 pitch=0 hp=91 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=111823 qt=50200 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=698 collidable=1 rideable=1
+wall=111984 qt=50300 view 0 viewport=0,0,640,360 eye=-507,0,22334 frames=550 views=1
+wall=111986 qt=50300 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=112851 qt=50800 player 0 guid=35053801 slot=0 pad=0 pos=-505,-169,22322 yaw=-5463 pitch=0 hp=89 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=112851 qt=50800 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=698 collidable=1 rideable=1
+wall=113019 qt=50900 view 0 viewport=0,0,640,360 eye=-507,0,22334 frames=556 views=1
+wall=113021 qt=50900 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=113950 qt=51400 player 0 guid=35053801 slot=0 pad=0 pos=-505,-169,22322 yaw=-5463 pitch=0 hp=87 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=113950 qt=51400 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=698 collidable=1 rideable=1
+wall=114113 qt=51500 view 0 viewport=0,0,640,360 eye=-507,0,22334 frames=562 views=1
+wall=114115 qt=51500 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=114258 qt=51500 perf frames=28 in 5133 ms
+wall=114968 qt=52000 player 0 guid=35053801 slot=0 pad=0 pos=-505,-169,22322 yaw=-5463 pitch=0 hp=85 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=114968 qt=52000 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=698 collidable=1 rideable=1
+wall=115127 qt=52100 view 0 viewport=0,0,640,360 eye=-507,0,22334 frames=568 views=1
+wall=115129 qt=52100 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=115441 qt=52200 pad 1 ly = 0
+wall=115984 qt=52600 audio voices=33 top=BO_FOOTFALL_HEEL_METAL x7
+wall=115984 qt=52600 player 0 guid=35053801 slot=0 pad=0 pos=-505,-169,22322 yaw=-5463 pitch=0 hp=81 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=115984 qt=52600 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=698 collidable=1 rideable=1
+wall=116148 qt=52700 view 0 viewport=0,0,640,360 eye=-507,0,22334 frames=574 views=1
+wall=116150 qt=52700 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=117025 qt=53200 player 0 guid=35053801 slot=0 pad=0 pos=-505,-169,22322 yaw=-5463 pitch=0 hp=77 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=117025 qt=53200 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=698 collidable=1 rideable=1
+wall=117177 qt=53200 pad 0 lx = -32767
+wall=117177 qt=53200 pad 1 lx = 32767
+wall=117193 qt=53300 view 0 viewport=0,0,640,360 eye=-507,0,22334 frames=580 views=1
+wall=117195 qt=53300 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=118069 qt=53800 player 0 guid=35053801 slot=0 pad=0 pos=-801,-172,22289 yaw=-5463 pitch=0 hp=69 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=118069 qt=53800 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=975 collidable=1 rideable=1
+wall=118227 qt=53900 view 0 viewport=0,0,640,360 eye=-864,-4,22294 frames=586 views=1
+wall=118229 qt=53900 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=119054 qt=54400 player 0 guid=35053801 slot=0 pad=0 pos=-1069,-165,22249 yaw=-5463 pitch=0 hp=67 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=119054 qt=54400 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=1231 collidable=1 rideable=1
+wall=119348 qt=54500 perf frames=30 in 5090 ms
+wall=119365 qt=54600 view 0 viewport=0,0,640,360 eye=-1072,1,22247 frames=593 views=1
+wall=119367 qt=54600 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=120001 qt=55000 audio voices=30 top=BO_FOOTFALL_HEEL_METAL x8
+wall=120001 qt=55000 player 0 guid=35053801 slot=0 pad=0 pos=-1069,-170,22210 yaw=-5463 pitch=0 hp=65 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=120001 qt=55000 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=1227 collidable=1 rideable=1
+wall=120486 qt=55200 pad 0 lx = 0
+wall=120486 qt=55200 pad 1 lx = 0
+wall=120503 qt=55300 view 0 viewport=0,0,640,360 eye=-1072,-4,22201 frames=600 views=1
+wall=120505 qt=55300 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=120965 qt=55600 player 0 guid=35053801 slot=0 pad=0 pos=-1069,-172,22190 yaw=-5463 pitch=0 hp=57 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=120965 qt=55600 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=1226 collidable=1 rideable=1
+wall=121630 qt=56000 view 0 viewport=0,0,640,360 eye=-1070,-4,22201 frames=607 views=1
+wall=121632 qt=56000 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=121932 qt=56200 player 0 guid=35053801 slot=0 pad=0 pos=-1069,-172,22190 yaw=-5463 pitch=0 hp=49 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=121932 qt=56200 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=1226 collidable=1 rideable=1
+wall=122068 qt=56200 pad 0 rx = -32767
+wall=122703 qt=56700 view 0 viewport=0,0,640,360 eye=-1057,-4,22187 frames=614 views=1
+wall=122705 qt=56700 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=122950 qt=56800 player 0 guid=35053801 slot=0 pad=0 pos=-1069,-172,22190 yaw=-4049 pitch=0 hp=39 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=122950 qt=56800 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=1226 collidable=1 rideable=1
+wall=123731 qt=57300 view 0 viewport=0,0,640,360 eye=-1079,-4,22194 frames=620 views=1
+wall=123733 qt=57300 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=123920 qt=57400 audio voices=26 top=CLOAK_LOOP x5
+wall=123920 qt=57400 player 0 guid=35053801 slot=0 pad=0 pos=-1069,-172,22190 yaw=-2159 pitch=0 hp=33 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=123920 qt=57400 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=1226 collidable=1 rideable=1
+wall=124409 qt=57600 perf frames=31 in 5061 ms
+wall=124534 qt=57700 pad 0 rx = 0
+wall=124809 qt=58000 player 0 guid=35053801 slot=0 pad=0 pos=-1069,-172,22190 yaw=-900 pitch=0 hp=25 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=124809 qt=58000 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=1226 collidable=1 rideable=1
+wall=124809 qt=58000 view 0 viewport=0,0,640,360 eye=-1057,-4,22190 frames=627 views=1
+wall=124810 qt=58000 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=125622 qt=58600 player 0 guid=35053801 slot=0 pad=0 pos=-1069,-172,22190 yaw=-900 pitch=0 hp=11 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=125622 qt=58600 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=1226 collidable=1 rideable=1
+wall=125867 qt=58700 pad 1 rx = 32767
+wall=125883 qt=58800 view 0 viewport=0,0,640,360 eye=-1057,-4,22190 frames=635 views=1
+wall=125884 qt=58800 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=126386 qt=59200 player 0 guid=35053801 slot=0 pad=0 pos=-1069,-172,22190 yaw=-900 pitch=0 hp=3 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=126386 qt=59200 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=1226 collidable=1 rideable=1
+wall=126909 qt=59600 view 0 viewport=0,0,640,360 eye=-1057,13,22190 frames=643 views=1
+wall=126910 qt=59600 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=127108 qt=59799 audio voices=26 top=CLOAK_OFF x5
+wall=127108 qt=59799 player 0 guid=35053801 slot=0 pad=0 pos=-1069,-172,22190 yaw=-900 pitch=0 hp=0 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=127108 qt=59799 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=1226 collidable=1 rideable=1
+wall=128358 qt=59899 view 0 viewport=0,0,640,360 eye=-1057,13,22190 frames=646 views=1
+wall=128359 qt=59899 bodies view=0 drawn=0 frames=3 others=0 with_body=0
+wall=128944 qt=60299 pad 1 rx = 0
+wall=128959 qt=60399 player 0 guid=35053801 slot=0 pad=0 pos=-1069,-172,22190 yaw=-900 pitch=0 hp=0 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=128959 qt=60399 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=1226 collidable=1 rideable=1
+wall=129414 qt=60599 view 0 viewport=0,0,640,360 eye=-1075,-122,22190 frames=653 views=1
+wall=129415 qt=60599 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=129503 qt=60599 perf frames=30 in 5094 ms
+wall=129948 qt=60999 player 0 guid=35053801 slot=0 pad=0 pos=-1069,-172,22190 yaw=-900 pitch=0 hp=0 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=129948 qt=60999 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=1226 collidable=1 rideable=1
+wall=130418 qt=61299 pad 0 a = 1
+wall=130432 qt=61399 view 0 viewport=0,0,640,360 eye=-1078,-164,22190 frames=661 views=1
+wall=130434 qt=61399 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=130734 qt=61599 player 0 guid=35053801 slot=0 pad=0 pos=-1069,-172,22190 yaw=-900 pitch=0 hp=0 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=130734 qt=61599 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=1226 collidable=1 rideable=1
+wall=130846 qt=61599 pad 0 a = 0
+wall=131486 qt=62199 audio voices=13 top=BO_FOOTFALL_HEEL_METAL x4
+wall=131486 qt=62199 player 0 guid=35053801 slot=0 pad=0 pos=-1069,-172,22190 yaw=-900 pitch=0 hp=0 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=131486 qt=62199 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=1226 collidable=1 rideable=1
+wall=131486 qt=62199 view 0 viewport=0,0,640,360 eye=-1078,-164,22190 frames=669 views=1
+wall=131487 qt=62199 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=132298 qt=62799 player 0 guid=35053801 slot=0 pad=0 pos=-1069,-172,22190 yaw=-900 pitch=0 hp=0 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=132298 qt=62799 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=1226 collidable=1 rideable=1
+wall=132549 qt=62999 view 0 viewport=0,0,640,360 eye=-1078,-164,22190 frames=677 views=1
+wall=132550 qt=62999 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=133092 qt=63299 pad 1 a = 1
+wall=133111 qt=63399 player 0 guid=35053801 slot=0 pad=0 pos=-1069,-172,22190 yaw=-900 pitch=0 hp=0 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=133111 qt=63399 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=1226 collidable=1 rideable=1
+wall=133243 qt=63499 state SM_PLAYING_GAME -> SM_SERVER_COOLDOWN
+wall=133248 qt=63499 dialog stop - id=00000000
+wall=133248 qt=63499 dialog stop - id=00000000
+wall=133253 qt=63499 state SM_SERVER_COOLDOWN -> SM_POST_GAME
+wall=133265 qt=63499 state SM_POST_GAME -> SM_RELOAD_CHECKPOINT
+wall=133435 qt=63499 state SM_RELOAD_CHECKPOINT -> SM_SINGLE_PLAYER_LOAD_MISSION
+wall=133440 qt=63499 campaign BeginGame done: players=1 level=1130
+wall=133473 qt=63499 state SM_SINGLE_PLAYER_LOAD_MISSION -> SM_SERVER_SYNC
+wall=133476 qt=63499 state SM_SERVER_SYNC -> SM_PLAYING_GAME
+wall=133528 qt=63499 dialog stop - id=00000000
+wall=133528 qt=63499 dialog stop - id=00000000
+wall=133533 qt=63499 player 0 guid=35053801 slot=0 pad=0 pos=12150,-40,22100 yaw=-899 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=133533 qt=63499 platform 0: on=00000000 support=0 nearest=C8D1B800 at 12199,-75,22100 top=9265 dist=60 collidable=1 rideable=1
+wall=133544 qt=63507 pad 1 a = 0
+wall=133869 qt=63835 view 0 viewport=0,0,640,360 eye=12162,93,22100 frames=682 views=1
+wall=133873 qt=63835 bodies view=0 drawn=0 frames=5 others=0 with_body=0
+wall=134204 qt=64035 audio voices=5 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=134204 qt=64035 player 0 guid=35053801 slot=0 pad=0 pos=12150,-72,22100 yaw=-899 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=134204 qt=64035 platform 0: on=00000000 support=0 nearest=C8D1B800 at 12199,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=134639 qt=64235 perf frames=151 in 5136 ms
+wall=135020 qt=64535 view 0 viewport=0,0,640,360 eye=12161,95,22100 frames=689 views=1
+wall=135022 qt=64535 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=135174 qt=64635 player 0 guid=35053801 slot=0 pad=0 pos=12150,-72,22100 yaw=-899 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=135174 qt=64635 platform 0: on=00000000 support=0 nearest=C8D1B800 at 12199,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=136149 qt=65235 player 0 guid=35053801 slot=0 pad=0 pos=11264,-72,22100 yaw=-899 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=136149 qt=65235 platform 0: on=00000000 support=0 nearest=C8D1B800 at 11314,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=136149 qt=65235 view 0 viewport=0,0,640,360 eye=11276,95,22100 frames=696 views=1
+wall=136151 qt=65235 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=136289 qt=65235 pad 0 rt = 32767
+wall=137145 qt=65835 player 0 guid=35053801 slot=0 pad=0 pos=9318,-72,22100 yaw=-899 pitch=0 hp=100 weapon=SMP ammo=146 inclip=26 perclip=30 cinema=0
+wall=137145 qt=65835 platform 0: on=00000000 support=0 nearest=C8D1B800 at 9368,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=137294 qt=65935 view 0 viewport=0,0,640,360 eye=8972,95,22100 frames=703 views=1
+wall=137296 qt=65935 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=138065 qt=66435 audio voices=16 top=BULLETIMPACTENERGYFIELD x5
+wall=138065 qt=66435 player 0 guid=35053801 slot=0 pad=0 pos=7229,-72,22100 yaw=-899 pitch=0 hp=100 weapon=SMP ammo=142 inclip=22 perclip=30 cinema=0
+wall=138066 qt=66435 platform 0: on=00000000 support=0 nearest=C8D1B800 at 7279,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=138418 qt=66635 view 0 viewport=0,0,640,360 eye=6634,95,22100 frames=710 views=1
+wall=138420 qt=66635 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=138706 qt=66735 pad 0 rt = -32768
+wall=139015 qt=67035 player 0 guid=35053801 slot=0 pad=0 pos=5651,-72,22100 yaw=-899 pitch=0 hp=100 weapon=SMP ammo=139 inclip=19 perclip=30 cinema=0
+wall=139015 qt=67035 platform 0: on=00000000 support=0 nearest=C8D1B800 at 5701,-74,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=139501 qt=67335 view 0 viewport=0,0,640,360 eye=5043,95,22100 frames=717 views=1
+wall=139503 qt=67335 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=139763 qt=67435 perf frames=32 in 5124 ms
+wall=139922 qt=67635 player 0 guid=35053801 slot=0 pad=0 pos=4475,-72,22100 yaw=-899 pitch=0 hp=100 weapon=SMP ammo=139 inclip=19 perclip=30 cinema=0
+wall=139922 qt=67635 platform 0: on=00000000 support=0 nearest=C8D1B800 at 4524,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=140253 qt=67735 pad 1 rt = 32767
+wall=140556 qt=68035 view 0 viewport=0,0,640,360 eye=3829,95,22100 frames=724 views=1
+wall=140558 qt=68035 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=140842 qt=68235 player 0 guid=35053801 slot=0 pad=0 pos=3520,-72,22100 yaw=-899 pitch=0 hp=100 weapon=SMP ammo=139 inclip=19 perclip=30 cinema=0
+wall=140842 qt=68235 platform 0: on=00000000 support=0 nearest=C8D1B800 at 3570,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=141265 qt=68435 loadout player 0: scanner=1 smp=1 pistol=1
+wall=141265 qt=68435 equip player 0: pistol, 8 rounds per clip
+wall=141265 qt=68435 profile player 0: index=0 name=Empty avatar=0
+wall=141556 qt=68735 view 0 viewport=0,0,640,360 eye=2861,95,22100 frames=731 views=1
+wall=141559 qt=68735 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=141682 qt=68835 audio voices=8 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x4
+wall=141682 qt=68835 player 0 guid=35053801 slot=0 pad=0 pos=2725,-72,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=141682 qt=68835 platform 0: on=00000000 support=0 nearest=C8D1B800 at 2775,-74,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=142382 qt=69235 pad 1 rt = -32768
+wall=142529 qt=69435 player 0 guid=35053801 slot=0 pad=0 pos=2105,-72,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=142529 qt=69435 platform 0: on=00000000 support=0 nearest=C8D1B800 at 2154,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=142665 qt=69535 view 0 viewport=0,0,640,360 eye=2032,95,22100 frames=739 views=1
+wall=142667 qt=69535 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=143360 qt=70035 player 0 guid=35053801 slot=0 pad=0 pos=1659,-72,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=143360 qt=70035 platform 0: on=00000000 support=0 nearest=C8D1B800 at 1709,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=143681 qt=70235 view 0 viewport=0,0,640,360 eye=1548,95,22100 frames=746 views=1
+wall=143683 qt=70235 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=143803 qt=70235 pad 0 x = 1
+wall=144215 qt=70535 pad 0 x = 0
+wall=144231 qt=70635 player 0 guid=35053801 slot=0 pad=0 pos=1310,-72,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=144231 qt=70635 platform 0: on=00000000 support=0 nearest=C8D1B800 at 1360,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=144796 qt=70935 perf frames=35 in 5033 ms
+wall=144813 qt=71035 view 0 viewport=0,0,640,360 eye=1112,95,22100 frames=754 views=1
+wall=144815 qt=71035 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=145092 qt=71235 audio voices=12 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x4
+wall=145092 qt=71235 player 0 guid=35053801 slot=0 pad=0 pos=1013,-72,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=145092 qt=71235 platform 0: on=00000000 support=0 nearest=C8D1B800 at 1063,-74,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=145915 qt=71835 player 0 guid=35053801 slot=0 pad=0 pos=812,-72,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=145915 qt=71835 platform 0: on=00000000 support=0 nearest=C8D1B800 at 862,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=145915 qt=71835 view 0 viewport=0,0,640,360 eye=824,95,22100 frames=762 views=1
+wall=145916 qt=71835 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=146758 qt=72435 player 0 guid=35053801 slot=0 pad=0 pos=658,-72,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=146758 qt=72435 platform 0: on=00000000 support=0 nearest=C8D1B800 at 708,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=147038 qt=72635 view 0 viewport=0,0,640,360 eye=620,95,22100 frames=770 views=1
+wall=147039 qt=72635 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=147566 qt=73035 player 0 guid=35053801 slot=0 pad=0 pos=499,-72,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=147566 qt=73035 platform 0: on=00000000 support=0 nearest=C8D1B800 at 549,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=148108 qt=73435 view 0 viewport=0,0,640,360 eye=401,95,22100 frames=778 views=1
+wall=148109 qt=73435 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=148357 qt=73635 audio voices=10 top=BO_FOOTFALL_HEEL_METAL x2
+wall=148357 qt=73635 player 0 guid=35053801 slot=0 pad=0 pos=336,-72,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=148357 qt=73635 platform 0: on=00000000 support=0 nearest=C8D1B800 at 386,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=148758 qt=73835 pad 1 x = 1
+wall=149118 qt=74135 pad 1 x = 0
+wall=149134 qt=74235 player 0 guid=35053801 slot=0 pad=0 pos=195,-72,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=149134 qt=74235 platform 0: on=00000000 support=0 nearest=C8D1B800 at 245,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=149134 qt=74235 view 0 viewport=0,0,640,360 eye=207,95,22100 frames=786 views=1
+wall=149135 qt=74235 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=149909 qt=74735 perf frames=38 in 5113 ms
+wall=149924 qt=74835 player 0 guid=35053801 slot=0 pad=0 pos=100,-72,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=149924 qt=74835 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=150177 qt=75035 view 0 viewport=0,0,640,360 eye=111,95,22100 frames=794 views=1
+wall=150178 qt=75035 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=150654 qt=75435 player 0 guid=35053801 slot=0 pad=0 pos=100,-72,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=150654 qt=75435 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=151183 qt=75835 view 0 viewport=0,0,640,360 eye=111,95,22100 frames=802 views=1
+wall=151184 qt=75835 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=151420 qt=76035 audio voices=10 top=BO_FOOTFALL_TOE_METAL x3
+wall=151420 qt=76035 player 0 guid=35053801 slot=0 pad=0 pos=100,-72,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=151420 qt=76035 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=152145 qt=76635 player 0 guid=35053801 slot=0 pad=0 pos=100,-74,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=152145 qt=76635 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=152261 qt=76735 view 0 viewport=0,0,640,360 eye=111,94,22100 frames=811 views=1
+wall=152262 qt=76735 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=152843 qt=77235 player 0 guid=35053801 slot=0 pad=0 pos=100,-72,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=152843 qt=77235 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=153222 qt=77435 pad 0 ly = -32767
+wall=153355 qt=77635 view 0 viewport=0,0,640,360 eye=51,95,22100 frames=820 views=1
+wall=153356 qt=77635 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=153582 qt=77835 player 0 guid=35053801 slot=0 pad=0 pos=-79,-75,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=153582 qt=77835 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=229 collidable=1 rideable=1
+wall=154315 qt=78435 audio voices=11 top=BO_FOOTFALL_TOE_METAL x3
+wall=154315 qt=78435 player 0 guid=35053801 slot=0 pad=0 pos=-275,-80,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=154315 qt=78435 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=425 collidable=1 rideable=1
+wall=154430 qt=78535 view 0 viewport=0,0,640,360 eye=-263,88,22100 frames=829 views=1
+wall=154431 qt=78535 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=154988 qt=78935 perf frames=42 in 5079 ms
+wall=155002 qt=79035 player 0 guid=35053801 slot=0 pad=0 pos=-275,-80,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=155002 qt=79035 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=425 collidable=1 rideable=1
+wall=155513 qt=79435 view 0 viewport=0,0,640,360 eye=-263,88,22100 frames=838 views=1
+wall=155514 qt=79435 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=155739 qt=79635 player 0 guid=35053801 slot=0 pad=0 pos=-275,-80,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=155739 qt=79635 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=425 collidable=1 rideable=1
+wall=156231 qt=79935 pad 0 ly = 0
+wall=156494 qt=80235 player 0 guid=35053801 slot=0 pad=0 pos=-275,-80,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=156494 qt=80235 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=425 collidable=1 rideable=1
+wall=156611 qt=80335 view 0 viewport=0,0,640,360 eye=-263,87,22100 frames=847 views=1
+wall=156612 qt=80335 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=157246 qt=80835 audio voices=11 top=BO_FOOTFALL_HEEL_METAL x4
+wall=157246 qt=80835 player 0 guid=35053801 slot=0 pad=0 pos=-275,-80,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=157246 qt=80835 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=425 collidable=1 rideable=1
+wall=157453 qt=80935 pad 1 ly = -32767
+wall=157690 qt=81235 view 0 viewport=0,0,640,360 eye=-263,87,22100 frames=856 views=1
+wall=157691 qt=81235 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=157910 qt=81435 player 0 guid=35053801 slot=0 pad=0 pos=-275,-80,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=157910 qt=81435 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=425 collidable=1 rideable=1
+wall=158633 qt=82035 player 0 guid=35053801 slot=0 pad=0 pos=-275,-80,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=158633 qt=82035 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=425 collidable=1 rideable=1
+wall=158743 qt=82135 view 0 viewport=0,0,640,360 eye=-263,87,22100 frames=865 views=1
+wall=158744 qt=82135 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=159281 qt=82635 player 0 guid=35053801 slot=0 pad=0 pos=-275,-80,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=159281 qt=82635 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=425 collidable=1 rideable=1
+wall=159773 qt=83035 view 0 viewport=0,0,640,360 eye=-263,87,22100 frames=874 views=1
+wall=159774 qt=83035 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=159990 qt=83135 perf frames=42 in 5002 ms
+wall=160004 qt=83235 audio voices=9 top=BO_FOOTFALL_HEEL_METAL x2
+wall=160004 qt=83235 player 0 guid=35053801 slot=0 pad=0 pos=-275,-80,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=160004 qt=83235 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=425 collidable=1 rideable=1
+wall=160331 qt=83435 pad 1 ly = 0
+wall=160722 qt=83835 player 0 guid=35053801 slot=0 pad=0 pos=-275,-80,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=160723 qt=83835 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=425 collidable=1 rideable=1
+wall=160834 qt=83935 view 0 viewport=0,0,640,360 eye=-263,87,22100 frames=883 views=1
+wall=160835 qt=83935 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=161386 qt=84435 player 0 guid=35053801 slot=0 pad=0 pos=-275,-80,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=161386 qt=84435 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=425 collidable=1 rideable=1
+wall=161535 qt=84435 pad 0 lx = 32767
+wall=161535 qt=84435 pad 1 lx = -32767
+wall=161889 qt=84835 view 0 viewport=0,0,640,360 eye=-262,131,21918 frames=892 views=1
+wall=161890 qt=84835 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=162114 qt=85035 player 0 guid=35053801 slot=0 pad=0 pos=-275,0,21806 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=162114 qt=85035 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=521 collidable=1 rideable=1
+wall=162827 qt=85635 audio voices=10 top=BO_FOOTFALL_HEEL_METAL x3
+wall=162827 qt=85635 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,21446 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=162827 qt=85635 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=724 collidable=1 rideable=1
+wall=162936 qt=85735 view 0 viewport=0,0,640,360 eye=-263,169,21384 frames=901 views=1
+wall=162937 qt=85735 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=163497 qt=86235 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,21086 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=163497 qt=86235 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=510 collidable=1 rideable=1
+wall=163855 qt=86435 pad 0 lx = 0
+wall=163855 qt=86435 pad 1 lx = 0
+wall=163976 qt=86635 view 0 viewport=0,0,640,360 eye=-263,169,20970 frames=910 views=1
+wall=163977 qt=86635 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=164200 qt=86835 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=164200 qt=86835 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=164916 qt=87435 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=164916 qt=87435 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=165011 qt=87435 perf frames=43 in 5021 ms
+wall=165011 qt=87435 pad 0 rx = 32767
+wall=165024 qt=87535 view 0 viewport=0,0,640,360 eye=-263,169,20971 frames=919 views=1
+wall=165025 qt=87535 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=165613 qt=88035 audio voices=9 top=BO_FOOTFALL_HEEL_METAL x2
+wall=165613 qt=88035 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-2314 pitch=0 hp=100 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=165613 qt=88035 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=166107 qt=88335 view 0 viewport=0,0,640,360 eye=-281,169,20961 frames=927 views=1
+wall=166108 qt=88335 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=166497 qt=88635 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-4203 pitch=0 hp=100 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=166498 qt=88635 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=166979 qt=88935 pad 0 rx = 0
+wall=167118 qt=89135 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=935 views=1
+wall=167120 qt=89135 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=167238 qt=89235 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=167238 qt=89235 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=168015 qt=89835 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=168015 qt=89835 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=168138 qt=89935 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=943 views=1
+wall=168140 qt=89935 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=168245 qt=89935 pad 1 rx = -32767
+wall=168755 qt=90435 audio voices=9 top=BO_FOOTFALL_HEEL_METAL x2
+wall=168755 qt=90435 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=168755 qt=90435 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=169160 qt=90735 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=951 views=1
+wall=169161 qt=90735 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=169521 qt=91035 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=169521 qt=91035 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=170039 qt=91335 perf frames=39 in 5028 ms
+wall=170171 qt=91435 pad 1 rx = 0
+wall=170186 qt=91535 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=959 views=1
+wall=170188 qt=91535 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=170317 qt=91635 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=170317 qt=91635 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=171115 qt=92235 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=171115 qt=92235 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=171239 qt=92335 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=967 views=1
+wall=171241 qt=92335 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=171472 qt=92435 pad 0 a = 1
+wall=171846 qt=92735 pad 0 a = 0
+wall=171859 qt=92835 audio voices=10 top=BO_FOOTFALL_HEEL_METAL x2
+wall=171859 qt=92835 player 0 guid=35053801 slot=0 pad=0 pos=-275,106,20971 yaw=-5463 pitch=0 hp=100 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=171859 qt=92835 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=491 collidable=1 rideable=1
+wall=172281 qt=93135 view 0 viewport=0,0,640,360 eye=-276,289,20982 frames=975 views=1
+wall=172282 qt=93135 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=172651 qt=93435 player 0 guid=35053801 slot=0 pad=0 pos=-275,46,20971 yaw=-5463 pitch=0 hp=100 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=172651 qt=93435 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=482 collidable=1 rideable=1
+wall=173316 qt=93935 view 0 viewport=0,0,640,360 eye=-276,168,20983 frames=983 views=1
+wall=173317 qt=93935 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=173444 qt=94035 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=173444 qt=94035 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=174058 qt=94435 pad 1 a = 1
+wall=174252 qt=94635 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=174253 qt=94635 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=174379 qt=94735 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=991 views=1
+wall=174380 qt=94735 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=174490 qt=94735 pad 1 a = 0
+wall=175009 qt=95235 audio voices=5 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=175009 qt=95235 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=175009 qt=95235 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=175120 qt=95235 perf frames=39 in 5081 ms
+wall=175446 qt=95535 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=999 views=1
+wall=175447 qt=95535 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=175827 qt=95835 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=175827 qt=95835 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=176504 qt=96335 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=1007 views=1
+wall=176505 qt=96335 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=176621 qt=96435 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=EGL ammo=64 inclip=8 perclip=8 cinema=0
+wall=176621 qt=96435 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=176729 qt=96435 pad 0 rt = 32767
+wall=177457 qt=97035 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=EGL ammo=63 inclip=7 perclip=8 cinema=0
+wall=177457 qt=97035 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=177590 qt=97135 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=1015 views=1
+wall=177592 qt=97135 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=178305 qt=97635 audio voices=16 top=EGL_FIRE x3
+wall=178305 qt=97635 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=EGL ammo=61 inclip=5 perclip=8 cinema=0
+wall=178305 qt=97635 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=178647 qt=97835 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=1022 views=1
+wall=178649 qt=97835 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=178907 qt=97935 pad 0 rt = -32768
+wall=179190 qt=98235 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=EGL ammo=61 inclip=5 perclip=8 cinema=0
+wall=179190 qt=98235 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=179740 qt=98635 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=1030 views=1
+wall=179741 qt=98635 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=179988 qt=98835 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=EGL ammo=61 inclip=5 perclip=8 cinema=0
+wall=179988 qt=98835 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=180234 qt=98935 perf frames=37 in 5114 ms
+wall=180234 qt=98935 pad 1 rt = 32767
+wall=180803 qt=99435 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=EGL ammo=61 inclip=5 perclip=8 cinema=0
+wall=180803 qt=99435 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=180803 qt=99435 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=1038 views=1
+wall=180804 qt=99435 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=181559 qt=100035 audio voices=11 top=BO_FOOTFALL_TOE_METAL x3
+wall=181559 qt=100035 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=EGL ammo=61 inclip=5 perclip=8 cinema=0
+wall=181559 qt=100035 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=181863 qt=100235 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=1046 views=1
+wall=181865 qt=100235 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=182223 qt=100435 pad 1 rt = -32768
+wall=182359 qt=100635 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=EGL ammo=61 inclip=5 perclip=8 cinema=0
+wall=182359 qt=100635 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=182909 qt=101035 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=1054 views=1
+wall=182911 qt=101035 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=183149 qt=101235 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=EGL ammo=61 inclip=5 perclip=8 cinema=0
+wall=183149 qt=101235 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=183494 qt=101435 pad 0 x = 1
+wall=183920 qt=101735 pad 0 x = 0
+wall=183934 qt=101835 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=EGL ammo=61 inclip=5 perclip=8 cinema=0
+wall=183934 qt=101835 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=183934 qt=101835 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=1062 views=1
+wall=183936 qt=101835 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=184688 qt=102435 audio voices=12 top=BO_FOOTFALL_TOE_METAL x3
+wall=184688 qt=102435 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=EGL ammo=61 inclip=5 perclip=8 cinema=0
+wall=184688 qt=102435 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=184992 qt=102635 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=1070 views=1
+wall=184994 qt=102635 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=185369 qt=102835 perf frames=39 in 5135 ms
+wall=185507 qt=103035 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=EGL ammo=61 inclip=5 perclip=8 cinema=0
+wall=185507 qt=103035 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=186060 qt=103435 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=1078 views=1
+wall=186061 qt=103435 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=186315 qt=103635 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=EGL ammo=61 inclip=5 perclip=8 cinema=0
+wall=186316 qt=103635 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=187116 qt=104235 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=187116 qt=104235 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=187117 qt=104235 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=1086 views=1
+wall=187118 qt=104235 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=187856 qt=104835 audio voices=9 top=BO_FOOTFALL_HEEL_METAL x2
+wall=187856 qt=104835 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=187856 qt=104835 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=188135 qt=105035 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=1094 views=1
+wall=188137 qt=105035 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=188244 qt=105035 pad 1 x = 1
+wall=188611 qt=105335 pad 1 x = 0
+wall=188624 qt=105435 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=188624 qt=105435 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=189155 qt=105835 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=1102 views=1
+wall=189156 qt=105835 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=189408 qt=106035 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=189408 qt=106035 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=190206 qt=106635 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=190206 qt=106635 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=190206 qt=106635 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=1110 views=1
+wall=190207 qt=106635 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=190455 qt=106735 perf frames=39 in 5086 ms
+wall=190965 qt=107235 audio voices=9 top=BO_FOOTFALL_HEEL_METAL x2
+wall=190965 qt=107235 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=190965 qt=107235 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=191260 qt=107435 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=1118 views=1
+wall=191262 qt=107435 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=191750 qt=107835 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=191750 qt=107835 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=192290 qt=108235 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=1126 views=1
+wall=192292 qt=108235 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=192536 qt=108435 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=192536 qt=108435 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=192901 qt=108635 command swaptest (hook set)
+wall=192901 qt=108635 swaptest flipped: player 0 pad=1 player 1 pad=0
+wall=192901 qt=108635 swaptest restored: player 0 pad=0 player 1 pad=1
+wall=192901 qt=108635 command scanner (hook set)
+wall=192901 qt=108635 scanner player 0: in inventory=1
+wall=193456 qt=109035 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=SCN ammo=0 inclip=0 perclip=0 cinema=0
+wall=193456 qt=109035 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=193456 qt=109035 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=1134 views=1
+wall=193457 qt=109035 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=194248 qt=109635 audio voices=11 top=BO_FOOTFALL_HEEL_METAL x2
+wall=194248 qt=109635 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=SCN ammo=0 inclip=0 perclip=0 cinema=0
+wall=194248 qt=109635 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=194561 qt=109835 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=1142 views=1
+wall=194562 qt=109835 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=195082 qt=110235 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=SCN ammo=0 inclip=0 perclip=0 cinema=0
+wall=195082 qt=110235 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=195463 qt=110335 perf frames=36 in 5008 ms
+wall=195612 qt=110535 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=1149 views=1
+wall=195614 qt=110535 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=195999 qt=110835 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=SCN ammo=0 inclip=0 perclip=0 cinema=0
+wall=195999 qt=110835 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=196694 qt=111335 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=1157 views=1
+wall=196695 qt=111335 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=196827 qt=111435 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=SCN ammo=0 inclip=0 perclip=0 cinema=0
+wall=196827 qt=111435 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=197642 qt=112035 audio voices=9 top=BO_FOOTFALL_HEEL_METAL x2
+wall=197642 qt=112035 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=SCN ammo=0 inclip=0 perclip=0 cinema=0
+wall=197642 qt=112035 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=197771 qt=112135 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=1165 views=1
+wall=197772 qt=112135 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=198432 qt=112635 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=SCN ammo=0 inclip=0 perclip=0 cinema=0
+wall=198432 qt=112635 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=198553 qt=112635 pad 0 rx = 8191
+wall=198553 qt=112635 pad 0 rt = 32767
+wall=198977 qt=112935 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=1173 views=1
+wall=198978 qt=112935 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=199370 qt=113235 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=SCN ammo=0 inclip=0 perclip=0 cinema=0
+wall=199371 qt=113235 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=200105 qt=113735 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=1181 views=1
+wall=200106 qt=113735 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=200237 qt=113835 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=SCN ammo=0 inclip=0 perclip=0 cinema=0
+wall=200237 qt=113835 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=200492 qt=113935 perf frames=36 in 5029 ms
+wall=201090 qt=114435 audio voices=10 top=BO_FOOTFALL_HEEL_METAL x3
+wall=201090 qt=114435 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=SCN ammo=0 inclip=0 perclip=0 cinema=0
+wall=201090 qt=114435 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=201226 qt=114535 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=1189 views=1
+wall=201227 qt=114535 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=201951 qt=115035 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=SCN ammo=0 inclip=0 perclip=0 cinema=0
+wall=201951 qt=115035 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=202350 qt=115335 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=1197 views=1
+wall=202353 qt=115335 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=202764 qt=115635 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=SCN ammo=0 inclip=0 perclip=0 cinema=0
+wall=202764 qt=115635 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=202922 qt=115635 pad 0 rx = 0
+wall=202922 qt=115635 pad 0 rt = -32768
+wall=203353 qt=116035 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=1204 views=1
+wall=203355 qt=116035 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=203608 qt=116135 pad 0 rx = 8191
+wall=203608 qt=116135 pad 0 rb = 1
+wall=203626 qt=116235 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=SCN ammo=0 inclip=0 perclip=0 cinema=0
+wall=203626 qt=116235 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=204469 qt=116835 audio voices=7 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=204469 qt=116835 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=other ammo=1 inclip=1 perclip=1 cinema=0
+wall=204469 qt=116835 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=204469 qt=116835 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=1212 views=1
+wall=204472 qt=116835 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=205328 qt=117435 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=other ammo=1 inclip=1 perclip=1 cinema=0
+wall=205328 qt=117435 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=205582 qt=117535 perf frames=36 in 5090 ms
+wall=205598 qt=117635 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=1220 views=1
+wall=205601 qt=117635 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=205713 qt=117635 pad 0 rx = 0
+wall=205713 qt=117635 pad 0 rb = 0
+wall=206160 qt=118035 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=other ammo=1 inclip=1 perclip=1 cinema=0
+wall=206160 qt=118035 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=206406 qt=118135 pad 1 rx = 8191
+wall=206406 qt=118135 pad 1 rt = 32767
+wall=206687 qt=118435 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=1228 views=1
+wall=206690 qt=118435 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=206956 qt=118635 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=other ammo=1 inclip=1 perclip=1 cinema=0
+wall=206957 qt=118635 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=207764 qt=119235 audio voices=9 top=BO_FOOTFALL_HEEL_METAL x2
+wall=207764 qt=119235 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=other ammo=1 inclip=1 perclip=1 cinema=0
+wall=207764 qt=119235 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=207764 qt=119235 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=1236 views=1
+wall=207767 qt=119235 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=208591 qt=119835 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=other ammo=1 inclip=1 perclip=1 cinema=0
+wall=208591 qt=119835 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=208847 qt=120035 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=1244 views=1
+wall=208848 qt=120035 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=209399 qt=120435 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=other ammo=1 inclip=1 perclip=1 cinema=0
+wall=209399 qt=120435 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=209908 qt=120835 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=1252 views=1
+wall=209909 qt=120835 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=210162 qt=121035 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=other ammo=1 inclip=1 perclip=1 cinema=0
+wall=210162 qt=121035 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=210456 qt=121135 pad 1 rx = 0
+wall=210456 qt=121135 pad 1 rt = -32768
+wall=210588 qt=121235 perf frames=37 in 5006 ms
+wall=210996 qt=121635 audio voices=9 top=BO_FOOTFALL_HEEL_METAL x2
+wall=210997 qt=121635 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=other ammo=1 inclip=1 perclip=1 cinema=0
+wall=210997 qt=121635 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=210997 qt=121635 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=1260 views=1
+wall=210998 qt=121635 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=211110 qt=121635 pad 1 rx = 8191
+wall=211110 qt=121635 pad 1 rb = 1
+wall=211812 qt=122235 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=other ammo=1 inclip=1 perclip=1 cinema=0
+wall=211812 qt=122235 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=212067 qt=122435 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=1268 views=1
+wall=212069 qt=122435 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=212635 qt=122835 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=other ammo=1 inclip=1 perclip=1 cinema=0
+wall=212635 qt=122835 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=213122 qt=123135 pad 1 rx = 0
+wall=213122 qt=123135 pad 1 rb = 0
+wall=213136 qt=123235 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=1276 views=1
+wall=213138 qt=123235 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=213394 qt=123435 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=other ammo=1 inclip=1 perclip=1 cinema=0
+wall=213394 qt=123435 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=213806 qt=123635 command dmgtest (hook set)
+wall=213807 qt=123635 dmgtest: NPC - BlackOpps health 100.0 -> 90.0 (max 100.0)
+wall=213807 qt=123635 dmgtest: NPC - BlackOpps health 90.0 -> 80.0 (max 100.0)
+wall=213807 qt=123635 dmgtest: NPC - BlackOpps health 80.0 -> 70.0 (max 100.0)
+wall=213807 qt=123635 command geominfo (hook set)
+wall=213807 qt=123635 geominfo 0: Player geom= mask=FFFFFFFF
+wall=213807 qt=123635 geominfo 1: NPC - BlackOpps geom=NPC_MIL_BLACKOPS_08_GROUNDZERO_MAIN.SKINGEOM mask=00000003
+wall=213807 qt=123635 geominfo 1: mesh 0 MESH_BODY_BlackOps_L0
+wall=213807 qt=123635 geominfo 1:   submesh 0 material 0 type 3 flags 0212 tex MIL_BlackOps_Body_A[8_0000].xbmp
+wall=213807 qt=123635 geominfo 1:   submesh 1 material 1 type 6 flags 0020 tex MIL_Blackops_Rank_Blue[4_0000].xbmp
+wall=213807 qt=123635 geominfo 1:   submesh 2 material 2 type 3 flags 0216 tex MIL_BlackOps_Body_A[8_0000].xbmp
+wall=213807 qt=123635 geominfo 1: mesh 1 MESH_BODY_BlackOps_L1
+wall=213807 qt=123635 geominfo 1:   submesh 0 material 0 type 3 flags 0212 tex MIL_BlackOps_Body_A[8_0000].xbmp
+wall=213807 qt=123635 geominfo 1:   submesh 1 material 1 type 6 flags 0020 tex MIL_Blackops_Rank_Blue[4_0000].xbmp
+wall=213807 qt=123635 geominfo 1:   submesh 2 material 2 type 3 flags 0216 tex MIL_BlackOps_Body_A[8_0000].xbmp
+wall=213807 qt=123635 geominfo 1: mesh 2 MESH_BODY_BlackOps_L2
+wall=213807 qt=123635 geominfo 1:   submesh 0 material 0 type 3 flags 0212 tex MIL_BlackOps_Body_A[8_0000].xbmp
+wall=213807 qt=123635 geominfo 1:   submesh 1 material 1 type 6 flags 0020 tex MIL_Blackops_Rank_Blue[4_0000].xbmp
+wall=213807 qt=123635 geominfo 1: mesh 3 MESH_BODY_BlackOps_L3
+wall=213807 qt=123635 geominfo 1:   submesh 0 material 0 type 3 flags 0212 tex MIL_BlackOps_Body_A[8_0000].xbmp
+wall=213807 qt=123635 geominfo 1:   submesh 1 material 1 type 6 flags 0020 tex MIL_Blackops_Rank_Blue[4_0000].xbmp
+wall=213807 qt=123635 geominfo 1: mesh 4 MESH_CLOAK_BlackOps_L0
+wall=213807 qt=123635 geominfo 1:   submesh 0 material 4 type 9 flags 0222 tex collision[8_0000].xbmp
+wall=213807 qt=123635 geominfo 1: mesh 5 MESH_GEAR_BlackOps_A_L0
+wall=213807 qt=123635 geominfo 1:   submesh 0 material 0 type 3 flags 0212 tex MIL_BlackOps_Body_A[8_0000].xbmp
+wall=213807 qt=123635 geominfo 1: mesh 6 MESH_PAIN_Head_Front_A_L0
+wall=213807 qt=123635 geominfo 1:   submesh 0 material 3 type 4 flags 0020 tex MIL_Blackops_Pain[8_0000].xbmp
+wall=213807 qt=123635 geominfo 1: mesh 7 MESH_PAIN_Head_Front_B_L0
+wall=213807 qt=123635 geominfo 1:   submesh 0 material 3 type 4 flags 0020 tex MIL_Blackops_Pain[8_0000].xbmp
+wall=213807 qt=123635 geominfo 1: mesh 8 MESH_PAIN_Shoulder_Left_A_L0
+wall=213807 qt=123635 geominfo 1:   submesh 0 material 3 type 4 flags 0020 tex MIL_Blackops_Pain[8_0000].xbmp
+wall=213807 qt=123635 geominfo 1: mesh 9 MESH_PAIN_Shoulder_Left_B_L0
+wall=213807 qt=123635 geominfo 1:   submesh 0 material 3 type 4 flags 0020 tex MIL_Blackops_Pain[8_0000].xbmp
+wall=213807 qt=123635 geominfo 1: mesh 10 MESH_PAIN_Shoulder_Right_A_L0
+wall=213807 qt=123635 geominfo 1:   submesh 0 material 3 type 4 flags 0020 tex MIL_Blackops_Pain[8_0000].xbmp
+wall=213807 qt=123635 geominfo 1: mesh 11 MESH_PAIN_Torso_Front_A_L0
+wall=213807 qt=123635 geominfo 1:   submesh 0 material 3 type 4 flags 0020 tex MIL_Blackops_Pain[8_0000].xbmp
+wall=213807 qt=123635 geominfo 1: mesh 12 MESH_PAIN_Torso_Front_B_L0
+wall=213807 qt=123635 geominfo 1:   submesh 0 material 3 type 4 flags 0020 tex MIL_Blackops_Pain[8_0000].xbmp
+wall=213807 qt=123635 geominfo 1: mesh 13 MESH_PAIN_Torso_Front_C_L0
+wall=213807 qt=123635 geominfo 1:   submesh 0 material 3 type 4 flags 0020 tex MIL_Blackops_Pain[8_0000].xbmp
+wall=213807 qt=123635 geominfo 1: mesh 14 MESH_PAIN_Torso_Front_D_L0
+wall=213807 qt=123635 geominfo 1:   submesh 0 material 3 type 4 flags 0020 tex MIL_Blackops_Pain[8_0000].xbmp
+wall=213807 qt=123635 geominfo 1: vmesh 0 BODY
+wall=213807 qt=123635 geominfo 1: vmesh 1 GEAR_A
+wall=213807 qt=123635 geominfo 1: vmesh 2 CLOAK
+wall=213807 qt=123635 geominfo 1: vmesh 3 PAIN_Head_Front_A
+wall=213807 qt=123635 geominfo 1: vmesh 4 PAIN_Head_Front_B
+wall=213807 qt=123635 geominfo 1: vmesh 5 PAIN_Shoulder_Left_A
+wall=213807 qt=123635 geominfo 1: vmesh 6 PAIN_Shoulder_Left_B
+wall=213807 qt=123635 geominfo 1: vmesh 7 PAIN_Shoulder_Right_A
+wall=213807 qt=123635 geominfo 1: vmesh 8 PAIN_Torso_Front_A
+wall=213807 qt=123635 geominfo 1: vmesh 9 PAIN_Torso_Front_B
+wall=213807 qt=123635 geominfo 1: vmesh 10 PAIN_Torso_Front_C
+wall=213807 qt=123635 geominfo 1: vmesh 11 PAIN_Torso_Front_D
+wall=213807 qt=123635 geominfo 1: vtexture 0 RANK materials=00000002
+wall=213807 qt=123635 geominfo 1: vtexture 1 BODY materials=00000005
+wall=213807 qt=123635 geominfo 1: 5 materials
+wall=213807 qt=123635 command carryover (hook set)
+wall=213807 qt=123635 carryover player 0: scanner=1 pistol=1
+wall=214295 qt=123935 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=1283 views=1
+wall=214297 qt=123935 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=214397 qt=124035 audio voices=21 top=CLOAK_ON x5
+wall=214397 qt=124035 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=214397 qt=124035 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=216977 qt=124132 perf frames=29 in 6389 ms
+wall=216992 qt=124232 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=1286 views=1
+wall=216994 qt=124232 bodies view=0 drawn=0 frames=3 others=0 with_body=0
+wall=217395 qt=124629 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=217395 qt=124629 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=217992 qt=125029 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=1294 views=1
+wall=217994 qt=125029 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=218310 qt=125229 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=218310 qt=125229 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=218936 qt=125621 pad 1 ly = -32767
+wall=219060 qt=125821 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=219060 qt=125821 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=219060 qt=125821 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=1302 views=1
+wall=219062 qt=125821 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=219671 qt=126421 audio voices=27 top=BO_FOOTFALL_HEEL_METAL x9
+wall=219671 qt=126421 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=219671 qt=126421 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=220135 qt=126821 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=1312 views=1
+wall=220137 qt=126821 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=220341 qt=127021 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=220341 qt=127021 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=221000 qt=127621 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=221000 qt=127621 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=221204 qt=127821 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=1322 views=1
+wall=221206 qt=127821 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=221608 qt=128220 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=221608 qt=128220 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=222052 qt=128520 perf frames=44 in 5075 ms
+wall=222155 qt=128620 pad 1 ly = 0
+wall=222283 qt=128820 audio voices=25 top=BO_FOOTFALL_HEEL_METAL x7
+wall=222283 qt=128820 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=222283 qt=128820 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=222283 qt=128820 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=1332 views=1
+wall=222284 qt=128820 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=222675 qt=129120 pad 1 back = 1
+wall=222903 qt=129420 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=222903 qt=129420 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=222984 qt=129420 pad 1 back = 0
+wall=223365 qt=129820 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=1342 views=1
+wall=223367 qt=129820 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=223569 qt=130020 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=223569 qt=130020 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=224228 qt=130619 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=224228 qt=130619 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=224429 qt=130819 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=1352 views=1
+wall=224431 qt=130819 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=224803 qt=131111 command mutate1 (hook set)
+wall=224803 qt=131111 mutate1 player 1: no player
+wall=224819 qt=131210 audio voices=26 top=BO_FOOTFALL_HEEL_METAL x10
+wall=224819 qt=131210 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=224819 qt=131210 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=225467 qt=131800 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=225467 qt=131800 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=225467 qt=131800 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=1362 views=1
+wall=225469 qt=131800 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=226074 qt=132394 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=226074 qt=132394 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=226536 qt=132793 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=1372 views=1
+wall=226537 qt=132793 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=226745 qt=132993 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=226745 qt=132993 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=227146 qt=133293 perf frames=48 in 5094 ms
+wall=227416 qt=133593 audio voices=32 top=BO_FOOTFALL_HEEL_METAL x8
+wall=227416 qt=133593 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=100 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=227416 qt=133593 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=227658 qt=133793 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=1382 views=1
+wall=227660 qt=133793 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=228556 qt=134193 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=96 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=228556 qt=134193 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=228655 qt=134193 command mutstat (hook set)
+wall=228655 qt=134193 mutstat p0=0 p1=-1 speed=100 abil0=15 abil1=-1 body1=0
+wall=228671 qt=134293 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=1387 views=1
+wall=228673 qt=134293 bodies view=0 drawn=0 frames=5 others=0 with_body=0
+wall=229208 qt=134693 command unmutate1 (hook set)
+wall=229208 qt=134693 unmutate1 player 1: no player
+wall=229226 qt=134793 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=96 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=229226 qt=134793 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=229692 qt=135193 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=1396 views=1
+wall=229694 qt=135193 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=229907 qt=135393 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=82 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=229907 qt=135393 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=230579 qt=135993 audio voices=29 top=BO_FOOTFALL_HEEL_METAL x7
+wall=230579 qt=135993 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=78 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=230579 qt=135993 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=230786 qt=136193 view 0 viewport=0,0,640,360 eye=-276,169,20982 frames=1406 views=1
+wall=230788 qt=136193 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=231238 qt=136591 player 0 guid=35053801 slot=0 pad=0 pos=-275,1,20971 yaw=-5463 pitch=0 hp=43 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=231238 qt=136591 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=480 collidable=1 rideable=1
+wall=231804 qt=137091 view 0 viewport=0,0,640,360 eye=-298,169,20983 frames=1415 views=1
+wall=231806 qt=137091 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=231910 qt=137191 player 0 guid=35053801 slot=0 pad=0 pos=-303,1,20971 yaw=-5463 pitch=0 hp=43 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=231910 qt=137191 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=451 collidable=1 rideable=1
+wall=232193 qt=137391 perf frames=41 in 5047 ms
+wall=232484 qt=137681 command mutstat (hook set)
+wall=232484 qt=137681 mutstat p0=0 p1=-1 speed=100 abil0=15 abil1=-1 body1=0
+wall=232498 qt=137778 player 0 guid=35053801 slot=0 pad=0 pos=-309,1,20971 yaw=-5463 pitch=0 hp=43 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=232498 qt=137778 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=446 collidable=1 rideable=1
+wall=233042 qt=137976 view 0 viewport=0,0,640,360 eye=-310,169,20982 frames=1424 views=1
+wall=233043 qt=137976 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=233338 qt=138176 command down1 (hook set)
+wall=233338 qt=138176 down player 1: no player
+wall=233451 qt=138373 audio voices=34 top=BO_FOOTFALL_HEEL_METAL x6
+wall=233451 qt=138373 player 0 guid=35053801 slot=0 pad=0 pos=-309,1,20971 yaw=-5463 pitch=0 hp=39 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=233451 qt=138373 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=446 collidable=1 rideable=1
+wall=234077 qt=138868 view 0 viewport=0,0,640,360 eye=-340,169,20982 frames=1433 views=1
+wall=234079 qt=138868 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=234174 qt=138962 player 0 guid=35053801 slot=0 pad=0 pos=-339,1,20971 yaw=-5463 pitch=0 hp=33 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=234174 qt=138962 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=416 collidable=1 rideable=1
+wall=235035 qt=139162 pad 0 x = 1
+wall=235036 qt=139162 pad 1 x = 1
+wall=235153 qt=139362 view 0 viewport=0,0,640,360 eye=-340,169,20982 frames=1438 views=1
+wall=235155 qt=139362 bodies view=0 drawn=0 frames=5 others=0 with_body=0
+wall=235362 qt=139562 player 0 guid=35053801 slot=0 pad=0 pos=-339,1,20971 yaw=-5463 pitch=0 hp=25 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=235362 qt=139562 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=416 collidable=1 rideable=1
+wall=236092 qt=140154 player 0 guid=35053801 slot=0 pad=0 pos=-339,1,20971 yaw=-5463 pitch=0 hp=17 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=236092 qt=140154 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=416 collidable=1 rideable=1
+wall=236195 qt=140254 view 0 viewport=0,0,640,360 eye=-340,169,20982 frames=1447 views=1
+wall=236197 qt=140254 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=236747 qt=140751 audio voices=48 top=BULLETIMPACTCONCRETE x9
+wall=236747 qt=140751 player 0 guid=35053801 slot=0 pad=0 pos=-339,1,20971 yaw=-5463 pitch=0 hp=11 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=236747 qt=140751 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=416 collidable=1 rideable=1
+wall=237195 qt=141149 view 0 viewport=0,0,640,360 eye=-340,169,20982 frames=1456 views=1
+wall=237198 qt=141149 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=238194 qt=141149 perf frames=38 in 6001 ms
+wall=238208 qt=141249 view 0 viewport=0,0,640,360 eye=-340,186,20982 frames=1457 views=1
+wall=238210 qt=141249 bodies view=0 drawn=0 frames=1 others=0 with_body=0
+wall=238334 qt=141349 player 0 guid=35053801 slot=0 pad=0 pos=-339,1,20971 yaw=-5463 pitch=0 hp=0 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=238334 qt=141349 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=416 collidable=1 rideable=1
+wall=239283 qt=141949 player 0 guid=35053801 slot=0 pad=0 pos=-339,1,20971 yaw=-5463 pitch=0 hp=0 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=239283 qt=141949 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=416 collidable=1 rideable=1
+wall=239283 qt=141949 view 0 viewport=0,0,640,360 eye=-339,94,20969 frames=1464 views=1
+wall=239285 qt=141949 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=240072 qt=142549 player 0 guid=35053801 slot=0 pad=0 pos=-339,1,20971 yaw=-5463 pitch=0 hp=0 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=240072 qt=142549 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=416 collidable=1 rideable=1
+wall=240350 qt=142749 view 0 viewport=0,0,640,360 eye=-338,8,20961 frames=1472 views=1
+wall=240352 qt=142749 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=240844 qt=143149 audio voices=9 top=BO_FOOTFALL_HEEL_METAL x3
+wall=240844 qt=143149 player 0 guid=35053801 slot=0 pad=0 pos=-339,1,20971 yaw=-5463 pitch=0 hp=0 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=240844 qt=143149 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=416 collidable=1 rideable=1
+wall=241376 qt=143549 view 0 viewport=0,0,640,360 eye=-338,8,20961 frames=1480 views=1
+wall=241378 qt=143549 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=241609 qt=143749 player 0 guid=35053801 slot=0 pad=0 pos=-339,1,20971 yaw=-5463 pitch=0 hp=0 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=241610 qt=143749 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=416 collidable=1 rideable=1
+wall=242365 qt=144349 player 0 guid=35053801 slot=0 pad=0 pos=-339,1,20971 yaw=-5463 pitch=0 hp=0 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=242365 qt=144349 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=416 collidable=1 rideable=1
+wall=242486 qt=144449 view 0 viewport=0,0,640,360 eye=-338,8,20961 frames=1489 views=1
+wall=242488 qt=144449 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=242827 qt=144649 pad 0 x = 0
+wall=242827 qt=144649 pad 1 x = 0
+wall=243087 qt=144949 player 0 guid=35053801 slot=0 pad=0 pos=-339,1,20971 yaw=-5463 pitch=0 hp=0 weapon=none ammo=-1 inclip=-1 perclip=-1 cinema=0
+wall=243087 qt=144949 platform 0: on=00000000 support=0 nearest=A17B0C01 at -750,0,20900 top=234 dist=416 collidable=1 rideable=1
+wall=243186 qt=144949 command pistol1 (hook set)
+wall=243186 qt=144949 pistol player 1: no player
+wall=243351 qt=145049 perf frames=39 in 5157 ms
+wall=243371 qt=145149 state SM_PLAYING_GAME -> SM_SERVER_COOLDOWN
+wall=243380 qt=145149 dialog stop - id=00000000
+wall=243381 qt=145149 dialog stop - id=00000000
+wall=243388 qt=145149 state SM_SERVER_COOLDOWN -> SM_POST_GAME
+wall=243400 qt=145149 state SM_POST_GAME -> SM_RELOAD_CHECKPOINT
+wall=243572 qt=145149 state SM_RELOAD_CHECKPOINT -> SM_SINGLE_PLAYER_LOAD_MISSION
+wall=243576 qt=145149 campaign BeginGame done: players=1 level=1130
+wall=243606 qt=145149 state SM_SINGLE_PLAYER_LOAD_MISSION -> SM_SERVER_SYNC
+wall=243608 qt=145149 state SM_SERVER_SYNC -> SM_PLAYING_GAME
+wall=243662 qt=145149 dialog stop - id=00000000
+wall=243662 qt=145149 dialog stop - id=00000000
+wall=243666 qt=145149 audio voices=0 top=- x0
+wall=243666 qt=145149 player 0 guid=35053801 slot=0 pad=0 pos=12150,-40,22100 yaw=-899 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=243666 qt=145149 platform 0: on=00000000 support=0 nearest=C8D1B800 at 12199,-74,22099 top=9265 dist=60 collidable=1 rideable=1
+wall=243998 qt=145483 view 0 viewport=0,0,640,360 eye=12162,93,22100 frames=1496 views=1
+wall=244001 qt=145483 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=244382 qt=145683 player 0 guid=35053801 slot=0 pad=0 pos=12150,-72,22100 yaw=-899 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=244382 qt=145683 platform 0: on=00000000 support=0 nearest=C8D1B800 at 12199,-74,22099 top=9265 dist=49 collidable=1 rideable=1
+wall=245140 qt=146183 view 0 viewport=0,0,640,360 eye=12161,95,22100 frames=1503 views=1
+wall=245142 qt=146183 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=245280 qt=146183 command down1 (hook set)
+wall=245280 qt=146183 down player 1: no player
+wall=245294 qt=146283 player 0 guid=35053801 slot=0 pad=0 pos=12150,-72,22100 yaw=-899 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=245294 qt=146283 platform 0: on=00000000 support=0 nearest=C8D1B800 at 12199,-74,22099 top=9265 dist=49 collidable=1 rideable=1
+wall=245641 qt=146383 command downstat (hook set)
+wall=245968 qt=146583 pad 0 rt = 32767
+wall=245968 qt=146583 pad 0 b = 1
+wall=245968 qt=146583 pad 1 rt = 32767
+wall=245968 qt=146583 pad 1 b = 1
+wall=246285 qt=146883 player 0 guid=35053801 slot=0 pad=0 pos=11263,-72,22100 yaw=-899 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=246285 qt=146883 platform 0: on=00000000 support=0 nearest=C8D1B800 at 11313,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=246286 qt=146883 view 0 viewport=0,0,640,360 eye=11275,95,22100 frames=1510 views=1
+wall=246288 qt=146883 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=246429 qt=146883 pad 0 b = 0
+wall=246429 qt=146883 pad 1 b = 0
+wall=247255 qt=147383 pad 0 rt = -32768
+wall=247255 qt=147383 pad 1 rt = -32768
+wall=247270 qt=147483 audio voices=7 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=247270 qt=147483 player 0 guid=35053801 slot=0 pad=0 pos=9317,-72,22100 yaw=-899 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=247270 qt=147483 platform 0: on=00000000 support=0 nearest=C8D1B800 at 9366,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=247423 qt=147583 view 0 viewport=0,0,640,360 eye=8971,95,22100 frames=1517 views=1
+wall=247426 qt=147583 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=247611 qt=147583 command downstat (hook set)
+wall=247914 qt=147783 command kill0 (hook set)
+wall=247914 qt=147783 kill player 0: dying
+wall=248256 qt=148083 player 0 guid=35053801 slot=0 pad=0 pos=8136,-92,22107 yaw=-899 pitch=0 hp=0 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=248256 qt=148083 platform 0: on=00000000 support=0 nearest=C8D1B800 at 7278,-75,22100 top=9265 dist=858 collidable=1 rideable=1
+wall=248408 qt=148083 perf frames=148 in 5057 ms
+wall=248648 qt=148283 view 0 viewport=0,0,640,360 eye=8136,18,22113 frames=1524 views=1
+wall=248650 qt=148283 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=249277 qt=148683 player 0 guid=35053801 slot=0 pad=0 pos=8136,-173,22114 yaw=-899 pitch=0 hp=0 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=249277 qt=148683 platform 0: on=00000000 support=0 nearest=C8D1B800 at 5701,-74,22099 top=9265 dist=2437 collidable=1 rideable=1
+wall=249956 qt=148883 view 0 viewport=0,0,640,360 eye=8130,-123,22114 frames=1530 views=1
+wall=249958 qt=148883 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=250656 qt=149283 player 0 guid=35053801 slot=0 pad=0 pos=8136,-173,22114 yaw=-899 pitch=0 hp=0 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=250656 qt=149283 platform 0: on=00000000 support=0 nearest=C8D1B800 at 4524,-75,22100 top=9265 dist=3613 collidable=1 rideable=1
+wall=251055 qt=149583 view 0 viewport=0,0,640,360 eye=8126,-166,22114 frames=1537 views=1
+wall=251057 qt=149583 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=251428 qt=149883 audio voices=22 top=EXPLOSION_DEBRIS_IMPACT x13
+wall=251428 qt=149883 player 0 guid=35053801 slot=0 pad=0 pos=8136,-173,22114 yaw=-899 pitch=0 hp=0 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=251428 qt=149883 platform 0: on=00000000 nearest=none
+wall=251841 qt=150083 loadout player 0: scanner=1 smp=1 pistol=1
+wall=251842 qt=150083 equip player 0: pistol, 8 rounds per clip
+wall=251842 qt=150083 profile player 0: index=0 name=Empty avatar=0
+wall=252077 qt=150383 view 0 viewport=0,0,640,360 eye=8126,-166,22114 frames=1545 views=1
+wall=252079 qt=150383 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=252198 qt=150483 player 0 guid=35053801 slot=0 pad=0 pos=8136,-173,22114 yaw=-899 pitch=0 hp=0 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=252198 qt=150483 platform 0: on=00000000 nearest=none
+wall=253030 qt=151083 player 0 guid=35053801 slot=0 pad=0 pos=8136,-173,22114 yaw=-899 pitch=0 hp=0 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=253030 qt=151083 platform 0: on=00000000 nearest=none
+wall=253153 qt=151183 view 0 viewport=0,0,640,360 eye=8126,-166,22114 frames=1553 views=1
+wall=253155 qt=151183 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=253490 qt=151383 perf frames=33 in 5082 ms
+wall=253750 qt=151683 player 0 guid=35053801 slot=0 pad=0 pos=8136,-173,22114 yaw=-899 pitch=0 hp=0 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=253750 qt=151683 platform 0: on=00000000 nearest=none
+wall=254034 qt=151883 state SM_PLAYING_GAME -> SM_SERVER_COOLDOWN
+wall=254042 qt=151883 dialog stop - id=00000000
+wall=254043 qt=151883 dialog stop - id=00000000
+wall=254050 qt=151883 state SM_SERVER_COOLDOWN -> SM_POST_GAME
+wall=254062 qt=151883 state SM_POST_GAME -> SM_RELOAD_CHECKPOINT
+wall=254233 qt=151883 state SM_RELOAD_CHECKPOINT -> SM_SINGLE_PLAYER_LOAD_MISSION
+wall=254237 qt=151883 campaign BeginGame done: players=1 level=1130
+wall=254265 qt=151883 state SM_SINGLE_PLAYER_LOAD_MISSION -> SM_SERVER_SYNC
+wall=254268 qt=151883 state SM_SERVER_SYNC -> SM_PLAYING_GAME
+wall=254321 qt=151883 dialog stop - id=00000000
+wall=254321 qt=151883 dialog stop - id=00000000
+wall=254325 qt=151883 audio voices=0 top=- x0
+wall=254325 qt=151883 player 0 guid=35053801 slot=0 pad=0 pos=12150,-40,22100 yaw=-899 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=254325 qt=151883 platform 0: on=00000000 support=0 nearest=C8D1B800 at 12199,-75,22100 top=9265 dist=60 collidable=1 rideable=1
+wall=254659 qt=152217 view 0 viewport=0,0,640,360 eye=12162,93,22100 frames=1560 views=1
+wall=254661 qt=152217 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=255052 qt=152417 player 0 guid=35053801 slot=0 pad=0 pos=12150,-72,22100 yaw=-899 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=255052 qt=152417 platform 0: on=00000000 support=0 nearest=C8D1B800 at 12199,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=255690 qt=152817 view 0 viewport=0,0,640,360 eye=12161,96,22100 frames=1566 views=1
+wall=255692 qt=152817 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=256016 qt=153017 player 0 guid=35053801 slot=0 pad=0 pos=12150,-72,22100 yaw=-899 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=256016 qt=153017 platform 0: on=00000000 support=0 nearest=C8D1B800 at 12199,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=256690 qt=153417 view 0 viewport=0,0,640,360 eye=11772,95,22100 frames=1572 views=1
+wall=256692 qt=153417 bodies view=0 drawn=0 frames=6 others=0 with_body=0
+wall=257009 qt=153617 player 0 guid=35053801 slot=0 pad=0 pos=11265,-72,22100 yaw=-899 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=257009 qt=153617 platform 0: on=00000000 support=0 nearest=C8D1B800 at 11315,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=257846 qt=154117 view 0 viewport=0,0,640,360 eye=9684,95,22100 frames=1579 views=1
+wall=257849 qt=154117 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=257996 qt=154217 audio voices=5 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=257996 qt=154217 player 0 guid=35053801 slot=0 pad=0 pos=9319,-72,22100 yaw=-899 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=257996 qt=154217 platform 0: on=00000000 support=0 nearest=C8D1B800 at 9368,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=258629 qt=154517 perf frames=146 in 5139 ms
+wall=258944 qt=154817 player 0 guid=35053801 slot=0 pad=0 pos=7230,-72,22100 yaw=-899 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=258944 qt=154817 platform 0: on=00000000 support=0 nearest=C8D1B800 at 7280,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=258944 qt=154817 view 0 viewport=0,0,640,360 eye=7242,95,22100 frames=1586 views=1
+wall=258947 qt=154817 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=259902 qt=155417 player 0 guid=35053801 slot=0 pad=0 pos=5652,-72,22100 yaw=-899 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=259902 qt=155417 platform 0: on=00000000 support=0 nearest=C8D1B800 at 5702,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=260056 qt=155517 view 0 viewport=0,0,640,360 eye=5449,95,22100 frames=1593 views=1
+wall=260058 qt=155517 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=260859 qt=156017 player 0 guid=35053801 slot=0 pad=0 pos=4475,-72,22100 yaw=-899 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=260859 qt=156017 platform 0: on=00000000 support=0 nearest=C8D1B800 at 4525,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=261160 qt=156217 view 0 viewport=0,0,640,360 eye=4147,95,22100 frames=1600 views=1
+wall=261162 qt=156217 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=261802 qt=156617 audio voices=5 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=261802 qt=156617 player 0 guid=35053801 slot=0 pad=0 pos=3520,-72,22100 yaw=-899 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=261802 qt=156617 platform 0: on=00000000 support=0 nearest=C8D1B800 at 3570,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=262240 qt=156817 loadout player 0: scanner=1 smp=1 pistol=1
+wall=262240 qt=156817 equip player 0: pistol, 8 rounds per clip
+wall=262240 qt=156817 profile player 0: index=0 name=Empty avatar=0
+wall=262240 qt=156917 view 0 viewport=0,0,640,360 eye=3118,95,22100 frames=1607 views=1
+wall=262242 qt=156917 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=262687 qt=157217 player 0 guid=35053801 slot=0 pad=0 pos=2725,-72,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=262687 qt=157217 platform 0: on=00000000 support=0 nearest=C8D1B800 at 2775,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=263249 qt=157617 view 0 viewport=0,0,640,360 eye=2300,95,22100 frames=1614 views=1
+wall=263251 qt=157617 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=263530 qt=157817 player 0 guid=35053801 slot=0 pad=0 pos=2105,-72,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=263530 qt=157817 platform 0: on=00000000 support=0 nearest=C8D1B800 at 2155,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=263683 qt=157817 perf frames=33 in 5054 ms
+wall=264270 qt=158317 view 0 viewport=0,0,640,360 eye=1737,95,22100 frames=1621 views=1
+wall=264272 qt=158317 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=264414 qt=158417 player 0 guid=35053801 slot=0 pad=0 pos=1660,-72,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=264414 qt=158417 platform 0: on=00000000 support=0 nearest=C8D1B800 at 1709,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=265304 qt=159017 audio voices=9 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x4
+wall=265304 qt=159017 player 0 guid=35053801 slot=0 pad=0 pos=1310,-72,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=265304 qt=159017 platform 0: on=00000000 support=0 nearest=C8D1B800 at 1360,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=265304 qt=159017 view 0 viewport=0,0,640,360 eye=1322,95,22100 frames=1628 views=1
+wall=265306 qt=159017 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=266185 qt=159617 player 0 guid=35053801 slot=0 pad=0 pos=1013,-72,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=266185 qt=159617 platform 0: on=00000000 support=0 nearest=C8D1B800 at 1063,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=266318 qt=159717 view 0 viewport=0,0,640,360 eye=986,95,22100 frames=1635 views=1
+wall=266319 qt=159717 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=267074 qt=160217 player 0 guid=35053801 slot=0 pad=0 pos=812,-72,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=267074 qt=160217 platform 0: on=00000000 support=0 nearest=C8D1B800 at 862,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=267342 qt=160417 view 0 viewport=0,0,640,360 eye=770,95,22100 frames=1642 views=1
+wall=267343 qt=160417 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=267938 qt=160817 player 0 guid=35053801 slot=0 pad=0 pos=659,-72,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=267938 qt=160817 platform 0: on=00000000 support=0 nearest=C8D1B800 at 708,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=268342 qt=161117 view 0 viewport=0,0,640,360 eye=594,95,22100 frames=1649 views=1
+wall=268343 qt=161117 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=268722 qt=161317 perf frames=35 in 5039 ms
+wall=268744 qt=161417 audio voices=11 top=BO_FOOTFALL_TOE_METAL x3
+wall=268744 qt=161417 player 0 guid=35053801 slot=0 pad=0 pos=499,-72,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=268744 qt=161417 platform 0: on=00000000 support=0 nearest=C8D1B800 at 549,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=269465 qt=161917 view 0 viewport=0,0,640,360 eye=374,95,22100 frames=1657 views=1
+wall=269466 qt=161917 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=269594 qt=162017 player 0 guid=35053801 slot=0 pad=0 pos=336,-72,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=269594 qt=162017 platform 0: on=00000000 support=0 nearest=C8D1B800 at 386,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=270398 qt=162617 player 0 guid=35053801 slot=0 pad=0 pos=196,-72,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=270398 qt=162617 platform 0: on=00000000 support=0 nearest=C8D1B800 at 245,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=270522 qt=162717 view 0 viewport=0,0,640,360 eye=188,95,22100 frames=1665 views=1
+wall=270523 qt=162717 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=271204 qt=163217 player 0 guid=35053801 slot=0 pad=0 pos=100,-72,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=271204 qt=163217 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=271580 qt=163517 view 0 viewport=0,0,640,360 eye=111,95,22100 frames=1673 views=1
+wall=271581 qt=163517 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=271950 qt=163817 audio voices=9 top=BO_FOOTFALL_HEEL_METAL x3
+wall=271950 qt=163817 player 0 guid=35053801 slot=0 pad=0 pos=100,-72,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=271950 qt=163817 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=272618 qt=164317 view 0 viewport=0,0,640,360 eye=111,95,22100 frames=1681 views=1
+wall=272619 qt=164317 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=272743 qt=164417 player 0 guid=35053801 slot=0 pad=0 pos=100,-72,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=272743 qt=164417 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=273505 qt=165017 player 0 guid=35053801 slot=0 pad=0 pos=100,-74,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=273505 qt=165017 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=273626 qt=165117 view 0 viewport=0,0,640,360 eye=111,94,22100 frames=1689 views=1
+wall=273627 qt=165117 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=273732 qt=165117 perf frames=38 in 5010 ms
+wall=274284 qt=165617 player 0 guid=35053801 slot=0 pad=0 pos=100,-72,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=274284 qt=165617 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=274650 qt=165917 view 0 viewport=0,0,640,360 eye=111,95,22100 frames=1697 views=1
+wall=274651 qt=165917 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=275015 qt=166217 audio voices=9 top=BO_FOOTFALL_HEEL_METAL x2
+wall=275015 qt=166217 player 0 guid=35053801 slot=0 pad=0 pos=100,-72,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=275015 qt=166217 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=275664 qt=166717 view 0 viewport=0,0,640,360 eye=111,95,22100 frames=1705 views=1
+wall=275665 qt=166717 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=275781 qt=166817 player 0 guid=35053801 slot=0 pad=0 pos=100,-72,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=275781 qt=166817 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=276581 qt=167417 player 0 guid=35053801 slot=0 pad=0 pos=100,-72,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=276581 qt=167417 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=276704 qt=167517 view 0 viewport=0,0,640,360 eye=111,95,22100 frames=1713 views=1
+wall=276705 qt=167517 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=277053 qt=167717 command pause (hook set)
+wall=277054 qt=167717 state SM_PLAYING_GAME -> SM_PAUSE_MAIN_MENU
+wall=277054 qt=167717 pause: on paused=1
+wall=277055 qt=167717 pause beat: paused=1
+wall=277748 qt=167717 view 0 viewport=0,0,640,360 eye=111,95,22100 frames=1722 views=1
+wall=277749 qt=167717 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=278139 qt=167717 pause beat: paused=1
+wall=278832 qt=167717 perf frames=42 in 5100 ms
+wall=278832 qt=167717 view 0 viewport=0,0,640,360 eye=111,95,22100 frames=1732 views=1
+wall=278833 qt=167717 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=279155 qt=167717 pause beat: paused=1
+wall=279842 qt=167717 view 0 viewport=0,0,640,360 eye=111,95,22100 frames=1741 views=1
+wall=279843 qt=167717 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=280166 qt=167717 pause beat: paused=1
+wall=280850 qt=167717 view 0 viewport=0,0,640,360 eye=111,95,22100 frames=1750 views=1
+wall=280851 qt=167717 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=281168 qt=167717 pause beat: paused=1
+wall=281940 qt=167717 view 0 viewport=0,0,640,360 eye=111,95,22100 frames=1760 views=1
+wall=281940 qt=167717 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=282252 qt=167717 pause beat: paused=1
+wall=282940 qt=167717 view 0 viewport=0,0,640,360 eye=111,95,22100 frames=1769 views=1
+wall=282941 qt=167717 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=283342 qt=167717 pause beat: paused=1
+wall=283984 qt=167717 perf frames=47 in 5152 ms
+wall=283984 qt=167717 view 0 viewport=0,0,640,360 eye=111,95,22100 frames=1779 views=1
+wall=283985 qt=167717 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=284406 qt=167717 pause beat: paused=1
+wall=285071 qt=167717 view 0 viewport=0,0,640,360 eye=111,95,22100 frames=1789 views=1
+wall=285072 qt=167717 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=285499 qt=167717 pause beat: paused=1
+wall=286157 qt=167717 view 0 viewport=0,0,640,360 eye=111,95,22100 frames=1799 views=1
+wall=286158 qt=167717 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=286563 qt=167717 pause beat: paused=1
+wall=287226 qt=167717 view 0 viewport=0,0,640,360 eye=111,95,22100 frames=1809 views=1
+wall=287227 qt=167717 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=287659 qt=167717 pause beat: paused=1
+wall=288333 qt=167717 view 0 viewport=0,0,640,360 eye=111,95,22100 frames=1819 views=1
+wall=288333 qt=167717 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=288729 qt=167717 pause beat: paused=1
+wall=289032 qt=167717 perf frames=47 in 5048 ms
+wall=289394 qt=167717 view 0 viewport=0,0,640,360 eye=111,95,22100 frames=1829 views=1
+wall=289395 qt=167717 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=289788 qt=167717 pause beat: paused=1
+wall=290470 qt=167717 view 0 viewport=0,0,640,360 eye=111,95,22100 frames=1839 views=1
+wall=290470 qt=167717 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=290875 qt=167717 pause beat: paused=1
+wall=291562 qt=167717 view 0 viewport=0,0,640,360 eye=111,95,22100 frames=1849 views=1
+wall=291563 qt=167717 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=291878 qt=167717 pause beat: paused=1
+wall=292083 qt=167717 state SM_PAUSE_MAIN_MENU -> SM_END_PAUSE
+wall=292083 qt=167717 pause: off paused=1
+wall=292633 qt=167717 state SM_END_PAUSE -> SM_PLAYING_GAME
+wall=292650 qt=167817 view 0 viewport=0,0,640,360 eye=111,95,22100 frames=1859 views=1
+wall=292651 qt=167817 bodies view=0 drawn=0 frames=10 others=0 with_body=0
+wall=292891 qt=168017 player 0 guid=35053801 slot=0 pad=0 pos=100,-72,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=292891 qt=168017 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=293663 qt=168617 audio voices=9 top=BO_FOOTFALL_HEEL_METAL x2
+wall=293663 qt=168617 player 0 guid=35053801 slot=0 pad=0 pos=100,-72,22100 yaw=-899 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=293663 qt=168617 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=293663 qt=168617 view 0 viewport=0,0,640,360 eye=111,95,22100 frames=1867 views=1
+wall=293664 qt=168617 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=293882 qt=168717 command bbg0 (hook set)
+wall=293882 qt=168717 bbg player 0: switching
+wall=293882 qt=168717 bbg player 0: have=1 weapon_object=1 current=2
+wall=294142 qt=168917 perf frames=45 in 5110 ms
+wall=294419 qt=169217 player 0 guid=35053801 slot=0 pad=0 pos=100,-72,22100 yaw=-899 pitch=0 hp=100 weapon=other ammo=200 inclip=50 perclip=50 cinema=0
+wall=294419 qt=169217 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=294728 qt=169417 view 0 viewport=0,0,640,360 eye=111,95,22100 frames=1875 views=1
+wall=294729 qt=169417 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=295227 qt=169817 player 0 guid=35053801 slot=0 pad=0 pos=100,-72,22100 yaw=-899 pitch=0 hp=100 weapon=other ammo=200 inclip=50 perclip=50 cinema=0
+wall=295227 qt=169817 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=295792 qt=170217 view 0 viewport=0,0,640,360 eye=111,95,22100 frames=1883 views=1
+wall=295793 qt=170217 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=296032 qt=170417 player 0 guid=35053801 slot=0 pad=0 pos=100,-72,22100 yaw=-899 pitch=0 hp=100 weapon=other ammo=200 inclip=50 perclip=50 cinema=0
+wall=296032 qt=170417 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=296804 qt=171017 audio voices=9 top=BO_FOOTFALL_HEEL_METAL x2
+wall=296804 qt=171017 player 0 guid=35053801 slot=0 pad=0 pos=100,-72,22100 yaw=-899 pitch=0 hp=100 weapon=other ammo=200 inclip=50 perclip=50 cinema=0
+wall=296804 qt=171017 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=296805 qt=171017 view 0 viewport=0,0,640,360 eye=111,95,22100 frames=1891 views=1
+wall=296806 qt=171017 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=297547 qt=171617 player 0 guid=35053801 slot=0 pad=0 pos=100,-72,22100 yaw=-899 pitch=0 hp=100 weapon=other ammo=200 inclip=50 perclip=50 cinema=0
+wall=297547 qt=171617 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=297829 qt=171717 command warpmark (hook set)
+wall=297829 qt=171717 warp mark: the trigger is pulled
+wall=297829 qt=171717 pad 0 rt = 32767
+wall=297829 qt=171717 pad 1 rt = 32767
+wall=297845 qt=171817 view 0 viewport=0,0,640,360 eye=111,95,22100 frames=1899 views=1
+wall=297846 qt=171817 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=298473 qt=172217 player 0 guid=35053801 slot=0 pad=0 pos=100,-72,22100 yaw=-899 pitch=0 hp=100 weapon=other ammo=197 inclip=47 perclip=50 cinema=0
+wall=298473 qt=172217 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=298700 qt=172317 pad 0 rt = -32768
+wall=298700 qt=172317 pad 1 rt = -32768
+wall=298894 qt=172517 view 0 viewport=0,0,640,360 eye=111,95,22100 frames=1906 views=1
+wall=298895 qt=172517 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=299255 qt=172717 perf frames=38 in 5113 ms
+wall=299272 qt=172817 player 0 guid=35053801 slot=0 pad=0 pos=100,-72,22100 yaw=-899 pitch=0 hp=100 weapon=other ammo=197 inclip=47 perclip=50 cinema=0
+wall=299272 qt=172817 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=299945 qt=173317 view 0 viewport=0,0,640,360 eye=111,95,22100 frames=1914 views=1
+wall=299946 qt=173317 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=300071 qt=173417 audio voices=10 top=BO_FOOTFALL_HEEL_METAL x2
+wall=300071 qt=173417 player 0 guid=35053801 slot=0 pad=0 pos=100,-72,22100 yaw=-899 pitch=0 hp=100 weapon=other ammo=197 inclip=47 perclip=50 cinema=0
+wall=300071 qt=173417 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=300819 qt=174017 player 0 guid=35053801 slot=0 pad=0 pos=100,-72,22100 yaw=-899 pitch=0 hp=100 weapon=other ammo=197 inclip=47 perclip=50 cinema=0
+wall=300819 qt=174017 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=300949 qt=174117 view 0 viewport=0,0,640,360 eye=111,95,22100 frames=1922 views=1
+wall=300950 qt=174117 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=301594 qt=174617 player 0 guid=35053801 slot=0 pad=0 pos=100,-72,22100 yaw=-899 pitch=0 hp=100 weapon=other ammo=197 inclip=47 perclip=50 cinema=0
+wall=301594 qt=174617 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=302121 qt=175017 view 0 viewport=0,0,640,360 eye=111,95,22100 frames=1931 views=1
+wall=302122 qt=175017 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=302468 qt=175217 player 0 guid=35053801 slot=0 pad=0 pos=100,-72,22100 yaw=-899 pitch=0 hp=100 weapon=other ammo=197 inclip=47 perclip=50 cinema=0
+wall=302468 qt=175217 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=303181 qt=175717 view 0 viewport=0,0,640,360 eye=111,95,22100 frames=1938 views=1
+wall=303182 qt=175717 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=303301 qt=175817 audio voices=8 top=MSN_PROJECTILE_EXPLODE x3
+wall=303301 qt=175817 player 0 guid=35053801 slot=0 pad=0 pos=100,-72,22100 yaw=-899 pitch=0 hp=100 weapon=other ammo=197 inclip=47 perclip=50 cinema=0
+wall=303301 qt=175817 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=304049 qt=176417 player 0 guid=35053801 slot=0 pad=0 pos=100,-72,22100 yaw=-899 pitch=0 hp=100 weapon=other ammo=197 inclip=47 perclip=50 cinema=0
+wall=304049 qt=176417 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=304223 qt=176517 view 0 viewport=0,0,640,360 eye=111,95,22100 frames=1946 views=1
+wall=304224 qt=176517 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=304327 qt=176517 perf frames=38 in 5072 ms
+wall=304577 qt=176717 command warpraw (hook set)
+wall=304577 qt=176717 warp feet: on raw=1
+wall=305079 qt=177017 player 0 guid=35053801 slot=0 pad=0 pos=100,-72,22100 yaw=-899 pitch=0 hp=100 weapon=other ammo=197 inclip=47 perclip=50 cinema=0
+wall=305079 qt=177017 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=305377 qt=177217 view 0 viewport=0,0,640,360 eye=111,95,22100 frames=1953 views=1
+wall=305378 qt=177217 bodies view=0 drawn=0 frames=7 others=0 with_body=0
+wall=305895 qt=177617 player 0 guid=35053801 slot=0 pad=0 pos=100,-72,22100 yaw=-899 pitch=0 hp=100 weapon=other ammo=197 inclip=47 perclip=50 cinema=0
+wall=305896 qt=177617 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=306468 qt=178017 view 0 viewport=0,0,640,360 eye=111,95,22100 frames=1961 views=1
+wall=306469 qt=178017 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=306727 qt=178217 audio voices=5 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=306727 qt=178217 player 0 guid=35053801 slot=0 pad=0 pos=100,-72,22100 yaw=-899 pitch=0 hp=100 weapon=other ammo=197 inclip=47 perclip=50 cinema=0
+wall=306727 qt=178217 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=307544 qt=178817 player 0 guid=35053801 slot=0 pad=0 pos=100,-72,22100 yaw=-899 pitch=0 hp=100 weapon=other ammo=197 inclip=47 perclip=50 cinema=0
+wall=307544 qt=178817 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=307544 qt=178817 view 0 viewport=0,0,640,360 eye=111,95,22100 frames=1969 views=1
+wall=307545 qt=178817 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=308324 qt=179417 player 0 guid=35053801 slot=0 pad=0 pos=100,-72,22100 yaw=-899 pitch=0 hp=100 weapon=other ammo=197 inclip=47 perclip=50 cinema=0
+wall=308324 qt=179417 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=308630 qt=179617 view 0 viewport=0,0,640,360 eye=111,95,22100 frames=1977 views=1
+wall=308631 qt=179617 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=309136 qt=180017 player 0 guid=35053801 slot=0 pad=0 pos=100,-72,22100 yaw=-899 pitch=0 hp=100 weapon=other ammo=197 inclip=47 perclip=50 cinema=0
+wall=309136 qt=180017 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=309380 qt=180117 perf frames=36 in 5053 ms
+wall=309708 qt=180417 view 0 viewport=0,0,640,360 eye=111,95,22100 frames=1985 views=1
+wall=309709 qt=180417 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=309962 qt=180617 audio voices=5 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=309962 qt=180617 player 0 guid=35053801 slot=0 pad=0 pos=100,-72,22100 yaw=-899 pitch=0 hp=100 weapon=other ammo=197 inclip=47 perclip=50 cinema=0
+wall=309962 qt=180617 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=310770 qt=181217 player 0 guid=35053801 slot=0 pad=0 pos=100,-72,22100 yaw=-899 pitch=0 hp=100 weapon=other ammo=197 inclip=47 perclip=50 cinema=0
+wall=310770 qt=181217 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=310770 qt=181217 view 0 viewport=0,0,640,360 eye=111,95,22100 frames=1993 views=1
+wall=310771 qt=181217 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=311510 qt=181817 player 0 guid=35053801 slot=0 pad=0 pos=100,-72,22100 yaw=-899 pitch=0 hp=100 weapon=other ammo=197 inclip=47 perclip=50 cinema=0
+wall=311510 qt=181817 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=311831 qt=182017 view 0 viewport=0,0,640,360 eye=111,95,22100 frames=2001 views=1
+wall=311832 qt=182017 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=312331 qt=182417 player 0 guid=35053801 slot=0 pad=0 pos=100,-72,22100 yaw=-899 pitch=0 hp=100 weapon=other ammo=197 inclip=47 perclip=50 cinema=0
+wall=312331 qt=182417 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=312857 qt=182817 view 0 viewport=0,0,640,360 eye=111,95,22100 frames=2009 views=1
+wall=312858 qt=182817 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=313103 qt=183017 audio voices=5 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=313103 qt=183017 player 0 guid=35053801 slot=0 pad=0 pos=100,-72,22100 yaw=-899 pitch=0 hp=100 weapon=other ammo=197 inclip=47 perclip=50 cinema=0
+wall=313103 qt=183017 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=313891 qt=183617 player 0 guid=35053801 slot=0 pad=0 pos=100,-72,22100 yaw=-899 pitch=0 hp=100 weapon=other ammo=197 inclip=47 perclip=50 cinema=0
+wall=313891 qt=183617 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=313891 qt=183617 view 0 viewport=0,0,640,360 eye=111,95,22100 frames=2017 views=1
+wall=313892 qt=183617 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=314484 qt=184017 perf frames=39 in 5104 ms
+wall=314626 qt=184217 player 0 guid=35053801 slot=0 pad=0 pos=100,-72,22100 yaw=-899 pitch=0 hp=100 weapon=other ammo=197 inclip=47 perclip=50 cinema=0
+wall=314626 qt=184217 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=314932 qt=184417 view 0 viewport=0,0,640,360 eye=111,95,22100 frames=2025 views=1
+wall=314933 qt=184417 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=315410 qt=184717 command warpfeet (hook set)
+wall=315410 qt=184717 warp feet: on raw=0
+wall=315428 qt=184817 player 0 guid=35053801 slot=0 pad=0 pos=100,-72,22100 yaw=-899 pitch=0 hp=100 weapon=other ammo=197 inclip=47 perclip=50 cinema=0
+wall=315428 qt=184817 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=315983 qt=185217 view 0 viewport=0,0,640,360 eye=111,95,22100 frames=2033 views=1
+wall=315985 qt=185217 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=316235 qt=185417 audio voices=5 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=316235 qt=185417 player 0 guid=35053801 slot=0 pad=0 pos=100,-72,22100 yaw=-899 pitch=0 hp=100 weapon=other ammo=197 inclip=47 perclip=50 cinema=0
+wall=316235 qt=185417 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=317084 qt=186017 player 0 guid=35053801 slot=0 pad=0 pos=100,-72,22100 yaw=-899 pitch=0 hp=100 weapon=other ammo=197 inclip=47 perclip=50 cinema=0
+wall=317084 qt=186017 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=317084 qt=186017 view 0 viewport=0,0,640,360 eye=111,95,22100 frames=2041 views=1
+wall=317085 qt=186017 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=317853 qt=186617 player 0 guid=35053801 slot=0 pad=0 pos=100,-72,22100 yaw=-899 pitch=0 hp=100 weapon=other ammo=197 inclip=47 perclip=50 cinema=0
+wall=317853 qt=186617 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=318162 qt=186817 view 0 viewport=0,0,640,360 eye=111,95,22100 frames=2049 views=1
+wall=318163 qt=186817 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=318669 qt=187217 player 0 guid=35053801 slot=0 pad=0 pos=100,-72,22100 yaw=-899 pitch=0 hp=100 weapon=other ammo=197 inclip=47 perclip=50 cinema=0
+wall=318669 qt=187217 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=319232 qt=187617 view 0 viewport=0,0,640,360 eye=111,95,22100 frames=2057 views=1
+wall=319233 qt=187617 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=319476 qt=187817 audio voices=5 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=319476 qt=187817 player 0 guid=35053801 slot=0 pad=0 pos=100,-72,22100 yaw=-899 pitch=0 hp=100 weapon=other ammo=197 inclip=47 perclip=50 cinema=0
+wall=319476 qt=187817 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=319590 qt=187817 perf frames=38 in 5106 ms
+wall=320306 qt=188417 player 0 guid=35053801 slot=0 pad=0 pos=100,-72,22100 yaw=-899 pitch=0 hp=100 weapon=other ammo=197 inclip=47 perclip=50 cinema=0
+wall=320306 qt=188417 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=320306 qt=188417 view 0 viewport=0,0,640,360 eye=111,95,22100 frames=2065 views=1
+wall=320307 qt=188417 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=321067 qt=189017 player 0 guid=35053801 slot=0 pad=0 pos=100,-72,22100 yaw=-899 pitch=0 hp=100 weapon=other ammo=197 inclip=47 perclip=50 cinema=0
+wall=321067 qt=189017 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=321391 qt=189217 view 0 viewport=0,0,640,360 eye=111,95,22100 frames=2073 views=1
+wall=321392 qt=189217 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=321886 qt=189617 player 0 guid=35053801 slot=0 pad=0 pos=100,-72,22100 yaw=-899 pitch=0 hp=100 weapon=other ammo=197 inclip=47 perclip=50 cinema=0
+wall=321886 qt=189617 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=322439 qt=190017 view 0 viewport=0,0,640,360 eye=111,95,22100 frames=2081 views=1
+wall=322440 qt=190017 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=322684 qt=190217 audio voices=5 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=322684 qt=190217 player 0 guid=35053801 slot=0 pad=0 pos=100,-72,22100 yaw=-899 pitch=0 hp=100 weapon=other ammo=197 inclip=47 perclip=50 cinema=0
+wall=322684 qt=190217 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=323491 qt=190817 player 0 guid=35053801 slot=0 pad=0 pos=100,-72,22100 yaw=-899 pitch=0 hp=100 weapon=other ammo=197 inclip=47 perclip=50 cinema=0
+wall=323491 qt=190817 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=323491 qt=190817 view 0 viewport=0,0,640,360 eye=111,95,22100 frames=2089 views=1
+wall=323492 qt=190817 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=324224 qt=191417 player 0 guid=35053801 slot=0 pad=0 pos=100,-72,22100 yaw=-899 pitch=0 hp=100 weapon=other ammo=197 inclip=47 perclip=50 cinema=0
+wall=324224 qt=191417 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=324528 qt=191617 view 0 viewport=0,0,640,360 eye=111,95,22100 frames=2097 views=1
+wall=324529 qt=191617 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=324634 qt=191617 perf frames=38 in 5044 ms
+wall=325015 qt=192017 player 0 guid=35053801 slot=0 pad=0 pos=100,-72,22100 yaw=-899 pitch=0 hp=100 weapon=other ammo=197 inclip=47 perclip=50 cinema=0
+wall=325015 qt=192017 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=325680 qt=192517 view 0 viewport=0,0,640,360 eye=111,95,22100 frames=2106 views=1
+wall=325681 qt=192517 bodies view=0 drawn=0 frames=9 others=0 with_body=0
+wall=325797 qt=192617 audio voices=5 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x2
+wall=325797 qt=192617 player 0 guid=35053801 slot=0 pad=0 pos=100,-72,22100 yaw=-899 pitch=0 hp=100 weapon=other ammo=197 inclip=47 perclip=50 cinema=0
+wall=325797 qt=192617 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=326547 qt=193217 player 0 guid=35053801 slot=0 pad=0 pos=100,-72,22100 yaw=-899 pitch=0 hp=100 weapon=other ammo=197 inclip=47 perclip=50 cinema=0
+wall=326547 qt=193217 platform 0: on=00000000 support=0 nearest=C8D1B800 at 150,-75,22100 top=9265 dist=49 collidable=1 rideable=1
+wall=326714 qt=193317 view 0 viewport=0,0,640,360 eye=111,95,22100 frames=2114 views=1
+wall=326715 qt=193317 bodies view=0 drawn=0 frames=8 others=0 with_body=0
+wall=327319 qt=193717 script finished, asking the game to exit
+wall=327330 qt=193717 dialog stop - id=00000000
+wall=327330 qt=193717 dialog stop - id=00000000
+wall=328278 qt=193717 QA bot shutting down (armed=1 finished=1)
+wall=328507 qt=193717 ASSERT #1 /home/runner/work/area51-pc/area51-pc/Support/NetworkMgr/Voice/VoiceMgr.cpp:38 expr=[!m_Initialized] msg=[]
+wall=328507 qt=193717 ASSERT #2 /home/runner/work/area51-pc/area51-pc/xCore/Entropy/Network/FiFo.cpp:25 expr=[m_Initialized==FALSE] msg=[]
+wall=328507 qt=193717 ASSERT #3 /home/runner/work/area51-pc/area51-pc/xCore/Entropy/Network/FiFo.cpp:25 expr=[m_Initialized==FALSE] msg=[]
