@@ -49,4 +49,5 @@ v0.95.N with N = build - 95 (build 144 = v0.95.49).
 | Version | Build | Saved as (branch `milestones`) | Notes |
 |---|---|---|---|
 | v0.95.26 | 121 | `v0.95.26_Original` | Before the enemy-health change. Owner-verified on a real PC, NexusMods package included. |
-| v0.95.49 | 144 | `v0.95.49_Harder_Co-op` | Enemies and bosses 1.5x health in co-op. Bot-tested on all 19 levels; owner test pending. |
+| v0.95.49 | 144 | `v0.95.49_Harder_Co-op` | Enemies and bosses 1.5x health in co-op. Bot-tested on all 19 levels; owner-tested (Ascension boss). |
+| v0.95.55 | 150 | `v0.95.55_Harder_Co-op` | Co-op Settings menu (difficulty Easy/Normal/Hard, revive rules, controllers), objective marker for both players, keyboard teleport on T. **Official public release** `AREA51_SplitscreenCoop_v0.95.55_Harder_Co-op`. |
