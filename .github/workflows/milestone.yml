@@ -1,0 +1,76 @@
+name: Save a milestone build
+
+# Keeps one earlier build for good: the play package of an existing run, under its own tag,
+# outside the "keep the newest three builds" clean-up (that only touches coop-stage1-run*).
+on:
+  workflow_dispatch:
+    inputs:
+      run_id:
+        description: "Actions run id of the build to keep"
+        required: true
+      commit:
+        description: "Commit of that build (its player files are taken from it)"
+        required: true
+      tag:
+        description: "Tag for the kept build, e.g. milestone-v0.95.26-before-enemy-health"
+        required: true
+      title:
+        description: "Release title"
+        required: true
+      notes:
+        description: "One paragraph about this build"
+        required: true
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  keep:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the build's commit
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.commit }}
+
+      - name: Download the play build of that run
+        uses: actions/download-artifact@v4
+        with:
+          name: A51-coop-stage1-win-x64
+          path: play
+          run-id: ${{ inputs.run_id }}
+          github-token: ${{ github.token }}
+
+      - name: Download its debug symbols
+        uses: actions/download-artifact@v4
+        with:
+          name: A51-coop-stage1-win-x64-pdb
+          path: pdb
+          run-id: ${{ inputs.run_id }}
+          github-token: ${{ github.token }}
+        continue-on-error: true
+
+      - name: Assemble and publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ inputs.tag }}
+          TITLE: ${{ inputs.title }}
+          NOTES: ${{ inputs.notes }}
+          COMMIT: ${{ inputs.commit }}
+        run: |
+          set -euo pipefail
+          NAME="Area51-Coop-$TAG"
+          mkdir -p "dist/$NAME"
+          cp -a play/. "dist/$NAME/"
+          cp tools/coop-play/Setup-Assets.ps1 tools/coop-play/PLAY-COOP-2-PLAYERS.cmd tools/coop-play/PLAY-SINGLE-PLAYER.cmd tools/coop-play/README.txt "dist/$NAME/"
+          cp -r tools/coop-play/SCREENS "dist/$NAME/"
+          for f in "dist/$NAME"/*.cmd "dist/$NAME"/*.ps1 "dist/$NAME"/README.txt; do sed -i 's/\r$//; s/$/\r/' "$f"; done
+          ZIP="$NAME.zip"
+          (cd dist && zip -q -r -9 "../$ZIP" "$NAME")
+          ls -l "$ZIP"
+          PDB=()
+          if [ -f pdb/A51.pdb ]; then PDB=("pdb/A51.pdb#A51-$TAG.pdb (debug symbols)"); fi
+          printf '%s\n\nBuilt from commit %s (Actions run %s). The zip contains no game data.\n' "$NOTES" "$COMMIT" "${{ inputs.run_id }}" > notes.md
+          gh release delete "$TAG" --repo "$GITHUB_REPOSITORY" --yes --cleanup-tag >/dev/null 2>&1 || true
+          gh release create "$TAG" --repo "$GITHUB_REPOSITORY" --target "$COMMIT" --title "$TITLE" --notes-file notes.md "$ZIP" "${PDB[@]}"
