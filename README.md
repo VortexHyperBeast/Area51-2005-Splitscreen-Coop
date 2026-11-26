@@ -1,3 +1,24 @@
+# Area-51 Splitscreen Co-op: Work in Progress
+
+Two-player local split-screen co-op for the whole Area 51 (2005) campaign, built on the
+Dreamland-51 PC port. One PC, two controllers, top/bottom split screen. Made by VortexHyperBeast.
+This mod will always be free.
+
+**Status: work in progress.** Current version: v0.95.49 (Harder Co-op: enemies and bosses 1.5x health).
+
+- **Saved builds and NexusMods packages:** branch [`milestones`](https://github.com/VortexHyperBeast/area51-pc/tree/milestones)
+  (`v0.95.26_Original`, `v0.95.49_Harder_Co-op`)
+- **What works and what is planned:** [docs/coop/STATUS.md](docs/coop/STATUS.md)
+- **Where everything is in this repository:** [docs/coop/README.md](docs/coop/README.md)
+- **Settings** (`a51_coop.cfg`): [tools/coop-play/README.txt](tools/coop-play/README.txt)
+
+Requires the Dreamland-51 port of Area 51 with its game data; this repository contains no game data.
+Target: Windows 11 PC.
+
+---
+
+*Below: the README of the Dreamland-51 port this mod is built on ([Source2Spy/area51-pc](https://github.com/Source2Spy/area51-pc)).*
+
 ```text
 ██████  ██████  ███████  █████  ███    ███ ██       █████  ███    ██ ██████        ███████  ██ 
 ██   ██ ██   ██ ██      ██   ██ ████  ████ ██      ██   ██ ████   ██ ██   ██       ██      ███ 
