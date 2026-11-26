@@ -1,0 +1,246 @@
+{
+ "expect": "coop",
+ "ok": false,
+ "failed": [
+  "startup",
+  "two_players",
+  "separate_pads",
+  "split_pixels",
+  "partner_body",
+  "shared_cinema",
+  "scanner",
+  "carry_over",
+  "pause_view",
+  "mutation_independent",
+  "downed_revive"
+ ],
+ "no_evidence": [
+  "walk0",
+  "walk1",
+  "walkboth",
+  "look0",
+  "look1",
+  "fire0",
+  "fire1",
+  "reload0",
+  "reload1",
+  "pad_mapping",
+  "split_view",
+  "shared_items",
+  "own_profiles",
+  "join_button",
+  "downed_no_attack"
+ ],
+ "results": [
+  {
+   "name": "startup",
+   "status": "FAIL",
+   "detail": "armed, but too few player samples: [349, 0]"
+  },
+  {
+   "name": "asserts",
+   "status": "PASS",
+   "detail": "the game hit no assertion"
+  },
+  {
+   "name": "cinema",
+   "status": "INFO",
+   "detail": "a cinematic ran during the script (player 0: 16 samples)"
+  },
+  {
+   "name": "enemy_targets",
+   "status": "INFO",
+   "detail": "no enemy picked a target while the log was written"
+  },
+  {
+   "name": "perf",
+   "status": "INFO",
+   "detail": "86 samples, frame rate min 0.1, mean 10.2, max 175.3 per second"
+  },
+  {
+   "name": "two_players",
+   "status": "FAIL",
+   "detail": "players seen: [0]"
+  },
+  {
+   "name": "separate_pads",
+   "status": "FAIL",
+   "detail": "second player missing"
+  },
+  {
+   "name": "no_fall",
+   "status": "PASS",
+   "detail": "no player sank below its start"
+  },
+  {
+   "name": "alive",
+   "status": "PASS",
+   "detail": "every sample has hp > 0"
+  },
+  {
+   "name": "bot_drove",
+   "status": "PASS",
+   "detail": "36 of 36 scheduled control changes seen, both pads attached"
+  },
+  {
+   "name": "completed",
+   "status": "PASS",
+   "detail": "script played to the end, last sample at 193550ms"
+  },
+  {
+   "name": "walk0",
+   "status": "NO-EVIDENCE",
+   "detail": "the driven player never did it. no samples in any window"
+  },
+  {
+   "name": "walk1",
+   "status": "NO-EVIDENCE",
+   "detail": "the driven player never did it. no samples in any window"
+  },
+  {
+   "name": "walkboth",
+   "status": "NO-EVIDENCE",
+   "detail": "the driven player never did it. no samples in any window"
+  },
+  {
+   "name": "look0",
+   "status": "NO-EVIDENCE",
+   "detail": "the driven player never did it. no samples in any window"
+  },
+  {
+   "name": "look1",
+   "status": "NO-EVIDENCE",
+   "detail": "the driven player never did it. no samples in any window"
+  },
+  {
+   "name": "jump0",
+   "status": "NO-EVIDENCE",
+   "detail": "the driven player never did it. no samples in any window"
+  },
+  {
+   "name": "jump1",
+   "status": "NO-EVIDENCE",
+   "detail": "the driven player never did it. no samples in any window"
+  },
+  {
+   "name": "fire0",
+   "status": "NO-EVIDENCE",
+   "detail": "the driven player never did it. no samples in any window"
+  },
+  {
+   "name": "fire1",
+   "status": "NO-EVIDENCE",
+   "detail": "the driven player never did it. no samples in any window"
+  },
+  {
+   "name": "reload0",
+   "status": "NO-EVIDENCE",
+   "detail": "the driven player never did it. no samples in any window"
+  },
+  {
+   "name": "reload1",
+   "status": "NO-EVIDENCE",
+   "detail": "the driven player never did it. no samples in any window"
+  },
+  {
+   "name": "pad_mapping",
+   "status": "NO-EVIDENCE",
+   "detail": "pads with evidence: []"
+  },
+  {
+   "name": "split_view",
+   "status": "NO-EVIDENCE",
+   "detail": "view lines: view0=185 view1=0"
+  },
+  {
+   "name": "split_pixels",
+   "status": "FAIL",
+   "detail": "only 0 of 77 screenshots show a uniform line between two drawn views"
+  },
+  {
+   "name": "pause_view",
+   "status": "FAIL",
+   "detail": "2 of 2 paused screenshots have an empty view (edge mean/spread: top 3.9/1.5 bottom 4.1/1.6; top 4.0/1.5 bottom 4.1/1.6 (before the pause: top 15.2/5.5 bottom 18.1/14.5))"
+  },
+  {
+   "name": "warp_view",
+   "status": "NO-EVIDENCE",
+   "detail": "player 1 never had the blue gun in his hands, so nothing was fired"
+  },
+  {
+   "name": "warp_feet",
+   "status": "FAIL",
+   "detail": "1 of 1 screenshots during the warp have an empty view: views top 15.1/5.5 bottom 18.2/15.7; fps 6.0/6.0 (before 5.9/6.2) | the old way: views top 15.0/5.5 bottom 18.3/15.2; fps 5.9 (before 6.0/6.5/6.2)"
+  },
+  {
+   "name": "enemy_health",
+   "status": "NO-EVIDENCE",
+   "detail": "no player hit an enemy: 0 hits on enemies scaled; no living enemy in this level"
+  },
+  {
+   "name": "loadout",
+   "status": "FAIL",
+   "detail": "a player started without the scanner (player 1 scanner=0)"
+  },
+  {
+   "name": "partner_body",
+   "status": "FAIL",
+   "detail": "view 0: the other player's body was never drawn (2181 frames); view 1: no body lines"
+  },
+  {
+   "name": "shared_cinema",
+   "status": "FAIL",
+   "detail": "a scene ran for player 0 only (33 samples)"
+  },
+  {
+   "name": "shared_items",
+   "status": "NO-EVIDENCE",
+   "detail": "no shared-item probe in the log"
+  },
+  {
+   "name": "scanner",
+   "status": "FAIL",
+   "detail": "player 1 did not get it; player 1 never held it"
+  },
+  {
+   "name": "own_profiles",
+   "status": "NO-EVIDENCE",
+   "detail": "no profile lines for both players"
+  },
+  {
+   "name": "live_swap",
+   "status": "PASS",
+   "detail": "swapped: player 0 pad 1, player 1 pad 0; back: 0, 1"
+  },
+  {
+   "name": "carry_over",
+   "status": "FAIL",
+   "detail": "player 0: scanner 1, pistol 1; player 1: scanner -1, pistol -1"
+  },
+  {
+   "name": "mutation_independent",
+   "status": "FAIL",
+   "detail": "player 2 did not turn into the mutant (p2 mutated=-1)"
+  },
+  {
+   "name": "downed_revive",
+   "status": "FAIL",
+   "detail": "player 2 did not go down after lethal damage"
+  },
+  {
+   "name": "downed_no_attack",
+   "status": "NO-EVIDENCE",
+   "detail": "the two snapshots of the downed player were not logged"
+  },
+  {
+   "name": "death_restart",
+   "status": "PASS",
+   "detail": "the level restarted 4100 ms after player 1 died, and the game ran on"
+  },
+  {
+   "name": "join_button",
+   "status": "NO-EVIDENCE",
+   "detail": "no samples around the Back press"
+  }
+ ]
+}
