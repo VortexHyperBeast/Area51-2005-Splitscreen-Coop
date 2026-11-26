@@ -1,0 +1,36 @@
+mod zip: Area51-SplitscreenCoop-v0.95.55.zip
+--- mod files in the game folder
+A51.exe
+fontlegalnotices.txt
+legalnotices.txt
+Put executable here.txt
+Put textures here.txt
+README-SplitscreenCoop.txt
+thirdpartylegalnotices.txt
+software Vulkan driver in use (this check only)
+game still running after 75 s: False
+mod start screen loaded: True
+crash report written: True
+MOD RESULT: PASS (starts from the mod files alone and shows the mod start screen; this GPU-less machine cannot play further, real play is checked on a PC)
+--- _out.txt (last 40 lines)
+--- _err.txt (last 40 lines)
+A51 Vulkan swapchain: video=windows present=vsync requested-images=2 actual-images=2 frames-in-flight=2 surface-min=1 surface-max=0 size=1024x768
+A51 Vulkan swapchain: video=windows present=vsync requested-images=2 actual-images=2 frames-in-flight=2 surface-min=1 surface-max=0 size=1024x768
+A51 Vulkan swapchain: video=windows present=vsync requested-images=2 actual-images=2 frames-in-flight=2 surface-min=1 surface-max=0 size=1024x768
+A51 pipeline begin: request=1 name='CompositePipeline' vs=026a8efc3109a449 ps=38df17b316be168d
+A51 pipeline ready: request=1 ms=1.58
+A51 pipeline begin: request=2 name='UIPipeline' vs=69dddb2b63560002 ps=40f8654faa07a36c
+A51 pipeline ready: request=2 ms=1.61
+A51 pipeline begin: request=3 name='UIPipeline' vs=69dddb2b63560002 ps=40f8654faa07a36c
+A51 pipeline ready: request=3 ms=0.25
+A51 pipeline begin: request=4 name='UIPipeline' vs=69dddb2b63560002 ps=40f8654faa07a36c
+A51 pipeline ready: request=4 ms=0.10
+A51 pipeline begin: request=5 name='UIPipeline' vs=69dddb2b63560002 ps=40f8654faa07a36c
+A51 pipeline ready: request=5 ms=0.12
+A51 pipeline begin: request=6 name='UIPipeline' vs=69dddb2b63560002 ps=40f8654faa07a36c
+A51 pipeline ready: request=6 ms=0.10
+A51 pipeline begin: request=7 name='UIPipeline' vs=69dddb2b63560002 ps=40f8654faa07a36c
+A51 pipeline ready: request=7 ms=0.10
+--- probe log (last 30 lines)
+start screen: ok
+
