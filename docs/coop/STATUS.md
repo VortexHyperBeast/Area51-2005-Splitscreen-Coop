@@ -1,6 +1,6 @@
 # Area 51 (2005) local co-op: status and TODO
 
-Branch `coop/stage1` of `VortexHyperBeast/area51-pc`. Last updated 2026-11-24 (after build 27; shared-inventory decision; AI audit).
+Branch `coop/stage1` of `VortexHyperBeast/area51-pc`. Last updated 2026-11-26 (after build 145: v0.95.49, 1.5x enemy health). Where everything lives: [README.md](README.md).
 
 Every status below is backed by one of three kinds of evidence, and says which:
 
@@ -152,13 +152,13 @@ start (single player does the same).
 
 Making Splitscreen Co-op harder (each a number in `a51_coop.cfg`, co-op only):
 
-1. Enemies with about 1.5x health.
+1. Enemies with about 1.5x health. DONE in v0.95.49 (`enemy_health_percent`, default 150), see the row in section 1.
 2. Enemies dealing about 1.25x damage.
 3. Stricter revive: 15 s bleedout, 5 s revive, 25% health.
 4. Smaller ammo pickups (about 60% each); weapons, grenades and unlocks stay shared.
 5. Co-op starts one difficulty level higher.
 
-Suggested start: 1-3.
+Suggested next: 2 and 3.
 
 ## 6. Biggest risks
 
@@ -179,3 +179,8 @@ placement of players 3-4, pad assignment and swap, pause page bodies P3/P4, prof
 restart only when all are down.  Each view renders the scene again: 4 players is about twice
 today's render work.  Suggested first step: a 4-player test build with only the views and the
 pads, bot-tested (the bot can drive 4 virtual pads), to measure performance.
+
+### On hold: a face visor for the players' hazmat suits (owner, 2026-11-25)
+
+The NPC hazmats have a glass visor; the player model has none. Option 2 (darker face, no visor)
+is done. A visor would mean using or adapting the NPC hazmat model for the players.
