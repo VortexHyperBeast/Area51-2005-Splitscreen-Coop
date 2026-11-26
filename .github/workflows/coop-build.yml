@@ -933,8 +933,20 @@ jobs:
           fi
           if [ -f pdb/A51.pdb ]; then cp pdb/A51.pdb "${REL}.pdb"; ASSETS+=("${REL}.pdb#${REL}.pdb (debug symbols, only for reading crash reports)"); fi
           gh release delete "$REL" --repo "$GITHUB_REPOSITORY" --yes --cleanup-tag >/dev/null 2>&1 || true
-          gh release create "$REL" --repo "$GITHUB_REPOSITORY" --target "$SHA" --latest \
-            --title "$TITLE" --notes-file notes.md "${ASSETS[@]}"
+          # Step by step, so a refusal shows which step: 1) the tag (git push), 2) a draft release on
+          # that tag with the files, 3) publish it.
+          git tag -f "$REL" "$SHA"
+          if git push -q origin "refs/tags/$REL" 2>&1; then echo "tag pushed: $REL"; else echo "tag push refused: $REL"; fi
+          if gh release create "$REL" --repo "$GITHUB_REPOSITORY" --verify-tag --draft \
+               --title "$TITLE" --notes-file notes.md "${ASSETS[@]}"; then
+            echo "draft created"
+          else
+            echo "draft with tag refused, trying a draft without a tag"
+            gh release create "$REL" --repo "$GITHUB_REPOSITORY" --target "$SHA" --draft \
+              --title "$TITLE" --notes-file notes.md "${ASSETS[@]}"
+            echo "draft created (no tag yet)"
+          fi
+          gh release edit "$REL" --repo "$GITHUB_REPOSITORY" --draft=false --latest
           echo "published: $REL"
 
           # Keep it on the branch "milestones" as well.
