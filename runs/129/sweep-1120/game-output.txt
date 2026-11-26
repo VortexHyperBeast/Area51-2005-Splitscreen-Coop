@@ -1,0 +1,452 @@
+=== first 150 lines
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[New Thread 0x7ffff27ac6c0 (LWP 8976)]
+[New Thread 0x7ffff17ab6c0 (LWP 8977)]
+[New Thread 0x7ffff039a6c0 (LWP 8978)]
+[New Thread 0x7fffed3716c0 (LWP 8979)]
+[New Thread 0x7fffecb706c0 (LWP 8980)]
+[New Thread 0x7fffe7fff6c0 (LWP 8981)]
+[New Thread 0x7fffe77fe6c0 (LWP 8982)]
+[New Thread 0x7fffe6ffd6c0 (LWP 8983)]
+[New Thread 0x7fffe67fc6c0 (LWP 8984)]
+[New Thread 0x7fffe5ffb6c0 (LWP 8985)]
+[New Thread 0x7fffe57fa6c0 (LWP 8986)]
+[New Thread 0x7fffcd3ff6c0 (LWP 8988)]
+[New Thread 0x7fffc41ff6c0 (LWP 8989)]
+[New Thread 0x7fffc7fff6c0 (LWP 8990)]
+[New Thread 0x7fffc6ffe6c0 (LWP 8991)]
+[New Thread 0x7fffc5ffd6c0 (LWP 8992)]
+[New Thread 0x7fffc31fe6c0 (LWP 8993)]
+[New Thread 0x7fffc21fd6c0 (LWP 8994)]
+[New Thread 0x7fffc11fc6c0 (LWP 8995)]
+[New Thread 0x7fffabfff6c0 (LWP 8996)]
+[New Thread 0x7fffaaffe6c0 (LWP 8997)]
+[New Thread 0x7fff97fff6c0 (LWP 8998)]
+[New Thread 0x7fff96ffe6c0 (LWP 8999)]
+A51 Vulkan swapchain: video=x11 present=vsync requested-images=3 actual-images=3 frames-in-flight=2 surface-min=3 surface-max=0 size=640x360
+[New Thread 0x7fff95ffd6c0 (LWP 9000)]
+[New Thread 0x7fff8ffff6c0 (LWP 9001)]
+A51 Vulkan swapchain: video=x11 present=vsync requested-images=3 actual-images=3 frames-in-flight=2 surface-min=3 surface-max=0 size=640x360
+[Thread 0x7fff96ffe6c0 (LWP 8999) exited]
+[Thread 0x7fff97fff6c0 (LWP 8998) exited]
+[New Thread 0x7fff96ffe6c0 (LWP 9002)]
+[New Thread 0x7fff97fff6c0 (LWP 9003)]
+A51 Vulkan swapchain: video=x11 present=vsync requested-images=3 actual-images=3 frames-in-flight=2 surface-min=3 surface-max=0 size=640x360
+[Thread 0x7fff95ffd6c0 (LWP 9000) exited]
+[Thread 0x7fff8ffff6c0 (LWP 9001) exited]
+[New Thread 0x7fffee27c6c0 (LWP 9004)]
+[New Thread 0x7fff8ffff6c0 (LWP 9005)]
+[New Thread 0x7fff95ffd6c0 (LWP 9006)]
+[New Thread 0x7fff8effe6c0 (LWP 9007)]
+[New Thread 0x7fffee2316c0 (LWP 9008)]
+[New Thread 0x7fffec1bd6c0 (LWP 9010)]
+A51 pipeline begin: request=1 name='CompositePipeline' vs=0f9b8ffad15abef9 ps=e25c03b0699a41dd
+A51 pipeline ready: request=1 ms=0.60
+A51 pipeline begin: request=2 name='UIPipeline' vs=af61eb56773a1252 ps=16ebfd2fd2e33a5c
+A51 pipeline ready: request=2 ms=0.67
+A51 pipeline begin: request=3 name='UIPipeline' vs=af61eb56773a1252 ps=16ebfd2fd2e33a5c
+A51 pipeline ready: request=3 ms=0.52
+A51 pipeline begin: request=4 name='UIPipeline' vs=af61eb56773a1252 ps=16ebfd2fd2e33a5c
+A51 pipeline ready: request=4 ms=0.46
+A51 pipeline begin: request=5 name='UIPipeline' vs=af61eb56773a1252 ps=16ebfd2fd2e33a5c
+A51 pipeline ready: request=5 ms=0.73
+A51 pipeline begin: request=6 name='UIPipeline' vs=af61eb56773a1252 ps=16ebfd2fd2e33a5c
+A51 pipeline ready: request=6 ms=0.51
+A51 pipeline begin: request=7 name='UIPipeline' vs=af61eb56773a1252 ps=16ebfd2fd2e33a5c
+A51 pipeline ready: request=7 ms=0.50
+[Thread 0x7fffec1bd6c0 (LWP 9010) exited]
+[New Thread 0x7fffec1bd6c0 (LWP 9016)]
+0.00: Entered app.
+0.00: Executable directory: /mnt/pack/work/sweep/install
+0.00: Data directory: /mnt/pack/work/sweep/install
+0.00: Save directory: /mnt/pack/work/sweep/install
+0.01: Initialize io system
+0.05: === SDL ENGINE INITIALIZATION START ===
+0.37: SDLEngine: selected depth/stencil texture format D24_UNORM_S8_UINT
+0.38: SDLEngine: swapchain present=vsync frames-in-flight=2 size=640x360
+0.38: SDLEngine: GPU device initialized using driver 'vulkan' shader formats 0x00000002
+0.39: SDL input: opened gamepad 0 'QA Pad 0'
+0.39: SDL input: opened gamepad 1 'QA Pad 1'
+0.39: === SDL ENGINE INITIALIZATION COMPLETE ===
+0.39: ..ClearReceiverQueue
+0.39: Starting to initialize resource manager
+0.39: Finished initializing resource manager
+1.03: audiopkg_loader::PreLoad [AUDIO/DREAMLAND.AUDIOPKG]
+1.16: audiopkg_loader::PreLoad [AUDIO/SFX_FRONTEND.AUDIOPKG]
+1.26: RenderPipeline: initialized successfully
+1.26: FrameCompiler: Initializing shaders
+1.28: FrameCompiler: Initializing rigid shaders
+1.28: FrameCompiler: Rigid shaders initialized successfully
+1.28: FrameCompiler: Initializing skin shaders
+1.28: FrameCompiler: Skin shaders initialized successfully
+1.28: FrameCompiler: Shaders initialized successfully
+1.28: PostProcessFeature: Initializing post-processing feature
+1.28: PostProcessFeature: post-processing feature initialized successfully
+1.38: RenderPlatform: initialized successfully
+1.38: Finished initializing rendering
+1.38: Loaded projected textures
+1.38: Loaded camera
+1.46: audiopkg_loader::PreLoad [AUDIO/DX_FRONTEND.AUDIOPKG]
+1.46: audiopkg_loader::PreLoad [AUDIO/MUSIC_FRONTEND.AUDIOPKG]
+1.48: ScriptMgr: initialized with backend 'Lua 5.5', 5 module(s).
+1.48: SDLEngine: swapchain acquire=0.037ms size=640x360
+1.50: UIRenderer: prewarmed 6 graphics pipeline variants for format 1
+5.36: audiopkg_loader::PreLoad [DX_Loading.audiopkg]
+5.82: audiopkg_loader::PreLoad [AI_Alien_Orb.audiopkg]
+5.82: audiopkg_loader::PreLoad [AI_BlackOps.audiopkg]
+5.82: audiopkg_loader::PreLoad [AI_Gray_Force_Field.audiopkg]
+5.82: audiopkg_loader::PreLoad [AI_Mutant_Tank.audiopkg]
+5.83: audiopkg_loader::PreLoad [AMB_AlienBase_SL4_5.audiopkg]
+5.83: audiopkg_loader::PreLoad [AUDIO/DX_FRONTEND.AUDIOPKG]
+5.83: audiopkg_loader::PreLoad [DX_ALNSL4.audiopkg]
+5.83: audiopkg_loader::PreLoad [Explosion_Main.audiopkg]
+5.83: audiopkg_loader::PreLoad [Explosion_Powder.audiopkg]
+5.83: audiopkg_loader::PreLoad [Footfalls_AB.audiopkg]
+5.84: audiopkg_loader::PreLoad [MUSIC_AlienBase.audiopkg]
+5.84: audiopkg_loader::PreLoad [MUSIC_Excavation.audiopkg]
+5.84: audiopkg_loader::PreLoad [SFX_AlienBase_SL4_5.audiopkg]
+5.85: audiopkg_loader::PreLoad [SFX_Menu_InGame.audiopkg]
+5.85: audiopkg_loader::PreLoad [SFX_Pickups.audiopkg]
+5.86: audiopkg_loader::PreLoad [SFX_Player_Stage0.audiopkg]
+5.86: audiopkg_loader::PreLoad [Weapon_BBG.audiopkg]
+5.86: audiopkg_loader::PreLoad [Weapon_Bullets.audiopkg]
+5.86: audiopkg_loader::PreLoad [Weapon_DEagle.audiopkg]
+5.87: audiopkg_loader::PreLoad [Weapon_JBG.audiopkg]
+5.87: audiopkg_loader::PreLoad [Weapon_MSN.audiopkg]
+5.87: audiopkg_loader::PreLoad [Weapon_MUT.audiopkg]
+5.87: audiopkg_loader::PreLoad [Weapon_Parasite_Primary.audiopkg]
+5.87: audiopkg_loader::PreLoad [Weapon_Parasite_Secondary.audiopkg]
+5.87: audiopkg_loader::PreLoad [Weapon_SCN.audiopkg]
+5.87: audiopkg_loader::PreLoad [Weapon_Shotgun.audiopkg]
+5.88: audiopkg_loader::PreLoad [Weapon_SMP.audiopkg]
+5.88: audiopkg_loader::PreLoad [Weapon_SniperRifle.audiopkg]
+5.88: StringMgr: failed to load 'ENG_04_AlienBase_Datapad' from '/mnt/pack/work/sweep/install/ENG_04_AlienBase_Datapad.string'
+5.92: Initializing HUD
+5.92: WARNING: AllocCell1: 00000000 AllocCell2: 63143D00
+5.99: audiopkg_loader::PreLoad [DX_FrontEnd.audiopkg]
+5.99: audiopkg_loader::PreLoad [MUSIC_FrontEnd.audiopkg]
+5.99: DisplayTemplates: 23
+5.99:   0] C:\GameData\A51\Source\Themes\Weapons\Blueprint\WPN_DesertEagle.bpx
+5.99:   1] C:\GameData\A51\Source\Themes\Weapons\Blueprint\WPN_Dual_SMP.bpx
+5.99:   2] C:\GameData\A51\Source\Themes\Weapons\Blueprint\WPN_MasonCannon.bpx
+5.99:   3] C:\GameData\A51\Source\Themes\Weapons\A51 pipeline begin: request=9 name='CompositePipeline' vs=0f9b8ffad15abef9 ps=de81e0c4e1ee6341
+A51 pipeline begin: request=8 name='CompositePipeline' vs=0f9b8ffad15abef9 ps=de81e0c4e1ee6341
+A51 pipeline begin: request=10 name='CompositePipeline' vs=0f9b8ffad15abef9 ps=de81e0c4e1ee6341
+A51 pipeline ready: request=8 ms=0.88
+A51 pipeline begin: request=11 name='CompositePipeline' vs=0f9b8ffad15abef9 ps=39f81d3e97d46e1e
+A51 pipeline begin: request=12 name='CompositePipeline' vs=0f9b8ffad15abef9 ps=39f81d3e97d46e1e
+A51 pipeline ready: request=11 ms=0.29
+A51 pipeline begin: request=13 name='ClampNegativeColor' vs=0f9b8ffad15abef9 ps=50cbd1ba64f9166e
+A51 pipeline ready: request=13 ms=0.23
+A51 pipeline begin: request=14 name='CompositePipeline' vs=0f9b8ffad15abef9 ps=f0f6163a2dc0d33b
+A51 pipeline ready: request=12 ms=0.35
+A51 pipeline begin: request=15 name='CompositePipeline' vs=0f9b8ffad15abef9 ps=f0f6163a2dc0d33b
+A51 pipeline begin: request=16 name='CompositePipeline' vs=0f9b8ffad15abef9 ps=1b6c3282afb5f244
+A51 pipeline ready: request=14 ms=0.75
+A51 pipeline begin: request=17 name='CompositePipeline' vs=0f9b8ffad15abef9 ps=a55edb9a3be9d105
+A51 pipeline begin: request=18 name='CompositePipeline' vs=0f9b8ffad15abef9 ps=e385c8098fadf5e1
+A51 pipeline ready: request=18 ms=0.45
+A51 pipeline begin: request=19 name='CompositePipeline' vs=0f9b8ffad15abef9 ps=394c4965f9212a01
+A51 pipeline begin: request=20 name='CompositePipeline' vs=0f9b8ffad15abef9 ps=5889de8d9a901321
+=== last 300 lines
+A51 pipeline begin: request=2659 name='GeomRigidForward' vs=d5089ef4234d04a8 ps=cf98e83b4e155043
+A51 pipeline begin: request=2660 name='GeomRigidForward' vs=d5089ef4234d04a8 ps=473b8a4a1bec1d39
+A51 pipeline ready: request=2658 ms=13.68
+A51 pipeline begin: request=2661 name='GeomRigidForward' vs=d5089ef4234d04a8 ps=2046289575c9fee9
+A51 pipeline ready: request=2657 ms=17.22
+A51 pipeline begin: request=2662 name='GeomRigidForward' vs=64bbee521f9488f9 ps=067ecd20bc154004
+A51 pipeline begin: request=2663 name='GeomRigidForward' vs=64bbee521f9488f9 ps=70cd50327f6b22a5
+A51 pipeline begin: request=2664 name='GeomRigidForward' vs=64bbee521f9488f9 ps=e4ddac4760a2c440
+A51 pipeline begin: request=2665 name='GeomRigidForward' vs=64bbee521f9488f9 ps=7028b76e001dda9d
+A51 pipeline ready: request=2661 ms=18.56
+A51 pipeline ready: request=2656 ms=63.44
+A51 pipeline ready: request=2660 ms=35.88
+A51 pipeline ready: request=2659 ms=50.51
+A51 pipeline ready: request=2662 ms=27.04
+A51 pipeline begin: request=2666 name='GeomRigidForward' vs=d5089ef4234d04a8 ps=a839bc2295df46b2
+A51 pipeline begin: request=2667 name='GeomRigidForward' vs=41e48f58ffec9518 ps=0d0fd49ba279579f
+A51 pipeline ready: request=2665 ms=41.30
+A51 pipeline ready: request=2666 ms=20.63
+A51 pipeline ready: request=2664 ms=55.19
+A51 pipeline ready: request=2663 ms=58.05
+A51 pipeline ready: request=2667 ms=15.36
+A51 pipeline begin: request=2668 name='GeomRigidForward' vs=d5089ef4234d04a8 ps=8bf0addfd7ca893c
+A51 pipeline begin: request=2669 name='GeomRigidForward' vs=d5089ef4234d04a8 ps=2a819501f3260795
+A51 pipeline ready: request=2668 ms=15.05
+A51 pipeline begin: request=2670 name='GeomRigidForward' vs=64bbee521f9488f9 ps=670c7ebb010f2f06
+A51 pipeline ready: request=2670 ms=6.77
+A51 pipeline begin: request=2671 name='GeomRigidForward' vs=d5089ef4234d04a8 ps=5fc32207fb229a98
+A51 pipeline begin: request=2672 name='GeomRigidForward' vs=d5089ef4234d04a8 ps=a40aa66b25c6f965
+A51 pipeline begin: request=2673 name='GeomRigidForward' vs=d5089ef4234d04a8 ps=77e0c1f0312c4d85
+A51 pipeline ready: request=2669 ms=49.15
+A51 pipeline begin: request=2674 name='GeomRigidForward' vs=d5089ef4234d04a8 ps=baaa1c9e33b4f2d0
+A51 pipeline begin: request=2675 name='GeomRigidForward' vs=d5089ef4234d04a8 ps=d3f29cf201006410
+A51 pipeline ready: request=2671 ms=59.54
+A51 pipeline begin: request=2676 name='GeomRigidForward' vs=d5089ef4234d04a8 ps=440ca79677c4bee0
+A51 pipeline ready: request=2672 ms=63.20
+A51 pipeline ready: request=2673 ms=54.63
+A51 pipeline ready: request=2674 ms=31.22
+A51 pipeline begin: request=2677 name='GeomRigidForward' vs=64bbee521f9488f9 ps=ec4e01a168cc8954
+A51 pipeline begin: request=2678 name='GeomRigidForward' vs=d5089ef4234d04a8 ps=1e8b525f7effa247
+A51 pipeline ready: request=2676 ms=39.97
+A51 pipeline begin: request=2679 name='GeomRigidForward' vs=d5089ef4234d04a8 ps=0ca61e1e0250671b
+A51 pipeline ready: request=2678 ms=19.77
+A51 pipeline begin: request=2680 name='GeomRigidForward' vs=d5089ef4234d04a8 ps=c6c84b390fb59a9b
+A51 pipeline ready: request=2675 ms=79.62
+A51 pipeline ready: request=2677 ms=50.17
+A51 pipeline ready: request=2679 ms=18.78
+A51 pipeline begin: request=2681 name='GeomRigidForward' vs=d5089ef4234d04a8 ps=cc05c9b1d8fc7e32
+A51 pipeline ready: request=2680 ms=13.57
+A51 pipeline begin: request=2682 name='GeomRigidForward' vs=64bbee521f9488f9 ps=1fbb937409fa3b30
+A51 pipeline begin: request=2683 name='GeomRigidForward' vs=64bbee521f9488f9 ps=9d3a028a62a6baf3
+A51 pipeline begin: request=2684 name='GeomRigidForward' vs=d5089ef4234d04a8 ps=a55ad9583a532d35
+A51 pipeline ready: request=2682 ms=13.26
+A51 pipeline begin: request=2685 name='GeomRigidForward' vs=d5089ef4234d04a8 ps=51dfc03f7ed1bfa9
+A51 pipeline begin: request=2686 name='GeomRigidForward' vs=d5089ef4234d04a8 ps=145b71ae88bec717
+A51 pipeline begin: request=2687 name='GeomRigidForward' vs=64bbee521f9488f9 ps=4e489740b24e9c08
+A51 pipeline begin: request=2688 name='GeomRigidForward' vs=64bbee521f9488f9 ps=d561394b3410a67f
+A51 pipeline begin: request=2689 name='GeomRigidForward' vs=64bbee521f9488f9 ps=c6809f56c18c19cc
+A51 pipeline ready: request=2688 ms=11.58
+A51 pipeline ready: request=2683 ms=59.42
+A51 pipeline begin: request=2690 name='GeomRigidForward' vs=d5089ef4234d04a8 ps=70037710a5d09a3e
+A51 pipeline begin: request=2691 name='GeomRigidForward' vs=d5089ef4234d04a8 ps=70037710a5d09a3e
+A51 pipeline ready: request=2681 ms=82.26
+A51 pipeline begin: request=2692 name='GeomRigidForward' vs=d5089ef4234d04a8 ps=70037710a5d09a3e
+A51 pipeline ready: request=2690 ms=14.22
+A51 pipeline ready: request=2691 ms=20.00
+A51 pipeline ready: request=2692 ms=21.29
+A51 pipeline ready: request=2686 ms=79.86
+A51 pipeline ready: request=2689 ms=77.66
+A51 pipeline begin: request=2693 name='GeomRigidForward' vs=64bbee521f9488f9 ps=83081b9073f5fa3c
+A51 pipeline begin: request=2694 name='GeomRigidForward' vs=64bbee521f9488f9 ps=83081b9073f5fa3c
+A51 pipeline begin: request=2695 name='GeomRigidForward' vs=64bbee521f9488f9 ps=83081b9073f5fa3c
+A51 pipeline begin: request=2696 name='GeomRigidForward' vs=64bbee521f9488f9 ps=5823d7d5e286986c
+A51 pipeline ready: request=2685 ms=102.94
+A51 pipeline ready: request=2684 ms=108.24
+A51 pipeline ready: request=2694 ms=16.34
+A51 pipeline ready: request=2693 ms=17.10
+A51 pipeline ready: request=2695 ms=14.60
+A51 pipeline begin: request=2697 name='ForwardDecalPipeline' vs=3bb1ea9ca253d04a ps=346655136e405c24
+A51 pipeline begin: request=2698 name='ForwardDecalPipeline' vs=3bb1ea9ca253d04a ps=1baacf232a7e6499
+A51 pipeline begin: request=2699 name='ForwardDecalPipeline' vs=3bb1ea9ca253d04a ps=16991cb06cc29867
+A51 pipeline ready: request=2687 ms=102.31
+A51 pipeline ready: request=2698 ms=1.19
+A51 pipeline ready: request=2697 ms=2.70
+A51 pipeline ready: request=2699 ms=4.19
+A51 pipeline begin: request=2700 name='ForwardDecalPipeline' vs=ac594d782c7a4fad ps=e4cdf538c8811ad4
+A51 pipeline begin: request=2701 name='ForwardDecalPipeline' vs=7221af94d58ee132 ps=50930f733e7044cd
+A51 pipeline begin: request=2702 name='ForwardDecalPipeline' vs=97eb22b30efc3fb0 ps=012b4fdad163fb26
+A51 pipeline begin: request=2703 name='ForwardDecalPipeline' vs=ac594d782c7a4fad ps=4d67b1fd4ff6c7bd
+A51 pipeline ready: request=2702 ms=1.67
+A51 pipeline begin: request=2704 name='ForwardDecalPipeline' vs=7221af94d58ee132 ps=c9312055c63c1ad7
+A51 pipeline begin: request=2705 name='ForwardDecalPipeline' vs=97eb22b30efc3fb0 ps=ea832155148a77e8
+A51 pipeline begin: request=2706 name='ForwardDecalPipeline' vs=97eb22b30efc3fb0 ps=fa27051f1d8fb0e2
+A51 pipeline ready: request=2705 ms=1.64
+A51 pipeline ready: request=2703 ms=5.85
+A51 pipeline ready: request=2706 ms=1.71
+A51 pipeline ready: request=2700 ms=11.75
+A51 pipeline ready: request=2701 ms=12.36
+A51 pipeline begin: request=2707 name='ForwardDecalPipeline' vs=ac594d782c7a4fad ps=51f3749a296b49e0
+A51 pipeline ready: request=2704 ms=11.83
+A51 pipeline begin: request=2708 name='ForwardDecalPipeline' vs=ac594d782c7a4fad ps=4635d4a033b33f58
+A51 pipeline begin: request=2709 name='ForwardDecalPipeline' vs=ac594d782c7a4fad ps=73a7e3b04d02e85a
+A51 pipeline ready: request=2696 ms=47.32
+A51 pipeline begin: request=2710 name='ForwardDecalPipeline' vs=ac594d782c7a4fad ps=98305585e06898ec
+A51 pipeline begin: request=2711 name='ForwardDecalPipeline' vs=7221af94d58ee132 ps=c37844508f03c164
+A51 pipeline begin: request=2712 name='ForwardDecalPipeline' vs=7221af94d58ee132 ps=2aea810b65091ae3
+A51 pipeline ready: request=2709 ms=50.47
+A51 pipeline ready: request=2707 ms=56.45
+A51 pipeline begin: request=2713 name='ForwardDecalPipeline' vs=7221af94d58ee132 ps=a69e452f8439b629
+A51 pipeline ready: request=2708 ms=72.89
+A51 pipeline begin: request=2714 name='ForwardDecalPipeline' vs=7221af94d58ee132 ps=86cf61d6dcda3659
+A51 pipeline ready: request=2711 ms=45.09
+A51 pipeline ready: request=2710 ms=69.85
+A51 pipeline begin: request=2715 name='GeomSkinForward' vs=406828846b0b0e4a ps=5e63a5b0ba47e6cf
+A51 pipeline begin: request=2716 name='GeomRigidForward' vs=d5089ef4234d04a8 ps=591fd1b42bdc75f9
+A51 pipeline ready: request=2715 ms=3.50
+A51 pipeline ready: request=2716 ms=19.98
+A51 pipeline begin: request=2718 name='GeomSkinForward' vs=455546e95e5e7389 ps=225945e09ca18c12
+A51 pipeline begin: request=2717 name='GeomSkinForward' vs=455546e95e5e7389 ps=492e61d19d1846d3
+A51 pipeline ready: request=2712 ms=86.28
+A51 pipeline ready: request=2714 ms=48.03
+A51 pipeline ready: request=2718 ms=11.25
+A51 pipeline ready: request=2717 ms=11.77
+A51 pipeline begin: request=2719 name='GeomSkinForward' vs=f53e1c13ad03601a ps=3d07b132b91800be
+A51 pipeline ready: request=2713 ms=69.14
+A51 pipeline ready: request=2719 ms=7.31
+A51 pipeline begin: request=2720 name='GeomSkinForward' vs=464f1d04fa90b3db ps=47a347da67e5e159
+A51 pipeline ready: request=2720 ms=6.58
+A51 pipeline begin: request=2721 name='GeomSkinForward' vs=f53e1c13ad03601a ps=f3ada165f3b550e7
+A51 pipeline begin: request=2722 name='GeomSkinForward' vs=f53e1c13ad03601a ps=e8abff484ad5b12e
+A51 pipeline begin: request=2723 name='GeomSkinForward' vs=464f1d04fa90b3db ps=da8c8a47451f7406
+A51 pipeline begin: request=2724 name='GeomSkinForward' vs=464f1d04fa90b3db ps=d54ef31174cd12dd
+A51 pipeline begin: request=2725 name='GeomSkinForward' vs=f53e1c13ad03601a ps=ef67c15856d3eac6
+A51 pipeline begin: request=2726 name='GeomSkinForward' vs=f53e1c13ad03601a ps=456023e6a6b6f21f
+A51 pipeline ready: request=2725 ms=19.59
+A51 pipeline ready: request=2721 ms=52.08
+A51 pipeline ready: request=2723 ms=42.99
+A51 pipeline begin: request=2727 name='GeomSkinForward' vs=464f1d04fa90b3db ps=9bc278eb523f726e
+A51 pipeline ready: request=2722 ms=62.23
+A51 pipeline ready: request=2726 ms=25.65
+A51 pipeline ready: request=2724 ms=54.69
+A51 pipeline begin: request=2728 name='GeomSkinForward' vs=f53e1c13ad03601a ps=ba862437e326044e
+A51 pipeline begin: request=2729 name='GeomSkinForward' vs=a12304dd59636244 ps=d38c0026b0bcb332
+A51 pipeline begin: request=2730 name='GeomSkinForward' vs=a12304dd59636244 ps=359332aaf7a64337
+A51 pipeline ready: request=2729 ms=9.16
+A51 pipeline ready: request=2730 ms=10.02
+A51 pipeline begin: request=2731 name='GeomSkinForward' vs=7b9aa39a585e5f74 ps=0e531e57e46b19a7
+A51 pipeline begin: request=2732 name='GeomSkinForward' vs=a12304dd59636244 ps=194a1c5c0da892a6
+A51 pipeline ready: request=2727 ms=47.49
+A51 pipeline ready: request=2731 ms=15.89
+A51 pipeline ready: request=2732 ms=14.50
+A51 pipeline begin: request=2733 name='GeomSkinForward' vs=464f1d04fa90b3db ps=640e0ba05570de5b
+A51 pipeline ready: request=2728 ms=39.16
+A51 pipeline begin: request=2734 name='GeomSkinForward' vs=464f1d04fa90b3db ps=49de1f91bd64c9e6
+A51 pipeline ready: request=2733 ms=13.20
+A51 pipeline begin: request=2735 name='GeomSkinForward' vs=f53e1c13ad03601a ps=0c1387f50fc2e763
+A51 pipeline ready: request=2734 ms=12.84
+A51 pipeline begin: request=2736 name='GeomSkinForward' vs=f53e1c13ad03601a ps=b154f90b54280166
+A51 pipeline ready: request=2735 ms=12.74
+A51 pipeline begin: request=2737 name='GeomSkinForward' vs=f53e1c13ad03601a ps=73a8dd94af86335b
+A51 pipeline begin: request=2738 name='GeomSkinForward' vs=f53e1c13ad03601a ps=f2503f008805dd53
+A51 pipeline begin: request=2739 name='GeomSkinForward' vs=f53e1c13ad03601a ps=f2503f008805dd53
+A51 pipeline begin: request=2740 name='GeomSkinForward' vs=f53e1c13ad03601a ps=f2503f008805dd53
+A51 pipeline ready: request=2739 ms=15.14
+A51 pipeline ready: request=2738 ms=16.49
+A51 pipeline ready: request=2740 ms=15.06
+A51 pipeline begin: request=2741 name='GeomSkinForward' vs=f53e1c13ad03601a ps=4687c4b7816699b6
+A51 pipeline begin: request=2742 name='GeomSkinForward' vs=f53e1c13ad03601a ps=4687c4b7816699b6
+A51 pipeline begin: request=2743 name='GeomSkinForward' vs=f53e1c13ad03601a ps=4687c4b7816699b6
+A51 pipeline ready: request=2741 ms=10.95
+A51 pipeline begin: request=2744 name='GeomSkinForward' vs=464f1d04fa90b3db ps=e3fc14dd530d9355
+A51 pipeline begin: request=2745 name='GeomSkinForward' vs=464f1d04fa90b3db ps=e3fc14dd530d9355
+A51 pipeline begin: request=2746 name='GeomSkinForward' vs=464f1d04fa90b3db ps=e3fc14dd530d9355
+A51 pipeline ready: request=2736 ms=56.15
+A51 pipeline ready: request=2742 ms=17.67
+A51 pipeline begin: request=2747 name='GeomSkinForward' vs=464f1d04fa90b3db ps=517ff735275c7954
+A51 pipeline begin: request=2748 name='GeomSkinForward' vs=464f1d04fa90b3db ps=517ff735275c7954
+A51 pipeline begin: request=2749 name='GeomSkinForward' vs=464f1d04fa90b3db ps=517ff735275c7954
+A51 pipeline ready: request=2743 ms=24.04
+A51 pipeline ready: request=2744 ms=19.21
+A51 pipeline ready: request=2745 ms=22.55
+A51 pipeline begin: request=2750 name='GeomSkinForward' vs=464f1d04fa90b3db ps=1fd3662953986483
+A51 pipeline begin: request=2751 name='GeomSkinForward' vs=464f1d04fa90b3db ps=1fd3662953986483
+A51 pipeline begin: request=2752 name='GeomSkinForward' vs=464f1d04fa90b3db ps=1fd3662953986483
+A51 pipeline ready: request=2746 ms=26.82
+A51 pipeline ready: request=2737 ms=80.99
+A51 pipeline ready: request=2750 ms=24.94
+A51 pipeline ready: request=2752 ms=26.23
+A51 pipeline ready: request=2751 ms=28.18
+A51 pipeline begin: request=2753 name='GeomSkinForward' vs=f53e1c13ad03601a ps=5d6a821964d12d29
+A51 pipeline begin: request=2754 name='GeomSkinForward' vs=f53e1c13ad03601a ps=5d6a821964d12d29
+A51 pipeline begin: request=2755 name='GeomSkinForward' vs=f53e1c13ad03601a ps=5d6a821964d12d29
+A51 pipeline ready: request=2748 ms=67.64
+A51 pipeline begin: request=2756 name='GeomRigidForward' vs=77fff197bd6ba257 ps=25d90e8732dd616e
+A51 pipeline begin: request=2757 name='GeomRigidForward' vs=77fff197bd6ba257 ps=a51e8f853f034964
+A51 pipeline ready: request=2754 ms=33.06
+A51 pipeline ready: request=2753 ms=38.84
+A51 pipeline ready: request=2757 ms=14.41
+A51 pipeline ready: request=2747 ms=88.39
+A51 pipeline ready: request=2755 ms=39.75
+A51 pipeline ready: request=2756 ms=17.38
+A51 pipeline begin: request=2758 name='GeomRigidForward' vs=d5089ef4234d04a8 ps=83f7681294b2ac74
+A51 pipeline ready: request=2758 ms=10.81
+A51 pipeline begin: request=2759 name='GeomRigidForward' vs=d5089ef4234d04a8 ps=b3832e7c48128bd2
+A51 pipeline ready: request=2749 ms=101.72
+A51 pipeline begin: request=2760 name='GeomRigidForward' vs=d5089ef4234d04a8 ps=e783e431b98f7b97
+A51 pipeline begin: request=2761 name='GeomRigidForward' vs=64bbee521f9488f9 ps=ac046876aa22df12
+A51 pipeline begin: request=2762 name='GeomRigidForward' vs=64bbee521f9488f9 ps=8071eb6599d7b049
+A51 pipeline begin: request=2763 name='GeomRigidForward' vs=64bbee521f9488f9 ps=1fb27e74083a549f
+A51 pipeline begin: request=2764 name='GeomRigidForward' vs=ac11cead9b217220 ps=5439fa4228909f23
+A51 pipeline begin: request=2765 name='GeomRigidForward' vs=ac11cead9b217220 ps=5439fa4228909f23
+A51 pipeline begin: request=2766 name='GeomRigidForward' vs=ac11cead9b217220 ps=5439fa4228909f23
+A51 pipeline ready: request=2765 ms=18.88
+A51 pipeline begin: request=2767 name='GeomSkinForward' vs=6f90ffa87ab5aa78 ps=5439fa4228909f23
+A51 pipeline ready: request=2761 ms=70.32
+A51 pipeline begin: request=2768 name='GeomSkinForward' vs=6f90ffa87ab5aa78 ps=5439fa4228909f23
+A51 pipeline ready: request=2766 ms=51.26
+A51 pipeline begin: request=2769 name='GeomSkinForward' vs=6f90ffa87ab5aa78 ps=5439fa4228909f23
+A51 pipeline ready: request=2764 ms=57.30
+A51 pipeline begin: request=2770 name='GeomRigidForward' vs=d5089ef4234d04a8 ps=d5466db3783abf04
+A51 pipeline ready: request=2767 ms=45.29
+A51 pipeline ready: request=2768 ms=20.20
+A51 pipeline ready: request=2769 ms=20.09
+A51 pipeline ready: request=2763 ms=79.91
+A51 pipeline ready: request=2759 ms=107.43
+A51 pipeline ready: request=2762 ms=83.19
+A51 pipeline begin: request=2771 name='GeomRigidForward' vs=64bbee521f9488f9 ps=6316b1973f5acc6b
+A51 pipeline ready: request=2760 ms=112.26
+A51 pipeline ready: request=2770 ms=30.34
+A51 pipeline begin: request=2772 name='GeomRigidForward' vs=64bbee521f9488f9 ps=00f645d272b9bb6d
+A51 pipeline ready: request=2771 ms=14.80
+A51 pipeline begin: request=2773 name='GeomRigidForward' vs=d5089ef4234d04a8 ps=1c40c6c0938c6470
+A51 pipeline begin: request=2774 name='GeomRigidForward' vs=d5089ef4234d04a8 ps=b09dbf45af96122f
+A51 pipeline begin: request=2775 name='GeomRigidForward' vs=d5089ef4234d04a8 ps=3f4a0bfbd3907436
+A51 pipeline begin: request=2776 name='GeomRigidForward' vs=d5089ef4234d04a8 ps=dba03ee0d202128b
+A51 pipeline ready: request=2772 ms=48.62
+A51 pipeline begin: request=2777 name='GeomRigidForward' vs=d5089ef4234d04a8 ps=b610716b6a2afda8
+A51 pipeline ready: request=2773 ms=57.04
+A51 pipeline ready: request=2777 ms=13.15
+A51 pipeline begin: request=2778 name='GeomRigidForward' vs=64bbee521f9488f9 ps=ab4fa240a26c814d
+A51 pipeline ready: request=2775 ms=71.40
+A51 pipeline ready: request=2778 ms=12.77
+A51 pipeline ready: request=2774 ms=75.41
+A51 pipeline begin: request=2779 name='GeomRigidForward' vs=d5089ef4234d04a8 ps=b9dae66ab5a78cb8
+A51 pipeline begin: request=2780 name='GeomRigidForward' vs=d5089ef4234d04a8 ps=77f0c626aeee2266
+A51 pipeline ready: request=2776 ms=72.94
+A51 pipeline ready: request=2779 ms=7.33
+A51 pipeline begin: request=2781 name='GeomRigidForward' vs=d5089ef4234d04a8 ps=0d33fb2d32827e7d
+A51 pipeline ready: request=2780 ms=15.50
+A51 pipeline ready: request=2781 ms=9.83
+A51 pipeline begin: request=2782 name='GeomRigidForward' vs=64bbee521f9488f9 ps=8bb873a9549e7744
+A51 pipeline begin: request=2783 name='GeomRigidForward' vs=d5089ef4234d04a8 ps=a1d9483c2ff66ca0
+A51 pipeline ready: request=2782 ms=13.09
+A51 pipeline begin: request=2784 name='GeomRigidForward' vs=64bbee521f9488f9 ps=562f6e53985c8290
+A51 pipeline begin: request=2785 name='GeomRigidForward' vs=d5089ef4234d04a8 ps=38d46c73aa8558af
+A51 pipeline ready: request=2783 ms=19.97
+A51 pipeline ready: request=2784 ms=42.80
+A51 pipeline ready: request=2785 ms=43.25
+[New Thread 0x7fffec1bd6c0 (LWP 9041)]
+[New Thread 0x7fff72fec6c0 (LWP 9417)]
+[Thread 0x7fff72fec6c0 (LWP 9417) exited]
+[Thread 0x7fffec1bd6c0 (LWP 9041) exited]
+[Thread 0x7fffee2316c0 (LWP 9008) exited]
+[Thread 0x7fff8effe6c0 (LWP 9007) exited]
+[Thread 0x7fff95ffd6c0 (LWP 9006) exited]
+[Thread 0x7fff8ffff6c0 (LWP 9005) exited]
+[Thread 0x7fffee27c6c0 (LWP 9004) exited]
+[Thread 0x7fff97fff6c0 (LWP 9003) exited]
+[Thread 0x7fff96ffe6c0 (LWP 9002) exited]
+[Thread 0x7fffcd3ff6c0 (LWP 8988) exited]
+[Thread 0x7fffc31fe6c0 (LWP 8993) exited]
+[Thread 0x7fffabfff6c0 (LWP 8996) exited]
+[Thread 0x7fffc11fc6c0 (LWP 8995) exited]
+[Thread 0x7fffc21fd6c0 (LWP 8994) exited]
+[Thread 0x7fffc41ff6c0 (LWP 8989) exited]
+[Thread 0x7fffc6ffe6c0 (LWP 8991) exited]
+[Thread 0x7fffc5ffd6c0 (LWP 8992) exited]
+[Thread 0x7fffc7fff6c0 (LWP 8990) exited]
+[Thread 0x7fffaaffe6c0 (LWP 8997) exited]
+[Thread 0x7fffe6ffd6c0 (LWP 8983) exited]
+[Thread 0x7fffe7fff6c0 (LWP 8981) exited]
+[Thread 0x7fffe57fa6c0 (LWP 8986) exited]
+[Thread 0x7fffe77fe6c0 (LWP 8982) exited]
+[Thread 0x7fffed3716c0 (LWP 8979) exited]
+[Thread 0x7fffecb706c0 (LWP 8980) exited]
+[Thread 0x7fffe67fc6c0 (LWP 8984) exited]
+
+Thread 1 "Idle" received signal SIGABRT, Aborted.
+__pthread_kill_implementation (no_tid=0, signo=6, threadid=<optimized out>) at ./nptl/pthread_kill.c:44
+warning: 44	./nptl/pthread_kill.c: No such file or directory
+#0  __pthread_kill_implementation (no_tid=0, signo=6, threadid=<optimized out>) at ./nptl/pthread_kill.c:44
+#1  __pthread_kill_internal (signo=6, threadid=<optimized out>) at ./nptl/pthread_kill.c:78
+#2  __GI___pthread_kill (threadid=<optimized out>, signo=signo@entry=6) at ./nptl/pthread_kill.c:89
+#3  0x00007ffff784527e in __GI_raise (sig=sig@entry=6) at ../sysdeps/posix/raise.c:26
+#4  0x00007ffff78288ff in __GI_abort () at ./stdlib/abort.c:79
+#5  0x0000555555d80012 in sys_thread_Destroy(xthread_private&) ()
+#6  0x0000555555d7956a in xthread::~xthread() ()
+#7  0x0000555555d7d6f1 in x_WorkersKill() ()
+#8  0x0000555555c94497 in x_Kill ()
+#9  0x0000555555c195cc in eng_ExitPoint() ()
+#10 0x000055555565ea9f in main ()
