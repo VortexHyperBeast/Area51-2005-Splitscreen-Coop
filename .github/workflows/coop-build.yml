@@ -935,6 +935,7 @@ jobs:
           gh release delete "$REL" --repo "$GITHUB_REPOSITORY" --yes --cleanup-tag >/dev/null 2>&1 || true
           # Step by step, so a refusal shows which step: 1) the tag (git push), 2) a draft release on
           # that tag with the files, 3) publish it.
+          git fetch -q --depth 1 origin "$SHA"
           git tag -f "$REL" "$SHA"
           if git push -q origin "refs/tags/$REL" 2>&1; then echo "tag pushed: $REL"; else echo "tag push refused: $REL"; fi
           if gh release create "$REL" --repo "$GITHUB_REPOSITORY" --verify-tag --draft \
