@@ -1,0 +1,41 @@
+# coopqa script v1 settle=15000 cycles=1
+# start_ms end_ms pad control value   (game time since the bot was armed)
+# walk0 cycle 0
+15000 17500 0 ly 100
+# walk1 cycle 0
+18500 21000 1 ly 100
+# walkboth cycle 0
+22000 24000 0 lx 100
+22000 24000 1 lx -100
+# look0 cycle 0
+25000 26500 0 rx 100
+# look1 cycle 0
+27500 29000 1 rx -100
+# jump0 cycle 0
+30000 30300 0 a 1
+# jump1 cycle 0
+32000 32300 1 a 1
+# fire0 cycle 0
+34000 35500 0 rt 100
+# fire1 cycle 0
+36500 38000 1 rt 100
+# reload0 cycle 0
+39000 39300 0 x 1
+# reload1 cycle 0
+42600 42900 1 x 1
+cmd 48200 dmgtest
+46200 47700 0 rx -40
+46200 47700 1 rx -40
+52200 53700 0 rx 40
+52200 53700 1 rx 40
+58200 59700 0 rx -40
+58200 59700 1 rx -40
+64200 65700 0 rx 40
+64200 65700 1 rx 40
+70200 71700 0 rx -40
+70200 71700 1 rx -40
+76200 77700 0 rx 40
+76200 77700 1 rx 40
+82200 83700 0 rx -40
+82200 83700 1 rx -40
+quit 91200
