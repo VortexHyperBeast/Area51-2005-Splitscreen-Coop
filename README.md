@@ -24,7 +24,7 @@ An unofficial, experimental local co-op modification for the **Area 51 (2005) PC
 
 <div align="center">
 
-<img src="docs/images/coop-overview.jpg" alt="Area 51 Split-Screen Co-op character artwork" width="100%">
+<img src="docs/images/Area%2051_%20Splitscreen%20Co-Op.png" alt="Area 51 Split-Screen Co-op character artwork" width="100%">
 
 </div>
 
