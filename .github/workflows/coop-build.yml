@@ -697,8 +697,11 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     steps:
-      - name: Checkout
+      - name: Checkout (full history without file contents, the release notes list the commits)
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          filter: blob:none
 
       - name: Download the play build
         uses: actions/download-artifact@v4
@@ -808,6 +811,9 @@ jobs:
           gh release list --repo "$GITHUB_REPOSITORY" --limit 50 --json tagName,isDraft \
             --jq '.[] | select((.tagName | startswith("coop-stage1-run")) and (.isDraft | not)) | .tagName' \
             | while read -r PUB; do gh release edit "$PUB" --repo "$GITHUB_REPOSITORY" --draft=true || true; done
+
+          # Owner's naming for every test build: title, notes (what changed) and file names.
+          bash tools/coop-qa/tidy_releases.sh || echo "release naming: some steps failed (see above)"
 
           # keep the newest three builds, remove older ones
           gh release list --repo "$GITHUB_REPOSITORY" --limit 50 --json tagName,createdAt \
