@@ -2,24 +2,28 @@ name: Save a milestone build
 
 # Keeps one earlier build for good: the play package of an existing run, under its own tag,
 # outside the "keep the newest three builds" clean-up (that only touches coop-stage1-run*).
+# Started by pushing a branch milestone/<name> whose .github/milestone.json names the run,
+# commit, tag, title and notes (workflow_dispatch needs the workflow on the default branch).
 on:
+  push:
+    branches: ['milestone/**']
   workflow_dispatch:
     inputs:
       run_id:
         description: "Actions run id of the build to keep"
-        required: true
+        required: false
       commit:
         description: "Commit of that build (its player files are taken from it)"
-        required: true
+        required: false
       tag:
         description: "Tag for the kept build, e.g. milestone-v0.95.26-before-enemy-health"
-        required: true
+        required: false
       title:
         description: "Release title"
-        required: true
+        required: false
       notes:
         description: "One paragraph about this build"
-        required: true
+        required: false
 
 permissions:
   contents: write
@@ -29,17 +33,32 @@ jobs:
   keep:
     runs-on: ubuntu-latest
     steps:
+      - name: Read the milestone description
+        id: m
+        run: |
+          set -euo pipefail
+          if [ -n "${{ inputs.run_id }}" ]; then
+            echo "run_id=${{ inputs.run_id }}" >> "$GITHUB_OUTPUT"
+            echo "commit=${{ inputs.commit }}" >> "$GITHUB_OUTPUT"
+            echo "tag=${{ inputs.tag }}" >> "$GITHUB_OUTPUT"
+            { echo "title<<EOT"; echo "${{ inputs.title }}"; echo "EOT"; echo "notes<<EOT"; echo "${{ inputs.notes }}"; echo "EOT"; } >> "$GITHUB_OUTPUT"
+          else
+            J="$(curl -fsSL -H "Authorization: Bearer ${{ github.token }}" -H "Accept: application/vnd.github.raw" "https://api.github.com/repos/${GITHUB_REPOSITORY}/contents/.github/milestone.json?ref=${GITHUB_SHA}")"
+            for k in run_id commit tag; do echo "$k=$(echo "$J" | jq -r ".$k")" >> "$GITHUB_OUTPUT"; done
+            { echo "title<<EOT"; echo "$J" | jq -r .title; echo "EOT"; echo "notes<<EOT"; echo "$J" | jq -r .notes; echo "EOT"; } >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Checkout the build's commit
         uses: actions/checkout@v4
         with:
-          ref: ${{ inputs.commit }}
+          ref: ${{ steps.m.outputs.commit }}
 
       - name: Download the play build of that run
         uses: actions/download-artifact@v4
         with:
           name: A51-coop-stage1-win-x64
           path: play
-          run-id: ${{ inputs.run_id }}
+          run-id: ${{ steps.m.outputs.run_id }}
           github-token: ${{ github.token }}
 
       - name: Download its debug symbols
@@ -47,17 +66,18 @@ jobs:
         with:
           name: A51-coop-stage1-win-x64-pdb
           path: pdb
-          run-id: ${{ inputs.run_id }}
+          run-id: ${{ steps.m.outputs.run_id }}
           github-token: ${{ github.token }}
         continue-on-error: true
 
       - name: Assemble and publish
         env:
           GH_TOKEN: ${{ github.token }}
-          TAG: ${{ inputs.tag }}
-          TITLE: ${{ inputs.title }}
-          NOTES: ${{ inputs.notes }}
-          COMMIT: ${{ inputs.commit }}
+          TAG: ${{ steps.m.outputs.tag }}
+          TITLE: ${{ steps.m.outputs.title }}
+          NOTES: ${{ steps.m.outputs.notes }}
+          COMMIT: ${{ steps.m.outputs.commit }}
+          RUN_ID: ${{ steps.m.outputs.run_id }}
         run: |
           set -euo pipefail
           NAME="Area51-Coop-$TAG"
@@ -71,6 +91,6 @@ jobs:
           ls -l "$ZIP"
           PDB=()
           if [ -f pdb/A51.pdb ]; then PDB=("pdb/A51.pdb#A51-$TAG.pdb (debug symbols)"); fi
-          printf '%s\n\nBuilt from commit %s (Actions run %s). The zip contains no game data.\n' "$NOTES" "$COMMIT" "${{ inputs.run_id }}" > notes.md
+          printf '%s\n\nBuilt from commit %s (Actions run %s). The zip contains no game data.\n' "$NOTES" "$COMMIT" "$RUN_ID" > notes.md
           gh release delete "$TAG" --repo "$GITHUB_REPOSITORY" --yes --cleanup-tag >/dev/null 2>&1 || true
           gh release create "$TAG" --repo "$GITHUB_REPOSITORY" --target "$COMMIT" --title "$TITLE" --notes-file notes.md "$ZIP" "${PDB[@]}"
