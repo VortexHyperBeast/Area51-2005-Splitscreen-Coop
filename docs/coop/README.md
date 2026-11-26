@@ -30,7 +30,7 @@ all mod work is on the branch `coop/stage1`.
 The version shown in the menu is the build number: build 87 = v0.87, up to v0.95; after that
 v0.95.N with N = build - 95 (build 144 = v0.95.49).
 
-| Version | Build | Notes |
-|---|---|---|
-| v0.95.26 | 121 | Before the enemy-health change. Owner-verified on a real PC, NexusMods package included. |
-| v0.95.49 | 144 | Enemies and bosses 1.5x health in co-op. Bot-tested on all 19 levels; owner test pending. |
+| Version | Build | Saved as (branch `milestones`) | Notes |
+|---|---|---|---|
+| v0.95.26 | 121 | `v0.95.26_Original` | Before the enemy-health change. Owner-verified on a real PC, NexusMods package included. |
+| v0.95.49 | 144 | `v0.95.49_Harder_Co-op` | Enemies and bosses 1.5x health in co-op. Bot-tested on all 19 levels; owner test pending. |
