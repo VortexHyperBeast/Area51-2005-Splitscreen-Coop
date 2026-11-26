@@ -933,21 +933,15 @@ jobs:
           fi
           if [ -f pdb/A51.pdb ]; then cp pdb/A51.pdb "${REL}.pdb"; ASSETS+=("${REL}.pdb#${REL}.pdb (debug symbols, only for reading crash reports)"); fi
           gh release delete "$REL" --repo "$GITHUB_REPOSITORY" --yes --cleanup-tag >/dev/null 2>&1 || true
-          # Step by step, so a refusal shows which step: 1) the tag (git push), 2) a draft release on
-          # that tag with the files, 3) publish it.
+          # The tag goes on this run's own commit: GitHub refuses a workflow token a tag on an older
+          # commit when workflow files changed since.  Only publish when the game code there is the
+          # tested build's (otherwise only noted); the files are the tested build's own either way.
           git fetch -q --depth 1 origin "$SHA"
-          git tag -f "$REL" "$SHA"
-          if git push -q origin "refs/tags/$REL" 2>&1; then echo "tag pushed: $REL"; else echo "tag push refused: $REL"; fi
-          if gh release create "$REL" --repo "$GITHUB_REPOSITORY" --verify-tag --draft \
-               --title "$TITLE" --notes-file notes.md "${ASSETS[@]}"; then
-            echo "draft created"
-          else
-            echo "draft with tag refused, trying a draft without a tag"
-            gh release create "$REL" --repo "$GITHUB_REPOSITORY" --target "$SHA" --draft \
-              --title "$TITLE" --notes-file notes.md "${ASSETS[@]}"
-            echo "draft created (no tag yet)"
+          if git diff --name-only "$SHA" "$GITHUB_SHA" | grep -v -E '^(docs/|\.github/|tools/coop-qa/|README\.md$|COOP_TODO\.md$)' | grep -q .; then
+            echo "note: the game code changed since build $NUM; the tag marks the current commit, the files and the notes are build $NUM's"
           fi
-          gh release edit "$REL" --repo "$GITHUB_REPOSITORY" --draft=false --latest
+          gh release create "$REL" --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --latest \
+            --title "$TITLE" --notes-file notes.md "${ASSETS[@]}"
           echo "published: $REL"
 
           # Keep it on the branch "milestones" as well.
