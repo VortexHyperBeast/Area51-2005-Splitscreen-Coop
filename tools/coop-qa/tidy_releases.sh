@@ -74,17 +74,18 @@ EOF
   gh api -X PATCH "repos/$R/releases/$ID" -f name="AREA 51 SPLITSCREEN CO-OP v${VER} (test build ${N})" \
     -F body=@/tmp/notes.md > /dev/null
 
-  # Rename the files.
-  gh api "repos/$R/releases/$ID/assets" --jq '.[] | "\(.id) \(.name)"' | while read -r AID ANAME; do
+  # File names and the names shown on the page (labels).
+  SHOWN="AREA 51 Splitscreen Co-op v${VER}"
+  gh api "repos/$R/releases/$ID/assets" --jq '.[] | "\(.id)\t\(.name)\t\(.label // "")"' | while IFS=$'\t' read -r AID ANAME ALABEL; do
     case "$ANAME" in
-      AREA51_SplitscreenCoop_*)          continue ;;
-      Area51-SplitscreenCoop-*.zip)      NEW="${BASE}.zip";            LABEL="NexusMods drop-in files" ;;
-      Area51-Coop-Stage1-*.zip)          NEW="${BASE}_Standalone.zip"; LABEL="Standalone play build with launcher" ;;
-      *.pdb)                             NEW="${BASE}.pdb";            LABEL="Debug symbols (only for crash reports)" ;;
-      *)                                 continue ;;
+      *_Standalone.zip|Area51-Coop-Stage1-*.zip) NEW="${BASE}_Standalone.zip"; LABEL="${SHOWN} Developer Build" ;;
+      *.pdb)                                     NEW="${BASE}.pdb";            LABEL="${SHOWN} Crash Debug" ;;
+      *.zip)                                     NEW="${BASE}.zip";            LABEL="${SHOWN} Test Build" ;;
+      *)                                         continue ;;
     esac
+    [ "$ANAME" = "$NEW" ] && [ "$ALABEL" = "$LABEL" ] && continue
     gh api -X PATCH "repos/$R/releases/assets/$AID" -f name="$NEW" -f label="$LABEL" > /dev/null \
-      && echo "release $N: $ANAME -> $NEW" || echo "release $N: could not rename $ANAME"
+      && echo "release $N: $ANAME -> $NEW ($LABEL)" || echo "release $N: could not rename $ANAME"
   done
   echo "release $N: title and notes set (v$VER)"
 done < /tmp/rels.txt
@@ -98,4 +99,23 @@ gh api "repos/$R/releases?per_page=100" \
       [ -n "$N" ] && echo "$N $ID"
     done | sort -rn | tail -n +6 | while read -r N ID; do
       gh api -X DELETE "repos/$R/releases/$ID" && echo "removed old test build $N"
+    done
+
+# Official (public) releases: the names shown on the page.
+gh api "repos/$R/releases?per_page=100" \
+  --jq '.[] | select((.draft | not) and (.tag_name | startswith("AREA51_SplitscreenCoop_v"))) | "\(.id) \(.tag_name)"' \
+  | while read -r ID TAG; do
+      VER="$(printf '%s' "$TAG" | sed -E 's/^AREA51_SplitscreenCoop_v([0-9.]+).*/\1/')"
+      SHOWN="AREA 51 Splitscreen Co-op v${VER}"
+      gh api "repos/$R/releases/$ID/assets" --jq '.[] | "\(.id)\t\(.name)\t\(.label // "")"' | while IFS=$'\t' read -r AID ANAME ALABEL; do
+        case "$ANAME" in
+          *_Standalone.zip) LABEL="${SHOWN} Developer Build" ;;
+          *.pdb)            LABEL="${SHOWN} Crash Debug" ;;
+          *.zip)            LABEL="${SHOWN} Official Release" ;;
+          *)                continue ;;
+        esac
+        [ "$ALABEL" = "$LABEL" ] && continue
+        gh api -X PATCH "repos/$R/releases/assets/$AID" -f name="$ANAME" -f label="$LABEL" > /dev/null \
+          && echo "official $TAG: $ANAME shown as '$LABEL'" || echo "official $TAG: could not label $ANAME"
+      done
     done

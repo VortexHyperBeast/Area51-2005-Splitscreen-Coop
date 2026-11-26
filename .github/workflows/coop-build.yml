@@ -832,13 +832,18 @@ jobs:
             --jq '.[] | select((.tagName | startswith("coop-stage1-run")) and (.isDraft | not)) | .tagName' \
             | while read -r PUB; do gh release edit "$PUB" --repo "$GITHUB_REPOSITORY" --draft=true || true; done
 
-          # Owner's naming for every test build: title, notes (what changed) and file names.
-          bash tools/coop-qa/tidy_releases.sh || echo "release naming: some steps failed (see above)"
-
           # keep the newest three builds, remove older ones
           gh release list --repo "$GITHUB_REPOSITORY" --limit 50 --json tagName,createdAt \
             --jq '[.[] | select(.tagName | startswith("coop-stage1-run"))] | sort_by(.createdAt) | reverse | .[5:] | .[].tagName' \
             | while read -r OLD; do gh release delete "$OLD" --repo "$GITHUB_REPOSITORY" --yes --cleanup-tag || true; done
+
+      - name: Release names (test builds and official releases)
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git fetch --quiet --depth 30 origin qa-results:refs/remotes/origin/qa-results || true
+          bash tools/coop-qa/tidy_releases.sh || echo "release naming: some steps failed (see above)"
 
   # ----------------------------------------------------------------------------------------
   # Official release: publish an already tested build for everyone (Releases page, public).
@@ -927,11 +932,11 @@ jobs:
             echo "The zip contains no game data. Built from commit ${SHA} (build ${NUM})."
           } > notes.md
           cat notes.md
-          ASSETS=("$ZIP")
+          ASSETS=("${ZIP}#AREA 51 Splitscreen Co-op v${VER} Official Release")
           if [ ! -f pdb/A51.pdb ] && git cat-file -e "origin/milestones:${NAME}/A51-${NAME}.pdb" 2>/dev/null; then
             mkdir -p pdb && git show "origin/milestones:${NAME}/A51-${NAME}.pdb" > pdb/A51.pdb
           fi
-          if [ -f pdb/A51.pdb ]; then cp pdb/A51.pdb "${REL}.pdb"; ASSETS+=("${REL}.pdb#${REL}.pdb (debug symbols, only for reading crash reports)"); fi
+          if [ -f pdb/A51.pdb ]; then cp pdb/A51.pdb "${REL}.pdb"; ASSETS+=("${REL}.pdb#AREA 51 Splitscreen Co-op v${VER} Crash Debug"); fi
           gh release delete "$REL" --repo "$GITHUB_REPOSITORY" --yes --cleanup-tag >/dev/null 2>&1 || true
           # The tag goes on this run's own commit: GitHub refuses a workflow token a tag on an older
           # commit when workflow files changed since.  Only publish when the game code there is the
