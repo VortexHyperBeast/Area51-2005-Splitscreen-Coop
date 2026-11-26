@@ -1,0 +1,49 @@
+ ok   screenshot reader
+ ok   script header round trip
+ ok   raw value conversion
+ ok   fault none            must PASS
+ ok   fault p1_clone        must FAIL on ['walk0', 'walk1']
+ ok   fault p1_ignores_pad  must FAIL on ['walk1', 'look1']
+ ok   fault crosstalk_move  must FAIL on ['walk1']
+ ok   fault shared_aim      must FAIL on ['look0', 'look1']
+ ok   fault shared_fire     must FAIL on ['fire0', 'fire1']
+ ok   fault shared_reload   must FAIL on ['reload0', 'reload1']
+ ok   fault same_viewport   must FAIL on ['split_view']
+ ok   fault views_swapped   must FAIL on ['split_view']
+ ok   fault static_cameras  must FAIL on ['split_view']
+ ok   fault no_bot_lines    must FAIL on ['bot_drove', 'walk0']
+ ok   fault single_player   must FAIL on ['two_players', 'startup']
+ ok   fault never_armed     must FAIL on ['startup']
+ ok   fault timeout         must FAIL on ['completed']
+ ok   fault no_weapon       must FAIL on ['fire0', 'fire1', 'reload0', 'reload1']
+ ok   fault pads_swapped    must PASS
+ ok   fault same_pad        must FAIL on ['separate_pads']
+ ok   fault p1_falls        must FAIL on ['no_fall']
+ ok   fault no_gap_line     must FAIL on ['split_pixels']
+ ok   fault bottom_blank    must FAIL on ['split_pixels']
+ ok   fault identical_halves must FAIL on ['split_pixels']
+ ok   fault partner_invisible must FAIL on ['partner_body']
+ ok   fault cinema_p0_only  must FAIL on ['shared_cinema']
+ ok   fault items_not_shared must FAIL on ['shared_items']
+ ok   fault scanner_crash   must FAIL on ['scanner', 'completed']
+ ok   fault shared_profile  must FAIL on ['own_profiles']
+ ok   fault swap_noop       must FAIL on ['live_swap']
+ ok   fault assert_hit      must FAIL on ['asserts']
+ ok   fault carry_lost_p1   must FAIL on ['carry_over']
+ ok   fault join_ignored    must FAIL on ['join_button']
+ ok   fault death_crash     must FAIL on ['death_restart', 'completed']
+ ok   fault not_downed      must FAIL on ['downed_revive']
+ ok   fault no_revive       must FAIL on ['downed_revive']
+ ok   fault downed_attacks  must FAIL on ['downed_no_attack']
+ ok   fault mutation_shared must FAIL on ['mutation_independent']
+ ok   fault mutation_failed must FAIL on ['mutation_independent']
+ ok   fault mutant_no_attack must FAIL on ['mutation_independent']
+ ok   fault mutant_body_missing must FAIL on ['mutation_independent']
+ ok   fault pause_black     must FAIL on ['pause_view']
+ ok   body push excused, independent drift not: P0 200cm P1 800cm (pushed by the walker's body) / P0 160cm P1 800cm
+ ok   swapped pads judged as coop-swapped must PASS: PASS
+ ok   unswapped pads judged as coop-swapped must FAIL on pad_mapping: ['pad_mapping']
+ ok   control run, one player, expect=single: PASS
+ ok   control run judged as co-op must FAIL: FAIL
+ ok   a two-player run judged as single must FAIL: FAIL
+SELFTEST: PASS
