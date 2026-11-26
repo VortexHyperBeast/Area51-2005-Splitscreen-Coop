@@ -133,6 +133,15 @@ xbool dlg_main_menu::Create( s32                        UserID,
 #endif    
 
     s32 iControl = g_StateMgr.GetCurrentControl();
+#ifdef A51_LOCAL_COOP_QA
+    // TEST ONLY: A51_QA_MENU_COOP=1 starts on "Splitscreen Co-op", so the bot's A presses
+    // take the menu route a player takes (no A51_LOCAL_COOP start value, as A51.exe alone).
+    {
+        const char* pMenuCoop = x_getenv( "A51_QA_MENU_COOP" );
+        if( pMenuCoop && ( pMenuCoop[0] == '1' ) && ( iControl == -1 ) )
+            iControl = IDC_MAIN_MENU_MULTI;
+    }
+#endif
     if( (iControl == -1) || (GotoControl(iControl)==NULL) )
     {
         GotoControl( (ui_control*)m_pButtonCampaign );

@@ -288,7 +288,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        mode: [coop, swap, single, coop-l2, single-l2, coop-exit, single-exit, coop-descent, chain]
+        mode: [coop, swap, single, coop-l2, single-l2, coop-exit, single-exit, coop-descent, chain, menu-coop]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -547,9 +547,128 @@ jobs:
           echo "job status: ${{ job.status }}" >> report/meta.txt
           bash tools/coop-qa/publish_results.sh report "runs/${{ github.run_number }}/windows-smoke"
 
+  nexus-package:
+    name: NexusMods package (drop-in files, A51.exe alone)
+    needs: windows
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download the play build
+        uses: actions/download-artifact@v4
+        with:
+          name: A51-coop-stage1-win-x64
+          path: play
+
+      - name: Assemble the mod zip
+        run: |
+          set -euo pipefail
+          N=${{ github.run_number }}
+          if [ "$N" -le 95 ]; then VER="0.$(printf %02d "$N")"; else VER="0.95.$((N - 95))"; fi
+          D=nexus
+          mkdir -p "$D"
+          cp play/A51.exe "$D/"
+          cp -r play/SHADERS "$D/"
+          cp -r tools/coop-play/SCREENS "$D/"
+          cp tools/coop-play/nexus/README-SplitscreenCoop.txt "$D/"
+          sed -i 's/\r$//; s/$/\r/' "$D/README-SplitscreenCoop.txt"
+          # nothing for tests or setup in the mod
+          ! ls "$D" | grep -i -E '\.cmd$|\.ps1$|TEST-REPORT|qa' || { echo "test or setup files in the mod"; exit 1; }
+          ZIP="Area51-SplitscreenCoop-v$VER.zip"
+          (cd "$D" && zip -q -r -9 "../$ZIP" .)
+          unzip -l "$ZIP"
+          echo "NEXUS_ZIP=$ZIP" >> "$GITHUB_ENV"
+
+      - name: Keep the mod zip
+        uses: actions/upload-artifact@v4
+        with:
+          name: nexus-package
+          path: ${{ env.NEXUS_ZIP }}
+
+  nexus-smoke:
+    name: NexusMods package on a fresh install (A51.exe alone, no launcher)
+    needs: nexus-package
+    runs-on: windows-2022
+    timeout-minutes: 60
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download the mod zip
+        uses: actions/download-artifact@v4
+        with:
+          name: nexus-package
+          path: ${{ runner.temp }}\nexus
+
+      - name: Make a Dreamland-51 game folder with its data (as a player has it)
+        shell: powershell
+        run: |
+          $ErrorActionPreference = 'Continue'
+          New-Item -ItemType Directory -Force report | Out-Null
+          $game = "$env:RUNNER_TEMP\game"
+          New-Item -ItemType Directory -Force $game | Out-Null
+          Copy-Item "tools\coop-play\Setup-Assets.ps1" $game
+          cmd /c "powershell.exe -NoProfile -ExecutionPolicy Bypass -File `"$game\Setup-Assets.ps1`" -Yes > report\setup.txt 2>&1"
+          if ($LASTEXITCODE -ne 0) { Get-Content report\setup.txt | Write-Host; exit 1 }
+          Remove-Item "$game\Setup-Assets.ps1", "$game\.coop-assets-ok" -Force -ErrorAction SilentlyContinue
+          if (-not (Test-Path "$game\LEVELS")) { throw 'no game data' }
+
+      - name: Drag the mod into the game folder and start A51.exe alone
+        shell: powershell
+        run: |
+          $ErrorActionPreference = 'Continue'
+          $game = "$env:RUNNER_TEMP\game"
+          New-Item -ItemType Directory -Force report | Out-Null
+          function Log([string] $t) { Write-Host $t; Add-Content -LiteralPath report\smoke.txt -Value $t -Encoding Ascii }
+          $zip = Get-ChildItem "$env:RUNNER_TEMP\nexus\*.zip" | Select-Object -First 1
+          Log ('mod zip: ' + $zip.Name)
+          Expand-Archive -Path $zip.FullName -DestinationPath $game -Force
+          Log '--- mod files in the game folder'
+          Get-ChildItem $game -File | Select-Object -ExpandProperty Name | ForEach-Object { Log $_ }
+          if (Get-ChildItem $game -Filter *.cmd) { Log 'MOD RESULT: FAIL (a launcher is in the mod)' }
+
+          $icd = $null
+          foreach ($root in 'C:\Program Files\Google\Chrome\Application', 'C:\Program Files (x86)\Microsoft\Edge\Application') {
+            if ((-not $icd) -and (Test-Path $root)) {
+              $icd = Get-ChildItem -Path $root -Recurse -Filter vk_swiftshader_icd.json -ErrorAction SilentlyContinue | Select-Object -First 1
+            }
+          }
+          if ($icd) {
+            $loader = Join-Path $icd.DirectoryName 'vulkan-1.dll'
+            if (Test-Path $loader) { Copy-Item $loader "$game\vulkan-1.dll" -Force; $env:VK_ICD_FILENAMES = $icd.FullName; $env:VK_DRIVER_FILES = $icd.FullName; Log 'software Vulkan driver in use (this check only)' }
+          }
+
+          # A player double-clicks A51.exe: no environment variables, no launcher.
+          Remove-Item Env:A51_LOCAL_COOP -ErrorAction SilentlyContinue
+          $p = Start-Process -FilePath "$game\A51.exe" -WorkingDirectory $game -PassThru -RedirectStandardOutput "$game\_out.txt" -RedirectStandardError "$game\_err.txt"
+          Start-Sleep -Seconds 75
+          $p.Refresh()
+          $running = -not $p.HasExited
+          if ($running) { Stop-Process -Id $p.Id -Force; Start-Sleep -Seconds 2 }
+          $probe = ''
+          if (Test-Path "$game\a51_local_coop_probe.log") { $probe = Get-Content "$game\a51_local_coop_probe.log" -Raw }
+          $screen = $probe -match 'start screen: ok'
+          Log ('game still running after 75 s: ' + $running)
+          Log ('mod start screen loaded: ' + $screen)
+          if ($running -and $screen) { Log 'MOD RESULT: PASS' } else { Log 'MOD RESULT: FAIL' }
+          foreach ($f in '_out.txt', '_err.txt') { if (Test-Path "$game\$f") { Log ('--- ' + $f + ' (last 40 lines)'); Get-Content "$game\$f" -Tail 40 | ForEach-Object { Log $_ } } }
+          if ($probe) { Log '--- probe log (last 30 lines)'; ($probe -split "`n" | Select-Object -Last 30) | ForEach-Object { Log $_ } }
+          exit 0
+
+      - name: Publish the check
+        if: always()
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p report
+          echo "job status: ${{ job.status }}" >> report/meta.txt
+          bash tools/coop-qa/publish_results.sh report "runs/${{ github.run_number }}/nexus-smoke"
+
   release:
     name: Publish the Windows play package (GitHub release)
-    needs: [windows, windows-smoke, linux-test]
+    needs: [windows, windows-smoke, linux-test, nexus-package, nexus-smoke]
     if: ${{ !cancelled() && needs.windows.result == 'success' && (needs.linux-test.result == 'success' || inputs.release_anyway == true) }}
     runs-on: ubuntu-24.04
     timeout-minutes: 30
@@ -568,6 +687,13 @@ jobs:
         with:
           name: A51-coop-stage1-win-x64-pdb
           path: pdb
+        continue-on-error: true
+
+      - name: Download the NexusMods package
+        uses: actions/download-artifact@v4
+        with:
+          name: nexus-package
+          path: nexus
         continue-on-error: true
 
       - name: Assemble the package
@@ -627,6 +753,9 @@ jobs:
           PRE=()
           if [ "$COOP" != "success" ]; then PRE=(--prerelease); fi
           SUM="$(cut -d' ' -f1 zip.sha256)"
+          NEXUS="$(git show "origin/qa-results:runs/${{ github.run_number }}/nexus-smoke/smoke.txt" 2>/dev/null | tr -d '\r' | grep -m1 '^MOD RESULT' | sed 's/^MOD RESULT: //' || true)"
+          [ -n "$NEXUS" ] || NEXUS="no result"
+          NEXUS_ZIP=(); for z in nexus/*.zip; do [ -f "$z" ] && NEXUS_ZIP+=("$z"); done
           cat > notes.md <<EOF
           Experimental two-player split-screen co-op for the Area 51 (2005) PC port, Stage 1. Not an official release.
 
@@ -640,12 +769,14 @@ jobs:
           - The play build contains no test code (checked in the build job).
 
           The zip contains no game data. SHA-256 of the zip: ${SUM}
+
+          NexusMods package (Area51-SplitscreenCoop-v*.zip): the drop-in files for an existing Dreamland-51 install (A51.exe, SHADERS, SCREENS, readme; no launcher, no test files). Fresh-install check (mod dragged into a game folder, A51.exe started alone): ${NEXUS}
           EOF
           PDB=()
           if [ -f pdb/A51.pdb ]; then PDB=("pdb/A51.pdb#A51-run${{ github.run_number }}.pdb (debug symbols, only needed to read a crash report)"); fi
           gh release delete "$TAG" --repo "$GITHUB_REPOSITORY" --yes --cleanup-tag >/dev/null 2>&1 || true
           gh release create "$TAG" --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" \
-            --title "Co-op Stage 1, build ${{ github.run_number }}" --notes-file notes.md "${PRE[@]}" "$ZIP" "${PDB[@]}"
+            --title "Co-op Stage 1, build ${{ github.run_number }}" --notes-file notes.md "${PRE[@]}" "$ZIP" "${NEXUS_ZIP[@]}" "${PDB[@]}"
 
           # keep the newest three builds, remove older ones
           gh release list --repo "$GITHUB_REPOSITORY" --limit 50 --json tagName,createdAt \
