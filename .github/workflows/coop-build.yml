@@ -861,13 +861,19 @@ jobs:
           [ "$CONC" = "success" ] || { echo "run $RUN_ID did not pass (conclusion: $CONC)"; exit 1; }
           if [ "$NUM" -le 95 ]; then VER="0.$(printf %02d "$NUM")"; else VER="0.95.$((NUM - 95))"; fi
           NAME="v${VER}_${SUFFIX}"
-          ZIP="Area51-SplitscreenCoop-${NAME}.zip"
+          # Official file names always start with AREA51_SplitscreenCoop_ (owner's rule); the tag too.
+          REL="AREA51_SplitscreenCoop_${NAME}"
+          ZIP="${REL}.zip"
           # A build already kept on "milestones" under this name: publish exactly that file (the one
-          # that was tested).  Otherwise the run's own NexusMods package.
+          # that was tested), whatever it was called there.  Otherwise the run's own NexusMods package.
           git fetch -q --depth 1 origin milestones:refs/remotes/origin/milestones 2>/dev/null || true
-          if git cat-file -e "origin/milestones:${NAME}/${ZIP}" 2>/dev/null; then
-            git show "origin/milestones:${NAME}/${ZIP}" > "$ZIP"
-            echo "using the kept file milestones/${NAME}/${ZIP}"
+          KEPT=""
+          for k in "${NAME}/${ZIP}" "${NAME}/Area51-SplitscreenCoop-${NAME}.zip"; do
+            if git cat-file -e "origin/milestones:${k}" 2>/dev/null; then KEPT="$k"; break; fi
+          done
+          if [ -n "$KEPT" ]; then
+            git show "origin/milestones:${KEPT}" > "$ZIP"
+            echo "using the kept file milestones/${KEPT}"
           else
             SRC="$(ls nexus/*.zip 2>/dev/null | head -1 || true)"
             [ -n "$SRC" ] || { echo "run $RUN_ID has no NexusMods package and milestones has no ${NAME}/${ZIP}"; exit 1; }
@@ -896,11 +902,14 @@ jobs:
           } > notes.md
           cat notes.md
           ASSETS=("$ZIP")
-          if [ -f pdb/A51.pdb ]; then cp pdb/A51.pdb "A51-${NAME}.pdb"; ASSETS+=("A51-${NAME}.pdb#A51-${NAME}.pdb (debug symbols, only for reading crash reports)"); fi
-          gh release delete "$NAME" --repo "$GITHUB_REPOSITORY" --yes --cleanup-tag >/dev/null 2>&1 || true
-          gh release create "$NAME" --repo "$GITHUB_REPOSITORY" --target "$SHA" --latest \
+          if [ ! -f pdb/A51.pdb ] && git cat-file -e "origin/milestones:${NAME}/A51-${NAME}.pdb" 2>/dev/null; then
+            mkdir -p pdb && git show "origin/milestones:${NAME}/A51-${NAME}.pdb" > pdb/A51.pdb
+          fi
+          if [ -f pdb/A51.pdb ]; then cp pdb/A51.pdb "${REL}.pdb"; ASSETS+=("${REL}.pdb#${REL}.pdb (debug symbols, only for reading crash reports)"); fi
+          gh release delete "$REL" --repo "$GITHUB_REPOSITORY" --yes --cleanup-tag >/dev/null 2>&1 || true
+          gh release create "$REL" --repo "$GITHUB_REPOSITORY" --target "$SHA" --latest \
             --title "$TITLE" --notes-file notes.md "${ASSETS[@]}"
-          echo "published: $NAME"
+          echo "published: $REL"
 
           # Keep it on the branch "milestones" as well.
           git config --global user.name "github-actions[bot]"
@@ -912,7 +921,7 @@ jobs:
           if [ ! -d "$NAME" ]; then
             mkdir -p "$NAME"
             cp "../$ZIP" "$NAME/"
-            if [ -f "../A51-${NAME}.pdb" ]; then cp "../A51-${NAME}.pdb" "$NAME/"; fi
+            if [ -f "../${REL}.pdb" ]; then cp "../${REL}.pdb" "$NAME/"; fi
             { echo "$TITLE (build ${NUM})"; echo; echo "Official release. Built from commit ${SHA} (Actions run ${RUN_ID})."; } > "$NAME/ABOUT.txt"
             git add "$NAME"
             git commit -q -m "Official release $NAME"
