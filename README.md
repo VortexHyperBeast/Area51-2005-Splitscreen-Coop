@@ -62,13 +62,13 @@ These in-game screenshots show both local players exploring and fighting through
 
 <table>
 <tr><td><strong>Development stage</strong></td><td>Stage 1 — experimental</td></tr>
-<tr><td><strong>Latest published build</strong></td><td>Co-op Stage 1, build 126</td></tr>
+<tr><td><strong>Current development build</strong></td><td>v0.95.55 (build 150)</td></tr>
 <tr><td><strong>Current development branch</strong></td><td><a href="https://github.com/VortexHyperBeast/area51-pc/tree/coop/stage1">coop/stage1</a></td></tr>
 <tr><td><strong>Players supported</strong></td><td>2 local players</td></tr>
 <tr><td><strong>Platform</strong></td><td>Windows 64-bit build</td></tr>
 </table>
 
-The build number and mod version are also shown in the top-left corner of the in-game main menu. The project is still being tested: a successful automated test or level start does not mean that every mission and encounter has been completed in a full human playthrough.
+The build number and mod version are also shown in the top-left corner of the in-game main menu. v0.95.55 is the current development/test build; the project is still being tested. A successful automated test or level start does not mean that every mission and encounter has been completed in a full human playthrough.
 
 ---
 
@@ -79,7 +79,7 @@ The build number and mod version are also shown in the top-left corner of the in
 - Separate player movement, input, camera, HUD, health and damage.
 - Both player characters are visible to each other.
 - Independent weapon handling, including firing, reloading and switching weapons.
-- Enemies can respond to either player; co-op changes also improve target selection for encounters that originally focused on Player 1.
+- Co-op enemy-targeting changes allow enemies to consider either player. Behaviour still needs broader campaign playtesting.
 - Scripted scenes are synchronized, with both players brought into the shared full-screen scene view.
 
 ### Shared inventory, individual health
@@ -138,9 +138,10 @@ The core downed body and revive flow has been manually tested. Timer edge cases 
 
 Open **Pause Menu → Splitscreen Co-op** to configure the local players.
 
-- Swap which controller controls Player 1 and Player 2.
-- Choose a body for each player independently.
-- Select from **12 human character appearances**: Hazmat, Special Forces and Technician styles, with four colour variants per style.
+- Choose a body for Player 1 and Player 2 independently.
+- Select from **12 human character appearances**: Hazmat, Spec Ops and Technician styles, with four colour variants per style.
+- Swap controller assignments in the pause menu or from the main-menu Co-op Settings page.
+- Keyboard and mouse control the first controller slot. With controllers swapped, keyboard and mouse move the player assigned to that slot.
 
 ### Campaign and menus
 
@@ -150,31 +151,54 @@ Open **Pause Menu → Splitscreen Co-op** to configure the local players.
 - Both players receive the selected mission's starting loadout.
 - The multiplayer arenas are excluded from the co-op story Level Select.
 
-### Co-op balancing
+### Co-op difficulty
 
-The current co-op build gives enemies and bosses **150% of their normal health by default**, so two players do not simply double the damage output without any adjustment. This can be changed in the co-op configuration file.
+The main menu now has a dedicated **Co-op Settings** entry (replacing Online). Choose one of three co-op-only enemy and boss health levels:
+
+- **Easy — 100%:** normal single-player enemy and boss health.
+- **Normal — 150% (default):** enemies and bosses have 1.5x their normal health.
+- **Hard — 200%:** enemies and bosses have 2x their normal health.
+
+The difficulty applies to existing and new Splitscreen Co-op campaigns. Changes take effect immediately. Single Player is not affected. If a custom enemy-health percentage is entered manually in a51_coop.cfg, the menu displays it as **Custom**.
 
 ---
 
 ## Screens, options and configuration
 
-### In-game co-op settings
+### Main-menu Co-op Settings
 
-The **Splitscreen Co-op** page in the pause menu includes controller swapping and separate body selection for P1 and P2.
+The **Co-op Settings** entry replaces Online in the main menu. Select a row and press **A** or left/right to change it. A help line explains the selected option, and **Back** returns to the main menu.
+
+Available options:
+
+| Option | Choices |
+| --- | --- |
+| Difficulty | Easy 100% / Normal 150% / Hard 200% enemy and boss health |
+| Downed and revive | On / Off |
+| Bleed-out time | 15 / 25 / 40 / 60 seconds |
+| Revive time | 2 / 4 / 6 seconds |
+| Revive health | 25 / 35 / 50 / 100% |
+| Controllers | Normal / Swapped |
+
+Changes are saved immediately to a51_coop.cfg beside A51.exe; no restart is required. Settings apply to every Splitscreen Co-op campaign, including existing saves, and do not affect Single Player.
+
+### Pause-menu co-op settings
+
+The **Splitscreen Co-op** page in the pause menu includes controller assignment and separate body selection for P1 and P2. Player-specific Options continue to use the profile belonging to the player who paused.
 
 ### Optional configuration file
 
-Create a text file named `a51_coop.cfg` beside `A51.exe`. Add one setting per line:
+The in-game menu manages the usual co-op settings automatically. Advanced users can also create or edit a51_coop.cfg beside A51.exe. Add one setting per line:
 
 | Setting | Default | Purpose |
 | --- | ---: | --- |
-| `swap_pads` | `0` | Set to `1` to swap the two controllers |
-| `downed` | `1` | Set to `0` to disable the downed/revive state |
-| `bleedout_seconds` | `25` | Time available for a revive |
-| `revive_seconds` | `4` | Time required to complete a revive |
-| `revive_health_percent` | `35` | Health restored after a revive |
-| `mutant_damage_percent` | `50` | Damage taken while mutated; `100` is normal damage |
-| `enemy_health_percent` | `150` | Enemy and boss health relative to single-player |
+| swap_pads | 0 | 1 swaps the controller assignments |
+| downed | 1 | 0 disables the downed/revive system |
+| bleedout_seconds | 25 | Time available for a revive |
+| revive_seconds | 4 | Time required to complete a revive |
+| revive_health_percent | 35 | Health restored after a revive |
+| mutant_damage_percent | 50 | Incoming damage while mutated; 100 is normal damage |
+| enemy_health_percent | 150 | Enemy and boss health relative to single-player; the menu shows non-standard values as Custom |
 
 Example:
 
@@ -188,8 +212,6 @@ mutant_damage_percent=50
 enemy_health_percent=150
 ```
 
-The in-game pause menu can also swap controllers, so editing the file is not required for that option.
-
 ---
 
 ## Download and installation
@@ -200,15 +222,15 @@ The in-game pause menu can also swap controllers, so editing the file is not req
 
 </div>
 
-1. Open the [GitHub Releases page](https://github.com/VortexHyperBeast/area51-pc/releases/latest) and download the latest Windows x64 co-op package.
-2. Extract the archive and read the `README.txt` included with that exact build. Follow its installation steps; package formats may change between releases.
-3. The mod package does **not** contain the original game's data. The currently published Stage 1 setup package asks before downloading the required data pack (approximately 1.5 GB).
-4. Connect two controllers and start the game.
-5. Choose **Splitscreen Co-op** from the main menu.
+1. Download the current co-op package from the [GitHub Releases page](https://github.com/VortexHyperBeast/area51-pc/releases/latest). The v0.95.55 package is intended for an existing Dreamland-51 PC port installation.
+2. Back up your original A51.exe and SHADERS folder.
+3. Extract the contents of the co-op ZIP into the Dreamland-51 game folder containing A51.exe. Allow the co-op files to replace the existing executable and shader files.
+4. Keep your existing game data in place. The co-op package does **not** include the original Area 51 game data or an asset downloader.
+5. Connect your controllers, run A51.exe, and select **Splitscreen Co-op** from the campaign menu.
 
-**Recommended:** two Xbox-compatible controllers. The controls can be swapped from the in-game co-op settings page.
+**Recommended:** two Xbox-compatible controllers. Keyboard and mouse can also be used for one player. With normal controller assignments, keyboard and mouse control Player 1; swapping controllers changes which player uses the first controller slot.
 
-For a drop-in package, back up the existing `A51.exe` and `SHADERS` folder before replacing them. Keep the original game data in place.
+Keyboard shortcut: **T** joins/teleports to the other player; **Tab** performs Use only.
 
 ---
 
@@ -231,9 +253,15 @@ Core features have been played and confirmed by the mod author on Windows, inclu
 
 ### Automated checks
 
-The project includes a test bot that drives two virtual controllers. Automated checks cover controller input and swapping, weapon fire and reload, separate mutation, shared items, pause rendering, down/revive and checkpoint restart flows.
+Build 150 (v0.95.55) passed automated checks for normal co-op launch, controller swapping, starting from the Splitscreen Co-op menu, Single Player regression, and a 13-level campaign chain. The fresh-install package check also confirmed that the game starts directly through A51.exe and displays the co-op startup screen.
 
-A campaign sweep has started all **19 story maps** in co-op. The bot generally checks only the opening portion of a map, however, so this is not evidence that every level, boss, objective, cutscene or late-game checkpoint has been fully completed with two human players.
+The earlier build 144 (v0.95.49) campaign sweep started all **19 story maps** in co-op. The automated damage check measured the expected 1.5x enemy health (players dealt two-thirds of their normal damage per hit). The mod author also confirmed the harder enemy health in normal encounters and the Ascension boss.
+
+The bot generally checks only the opening portion of a map, however, so these results do not mean every level, boss, objective, cutscene or late-game checkpoint has been fully completed in a full human playthrough.
+
+### v0.95.55 checks still needing owner confirmation
+
+The automated runner cannot navigate and test every Co-op Settings menu interaction. Please manually check that each row changes as expected, settings persist after restarting, Easy / Normal / Hard behave correctly (including bosses), and the T / Tab and two-player objective marker fixes work in-game.
 
 ### Known limitations
 
