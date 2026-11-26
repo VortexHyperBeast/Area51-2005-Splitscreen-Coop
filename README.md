@@ -1,19 +1,79 @@
 # Area-51 Splitscreen Co-op: Work in Progress
 
-Two-player local split-screen co-op for the whole Area 51 (2005) campaign, built on the
-Dreamland-51 PC port. One PC, two controllers, top/bottom split screen. Made by VortexHyperBeast.
-This mod will always be free.
+Two-player local split-screen co-op for the Area 51 (2005) campaign, built on the
+Dreamland-51 PC port. Two players, one PC, horizontal top-and-bottom split screen.
+Created and maintained by VortexHyperBeast.
 
-**Status: work in progress.** Current version: v0.95.49 (Harder Co-op: enemies and bosses 1.5x health).
+**Current development build: v0.95.55 (build 150).**
+The project is experimental and still being tested. The current build adds an in-game
+Co-op Settings menu, selectable co-op difficulty, configurable revive rules, and fixes
+for keyboard teleport and objective markers.
 
-- **Saved builds and NexusMods packages:** branch [`milestones`](https://github.com/VortexHyperBeast/area51-pc/tree/milestones)
-  (`v0.95.26_Original`, `v0.95.49_Harder_Co-op`)
-- **What works and what is planned:** [docs/coop/STATUS.md](docs/coop/STATUS.md)
-- **Where everything is in this repository:** [docs/coop/README.md](docs/coop/README.md)
-- **Settings** (`a51_coop.cfg`): [tools/coop-play/README.txt](tools/coop-play/README.txt)
+## What the mod adds
 
-Requires the Dreamland-51 port of Area 51 with its game data; this repository contains no game data.
-Target: Windows 11 PC.
+- **Local two-player campaign:** each player has their own view, HUD, controls, and co-op profile.
+- **Separate modes and progress:** Single Player and Splitscreen Co-op have separate campaign progress; co-op includes Level Select.
+- **Controller options:** use two controllers, or combine a controller with keyboard and mouse. Swap player/controller assignments in-game.
+- **Downed and revive system:** rescue a downed teammate, with configurable bleed-out time, revive duration, and revive health.
+- **Independent mutant gameplay:** both players can use mutation during co-op.
+- **Shared equipment:** weapons, ammunition, grenades, and unlocks are shared; health remains individual.
+- **Character selection:** 12 human multiplayer appearances across Hazmat, Spec Ops, and Technician groups.
+- **Co-op-only enemy difficulty:** Easy (100%), Normal (150%, default), or Hard (200%) enemy and boss health. Single Player is unchanged.
+
+## What's new in v0.95.55
+
+- Added a dedicated **Co-op Settings** entry to the main menu, replacing Online.
+- Added Easy, Normal, and Hard difficulty choices: 100%, 150%, and 200% enemy and boss health.
+- Added in-game controls for the downed/revive toggle, bleed-out time, revive duration, revive health, and controller assignments.
+- Settings are saved to `a51_coop.cfg` next to `A51.exe`, immediately and without restarting the game.
+- Co-op settings apply to existing and new co-op campaigns; they do not affect Single Player.
+- Custom enemy-health values set in the config file are displayed as **Custom** in the menu.
+- Changed the keyboard Join Partner / teleport key from **Tab** to **T**. Tab now performs Use only.
+- Fixed the objective marker so both players receive it on their HUD.
+
+## Current test status
+
+Build 150 (v0.95.55) passed the automated checks for normal co-op launch, controller swapping,
+starting co-op from the Splitscreen Co-op menu, Single Player regression, and a 13-level
+campaign chain. The fresh-install package check also confirmed that the game starts directly
+through `A51.exe` and displays the co-op startup screen.
+
+A previous Level Select sweep in build 144 confirmed that all 19 campaign levels could be
+started in co-op. That sweep checks level starts and the opening portion of each level; it
+does not mean every mission has been fully completed and manually verified.
+
+**Still worth checking on a real PC:** the Co-op Settings menu and persistence after restart,
+all three difficulty levels (including boss encounters), and the keyboard T / Tab behaviour
+and objective markers for both players. The project remains a work in progress.
+
+## Requirements and installation
+
+- Windows PC and an existing Dreamland-51 PC port installation with its required game data.
+- A Vulkan-capable graphics driver.
+- Two controllers recommended. Keyboard and mouse can also be used for one player.
+
+Back up your original `A51.exe` and `SHADERS` folder first. Extract the co-op package
+into the Dreamland-51 game folder containing `A51.exe`, allow the mod files to replace
+the existing files, then launch `A51.exe`. Select **SPLITSCREEN CO-OP** from the campaign
+menu. Do not install this over a folder you have not backed up.
+
+Keyboard controls: **T** joins/teleports to the other player; **Tab** is Use.
+
+## Project links
+
+- **Source code and ongoing work:** this branch, [`coop/stage1`](https://github.com/VortexHyperBeast/area51-pc/tree/coop/stage1)
+- **Archived milestone packages:** [`milestones`](https://github.com/VortexHyperBeast/area51-pc/tree/milestones) — currently includes v0.95.26 Original and v0.95.49 Harder Co-op.
+- **Build releases:** [GitHub Releases](https://github.com/VortexHyperBeast/area51-pc/releases)
+- **Issues and bug reports:** [GitHub Issues](https://github.com/VortexHyperBeast/area51-pc/issues)
+- **Co-op development status:** [`docs/coop/STATUS.md`](docs/coop/STATUS.md)
+- **Repository map:** [`docs/coop/README.md`](docs/coop/README.md)
+
+The latest v0.95.55 package is not yet listed in the `milestones` index. The archived
+packages linked above are earlier versions.
+
+This is an unofficial, non-commercial community modification. Area 51 (2005), its original
+code, assets, name, and trademarks remain the property of their respective rights holders.
+This repository does not include the original game data.
 
 ---
 
