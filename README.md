@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="docs/images/header.jpg" alt="Area 51 Split-Screen Co-op banner" width="100%">
+
 # AREA 51
 
 ## SPLIT-SCREEN CO-OP
@@ -20,6 +22,12 @@ An unofficial, experimental local co-op modification for the **Area 51 (2005) PC
 
 ---
 
+<div align="center">
+
+<img src="docs/images/coop-overview.jpg" alt="Area 51 Split-Screen Co-op character artwork" width="100%">
+
+</div>
+
 ## The idea
 
 Return to the facility with a partner. This project adds **two-player local split-screen co-op** to the Dreamland-51 PC port of *Area 51*.
@@ -32,6 +40,23 @@ Both players share one game session, but each gets their own view of the action:
 - **A shared campaign world**, with scripted scenes and cutscenes shown full-screen.
 
 This is a local co-op mod for two players on one PC. It is not online co-op.
+
+## Split-screen showcase
+
+These in-game screenshots show both local players exploring and fighting through the same encounter, each from their own view.
+
+<div align="center">
+
+<table>
+<tr>
+<td width="50%"><img src="docs/images/splitscreen-1.jpg" alt="Split-screen co-op gameplay showing the upper and lower player views" width="100%"></td>
+<td width="50%"><img src="docs/images/splitscreen-2.jpg" alt="Split-screen co-op gameplay from both players' perspectives" width="100%"></td>
+</tr>
+</table>
+
+<em>Two perspectives. One shared campaign.</em>
+
+</div>
 
 ## Project status
 
@@ -74,6 +99,14 @@ Collecting a weapon, ammunition, grenade or equipment unlock for one player make
 
 When one player is incapacitated while their partner is still active, they can be revived instead of immediately forcing a checkpoint restart.
 
+<div align="center">
+
+<img src="docs/images/revive.jpg" alt="Split-screen co-op revive system showing a downed player and the partner reviving them" width="100%">
+
+<em>The downed player can be brought back by their partner.</em>
+
+</div>
+
 **Default co-op rules:**
 
 - Stand near the downed player's body and hold **USE** (X on an Xbox controller) to revive.
@@ -86,6 +119,14 @@ When one player is incapacitated while their partner is still active, they can b
 The core downed body and revive flow has been manually tested. Timer edge cases and every possible campaign situation are still part of ongoing testing.
 
 ### Mutation for both players
+
+<div align="center">
+
+<img src="docs/images/mutation.jpg" alt="Split-screen co-op mutation gameplay" width="100%">
+
+<em>Mutation working in split-screen co-op.</em>
+
+</div>
 
 - Either player can mutate independently.
 - One player's mutation does not force the other player to mutate.
