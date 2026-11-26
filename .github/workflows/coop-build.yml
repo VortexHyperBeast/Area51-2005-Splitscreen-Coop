@@ -874,16 +874,27 @@ jobs:
             cp "$SRC" "$ZIP"
           fi
           unzip -l "$ZIP"
-          TITLE="Area 51 Splitscreen Co-op ${NAME//_/ }"
+          LABEL="v${VER}"; [ -n "$SUFFIX" ] && LABEL="v${VER} - ${SUFFIX//_/ }"
+          TITLE="AREA 51 SPLITSCREEN CO-OP ${LABEL}"
+          # What changed: the section "## <NAME>" of docs/coop/CHANGELOG.md.
+          CHANGES="$(awk -v h="## ${NAME}" '$0==h{f=1;next} f&&/^## /{exit} f' docs/coop/CHANGELOG.md | sed -e '/./,$!d')"
+          [ -n "$CHANGES" ] || { echo "docs/coop/CHANGELOG.md has no section '## ${NAME}': write what changed first"; exit 1; }
           {
-            echo "Two-player local split-screen co-op for the whole Area 51 (2005) campaign, for the Dreamland-51 PC port (Windows 11). Made by VortexHyperBeast. This mod will always be free."
+            echo "# AREA 51 SPLITSCREEN CO-OP"
             echo
-            echo "**Install:** you need the Dreamland-51 port of Area 51, installed and working. Download \`${ZIP}\`, drag everything in it into your game folder (the folder with A51.exe), allow Windows to replace the files, and start A51.exe. The readme inside the zip has the details, the co-op rules and the settings."
+            echo "**${LABEL}**: two-player local split-screen co-op for the whole Area 51 (2005) campaign, for the Dreamland-51 PC port (Windows 11). Made by VortexHyperBeast. This mod will always be free."
             echo
-            echo "**In the main menu:** Single Player, Splitscreen Co-op (two controllers, top/bottom split screen), Co-op Settings (difficulty and revive rules)."
+            echo "## What's new in this version"
+            echo
+            printf '%s\n' "$CHANGES"
+            echo
+            echo "## Install"
+            echo
+            echo "You need the Dreamland-51 port of Area 51, installed and working. Download \`${ZIP}\`, drag everything in it into your game folder (the folder with A51.exe), allow Windows to replace the files, and start A51.exe. The readme inside the zip has the details, the co-op rules and the settings."
             echo
             echo "The zip contains no game data. Built from commit ${SHA} (build ${NUM})."
           } > notes.md
+          cat notes.md
           ASSETS=("$ZIP")
           if [ -f pdb/A51.pdb ]; then cp pdb/A51.pdb "A51-${NAME}.pdb"; ASSETS+=("A51-${NAME}.pdb#A51-${NAME}.pdb (debug symbols, only for reading crash reports)"); fi
           gh release delete "$NAME" --repo "$GITHUB_REPOSITORY" --yes --cleanup-tag >/dev/null 2>&1 || true

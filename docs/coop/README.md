@@ -35,6 +35,9 @@ all mod work is on the branch `coop/stage1`.
   named `v<version>_<name>` (the version from the build number), contains the NexusMods zip and
   the debug symbols, and is also kept on `milestones`. If `milestones` already has a folder of
   that name, its zip (the tested one) is published.
+  Title: `AREA 51 SPLITSCREEN CO-OP v<version> - <name>`. The description starts with
+  "AREA 51 SPLITSCREEN CO-OP" and lists what changed, taken from that version's section in
+  [CHANGELOG.md](CHANGELOG.md): write the section before publishing.
 
 ## Versions
 
