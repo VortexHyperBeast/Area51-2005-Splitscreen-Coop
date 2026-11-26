@@ -1,0 +1,48 @@
+mode=sweep expect=probe window=640x360 cycles=3 max=1500s startup-gate=1200s
+host: Linux 7.0.0-1017-azure x86_64, 4 cpus
+install ready (7 shader packages)
+wrote /mnt/pack/work/sweep/script.txt: 11 phases, 46 s of game time
+running under gdb
+game started, pid 8563
+game ended: exit code 0 after 201s (124 = stopped by timeout, 137/143 = killed, 139 = crash)
+game output: 6538 lines, a51_qa_bot.log: 2019 lines
+screenshots taken: 31
+coopqa shots: 31 lines written to /home/runner/work/area51-pc/area51-pc/qa-out/shots.txt
+cutscene sound: ok   SEQ_BLUSL1_GATTACK: played 15193 ms of 14432 ms
+track SEQ_BLUSL1_GATTACK volume every 0.5 s: -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0
+track SEQ_BLUSL1_GATTACK markers/zones: m-1/z-1/2d1
+dialog lines started: 189 (0 could not start), stop calls: 94
+  stream CRISPYA_GRENADETHROW                     x1
+  stream CRISPYA_KILL                             x3
+  stream CRISPYA_RELOAD                           x1
+  stream CRISPY_BLUSL1_12                         x1
+  stream CRISPY_BLUSL1_92                         x1
+  stream McCanA_ALERT                             x2
+  stream McCanA_CLEAR                             x1
+  stream McCanA_COVER                             x1
+  stream McCanA_GRENADETHROW                      x1
+  stream McCanA_HIT                               x1
+  stream McCanA_HITMELEE                          x2
+  stream McCanA_KILL                              x2
+  stream RAMIREZA_RELOAD                          x2
+  stream RAMIREZ_BLUSL1_12                        x1
+  stream RAMIREZ_BLUSL1_13                        x1
+  stream RAMIREZ_BLUSL1_14                        x1
+  stream SEQ_BLUSL1_GATTACK                       x1
+  stream SPEC41A_KILL                             x3
+  stream SPEC41A_RELOAD                           x2
+  stream SPEC42_BLUSL1_03B                        x1
+  stream SPEC44_BLUSL1_03                         x1
+  stream SPEC44_BLUSL1_04                         x1
+  voice  Mutant1_PainGrunt                        x12
+  voice  Mutant1_Vox_Death01                      x3
+  voice  Mutant1_Vox_Death03                      x2
+  voice  Mutant1_Vox_LeapSpawn                    x4
+  voice  Mutant1_Vox_Leapspawn                    x3
+  voice  Mutant1_Vox_MeleeAttack01                x3
+  voice  Mutant1_Vox_ReactRage                    x3
+  voice  Mutant1_Vox_ReactSound                   x1
+  voice  Mutant1_Vox_Run                          x110
+  voice  Mutant1_Vox_W
+level 1020: OK - player 1 hp 100; player 2 hp 100; enemies: 22 enemies (NPC - Grunt,NPC - Hazmat); targeted: player 1,player 2; no cinematic during the script
+RESULT: PASS (probe run, report only)
