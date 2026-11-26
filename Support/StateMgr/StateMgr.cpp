@@ -2753,6 +2753,21 @@ void state_mgr::UpdateMainMenu( void )
                 case DIALOG_STATE_SELECT:
                 {
                     s32 Control = m_CurrentDialog->GetControl();
+#ifdef A51_LOCAL_COOP_QA
+                    // TEST ONLY: A51_QA_MENU_COOP=1 - the bot's first A press on the main menu
+                    // picks "Splitscreen Co-op" (moving the menu's highlight from here does not
+                    // reach its selection).  Everything after that is the real co-op route of a
+                    // player who started A51.exe alone, with no co-op profile yet.
+                    {
+                        static xbool s_bQaMenuCoopDone = FALSE;
+                        const char* pMenuCoop = x_getenv( "A51_QA_MENU_COOP" );
+                        if( !s_bQaMenuCoopDone && pMenuCoop && ( pMenuCoop[0] == '1' ) )
+                        {
+                            s_bQaMenuCoopDone = TRUE;
+                            Control = IDC_MAIN_MENU_MULTI;
+                        }
+                    }
+#endif
 
                     switch( Control )
                     {
