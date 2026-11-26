@@ -94,8 +94,8 @@ jobs:
           printf '%s\n\nBuilt from commit %s (Actions run %s). The zip contains no game data.\n' "$NOTES" "$COMMIT" "$RUN_ID" > notes.md
           # Kept on the branch "milestones" (this token may not create releases from here):
           # milestones/<tag>/ holds the zip, the debug symbols and a note.
-          git config user.name "github-actions[bot]"
-          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898283+github-actions[bot]@users.noreply.github.com"
           rm -rf ms && mkdir ms && cd ms
           git init -q
           git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
