@@ -38,14 +38,32 @@ if git -C "$WORK" diff --cached --quiet; then
 fi
 git -C "$WORK" "${IDENT[@]}" commit -q -m "results: $DEST"
 
-for attempt in 1 2 3 4 5 6; do
+# Many jobs publish at once.  On a rejected push, start again from the newest branch tip and
+# copy the files again (a rebase in a shallow clone can stop half-way and leave HEAD on the
+# remote tip, and pushing that "succeeds" without the results).  Then check they arrived.
+for attempt in 1 2 3 4 5 6 7 8; do
   if git -C "$WORK" push -q origin HEAD:qa-results; then
-    echo "publish_results: pushed $DEST"
+    git -C "$WORK" fetch -q --depth 1 origin qa-results || true
+    if git -C "$WORK" cat-file -e "FETCH_HEAD:$DEST" 2>/dev/null; then
+      echo "publish_results: pushed $DEST"
+      exit 0
+    fi
+    echo "publish_results: push reported ok but $DEST is not on the branch, retrying"
+  else
+    echo "publish_results: push failed (attempt $attempt), retrying"
+  fi
+  sleep $(( attempt * 3 + RANDOM % 5 ))
+  git -C "$WORK" rebase --abort >/dev/null 2>&1 || true
+  git -C "$WORK" fetch -q --depth 1 origin qa-results
+  git -C "$WORK" reset -q --hard FETCH_HEAD
+  mkdir -p "$WORK/$DEST"
+  cp -R "$SRC"/. "$WORK/$DEST"/
+  git -C "$WORK" add -A
+  if git -C "$WORK" diff --cached --quiet; then
+    echo "publish_results: $DEST already on the branch"
     exit 0
   fi
-  echo "publish_results: push failed (attempt $attempt), retrying"
-  sleep $((attempt * 4))
-  git -C "$WORK" pull -q --rebase origin qa-results || true
+  git -C "$WORK" "${IDENT[@]}" commit -q -m "results: $DEST"
 done
 echo "publish_results: giving up"
 exit 1
