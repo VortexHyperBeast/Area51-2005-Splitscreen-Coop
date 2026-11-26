@@ -6878,15 +6878,28 @@ void character::OnThink( void )
 
 //=============================================================================
 
+#ifdef A51_LOCAL_COOP_QA
+guid g_QaDmgTarget = 0;     // the bot's dmgtest target: log why its pain is ignored
+#define QA_PAIN_WHY( why )  do { if( GetGuid() == g_QaDmgTarget ) qa_bot_Log( "dmgtest: pain ignored (%s)", why ); } while( 0 )
+#else
+#define QA_PAIN_WHY( why )  do { } while( 0 )
+#endif
+
 void character::OnPain( const pain& Pain )
 {
     // If you are already dead, no pain!
     if( m_bDead )
+    {
+        QA_PAIN_WHY( "dead" );
         return;
+    }
 
     // Give our state a chance to ignore the pain.
     if( m_pActiveState && (m_pActiveState->OnPain(Pain)==FALSE) )
+    {
+        QA_PAIN_WHY( "its current state ignores pain" );
         return;
+    }
 
     // If the same pain event as the last one, ignore it.
     if( (Pain.GetAnimEventID() != -1) && 
@@ -6898,6 +6911,7 @@ void character::OnPain( const pain& Pain )
     // if we are neutral, we ignore pain
     if ( m_SpawnNeutralTime > 0.0f )
     {
+        QA_PAIN_WHY( "neutral just after spawning" );
         return;
     }
 
@@ -6921,7 +6935,10 @@ void character::OnPain( const pain& Pain )
 
     // Resolve Pain
     if( !Pain.ComputeDamageAndForce( HealthHandle, GetGuid(), GetColBBox().GetCenter() ) )
+    {
+        QA_PAIN_WHY( "the pain does no damage to it" );
         return;
+    }
 
     // Setup defaults.
     xbool bApplyDamage      = TRUE;
@@ -6936,6 +6953,7 @@ void character::OnPain( const pain& Pain )
     // do we apply damage,effects,etc...
     if( IgnorePain( Pain ) )
     {
+        QA_PAIN_WHY( "IgnorePain (friendly fire or scripted)" );
         bApplyDamage = FALSE;
         if( Pain.IsFriendlyFire() )
         {

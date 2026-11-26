@@ -764,6 +764,8 @@ void logic_campaign::QaCommand( const char* pName )
             }
         }
         if( !pBest ) { qa_bot_Log( "dmgtest: no living enemy in this level" ); return; }
+        extern guid g_QaDmgTarget;
+        g_QaDmgTarget = pBest->GetGuid();
         for( s32 k = 0; k < 3; k++ )
         {
             const f32 Before = pBest->GetHealth();
@@ -774,6 +776,7 @@ void logic_campaign::QaCommand( const char* pName )
             qa_bot_Log( "dmgtest: %s health %.1f -> %.1f (max %.1f)", pBest->GetTypeDesc().GetTypeName(),
                         Before, pBest->GetHealth(), pBest->GetMaxHealth() );
         }
+        g_QaDmgTarget = 0;
         return;
     }
 
