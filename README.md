@@ -16,7 +16,7 @@ An unofficial, experimental local co-op modification for the **Area 51 (2005) PC
 ![Players](https://img.shields.io/badge/players-2%20local-purple)
 ![Status](https://img.shields.io/badge/status-experimental-orange)
 
-[**Download Nexus package (v0.95.55)**](https://github.com/VortexHyperBeast/area51-pc/releases/download/coop-stage1-run150/Area51-SplitscreenCoop-v0.95.55.zip) · [**Full play/test build**](https://github.com/VortexHyperBeast/area51-pc/releases/download/coop-stage1-run150/Area51-Coop-Stage1-win-x64-run150.zip) · [**Co-op source branch**](https://github.com/VortexHyperBeast/area51-pc/tree/coop/stage1) · [**Report a bug**](https://github.com/VortexHyperBeast/area51-pc/issues)
+[**Download v0.95.55 (NexusMods package)**](https://github.com/VortexHyperBeast/area51-pc/releases/download/AREA51_SplitscreenCoop_v0.95.55_Harder_Co-op/AREA51_SplitscreenCoop_v0.95.55_Harder_Co-op.zip) · [**All releases**](https://github.com/VortexHyperBeast/area51-pc/releases) · [**Co-op source branch**](https://github.com/VortexHyperBeast/area51-pc/tree/coop/stage1) · [**Report a bug**](https://github.com/VortexHyperBeast/area51-pc/issues)
 
 </div>
 
