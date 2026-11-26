@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="docs/images/header.jpg" alt="Area 51 Split-Screen Co-op banner" width="100%">
+<img src="docs/images/Area%2051_%20Splitscreen%20Co-Op.png" alt="Area 51 Split-Screen Co-op banner with orange frame" width="100%">
 
 # AREA 51
 
@@ -24,7 +24,7 @@ An unofficial, experimental local co-op modification for the **Area 51 (2005) PC
 
 <div align="center">
 
-<img src="docs/images/Area%2051_%20Splitscreen%20Co-Op.png" alt="Area 51 Split-Screen Co-op character artwork" width="100%">
+<img src="docs/images/header.jpg" alt="Area 51 Split-Screen Co-op character artwork" width="100%">
 
 </div>
 
