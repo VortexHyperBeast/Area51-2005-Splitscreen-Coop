@@ -16,7 +16,7 @@ An unofficial, experimental local co-op modification for the **Area 51 (2005) PC
 ![Players](https://img.shields.io/badge/players-2%20local-purple)
 ![Status](https://img.shields.io/badge/status-experimental-orange)
 
-[**Download the latest build**](https://github.com/VortexHyperBeast/area51-pc/releases/latest) · [**Co-op source branch**](https://github.com/VortexHyperBeast/area51-pc/tree/coop/stage1) · [**Report a bug**](https://github.com/VortexHyperBeast/area51-pc/issues)
+[**Download Nexus package (v0.95.55)**](https://github.com/VortexHyperBeast/area51-pc/releases/download/coop-stage1-run150/Area51-SplitscreenCoop-v0.95.55.zip) · [**Full play/test build**](https://github.com/VortexHyperBeast/area51-pc/releases/download/coop-stage1-run150/Area51-Coop-Stage1-win-x64-run150.zip) · [**Co-op source branch**](https://github.com/VortexHyperBeast/area51-pc/tree/coop/stage1) · [**Report a bug**](https://github.com/VortexHyperBeast/area51-pc/issues)
 
 </div>
 
@@ -62,13 +62,13 @@ These in-game screenshots show both local players exploring and fighting through
 
 <table>
 <tr><td><strong>Development stage</strong></td><td>Stage 1 — experimental</td></tr>
-<tr><td><strong>Current development build</strong></td><td>v0.95.55 (build 150)</td></tr>
+<tr><td><strong>Latest public build</strong></td><td>v0.95.55 (build 150)</td></tr>
 <tr><td><strong>Current development branch</strong></td><td><a href="https://github.com/VortexHyperBeast/area51-pc/tree/coop/stage1">coop/stage1</a></td></tr>
 <tr><td><strong>Players supported</strong></td><td>2 local players</td></tr>
 <tr><td><strong>Platform</strong></td><td>Windows 64-bit build</td></tr>
 </table>
 
-The build number and mod version are also shown in the top-left corner of the in-game main menu. v0.95.55 is the current development/test build; the project is still being tested. A successful automated test or level start does not mean that every mission and encounter has been completed in a full human playthrough.
+The build number and mod version are also shown in the top-left corner of the in-game main menu. v0.95.55 (build 150) is the latest public build. The project is still experimental; a successful automated test or level start does not mean that every mission and encounter has been completed in a full human playthrough.
 
 ---
 
