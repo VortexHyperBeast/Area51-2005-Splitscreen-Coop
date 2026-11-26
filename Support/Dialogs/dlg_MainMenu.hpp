@@ -33,6 +33,11 @@ enum menu_menu_controls
 #endif
     IDC_MAIN_MENU_SIGN_IN,
     IDC_MAIN_MENU_SILENT_LOGIN_TEXT,
+#ifdef A51_LOCAL_COOP
+    // Co-op build: the "Co-op Settings" page (in the place of "Online").
+    IDC_MAIN_MENU_COOP_ROW0,
+    IDC_MAIN_MENU_COOP_LAST = IDC_MAIN_MENU_COOP_ROW0 + 6,     // 7 rows, the last is "Back"
+#endif
 };
 
 
@@ -64,6 +69,10 @@ public:
 
     virtual void        OnAccept         ( ui_win* pWin );
     virtual void        OnUpdate            ( ui_win* pWin, f32 DeltaTime );
+#ifdef A51_LOCAL_COOP
+    virtual void        OnCancel            ( ui_win* pWin );
+    virtual void        OnNavigate          ( ui_win* pWin, ui_navigation Code, s32 Presses, s32 Repeats, xbool WrapX = FALSE, xbool WrapY = FALSE );
+#endif
 
 protected:
     ui_frame*           m_pFrame1;
@@ -85,6 +94,17 @@ protected:
     s32                 m_CurrHL;
 
     xbool               m_bCheckKeySequence;
+
+#ifdef A51_LOCAL_COOP
+    enum { COOP_ROWS = 7 };
+    ui_button*          m_pButtonCoop[COOP_ROWS];
+    xbool               m_bCoopPage;
+    void                CoopShowPage        ( xbool bCoopPage );
+    void                CoopUpdateLabels    ( void );
+    void                CoopChange          ( s32 Row, s32 Direction );
+    s32                 CoopFocusedRow      ( void ) const;
+    void                CoopRenderHelp      ( void );
+#endif
 };
 
 //==============================================================================

@@ -47,6 +47,11 @@ How to start
 
 PLAY-SINGLE-PLAYER.cmd starts the same program as a normal one player game, to compare.
 
+CO-OP SETTINGS IN THE MAIN MENU: "Co-op Settings" (in place of Online) has Difficulty
+(Easy 100% / Normal 150% / Hard 200% enemy and boss health), Downed and revive on/off,
+Bleed-out time, Revive time, Revive health and Controllers. A or left/right changes a row; it is
+saved to a51_coop.cfg at once.
+
 CO-OP SETTINGS IN THE GAME: press Start (pause). Under Options/Settings there are three rows:
   Controllers: normal / swapped   - which controller plays the top and the bottom player
   P1 body / P2 body               - press A to go through the 16 multiplayer characters

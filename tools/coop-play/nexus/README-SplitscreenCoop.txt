@@ -32,6 +32,12 @@ The main menu has two campaign entries:
                       "Splitscreen P2"), separate from single player.
 In Splitscreen Co-op, Level Select lets you start any mission of the campaign.
 
+Main menu > Co-op Settings (in place of Online): difficulty, downed and revive rules, and
+which controller plays the top view. Press A or left/right on a row to change it; it is saved
+at once.
+  Difficulty: Easy   = enemies and bosses as in single player
+              Normal = enemies and bosses take 1.5x as many hits (default)
+              Hard   = enemies and bosses take 2x as many hits
 Pause menu > Splitscreen Co-op: swap the controllers, and choose each player's body.
 
 Co-op rules:
@@ -42,19 +48,22 @@ Co-op rules:
 - A downed player cannot shoot, throw grenades or melee.
 - Mutation works for both players. A mutated player takes half damage.
 - Weapons, ammo, grenades and unlocks are shared; health is separate.
-- Enemies and bosses take 1.5 times as many hits as in single player, to balance two players.
+- On Normal difficulty, enemies and bosses take 1.5 times as many hits as in single player,
+  to balance two players (Easy: as in single player, Hard: 2 times).
 
 
-SETTINGS (optional)
--------------------
-Create a text file named a51_coop.cfg next to A51.exe to change the rules, one per line:
+SETTINGS FILE (optional)
+------------------------
+Co-op Settings in the main menu writes a51_coop.cfg next to A51.exe. It can also be edited by
+hand, one setting per line:
   swap_pads=1                  swap the two controllers (also in the pause menu)
   downed=0                     no downed state: any death restarts the checkpoint
   bleedout_seconds=25          time a downed player can wait for a revive
   revive_seconds=4             how long the revive takes
   revive_health_percent=35     health after a revive
   mutant_damage_percent=50     damage a mutated player takes (100 = normal)
-  enemy_health_percent=150     how long enemies and bosses last (100 = as in single player)
+  enemy_health_percent=150     how long enemies and bosses last: 100 Easy, 150 Normal, 200 Hard
+                               (other values show as "Custom" in the menu)
 
 
 IF SOMETHING GOES WRONG

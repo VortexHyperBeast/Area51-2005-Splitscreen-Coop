@@ -171,6 +171,68 @@ inline f32 LocalCoop_ConfigF32( const char* pKey, const char* pEnv, f32 Default 
     return Value;
 }
 
+//  Write one "key=value" line to a51_coop.cfg, keeping every other line (Co-op Settings menu).
+inline void LocalCoop_SetConfigValue( const char* pKey, s32 Value )
+{
+    char Keep[2048];
+    s32  nKeep = 0;
+    Keep[0] = 0;
+    const s32 KeyLen = x_strlen( pKey );
+    FILE* pIn = fopen( LOCAL_COOP_CONFIG_FILE, "r" );
+    if( pIn )
+    {
+        char Line[128];
+        while( fgets( Line, sizeof(Line), pIn ) )
+        {
+            if( (x_strncmp( Line, pKey, KeyLen ) == 0) && (Line[KeyLen] == '=') )
+                continue;
+            s32 Len = x_strlen( Line );
+            if( (Len > 0) && (Line[Len - 1] != '\n') && (Len < (s32)sizeof(Line) - 1) )
+            {
+                Line[Len++] = '\n';       // the last line had no line end
+                Line[Len]   = 0;
+            }
+            if( nKeep + Len < (s32)sizeof(Keep) - 1 )
+            {
+                x_strcpy( Keep + nKeep, Line );
+                nKeep += Len;
+            }
+        }
+        fclose( pIn );
+    }
+
+    FILE* pFile = fopen( LOCAL_COOP_CONFIG_FILE, "w" );
+    if( pFile )
+    {
+        if( nKeep > 0 )
+            fputs( Keep, pFile );
+        fprintf( pFile, "%s=%d\n", pKey, (int)Value );
+        fclose( pFile );
+    }
+}
+
+//  Difficulty of Splitscreen Co-op = how long enemies and bosses last against the players.
+//  Easy 100% (as in single player), Normal 150% (the default), Hard 200%.
+enum { LOCAL_COOP_DIFFICULTY_COUNT = 3 };
+inline s32 LocalCoop_DifficultyPercent( s32 Level )
+{
+    static const s32 s_Pct[LOCAL_COOP_DIFFICULTY_COUNT] = { 100, 150, 200 };
+    return s_Pct[ (Level < 0) ? 0 : ((Level >= LOCAL_COOP_DIFFICULTY_COUNT) ? LOCAL_COOP_DIFFICULTY_COUNT - 1 : Level) ];
+}
+inline const char* LocalCoop_DifficultyName( s32 Level )
+{
+    static const char* const s_Name[LOCAL_COOP_DIFFICULTY_COUNT] = { "Easy", "Normal", "Hard" };
+    return ((Level >= 0) && (Level < LOCAL_COOP_DIFFICULTY_COUNT)) ? s_Name[Level] : "Custom";
+}
+//  The level whose percentage this is, or -1 for a value set by hand in the file.
+inline s32 LocalCoop_DifficultyOf( f32 EnemyHealthPct )
+{
+    for( s32 i = 0; i < LOCAL_COOP_DIFFICULTY_COUNT; i++ )
+        if( x_abs( EnemyHealthPct - (f32)LocalCoop_DifficultyPercent( i ) ) < 0.5f )
+            return i;
+    return -1;
+}
+
 //  Downed / revive rules (owner's brief): 25 s to bleed out, 4 s to revive,
 //  back up with 35% health.  downed=0 in a51_coop.cfg turns it off (shared fate).
 struct local_coop_revive_rules
@@ -184,10 +246,22 @@ struct local_coop_revive_rules
     f32     EnemyHealthPct;     // enemies' and bosses' effective health against players, percent (owner: 150)
 };
 
+//  Set when a setting changed in the menu: the rules are read again from the file.
+inline xbool& LocalCoop_RulesRead( void )
+{
+    static xbool s_bRead = FALSE;
+    return s_bRead;
+}
+
+inline void LocalCoop_ReloadRules( void )
+{
+    LocalCoop_RulesRead() = FALSE;
+}
+
 inline const local_coop_revive_rules& LocalCoop_ReviveRules( void )
 {
     static local_coop_revive_rules s_Rules;
-    static xbool s_bRead = FALSE;
+    xbool& s_bRead = LocalCoop_RulesRead();
     if( !s_bRead )
     {
         s_bRead = TRUE;

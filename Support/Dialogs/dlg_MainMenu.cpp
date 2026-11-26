@@ -39,19 +39,39 @@ ui_manager::control_tem MainMenuControls[] =
     { IDC_MAIN_MENU_CAMPAIGN,           "IDS_MAIN_MENU_CAMPAIGN",   "button",   10, 40,  220, 40, 0, 0, 1, 1, ui_win::WF_VISIBLE },
     { IDC_MAIN_MENU_MULTI,              "IDS_MAIN_MENU_MULTI",      "button",   10, 80,  220, 40, 0, 1, 1, 1,  ui_win::WF_VISIBLE },
 #endif
+#ifndef A51_LOCAL_COOP
     { IDC_MAIN_MENU_ONLINE,             "IDS_MAIN_MENU_ONLINE",     "button",   60, 120, 120, 40, 0, 2, 1, 1,  ui_win::WF_VISIBLE },
+#else
+    // Co-op build: "Online" becomes "Co-op Settings" (label set in Create).
+    { IDC_MAIN_MENU_ONLINE,             "IDS_MAIN_MENU_ONLINE",     "button",   10, 120, 220, 40, 0, 2, 1, 1,  ui_win::WF_VISIBLE },
+#endif
     { IDC_MAIN_MENU_SETTINGS,           "IDS_MAIN_MENU_SETTINGS",   "button",   60, 160, 120, 40, 0, 3, 1, 1,  ui_win::WF_VISIBLE },
     { IDC_MAIN_MENU_PROFILES,           "IDS_MAIN_MENU_PROFILES",   "button",   60, 200, 120, 40, 0, 4, 1, 1,  ui_win::WF_VISIBLE },
     { IDC_MAIN_MENU_CREDITS,            "IDS_EXTRAS_ITEM_CREDITS",  "button",   60, 240, 120, 40, 0, 5, 1, 1,  ui_win::WF_VISIBLE },
 #if defined(TARGET_DESKTOP)                                                                                           
     { IDC_MAIN_MENU_EXIT,               "IDS_MAIN_MENU_QUIT",       "button",   60, 280, 120, 40, 0, 6, 1, 1,  ui_win::WF_VISIBLE },
 #endif                                                                                                           
+#ifdef A51_LOCAL_COOP
+    // The Co-op Settings page, shown in place of the main buttons (labels set in code).  The hidden
+    // page's rows are disabled, so the controller moves only over the page that shows.
+    { IDC_MAIN_MENU_COOP_ROW0 + 0,      "IDS_NULL",                 "button",   10,  40, 220, 40, 0,  7, 1, 1,  ui_win::WF_VISIBLE },
+    { IDC_MAIN_MENU_COOP_ROW0 + 1,      "IDS_NULL",                 "button",   10,  80, 220, 40, 0,  8, 1, 1,  ui_win::WF_VISIBLE },
+    { IDC_MAIN_MENU_COOP_ROW0 + 2,      "IDS_NULL",                 "button",   10, 120, 220, 40, 0,  9, 1, 1,  ui_win::WF_VISIBLE },
+    { IDC_MAIN_MENU_COOP_ROW0 + 3,      "IDS_NULL",                 "button",   10, 160, 220, 40, 0, 10, 1, 1,  ui_win::WF_VISIBLE },
+    { IDC_MAIN_MENU_COOP_ROW0 + 4,      "IDS_NULL",                 "button",   10, 200, 220, 40, 0, 11, 1, 1,  ui_win::WF_VISIBLE },
+    { IDC_MAIN_MENU_COOP_ROW0 + 5,      "IDS_NULL",                 "button",   10, 240, 220, 40, 0, 12, 1, 1,  ui_win::WF_VISIBLE },
+    { IDC_MAIN_MENU_COOP_ROW0 + 6,      "IDS_NULL",                 "button",   10, 280, 220, 40, 0, 13, 1, 1,  ui_win::WF_VISIBLE },
+#endif
 }; 
 
 ui_manager::dialog_tem MainMenuDialog =
 {
     "IDS_MAIN_MENU",
+#ifndef A51_LOCAL_COOP
     1, 9,
+#else
+    1, 14,
+#endif
     sizeof(MainMenuControls)/sizeof(ui_manager::control_tem),
     &MainMenuControls[0],
     0
@@ -166,6 +186,18 @@ xbool dlg_main_menu::Create( s32                        UserID,
     // original menu stays unavailable in this port).
     m_pButtonCampaign   ->SetLabel( xwstring( "Single Player" ) );
     m_pButtonMultiPlayer->SetLabel( xwstring( "Splitscreen Co-op" ) );
+    m_pButtonOnline     ->SetLabel( xwstring( "Co-op Settings" ) );
+    m_bCoopPage = FALSE;
+    for( s32 Row = 0; Row < COOP_ROWS; Row++ )
+    {
+        m_pButtonCoop[Row] = (ui_button*)FindChildByID( IDC_MAIN_MENU_COOP_ROW0 + Row );
+        if( m_pButtonCoop[Row] )
+        {
+            m_pButtonCoop[Row]->SetFlag( ui_win::WF_VISIBLE,  FALSE );
+            m_pButtonCoop[Row]->SetFlag( ui_win::WF_DISABLED, TRUE );
+        }
+    }
+    CoopUpdateLabels();
 #else
     m_pButtonMultiPlayer  ->SetFlag(ui_win::WF_DISABLED, TRUE);
 #endif
@@ -343,6 +375,7 @@ void dlg_main_menu::Render( s32 ox, s32 oy )
 
 #if defined(A51_LOCAL_COOP)
     LocalCoop_RenderFrontEndBanner( NULL );
+    CoopRenderHelp();
 #endif
 }
 
@@ -367,9 +400,25 @@ void dlg_main_menu::OnAccept( ui_win* pWin )
         else if( pWin == (ui_win*)m_pButtonOnline )
         {
             g_AudioMgr.Play("Select_Norm");
+#ifdef A51_LOCAL_COOP
+            // "Co-op Settings": open the page in this dialog.
+            CoopShowPage( TRUE );
+#else
             m_CurrentControl = IDC_MAIN_MENU_ONLINE;
             m_State = DIALOG_STATE_SELECT;
+#endif
         }
+#ifdef A51_LOCAL_COOP
+        else if( m_bCoopPage && (CoopFocusedRow() >= 0) )
+        {
+            const s32 Row = CoopFocusedRow();
+            g_AudioMgr.Play("Select_Norm");
+            if( Row == COOP_ROWS - 1 )
+                CoopShowPage( FALSE );          // Back
+            else
+                CoopChange( Row, 1 );
+        }
+#endif
         else if( pWin == (ui_win*)m_pButtonSettings )
         {
             g_AudioMgr.Play("Select_Norm");
@@ -529,6 +578,13 @@ void dlg_main_menu::OnUpdate ( ui_win* pWin, f32 DeltaTime )
         highLight = 6;
     }
 #endif
+#ifdef A51_LOCAL_COOP
+    else if( CoopFocusedRow() >= 0 )
+    {
+        g_UiMgr->SetScreenHighlight( m_pButtonCoop[ CoopFocusedRow() ]->GetPosition() );
+        highLight = 7 + CoopFocusedRow();
+    }
+#endif
     if( highLight != m_CurrHL )
     {
         if( highLight != -1 )
@@ -565,3 +621,202 @@ void dlg_main_menu::OnUpdate ( ui_win* pWin, f32 DeltaTime )
 }
 
 //=========================================================================
+
+#ifdef A51_LOCAL_COOP
+//=========================================================================
+//  Co-op Settings page.  Each row shows a setting of a51_coop.cfg; A (or left/right) changes it,
+//  the file is written at once and the game uses the new value from the next hit / next down.
+//=========================================================================
+
+namespace
+{
+    enum coop_row
+    {
+        COOP_ROW_DIFFICULTY = 0,
+        COOP_ROW_DOWNED,
+        COOP_ROW_BLEEDOUT,
+        COOP_ROW_REVIVE_TIME,
+        COOP_ROW_REVIVE_HEALTH,
+        COOP_ROW_SWAP,
+        COOP_ROW_BACK,
+    };
+
+    const s32 s_BleedoutChoices[]     = { 15, 25, 40, 60 };
+    const s32 s_ReviveTimeChoices[]   = { 2, 4, 6 };
+    const s32 s_ReviveHealthChoices[] = { 25, 35, 50, 100 };
+
+    // The next choice after Value in Direction (+1/-1), wrapping.  A value not in the list
+    // (set by hand in the file) goes to the first or last choice.
+    s32 CoopNextChoice( const s32* pChoices, s32 Count, f32 Value, s32 Direction )
+    {
+        for( s32 i = 0; i < Count; i++ )
+            if( x_abs( Value - (f32)pChoices[i] ) < 0.5f )
+                return pChoices[ (i + Direction + Count) % Count ];
+        return (Direction > 0) ? pChoices[0] : pChoices[Count - 1];
+    }
+}
+
+s32 dlg_main_menu::CoopFocusedRow( void ) const
+{
+    if( !m_bCoopPage )
+        return -1;
+    for( s32 Row = 0; Row < COOP_ROWS; Row++ )
+        if( m_pButtonCoop[Row] && m_pButtonCoop[Row]->IsFocused() )
+            return Row;
+    return -1;
+}
+
+void dlg_main_menu::CoopUpdateLabels( void )
+{
+    const local_coop_revive_rules& Rules = LocalCoop_ReviveRules();
+    const s32 Level = LocalCoop_DifficultyOf( Rules.EnemyHealthPct );
+    for( s32 Row = 0; Row < COOP_ROWS; Row++ )
+    {
+        if( !m_pButtonCoop[Row] )
+            continue;
+        char Text[64];
+        switch( Row )
+        {
+            case COOP_ROW_DIFFICULTY:
+                if( Level >= 0 ) x_sprintf( Text, "Difficulty: %s", LocalCoop_DifficultyName( Level ) );
+                else             x_sprintf( Text, "Difficulty: Custom %d%%", (int)(Rules.EnemyHealthPct + 0.5f) );
+                break;
+            case COOP_ROW_DOWNED:        x_sprintf( Text, "Downed and revive: %s", Rules.bEnabled ? "On" : "Off" );       break;
+            case COOP_ROW_BLEEDOUT:      x_sprintf( Text, "Bleed-out time: %d s", (int)(Rules.BleedoutSec + 0.5f) );     break;
+            case COOP_ROW_REVIVE_TIME:   x_sprintf( Text, "Revive time: %d s", (int)(Rules.ReviveSec + 0.5f) );          break;
+            case COOP_ROW_REVIVE_HEALTH: x_sprintf( Text, "Revive health: %d%%", (int)(Rules.ReviveHealthPct + 0.5f) );  break;
+            case COOP_ROW_SWAP:          x_sprintf( Text, "Controllers: %s", LocalCoop_SwapPads() ? "swapped" : "normal" ); break;
+            default:                     x_strcpy( Text, "Back" );                                                       break;
+        }
+        m_pButtonCoop[Row]->SetLabel( xwstring( (const char*)Text ) );
+    }
+}
+
+void dlg_main_menu::CoopChange( s32 Row, s32 Direction )
+{
+    const local_coop_revive_rules& Rules = LocalCoop_ReviveRules();
+    switch( Row )
+    {
+        case COOP_ROW_DIFFICULTY:
+        {
+            s32 Level = LocalCoop_DifficultyOf( Rules.EnemyHealthPct );
+            Level = (Level < 0) ? 1 : (Level + Direction + LOCAL_COOP_DIFFICULTY_COUNT) % LOCAL_COOP_DIFFICULTY_COUNT;
+            LocalCoop_SetConfigValue( "enemy_health_percent", LocalCoop_DifficultyPercent( Level ) );
+            break;
+        }
+        case COOP_ROW_DOWNED:
+            LocalCoop_SetConfigValue( "downed", Rules.bEnabled ? 0 : 1 );
+            break;
+        case COOP_ROW_BLEEDOUT:
+            LocalCoop_SetConfigValue( "bleedout_seconds",
+                CoopNextChoice( s_BleedoutChoices, (s32)(sizeof(s_BleedoutChoices) / sizeof(s32)), Rules.BleedoutSec, Direction ) );
+            break;
+        case COOP_ROW_REVIVE_TIME:
+            LocalCoop_SetConfigValue( "revive_seconds",
+                CoopNextChoice( s_ReviveTimeChoices, (s32)(sizeof(s_ReviveTimeChoices) / sizeof(s32)), Rules.ReviveSec, Direction ) );
+            break;
+        case COOP_ROW_REVIVE_HEALTH:
+            LocalCoop_SetConfigValue( "revive_health_percent",
+                CoopNextChoice( s_ReviveHealthChoices, (s32)(sizeof(s_ReviveHealthChoices) / sizeof(s32)), Rules.ReviveHealthPct, Direction ) );
+            break;
+        case COOP_ROW_SWAP:
+            LocalCoop_SetSwapPads( !LocalCoop_SwapPads() );
+            break;
+        default:
+            return;
+    }
+    LocalCoop_ReloadRules();
+    CoopUpdateLabels();
+}
+
+void dlg_main_menu::CoopShowPage( xbool bCoopPage )
+{
+    m_bCoopPage = bCoopPage;
+
+    ui_button* const pMain[] = { m_pButtonCampaign, m_pButtonMultiPlayer, m_pButtonOnline, m_pButtonSettings,
+                                 m_pButtonProfiles, m_pButtonCredits,
+#if defined(TARGET_DESKTOP)
+                                 m_pButtonExit,
+#endif
+                               };
+    for( s32 i = 0; i < (s32)(sizeof(pMain) / sizeof(pMain[0])); i++ )
+    {
+        if( !pMain[i] )
+            continue;
+        pMain[i]->SetFlag( ui_win::WF_VISIBLE,  !bCoopPage );
+        pMain[i]->SetFlag( ui_win::WF_DISABLED,  bCoopPage );
+    }
+    for( s32 Row = 0; Row < COOP_ROWS; Row++ )
+    {
+        if( !m_pButtonCoop[Row] )
+            continue;
+        m_pButtonCoop[Row]->SetFlag( ui_win::WF_VISIBLE,   bCoopPage );
+        m_pButtonCoop[Row]->SetFlag( ui_win::WF_DISABLED, !bCoopPage );
+    }
+    if( bCoopPage )
+        CoopUpdateLabels();
+
+    ui_button* pFocus = bCoopPage ? m_pButtonCoop[0] : m_pButtonOnline;
+    if( pFocus )
+    {
+        GotoControl( (ui_control*)pFocus );
+        g_UiMgr->SetScreenHighlight( pFocus->GetPosition() );
+    }
+    m_CurrentControl = IDC_MAIN_MENU_ONLINE;
+}
+
+void dlg_main_menu::OnCancel( ui_win* pWin )
+{
+    // Back on the Co-op Settings page returns to the main buttons.
+    if( m_bCoopPage && (m_State == DIALOG_STATE_ACTIVE) )
+    {
+        g_AudioMgr.Play("Backup");
+        CoopShowPage( FALSE );
+        return;
+    }
+    ui_dialog::OnCancel( pWin );
+}
+
+void dlg_main_menu::OnNavigate( ui_win* pWin, ui_navigation Code, s32 Presses, s32 Repeats, xbool WrapX, xbool WrapY )
+{
+    // Left/right on a setting changes it (A goes forward).
+    const s32 Row = CoopFocusedRow();
+    if( (m_State == DIALOG_STATE_ACTIVE) && (Row >= 0) && (Row < COOP_ROWS - 1) &&
+        ((Code == ui_navigation::Left) || (Code == ui_navigation::Right)) )
+    {
+        g_AudioMgr.Play("Cusor_Norm");
+        CoopChange( Row, (Code == ui_navigation::Right) ? 1 : -1 );
+        return;
+    }
+    ui_dialog::OnNavigate( pWin, Code, Presses, Repeats, WrapX, WrapY );
+}
+
+//  One or two lines under the menu about the focused setting.
+void dlg_main_menu::CoopRenderHelp( void )
+{
+    const s32 Row = CoopFocusedRow();
+    if( Row < 0 )
+        return;
+    static const char* const s_Help[COOP_ROWS][2] =
+    {
+        { "Easy: enemies as in single player.",          "Normal: 1.5x health (default). Hard: 2x health." },
+        { "On: a player with no health goes down",        "and the partner can revive him. Off: checkpoint." },
+        { "How long a downed player waits for help",      "before the checkpoint restarts." },
+        { "How long the partner holds USE to revive.",    "" },
+        { "Health a revived player gets back.",           "" },
+        { "Swapped: controller 2 plays the top view.",    "" },
+        { "Back to the main menu.",                       "" },
+    };
+    const s32   iFont = g_UiMgr->FindFont( "small" );
+    ui_font*    pFont = g_UiMgr->GetFont( iFont );
+    const s32   Line  = pFont ? MAX( 12, pFont->GetLineHeight() + 2 ) : 18;
+    s32 y = m_CurrPos.b + 6;
+    for( s32 i = 0; i < 2; i++, y += Line )
+    {
+        if( s_Help[Row][i][0] == 0 )
+            continue;
+        g_UiMgr->RenderText( iFont, irect( m_CurrPos.l, y, m_CurrPos.r, y + Line + 6 ),
+                             ui_font::h_center | ui_font::v_top, xcolor( 200, 235, 200, 255 ), s_Help[Row][i] );
+    }
+}
+#endif
