@@ -22,13 +22,14 @@ all mod work is on the branch `coop/stage1`.
 | `tools/coop-play/` | Player-facing files: `README.txt` (settings in `a51_coop.cfg`), the start screen (`SCREENS/`), the asset setup script and the test launchers of the cloud play build. |
 | `tools/coop-play/nexus/` | The readme shipped in the NexusMods package. |
 | `tools/coop-qa/` | The automated test: bot scripts and log checks (`coopqa.py`), Linux test runner, result publishing. |
-| `.github/workflows/coop-build.yml` | Builds every push to `coop/**`: Windows build, Linux bot tests, NexusMods package and checks, GitHub release (newest 3 kept). Started by hand with "level sweep" it also starts every campaign level. |
+| `.github/workflows/coop-build.yml` | Builds every push to `coop/**`: Windows build, Linux bot tests, NexusMods package and checks, draft GitHub release for builds that change the game (newest 5 kept). Started by hand with "level sweep" it also starts every campaign level. |
 | `.github/workflows/milestone.yml` | Saves a build to `milestones`: push a branch `milestone/<name>` with `.github/milestone.json` (run id, commit, tag, `nexus: true`, version). The branch can be deleted afterwards. |
 
 ## Releases
 
 - **Test builds** (every push): a *draft* release `coop-stage1-run<N>`, only visible to the owner
-  (and anyone with write access). The newest 3 are kept.
+  (and anyone with write access). Only builds that change the game make a draft (docs, workflow
+  and test-tool changes do not); the newest 5 are kept.
 - **Official versions**: public, on the Releases page for everyone. Made by hand from a build
   that was already tested, nothing is rebuilt: Actions -> "Co-op build and test" -> Run workflow
   -> `official_run` = that build's run id, `official_name` = e.g. `Harder_Co-op`. The release is

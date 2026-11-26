@@ -767,7 +767,27 @@ jobs:
           sha256sum "$ZIP" | tee zip.sha256
           echo "ZIP=$ZIP" >> "$GITHUB_ENV"
 
+      - name: Did the game change since the newest test build?
+        id: changed
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          # A build whose commits only touch docs, workflows or test tools makes no new draft (it
+          # would push a real game build out of the kept ones).  release_anyway forces a draft.
+          LAST="$(gh api "repos/${GITHUB_REPOSITORY}/releases?per_page=100" \
+                    --jq '[.[] | select(.draft and (.name | test("build [0-9]+")))] | sort_by(.created_at) | reverse | .[0].target_commitish // ""')"
+          GAME=yes
+          if [ -n "$LAST" ] && git cat-file -e "${LAST}^{commit}" 2>/dev/null && [ "${{ inputs.release_anyway }}" != "true" ]; then
+            if ! git diff --name-only "$LAST" "$GITHUB_SHA" | grep -v -E '^(docs/|\.github/|tools/coop-qa/|README\.md$|COOP_TODO\.md$)' | grep -q .; then
+              GAME=no
+            fi
+          fi
+          echo "game=$GAME" >> "$GITHUB_OUTPUT"
+          echo "game files changed since the newest test build ($LAST): $GAME"
+
       - name: Create the release
+        if: steps.changed.outputs.game == 'yes'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -817,7 +837,7 @@ jobs:
 
           # keep the newest three builds, remove older ones
           gh release list --repo "$GITHUB_REPOSITORY" --limit 50 --json tagName,createdAt \
-            --jq '[.[] | select(.tagName | startswith("coop-stage1-run"))] | sort_by(.createdAt) | reverse | .[3:] | .[].tagName' \
+            --jq '[.[] | select(.tagName | startswith("coop-stage1-run"))] | sort_by(.createdAt) | reverse | .[5:] | .[].tagName' \
             | while read -r OLD; do gh release delete "$OLD" --repo "$GITHUB_REPOSITORY" --yes --cleanup-tag || true; done
 
   # ----------------------------------------------------------------------------------------
