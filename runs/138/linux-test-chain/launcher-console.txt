@@ -1,0 +1,37 @@
+mode=chain expect=probe window=640x360 cycles=3 max=3300s startup-gate=1200s
+host: Linux 7.0.0-1018-aws x86_64, 4 cpus
+install ready (7 shader packages)
+wrote /mnt/pack/work/chain/script.txt: level, main menu, next level
+running under gdb
+game started, pid 3510
+game ended: exit code 1 after 1132s (124 = stopped by timeout, 137/143 = killed, 139 = crash)
+game output: 91756 lines, a51_qa_bot.log: 10867 lines
+screenshots taken: 150
+coopqa shots: 150 lines written to /home/runner/work/area51-pc/area51-pc/qa-out/shots.txt
+cutscene sound: ok   SEQ_BLUSL0_ELEVATOR: played 63616 ms of 57494 ms
+OPEN SEQ_BLUSL1_GATTACK: started, no end logged (length 14432 ms)
+track SEQ_BLUSL0_ELEVATOR volume every 0.5 s: -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0
+track SEQ_BLUSL0_ELEVATOR markers/zones: m-1/z-1/2d1
+track SEQ_BLUSL1_GATTACK volume every 0.5 s: -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0 -1.0
+track SEQ_BLUSL1_GATTACK markers/zones: m-1/z-1/2d1
+dialog lines started: 531 (23 could not start), stop calls: 4018
+  stream AMB_STRM_BATTLE_FAR                      x1
+  stream AMB_STRM_COMM6                           x8
+  stream AMB_STRM_METALAMB01_C                    x1
+  stream BATTLE_AMBIENCE                          x1
+  stream BATTLE_STREAM_LEVEL_3                    x25  (21 failed)
+  stream BRIDGES_BLUSL1_12                        x1
+  stream BRIDGES_BLUSL1_13                        x1
+  stream CRISPYA_UNDERFIRE                        x1  (1 failed)
+  stream RAMIREZA_ALERT                           x1
+  stream RAMIREZA_KILL                            x2
+  stream RAMIREZA_RELOAD                          x1
+  stream RAMIREZ_BLUSL0_45                        x1
+  stream RAMIREZ_BLUSL0_47                        x1
+  stream RAMIREZ_BLUSL1_106                       x1
+  stream RAMIREZ_BLUSL1_107                       x1
+  stream RAMIREZ_BLUSL1_43                        x1
+  stream RAMIREZ_BLUSL1_44         
+level 1100: PROBLEM - 1 checkpoint restart(s): nobody went down first | level change: 1000 -> 1010, 1010 -> 1020, 1020 -> 1030, 1030 -> 1040, 1040 -> 1050, 1050 -> 1060, 1060 -> 1070, 1070 -> 1075, 1075 -> 1080, 1080 -> 1090, 1090 -> 1095, 1095 -> 1100; player 1 went 62 m down (lift?) and lived; player 1 hp 100; player 2 went 60 m down (lift?) and lived; player 2 hp 100; enemies: 52 enemies (NPC - BlackOpps,NPC - Grunt,NPC - Hazmat); targeted: player 1,player 2; no cinematic during the script
+grep: write error: Broken pipe
+RESULT: PASS (probe run, report only)
