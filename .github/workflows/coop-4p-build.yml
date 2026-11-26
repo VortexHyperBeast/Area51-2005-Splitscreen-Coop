@@ -1,0 +1,974 @@
+name: Co-op 4P build and test
+
+# Builds the experimental local-co-op branch in the cloud and reports back.
+# Runs on every push to a branch named coop/... and can be started by hand.
+# Text reports (build logs, test results) are written to the branch qa-results so they can be
+# read without opening this page.  Game data is never published.
+
+on:
+  push:
+    # The 4-player line only (the 2-player line is coop/stage1 with coop-build.yml).  Own build
+    # numbers, results under runs-4p/ on qa-results, releases marked 4P.
+    branches: ['coop/4player']
+  workflow_dispatch:
+    inputs:
+      release_anyway:
+        description: 'Publish the Windows package even if the two-controller test did not pass (marked as pre-release)'
+        type: boolean
+        default: false
+      level_sweep:
+        description: 'Also start every campaign level in co-op through the level select and report each one (about 20 extra jobs)'
+        type: boolean
+        default: false
+      official_run:
+        description: 'OFFICIAL RELEASE: the Actions run id of an already tested build to publish for everyone (nothing is rebuilt; leave empty for a normal build)'
+        type: string
+        default: ''
+      official_name:
+        description: 'OFFICIAL RELEASE: name after the version, e.g. Harder_Co-op -> v0.95.55_Harder_Co-op'
+        type: string
+        default: ''
+
+permissions:
+  contents: write
+
+concurrency:
+  group: coop-4p-build-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  # Bump to throw away the cached shader kits.
+  KIT_VERSION: v1
+  # The public Asset Pack of the upstream port (game data the test needs; never published from here).
+  ASSET_REPO: Source2Spy/area51-pc
+  ASSET_TAG: ASSETS-10.11.2026-RC1
+
+jobs:
+  inspect-assets:
+    name: Inspect the Asset Pack
+    if: ${{ !inputs.official_run }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download and inspect the Asset Pack
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          sudo mkdir -p /mnt/assets
+          sudo chown "$USER" /mnt/assets
+          bash tools/coop-qa/inspect_assets.sh report /mnt/assets
+
+      - name: Publish report
+        if: always()
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p report
+          echo "run: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" > report/meta.txt
+          echo "sha: $GITHUB_SHA" >> report/meta.txt
+          echo "job status: ${{ job.status }}" >> report/meta.txt
+          bash tools/coop-qa/publish_results.sh report "runs-4p/${{ github.run_number }}/inspect"
+
+  windows:
+    name: Windows x64 (MSVC), co-op build
+    if: ${{ !inputs.official_run }}
+    runs-on: windows-2022
+    timeout-minutes: 300
+    env:
+      _CL_: '/w'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Restore shader kit
+        id: kit
+        uses: actions/cache/restore@v4
+        with:
+          path: build/shaders/GameApp/release
+          key: shaderkit-windows-${{ env.KIT_VERSION }}-${{ hashFiles('Apps/GameApp/media/shaders/**', 'Apps/ShaderTool/**', 'xCore/Entropy/Shader/**', 'xCore/3rdParty/DXC/**', 'cmake/A51ShaderKit.cmake') }}
+
+      - name: Configure host shader tools
+        if: steps.kit.outputs.cache-hit != 'true'
+        run: |
+          $ErrorActionPreference = 'Continue'
+          New-Item -ItemType Directory -Force logs | Out-Null
+          cmake --preset shader-tools 2>&1 | Tee-Object -FilePath logs/shader-tools-configure.txt
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+      - name: Prepare shader kit
+        if: steps.kit.outputs.cache-hit != 'true'
+        run: |
+          $ErrorActionPreference = 'Continue'
+          cmake --build --preset prepare-shaders --parallel 4 -- /p:WarningLevel=0 /clp:ErrorsOnly /nologo 2>&1 | Tee-Object -FilePath logs/shader-kit.txt
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+      - name: Save shader kit
+        if: steps.kit.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: build/shaders/GameApp/release
+          key: ${{ steps.kit.outputs.cache-primary-key }}
+
+      - name: Configure game (co-op switch on)
+        run: |
+          $ErrorActionPreference = 'Continue'
+          New-Item -ItemType Directory -Force logs | Out-Null
+          cmake --preset windows-msvc-x64 -DA51_LOCAL_COOP=ON -DA51_COOP_BUILD=${{ github.run_number }} 2>&1 | Tee-Object -FilePath logs/configure.txt
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          $hit = Select-String -Path build/windows-msvc-x64/CMakeCache.txt -Pattern '^A51_LOCAL_COOP:BOOL=ON$'
+          if (-not $hit) { throw 'A51_LOCAL_COOP is not ON in the CMake cache' }
+
+      - name: Build A51 (Release)
+        run: |
+          $ErrorActionPreference = 'Continue'
+          cmake --build build/windows-msvc-x64 --config Release --target A51 --parallel 4 -- /p:WarningLevel=0 /clp:ErrorsOnly /nologo 2>&1 | Tee-Object -FilePath logs/build.txt
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+      - name: Package runtime
+        run: |
+          cmake "-DA51_BINARY=build/windows-msvc-x64/Apps/GameApp/Release/A51.exe" "-DA51_SHADER_KIT=build/shaders/GameApp/release" "-DA51_PACKAGE_DIR=build/packages/windows-x64" -P cmake/PackageRuntime.cmake
+
+      - name: The play build must not contain any test code
+        shell: bash
+        run: |
+          f=build/packages/windows-x64/A51.exe
+          ls -l "$f"
+          if grep -a -q -E 'A51_QA_SCRIPT|a51_qa_bot|A51_QA_WINDOW|A51_QA_MENU_PULSE|bodies view=|share item=|scanner player|profile player|swaptest|carryover player|audio voices=|cinema audio|level list|kill player' "$f"; then
+            echo "FOUND test-only strings in the play build"
+            exit 1
+          fi
+          echo "no test-only strings in the play build"
+          grep -a -q 'A51_LOCAL_COOP' "$f"
+          echo "the co-op switch is in the play build"
+
+      - name: Upload build
+        uses: actions/upload-artifact@v4
+        with:
+          name: A51-coop-stage1-win-x64
+          path: build/packages/windows-x64
+          if-no-files-found: error
+
+      - name: Upload debug symbols
+        uses: actions/upload-artifact@v4
+        with:
+          name: A51-coop-stage1-win-x64-pdb
+          path: build/windows-msvc-x64/Apps/GameApp/Release/A51.pdb
+          if-no-files-found: warn
+
+      - name: Publish build report
+        if: always()
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p report
+          echo "run: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" > report/meta.txt
+          echo "sha: $GITHUB_SHA" >> report/meta.txt
+          echo "job status: ${{ job.status }}" >> report/meta.txt
+          for f in logs/*.txt; do
+            [ -f "$f" ] || continue
+            b="$(basename "$f" .txt)"
+            tail -n 250 "$f" > "report/$b-tail.txt"
+            grep -n -E "error|FAILED|fatal" "$f" | head -150 > "report/$b-errors.txt" || true
+          done
+          bash tools/coop-qa/publish_results.sh report "runs-4p/${{ github.run_number }}/windows"
+
+  linux-build:
+    name: Linux x64 (GCC), co-op test build (OptDebug, bot compiled in)
+    if: ${{ !inputs.official_run }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 300
+    env:
+      CFLAGS: '-w'
+      CXXFLAGS: '-w'
+      CCACHE_DIR: ${{ github.workspace }}/.ccache
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            ninja-build pkg-config ccache \
+            libasound2-dev libpulse-dev libaudio-dev libjack-dev libsndio-dev \
+            libpipewire-0.3-dev \
+            libx11-dev libxext-dev libxrandr-dev libxcursor-dev libxfixes-dev libxi-dev \
+            libxss-dev libxtst-dev libxkbcommon-dev libwayland-dev libdecor-0-dev \
+            libdrm-dev libgbm-dev libgl1-mesa-dev libgles2-mesa-dev libegl1-mesa-dev \
+            libdbus-1-dev libibus-1.0-dev libudev-dev libfribidi-dev libthai-dev \
+            libusb-1.0-0-dev liburing-dev
+
+      - name: Restore shader kit
+        id: kit
+        uses: actions/cache/restore@v4
+        with:
+          path: build/shaders/GameApp/release
+          key: shaderkit-linux-${{ env.KIT_VERSION }}-${{ hashFiles('Apps/GameApp/media/shaders/**', 'Apps/ShaderTool/**', 'xCore/Entropy/Shader/**', 'xCore/3rdParty/DXC/**', 'cmake/A51ShaderKit.cmake') }}
+
+      - name: Configure host shader tools
+        if: steps.kit.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p logs
+          cmake --preset shader-tools 2>&1 | tee logs/shader-tools-configure.txt
+
+      - name: Prepare shader kit
+        if: steps.kit.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p logs
+          cmake --build --preset prepare-shaders --parallel 4 2>&1 | tee logs/shader-kit.txt
+
+      - name: Save shader kit
+        if: steps.kit.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: build/shaders/GameApp/release
+          key: ${{ steps.kit.outputs.cache-primary-key }}
+
+      - name: Restore compiler cache
+        uses: actions/cache/restore@v4
+        with:
+          path: .ccache
+          key: ccache-linux-${{ github.run_id }}
+          restore-keys: ccache-linux-
+
+      - name: Configure game (co-op switch and test bot on)
+        run: |
+          mkdir -p logs
+          cmake --preset linux-gcc-x64 -DA51_LOCAL_COOP=ON -DA51_LOCAL_COOP_QA=ON -DA51_COOP_BUILD=${{ github.run_number }} \
+            -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
+            2>&1 | tee logs/configure.txt
+          grep -q '^A51_LOCAL_COOP:BOOL=ON$' build/linux-gcc-x64/CMakeCache.txt
+          grep -q '^A51_LOCAL_COOP_QA:BOOL=ON$' build/linux-gcc-x64/CMakeCache.txt
+
+      - name: Build A51 (OptDebug configuration)
+        run: |
+          mkdir -p logs
+          cmake --build build/linux-gcc-x64 --config OptDebug --target A51 --parallel 4 2>&1 | tee logs/build.txt
+          ccache -s | tee logs/ccache.txt
+
+      - name: Save compiler cache
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: .ccache
+          key: ccache-linux-${{ github.run_id }}
+
+      - name: Package runtime
+        run: |
+          BIN="$(find build/linux-gcc-x64/Apps/GameApp -maxdepth 2 -name A51 -type f | head -n 1)"
+          echo "binary: $BIN"
+          test -n "$BIN"
+          cmake "-DA51_BINARY=$BIN" "-DA51_SHADER_KIT=build/shaders/GameApp/release" "-DA51_PACKAGE_DIR=build/packages/linux-x64-qa" -P cmake/PackageRuntime.cmake
+
+      - name: The test build must contain the test bot (positive control for the play-build check)
+        run: |
+          grep -a -q 'A51_QA_SCRIPT' build/packages/linux-x64-qa/A51
+          echo "test bot present in the test build"
+
+      - name: Upload build (test build, for the test jobs; not for playing)
+        uses: actions/upload-artifact@v4
+        with:
+          name: A51-coop-test-linux-x64
+          path: build/packages/linux-x64-qa
+          if-no-files-found: error
+
+      - name: Publish build report
+        if: always()
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p report
+          echo "run: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" > report/meta.txt
+          echo "sha: $GITHUB_SHA" >> report/meta.txt
+          echo "job status: ${{ job.status }}" >> report/meta.txt
+          for f in logs/*.txt; do
+            [ -f "$f" ] || continue
+            b="$(basename "$f" .txt)"
+            tail -n 250 "$f" > "report/$b-tail.txt"
+            grep -n -E "error|FAILED|undefined reference|fatal" "$f" | head -150 > "report/$b-errors.txt" || true
+          done
+          bash tools/coop-qa/publish_results.sh report "runs-4p/${{ github.run_number }}/linux"
+
+  linux-test:
+    name: Two-controller test on Linux (${{ matrix.mode }})
+    needs: linux-build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      matrix:
+        mode: [coop, swap, single, coop-l2, single-l2, coop-exit, single-exit, coop-descent, chain, menu-coop]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install runtime dependencies (virtual display, software Vulkan, gdb)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            xvfb mesa-vulkan-drivers libvulkan1 vulkan-tools gdb unzip imagemagick \
+            libx11-6 libxext6 libxrandr2 libxcursor1 libxfixes3 libxi6 libxss1 libxtst6 \
+            libxkbcommon0 libasound2t64 libpulse0 libudev1 libusb-1.0-0 libdbus-1-3
+
+      - name: Prove the scorer before trusting it
+        run: |
+          mkdir -p qa-out
+          python3 -I tools/coop-qa/coopqa.py selftest | tee qa-out/selftest.txt
+          test "${PIPESTATUS[0]}" -eq 0
+
+      - name: Download the test build
+        uses: actions/download-artifact@v4
+        with:
+          name: A51-coop-test-linux-x64
+          path: pkg
+
+      - name: Download the Asset Pack and merge the PC textures
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          sudo mkdir -p /mnt/pack
+          sudo chown "$USER" /mnt/pack
+          gh release download "$ASSET_TAG" --repo "$ASSET_REPO" --dir /mnt/pack/dl --clobber
+          ls -la /mnt/pack/dl
+          unzip -q /mnt/pack/dl/*.zip -d /mnt/pack/data
+          ROOT="$(find /mnt/pack/data -maxdepth 2 -type d -name Main-Assets | head -n 1)"
+          echo "Main-Assets: $ROOT"
+          test -d "$ROOT"
+          TEX="$(dirname "$ROOT")/PC-Textures"
+          test -d "$TEX"
+          cp -a "$TEX"/. "$ROOT"/
+          rm -rf /mnt/pack/dl
+          echo "DATA_DIR=$ROOT" >> "$GITHUB_ENV"
+          df -h /mnt | tail -n 1
+
+      - name: Play the test
+        run: |
+          chmod +x pkg/A51
+          export QA_WORK=/mnt/pack/work
+          export QA_GDB=1
+          bash tools/coop-qa/run_linux.sh "${{ matrix.mode }}" pkg "$DATA_DIR" qa-out 2>&1 | tee -a qa-out/launcher-console.txt
+          exit "${PIPESTATUS[0]}"
+
+      - name: Publish test results (text only)
+        if: always()
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p qa-out
+          echo "run: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" > qa-out/meta.txt
+          echo "sha: $GITHUB_SHA" >> qa-out/meta.txt
+          echo "job status: ${{ job.status }}" >> qa-out/meta.txt
+          bash tools/coop-qa/publish_results.sh qa-out "runs-4p/${{ github.run_number }}/linux-test-${{ matrix.mode }}"
+
+  level-sweep:
+    name: Level sweep (co-op, map ${{ matrix.level }})
+    needs: linux-build
+    if: github.event_name == 'workflow_dispatch' && inputs.level_sweep
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      max-parallel: 10
+      matrix:
+        level: [1000, 1010, 1020, 1030, 1040, 1050, 1060, 1070, 1075, 1080, 1090, 1095, 1100, 1105, 1110, 1115, 1120, 1125, 1130]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install runtime dependencies (virtual display, software Vulkan, gdb)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            xvfb mesa-vulkan-drivers libvulkan1 vulkan-tools gdb unzip imagemagick \
+            libx11-6 libxext6 libxrandr2 libxcursor1 libxfixes3 libxi6 libxss1 libxtst6 \
+            libxkbcommon0 libasound2t64 libpulse0 libudev1 libusb-1.0-0 libdbus-1-3
+
+      - name: Download the test build
+        uses: actions/download-artifact@v4
+        with:
+          name: A51-coop-test-linux-x64
+          path: pkg
+
+      - name: Download the Asset Pack and merge the PC textures
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          sudo mkdir -p /mnt/pack
+          sudo chown "$USER" /mnt/pack
+          gh release download "$ASSET_TAG" --repo "$ASSET_REPO" --dir /mnt/pack/dl --clobber
+          unzip -q /mnt/pack/dl/*.zip -d /mnt/pack/data
+          ROOT="$(find /mnt/pack/data -maxdepth 2 -type d -name Main-Assets | head -n 1)"
+          test -d "$ROOT"
+          TEX="$(dirname "$ROOT")/PC-Textures"
+          test -d "$TEX"
+          cp -a "$TEX"/. "$ROOT"/
+          rm -rf /mnt/pack/dl
+          echo "DATA_DIR=$ROOT" >> "$GITHUB_ENV"
+
+      - name: Play the level
+        run: |
+          mkdir -p qa-out
+          chmod +x pkg/A51
+          export QA_WORK=/mnt/pack/work
+          export QA_GDB=1
+          export QA_LEVEL_ID=${{ matrix.level }}
+          export QA_MAX_SECONDS=1500
+          bash tools/coop-qa/run_linux.sh sweep pkg "$DATA_DIR" qa-out 2>&1 | tee -a qa-out/launcher-console.txt
+          exit 0
+
+      - name: Publish results (text only)
+        if: always()
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p qa-out
+          test -s qa-out/sweep.txt || echo "level ${{ matrix.level }}: PROBLEM - no report (the job did not finish: ${{ job.status }})" > qa-out/sweep.txt
+          echo "run: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" > qa-out/meta.txt
+          bash tools/coop-qa/publish_results.sh qa-out "runs-4p/${{ github.run_number }}/sweep-${{ matrix.level }}"
+
+  sweep-report:
+    name: Level sweep report
+    needs: level-sweep
+    if: always() && github.event_name == 'workflow_dispatch' && inputs.level_sweep
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Collect the per-level lines
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          git fetch --quiet origin qa-results:refs/remotes/origin/qa-results
+          mkdir -p report
+          for f in $(git ls-tree --name-only origin/qa-results "runs-4p/${{ github.run_number }}/" | grep '/sweep-' | sort); do
+            git show "origin/qa-results:$f/sweep.txt" 2>/dev/null || echo "$(basename "$f"): no report"
+          done > report/sweep-report.txt
+          cat report/sweep-report.txt
+          echo "## Level sweep" >> "$GITHUB_STEP_SUMMARY"
+          sed 's/^/    /' report/sweep-report.txt >> "$GITHUB_STEP_SUMMARY"
+          bash tools/coop-qa/publish_results.sh report "runs-4p/${{ github.run_number }}/sweep-report"
+
+  windows-smoke:
+    name: Windows start-up check (play build, real setup script)
+    needs: windows
+    runs-on: windows-2022
+    timeout-minutes: 60
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download the play build
+        uses: actions/download-artifact@v4
+        with:
+          name: A51-coop-stage1-win-x64
+          path: ${{ runner.temp }}\play
+
+      - name: Put the play files next to the game, as in the zip
+        shell: powershell
+        run: |
+          Copy-Item "tools\coop-play\*" "$env:RUNNER_TEMP\play\" -Force -Recurse
+          Get-ChildItem "$env:RUNNER_TEMP\play" | Format-Table Name, Length | Out-String | Write-Host
+
+      - name: Run the real setup script (downloads the Asset Pack)
+        shell: powershell
+        run: |
+          $ErrorActionPreference = 'Continue'
+          New-Item -ItemType Directory -Force report | Out-Null
+          $play = "$env:RUNNER_TEMP\play"
+          # The call PLAY-COOP-2-PLAYERS.cmd makes, plus -Yes because nobody is here to answer the question.
+          cmd /c "powershell.exe -NoProfile -ExecutionPolicy Bypass -File `"$play\Setup-Assets.ps1`" -Yes > report\setup.txt 2>&1"
+          $code = $LASTEXITCODE
+          Get-Content report\setup.txt | Write-Host
+          "setup exit code $code" | Add-Content report\setup.txt -Encoding Ascii
+          if ($code -ne 0) { exit $code }
+          if (-not (Test-Path "$play\LEVELS")) { throw 'no LEVELS folder after setup' }
+          if (-not (Test-Path "$play\.coop-assets-ok")) { throw 'no marker file after setup' }
+          Get-ChildItem $play -Directory | Select-Object -ExpandProperty Name | Out-File report\data-folders.txt -Encoding Ascii
+
+      - name: Start the game and watch it for a minute
+        shell: powershell
+        run: |
+          $ErrorActionPreference = 'Continue'
+          $play = "$env:RUNNER_TEMP\play"
+          New-Item -ItemType Directory -Force report | Out-Null
+          function Log([string] $t) { Write-Host $t; Add-Content -LiteralPath report\smoke.txt -Value $t -Encoding Ascii }
+
+          # This machine has no graphics card and the game needs a Vulkan device, so look for a software one:
+          # Chrome and Edge ship SwiftShader together with a Vulkan loader.
+          $icd = $null
+          foreach ($root in 'C:\Program Files\Google\Chrome\Application', 'C:\Program Files (x86)\Microsoft\Edge\Application') {
+            if ((-not $icd) -and (Test-Path $root)) {
+              $icd = Get-ChildItem -Path $root -Recurse -Filter vk_swiftshader_icd.json -ErrorAction SilentlyContinue | Select-Object -First 1
+            }
+          }
+          $soft = $false
+          if ($icd) {
+            Log ('software Vulkan driver found: ' + $icd.FullName)
+            $loader = Join-Path $icd.DirectoryName 'vulkan-1.dll'
+            if (Test-Path $loader) {
+              Copy-Item $loader "$play\vulkan-1.dll" -Force
+              Log 'copied its Vulkan loader next to the exe (this check only, it is not in the package)'
+              $env:VK_ICD_FILENAMES = $icd.FullName
+              $env:VK_DRIVER_FILES = $icd.FullName
+              $soft = $true
+            } else {
+              Log 'but it has no vulkan-1.dll next to it'
+            }
+          } else {
+            Log 'no software Vulkan driver found on this machine'
+          }
+
+          $env:A51_LOCAL_COOP = '2'
+          $started = Get-Date
+          $p = Start-Process -FilePath "$play\A51.exe" -WorkingDirectory $play -PassThru -RedirectStandardOutput "$play\_out.txt" -RedirectStandardError "$play\_err.txt"
+          Start-Sleep -Seconds 75
+          $p.Refresh()
+          $mode = 'with a software Vulkan driver'
+          if (-not $soft) { $mode = 'without any Vulkan driver (this machine has no graphics card)' }
+          if ($p.HasExited) {
+            Log ('SMOKE RESULT: EXITED ' + $mode + ', exit code ' + $p.ExitCode)
+          } else {
+            Log ('SMOKE RESULT: RUNNING ' + $mode + ': still running after 75 s, responding=' + $p.Responding + ', window title=[' + $p.MainWindowTitle + '], cpu seconds=' + [int]$p.TotalProcessorTime.TotalSeconds + ', memory MB=' + [int]($p.WorkingSet64 / 1MB))
+            Stop-Process -Id $p.Id -Force
+          }
+          foreach ($f in '_out.txt', '_err.txt') {
+            if (Test-Path "$play\$f") {
+              Log ('--- ' + $f + ' (last 80 lines)')
+              Get-Content "$play\$f" -Tail 80 | ForEach-Object { Log $_ }
+            }
+          }
+          Log '--- files the game wrote next to the exe (names only)'
+          Get-ChildItem $play -File | Where-Object { $_.LastWriteTime -gt $started.AddSeconds(-1) } | ForEach-Object { Log $_.Name }
+          if (Test-Path "$play\a51_local_coop_probe.log") { Get-Content "$play\a51_local_coop_probe.log" -Tail 40 | Set-Content report\probe-tail.txt -Encoding Ascii }
+          Log '--- Windows application error events in the last 15 minutes that mention A51'
+          Get-WinEvent -FilterHashtable @{ LogName = 'Application'; StartTime = (Get-Date).AddMinutes(-15) } -ErrorAction SilentlyContinue | Where-Object { $_.Message -match 'A51' } | Select-Object -First 3 | ForEach-Object { Log $_.Message }
+          exit 0
+
+      - name: Publish report
+        if: always()
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p report
+          echo "run: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" > report/meta.txt
+          echo "sha: $GITHUB_SHA" >> report/meta.txt
+          echo "job status: ${{ job.status }}" >> report/meta.txt
+          bash tools/coop-qa/publish_results.sh report "runs-4p/${{ github.run_number }}/windows-smoke"
+
+  nexus-package:
+    name: NexusMods package (drop-in files, A51.exe alone)
+    needs: windows
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download the play build
+        uses: actions/download-artifact@v4
+        with:
+          name: A51-coop-stage1-win-x64
+          path: play
+
+      - name: Assemble the mod zip
+        run: |
+          set -euo pipefail
+          N=${{ github.run_number }}
+          if [ "$N" -le 95 ]; then VER="0.$(printf %02d "$N")"; else VER="0.95.$((N - 95))"; fi
+          D=nexus
+          mkdir -p "$D"
+          cp play/A51.exe "$D/"
+          cp -r play/SHADERS "$D/"
+          cp -r tools/coop-play/SCREENS "$D/"
+          cp tools/coop-play/nexus/README-SplitscreenCoop.txt "$D/"
+          sed -i 's/\r$//; s/$/\r/' "$D/README-SplitscreenCoop.txt"
+          # nothing for tests or setup in the mod
+          ! ls "$D" | grep -i -E '\.cmd$|\.ps1$|TEST-REPORT|qa' || { echo "test or setup files in the mod"; exit 1; }
+          ZIP="Area51-SplitscreenCoop-v$VER.zip"
+          (cd "$D" && zip -q -r -9 "../$ZIP" .)
+          unzip -l "$ZIP"
+          echo "NEXUS_ZIP=$ZIP" >> "$GITHUB_ENV"
+
+      - name: Keep the mod zip
+        uses: actions/upload-artifact@v4
+        with:
+          name: nexus-package
+          path: ${{ env.NEXUS_ZIP }}
+
+  nexus-smoke:
+    name: NexusMods package on a fresh install (A51.exe alone, no launcher)
+    needs: nexus-package
+    runs-on: windows-2022
+    timeout-minutes: 60
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download the mod zip
+        uses: actions/download-artifact@v4
+        with:
+          name: nexus-package
+          path: ${{ runner.temp }}\nexus
+
+      - name: Make a Dreamland-51 game folder with its data (as a player has it)
+        shell: powershell
+        run: |
+          $ErrorActionPreference = 'Continue'
+          New-Item -ItemType Directory -Force report | Out-Null
+          $game = "$env:RUNNER_TEMP\game"
+          New-Item -ItemType Directory -Force $game | Out-Null
+          # the setup script expects A51.exe in the folder (a game folder has one): put the mod's
+          # files there first; the mod is dragged in again in the next step
+          $zip = Get-ChildItem "$env:RUNNER_TEMP\nexus\*.zip" | Select-Object -First 1
+          Expand-Archive -Path $zip.FullName -DestinationPath $game -Force
+          Copy-Item "tools\coop-play\Setup-Assets.ps1" $game
+          cmd /c "powershell.exe -NoProfile -ExecutionPolicy Bypass -File `"$game\Setup-Assets.ps1`" -Yes > report\setup.txt 2>&1"
+          if ($LASTEXITCODE -ne 0) { Get-Content report\setup.txt | Write-Host; exit 1 }
+          Remove-Item "$game\Setup-Assets.ps1", "$game\.coop-assets-ok" -Force -ErrorAction SilentlyContinue
+          if (-not (Test-Path "$game\LEVELS")) { throw 'no game data' }
+
+      - name: Drag the mod into the game folder and start A51.exe alone
+        shell: powershell
+        run: |
+          $ErrorActionPreference = 'Continue'
+          $game = "$env:RUNNER_TEMP\game"
+          New-Item -ItemType Directory -Force report | Out-Null
+          function Log([string] $t) { Write-Host $t; Add-Content -LiteralPath report\smoke.txt -Value $t -Encoding Ascii }
+          $zip = Get-ChildItem "$env:RUNNER_TEMP\nexus\*.zip" | Select-Object -First 1
+          Log ('mod zip: ' + $zip.Name)
+          Expand-Archive -Path $zip.FullName -DestinationPath $game -Force
+          Log '--- mod files in the game folder'
+          Get-ChildItem $game -File | Select-Object -ExpandProperty Name | ForEach-Object { Log $_ }
+          if (Get-ChildItem $game -Filter *.cmd) { Log 'MOD RESULT: FAIL (a launcher is in the mod)' }
+
+          $icd = $null
+          foreach ($root in 'C:\Program Files\Google\Chrome\Application', 'C:\Program Files (x86)\Microsoft\Edge\Application') {
+            if ((-not $icd) -and (Test-Path $root)) {
+              $icd = Get-ChildItem -Path $root -Recurse -Filter vk_swiftshader_icd.json -ErrorAction SilentlyContinue | Select-Object -First 1
+            }
+          }
+          if ($icd) {
+            $loader = Join-Path $icd.DirectoryName 'vulkan-1.dll'
+            if (Test-Path $loader) { Copy-Item $loader "$game\vulkan-1.dll" -Force; $env:VK_ICD_FILENAMES = $icd.FullName; $env:VK_DRIVER_FILES = $icd.FullName; Log 'software Vulkan driver in use (this check only)' }
+          }
+
+          # A player double-clicks A51.exe: no environment variables, no launcher.
+          Remove-Item Env:A51_LOCAL_COOP -ErrorAction SilentlyContinue
+          $p = Start-Process -FilePath "$game\A51.exe" -WorkingDirectory $game -PassThru -RedirectStandardOutput "$game\_out.txt" -RedirectStandardError "$game\_err.txt"
+          Start-Sleep -Seconds 75
+          $p.Refresh()
+          $running = -not $p.HasExited
+          if ($running) { Stop-Process -Id $p.Id -Force; Start-Sleep -Seconds 2 }
+          $probe = ''
+          if (Test-Path "$game\a51_local_coop_probe.log") { $probe = Get-Content "$game\a51_local_coop_probe.log" -Raw }
+          $screen = $probe -match 'start screen: ok'
+          Log ('game still running after 75 s: ' + $running)
+          Log ('mod start screen loaded: ' + $screen)
+          $crash = Test-Path "$game\a51_crash.txt"
+          Log ('crash report written: ' + $crash)
+          # This cloud machine has no graphics card: with its software Vulkan driver the game always
+          # stops after the menus start (the normal start-up check shows the same for every build).
+          # So the check is: the mod's files are in place, A51.exe starts from them alone, the
+          # renderer comes up and the mod's start screen loads.
+          # The software driver also makes the game write a crash report once the menus start, in
+          # every build (the normal start-up check shows it for builds the owner played fine), so a
+          # crash report here is noted, not counted.
+          if ($screen) { Log 'MOD RESULT: PASS (starts from the mod files alone and shows the mod start screen; this GPU-less machine cannot play further, real play is checked on a PC)' } else { Log 'MOD RESULT: FAIL' }
+          foreach ($f in '_out.txt', '_err.txt') { if (Test-Path "$game\$f") { Log ('--- ' + $f + ' (last 40 lines)'); Get-Content "$game\$f" -Tail 40 | ForEach-Object { Log $_ } } }
+          if ($probe) { Log '--- probe log (last 30 lines)'; ($probe -split "`n" | Select-Object -Last 30) | ForEach-Object { Log $_ } }
+          exit 0
+
+      - name: Publish the check
+        if: always()
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p report
+          echo "job status: ${{ job.status }}" >> report/meta.txt
+          bash tools/coop-qa/publish_results.sh report "runs-4p/${{ github.run_number }}/nexus-smoke"
+
+  release:
+    name: Publish the Windows play package (GitHub release)
+    needs: [windows, windows-smoke, linux-test, nexus-package, nexus-smoke]
+    if: ${{ !cancelled() && needs.windows.result == 'success' && (needs.linux-test.result == 'success' || inputs.release_anyway == true) }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - name: Checkout (full history without file contents, the release notes list the commits)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          filter: blob:none
+
+      - name: Download the play build
+        uses: actions/download-artifact@v4
+        with:
+          name: A51-coop-stage1-win-x64
+          path: play
+
+      - name: Download the debug symbols
+        uses: actions/download-artifact@v4
+        with:
+          name: A51-coop-stage1-win-x64-pdb
+          path: pdb
+        continue-on-error: true
+
+      - name: Download the NexusMods package
+        uses: actions/download-artifact@v4
+        with:
+          name: nexus-package
+          path: nexus
+        continue-on-error: true
+
+      - name: Assemble the package
+        run: |
+          set -euo pipefail
+          NAME="Area51-Coop-Stage1-win-x64"
+          mkdir -p "dist/$NAME"
+          cp -a play/. "dist/$NAME/"
+          cp tools/coop-play/Setup-Assets.ps1 tools/coop-play/PLAY-COOP-2-PLAYERS.cmd tools/coop-play/PLAY-SINGLE-PLAYER.cmd tools/coop-play/README.txt "dist/$NAME/"
+          # the co-op mod's start screen (the owner's picture)
+          cp -r tools/coop-play/SCREENS "dist/$NAME/"
+
+          # The test results of this very commit, as text, from the results branch.
+          git fetch --quiet --depth 30 origin qa-results:refs/remotes/origin/qa-results || true
+          R="runs-4p/${{ github.run_number }}"
+          show() { git show "origin/qa-results:$1" 2>/dev/null || echo "(not found: $1)"; }
+          {
+            echo "TEST REPORT"
+            echo "==========="
+            echo "Commit ${GITHUB_SHA}"
+            echo "Run    ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+            echo
+            echo "What was tested: the same co-op code as in this package, built as a Linux test build with a bot"
+            echo "that drives two virtual controllers, run with a software renderer. The Windows build in this zip"
+            echo "was built and started in the cloud, but it has not been played with real controllers yet."
+            for m in coop swap single; do
+              echo
+              echo "----- two-controller test, mode: $m -----"
+              show "$R/linux-test-$m/run.txt"
+              show "$R/linux-test-$m/score.txt"
+            done
+            echo
+            echo "----- Windows start-up check (first lines) -----"
+            show "$R/windows-smoke/smoke.txt" | sed -n '1,12p'
+          } > "dist/$NAME/TEST-REPORT.txt"
+
+          for f in "dist/$NAME"/*.cmd "dist/$NAME"/*.ps1 "dist/$NAME"/README.txt "dist/$NAME"/TEST-REPORT.txt; do
+            sed -i 's/\r$//; s/$/\r/' "$f"
+          done
+
+          ZIP="$NAME-run${{ github.run_number }}.zip"
+          (cd dist && zip -q -r -9 "../$ZIP" "$NAME")
+          ls -l "$ZIP"
+          sha256sum "$ZIP" | tee zip.sha256
+          echo "ZIP=$ZIP" >> "$GITHUB_ENV"
+
+      - name: Did the game change since the newest test build?
+        id: changed
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          # A build whose commits only touch docs, workflows or test tools makes no new draft (it
+          # would push a real game build out of the kept ones).  release_anyway forces a draft.
+          LAST="$(gh api "repos/${GITHUB_REPOSITORY}/releases?per_page=100" \
+                    --jq '[.[] | select(.draft and (.name | test("^(AREA 51 SPLITSCREEN CO-OP 4P v[0-9.]+ \\(test build|Co-op 4P, build)")))] | sort_by(.created_at) | reverse | .[0].target_commitish // ""')"
+          GAME=yes
+          if [ -n "$LAST" ] && git cat-file -e "${LAST}^{commit}" 2>/dev/null && [ "${{ inputs.release_anyway }}" != "true" ]; then
+            if ! git diff --name-only "$LAST" "$GITHUB_SHA" | grep -v -E '^(docs/|\.github/|tools/coop-qa/|README\.md$|COOP_TODO\.md$)' | grep -q .; then
+              GAME=no
+            fi
+          fi
+          echo "game=$GAME" >> "$GITHUB_OUTPUT"
+          echo "game files changed since the newest test build ($LAST): $GAME"
+
+      - name: Create the release
+        if: steps.changed.outputs.game == 'yes'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          TAG="coop-4p-run${{ github.run_number }}"
+          COOP="${{ needs.linux-test.result }}"
+          git fetch --quiet --depth 30 origin qa-results:refs/remotes/origin/qa-results || true
+          SMOKE="$(git show "origin/qa-results:runs-4p/${{ github.run_number }}/windows-smoke/smoke.txt" 2>/dev/null | tr -d '\r' | grep -m1 '^SMOKE RESULT' | sed 's/^SMOKE RESULT: //' || true)"
+          [ -n "$SMOKE" ] || SMOKE="no result"
+          PRE=()
+          if [ "$COOP" != "success" ]; then PRE=(--prerelease); fi
+          SUM="$(cut -d' ' -f1 zip.sha256)"
+          NEXUS="$(git show "origin/qa-results:runs-4p/${{ github.run_number }}/nexus-smoke/smoke.txt" 2>/dev/null | tr -d '\r' | grep -m1 '^MOD RESULT' | sed 's/^MOD RESULT: //' || true)"
+          [ -n "$NEXUS" ] || NEXUS="no result"
+          NEXUS_ZIP=(); for z in nexus/*.zip; do [ -f "$z" ] && NEXUS_ZIP+=("$z"); done
+          cat > notes.md <<EOF
+          TEST BUILD (draft, only visible to the owner). Experimental two-player split-screen co-op for the Area 51 (2005) PC port. Not an official release.
+
+          How to use: download the zip below, extract it into a new folder, double-click PLAY-COOP-2-PLAYERS.cmd. It asks before it downloads the game data (about 1.5 GB). README.txt inside the zip has the details and the known gaps.
+
+          Built from commit ${GITHUB_SHA} by this repository's Actions run ${GITHUB_RUN_ID}.
+
+          Automated checks of this commit:
+          - Two-controller test (Linux test build with a bot, software rendering): ${COOP}
+          - Windows start-up check of this exact build (the cloud machine has no graphics card): ${SMOKE}
+          - The play build contains no test code (checked in the build job).
+
+          The zip contains no game data. SHA-256 of the zip: ${SUM}
+
+          NexusMods package (Area51-SplitscreenCoop-v*.zip): the drop-in files for an existing Dreamland-51 install (A51.exe, SHADERS, SCREENS, readme; no launcher, no test files). Fresh-install check (mod dragged into a game folder, A51.exe started alone): ${NEXUS}
+          EOF
+          PDB=()
+          if [ -f pdb/A51.pdb ]; then PDB=("pdb/A51.pdb#A51-run${{ github.run_number }}.pdb (debug symbols, only needed to read a crash report)"); fi
+          gh release delete "$TAG" --repo "$GITHUB_REPOSITORY" --yes --cleanup-tag >/dev/null 2>&1 || true
+          # Test builds are drafts: only the owner (and people with write access) see them.
+          # Official versions are published for everyone by the job "official" below.
+          gh release create "$TAG" --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --draft \
+            --title "Co-op 4P, build ${{ github.run_number }} (test build)" --notes-file notes.md "${PRE[@]}" "$ZIP" "${NEXUS_ZIP[@]}" "${PDB[@]}"
+
+          # Older test builds that were published before builds became drafts: make them drafts too.
+          gh release list --repo "$GITHUB_REPOSITORY" --limit 50 --json tagName,isDraft \
+            --jq '.[] | select((.tagName | startswith("coop-4p-run")) and (.isDraft | not)) | .tagName' \
+            | while read -r PUB; do gh release edit "$PUB" --repo "$GITHUB_REPOSITORY" --draft=true || true; done
+
+          # keep the newest three builds, remove older ones
+          gh release list --repo "$GITHUB_REPOSITORY" --limit 50 --json tagName,createdAt \
+            --jq '[.[] | select(.tagName | startswith("coop-4p-run"))] | sort_by(.createdAt) | reverse | .[5:] | .[].tagName' \
+            | while read -r OLD; do gh release delete "$OLD" --repo "$GITHUB_REPOSITORY" --yes --cleanup-tag || true; done
+
+      - name: Release names (test builds and official releases)
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git fetch --quiet --depth 30 origin qa-results:refs/remotes/origin/qa-results || true
+          export TITLE_REGEX='^(AREA 51 SPLITSCREEN CO-OP 4P v[0-9.]+ \(test build [0-9]+\)|Co-op 4P, build [0-9]+)'
+          export LINE_TITLE="AREA 51 SPLITSCREEN CO-OP 4P" LINE_SHOWN="AREA 51 Splitscreen Co-op 4P"
+          export FILE_BASE="AREA51_SplitscreenCoop_4P" OFFICIAL_PREFIX="AREA51_SplitscreenCoop_4P_v"
+          export RESULTS_ROOT="runs-4p" WORKFLOW_FILE="coop-4p-build.yml" LINE_BRANCH="coop/4player"
+          bash tools/coop-qa/tidy_releases.sh || echo "release naming: some steps failed (see above)"
+
+  # ----------------------------------------------------------------------------------------
+  # Official release: publish an already tested build for everyone (Releases page, public).
+  # Started by hand with official_run (the Actions run id of the tested build) and
+  # official_name.  Nothing is rebuilt: the files are that run's own.  Also kept on the branch
+  # "milestones" under the same name.
+  official:
+    name: Official release for everyone (a tested build, not rebuilt)
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.official_run && inputs.official_name }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download the tested build's NexusMods package
+        uses: actions/download-artifact@v4
+        with:
+          name: nexus-package
+          path: nexus
+          run-id: ${{ inputs.official_run }}
+          github-token: ${{ github.token }}
+        continue-on-error: true
+
+      - name: Download its debug symbols
+        uses: actions/download-artifact@v4
+        with:
+          name: A51-coop-stage1-win-x64-pdb
+          path: pdb
+          run-id: ${{ inputs.official_run }}
+          github-token: ${{ github.token }}
+        continue-on-error: true
+
+      - name: Publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_ID: ${{ inputs.official_run }}
+          SUFFIX: ${{ inputs.official_name }}
+        run: |
+          set -euo pipefail
+          case "$SUFFIX" in *[!A-Za-z0-9_.-]*) echo "official_name may only use letters, digits, _ . -"; exit 1;; esac
+          case "$RUN_ID" in *[!0-9]*) echo "official_run must be the run id (digits)"; exit 1;; esac
+          INFO="$(gh api "repos/${GITHUB_REPOSITORY}/actions/runs/${RUN_ID}" --jq '"\(.run_number) \(.head_sha) \(.conclusion) \(.path)"')"
+          read -r NUM SHA CONC WPATH <<< "$INFO"
+          case "$WPATH" in *coop-4p-build.yml*) ;; *) echo "run $RUN_ID is not a co-op build"; exit 1;; esac
+          [ "$CONC" = "success" ] || { echo "run $RUN_ID did not pass (conclusion: $CONC)"; exit 1; }
+          if [ "$NUM" -le 95 ]; then VER="0.$(printf %02d "$NUM")"; else VER="0.95.$((NUM - 95))"; fi
+          NAME="4P_v${VER}_${SUFFIX}"   # folder on milestones and changelog heading; files AREA51_SplitscreenCoop_4P_v...
+          # Official file names always start with AREA51_SplitscreenCoop_ (owner's rule); the tag too.
+          REL="AREA51_SplitscreenCoop_${NAME}"
+          ZIP="${REL}.zip"
+          # A build already kept on "milestones" under this name: publish exactly that file (the one
+          # that was tested), whatever it was called there.  Otherwise the run's own NexusMods package.
+          git fetch -q --depth 1 origin milestones:refs/remotes/origin/milestones 2>/dev/null || true
+          KEPT=""
+          for k in "${NAME}/${ZIP}" "${NAME}/Area51-SplitscreenCoop-${NAME}.zip"; do
+            if git cat-file -e "origin/milestones:${k}" 2>/dev/null; then KEPT="$k"; break; fi
+          done
+          if [ -n "$KEPT" ]; then
+            git show "origin/milestones:${KEPT}" > "$ZIP"
+            echo "using the kept file milestones/${KEPT}"
+          else
+            SRC="$(ls nexus/*.zip 2>/dev/null | head -1 || true)"
+            [ -n "$SRC" ] || { echo "run $RUN_ID has no NexusMods package and milestones has no ${NAME}/${ZIP}"; exit 1; }
+            cp "$SRC" "$ZIP"
+          fi
+          unzip -l "$ZIP"
+          LABEL="v${VER}"; [ -n "$SUFFIX" ] && LABEL="v${VER} - ${SUFFIX//_/ }"
+          TITLE="AREA 51 SPLITSCREEN CO-OP 4P ${LABEL}"
+          # What changed: the section "## <NAME>" of docs/coop/CHANGELOG-4P.md.
+          CHANGES="$(awk -v h="## ${NAME}" '$0==h{f=1;next} f&&/^## /{exit} f' docs/coop/CHANGELOG-4P.md | sed -e '/./,$!d')"
+          [ -n "$CHANGES" ] || { echo "docs/coop/CHANGELOG-4P.md has no section '## ${NAME}': write what changed first"; exit 1; }
+          {
+            echo "# AREA 51 SPLITSCREEN CO-OP 4P"
+            echo
+            echo "**${LABEL}**: two-player local split-screen co-op for the whole Area 51 (2005) campaign, for the Dreamland-51 PC port (Windows 11). Made by VortexHyperBeast. This mod will always be free."
+            echo
+            echo "## What's new in this version"
+            echo
+            printf '%s\n' "$CHANGES"
+            echo
+            echo "## Install"
+            echo
+            echo "You need the Dreamland-51 port of Area 51, installed and working. Download \`${ZIP}\`, drag everything in it into your game folder (the folder with A51.exe), allow Windows to replace the files, and start A51.exe. The readme inside the zip has the details, the co-op rules and the settings."
+            echo
+            echo "The zip contains no game data. Built from commit ${SHA} (build ${NUM})."
+          } > notes.md
+          cat notes.md
+          ASSETS=("${ZIP}#AREA 51 Splitscreen Co-op 4P v${VER} Official Release")
+          if [ ! -f pdb/A51.pdb ] && git cat-file -e "origin/milestones:${NAME}/A51-${NAME}.pdb" 2>/dev/null; then
+            mkdir -p pdb && git show "origin/milestones:${NAME}/A51-${NAME}.pdb" > pdb/A51.pdb
+          fi
+          if [ -f pdb/A51.pdb ]; then cp pdb/A51.pdb "${REL}.pdb"; ASSETS+=("${REL}.pdb#AREA 51 Splitscreen Co-op 4P v${VER} Crash Debug"); fi
+          gh release delete "$REL" --repo "$GITHUB_REPOSITORY" --yes --cleanup-tag >/dev/null 2>&1 || true
+          # The tag goes on this run's own commit: GitHub refuses a workflow token a tag on an older
+          # commit when workflow files changed since.  Only publish when the game code there is the
+          # tested build's (otherwise only noted); the files are the tested build's own either way.
+          git fetch -q --depth 1 origin "$SHA"
+          if git diff --name-only "$SHA" "$GITHUB_SHA" | grep -v -E '^(docs/|\.github/|tools/coop-qa/|README\.md$|COOP_TODO\.md$)' | grep -q .; then
+            echo "note: the game code changed since build $NUM; the tag marks the current commit, the files and the notes are build $NUM's"
+          fi
+          gh release create "$REL" --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --latest \
+            --title "$TITLE" --notes-file notes.md "${ASSETS[@]}"
+          echo "published: $REL"
+
+          # Keep it on the branch "milestones" as well.
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          rm -rf ms && mkdir ms && cd ms
+          git init -q
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          if git fetch -q --depth 1 origin milestones 2>/dev/null; then git checkout -q -b milestones FETCH_HEAD; else git checkout -q --orphan milestones; fi
+          if [ ! -d "$NAME" ]; then
+            mkdir -p "$NAME"
+            cp "../$ZIP" "$NAME/"
+            if [ -f "../${REL}.pdb" ]; then cp "../${REL}.pdb" "$NAME/"; fi
+            { echo "$TITLE (build ${NUM})"; echo; echo "Official release. Built from commit ${SHA} (Actions run ${RUN_ID})."; } > "$NAME/ABOUT.txt"
+            git add "$NAME"
+            git commit -q -m "Official release $NAME"
+            git push -q origin HEAD:milestones
+            echo "kept on branch milestones: $NAME/"
+          fi

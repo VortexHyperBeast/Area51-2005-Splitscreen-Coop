@@ -10,6 +10,7 @@ all mod work is on the branch `coop/stage1`.
 |---|---|
 | `master` | The upstream port (Source2Spy/area51-pc) as forked. Never changed here. |
 | `coop/stage1` | The mod: game code changes, build/test workflows, tools, these docs. |
+| `coop/4player` | The 4-player split-screen line, started from v0.95.55. Own workflow (`coop-4p-build.yml`), build numbers, results (`runs-4p/`) and releases (marked 4P). Plan: [PLAN-4P.md](PLAN-4P.md). |
 | `milestones` | Saved builds kept for good (NexusMods zip, play build, debug symbols), one folder each. |
 | `qa-results` | Text logs and test results of the newest cloud builds. |
 
