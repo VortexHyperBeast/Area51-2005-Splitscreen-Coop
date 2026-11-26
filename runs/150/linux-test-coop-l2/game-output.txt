@@ -1,0 +1,452 @@
+=== first 150 lines
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[New Thread 0x7ffff27ac6c0 (LWP 3429)]
+[New Thread 0x7ffff17ab6c0 (LWP 3430)]
+[New Thread 0x7ffff039a6c0 (LWP 3431)]
+[New Thread 0x7fffed3716c0 (LWP 3432)]
+[New Thread 0x7fffecb706c0 (LWP 3433)]
+[New Thread 0x7fffe7fff6c0 (LWP 3434)]
+[New Thread 0x7fffe77fe6c0 (LWP 3435)]
+[New Thread 0x7fffe6ffd6c0 (LWP 3436)]
+[New Thread 0x7fffe67fc6c0 (LWP 3437)]
+[New Thread 0x7fffe5ffb6c0 (LWP 3438)]
+[New Thread 0x7fffe57fa6c0 (LWP 3439)]
+[New Thread 0x7fffcd3ff6c0 (LWP 3441)]
+[New Thread 0x7fffcc3fe6c0 (LWP 3442)]
+[New Thread 0x7fffcb3fd6c0 (LWP 3443)]
+[New Thread 0x7fffca3fc6c0 (LWP 3444)]
+[New Thread 0x7fffc93fb6c0 (LWP 3445)]
+[New Thread 0x7fffb3fff6c0 (LWP 3446)]
+[New Thread 0x7fffb2ffe6c0 (LWP 3447)]
+[New Thread 0x7fffb1ffd6c0 (LWP 3448)]
+[New Thread 0x7fffabfff6c0 (LWP 3449)]
+[New Thread 0x7fffaaffe6c0 (LWP 3450)]
+[New Thread 0x7fff97fff6c0 (LWP 3451)]
+[New Thread 0x7fff96ffe6c0 (LWP 3452)]
+A51 Vulkan swapchain: video=x11 present=vsync requested-images=3 actual-images=3 frames-in-flight=2 surface-min=3 surface-max=0 size=640x360
+[New Thread 0x7fff95ffd6c0 (LWP 3453)]
+[New Thread 0x7fff8ffff6c0 (LWP 3454)]
+A51 Vulkan swapchain: video=x11 present=vsync requested-images=3 actual-images=3 frames-in-flight=2 surface-min=3 surface-max=0 size=640x360
+[Thread 0x7fff96ffe6c0 (LWP 3452) exited]
+[Thread 0x7fff97fff6c0 (LWP 3451) exited]
+[New Thread 0x7fff96ffe6c0 (LWP 3455)]
+[New Thread 0x7fff97fff6c0 (LWP 3456)]
+A51 Vulkan swapchain: video=x11 present=vsync requested-images=3 actual-images=3 frames-in-flight=2 surface-min=3 surface-max=0 size=640x360
+[Thread 0x7fff8ffff6c0 (LWP 3454) exited]
+[Thread 0x7fff95ffd6c0 (LWP 3453) exited]
+[New Thread 0x7fffedc056c0 (LWP 3457)]
+[New Thread 0x7fff8ffff6c0 (LWP 3458)]
+[New Thread 0x7fff95ffd6c0 (LWP 3459)]
+[New Thread 0x7fff8effe6c0 (LWP 3460)]
+[New Thread 0x7fffee0226c0 (LWP 3461)]
+[New Thread 0x7fffec1bd6c0 (LWP 3463)]
+A51 pipeline begin: request=1 name='CompositePipeline' vs=0f9b8ffad15abef9 ps=e25c03b0699a41dd
+A51 pipeline ready: request=1 ms=0.45
+A51 pipeline begin: request=2 name='UIPipeline' vs=af61eb56773a1252 ps=16ebfd2fd2e33a5c
+A51 pipeline ready: request=2 ms=0.58
+A51 pipeline begin: request=3 name='UIPipeline' vs=af61eb56773a1252 ps=16ebfd2fd2e33a5c
+A51 pipeline ready: request=3 ms=0.53
+A51 pipeline begin: request=4 name='UIPipeline' vs=af61eb56773a1252 ps=16ebfd2fd2e33a5c
+A51 pipeline ready: request=4 ms=0.47
+A51 pipeline begin: request=5 name='UIPipeline' vs=af61eb56773a1252 ps=16ebfd2fd2e33a5c
+A51 pipeline ready: request=5 ms=0.48
+A51 pipeline begin: request=6 name='UIPipeline' vs=af61eb56773a1252 ps=16ebfd2fd2e33a5c
+A51 pipeline ready: request=6 ms=0.50
+A51 pipeline begin: request=7 name='UIPipeline' vs=af61eb56773a1252 ps=16ebfd2fd2e33a5c
+A51 pipeline ready: request=7 ms=0.44
+[Thread 0x7fffec1bd6c0 (LWP 3463) exited]
+0.00: Entered app.
+0.00: Executable directory: /mnt/pack/work/coop-l2/install
+0.00: Data directory: /mnt/pack/work/coop-l2/install
+0.00: Save directory: /mnt/pack/work/coop-l2/install
+0.01: Initialize io system
+0.05: === SDL ENGINE INITIALIZATION START ===
+0.45: SDLEngine: selected depth/stencil texture format D24_UNORM_S8_UINT
+0.45: SDLEngine: swapchain present=vsync frames-in-flight=2 size=640x360
+0.45: SDLEngine: GPU device initialized using driver 'vulkan' shader formats 0x00000002
+0.46: SDL input: opened gamepad 0 'QA Pad 0'
+0.46: SDL input: opened gamepad 1 'QA Pad 1'
+0.46: === SDL ENGINE INITIALIZATION COMPLETE ===
+0.47: ..ClearReceiverQueue
+0.47: Starting to initialize resource manager
+0.47: Finished initializing resource manager
+1.13: audiopkg_loader::PreLoad [AUDIO/DREAMLAND.AUDIOPKG]
+1.25: audiopkg_loader::PreLoad [AUDIO/SFX_FRONTEND.AUDIOPKG]
+1.33: RenderPipeline: initialized successfully
+1.34: FrameCompiler: Initializing shaders
+1.35: FrameCompiler: Initializing rigid shaders
+1.35: FrameCompiler: Rigid shaders initialized successfully
+1.35: FrameCompiler: Initializing skin shaders
+1.35: FrameCompiler: Skin shaders initialized successfully
+1.35: FrameCompiler: Shaders initialized successfully
+1.35: PostProcessFeature: Initializing post-processing feature
+1.35: PostProcessFeature: post-processing feature initialized successfully
+1.45: RenderPlatform: initialized successfully
+1.45: Finished initializing rendering
+1.45: Loaded projected textures
+1.45: Loaded camera
+1.53: audiopkg_loader::PreLoad [AUDIO/DX_FRONTEND.AUDIOPKG]
+1.53: audiopkg_loader::PreLoad [AUDIO/MUSIC_FRONTEND.AUDIOPKG]
+1.55: ScriptMgr: initialized with backend 'Lua 5.5', 5 module(s).
+1.55: SDLEngine: swapchain acquire=0.029ms size=640x360
+1.57: UIRenderer: prewarmed 6 graphics pipeline variants for format 1
+5.36: audiopkg_loader::PreLoad [DX_Loading.audiopkg]
+5.79: audiopkg_loader::PreLoad [AUDIO/DX_FRONTEND.AUDIOPKG]
+5.79: audiopkg_loader::PreLoad [DX_BLUSL0.audiopkg]
+5.79: audiopkg_loader::PreLoad [DX_Hazmat.audiopkg]
+5.79: audiopkg_loader::PreLoad [DX_SPEC41.audiopkg]
+5.79: audiopkg_loader::PreLoad [Footfalls_MRB.audiopkg]
+5.80: audiopkg_loader::PreLoad [MUSIC_Blue.audiopkg]
+5.80: audiopkg_loader::PreLoad [SFX_LevelBlue_SL0-5.audiopkg]
+5.80: audiopkg_loader::PreLoad [SFX_Menu_InGame.audiopkg]
+5.80: audiopkg_loader::PreLoad [SFX_Pickups.audiopkg]
+5.81: StringMgr: failed to load 'ENG_01_Blue_Datapad' from '/mnt/pack/work/coop-l2/install/ENG_01_Blue_Datapad.string'
+5.86: Initializing HUD
+5.86: WARNING: AllocCell1: 00000000 AllocCell2: 632202F0
+5.86: audiopkg_loader::PreLoad [Weapon_DEagle.audiopkg]
+5.93: audiopkg_loader::PreLoad [Weapon_Bullets.audiopkg]
+5.94: audiopkg_loader::PreLoad [Explosion_Main.audiopkg]
+5.94: audiopkg_loader::PreLoad [SFX_Player_Stage0.audiopkg]
+5.94: audiopkg_loader::PreLoad [Explosion_Powder.audiopkg]
+5.95: audiopkg_loader::PreLoad [DX_FrontEnd.audiopkg]
+5.95: audiopkg_loader::PreLoad [MUSIC_FrontEnd.audiopkg]
+5.95: audiopkg_loader::PreLoad [Destruct_Can.audiopkg]
+5.95: audiopkg_loader::PreLoad [Destruct_RubberBarrel.audiopkg]
+6.00: audiopkg_loader::PreLoad [Destruct_Blue_Mite_Jar.audiopkg]
+6.00: DisplayTemplates: 20
+6.00:   0] C:\GameData\A51\Source\Themes\Weapons\Blueprint\WPN_DesertEagle.bpx
+6.00:   1] C:\GameData\A51\Source\Themes\Weapons\Blueprint\WPN_MasonCannon.bpx
+6.00:   2] C:\GameData\A51\Source\Themes\Weapons\Blueprint\WPN_Mutation.bpx
+6.00:   3] C:\GameData\A51\Source\Themes\Weapons\Blueprint\WPN_Shotgun.bpx
+6.00:   4] C:\GameData\A51\Source\Themes\Weapons\Blueprint\WPN_SMP.bpx
+6.00:   5] C:\GameData\A51\Source\Themes\Weapons\Blueprint\WPN_SniperRifle.bpx
+6.00:   6] C:\GameData\A51\Source\Themes\Weapons\Blueprint\WPN_Bullets\WPN_DesertEagle_Bullet.bpx
+6.00:   7] C:\GameData\A51\Source\Themes\AI_01_LevelBlue_SL0-5\Blueprint\NPC_FILL_CIV_WALK_BL0-5.bpx
+6.00:   8] C:\GameData\A51\Source\Themes\AI_01_LevelBlue_SL0-5\Blueprint\NPC_FILL_MIL_WALK_BL0-5.bpx
+6.00:   9] C:\GameData\A51\Source\Themes\AI_01_LevelBlue_SL0-5\Blueprint\NPC_MIL_Spec4_SMP_BL0-5.bpx
+6.00:  10] C:\GameData\A51\Source\Themes\AI_01_LevelBlue_SL0A51 pipeline begin: request=8 name='CompositePipeline' vs=0f9b8ffad15abef9 ps=de81e0c4e1ee6341
+A51 pipeline begin: request=9 name='CompositePipeline' vs=0f9b8ffad15abef9 ps=de81e0c4e1ee6341
+A51 pipeline begin: request=10 name='CompositePipeline' vs=0f9b8ffad15abef9 ps=de81e0c4e1ee6341
+A51 pipeline ready: request=9 ms=0.75
+A51 pipeline begin: request=11 name='CompositePipeline' vs=0f9b8ffad15abef9 ps=39f81d3e97d46e1e
+A51 pipeline ready: request=11 ms=0.31
+A51 pipeline begin: request=12 name='CompositePipeline' vs=0f9b8ffad15abef9 ps=39f81d3e97d46e1e
+A51 pipeline ready: request=10 ms=0.51
+A51 pipeline begin: request=13 name='ClampNegativeColor' vs=0f9b8ffad15abef9 ps=50cbd1ba64f9166e
+A51 pipeline begin: request=14 name='CompositePipeline' vs=0f9b8ffad15abef9 ps=f0f6163a2dc0d33b
+A51 pipeline ready: request=12 ms=0.27
+A51 pipeline begin: request=15 name='CompositePipeline' vs=0f9b8ffad15abef9 ps=f0f6163a2dc0d33b
+A51 pipeline begin: request=16 name='CompositePipeline' vs=0f9b8ffad15abef9 ps=1b6c3282afb5f244
+A51 pipeline ready: request=14 ms=0.73
+A51 pipeline begin: request=17 name='CompositePipeline' vs=0f9b8ffad15abef9 ps=e385c8098fadf5e1
+A51 pipeline begin: request=18 name='CompositePipeline' vs=0f9b8ffad15abef9 ps=5889de8d9a901321
+A51 pipeline ready: request=17 ms=0.55
+A51 pipeline begin: request=19 name='CompositePipeline' vs=0f9b8ffad15abef9 ps=394c4965f9212a01
+A51 pipeline ready: request=18 ms=1.01
+A51 pipeline begin: request=20 name='CompositePipeline' vs=0f9b8ffad15abef9 ps=394c4965f9212a01
+A51 pipeline ready: request=19 ms=1.46
+A51 pipeline begin: request=21 name='CompositePipeline' vs=0f9b8ffad15abef9 ps=6121dbe1854b8aef
+A51 pipeline begin: request=22 name='CompositePipeline' vs=0f9b8ffad15abef9 ps=d188e1f496dbbb00
+A51 pipeline begin: request=23 name='CompositePipeline' vs=0f9b8ffad15abef9 ps=a55edb9a3be9d105
+=== last 300 lines
+A51 pipeline begin: request=6130 name='GeomRigidForward' vs=7f6d0ab9fa377316 ps=1bd064cbb9a0955b
+A51 pipeline ready: request=6121 ms=59.47
+A51 pipeline begin: request=6131 name='GeomRigidForward' vs=7f6d0ab9fa377316 ps=766e023f0c2841cc
+A51 pipeline ready: request=6129 ms=21.89
+A51 pipeline ready: request=6131 ms=3.31
+A51 pipeline ready: request=6130 ms=5.45
+A51 pipeline begin: request=6132 name='GeomRigidForward' vs=d5089ef4234d04a8 ps=492065a298944640
+A51 pipeline ready: request=6126 ms=46.93
+A51 pipeline begin: request=6133 name='GeomRigidForward' vs=77fff197bd6ba257 ps=25d90e8732dd616e
+A51 pipeline begin: request=6134 name='GeomRigidForward' vs=77fff197bd6ba257 ps=a51e8f853f034964
+A51 pipeline ready: request=6133 ms=9.70
+A51 pipeline begin: request=6135 name='GeomRigidForward' vs=77fff197bd6ba257 ps=91a836ee976da132
+A51 pipeline begin: request=6136 name='GeomRigidForward' vs=77fff197bd6ba257 ps=8eacdde3707922fd
+A51 pipeline ready: request=6134 ms=11.30
+A51 pipeline ready: request=6135 ms=8.92
+A51 pipeline begin: request=6137 name='GeomRigidForward' vs=d5089ef4234d04a8 ps=83f7681294b2ac74
+A51 pipeline begin: request=6138 name='GeomRigidForward' vs=d5089ef4234d04a8 ps=e783e431b98f7b97
+A51 pipeline begin: request=6139 name='GeomRigidForward' vs=d5089ef4234d04a8 ps=b3832e7c48128bd2
+A51 pipeline ready: request=6132 ms=50.26
+A51 pipeline ready: request=6137 ms=20.85
+A51 pipeline ready: request=6136 ms=42.83
+A51 pipeline begin: request=6140 name='GeomRigidForward' vs=64bbee521f9488f9 ps=9d3a028a62a6baf3
+A51 pipeline begin: request=6141 name='GeomRigidForward' vs=64bbee521f9488f9 ps=d561394b3410a67f
+A51 pipeline begin: request=6142 name='GeomRigidForward' vs=64bbee521f9488f9 ps=c6809f56c18c19cc
+A51 pipeline ready: request=6138 ms=45.22
+A51 pipeline ready: request=6141 ms=16.68
+A51 pipeline begin: request=6143 name='GeomRigidForward' vs=64bbee521f9488f9 ps=ac046876aa22df12
+A51 pipeline ready: request=6139 ms=61.85
+A51 pipeline ready: request=6143 ms=12.67
+A51 pipeline begin: request=6144 name='GeomRigidForward' vs=d5089ef4234d04a8 ps=d5466db3783abf04
+A51 pipeline ready: request=6142 ms=38.96
+A51 pipeline begin: request=6145 name='GeomRigidForward' vs=64bbee521f9488f9 ps=6316b1973f5acc6b
+A51 pipeline ready: request=6144 ms=12.02
+A51 pipeline begin: request=6146 name='GeomRigidForward' vs=64bbee521f9488f9 ps=00f645d272b9bb6d
+A51 pipeline ready: request=6145 ms=9.48
+A51 pipeline ready: request=6140 ms=75.28
+A51 pipeline begin: request=6147 name='GeomRigidForward' vs=d5089ef4234d04a8 ps=1c40c6c0938c6470
+A51 pipeline begin: request=6148 name='GeomRigidForward' vs=d5089ef4234d04a8 ps=51dfc03f7ed1bfa9
+A51 pipeline begin: request=6149 name='GeomRigidForward' vs=d5089ef4234d04a8 ps=145b71ae88bec717
+A51 pipeline begin: request=6150 name='GeomRigidForward' vs=d5089ef4234d04a8 ps=b09dbf45af96122f
+A51 pipeline begin: request=6151 name='GeomRigidForward' vs=d5089ef4234d04a8 ps=3f4a0bfbd3907436
+A51 pipeline begin: request=6152 name='GeomRigidForward' vs=d5089ef4234d04a8 ps=dba03ee0d202128b
+A51 pipeline begin: request=6153 name='GeomRigidForward' vs=d5089ef4234d04a8 ps=b610716b6a2afda8
+A51 pipeline ready: request=6146 ms=84.96
+A51 pipeline ready: request=6147 ms=76.82
+A51 pipeline begin: request=6154 name='GeomRigidForward' vs=d5089ef4234d04a8 ps=b9dae66ab5a78cb8
+A51 pipeline begin: request=6155 name='GeomRigidForward' vs=d5089ef4234d04a8 ps=77f0c626aeee2266
+A51 pipeline ready: request=6153 ms=32.51
+A51 pipeline ready: request=6148 ms=88.85
+A51 pipeline ready: request=6154 ms=16.68
+A51 pipeline begin: request=6156 name='GeomRigidForward' vs=d5089ef4234d04a8 ps=0d33fb2d32827e7d
+A51 pipeline ready: request=6149 ms=106.72
+A51 pipeline ready: request=6151 ms=91.19
+A51 pipeline ready: request=6155 ms=32.00
+A51 pipeline ready: request=6156 ms=18.75
+A51 pipeline begin: request=6157 name='GeomRigidForward' vs=d5089ef4234d04a8 ps=d3f29cf201006410
+A51 pipeline ready: request=6150 ms=99.79
+A51 pipeline begin: request=6158 name='GeomRigidForward' vs=64bbee521f9488f9 ps=8bb873a9549e7744
+A51 pipeline ready: request=6152 ms=100.46
+A51 pipeline ready: request=6158 ms=16.78
+A51 pipeline begin: request=6159 name='GeomRigidForward' vs=d5089ef4234d04a8 ps=a1d9483c2ff66ca0
+A51 pipeline begin: request=6160 name='GeomRigidForward' vs=d5089ef4234d04a8 ps=a40aa66b25c6f965
+A51 pipeline ready: request=6159 ms=17.32
+A51 pipeline begin: request=6161 name='GeomRigidForward' vs=64bbee521f9488f9 ps=562f6e53985c8290
+A51 pipeline ready: request=6157 ms=54.98
+A51 pipeline begin: request=6162 name='GeomRigidForward' vs=d5089ef4234d04a8 ps=38d46c73aa8558af
+A51 pipeline begin: request=6163 name='GeomRigidForward' vs=77fff197bd6ba257 ps=d74bab58aff40ffb
+A51 pipeline begin: request=6164 name='GeomRigidForward' vs=77fff197bd6ba257 ps=1563c254074e8797
+A51 pipeline begin: request=6165 name='GeomRigidForward' vs=77fff197bd6ba257 ps=08765e670c9a0456
+A51 pipeline ready: request=6163 ms=10.89
+A51 pipeline ready: request=6160 ms=53.61
+A51 pipeline ready: request=6164 ms=19.69
+A51 pipeline ready: request=6165 ms=22.84
+A51 pipeline begin: request=6166 name='GeomRigidForward' vs=77fff197bd6ba257 ps=8cb6379962a8ef95
+A51 pipeline begin: request=6167 name='GeomRigidForward' vs=77fff197bd6ba257 ps=44321dd806d74f2d
+A51 pipeline begin: request=6168 name='GeomRigidForward' vs=77fff197bd6ba257 ps=fcfb45f8e70f9ac5
+A51 pipeline ready: request=6166 ms=12.63
+A51 pipeline ready: request=6161 ms=65.02
+A51 pipeline begin: request=6169 name='GeomRigidForward' vs=41e48f58ffec9518 ps=8dfa8027c514baf2
+A51 pipeline begin: request=6170 name='GeomRigidForward' vs=41e48f58ffec9518 ps=0d7f8749369e60f2
+A51 pipeline ready: request=6162 ms=65.86
+A51 pipeline ready: request=6168 ms=25.14
+A51 pipeline begin: request=6171 name='GeomRigidForward' vs=77fff197bd6ba257 ps=e89e335857d615f2
+A51 pipeline ready: request=6170 ms=19.67
+A51 pipeline ready: request=6167 ms=41.77
+A51 pipeline begin: request=6172 name='GeomRigidForward' vs=77fff197bd6ba257 ps=2cc35e7e39e16c9b
+A51 pipeline begin: request=6173 name='GeomRigidForward' vs=77fff197bd6ba257 ps=cdd89a6c7d722855
+A51 pipeline ready: request=6169 ms=51.10
+A51 pipeline begin: request=6174 name='GeomRigidForward' vs=77fff197bd6ba257 ps=1fc0733a35d23f85
+A51 pipeline ready: request=6172 ms=23.72
+A51 pipeline begin: request=6175 name='GeomRigidForward' vs=77fff197bd6ba257 ps=e3e90cabd093aa52
+A51 pipeline ready: request=6171 ms=43.78
+A51 pipeline ready: request=6174 ms=44.44
+A51 pipeline ready: request=6173 ms=66.83
+A51 pipeline ready: request=6175 ms=39.62
+[New Thread 0x7fffec1bd6c0 (LWP 3587)]
+[New Thread 0x7fffb00fa6c0 (LWP 3592)]
+[Thread 0x7fffb00fa6c0 (LWP 3592) exited]
+[New Thread 0x7fffb00fa6c0 (LWP 3597)]
+[Thread 0x7fffb00fa6c0 (LWP 3597) exited]
+[New Thread 0x7fffb00fa6c0 (LWP 3630)]
+[New Thread 0x7fff948216c0 (LWP 3631)]
+[Thread 0x7fffb00fa6c0 (LWP 3630) exited]
+[Thread 0x7fff948216c0 (LWP 3631) exited]
+[New Thread 0x7fff948216c0 (LWP 3694)]
+[Thread 0x7fff948216c0 (LWP 3694) exited]
+[New Thread 0x7fff948216c0 (LWP 3710)]
+[Thread 0x7fff948216c0 (LWP 3710) exited]
+[New Thread 0x7fff948216c0 (LWP 3711)]
+[Thread 0x7fff948216c0 (LWP 3711) exited]
+[New Thread 0x7fffb00fa6c0 (LWP 3713)]
+[New Thread 0x7fff71ded6c0 (LWP 3714)]
+[Thread 0x7fffec1bd6c0 (LWP 3587) exited]
+[Thread 0x7fffb00fa6c0 (LWP 3713) exited]
+[New Thread 0x7fffb00fa6c0 (LWP 3729)]
+[New Thread 0x7fff948216c0 (LWP 3730)]
+[Thread 0x7fff948216c0 (LWP 3730) exited]
+[Thread 0x7fffb00fa6c0 (LWP 3729) exited]
+[New Thread 0x7fff948216c0 (LWP 3745)]
+[Thread 0x7fff948216c0 (LWP 3745) exited]
+[New Thread 0x7fff948216c0 (LWP 3762)]
+[Thread 0x7fff948216c0 (LWP 3762) exited]
+[New Thread 0x7fff948216c0 (LWP 3777)]
+[Thread 0x7fff948216c0 (LWP 3777) exited]
+[New Thread 0x7fff948216c0 (LWP 3792)]
+[New Thread 0x7fffb00fa6c0 (LWP 3793)]
+[Thread 0x7fff948216c0 (LWP 3792) exited]
+[Thread 0x7fffb00fa6c0 (LWP 3793) exited]
+[New Thread 0x7fffb00fa6c0 (LWP 3826)]
+[Thread 0x7fffb00fa6c0 (LWP 3826) exited]
+[New Thread 0x7fffb00fa6c0 (LWP 3857)]
+[Thread 0x7fffb00fa6c0 (LWP 3857) exited]
+[New Thread 0x7fffb00fa6c0 (LWP 3872)]
+[Thread 0x7fffb00fa6c0 (LWP 3872) exited]
+[New Thread 0x7fffb00fa6c0 (LWP 3887)]
+[Thread 0x7fffb00fa6c0 (LWP 3887) exited]
+[New Thread 0x7fffb00fa6c0 (LWP 3889)]
+[Thread 0x7fffb00fa6c0 (LWP 3889) exited]
+[New Thread 0x7fffb00fa6c0 (LWP 3905)]
+[Thread 0x7fffb00fa6c0 (LWP 3905) exited]
+[New Thread 0x7fffb00fa6c0 (LWP 3906)]
+[Thread 0x7fffb00fa6c0 (LWP 3906) exited]
+[New Thread 0x7fffb00fa6c0 (LWP 3935)]
+[Thread 0x7fffb00fa6c0 (LWP 3935) exited]
+[New Thread 0x7fffb00fa6c0 (LWP 3951)]
+[Thread 0x7fffb00fa6c0 (LWP 3951) exited]
+[New Thread 0x7fffb00fa6c0 (LWP 3952)]
+[Thread 0x7fffb00fa6c0 (LWP 3952) exited]
+[New Thread 0x7fff948216c0 (LWP 3967)]
+[New Thread 0x7fffb00fa6c0 (LWP 3968)]
+[Thread 0x7fff71ded6c0 (LWP 3714) exited]
+[Thread 0x7fffb00fa6c0 (LWP 3968) exited]
+[New Thread 0x7fffb00fa6c0 (LWP 3983)]
+[Thread 0x7fffb00fa6c0 (LWP 3983) exited]
+[New Thread 0x7fff71ded6c0 (LWP 3984)]
+[Thread 0x7fff948216c0 (LWP 3967) exited]
+[New Thread 0x7fff948216c0 (LWP 4002)]
+[Thread 0x7fff71ded6c0 (LWP 3984) exited]
+[New Thread 0x7fff71ded6c0 (LWP 4018)]
+[Thread 0x7fff948216c0 (LWP 4002) exited]
+[New Thread 0x7fff948216c0 (LWP 4033)]
+[Thread 0x7fff948216c0 (LWP 4033) exited]
+[New Thread 0x7fff948216c0 (LWP 4034)]
+[New Thread 0x7fffb00fa6c0 (LWP 4035)]
+[New Thread 0x7fffec1bd6c0 (LWP 4051)]
+[Thread 0x7fff71ded6c0 (LWP 4018) exited]
+[Thread 0x7fffb00fa6c0 (LWP 4035) exited]
+[Thread 0x7fffec1bd6c0 (LWP 4051) exited]
+[New Thread 0x7fffec1bd6c0 (LWP 4066)]
+[Thread 0x7fff948216c0 (LWP 4034) exited]
+[New Thread 0x7fff948216c0 (LWP 4067)]
+[Thread 0x7fff948216c0 (LWP 4067) exited]
+[New Thread 0x7fff948216c0 (LWP 4082)]
+[Thread 0x7fffec1bd6c0 (LWP 4066) exited]
+[New Thread 0x7fffec1bd6c0 (LWP 4099)]
+[Thread 0x7fff948216c0 (LWP 4082) exited]
+[New Thread 0x7fff948216c0 (LWP 4114)]
+[Thread 0x7fffec1bd6c0 (LWP 4099) exited]
+[New Thread 0x7fffec1bd6c0 (LWP 4129)]
+[Thread 0x7fff948216c0 (LWP 4114) exited]
+[New Thread 0x7fff948216c0 (LWP 4146)]
+[Thread 0x7fffec1bd6c0 (LWP 4129) exited]
+[New Thread 0x7fffec1bd6c0 (LWP 4161)]
+[Thread 0x7fff948216c0 (LWP 4146) exited]
+[New Thread 0x7fff948216c0 (LWP 4176)]
+[Thread 0x7fffec1bd6c0 (LWP 4161) exited]
+[New Thread 0x7fffec1bd6c0 (LWP 4192)]
+[Thread 0x7fff948216c0 (LWP 4176) exited]
+[New Thread 0x7fff948216c0 (LWP 4207)]
+[Thread 0x7fffec1bd6c0 (LWP 4192) exited]
+[New Thread 0x7fffec1bd6c0 (LWP 4224)]
+[Thread 0x7fff948216c0 (LWP 4207) exited]
+[New Thread 0x7fff948216c0 (LWP 4241)]
+[Thread 0x7fffec1bd6c0 (LWP 4224) exited]
+[New Thread 0x7fffec1bd6c0 (LWP 4256)]
+[Thread 0x7fff948216c0 (LWP 4241) exited]
+[New Thread 0x7fff948216c0 (LWP 4271)]
+[Thread 0x7fffec1bd6c0 (LWP 4256) exited]
+[New Thread 0x7fffec1bd6c0 (LWP 4287)]
+[Thread 0x7fff948216c0 (LWP 4271) exited]
+[New Thread 0x7fff948216c0 (LWP 4302)]
+[Thread 0x7fffec1bd6c0 (LWP 4287) exited]
+[Thread 0x7fff948216c0 (LWP 4302) exited]
+[New Thread 0x7fff948216c0 (LWP 4317)]
+[New Thread 0x7fffec1bd6c0 (LWP 4318)]
+[Thread 0x7fffec1bd6c0 (LWP 4318) exited]
+[New Thread 0x7fffec1bd6c0 (LWP 4335)]
+[Thread 0x7fffec1bd6c0 (LWP 4335) exited]
+[New Thread 0x7fffec1bd6c0 (LWP 4364)]
+[Thread 0x7fffec1bd6c0 (LWP 4364) exited]
+[New Thread 0x7fffec1bd6c0 (LWP 4466)]
+[Thread 0x7fffec1bd6c0 (LWP 4466) exited]
+[New Thread 0x7fffec1bd6c0 (LWP 4469)]
+[Thread 0x7fffec1bd6c0 (LWP 4469) exited]
+[New Thread 0x7fffec1bd6c0 (LWP 4484)]
+[Thread 0x7fff948216c0 (LWP 4317) exited]
+[New Thread 0x7fff948216c0 (LWP 4486)]
+[Thread 0x7fff948216c0 (LWP 4486) exited]
+[New Thread 0x7fff948216c0 (LWP 4516)]
+[Thread 0x7fff948216c0 (LWP 4516) exited]
+[New Thread 0x7fff948216c0 (LWP 4517)]
+[Thread 0x7fff948216c0 (LWP 4517) exited]
+[New Thread 0x7fff948216c0 (LWP 4518)]
+[New Thread 0x7fffb00fa6c0 (LWP 4519)]
+[Thread 0x7fffb00fa6c0 (LWP 4519) exited]
+[Thread 0x7fff948216c0 (LWP 4518) exited]
+[New Thread 0x7fff948216c0 (LWP 4534)]
+[Thread 0x7fff948216c0 (LWP 4534) exited]
+[New Thread 0x7fff948216c0 (LWP 4549)]
+[Thread 0x7fffec1bd6c0 (LWP 4484) exited]
+[Thread 0x7fff948216c0 (LWP 4549) exited]
+[Thread 0x7fffee0226c0 (LWP 3461) exited]
+[Thread 0x7fff8effe6c0 (LWP 3460) exited]
+[Thread 0x7fff95ffd6c0 (LWP 3459) exited]
+[Thread 0x7fff8ffff6c0 (LWP 3458) exited]
+[Thread 0x7fffedc056c0 (LWP 3457) exited]
+[Thread 0x7fff97fff6c0 (LWP 3456) exited]
+[Thread 0x7fff96ffe6c0 (LWP 3455) exited]
+[Thread 0x7fffcd3ff6c0 (LWP 3441) exited]
+[Thread 0x7fffabfff6c0 (LWP 3449) exited]
+[Thread 0x7fffb1ffd6c0 (LWP 3448) exited]
+[Thread 0x7fffb2ffe6c0 (LWP 3447) exited]
+[Thread 0x7fffb3fff6c0 (LWP 3446) exited]
+[Thread 0x7fffcc3fe6c0 (LWP 3442) exited]
+[Thread 0x7fffcb3fd6c0 (LWP 3443) exited]
+[Thread 0x7fffc93fb6c0 (LWP 3445) exited]
+[Thread 0x7fffca3fc6c0 (LWP 3444) exited]
+[Thread 0x7fffaaffe6c0 (LWP 3450) exited]
+[Thread 0x7fffe5ffb6c0 (LWP 3438) exited]
+[Thread 0x7fffe67fc6c0 (LWP 3437) exited]
+[Thread 0x7fffe7fff6c0 (LWP 3434) exited]
+[Thread 0x7fffed3716c0 (LWP 3432) exited]
+[Thread 0x7fffe77fe6c0 (LWP 3435) exited]
+[Thread 0x7fffe6ffd6c0 (LWP 3436) exited]
+[Thread 0x7fffe57fa6c0 (LWP 3439) exited]
+[Thread 0x7fffecb706c0 (LWP 3433) exited]
+[Thread 0x7ffff039a6c0 (LWP 3431) exited]
+[Thread 0x7ffff27ac6c0 (LWP 3429) exited]
+[Thread 0x7ffff17ab6c0 (LWP 3430) exited]
+kg]
+103.24: audiopkg_loader::PreLoad [MUSIC_FrontEnd.audiopkg]
+103.24: DisplayTemplates: 16
+103.24:   0] C:\GameData\A51\Source\Themes\AI_01_LevelBlue_SL1-1\Blueprint\NPC_Grunt_Spec4_Unarmed_BL1-1.bpx
+103.24:   1] C:\GameData\A51\Source\Themes\Weapons\Blueprint\WPN_DesertEagle.bpx
+103.24:   2] C:\GameData\A51\Source\Themes\Weapons\Blueprint\WPN_SMP.bpx
+103.24:   3] C:\GameData\A51\Source\Themes\Weapons\Blueprint\WPN_Dual_SMP.bpx
+103.24:   4] C:\GameData\A51\Source\Themes\Weapons\Blueprint\WPN_Scanner.bpx
+103.24:   5] C:\GameData\A51\Source\Themes\AI_01_LevelBlue_SL1-1\Blueprint\NPC_Grunt_Scientist_BL1-1.bpx
+103.24:   6] C:\GameData\A51\Source\Themes\Consoles\Blueprint\CO_Soda_can_2.bpx
+103.24:   7] C:\GameData\A51\Source\Themes\Consoles\Blueprint\CO_Soda_can_3.bpx
+103.24:   8] C:\GameData\A51\Source\Themes\Consoles\Blueprint\CO_Soda_can_4.bpx
+103.24:   9] C:\GameData\A51\Source\Themes\Consoles\Blueprint\CO_Soda_can_5.bpx
+103.24:  10] C:\GameData\A51\Source\Themes\Consoles\Blueprint\CO_Soda_can_6.bpx
+103.24:  11] C:\GameData\A51\Source\Themes\Consoles\Blueprint\CO_Soda_can_7.bpx
+103.24:  12] C:\GameData\A51\Source\Themes\AI_01_LevelBlue_SL1-1\Blueprint\NPC_Grunt_Spec4_SMP_BL1-1.bpx
+103.24:  13] C:\GameData\A51\Source\Themes\Weapons\Blueprint\WPN_Bullets\WPN_DesertEagle_Bullet.bpx
+103.24:  14] C:\GameData\A51\Source\Themes\Weapons\Blueprint\WPN_Bullets\WPN_SMP_Bullet.bpx
+103.24:  15] C:\GameData\A51\Source\Themes\Weapons\Blueprint\Turret_BulletHeavy.bpx
+122.48: GraphicsPipelineCache: queued=3161 native=3155 elapsed=19200.32ms failed=0
+123.84: GraphicsPipelineCache: queued=0 native=3155 elapsed=19.24ms failed=0
+356.95: Unload level tool 5.45msInitializing HUD
+357.13: GraphicsPipelineCache: queued=0 native=3155 elapsed=19.17ms failed=0
+357.41: GraphicsPipelineCache: queued=0 native=3155 elapsed=19.14ms failed=0
+435.29: GraphicsPipelineCache: cache=CompositePipeline prewarmed=31 hits=0 misses=0 unused=31
+435.36: GraphicsPipelineCache: cache=GeomRigidForward prewarmed=1591 hits=717067 misses=0 unused=1559
+435.37: GraphicsPipelineCache: cache=GeomSkinForward prewarmed=1469 hits=458837 misses=0 unused=1386
+435.45: GraphicsPipelineCache: cache=PrimitivePipeline prewarmed=32 hits=58867 misses=0 unused=24
+435.45: GraphicsPipelineCache: cache=ForwardDecalPipeline prewarmed=18 hits=31920 misses=0 unused=15
+435.45: GraphicsPipelineCache: cache=ShadowRigidOpaqueSingleSidedCaster prewarmed=17 hits=3534 misses=0 unused=7
+435.46: Unload level tool 182.26msGraphicsPipelineCache: cache=UIPipeline prewarmed=6 hits=12173 misses=0 unused=4
+436.22: PostProcessFeature: Shutting down post-processing feature
+436.22: PostProcessFeature: post-processing feature shutdown complete
+436.22: FrameCompiler: Shutting down shaders
+436.22: FrameCompiler: Rigid shaders released
+436.22: FrameCompiler: Skin shaders released
+436.22: FrameCompiler: Shaders shutdown complete
+436.22: === SDL ENGINE SHUTDOWN START ===
+436.31: === НУ БЫЛО И БЫЛО ===
+[Inferior 1 (process 3426) exited normally]
+No stack.
