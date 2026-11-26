@@ -7,7 +7,9 @@ name: Co-op build and test
 
 on:
   push:
-    branches: ['coop/**']
+    # The 2-player line only.  The 4-player line (coop/4player) has its own workflow,
+    # coop-4p-build.yml, with its own build numbers, results folder and releases.
+    branches: ['coop/stage1']
   workflow_dispatch:
     inputs:
       release_anyway:
@@ -776,7 +778,7 @@ jobs:
           # A build whose commits only touch docs, workflows or test tools makes no new draft (it
           # would push a real game build out of the kept ones).  release_anyway forces a draft.
           LAST="$(gh api "repos/${GITHUB_REPOSITORY}/releases?per_page=100" \
-                    --jq '[.[] | select(.draft and (.name | test("build [0-9]+")))] | sort_by(.created_at) | reverse | .[0].target_commitish // ""')"
+                    --jq '[.[] | select(.draft and (.name | test("^(AREA 51 SPLITSCREEN CO-OP v[0-9.]+ \\(test build|Co-op Stage 1, build)")))] | sort_by(.created_at) | reverse | .[0].target_commitish // ""')"
           GAME=yes
           if [ -n "$LAST" ] && git cat-file -e "${LAST}^{commit}" 2>/dev/null && [ "${{ inputs.release_anyway }}" != "true" ]; then
             if ! git diff --name-only "$LAST" "$GITHUB_SHA" | grep -v -E '^(docs/|\.github/|tools/coop-qa/|README\.md$|COOP_TODO\.md$)' | grep -q .; then
