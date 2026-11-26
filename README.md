@@ -1,535 +1,250 @@
-```text
-██████  ██████  ███████  █████  ███    ███ ██       █████  ███    ██ ██████        ███████  ██ 
-██   ██ ██   ██ ██      ██   ██ ████  ████ ██      ██   ██ ████   ██ ██   ██       ██      ███ 
-██   ██ ██████  █████   ███████ ██ ████ ██ ██      ███████ ██ ██  ██ ██   ██ █████ ███████  ██ 
-██   ██ ██   ██ ██      ██   ██ ██  ██  ██ ██      ██   ██ ██  ██ ██ ██   ██            ██  ██ 
-██████  ██   ██ ███████ ██   ██ ██      ██ ███████ ██   ██ ██   ████ ██████        ███████  ██ 
+<div align="center">
+
+# AREA 51
+
+## SPLIT-SCREEN CO-OP
+
+**Two players. One PC. The campaign — together.**
+
+An unofficial, experimental local co-op modification for the **Area 51 (2005) PC port**.
+
+[![Co-op build](https://github.com/VortexHyperBeast/area51-pc/actions/workflows/coop-build.yml/badge.svg?branch=coop%2Fstage1)](https://github.com/VortexHyperBeast/area51-pc/actions/workflows/coop-build.yml)
+[![Latest release](https://img.shields.io/github/v/release/VortexHyperBeast/area51-pc?include_prereleases&label=latest%20release)](https://github.com/VortexHyperBeast/area51-pc/releases/latest)
+![Platform](https://img.shields.io/badge/platform-Windows%20x64-blue)
+![Players](https://img.shields.io/badge/players-2%20local-purple)
+![Status](https://img.shields.io/badge/status-experimental-orange)
+
+[**Download the latest build**](https://github.com/VortexHyperBeast/area51-pc/releases/latest) · [**Co-op source branch**](https://github.com/VortexHyperBeast/area51-pc/tree/coop/stage1) · [**Report a bug**](https://github.com/VortexHyperBeast/area51-pc/issues)
+
+</div>
+
+---
+
+## The idea
+
+Return to the facility with a partner. This project adds **two-player local split-screen co-op** to the Dreamland-51 PC port of *Area 51*.
+
+Both players share one game session, but each gets their own view of the action:
+
+- **Top-and-bottom split-screen** with an independent camera and HUD for each player.
+- **Two local controllers**, with independent movement, aiming, firing, reloading and weapon use.
+- **Visible player characters** — each player can see the other in the world.
+- **A shared campaign world**, with scripted scenes and cutscenes shown full-screen.
+
+This is a local co-op mod for two players on one PC. It is not online co-op.
+
+## Project status
+
+<table>
+<tr><td><strong>Development stage</strong></td><td>Stage 1 — experimental</td></tr>
+<tr><td><strong>Latest published build</strong></td><td>Co-op Stage 1, build 126</td></tr>
+<tr><td><strong>Current development branch</strong></td><td><a href="https://github.com/VortexHyperBeast/area51-pc/tree/coop/stage1">coop/stage1</a></td></tr>
+<tr><td><strong>Players supported</strong></td><td>2 local players</td></tr>
+<tr><td><strong>Platform</strong></td><td>Windows 64-bit build</td></tr>
+</table>
+
+The build number and mod version are also shown in the top-left corner of the in-game main menu. The project is still being tested: a successful automated test or level start does not mean that every mission and encounter has been completed in a full human playthrough.
+
+---
+
+## Co-op features
+
+### Two independent players
+
+- Separate player movement, input, camera, HUD, health and damage.
+- Both player characters are visible to each other.
+- Independent weapon handling, including firing, reloading and switching weapons.
+- Enemies can respond to either player; co-op changes also improve target selection for encounters that originally focused on Player 1.
+- Scripted scenes are synchronized, with both players brought into the shared full-screen scene view.
+
+### Shared inventory, individual health
+
+The co-op rules intentionally keep pickups shared:
+
+| Shared between players | Kept separate |
+| --- | --- |
+| Weapons | Health |
+| Ammunition | Damage taken |
+| Grenades | Downed / alive state |
+| Equipment and unlocks | Player movement and view |
+
+Collecting a weapon, ammunition, grenade or equipment unlock for one player makes it available to the other as well. Health and damage remain individual.
+
+### Downed and revive system
+
+When one player is incapacitated while their partner is still active, they can be revived instead of immediately forcing a checkpoint restart.
+
+**Default co-op rules:**
+
+- Stand near the downed player's body and hold **USE** (X on an Xbox controller) to revive.
+- A revive takes **4 seconds**.
+- The revived player returns with **35% health**.
+- The default bleedout timer is **25 seconds**.
+- If both players are down, or the downed player bleeds out, the game returns to the checkpoint.
+- A downed player cannot shoot, use grenades, melee or activate mutation.
+
+The core downed body and revive flow has been manually tested. Timer edge cases and every possible campaign situation are still part of ongoing testing.
+
+### Mutation for both players
+
+- Either player can mutate independently.
+- One player's mutation does not force the other player to mutate.
+- Both players can use the mutant form and its attacks.
+- Mutated players take **50% damage** by default in co-op.
+- Mutant visuals are shown on the player's in-world character as well.
+
+### Character and controller options
+
+Open **Pause Menu → Splitscreen Co-op** to configure the local players.
+
+- Swap which controller controls Player 1 and Player 2.
+- Choose a body for each player independently.
+- Select from **12 human character appearances**: Hazmat, Special Forces and Technician styles, with four colour variants per style.
+
+### Campaign and menus
+
+- The main menu keeps **Single Player** and **Splitscreen Co-op** as separate modes.
+- Co-op uses its own **Splitscreen P1** and **Splitscreen P2** profiles, separate from the normal single-player profile.
+- A co-op-only Level Select provides access to the story missions.
+- Both players receive the selected mission's starting loadout.
+- The multiplayer arenas are excluded from the co-op story Level Select.
+
+### Co-op balancing
+
+The current co-op build gives enemies and bosses **150% of their normal health by default**, so two players do not simply double the damage output without any adjustment. This can be changed in the co-op configuration file.
+
+---
+
+## Screens, options and configuration
+
+### In-game co-op settings
+
+The **Splitscreen Co-op** page in the pause menu includes controller swapping and separate body selection for P1 and P2.
+
+### Optional configuration file
+
+Create a text file named `a51_coop.cfg` beside `A51.exe`. Add one setting per line:
+
+| Setting | Default | Purpose |
+| --- | ---: | --- |
+| `swap_pads` | `0` | Set to `1` to swap the two controllers |
+| `downed` | `1` | Set to `0` to disable the downed/revive state |
+| `bleedout_seconds` | `25` | Time available for a revive |
+| `revive_seconds` | `4` | Time required to complete a revive |
+| `revive_health_percent` | `35` | Health restored after a revive |
+| `mutant_damage_percent` | `50` | Damage taken while mutated; `100` is normal damage |
+| `enemy_health_percent` | `150` | Enemy and boss health relative to single-player |
+
+Example:
+
+```ini
+swap_pads=0
+downed=1
+bleedout_seconds=25
+revive_seconds=4
+revive_health_percent=35
+mutant_damage_percent=50
+enemy_health_percent=150
 ```
 
-[![CMake portability](https://github.com/Source2Spy/area51-pc/actions/workflows/cmake.yml/badge.svg?branch=master)](https://github.com/Source2Spy/area51-pc/actions/workflows/cmake.yml)
-[![Branch](https://img.shields.io/badge/branch-master-555555)](https://github.com/Source2Spy/area51-pc/tree/master)
-[![GitHub issues](https://img.shields.io/github/issues/Source2Spy/area51-pc)](https://github.com/Source2Spy/area51-pc/issues)
+The in-game pause menu can also swap controllers, so editing the file is not required for that option.
 
-Links: [Game assets](https://github.com/Source2Spy/area51-pc/releases/) | [Development builds](https://github.com/Source2Spy/area51-pc/actions) | [Discord](https://discord.gg/7gGhFSjxsq)
+---
 
-<!-- Add a gameplay screenshot or a project banner here. -->
-  
-# Table of Contents
+## Download and installation
 
-This file contains the following sections:
+<div align="center">
 
-1. [About the Port](#about-the-port)
-2. [Renderer Features Explained](#renderer-features-explained)
-3. [TODO](#todo)
-4. [General Notes](#general-notes)
-5. [Getting the Source Code](#getting-the-source-code)
-6. [Compiling Windows Target](#compiling-windows-target)
-7. [Compiling Linux Target](#compiling-linux-target)
-8. [Compiling Android Target](#compiling-android-target)
-9. [Original Xbox (Legacy)](#original-xbox-legacy)
-10. [Shader Pipeline](#shader-pipeline)
-11. [Installation](#installation)
-12. [Development and Modding Tools](#development-and-modding-tools)
-13. [Bug Reports](#bug-reports)
-14. [License](#license)
-15. [FAQ](#faq)
+### [GET THE LATEST CO-OP BUILD](https://github.com/VortexHyperBeast/area51-pc/releases/latest)
 
-# About the Port
+</div>
 
-Dreamland-51 is a source port of *Area-51* (2005), built on the original Entropy engine. The aim is to run the PC game on current hardware without replacing its gameplay, assets or interface with a remake.
+1. Open the [GitHub Releases page](https://github.com/VortexHyperBeast/area51-pc/releases/latest) and download the latest Windows x64 co-op package.
+2. Extract the archive and read the `README.txt` included with that exact build. Follow its installation steps; package formats may change between releases.
+3. The mod package does **not** contain the original game's data. The currently published Stage 1 setup package asks before downloading the required data pack (approximately 1.5 GB).
+4. Connect two controllers and start the game.
+5. Choose **Splitscreen Co-op** from the main menu.
 
-The original PC code was written around Direct3D, 32-bit Windows and the development tools available in 2005. Dreamland-51 replaces much of that platform code, reworks the renderer, restores effects from earlier and console versions of the game, and brings back parts of the original toolchain. The `master` branch contains the modern renderer and the Windows, Linux and Android builds.
+**Recommended:** two Xbox-compatible controllers. The controls can be swapped from the in-game co-op settings page.
 
-## Gaming / Graphics Related
+For a drop-in package, back up the existing `A51.exe` and `SHADERS` folder before replacing them. Keep the original game data in place.
 
-* Direct3D 12 and Vulkan renderer support via SDL3.
-* Reworked framegraph renderer with separate rendering passes for effects such as XeGTAO and Screen Space Reflections. New passes no longer have to be inserted into the old primitive rendering path.
-* Reimplemented `d3deng_draw` primitive renderer, including proper shading and lighting for primitives drawn by the engine.
-* Exponential Variance Shadow Maps (EVSM) and hard shadows for light sources.
-* Blinn-Phong lighting support for the game's existing materials.
-* XeGTAO ambient occlusion.
-* Screen Space Reflections (SSR).
-* SMAA, CMAA2 and MSAA anti-aliasing.
-* Anisotropic filtering.
-* Tessellated cloth rendering.
-* Improved cloth rendering with restored console-style cloth destruction.
-* Per-pixel flashlight lighting.
-* Restored the LensFilter, a vertex-color modulator.
-* Fixed lighting on `.skingeom` meshes, including skinned characters and other animated geometry.
-* Fixed lighting on `.rigidgeom` meshes used for debris and effects.
-* Fixed translucent rendering.
-* Restored beta-era film grain and screen-warp effects.
-* Restored PlayStation 2 radial blur and fog effects.
-* Correct brightness and contrast adjustments in the game's video settings.
-* High-resolution UI textures, without AI upscaling. The original console menu artwork and layout are retained.
-* Support for 500+ FPS, with corrected gameplay logic, AI and movement at high frame rates instead of tying these systems to the original frame timing.
+---
 
-## Gameplay / Controls / Interface
+## Testing and compatibility
 
-* Reworked mouse and keyboard controls. The original hard-coded linear gamepad acceleration is no longer applied to mouse and keyboard input.
-* SDL3 gamepad support, with controls ready for Steam Input remapping.
-* Fixed camera handling, including unintended 360-degree rotation and the ability to see through walls.
-* Fixed the aiming bug that prevented the player from aiming correctly while looking upward.
-* Reimplemented menu controls and navigation while preserving the appearance of the original console-style interface.
-* Reimplemented the multiplayer dialogs and menu tabs.
-* Improved navigation and presentation in the Secrets and Lore menus.
-* Runtime font loading, replacing parts of the original fixed font setup.
+This project uses both manual playtesting and automated two-controller tests.
 
-## Audio / Video / Localization
+### Manually checked
 
-* SDL3 platform support for window management, video integration, audio and input.
-* Native WebM video decoding through WebM libraries instead of the original RAD Game Tools Bink (`.bik`) playback path.
-* Native MP3 decoding using `minimp3` instead of the Miles Audio System.
-* Language selection at runtime for text, voice audio and video.
-* Russian, Czech and Japanese language support.
-* New, editable ASCII-based `.strings` and `.fonts` formats.
+Core features have been played and confirmed by the mod author on Windows, including:
 
-## Multiplayer
+- Split-screen gameplay with two controllers.
+- Separate Single Player and Splitscreen Co-op menu options and co-op profiles.
+- Controller swapping and the P1/P2 character selection page.
+- Downed players, reviving and the in-world player bodies.
+- Independent mutation, mutant player appearance and mutant attacks.
+- Reduced damage while mutated.
+- Close-range melee fixes for the Theta encounter.
+- Hazmat player face lighting.
 
-* LAN multiplayer without the original GameSpy service.
-* GameSpy-free networking, including direct connections to a host by IP address.
-* Internet multiplayer by manual connect. Port forwarding may be required when the host is behind a router.
-* Cross-platform multiplayer between Windows, Linux and Android.
-* Reworked multiplayer dialogs and tabs in the original console-style interface.
-* Working voice chat, like on console versions.
+### Automated checks
 
-## Programming and Code Quality
+The project includes a test bot that drives two virtual controllers. Automated checks cover controller input and swapping, weapon fire and reload, separate mutation, shared items, pause rendering, down/revive and checkpoint restart flows.
 
-* Native 64-bit support.
-* Native Windows, Linux and Android platform support.
-* SDL3-based OS layer in place of the old Windows-specific code for windows, audio and input.
-* CMake build system for desktop development with GCC and MSVC support. The original Visual Studio solutions are deprecated.
-* All libraries and supporting technologies are built from source, without relying on the original game's binary-only middleware.
-* Reworked serialization for models, decals and lightmaps. The formats no longer depend on the binary layout produced by a particular compiler or on the target's pointer size.
-* Separate host-side shader tools (`ShaderTool` and DXC) and a prepared shader kit for the game build.
-* Shader-kit manifests with hash verification and matching runtime shader packages.
+A campaign sweep has started all **19 story maps** in co-op. The bot generally checks only the opening portion of a map, however, so this is not evidence that every level, boss, objective, cutscene or late-game checkpoint has been fully completed with two human players.
 
-## Modding Support
+### Known limitations
 
-* Runtime emulation of `.DFS` archives for loading and modifying game resources.
-* Editable ASCII `.strings` and `.fonts` resource formats.
-* .png .tga image support.
-* Experimental Lua scripting.
-* Updated resource serialization for models, decals and lightmaps across compiler and architecture boundaries.
-* `ResourceTool` geometry compile/decompile workflow using `.rawgeom` descriptors, glTF meshes and separate collision output.
-* Restored and rewritten command-line tools for working with original game resources. See [Development and Modding Tools](#development-and-modding-tools).
+- **Two players only.** Three- and four-player split-screen are on hold and are not implemented.
+- The campaign is still undergoing compatibility testing. Some later encounters and less common progression paths may need additional fixes.
+- Bleedout timing, save/load edge cases and the complete campaign have not all been verified in full manual playthroughs.
+- Rendering two full views is more demanding than single-player; performance depends on the PC and graphics settings.
 
-# Renderer Features Explained
+---
 
-## Direct3D 12 and Vulkan
+## Bug reports
 
-The renderer has Direct3D 12 and Vulkan backends. Both use the original game's geometry and material data, but shaders and GPU resources are handled through the modern renderer rather than the old PC graphics code.
+When reporting a problem, please include:
 
-The graphics API is built around SDL3, which may introduce certain limitations due to the framework's relative novelty and ongoing development. Some features or behaviors may not yet be fully mature or optimized.
+- The build number shown in the main menu.
+- The level and what both players were doing when it happened.
+- Whether the issue occurs with both controllers or only one.
+- The log files below, if they were created.
 
-## Lighting and Shadows
+The game can write these files beside `A51.exe`:
 
-Dreamland-51 supports EVSM shadow maps and hard shadows. EVSM allows filtered shadow-map lookups; hard shadows preserve a sharp edge. Blinn-Phong lighting remains available for the original materials, and the flashlight has its own per-pixel lighting path.
+- `a51_local_coop_probe.log` — co-op session diagnostics.
+- `a51_crash.txt` and `a51_crash.dmp` — created after a crash.
 
-Lighting on `.skingeom` and `.rigidgeom` has also been corrected. Those formats are used by different parts of the game, so character geometry and rigid debris/effects both need to be handled by the renderer.
+[**Open an issue on GitHub**](https://github.com/VortexHyperBeast/area51-pc/issues)
 
-## XeGTAO and Screen Space Reflections
+---
 
-XeGTAO provides screen-space ambient occlusion. It uses scene depth to estimate occlusion around corners, objects and nearby surfaces.
+## Source code and development
 
-Screen Space Reflections use information from the rendered frame to produce reflections. As with other SSR implementations, geometry that is not represented in the current screen image cannot contribute to those reflections.
+The co-op implementation is developed on the **`coop/stage1`** branch. The default `master` branch contains this project landing page; use the co-op branch when browsing or building the co-op source.
 
-Both effects are integrated into the reworked framegraph instead of being bolted onto the original rendering loop.
+Clone the development branch:
 
-## Anti-aliasing and Post-processing
-
-SMAA and CMAA2 are post-process anti-aliasing methods, while MSAA operates on coverage samples during rendering. The renderer supports all three.
-
-The post-processing work also includes film grain and screen warp from beta versions of *Area-51*, along with radial blur and fog from the PlayStation 2 release. Brightness and contrast settings have been corrected as part of the same renderer work.
-
-## Cloth and Primitive Rendering
-
-Cloth uses tessellation in the new renderer. The rewritten `d3deng_draw` path handles engine-drawn primitives with proper lighting and shading, including geometry that did not behave correctly through the old rendering code.
-
-# TODO
-
-## Planned Features
-
-* Add path tracing support.
-* Add NVIDIA DLSS support.
-* Introduce DSP-based audio processing.
-* Expand the existing Lua scripting support.
-* Add a mod loader for custom game content.
-* Jolt Physics.
-* Add support for `.DFS` V4 archives.
-
-## Known Issues
-
-* Investigate movement in water on Rift. The player cannot jump while submerged; it is unclear whether jumping or surfacing should take precedence.
-* Certain settings can produce a black prewarm screen.
-* Game have some minor stutter issues.
-
-## Deferred Work
-
-* Improve physics.
-* Reduce delays when switching between zones.
-* Fix cases where the multiplayer death camera breaks zone visibility.
-* Optimize runtime font generation.
-* Revisit font scaling.
-* Fix button prompts for keyboard controls.
-* Restore the older `bin_level` files in Dreamland (low priority).
-* Investigate cubemaps appearing as star-shaped artifacts (BC compression) (low priority).
-
-<details>
-<summary>Items crossed off in the original notes</summary>
-
-* ~~Fix the Invader elevator.~~
-* ~~Prevent the player controller from catching on walls.~~
-* ~~Fix shadow artifacts near the bases of omnidirectional lights.~~
-* ~~Correct the glow effect.~~
-* ~~Fix localization issues.~~
-* ~~Include the player's hands in the depth prepass so they contribute to XeGTAO.~~
-* ~~Remove the Xbox fog implementation.~~
-* ~~Set up Android builds through GitHub Actions.~~
-* ~~Update the credits.~~
-* ~~Remove Carl Johnson.~~
-* ~~Investigate shader caching.~~
-* ~~Reduce the size of the button UI element by half.~~
-* ~~Fix the camera exploit that allows looking past cover by tilting upward and backing into a wall.~~
-
-</details>
-
-# General Notes
-
-## Supported Platforms
-
-| Platform | Status |
-| --- | --- |
-| Windows | Working |
-| Linux | Working |
-| Android | Working |
-| macOS | Not planned |
-| iOS | Not planned |
-| Original Xbox | Legacy branch |
-| PlayStation 2 | Deleted |
-
-The original Xbox target uses the older console toolchain and is separate from the CMake/SDL3 port.
-
-## Source Tree
-
-| Directory | Contents |
-| --- | --- |
-| `Apps/` | Game application, editors and command-line tools |
-| `xCore/` | Entropy engine core and libraries |
-| `Support/` | Shared game and engine support code |
-| `MiscUtils/` | Additional utilities |
-| `cmake/` | Build scripts, toolchains, shader preparation and packaging |
-
-# Getting the Source Code
-
-Clone the `master` branch:
-
-```sh
-git clone --branch "master" --single-branch https://github.com/Source2Spy/area51-pc.git
+```bash
+git clone --branch coop/stage1 --single-branch https://github.com/VortexHyperBeast/area51-pc.git
 cd area51-pc
 ```
 
-Existing checkouts can switch to the same branch with:
+- [Co-op source code](https://github.com/VortexHyperBeast/area51-pc/tree/coop/stage1)
+- [Build and test workflow](https://github.com/VortexHyperBeast/area51-pc/actions/workflows/coop-build.yml)
+- [All GitHub releases](https://github.com/VortexHyperBeast/area51-pc/releases)
+- [Upstream Dreamland-51 PC port](https://github.com/Source2Spy/area51-pc)
 
-```sh
-git fetch origin
-git switch "master"
-git pull --ff-only
-```
+This project builds on the Dreamland-51 PC port, an independent community project. The upstream port and the co-op modifications are separate contributions.
 
-Desktop builds use CMake. The original Visual Studio project and solution files belong to the old toolchain and are no longer used for current Windows builds.
+---
 
-# Compiling Windows Target
+## Credits and legal notice
 
-You will need Visual Studio 2022 with the C++ desktop tools, CMake, and Python for the host shader utilities. Run the following commands from a Visual Studio developer terminal in the repository root.
+**Split-screen co-op mod:** VortexHyperBeast.
 
-For Release:
+Built on the Dreamland-51 PC port of *Area 51* (2005), with thanks to the upstream project and its contributors.
 
-```powershell
-cmake -DA51_PRESET=windows-msvc-x64 -DA51_CONFIG=Release -P cmake/BuildGame.cmake
-```
-
-For Debug:
-
-```powershell
-cmake -DA51_PRESET=windows-msvc-x64 -DA51_CONFIG=Debug -P cmake/BuildGame.cmake
-```
-
-`BuildGame.cmake` prepares the shader kit, configures the selected game preset and builds `A51`. The Release executable is written to:
-
-```text
-build/windows-msvc-x64/Apps/GameApp/Release/A51.exe
-```
-
-A Debug build can use the Release shader kit. If you modify the shader sources, prepare the kit again before rebuilding the executable.
-
-# Compiling Linux Target
-
-Install GCC, CMake, Ninja, Python and the development packages needed by SDL3. The package list used by the project's Linux CI can be found in [`.github/workflows/cmake.yml`](https://github.com/Source2Spy/area51-pc/blob/forward%2B/.github/workflows/cmake.yml).
-
-Build from the repository root:
-
-```sh
-cmake -DA51_PRESET=linux-gcc-x64 -DA51_CONFIG=Release -P cmake/BuildGame.cmake
-```
-
-For Debug:
-
-```sh
-cmake -DA51_PRESET=linux-gcc-x64 -DA51_CONFIG=Debug -P cmake/BuildGame.cmake
-```
-
-The Release executable is written to:
-
-```text
-build/linux-gcc-x64/Apps/GameApp/Release/A51
-```
-
-Other architecture presets are defined in `CMakePresets.json`. When using a different preset, supply its name through `A51_PRESET`.
-
-# Compiling Android Target
-
-The Android build uses Gradle and the Android NDK. The repository's Android CI configuration uses Java 17, Gradle 8.9, Android API 36, NDK `29.0.14206865` and Android SDK CMake 3.31.6.
-
-Prepare the shader tools and kit on the host first:
-
-```sh
-cmake --preset shader-tools
-cmake --build --preset prepare-shaders --parallel 4
-```
-
-Then build the Android application:
-
-```sh
-cd Apps/GameApp/android
-gradle :app:assembleRelease
-```
-
-The Release APK is written to:
-
-```text
-Apps/GameApp/android/app/build/outputs/apk/release/app-release.apk
-```
-
-Signing, packaging and installing the game data are separate steps. See the [Android CI workflow](https://github.com/Source2Spy/area51-pc/blob/forward%2B/.github/workflows/cmake.yml) for the build environment and packaging procedure.
-
-# Original Xbox (Legacy)
-
-For the original Xbox version, switch to the repository's `Xbox` branch and use its original console build instructions. The Xbox code is not built by the Windows, Linux or Android commands above.
-
-# Shader Pipeline
-
-The game uses a prepared shader kit. `ShaderTool` and DXC run on the host, before the game is compiled, and are not direct dependencies of the `A51` target.
-
-The one-command Windows and Linux builds in the previous sections handle shader preparation automatically. To do the steps separately, use:
-
-```sh
-cmake --preset shader-tools
-cmake --build --preset prepare-shaders --parallel 4
-
-cmake --preset linux-gcc-x64 -DA51_SHADER_KIT=/absolute/path/to/build/shaders/GameApp/release
-cmake --build --preset linux-gcc-x64-release
-```
-
-`A51_SHADER_KIT` points to a published shader configuration directory, normally `build/shaders/GameApp/release`. This contains `shaderkit.json`, `catalog.json`, generated headers and compiled `.ecs` packages. CMake checks the files against the manifest before configuring the game. At runtime, the game checks that the `.ecs` packages match the shader catalog compiled into the executable.
-
-ShaderTool publishes the generated headers and compiled packages together. If shader preparation fails, the existing published kit is left intact. `ShaderTool -generate` produces inspection files in `.preview/<config>/generated`; those files are not a usable runtime kit.
-
-* C++ changes: rebuild `A51`.
-* Shader or shader-contract changes: prepare the kit again, then rebuild `A51`.
-* `A51_JOBS` controls game-build parallelism. The default is four jobs.
-* `A51_SHADER_JOBS` sets the number of shader workers for host-tool configuration, from 1 to 12.
-* Release shaders can be used with a Debug executable. Debug shaders can be generated with `ShaderTool -config debug` and placed in `build/shaders/GameApp/debug`.
-
-## Packaging a Runtime Build
-
-`cmake/PackageRuntime.cmake` copies the executable and `.ecs` packages into a runtime directory. For Linux Release:
-
-```sh
-cmake \
-  -DA51_BINARY=build/linux-gcc-x64/Apps/GameApp/Release/A51 \
-  -DA51_SHADER_KIT=build/shaders/GameApp/release \
-  -DA51_PACKAGE_DIR=build/packages/linux-x64 \
-  -P cmake/PackageRuntime.cmake
-```
-
-The package contains the game executable and `SHADERS/` directory. Game data must be installed separately.
-
-# Installation
-
-## Windows, Linux
-
-1. Download the [Asset Pack](https://github.com/Source2Spy/area51-pc/releases).
-2. Download the executable for your platform from [GitHub Actions](https://github.com/Source2Spy/area51-pc/actions), or compile it yourself using the instructions above.
-3. Extract the game assets to a new directory.
-4. Copy the executable and its `SHADERS/` folder into that directory, keeping the existing resource paths.
-5. Install the required textures according to the internal guide.
-6. Start `A51.exe` on Windows or `A51` on Linux.
-
-## Android
-
-1. Download the [Asset Pack](https://github.com/Source2Spy/area51-pc/releases).
-2. Download the executable for your platform from [GitHub Actions](https://github.com/Source2Spy/area51-pc/actions), or compile it yourself using the instructions above.
-3. Extract the game assets to a new directory.
-4. Copy `SHADERS/` folder into that directory, keeping the existing resource paths.
-5. Install the required textures according to the internal guide.
-6. Create com.area51.game/files/ folders in android/data/.
-7. Put assets inside com.area51.game/files/.
-8. Install `.apk` file.
-
-### Remember
-
-Keep the compiled shader packages from the same build as the executable. The runtime checks their identity against the compiled shader catalog.
-
-## Multiplayer
-
-You can join a host directly from the `select server` dialog.
-
-The host may need to forward the game's network port through their router. LAN connections do not require port forwarding.
-
-Also all platforms are cross-platform. And servers with disabled `allow cheats` Requires for a build of the game that was created on THIS REPO by Github Actions.
-
-# Development and Modding Tools
-
-The port includes modernized tools alongside the game executable. Many of the original editor applications were designed for Visual Studio 2003/2004 XTremeToolkit and are still being migrated to modern compilers. For tools that have not been restored, use the legacy branch where applicable.
-
-## CMake Targets
-
-To compile a specific tool from an already configured Linux Debug build tree:
-
-```sh
-cmake --build build/linux-gcc-x64 --config Debug --target xbmptool
-cmake --build build/linux-gcc-x64 --config Debug --target ResourceTool
-```
-
-To build a group of applications or tools:
-
-```sh
-cmake --build build/linux-gcc-x64 --config Debug --target a51_selected_apps
-cmake --build build/linux-gcc-x64 --config Debug --target a51_tools
-```
-
-A build without `--target` uses the generator's default target and may build additional applications.
-
-## ResourceTool
-
-`ResourceTool` uses a descriptor-driven workflow for geometry compilation and decompilation:
-
-```text
-ResourceTool compile   asset.rawgeom
-ResourceTool decompile asset.rawgeom
-```
-
-The `.rawgeom` descriptor records the data needed for a round trip. Decompilation writes render geometry to glTF and rigid collision geometry to a separate `.collision.gltf`. Runtime material parameters, UV keys, virtual meshes and textures, bone metadata, bone masks, custom properties and collision-cluster data are recorded in the descriptor.
-
-Texture files are referenced rather than copied. Rigid-body blobs and external animation clips remain source references until their own round-trip formats are implemented.
-
-## Original Applications
-
-<details>
-<summary>Show the original tools</summary>
-
-The statuses below come from the project's original tool list. Several programs still require work after the migration from the Visual Studio 2003/2004 toolchain.
-
-| Application | Status |
-| --- | --- |
-| AnimCompiler | Liquidated |
-| Art2Code | Working |
-| ArtistViewer | Liquidated |
-| AudioEditor | Liquidated |
-| BinaryString | Liquidated |
-| BitmapEditor | Liquidated |
-| DecalCompiler | Working |
-| DecalEditor | Liquidated |
-| DFSTool | Working |
-| EDRscDesc | Working |
-| Editor | Under construction |
-| EffectsEditor | Under construction |
-| ELFTool | Liquidated |
-| EventEditor | Liquidated |
-| FontEditor | Liquidated |
-| FxEditor | Liquidated |
-| FXCompiler | Under construction |
-| GameApp | Working |
-| ResourceTool | Under construction |
-| LocoEditor | Liquidated |
-| MeshViewer | Liquidated |
-| PropertyEditor | Under construction; library for Editor |
-| SoundPackager | Working |
-| Viewer | Liquidated |
-| WinControls | Under construction; library for Editor |
-| WorldEditor | Under construction; library for Editor |
-| XBMPTool | Working |
-| XBMPViewer | Working |
-| xCL | Liquidated |
-| XSCC | Liquidated |
-| xTool | Liquidated |
-
-</details>
-
-## Community Tools
-
-<details>
-<summary>Show community tools</summary>
-
-| Project | Description |
-| --- | --- |
-| [Engine-51](https://github.com/bigianb/engine-51) | Area-51 asset viewer |
-| [Json-Playsurface-Processer](https://github.com/gabengaGamer/json-playsurface-processer) | Imports `.playsurface` maps into Blender |
-| [DAT-Tool](https://github.com/gabengaGamer/DAT-Tool) | Command-line tools for Tribes: Aerial Assault DAT archives |
-
-</details>
-
-# Bug Reports
-
-Report bugs through the [GitHub issue tracker](https://github.com/Source2Spy/area51-pc/issues). Include the build or commit, operating system, graphics API, and instructions for reproducing the problem. Logs and screenshots help with startup and rendering bugs.
-
-Project discussion is also available on [Discord](https://discord.gg/7gGhFSjxsq).
-
-## A Short History of Area-51
-
-*Area-51* was released on April 25, 2005, for PC, PlayStation 2 and the original Xbox. It was developed by Inevitable Entertainment and published by Midway Games. The PC version was later distributed as freeware with United States Air Force sponsorship. Official support eventually ended.
-
-The source used by this project comes from a development snapshot dated March 31, 2005, at 10:40:19, shortly before the game's commercial release. According to the history accompanying the original source release, the files were discovered at a garage sale involving a former THQ developer.
-
-That snapshot contains the Entropy engine, game code and targets for PC, PlayStation 2 and Xbox, as well as early GameCube work and debug symbols for several platforms. The source snapshot does not contain the complete retail game assets.
-
-# License
-
-This repository contains source code originating from an unofficial release of *Area-51* (2005), developed by Inevitable Entertainment and published by Midway Games. The original game code, assets, name and trademarks remain the property of their respective rights holders, including Warner Bros. Discovery.
-
-Dreamland-51 is an independent, non-commercial community project. The repository is maintained in good faith for preservation and development work and is not an official release from the original developers or publishers. Making the source available here does not grant a license to the original game or its assets.
-
-Warner Bros. Discovery, Skydance Corporation, Midway Games and Inevitable Entertainment are not affiliated with, do not endorse and are not involved in the project.
-
-Third-party components have their own licenses, including Unlicense, BSD, MIT and LGPLv3 terms where applicable. See `legalnotices.txt`, `thirdpartylegalnotices.txt`, `fontlegalnotices.txt` and the license files distributed with individual libraries.
-
-# FAQ
-
-### Is this a remake of Area-51?
-
-No. Dreamland-51 uses the original game code and assets, with changes to the engine and platform support. It retains the PC game's interface and gameplay.
-
-### Do I need the original game data?
-
-Yes. The executable does not contain the original game assets. Download the asset pack linked in [Installation](#installation) and keep its resource layout intact.
-
-### Can I still use the old Visual Studio solutions?
-
-They belong to the original development environment. Use CMake for the `master` Windows and Linux builds; Android uses Gradle and the NDK.
-
-### What are the shader kit files for?
-
-The modern graphics backends use compiled `.ecs` shader blob packages and generated headers. The shader kit makes sure the executable and installed shaders use the same layouts and catalog.
-
-### Does multiplayer require GameSpy?
-
-No. LAN and direct-IP multiplayer work without GameSpy. For internet hosting, the router may need port forwarding.
-
-### Can I use `ResourceTool` for a complete asset round trip?
-
-Almost. Its descriptor-driven geometry workflow is evolving, and some data types are still handled as external references.
-
-### Can I use the original Xbox build with this branch?
-
-The Xbox version remains on its legacy branch and uses the original console tools. It is not part of the CMake-based port.
+This is a free, unofficial community modification. It is not affiliated with, endorsed by or sponsored by the original game's developers or publishers. *Area 51*, its original code, game data, assets and trademarks remain the property of their respective rights holders. This repository does not grant a licence to redistribute those materials, and the mod does not include the original game data.
