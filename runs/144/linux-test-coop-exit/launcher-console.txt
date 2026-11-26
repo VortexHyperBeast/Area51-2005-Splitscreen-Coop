@@ -1,0 +1,13 @@
+mode=coop-exit expect=probe window=640x360 cycles=3 max=3300s startup-gate=1200s
+host: Linux 7.0.0-1020-azure x86_64, 4 cpus
+install ready (7 shader packages)
+wrote /mnt/pack/work/coop-exit/script.txt: 33 phases, 109 s of game time
+running under gdb
+game started, pid 3603
+game ended: exit code 1 after 515s (124 = stopped by timeout, 137/143 = killed, 139 = crash)
+game output: 5953 lines, a51_qa_bot.log: 3755 lines
+screenshots taken: 92
+coopqa shots: 92 lines written to /home/runner/work/area51-pc/area51-pc/qa-out/shots.txt
+cutscene sound: dialog lines started: 0 (0 could not start), stop calls: 20
+voices in use: max 40 (top BULLETFLYBY x8), last 9
+RESULT: PASS (probe run, report only)
