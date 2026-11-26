@@ -1,0 +1,1450 @@
+wall=560 qt=-1 QA bot starting (wall limit 1500 s, menu pulses 1)
+wall=560 qt=-1 script '/mnt/pack/work/sweep/script.txt' loaded: 26 events, quit at 91200 ms
+wall=561 qt=-1 pad 0 attached: instance id 3, is_gamepad=1
+wall=561 qt=-1 pad 1 attached: instance id 4, is_gamepad=1
+wall=1613 qt=-1 state SM_IDLE -> SM_PRESS_START_SCREEN
+wall=1632 qt=-1 state SM_PRESS_START_SCREEN -> SM_MAIN_MENU
+wall=1748 qt=-1 state SM_MAIN_MENU -> SM_PROFILE_SELECT
+wall=1755 qt=-1 state SM_PROFILE_SELECT -> SM_CAMPAIGN_MENU
+wall=1766 qt=-1 state SM_CAMPAIGN_MENU -> SM_LEVEL_SELECT
+wall=1766 qt=-1 level list 0: id=1000
+wall=1766 qt=-1 level list 1: id=1010
+wall=1766 qt=-1 level list 2: id=1020
+wall=1766 qt=-1 level list 3: id=1030
+wall=1766 qt=-1 level list 4: id=1040
+wall=1766 qt=-1 level list 5: id=1050
+wall=1766 qt=-1 level list 6: id=1060
+wall=1766 qt=-1 level list 7: id=1070
+wall=1766 qt=-1 level list 8: id=1075
+wall=1766 qt=-1 level list 9: id=1080
+wall=1766 qt=-1 level list 10: id=1090
+wall=1766 qt=-1 level list 11: id=1095
+wall=1766 qt=-1 level list 12: id=1100
+wall=1766 qt=-1 level list 13: id=1105
+wall=1766 qt=-1 level list 14: id=1110
+wall=1766 qt=-1 level list 15: id=1115
+wall=1766 qt=-1 level list 16: id=1120
+wall=1766 qt=-1 level list 17: id=1125
+wall=1766 qt=-1 level list 18: id=1130
+wall=5008 qt=-1 level picked by the test: 1115
+wall=5020 qt=-1 state SM_LEVEL_SELECT -> SM_START_GAME
+wall=5306 qt=-1 state SM_START_GAME -> SM_SINGLE_PLAYER_LOAD_MISSION
+wall=10005 qt=-1 perf frames=1139 in 5002 ms
+wall=15007 qt=-1 perf frames=231 in 5002 ms
+wall=20008 qt=-1 perf frames=388 in 5001 ms
+wall=25012 qt=-1 perf frames=612 in 5004 ms
+wall=26510 qt=-1 campaign BeginGame done: players=2 level=1115
+wall=27610 qt=-1 state SM_SINGLE_PLAYER_LOAD_MISSION -> SM_SERVER_SYNC
+wall=27612 qt=-1 state SM_SERVER_SYNC -> SM_PLAYING_GAME
+wall=27644 qt=-1 dialog stop - id=00000000
+wall=27648 qt=-1 level 1115 start: anim groups 45, anim pool 15 of 256 blocks, 1802 KB
+wall=27648 qt=-1 audio voices=0 top=- x0
+wall=27648 qt=-1 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,760,-13750 yaw=-1800 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=27648 qt=-1 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-13600 top=10090 dist=150 collidable=1 rideable=1
+wall=27648 qt=-1 player 1 guid=00000003 slot=1 pad=1 pos=-23600,760,-13750 yaw=-1800 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=27648 qt=-1 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-13600 top=10090 dist=180 collidable=1 rideable=1
+wall=27979 qt=-1 view 0 viewport=0,0,640,180 eye=-23500,917,-13738 frames=1 views=2
+wall=27983 qt=-1 bodies view=0 drawn=0 frames=1 others=1 with_body=1
+wall=28018 qt=-1 view 1 viewport=0,180,640,360 eye=-23600,917,-13738 frames=1 views=2
+wall=28019 qt=-1 bodies view=1 drawn=0 frames=1 others=1 with_body=1
+wall=31682 qt=-1 perf frames=923 in 6670 ms
+wall=31690 qt=-1 view 0 viewport=0,0,640,180 eye=-23500,919,-13736 frames=2 views=2
+wall=31691 qt=-1 bodies view=0 drawn=0 frames=1 others=1 with_body=1
+wall=31702 qt=-1 view 1 viewport=0,180,640,360 eye=-23600,919,-13736 frames=2 views=2
+wall=31703 qt=-1 bodies view=1 drawn=0 frames=1 others=1 with_body=1
+wall=31984 qt=-1 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-13750 yaw=1799 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=31984 qt=-1 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-13600 top=10090 dist=150 collidable=1 rideable=1
+wall=31984 qt=-1 player 1 guid=00000003 slot=1 pad=1 pos=-23600,750,-13750 yaw=1799 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=31984 qt=-1 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-13600 top=10090 dist=180 collidable=1 rideable=1
+wall=32788 qt=-1 view 0 viewport=0,0,640,180 eye=-23500,920,-13737 frames=8 views=2
+wall=32789 qt=-1 bodies view=0 drawn=0 frames=6 others=1 with_body=1
+wall=32793 qt=-1 view 1 viewport=0,180,640,360 eye=-23600,920,-13737 frames=8 views=2
+wall=32794 qt=-1 bodies view=1 drawn=0 frames=6 others=1 with_body=1
+wall=32943 qt=-1 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-13750 yaw=1799 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=32943 qt=-1 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-13600 top=10090 dist=150 collidable=1 rideable=1
+wall=32943 qt=-1 player 1 guid=00000003 slot=1 pad=1 pos=-23600,750,-13750 yaw=1799 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=32943 qt=-1 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-13600 top=10090 dist=180 collidable=1 rideable=1
+wall=33932 qt=-1 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-14604 yaw=1799 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=33932 qt=-1 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-14454 top=10090 dist=150 collidable=1 rideable=1
+wall=33932 qt=-1 player 1 guid=00000003 slot=1 pad=1 pos=-23600,750,-14604 yaw=1799 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=33932 qt=-1 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-14454 top=10090 dist=180 collidable=1 rideable=1
+wall=33932 qt=-1 view 0 viewport=0,0,640,180 eye=-23500,920,-14591 frames=15 views=2
+wall=33934 qt=-1 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=33937 qt=-1 view 1 viewport=0,180,640,360 eye=-23600,920,-14591 frames=15 views=2
+wall=33939 qt=-1 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=34965 qt=-1 audio voices=4 top=ALIEN_AMB_01_V_1 x1
+wall=34966 qt=-1 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-15456 yaw=1799 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=34966 qt=-1 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-15306 top=10090 dist=150 collidable=1 rideable=1
+wall=34966 qt=-1 player 1 guid=00000003 slot=1 pad=1 pos=-23600,750,-15456 yaw=1799 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=34966 qt=-1 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-15306 top=10090 dist=180 collidable=1 rideable=1
+wall=34966 qt=-1 view 0 viewport=0,0,640,180 eye=-23500,920,-15443 frames=21 views=2
+wall=34967 qt=-1 bodies view=0 drawn=0 frames=6 others=1 with_body=1
+wall=34971 qt=-1 view 1 viewport=0,180,640,360 eye=-23600,920,-15443 frames=21 views=2
+wall=34972 qt=-1 bodies view=1 drawn=0 frames=6 others=1 with_body=1
+wall=35968 qt=-1 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-16308 yaw=1799 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=35968 qt=-1 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-16158 top=10090 dist=150 collidable=1 rideable=1
+wall=35968 qt=-1 player 1 guid=00000003 slot=1 pad=1 pos=-23600,750,-16308 yaw=1799 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=35968 qt=-1 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-16158 top=10090 dist=180 collidable=1 rideable=1
+wall=35968 qt=-1 view 0 viewport=0,0,640,180 eye=-23500,920,-16295 frames=27 views=2
+wall=35969 qt=-1 bodies view=0 drawn=0 frames=6 others=1 with_body=1
+wall=35973 qt=-1 view 1 viewport=0,180,640,360 eye=-23600,920,-16295 frames=27 views=2
+wall=35974 qt=-1 bodies view=1 drawn=0 frames=6 others=1 with_body=1
+wall=38639 qt=-1 perf frames=29 in 6957 ms
+wall=38643 qt=-1 view 0 viewport=0,0,640,180 eye=-23500,920,-16810 frames=31 views=2
+wall=38645 qt=-1 bodies view=0 drawn=0 frames=4 others=1 with_body=1
+wall=38649 qt=-1 view 1 viewport=0,180,640,360 eye=-23600,920,-16810 frames=31 views=2
+wall=38650 qt=-1 bodies view=1 drawn=0 frames=4 others=1 with_body=1
+wall=39677 qt=-1 view 0 viewport=0,0,640,180 eye=-23500,920,-16925 frames=32 views=2
+wall=39678 qt=-1 bodies view=0 drawn=0 frames=1 others=1 with_body=1
+wall=39682 qt=-1 view 1 viewport=0,180,640,360 eye=-23600,920,-16925 frames=32 views=2
+wall=39684 qt=-1 bodies view=1 drawn=0 frames=1 others=1 with_body=1
+wall=39845 qt=-1 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-17052 yaw=1799 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=39845 qt=-1 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-16902 top=10090 dist=150 collidable=1 rideable=1
+wall=39845 qt=-1 player 1 guid=00000003 slot=1 pad=1 pos=-23600,750,-17052 yaw=1799 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=39845 qt=-1 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-16902 top=10090 dist=180 collidable=1 rideable=1
+wall=40783 qt=-1 view 0 viewport=0,0,640,180 eye=-23500,920,-17613 frames=38 views=2
+wall=40785 qt=-1 bodies view=0 drawn=0 frames=6 others=1 with_body=1
+wall=40789 qt=-1 view 1 viewport=0,180,640,360 eye=-23600,920,-17613 frames=38 views=2
+wall=40791 qt=-1 bodies view=1 drawn=0 frames=6 others=1 with_body=1
+wall=40994 qt=-1 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-17741 yaw=1799 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=40994 qt=-1 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-17591 top=10090 dist=150 collidable=1 rideable=1
+wall=40994 qt=-1 player 1 guid=00000003 slot=1 pad=1 pos=-23600,750,-17741 yaw=1799 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=40994 qt=-1 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-17591 top=10090 dist=180 collidable=1 rideable=1
+wall=41815 qt=-1 view 0 viewport=0,0,640,180 eye=-23500,920,-18187 frames=43 views=2
+wall=41817 qt=-1 bodies view=0 drawn=0 frames=5 others=1 with_body=1
+wall=41821 qt=-1 view 1 viewport=0,180,640,360 eye=-23600,920,-18187 frames=43 views=2
+wall=41823 qt=-1 bodies view=1 drawn=0 frames=5 others=1 with_body=1
+wall=42237 qt=-1 audio voices=10 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x4
+wall=42237 qt=-1 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-18429 yaw=1799 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=42237 qt=-1 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-18279 top=10090 dist=150 collidable=1 rideable=1
+wall=42237 qt=-1 player 1 guid=00000003 slot=1 pad=1 pos=-23600,750,-18429 yaw=1799 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=42237 qt=-1 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-18279 top=10090 dist=180 collidable=1 rideable=1
+wall=42804 qt=0 armed: level running, no cinematic on any local player (script 0 ms)
+wall=42804 qt=0 loadout player 0: scanner=1 smp=1 pistol=1
+wall=42804 qt=0 loadout player 1: scanner=1 smp=1 pistol=1
+wall=42804 qt=0 equip player 0: pistol, 8 rounds per clip
+wall=42804 qt=0 equip player 1: pistol, 8 rounds per clip
+wall=42804 qt=0 profile player 0: index=0 name=Empty avatar=0
+wall=42804 qt=0 profile player 1: index=1 name=Splitscreen P2 avatar=1
+wall=42804 qt=0 share item=grenade p0 5->5 p1 5->5
+wall=42989 qt=100 pad 0 a = 0
+wall=42989 qt=100 dialog stream GRAY_CHATTER_B id=00018062
+wall=42994 qt=200 view 0 viewport=0,0,640,180 eye=-23500,920,-18876 frames=49 views=2
+wall=42996 qt=200 bodies view=0 drawn=0 frames=6 others=1 with_body=1
+wall=43000 qt=200 view 1 viewport=0,180,640,360 eye=-23600,920,-18876 frames=49 views=2
+wall=43002 qt=200 bodies view=1 drawn=0 frames=6 others=1 with_body=1
+wall=43494 qt=400 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-19080 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=43494 qt=400 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-18930 top=10090 dist=150 collidable=1 rideable=1
+wall=43494 qt=400 player 1 guid=00000003 slot=1 pad=1 pos=-23600,750,-19080 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=43494 qt=400 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-18930 top=10090 dist=180 collidable=1 rideable=1
+wall=43694 qt=400 perf frames=21 in 5055 ms
+wall=44307 qt=700 view 0 viewport=0,0,640,180 eye=-23500,920,-19352 frames=54 views=2
+wall=44309 qt=700 bodies view=0 drawn=0 frames=5 others=1 with_body=1
+wall=44314 qt=700 view 1 viewport=0,180,640,360 eye=-23600,920,-19352 frames=54 views=2
+wall=44315 qt=700 bodies view=1 drawn=0 frames=5 others=1 with_body=1
+wall=44879 qt=1000 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-19650 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=44879 qt=1000 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-19500 top=10090 dist=150 collidable=1 rideable=1
+wall=44879 qt=1000 player 1 guid=00000003 slot=1 pad=1 pos=-23600,750,-19650 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=44879 qt=1000 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-19500 top=10090 dist=180 collidable=1 rideable=1
+wall=45489 qt=1300 view 0 viewport=0,0,640,180 eye=-23500,920,-19921 frames=60 views=2
+wall=45491 qt=1300 bodies view=0 drawn=0 frames=6 others=1 with_body=1
+wall=45496 qt=1300 view 1 viewport=0,180,640,360 eye=-23600,920,-19921 frames=60 views=2
+wall=45497 qt=1300 bodies view=1 drawn=0 frames=6 others=1 with_body=1
+wall=46272 qt=1600 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-20219 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=46272 qt=1600 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-20069 top=10090 dist=150 collidable=1 rideable=1
+wall=46272 qt=1600 player 1 guid=00000003 slot=1 pad=1 pos=-23600,750,-20219 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=46272 qt=1600 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-20069 top=10090 dist=180 collidable=1 rideable=1
+wall=46513 qt=1700 view 0 viewport=0,0,640,180 eye=-23500,920,-20301 frames=64 views=2
+wall=46515 qt=1700 bodies view=0 drawn=0 frames=4 others=1 with_body=1
+wall=46520 qt=1700 view 1 viewport=0,180,640,360 eye=-23600,920,-20301 frames=64 views=2
+wall=46521 qt=1700 bodies view=1 drawn=0 frames=4 others=1 with_body=1
+wall=47713 qt=2200 audio voices=12 top=OBJ_ALIEN_CEILING_MACHINERY_LP_1_A x3
+wall=47713 qt=2200 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-20788 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=47713 qt=2200 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-20638 top=10090 dist=150 collidable=1 rideable=1
+wall=47713 qt=2200 player 1 guid=00000003 slot=1 pad=1 pos=-23600,750,-20788 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=47713 qt=2200 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-20638 top=10090 dist=180 collidable=1 rideable=1
+wall=47713 qt=2200 view 0 viewport=0,0,640,180 eye=-23500,920,-20776 frames=69 views=2
+wall=47715 qt=2200 bodies view=0 drawn=0 frames=5 others=1 with_body=1
+wall=47720 qt=2200 view 1 viewport=0,180,640,360 eye=-23600,920,-20776 frames=69 views=2
+wall=47721 qt=2200 bodies view=1 drawn=0 frames=5 others=1 with_body=1
+wall=48798 qt=2600 perf frames=22 in 5104 ms
+wall=48803 qt=2700 view 0 viewport=0,0,640,180 eye=-23500,920,-21177 frames=74 views=2
+wall=48805 qt=2700 bodies view=0 drawn=0 frames=5 others=1 with_body=1
+wall=48809 qt=2700 view 1 viewport=0,180,640,360 eye=-23600,920,-21177 frames=74 views=2
+wall=48811 qt=2700 bodies view=1 drawn=0 frames=5 others=1 with_body=1
+wall=49383 qt=2800 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-21269 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=49383 qt=2800 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-21119 top=10090 dist=150 collidable=1 rideable=1
+wall=49383 qt=2800 player 1 guid=00000003 slot=1 pad=1 pos=-23600,750,-21269 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=49383 qt=2800 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-21119 top=10090 dist=180 collidable=1 rideable=1
+wall=49813 qt=3000 view 0 viewport=0,0,640,180 eye=-23500,920,-21416 frames=77 views=2
+wall=49815 qt=3000 bodies view=0 drawn=0 frames=3 others=1 with_body=1
+wall=49819 qt=3000 view 1 viewport=0,180,640,360 eye=-23600,920,-21416 frames=77 views=2
+wall=49821 qt=3000 bodies view=1 drawn=0 frames=3 others=1 with_body=1
+wall=50621 qt=3400 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-21749 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=50621 qt=3400 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-21599 top=10090 dist=150 collidable=1 rideable=1
+wall=50621 qt=3400 player 1 guid=00000003 slot=1 pad=1 pos=-23600,750,-21749 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=50621 qt=3400 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-21599 top=10090 dist=180 collidable=1 rideable=1
+wall=51006 qt=3600 view 0 viewport=0,0,640,180 eye=-23500,920,-21895 frames=83 views=2
+wall=51008 qt=3600 bodies view=0 drawn=0 frames=6 others=1 with_body=1
+wall=51012 qt=3600 view 1 viewport=0,180,640,360 eye=-23600,920,-21895 frames=83 views=2
+wall=51013 qt=3600 bodies view=1 drawn=0 frames=6 others=1 with_body=1
+wall=51769 qt=4000 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-22228 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=51769 qt=4000 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-22078 top=10090 dist=150 collidable=1 rideable=1
+wall=51769 qt=4000 player 1 guid=00000003 slot=1 pad=1 pos=-23600,750,-22228 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=51769 qt=4000 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-22078 top=10090 dist=180 collidable=1 rideable=1
+wall=52118 qt=4200 view 0 viewport=0,0,640,180 eye=-23500,920,-22375 frames=89 views=2
+wall=52120 qt=4200 bodies view=0 drawn=0 frames=6 others=1 with_body=1
+wall=52123 qt=4200 view 1 viewport=0,180,640,360 eye=-23600,920,-22375 frames=89 views=2
+wall=52125 qt=4200 bodies view=1 drawn=0 frames=6 others=1 with_body=1
+wall=52832 qt=4600 audio voices=13 top=OBJ_GREEN_HONEYCOMB x3
+wall=52832 qt=4600 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-22582 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=52832 qt=4600 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-22432 top=10090 dist=150 collidable=1 rideable=1
+wall=52832 qt=4600 player 1 guid=00000003 slot=1 pad=1 pos=-23600,750,-22582 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=52832 qt=4600 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-22432 top=10090 dist=180 collidable=1 rideable=1
+wall=53143 qt=4800 view 0 viewport=0,0,640,180 eye=-23500,920,-22665 frames=95 views=2
+wall=53144 qt=4800 bodies view=0 drawn=0 frames=6 others=1 with_body=1
+wall=53147 qt=4800 view 1 viewport=0,180,640,360 eye=-23600,920,-22665 frames=95 views=2
+wall=53148 qt=4800 bodies view=1 drawn=0 frames=6 others=1 with_body=1
+wall=53799 qt=5200 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-22867 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=53799 qt=5200 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-22717 top=10090 dist=150 collidable=1 rideable=1
+wall=53799 qt=5200 player 1 guid=00000003 slot=1 pad=1 pos=-23600,750,-22867 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=53799 qt=5200 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-22717 top=10090 dist=180 collidable=1 rideable=1
+wall=53943 qt=5200 perf frames=26 in 5145 ms
+wall=54253 qt=5500 view 0 viewport=0,0,640,180 eye=-23500,920,-22997 frames=102 views=2
+wall=54254 qt=5500 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=54257 qt=5500 view 1 viewport=0,180,640,360 eye=-23600,920,-22997 frames=102 views=2
+wall=54257 qt=5500 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=54691 qt=5800 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-23152 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=54691 qt=5800 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23002 top=10090 dist=150 collidable=1 rideable=1
+wall=54691 qt=5800 player 1 guid=00000003 slot=1 pad=1 pos=-23600,750,-23152 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=54691 qt=5800 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23002 top=10090 dist=180 collidable=1 rideable=1
+wall=55311 qt=6200 view 0 viewport=0,0,640,180 eye=-23500,920,-23330 frames=109 views=2
+wall=55312 qt=6200 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=55314 qt=6200 view 1 viewport=0,180,640,360 eye=-23600,920,-23330 frames=109 views=2
+wall=55315 qt=6200 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=55595 qt=6400 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-23350 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=55595 qt=6400 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=150 collidable=1 rideable=1
+wall=55595 qt=6400 player 1 guid=00000003 slot=1 pad=1 pos=-23600,750,-23350 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=55595 qt=6400 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=180 collidable=1 rideable=1
+wall=56377 qt=6900 view 0 viewport=0,0,640,180 eye=-23500,920,-23337 frames=116 views=2
+wall=56378 qt=6900 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=56381 qt=6900 view 1 viewport=0,180,640,360 eye=-23600,920,-23337 frames=116 views=2
+wall=56382 qt=6900 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=56516 qt=7000 audio voices=13 top=GLOWING_OBJECT_2 x2
+wall=56516 qt=7000 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-23350 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=56516 qt=7000 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=150 collidable=1 rideable=1
+wall=56516 qt=7000 player 1 guid=00000003 slot=1 pad=1 pos=-23600,750,-23350 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=56516 qt=7000 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=180 collidable=1 rideable=1
+wall=57393 qt=7600 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-23350 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=57393 qt=7600 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=150 collidable=1 rideable=1
+wall=57393 qt=7600 player 1 guid=00000003 slot=1 pad=1 pos=-23600,750,-23350 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=57393 qt=7600 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=180 collidable=1 rideable=1
+wall=57393 qt=7600 view 0 viewport=0,0,640,180 eye=-23500,920,-23337 frames=123 views=2
+wall=57394 qt=7600 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=57396 qt=7600 view 1 viewport=0,180,640,360 eye=-23600,920,-23337 frames=123 views=2
+wall=57397 qt=7600 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=58292 qt=8200 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-23350 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=58292 qt=8200 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=150 collidable=1 rideable=1
+wall=58292 qt=8200 player 1 guid=00000003 slot=1 pad=1 pos=-23600,750,-23350 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=58292 qt=8200 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=180 collidable=1 rideable=1
+wall=58436 qt=8300 view 0 viewport=0,0,640,180 eye=-23500,920,-23337 frames=130 views=2
+wall=58437 qt=8300 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=58440 qt=8300 view 1 viewport=0,180,640,360 eye=-23600,920,-23337 frames=130 views=2
+wall=58441 qt=8300 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=59052 qt=8600 perf frames=34 in 5109 ms
+wall=59204 qt=8800 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-23350 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=59204 qt=8800 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=150 collidable=1 rideable=1
+wall=59204 qt=8800 player 1 guid=00000003 slot=1 pad=1 pos=-23600,750,-23350 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=59204 qt=8800 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=180 collidable=1 rideable=1
+wall=59506 qt=9000 view 0 viewport=0,0,640,180 eye=-23500,920,-23337 frames=137 views=2
+wall=59508 qt=9000 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=59510 qt=9000 view 1 viewport=0,180,640,360 eye=-23600,920,-23337 frames=137 views=2
+wall=59511 qt=9000 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=60145 qt=9400 audio voices=12 top=GLOWING_OBJECT_2 x2
+wall=60145 qt=9400 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-23350 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=60145 qt=9400 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=150 collidable=1 rideable=1
+wall=60145 qt=9400 player 1 guid=00000003 slot=1 pad=1 pos=-23600,750,-23350 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=60145 qt=9400 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=180 collidable=1 rideable=1
+wall=60583 qt=9700 view 0 viewport=0,0,640,180 eye=-23500,920,-23337 frames=144 views=2
+wall=60584 qt=9700 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=60586 qt=9700 view 1 viewport=0,180,640,360 eye=-23600,920,-23337 frames=144 views=2
+wall=60587 qt=9700 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=61026 qt=10000 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-23350 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=61026 qt=10000 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=150 collidable=1 rideable=1
+wall=61026 qt=10000 player 1 guid=00000003 slot=1 pad=1 pos=-23600,750,-23350 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=61026 qt=10000 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=180 collidable=1 rideable=1
+wall=61649 qt=10400 view 0 viewport=0,0,640,180 eye=-23500,920,-23337 frames=151 views=2
+wall=61650 qt=10400 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=61653 qt=10400 view 1 viewport=0,180,640,360 eye=-23600,920,-23337 frames=151 views=2
+wall=61654 qt=10400 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=61944 qt=10600 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-23350 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=61944 qt=10600 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=150 collidable=1 rideable=1
+wall=61944 qt=10600 player 1 guid=00000003 slot=1 pad=1 pos=-23600,750,-23350 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=61944 qt=10600 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=180 collidable=1 rideable=1
+wall=62721 qt=11100 view 0 viewport=0,0,640,180 eye=-23500,920,-23337 frames=158 views=2
+wall=62722 qt=11100 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=62725 qt=11100 view 1 viewport=0,180,640,360 eye=-23600,920,-23337 frames=158 views=2
+wall=62726 qt=11100 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=62870 qt=11200 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-23350 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=62870 qt=11200 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=150 collidable=1 rideable=1
+wall=62870 qt=11200 player 1 guid=00000003 slot=1 pad=1 pos=-23600,750,-23350 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=62870 qt=11200 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=180 collidable=1 rideable=1
+wall=63766 qt=11800 audio voices=12 top=GLOWING_OBJECT_2 x2
+wall=63766 qt=11800 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-23350 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=63766 qt=11800 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=150 collidable=1 rideable=1
+wall=63766 qt=11800 player 1 guid=00000003 slot=1 pad=1 pos=-23600,750,-23350 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=63766 qt=11800 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=180 collidable=1 rideable=1
+wall=63766 qt=11800 view 0 viewport=0,0,640,180 eye=-23500,920,-23337 frames=165 views=2
+wall=63767 qt=11800 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=63769 qt=11800 view 1 viewport=0,180,640,360 eye=-23600,920,-23337 frames=165 views=2
+wall=63770 qt=11800 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=64193 qt=12000 perf frames=34 in 5141 ms
+wall=64678 qt=12400 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-23350 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=64678 qt=12400 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=150 collidable=1 rideable=1
+wall=64678 qt=12400 player 1 guid=00000003 slot=1 pad=1 pos=-23600,750,-23350 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=64678 qt=12400 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=180 collidable=1 rideable=1
+wall=64821 qt=12500 view 0 viewport=0,0,640,180 eye=-23500,920,-23337 frames=172 views=2
+wall=64822 qt=12500 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=64825 qt=12500 view 1 viewport=0,180,640,360 eye=-23600,920,-23337 frames=172 views=2
+wall=64826 qt=12500 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=65554 qt=13000 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-23350 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=65554 qt=13000 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=150 collidable=1 rideable=1
+wall=65554 qt=13000 player 1 guid=00000003 slot=1 pad=1 pos=-23600,750,-23350 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=65554 qt=13000 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=180 collidable=1 rideable=1
+wall=65827 qt=13200 view 0 viewport=0,0,640,180 eye=-23500,920,-23337 frames=179 views=2
+wall=65828 qt=13200 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=65831 qt=13200 view 1 viewport=0,180,640,360 eye=-23600,920,-23337 frames=179 views=2
+wall=65831 qt=13200 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=66432 qt=13600 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-23350 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=66432 qt=13600 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=150 collidable=1 rideable=1
+wall=66432 qt=13600 player 1 guid=00000003 slot=1 pad=1 pos=-23600,750,-23350 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=66432 qt=13600 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=180 collidable=1 rideable=1
+wall=66848 qt=13900 view 0 viewport=0,0,640,180 eye=-23500,920,-23337 frames=186 views=2
+wall=66849 qt=13900 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=66851 qt=13900 view 1 viewport=0,180,640,360 eye=-23600,920,-23337 frames=186 views=2
+wall=66852 qt=13900 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=67268 qt=14200 audio voices=12 top=GLOWING_OBJECT_2 x2
+wall=67268 qt=14200 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-23350 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=67268 qt=14200 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=150 collidable=1 rideable=1
+wall=67268 qt=14200 player 1 guid=00000003 slot=1 pad=1 pos=-23600,750,-23350 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=67268 qt=14200 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=180 collidable=1 rideable=1
+wall=67863 qt=14600 view 0 viewport=0,0,640,180 eye=-23500,920,-23337 frames=193 views=2
+wall=67864 qt=14600 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=67866 qt=14600 view 1 viewport=0,180,640,360 eye=-23600,920,-23337 frames=193 views=2
+wall=67867 qt=14600 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=68144 qt=14800 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-23350 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=68144 qt=14800 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=150 collidable=1 rideable=1
+wall=68144 qt=14800 player 1 guid=00000003 slot=1 pad=1 pos=-23600,750,-23350 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=68144 qt=14800 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=180 collidable=1 rideable=1
+wall=68601 qt=15000 pad 0 ly = -32767
+wall=69099 qt=15300 view 0 viewport=0,0,640,180 eye=-23500,919,-23457 frames=200 views=2
+wall=69100 qt=15300 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=69102 qt=15300 view 1 viewport=0,180,640,360 eye=-23600,920,-23337 frames=200 views=2
+wall=69103 qt=15300 bodies view=1 drawn=2 frames=7 others=1 with_body=1
+wall=69234 qt=15300 perf frames=33 in 5041 ms
+wall=69238 qt=15400 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,748,-23529 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=69238 qt=15400 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=329 collidable=1 rideable=1
+wall=69238 qt=15400 player 1 guid=00000003 slot=1 pad=1 pos=-23600,750,-23350 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=69238 qt=15400 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=180 collidable=1 rideable=1
+wall=70148 qt=16000 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,744,-23625 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=70148 qt=16000 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=425 collidable=1 rideable=1
+wall=70148 qt=16000 player 1 guid=00000003 slot=1 pad=1 pos=-23600,750,-23350 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=70148 qt=16000 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=180 collidable=1 rideable=1
+wall=70148 qt=16000 view 0 viewport=0,0,640,180 eye=-23500,914,-23612 frames=207 views=2
+wall=70149 qt=16000 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=70151 qt=16000 view 1 viewport=0,180,640,360 eye=-23600,920,-23337 frames=207 views=2
+wall=70152 qt=16000 bodies view=1 drawn=7 frames=7 others=1 with_body=1
+wall=71032 qt=16600 audio voices=15 top=GLOWING_OBJECT_2 x2
+wall=71032 qt=16600 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,744,-23625 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=71032 qt=16600 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=425 collidable=1 rideable=1
+wall=71032 qt=16600 player 1 guid=00000003 slot=1 pad=1 pos=-23600,750,-23350 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=71032 qt=16600 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=180 collidable=1 rideable=1
+wall=71171 qt=16700 view 0 viewport=0,0,640,180 eye=-23500,914,-23612 frames=214 views=2
+wall=71172 qt=16700 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=71175 qt=16700 view 1 viewport=0,180,640,360 eye=-23600,920,-23337 frames=214 views=2
+wall=71175 qt=16700 bodies view=1 drawn=7 frames=7 others=1 with_body=1
+wall=71931 qt=17200 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,744,-23625 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=71931 qt=17200 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=425 collidable=1 rideable=1
+wall=71931 qt=17200 player 1 guid=00000003 slot=1 pad=1 pos=-23600,750,-23350 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=71931 qt=17200 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=180 collidable=1 rideable=1
+wall=72213 qt=17400 view 0 viewport=0,0,640,180 eye=-23500,914,-23612 frames=221 views=2
+wall=72214 qt=17400 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=72217 qt=17400 view 1 viewport=0,180,640,360 eye=-23600,920,-23337 frames=221 views=2
+wall=72217 qt=17400 bodies view=1 drawn=7 frames=7 others=1 with_body=1
+wall=72488 qt=17500 pad 0 ly = 0
+wall=72815 qt=17800 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,744,-23625 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=72815 qt=17800 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=425 collidable=1 rideable=1
+wall=72815 qt=17800 player 1 guid=00000003 slot=1 pad=1 pos=-23600,750,-23350 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=72815 qt=17800 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=180 collidable=1 rideable=1
+wall=73235 qt=18000 dialog stream GRAY_CHATTER_B id=000180a9
+wall=73238 qt=18100 view 0 viewport=0,0,640,180 eye=-23500,913,-23612 frames=228 views=2
+wall=73239 qt=18100 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=73241 qt=18100 view 1 viewport=0,180,640,360 eye=-23600,920,-23337 frames=228 views=2
+wall=73242 qt=18100 bodies view=1 drawn=7 frames=7 others=1 with_body=1
+wall=73653 qt=18400 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,744,-23625 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=73653 qt=18400 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=425 collidable=1 rideable=1
+wall=73653 qt=18400 player 1 guid=00000003 slot=1 pad=1 pos=-23600,750,-23350 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=73653 qt=18400 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=180 collidable=1 rideable=1
+wall=73973 qt=18500 pad 1 ly = -32767
+wall=74254 qt=18700 perf frames=34 in 5020 ms
+wall=74257 qt=18800 view 0 viewport=0,0,640,180 eye=-23500,913,-23612 frames=235 views=2
+wall=74258 qt=18800 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=74261 qt=18800 view 1 viewport=0,180,640,360 eye=-23600,919,-23457 frames=235 views=2
+wall=74262 qt=18800 bodies view=1 drawn=7 frames=7 others=1 with_body=1
+wall=74542 qt=19000 audio voices=14 top=GLOWING_OBJECT_2 x2
+wall=74542 qt=19000 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,744,-23625 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=74542 qt=19000 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=425 collidable=1 rideable=1
+wall=74542 qt=19000 player 1 guid=00000003 slot=1 pad=1 pos=-23600,746,-23589 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=74542 qt=19000 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=402 collidable=1 rideable=1
+wall=75277 qt=19500 view 0 viewport=0,0,640,180 eye=-23500,913,-23612 frames=242 views=2
+wall=75278 qt=19500 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=75281 qt=19500 view 1 viewport=0,180,640,360 eye=-23600,914,-23612 frames=242 views=2
+wall=75281 qt=19500 bodies view=1 drawn=2 frames=7 others=1 with_body=1
+wall=75414 qt=19600 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,744,-23625 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=75414 qt=19600 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=425 collidable=1 rideable=1
+wall=75414 qt=19600 player 1 guid=00000003 slot=1 pad=1 pos=-23600,744,-23625 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=75414 qt=19600 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=436 collidable=1 rideable=1
+wall=76285 qt=20200 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,744,-23625 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=76285 qt=20200 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=425 collidable=1 rideable=1
+wall=76285 qt=20200 player 1 guid=00000003 slot=1 pad=1 pos=-23600,744,-23625 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=76285 qt=20200 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=436 collidable=1 rideable=1
+wall=76285 qt=20200 view 0 viewport=0,0,640,180 eye=-23500,913,-23612 frames=249 views=2
+wall=76286 qt=20200 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=76289 qt=20200 view 1 viewport=0,180,640,360 eye=-23600,914,-23612 frames=249 views=2
+wall=76290 qt=20200 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=77171 qt=20800 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,744,-23625 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=77171 qt=20800 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=425 collidable=1 rideable=1
+wall=77171 qt=20800 player 1 guid=00000003 slot=1 pad=1 pos=-23600,744,-23625 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=77171 qt=20800 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=436 collidable=1 rideable=1
+wall=77310 qt=20900 view 0 viewport=0,0,640,180 eye=-23500,913,-23612 frames=256 views=2
+wall=77311 qt=20900 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=77313 qt=20900 view 1 viewport=0,180,640,360 eye=-23600,914,-23612 frames=256 views=2
+wall=77314 qt=20900 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=77578 qt=21000 pad 1 ly = 0
+wall=78051 qt=21400 audio voices=15 top=GLOWING_OBJECT_2 x2
+wall=78051 qt=21400 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,744,-23625 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=78051 qt=21400 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=425 collidable=1 rideable=1
+wall=78051 qt=21400 player 1 guid=00000003 slot=1 pad=1 pos=-23600,744,-23625 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=78051 qt=21400 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=436 collidable=1 rideable=1
+wall=78331 qt=21600 view 0 viewport=0,0,640,180 eye=-23500,913,-23612 frames=263 views=2
+wall=78332 qt=21600 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=78335 qt=21600 view 1 viewport=0,180,640,360 eye=-23600,913,-23612 frames=263 views=2
+wall=78336 qt=21600 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=78885 qt=22000 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,744,-23625 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=78885 qt=22000 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=425 collidable=1 rideable=1
+wall=78885 qt=22000 player 1 guid=00000003 slot=1 pad=1 pos=-23600,744,-23625 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=78885 qt=22000 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=436 collidable=1 rideable=1
+wall=79070 qt=22000 pad 0 lx = 32767
+wall=79070 qt=22000 pad 1 lx = -32767
+wall=79357 qt=22200 perf frames=35 in 5103 ms
+wall=79362 qt=22300 view 0 viewport=0,0,640,180 eye=-23377,936,-23611 frames=270 views=2
+wall=79363 qt=22300 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=79365 qt=22300 view 1 viewport=0,180,640,360 eye=-23719,949,-23611 frames=270 views=2
+wall=79366 qt=22300 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=79782 qt=22600 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23243,771,-23604 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=79782 qt=22600 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=479 collidable=1 rideable=1
+wall=79782 qt=22600 player 1 guid=00000003 slot=1 pad=1 pos=-23897,739,-23623 yaw=1799 pitch=0 hp=80 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=79782 qt=22600 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=581 collidable=1 rideable=1
+wall=80365 qt=22900 view 0 viewport=0,0,640,180 eye=-23167,949,-23531 frames=276 views=2
+wall=80366 qt=22900 bodies view=0 drawn=0 frames=6 others=1 with_body=1
+wall=80368 qt=22900 view 1 viewport=0,180,640,360 eye=-24079,865,-23611 frames=276 views=2
+wall=80369 qt=22900 bodies view=1 drawn=0 frames=6 others=1 with_body=1
+wall=80866 qt=23200 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-22996,801,-23539 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=80866 qt=23200 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=609 collidable=1 rideable=1
+wall=80866 qt=23200 player 1 guid=00000003 slot=1 pad=1 pos=-24257,591,-23623 yaw=1799 pitch=0 hp=80 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=80866 qt=23200 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=882 collidable=1 rideable=1
+wall=81460 qt=23400 view 0 viewport=0,0,640,180 eye=-22874,970,-23526 frames=281 views=2
+wall=81460 qt=23400 bodies view=0 drawn=0 frames=5 others=1 with_body=1
+wall=81463 qt=23400 view 1 viewport=0,180,640,360 eye=-24379,640,-23611 frames=281 views=2
+wall=81463 qt=23400 bodies view=1 drawn=0 frames=5 others=1 with_body=1
+wall=81590 qt=23400 coop down_pose slot=1 played=1
+wall=81590 qt=23400 coop downed slot=1 bleedout=25.0
+wall=82029 qt=23800 audio voices=17 top=GLOWING_OBJECT_2 x2
+wall=82029 qt=23800 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-22636,801,-23539 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=82029 qt=23800 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=929 collidable=1 rideable=1
+wall=82029 qt=23800 player 1 guid=00000003 slot=1 pad=1 pos=-24562,111,-23623 yaw=1799 pitch=0 hp=1 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=82029 qt=23800 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1310 collidable=1 rideable=1
+wall=82459 qt=24000 pad 0 lx = 0
+wall=82459 qt=24000 pad 1 lx = 0
+wall=82463 qt=24100 view 0 viewport=0,0,640,180 eye=-22454,970,-23526 frames=288 views=2
+wall=82465 qt=24100 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=82467 qt=24100 view 1 viewport=0,180,640,360 eye=-24622,-228,-23610 frames=288 views=2
+wall=82468 qt=24100 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=82838 qt=24400 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-22456,801,-23539 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=82838 qt=24400 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1098 collidable=1 rideable=1
+wall=82838 qt=24400 player 1 guid=00000003 slot=1 pad=1 pos=-24645,-599,-23623 yaw=1799 pitch=0 hp=1 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=82838 qt=24400 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1819 collidable=1 rideable=1
+wall=83501 qt=24900 view 0 viewport=0,0,640,180 eye=-22456,970,-23526 frames=296 views=2
+wall=83503 qt=24900 bodies view=0 drawn=0 frames=8 others=1 with_body=1
+wall=83505 qt=24900 view 1 viewport=0,180,640,360 eye=-24645,-564,-23610 frames=296 views=2
+wall=83507 qt=24900 bodies view=1 drawn=0 frames=8 others=1 with_body=1
+wall=83624 qt=25000 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-22456,801,-23539 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=83624 qt=25000 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1098 collidable=1 rideable=1
+wall=83624 qt=25000 player 1 guid=00000003 slot=1 pad=1 pos=-24645,-599,-23623 yaw=1799 pitch=0 hp=1 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=83624 qt=25000 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1819 collidable=1 rideable=1
+wall=83744 qt=25000 pad 0 rx = 32767
+wall=84603 qt=25300 perf frames=31 in 5246 ms
+wall=84607 qt=25400 view 0 viewport=0,0,640,180 eye=-22469,970,-23536 frames=301 views=2
+wall=84609 qt=25400 bodies view=0 drawn=0 frames=5 others=1 with_body=1
+wall=84613 qt=25400 view 1 viewport=0,180,640,360 eye=-24645,-564,-23610 frames=301 views=2
+wall=84614 qt=25400 bodies view=1 drawn=0 frames=5 others=1 with_body=1
+wall=85048 qt=25600 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-22456,801,-23539 yaw=385 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=85048 qt=25600 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1098 collidable=1 rideable=1
+wall=85048 qt=25600 player 1 guid=00000003 slot=1 pad=1 pos=-24645,-599,-23623 yaw=1799 pitch=0 hp=1 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=85048 qt=25600 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1819 collidable=1 rideable=1
+wall=85760 qt=26000 view 0 viewport=0,0,640,180 eye=-22443,970,-23539 frames=307 views=2
+wall=85762 qt=26000 bodies view=0 drawn=0 frames=6 others=1 with_body=1
+wall=85765 qt=26000 view 1 viewport=0,180,640,360 eye=-24645,-564,-23610 frames=307 views=2
+wall=85766 qt=26000 bodies view=1 drawn=0 frames=6 others=1 with_body=1
+wall=86041 qt=26200 audio voices=17 top=GLOWING_OBJECT_2 x2
+wall=86041 qt=26200 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-22456,801,-23539 yaw=-1503 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=86041 qt=26200 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1098 collidable=1 rideable=1
+wall=86041 qt=26200 player 1 guid=00000003 slot=1 pad=1 pos=-24645,-599,-23623 yaw=1799 pitch=0 hp=1 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=86041 qt=26200 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1819 collidable=1 rideable=1
+wall=86646 qt=26500 pad 0 rx = 0
+wall=86802 qt=26700 view 0 viewport=0,0,640,180 eye=-22469,970,-23540 frames=314 views=2
+wall=86804 qt=26700 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=86807 qt=26700 view 1 viewport=0,180,640,360 eye=-24645,-564,-23610 frames=314 views=2
+wall=86809 qt=26700 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=86952 qt=26800 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-22456,801,-23539 yaw=-2763 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=86952 qt=26800 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1098 collidable=1 rideable=1
+wall=86952 qt=26800 player 1 guid=00000003 slot=1 pad=1 pos=-24645,-599,-23623 yaw=1799 pitch=0 hp=1 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=86952 qt=26800 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1819 collidable=1 rideable=1
+wall=87868 qt=27400 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-22456,801,-23539 yaw=-2763 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=87868 qt=27400 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1098 collidable=1 rideable=1
+wall=87868 qt=27400 player 1 guid=00000003 slot=1 pad=1 pos=-24645,-599,-23623 yaw=1799 pitch=0 hp=1 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=87868 qt=27400 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1819 collidable=1 rideable=1
+wall=87868 qt=27400 view 0 viewport=0,0,640,180 eye=-22469,970,-23540 frames=321 views=2
+wall=87870 qt=27400 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=87873 qt=27400 view 1 viewport=0,180,640,360 eye=-24645,-564,-23610 frames=321 views=2
+wall=87875 qt=27400 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=88150 qt=27500 pad 1 rx = -32767
+wall=89187 qt=27900 view 0 viewport=0,0,640,180 eye=-22469,970,-23540 frames=326 views=2
+wall=89189 qt=27900 bodies view=0 drawn=0 frames=5 others=1 with_body=1
+wall=89192 qt=27900 view 1 viewport=0,180,640,360 eye=-24633,-564,-23621 frames=326 views=2
+wall=89194 qt=27900 bodies view=1 drawn=0 frames=5 others=1 with_body=1
+wall=89329 qt=28000 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-22456,801,-23539 yaw=-2763 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=89329 qt=28000 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1098 collidable=1 rideable=1
+wall=89329 qt=28000 player 1 guid=00000003 slot=1 pad=1 pos=-24645,-599,-23623 yaw=2899 pitch=0 hp=1 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=89329 qt=28000 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1819 collidable=1 rideable=1
+wall=89788 qt=28100 perf frames=28 in 5185 ms
+wall=90716 qt=28500 view 0 viewport=0,0,640,180 eye=-22469,970,-23540 frames=332 views=2
+wall=90719 qt=28500 bodies view=0 drawn=0 frames=6 others=1 with_body=1
+wall=90722 qt=28500 view 1 viewport=0,180,640,360 eye=-24658,-564,-23624 frames=332 views=2
+wall=90723 qt=28500 bodies view=1 drawn=0 frames=6 others=1 with_body=1
+wall=90876 qt=28600 audio voices=17 top=GLOWING_OBJECT_2 x2
+wall=90876 qt=28600 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-22456,801,-23539 yaw=-2763 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=90876 qt=28600 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1098 collidable=1 rideable=1
+wall=90876 qt=28600 player 1 guid=00000003 slot=1 pad=1 pos=-24645,-599,-23623 yaw=4789 pitch=0 hp=1 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=90876 qt=28600 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1819 collidable=1 rideable=1
+wall=91920 qt=29000 view 0 viewport=0,0,640,180 eye=-22469,970,-23540 frames=337 views=2
+wall=91923 qt=29000 bodies view=0 drawn=0 frames=5 others=1 with_body=1
+wall=91926 qt=29000 view 1 viewport=0,180,640,360 eye=-24633,-564,-23618 frames=337 views=2
+wall=91927 qt=29000 bodies view=1 drawn=0 frames=5 others=1 with_body=1
+wall=92060 qt=29000 pad 1 rx = 0
+wall=92252 qt=29200 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-22456,801,-23539 yaw=-2763 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=92252 qt=29200 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1098 collidable=1 rideable=1
+wall=92252 qt=29200 player 1 guid=00000003 slot=1 pad=1 pos=-24645,-599,-23623 yaw=6363 pitch=0 hp=1 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=92252 qt=29200 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1819 collidable=1 rideable=1
+wall=92990 qt=29600 view 0 viewport=0,0,640,180 eye=-22469,970,-23540 frames=343 views=2
+wall=92992 qt=29600 bodies view=0 drawn=0 frames=6 others=1 with_body=1
+wall=92995 qt=29600 view 1 viewport=0,180,640,360 eye=-24632,-564,-23625 frames=343 views=2
+wall=92997 qt=29600 bodies view=1 drawn=0 frames=6 others=1 with_body=1
+wall=93329 qt=29800 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-22456,801,-23539 yaw=-2763 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=93329 qt=29800 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1098 collidable=1 rideable=1
+wall=93329 qt=29800 player 1 guid=00000003 slot=1 pad=1 pos=-24645,-599,-23623 yaw=6363 pitch=0 hp=1 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=93329 qt=29800 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1819 collidable=1 rideable=1
+wall=93859 qt=30000 pad 0 a = 1
+wall=94038 qt=30200 view 0 viewport=0,0,640,180 eye=-22469,1015,-23540 frames=349 views=2
+wall=94040 qt=30200 bodies view=0 drawn=0 frames=6 others=1 with_body=1
+wall=94043 qt=30200 view 1 viewport=0,180,640,360 eye=-24632,-564,-23625 frames=349 views=2
+wall=94045 qt=30200 bodies view=1 drawn=0 frames=6 others=1 with_body=1
+wall=94439 qt=30300 pad 0 a = 0
+wall=94458 qt=30400 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-22456,906,-23539 yaw=-2763 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=94458 qt=30400 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1108 collidable=1 rideable=1
+wall=94458 qt=30400 player 1 guid=00000003 slot=1 pad=1 pos=-24645,-599,-23623 yaw=6363 pitch=0 hp=1 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=94458 qt=30400 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1819 collidable=1 rideable=1
+wall=94912 qt=30400 perf frames=23 in 5124 ms
+wall=95098 qt=30600 view 0 viewport=0,0,640,180 eye=-22469,1095,-23540 frames=353 views=2
+wall=95100 qt=30600 bodies view=0 drawn=0 frames=4 others=1 with_body=1
+wall=95104 qt=30600 view 1 viewport=0,180,640,360 eye=-24632,-564,-23625 frames=353 views=2
+wall=95105 qt=30600 bodies view=1 drawn=0 frames=4 others=1 with_body=1
+wall=95760 qt=31000 audio voices=17 top=GLOWING_OBJECT_2 x2
+wall=95760 qt=31000 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-22456,846,-23539 yaw=-2763 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=95760 qt=31000 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1101 collidable=1 rideable=1
+wall=95760 qt=31000 player 1 guid=00000003 slot=1 pad=1 pos=-24645,-599,-23623 yaw=6363 pitch=0 hp=1 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=95760 qt=31000 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1819 collidable=1 rideable=1
+wall=96109 qt=31200 view 0 viewport=0,0,640,180 eye=-22470,966,-23540 frames=359 views=2
+wall=96112 qt=31200 bodies view=0 drawn=0 frames=6 others=1 with_body=1
+wall=96115 qt=31200 view 1 viewport=0,180,640,360 eye=-24632,-564,-23625 frames=359 views=2
+wall=96116 qt=31200 bodies view=1 drawn=0 frames=6 others=1 with_body=1
+wall=96757 qt=31600 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-22456,801,-23539 yaw=-2763 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=96757 qt=31600 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1098 collidable=1 rideable=1
+wall=96757 qt=31600 player 1 guid=00000003 slot=1 pad=1 pos=-24645,-599,-23623 yaw=6363 pitch=0 hp=1 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=96757 qt=31600 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1819 collidable=1 rideable=1
+wall=97397 qt=31800 view 0 viewport=0,0,640,180 eye=-22468,971,-23540 frames=365 views=2
+wall=97400 qt=31800 bodies view=0 drawn=0 frames=6 others=1 with_body=1
+wall=97403 qt=31800 view 1 viewport=0,180,640,360 eye=-24632,-564,-23625 frames=365 views=2
+wall=97404 qt=31800 bodies view=1 drawn=0 frames=6 others=1 with_body=1
+wall=97862 qt=32000 pad 1 a = 1
+wall=98067 qt=32200 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-22456,801,-23539 yaw=-2763 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=98067 qt=32200 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1098 collidable=1 rideable=1
+wall=98067 qt=32200 player 1 guid=00000003 slot=1 pad=1 pos=-24645,-599,-23623 yaw=6363 pitch=0 hp=1 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=98067 qt=32200 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1819 collidable=1 rideable=1
+wall=98371 qt=32300 pad 1 a = 0
+wall=98545 qt=32500 view 0 viewport=0,0,640,180 eye=-22469,970,-23540 frames=372 views=2
+wall=98547 qt=32500 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=98550 qt=32500 view 1 viewport=0,180,640,360 eye=-24632,-564,-23625 frames=372 views=2
+wall=98552 qt=32500 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=98995 qt=32800 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-22456,801,-23539 yaw=-2763 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=98995 qt=32800 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1098 collidable=1 rideable=1
+wall=98995 qt=32800 player 1 guid=00000003 slot=1 pad=1 pos=-24645,-599,-23623 yaw=6363 pitch=0 hp=1 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=98995 qt=32800 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1819 collidable=1 rideable=1
+wall=99662 qt=33200 view 0 viewport=0,0,640,180 eye=-22469,970,-23540 frames=379 views=2
+wall=99665 qt=33200 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=99668 qt=33200 view 1 viewport=0,180,640,360 eye=-24632,-564,-23625 frames=379 views=2
+wall=99669 qt=33200 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=99955 qt=33300 perf frames=29 in 5043 ms
+wall=99967 qt=33400 audio voices=17 top=GLOWING_OBJECT_2 x2
+wall=99967 qt=33400 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-22456,801,-23539 yaw=-2763 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=99967 qt=33400 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1098 collidable=1 rideable=1
+wall=99967 qt=33400 player 1 guid=00000003 slot=1 pad=1 pos=-24645,-599,-23623 yaw=6363 pitch=0 hp=1 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=99967 qt=33400 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1819 collidable=1 rideable=1
+wall=100778 qt=33900 view 0 viewport=0,0,640,180 eye=-22469,970,-23540 frames=386 views=2
+wall=100781 qt=33900 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=100783 qt=33900 view 1 viewport=0,180,640,360 eye=-24632,-564,-23625 frames=386 views=2
+wall=100785 qt=33900 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=100923 qt=34000 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-22456,801,-23539 yaw=-2763 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=100923 qt=34000 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1098 collidable=1 rideable=1
+wall=100923 qt=34000 player 1 guid=00000003 slot=1 pad=1 pos=-24645,-599,-23623 yaw=6363 pitch=0 hp=1 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=100923 qt=34000 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1819 collidable=1 rideable=1
+wall=101064 qt=34000 pad 0 rt = 32767
+wall=101884 qt=34500 view 0 viewport=0,0,640,180 eye=-22469,970,-23540 frames=392 views=2
+wall=101886 qt=34500 bodies view=0 drawn=0 frames=6 others=1 with_body=1
+wall=101889 qt=34500 view 1 viewport=0,180,640,360 eye=-24632,-564,-23625 frames=392 views=2
+wall=101891 qt=34500 bodies view=1 drawn=0 frames=6 others=1 with_body=1
+wall=102032 qt=34600 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-22456,801,-23539 yaw=-2763 pitch=0 hp=100 weapon=EGL ammo=63 inclip=5 perclip=8 cinema=0
+wall=102032 qt=34600 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1098 collidable=1 rideable=1
+wall=102032 qt=34600 player 1 guid=00000003 slot=1 pad=1 pos=-24645,-599,-23623 yaw=6363 pitch=0 hp=1 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=102032 qt=34600 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1819 collidable=1 rideable=1
+wall=102998 qt=35200 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-22456,801,-23539 yaw=-2763 pitch=0 hp=100 weapon=EGL ammo=61 inclip=3 perclip=8 cinema=0
+wall=102998 qt=35200 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1098 collidable=1 rideable=1
+wall=102998 qt=35200 player 1 guid=00000003 slot=1 pad=1 pos=-24645,-599,-23623 yaw=6363 pitch=0 hp=1 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=102998 qt=35200 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1819 collidable=1 rideable=1
+wall=102998 qt=35200 view 0 viewport=0,0,640,180 eye=-22469,970,-23540 frames=399 views=2
+wall=103000 qt=35200 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=103003 qt=35200 view 1 viewport=0,180,640,360 eye=-24632,-564,-23625 frames=399 views=2
+wall=103005 qt=35200 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=103343 qt=35300 dialog stream GRAY_CHATTER_B id=0001811c
+wall=103664 qt=35500 pad 0 rt = -32768
+wall=103991 qt=35800 audio voices=21 top=EGL_FIRE x2
+wall=103991 qt=35800 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-22456,801,-23539 yaw=-2763 pitch=0 hp=100 weapon=EGL ammo=61 inclip=3 perclip=8 cinema=0
+wall=103991 qt=35800 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1098 collidable=1 rideable=1
+wall=103991 qt=35800 player 1 guid=00000003 slot=1 pad=1 pos=-24645,-599,-23623 yaw=6363 pitch=0 hp=1 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=103991 qt=35800 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1819 collidable=1 rideable=1
+wall=104140 qt=35900 view 0 viewport=0,0,640,180 eye=-22469,970,-23540 frames=406 views=2
+wall=104142 qt=35900 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=104145 qt=35900 view 1 viewport=0,180,640,360 eye=-24632,-564,-23625 frames=406 views=2
+wall=104147 qt=35900 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=104932 qt=36400 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-22456,801,-23539 yaw=-2763 pitch=0 hp=100 weapon=EGL ammo=61 inclip=3 perclip=8 cinema=0
+wall=104932 qt=36400 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1098 collidable=1 rideable=1
+wall=104932 qt=36400 player 1 guid=00000003 slot=1 pad=1 pos=-24645,-599,-23623 yaw=6363 pitch=0 hp=1 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=104932 qt=36400 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1819 collidable=1 rideable=1
+wall=105072 qt=36400 perf frames=31 in 5117 ms
+wall=105229 qt=36500 pad 1 rt = 32767
+wall=105241 qt=36600 view 0 viewport=0,0,640,180 eye=-22469,970,-23540 frames=413 views=2
+wall=105243 qt=36600 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=105246 qt=36600 view 1 viewport=0,180,640,360 eye=-24632,-564,-23625 frames=413 views=2
+wall=105248 qt=36600 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=105895 qt=37000 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-22456,801,-23539 yaw=-2763 pitch=0 hp=100 weapon=EGL ammo=61 inclip=3 perclip=8 cinema=0
+wall=105895 qt=37000 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1098 collidable=1 rideable=1
+wall=105895 qt=37000 player 1 guid=00000003 slot=1 pad=1 pos=-24645,-599,-23623 yaw=6363 pitch=0 hp=1 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=105895 qt=37000 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1819 collidable=1 rideable=1
+wall=106359 qt=37300 view 0 viewport=0,0,640,180 eye=-22469,970,-23540 frames=420 views=2
+wall=106361 qt=37300 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=106364 qt=37300 view 1 viewport=0,180,640,360 eye=-24632,-564,-23625 frames=420 views=2
+wall=106366 qt=37300 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=106859 qt=37600 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-22456,801,-23539 yaw=-2763 pitch=0 hp=100 weapon=EGL ammo=61 inclip=3 perclip=8 cinema=0
+wall=106859 qt=37600 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1098 collidable=1 rideable=1
+wall=106859 qt=37600 player 1 guid=00000003 slot=1 pad=1 pos=-24645,-599,-23623 yaw=6363 pitch=0 hp=1 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=106859 qt=37600 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1819 collidable=1 rideable=1
+wall=107520 qt=38000 view 0 viewport=0,0,640,180 eye=-22469,970,-23540 frames=427 views=2
+wall=107523 qt=38000 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=107526 qt=38000 view 1 viewport=0,180,640,360 eye=-24632,-564,-23625 frames=427 views=2
+wall=107527 qt=38000 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=107662 qt=38000 pad 1 rt = -32768
+wall=107821 qt=38200 audio voices=17 top=GLOWING_OBJECT_2 x2
+wall=107821 qt=38200 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-22456,801,-23539 yaw=-2763 pitch=0 hp=100 weapon=EGL ammo=61 inclip=3 perclip=8 cinema=0
+wall=107821 qt=38200 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1098 collidable=1 rideable=1
+wall=107821 qt=38200 player 1 guid=00000003 slot=1 pad=1 pos=-24645,-599,-23623 yaw=6363 pitch=0 hp=1 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=107821 qt=38200 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1819 collidable=1 rideable=1
+wall=108621 qt=38700 view 0 viewport=0,0,640,180 eye=-22469,970,-23540 frames=434 views=2
+wall=108623 qt=38700 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=108626 qt=38700 view 1 viewport=0,180,640,360 eye=-24632,-564,-23625 frames=434 views=2
+wall=108628 qt=38700 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=108771 qt=38800 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-22456,801,-23539 yaw=-2763 pitch=0 hp=100 weapon=EGL ammo=61 inclip=3 perclip=8 cinema=0
+wall=108771 qt=38800 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1098 collidable=1 rideable=1
+wall=108771 qt=38800 player 1 guid=00000003 slot=1 pad=1 pos=-24645,-599,-23623 yaw=6363 pitch=0 hp=1 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=108771 qt=38800 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1819 collidable=1 rideable=1
+wall=109198 qt=39000 pad 0 x = 1
+wall=109694 qt=39300 pad 0 x = 0
+wall=109707 qt=39400 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-22456,801,-23539 yaw=-2763 pitch=0 hp=100 weapon=EGL ammo=61 inclip=3 perclip=8 cinema=0
+wall=109707 qt=39400 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1098 collidable=1 rideable=1
+wall=109707 qt=39400 player 1 guid=00000003 slot=1 pad=1 pos=-24645,-599,-23623 yaw=6363 pitch=0 hp=1 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=109707 qt=39400 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1819 collidable=1 rideable=1
+wall=109707 qt=39400 view 0 viewport=0,0,640,180 eye=-22469,970,-23540 frames=441 views=2
+wall=109710 qt=39400 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=109713 qt=39400 view 1 viewport=0,180,640,360 eye=-24632,-564,-23625 frames=441 views=2
+wall=109715 qt=39400 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=110168 qt=39600 perf frames=32 in 5096 ms
+wall=110694 qt=40000 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-22456,801,-23539 yaw=-2763 pitch=0 hp=100 weapon=EGL ammo=61 inclip=3 perclip=8 cinema=0
+wall=110694 qt=40000 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1098 collidable=1 rideable=1
+wall=110694 qt=40000 player 1 guid=00000003 slot=1 pad=1 pos=-24645,-599,-23623 yaw=6363 pitch=0 hp=1 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=110694 qt=40000 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1819 collidable=1 rideable=1
+wall=110853 qt=40100 view 0 viewport=0,0,640,180 eye=-22469,970,-23540 frames=448 views=2
+wall=110855 qt=40100 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=110858 qt=40100 view 1 viewport=0,180,640,360 eye=-24632,-564,-23625 frames=448 views=2
+wall=110860 qt=40100 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=111626 qt=40600 audio voices=18 top=GLOWING_OBJECT_2 x2
+wall=111626 qt=40600 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-22456,801,-23539 yaw=-2763 pitch=0 hp=100 weapon=EGL ammo=61 inclip=3 perclip=8 cinema=0
+wall=111626 qt=40600 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1098 collidable=1 rideable=1
+wall=111626 qt=40600 player 1 guid=00000003 slot=1 pad=1 pos=-24645,-599,-23623 yaw=6363 pitch=0 hp=1 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=111626 qt=40600 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1819 collidable=1 rideable=1
+wall=111985 qt=40800 view 0 viewport=0,0,640,180 eye=-22469,970,-23540 frames=455 views=2
+wall=111987 qt=40800 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=111990 qt=40800 view 1 viewport=0,180,640,360 eye=-24632,-564,-23625 frames=455 views=2
+wall=111992 qt=40800 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=112615 qt=41200 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-22456,801,-23539 yaw=-2763 pitch=0 hp=100 weapon=EGL ammo=61 inclip=3 perclip=8 cinema=0
+wall=112615 qt=41200 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1098 collidable=1 rideable=1
+wall=112615 qt=41200 player 1 guid=00000003 slot=1 pad=1 pos=-24645,-599,-23623 yaw=6363 pitch=0 hp=1 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=112615 qt=41200 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1819 collidable=1 rideable=1
+wall=113127 qt=41500 view 0 viewport=0,0,640,180 eye=-22469,970,-23540 frames=462 views=2
+wall=113129 qt=41500 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=113132 qt=41500 view 1 viewport=0,180,640,360 eye=-24632,-564,-23625 frames=462 views=2
+wall=113133 qt=41500 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=113597 qt=41800 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-22456,801,-23539 yaw=-2763 pitch=0 hp=100 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=113597 qt=41800 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1098 collidable=1 rideable=1
+wall=113597 qt=41800 player 1 guid=00000003 slot=1 pad=1 pos=-24645,-599,-23623 yaw=6363 pitch=0 hp=1 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=113597 qt=41800 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1819 collidable=1 rideable=1
+wall=114267 qt=42200 view 0 viewport=0,0,640,180 eye=-22469,970,-23540 frames=469 views=2
+wall=114270 qt=42200 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=114272 qt=42200 view 1 viewport=0,180,640,360 eye=-24632,-564,-23625 frames=469 views=2
+wall=114273 qt=42200 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=114589 qt=42400 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-22456,801,-23539 yaw=-2763 pitch=0 hp=100 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=114589 qt=42400 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1098 collidable=1 rideable=1
+wall=114589 qt=42400 player 1 guid=00000003 slot=1 pad=1 pos=-24645,-599,-23623 yaw=6363 pitch=0 hp=1 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=114589 qt=42400 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1819 collidable=1 rideable=1
+wall=115087 qt=42600 pad 1 x = 1
+wall=115248 qt=42700 perf frames=31 in 5080 ms
+wall=115275 qt=42800 view 0 viewport=0,0,640,180 eye=-22469,970,-23540 frames=475 views=2
+wall=115277 qt=42800 bodies view=0 drawn=0 frames=6 others=1 with_body=1
+wall=115279 qt=42800 view 1 viewport=0,180,640,360 eye=-24632,-564,-23625 frames=475 views=2
+wall=115281 qt=42800 bodies view=1 drawn=0 frames=6 others=1 with_body=1
+wall=115558 qt=42900 pad 1 x = 0
+wall=115583 qt=43000 audio voices=17 top=GLOWING_OBJECT_2 x2
+wall=115583 qt=43000 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-22456,801,-23539 yaw=-2763 pitch=0 hp=100 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=115583 qt=43000 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1098 collidable=1 rideable=1
+wall=115583 qt=43000 player 1 guid=00000003 slot=1 pad=1 pos=-24645,-599,-23623 yaw=6363 pitch=0 hp=1 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=115583 qt=43000 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1819 collidable=1 rideable=1
+wall=116277 qt=43400 view 0 viewport=0,0,640,180 eye=-22469,970,-23540 frames=481 views=2
+wall=116280 qt=43400 bodies view=0 drawn=0 frames=6 others=1 with_body=1
+wall=116282 qt=43400 view 1 viewport=0,180,640,360 eye=-24632,-564,-23625 frames=481 views=2
+wall=116284 qt=43400 bodies view=1 drawn=0 frames=6 others=1 with_body=1
+wall=116610 qt=43600 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-22456,801,-23539 yaw=-2763 pitch=0 hp=100 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=116610 qt=43600 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1098 collidable=1 rideable=1
+wall=116610 qt=43600 player 1 guid=00000003 slot=1 pad=1 pos=-24645,-599,-23623 yaw=6363 pitch=0 hp=1 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=116610 qt=43600 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1819 collidable=1 rideable=1
+wall=117319 qt=44000 view 0 viewport=0,0,640,180 eye=-22469,970,-23540 frames=487 views=2
+wall=117322 qt=44000 bodies view=0 drawn=0 frames=6 others=1 with_body=1
+wall=117324 qt=44000 view 1 viewport=0,180,640,360 eye=-24632,-564,-23625 frames=487 views=2
+wall=117326 qt=44000 bodies view=1 drawn=0 frames=6 others=1 with_body=1
+wall=117647 qt=44200 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-22456,801,-23539 yaw=-2763 pitch=0 hp=100 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=117647 qt=44200 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1098 collidable=1 rideable=1
+wall=117647 qt=44200 player 1 guid=00000003 slot=1 pad=1 pos=-24645,-599,-23623 yaw=6363 pitch=0 hp=1 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=117647 qt=44200 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1819 collidable=1 rideable=1
+wall=118341 qt=44600 view 0 viewport=0,0,640,180 eye=-22469,970,-23540 frames=493 views=2
+wall=118344 qt=44600 bodies view=0 drawn=0 frames=6 others=1 with_body=1
+wall=118347 qt=44600 view 1 viewport=0,180,640,360 eye=-24632,-564,-23625 frames=493 views=2
+wall=118348 qt=44600 bodies view=1 drawn=0 frames=6 others=1 with_body=1
+wall=118676 qt=44800 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-22456,801,-23539 yaw=-2763 pitch=0 hp=100 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=118676 qt=44800 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1098 collidable=1 rideable=1
+wall=118676 qt=44800 player 1 guid=00000003 slot=1 pad=1 pos=-24645,-599,-23623 yaw=6363 pitch=0 hp=1 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=118676 qt=44800 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1819 collidable=1 rideable=1
+wall=119382 qt=45200 view 0 viewport=0,0,640,180 eye=-22469,970,-23540 frames=499 views=2
+wall=119384 qt=45200 bodies view=0 drawn=0 frames=6 others=1 with_body=1
+wall=119387 qt=45200 view 1 viewport=0,180,640,360 eye=-24632,-564,-23625 frames=499 views=2
+wall=119389 qt=45200 bodies view=1 drawn=0 frames=6 others=1 with_body=1
+wall=119724 qt=45400 audio voices=17 top=GLOWING_OBJECT_2 x2
+wall=119724 qt=45400 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-22456,801,-23539 yaw=-2763 pitch=0 hp=100 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=119724 qt=45400 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1098 collidable=1 rideable=1
+wall=119724 qt=45400 player 1 guid=00000003 slot=1 pad=1 pos=-24645,-599,-23623 yaw=6363 pitch=0 hp=1 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=119724 qt=45400 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1819 collidable=1 rideable=1
+wall=120383 qt=45700 perf frames=30 in 5135 ms
+wall=120409 qt=45800 view 0 viewport=0,0,640,180 eye=-22469,970,-23540 frames=505 views=2
+wall=120411 qt=45800 bodies view=0 drawn=0 frames=6 others=1 with_body=1
+wall=120413 qt=45800 view 1 viewport=0,180,640,360 eye=-24632,-564,-23625 frames=505 views=2
+wall=120415 qt=45800 bodies view=1 drawn=0 frames=6 others=1 with_body=1
+wall=120725 qt=46000 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-22456,801,-23539 yaw=-2763 pitch=0 hp=100 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=120725 qt=46000 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1098 collidable=1 rideable=1
+wall=120725 qt=46000 player 1 guid=00000003 slot=1 pad=1 pos=-24645,-599,-23623 yaw=6363 pitch=0 hp=1 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=120725 qt=46000 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1819 collidable=1 rideable=1
+wall=121233 qt=46200 pad 0 rx = -13106
+wall=121233 qt=46200 pad 1 rx = -13106
+wall=121557 qt=46500 view 0 viewport=0,0,640,180 eye=-22469,970,-23540 frames=512 views=2
+wall=121559 qt=46500 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=121562 qt=46500 view 1 viewport=0,180,640,360 eye=-24632,-564,-23625 frames=512 views=2
+wall=121563 qt=46500 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=121714 qt=46600 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-22456,801,-23539 yaw=-2760 pitch=0 hp=100 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=121714 qt=46600 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1098 collidable=1 rideable=1
+wall=121714 qt=46600 player 1 guid=00000003 slot=1 pad=1 pos=-24645,-599,-23623 yaw=6366 pitch=0 hp=1 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=121714 qt=46600 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1819 collidable=1 rideable=1
+wall=122675 qt=47200 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-22456,801,-23539 yaw=-2753 pitch=0 hp=100 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=122675 qt=47200 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1098 collidable=1 rideable=1
+wall=122675 qt=47200 player 1 guid=00000003 slot=1 pad=1 pos=-24645,-599,-23623 yaw=6373 pitch=0 hp=1 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=122675 qt=47200 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1819 collidable=1 rideable=1
+wall=122675 qt=47200 view 0 viewport=0,0,640,180 eye=-22469,970,-23540 frames=519 views=2
+wall=122677 qt=47200 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=122680 qt=47200 view 1 viewport=0,180,640,360 eye=-24632,-564,-23625 frames=519 views=2
+wall=122681 qt=47200 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=123616 qt=47700 pad 0 rx = 0
+wall=123616 qt=47700 pad 1 rx = 0
+wall=123631 qt=47800 audio voices=17 top=GLOWING_OBJECT_2 x2
+wall=123631 qt=47800 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-22456,801,-23539 yaw=-2746 pitch=0 hp=100 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=123631 qt=47800 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1098 collidable=1 rideable=1
+wall=123631 qt=47800 player 1 guid=00000003 slot=1 pad=1 pos=-24645,-599,-23623 yaw=6380 pitch=0 hp=1 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=123631 qt=47800 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1819 collidable=1 rideable=1
+wall=123780 qt=47900 view 0 viewport=0,0,640,180 eye=-22469,970,-23540 frames=526 views=2
+wall=123783 qt=47900 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=123785 qt=47900 view 1 viewport=0,180,640,360 eye=-24632,-564,-23625 frames=526 views=2
+wall=123787 qt=47900 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=124412 qt=48200 command dmgtest (hook set)
+wall=124412 qt=48200 dmgtest: pain ignored (IgnorePain (friendly fire or scripted))
+wall=124413 qt=48200 dmgtest: NPC - Gray health 100.0 -> 100.0 (max 100.0)
+wall=124413 qt=48200 dmgtest: pain ignored (IgnorePain (friendly fire or scripted))
+wall=124413 qt=48200 dmgtest: NPC - Gray health 100.0 -> 100.0 (max 100.0)
+wall=124413 qt=48200 dmgtest: pain ignored (IgnorePain (friendly fire or scripted))
+wall=124413 qt=48200 dmgtest: NPC - Gray health 100.0 -> 100.0 (max 100.0)
+wall=124575 qt=48400 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-22456,801,-23539 yaw=-2746 pitch=0 hp=100 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=124575 qt=48400 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1098 collidable=1 rideable=1
+wall=124575 qt=48400 player 1 guid=00000003 slot=1 pad=1 pos=-24645,-599,-23623 yaw=6380 pitch=0 hp=1 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=124575 qt=48400 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1819 collidable=1 rideable=1
+wall=124736 qt=48400 coop bledout slot=1 t=0.0
+wall=124889 qt=48600 view 0 viewport=0,0,640,180 eye=-22469,970,-23540 frames=533 views=2
+wall=124890 qt=48600 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=124893 qt=48600 view 1 viewport=0,180,640,360 eye=-24632,-412,-23625 frames=533 views=2
+wall=124893 qt=48600 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=125387 qt=48800 perf frames=31 in 5004 ms
+wall=125553 qt=49000 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-22456,801,-23539 yaw=-2746 pitch=0 hp=100 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=125553 qt=49000 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1098 collidable=1 rideable=1
+wall=125553 qt=49000 player 1 guid=00000003 slot=1 pad=1 pos=-24645,-599,-23623 yaw=6380 pitch=0 hp=0 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=125553 qt=49000 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1819 collidable=1 rideable=1
+wall=125990 qt=49300 view 0 viewport=0,0,640,180 eye=-22469,970,-23540 frames=540 views=2
+wall=125992 qt=49300 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=125994 qt=49300 view 1 viewport=0,180,640,360 eye=-24647,-505,-23623 frames=540 views=2
+wall=125995 qt=49300 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=126487 qt=49600 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-22456,801,-23539 yaw=-2746 pitch=0 hp=100 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=126487 qt=49600 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1098 collidable=1 rideable=1
+wall=126487 qt=49600 player 1 guid=00000003 slot=1 pad=1 pos=-24645,-599,-23623 yaw=6380 pitch=0 hp=0 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=126487 qt=49600 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1819 collidable=1 rideable=1
+wall=127093 qt=50000 view 0 viewport=0,0,640,180 eye=-22469,970,-23540 frames=547 views=2
+wall=127094 qt=50000 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=127097 qt=50000 view 1 viewport=0,180,640,360 eye=-24655,-591,-23622 frames=547 views=2
+wall=127097 qt=50000 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=127392 qt=50200 audio voices=17 top=GLOWING_OBJECT_2 x2
+wall=127392 qt=50200 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-22456,801,-23539 yaw=-2746 pitch=0 hp=100 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=127392 qt=50200 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1098 collidable=1 rideable=1
+wall=127392 qt=50200 player 1 guid=00000003 slot=1 pad=1 pos=-24645,-599,-23623 yaw=6380 pitch=0 hp=0 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=127392 qt=50200 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1819 collidable=1 rideable=1
+wall=128191 qt=50700 view 0 viewport=0,0,640,180 eye=-22469,970,-23540 frames=554 views=2
+wall=128192 qt=50700 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=128195 qt=50700 view 1 viewport=0,180,640,360 eye=-24655,-591,-23622 frames=554 views=2
+wall=128195 qt=50700 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=128342 qt=50800 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-22456,801,-23539 yaw=-2746 pitch=0 hp=100 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=128342 qt=50800 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1098 collidable=1 rideable=1
+wall=128342 qt=50800 player 1 guid=00000003 slot=1 pad=1 pos=-24645,-599,-23623 yaw=6380 pitch=0 hp=0 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=128342 qt=50800 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1819 collidable=1 rideable=1
+wall=129296 qt=51400 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-22456,801,-23539 yaw=-2746 pitch=0 hp=100 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=129296 qt=51400 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1098 collidable=1 rideable=1
+wall=129296 qt=51400 player 1 guid=00000003 slot=1 pad=1 pos=-24645,-599,-23623 yaw=6380 pitch=0 hp=0 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=129296 qt=51400 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1819 collidable=1 rideable=1
+wall=129297 qt=51400 view 0 viewport=0,0,640,180 eye=-22469,970,-23540 frames=561 views=2
+wall=129298 qt=51400 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=129301 qt=51400 view 1 viewport=0,180,640,360 eye=-24655,-591,-23622 frames=561 views=2
+wall=129301 qt=51400 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=130225 qt=52000 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-22456,801,-23539 yaw=-2746 pitch=0 hp=100 weapon=EGL ammo=61 inclip=8 perclip=8 cinema=0
+wall=130225 qt=52000 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1098 collidable=1 rideable=1
+wall=130225 qt=52000 player 1 guid=00000003 slot=1 pad=1 pos=-24645,-599,-23623 yaw=6380 pitch=0 hp=0 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=130225 qt=52000 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=1819 collidable=1 rideable=1
+wall=130368 qt=52100 view 0 viewport=0,0,640,180 eye=-22469,970,-23540 frames=568 views=2
+wall=130370 qt=52100 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=130372 qt=52100 view 1 viewport=0,180,640,360 eye=-24655,-591,-23622 frames=568 views=2
+wall=130373 qt=52100 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=130505 qt=52100 perf frames=33 in 5118 ms
+wall=130686 qt=52200 pad 0 rx = 13106
+wall=130686 qt=52200 pad 1 rx = 13106
+wall=130985 qt=52500 state SM_PLAYING_GAME -> SM_END_PAUSE
+wall=130986 qt=52500 state SM_END_PAUSE -> SM_SERVER_COOLDOWN
+wall=130987 qt=52500 dialog stop - id=0001811c
+wall=130987 qt=52500 dialog stop - id=00000000
+wall=130987 qt=52500 dialog stop - id=00000000
+wall=130987 qt=52500 dialog stop - id=00000000
+wall=130991 qt=52500 state SM_SERVER_COOLDOWN -> SM_POST_GAME
+wall=130999 qt=52500 state SM_POST_GAME -> SM_RELOAD_CHECKPOINT
+wall=131150 qt=52500 state SM_RELOAD_CHECKPOINT -> SM_SINGLE_PLAYER_LOAD_MISSION
+wall=131160 qt=52500 campaign BeginGame done: players=2 level=1115
+wall=131197 qt=52500 state SM_SINGLE_PLAYER_LOAD_MISSION -> SM_SERVER_SYNC
+wall=131199 qt=52500 state SM_SERVER_SYNC -> SM_PLAYING_GAME
+wall=131235 qt=52500 dialog stop - id=00000000
+wall=131238 qt=52500 level 1115 start: anim groups 45, anim pool 15 of 256 blocks, 1802 KB
+wall=131238 qt=52500 audio voices=0 top=- x0
+wall=131238 qt=52500 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,760,-13750 yaw=-1800 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=131238 qt=52500 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-13600 top=10090 dist=150 collidable=1 rideable=1
+wall=131238 qt=52500 player 1 guid=00000068 slot=1 pad=1 pos=-23600,760,-13750 yaw=-1800 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=131238 qt=52500 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-13600 top=10090 dist=180 collidable=1 rideable=1
+wall=131570 qt=52834 view 0 viewport=0,0,640,180 eye=-23500,919,-13736 frames=572 views=2
+wall=131571 qt=52834 bodies view=0 drawn=0 frames=4 others=1 with_body=1
+wall=131575 qt=52834 view 1 viewport=0,180,640,360 eye=-23600,918,-13737 frames=572 views=2
+wall=131576 qt=52834 bodies view=1 drawn=0 frames=4 others=1 with_body=1
+wall=131932 qt=53034 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-13750 yaw=1793 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=131932 qt=53034 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-13600 top=10090 dist=150 collidable=1 rideable=1
+wall=131932 qt=53034 player 1 guid=00000068 slot=1 pad=1 pos=-23600,750,-13750 yaw=1793 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=131932 qt=53034 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-13600 top=10090 dist=180 collidable=1 rideable=1
+wall=132692 qt=53534 view 0 viewport=0,0,640,180 eye=-23500,920,-13737 frames=579 views=2
+wall=132693 qt=53534 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=132696 qt=53534 view 1 viewport=0,180,640,360 eye=-23600,920,-13737 frames=579 views=2
+wall=132697 qt=53534 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=132884 qt=53634 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-13750 yaw=1787 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=132884 qt=53634 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-13600 top=10090 dist=150 collidable=1 rideable=1
+wall=132884 qt=53634 player 1 guid=00000068 slot=1 pad=1 pos=-23600,750,-13750 yaw=1787 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=132884 qt=53634 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-13600 top=10090 dist=180 collidable=1 rideable=1
+wall=133186 qt=53734 pad 0 rx = 0
+wall=133186 qt=53734 pad 1 rx = 0
+wall=133850 qt=54234 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-14604 yaw=1784 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=133850 qt=54234 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-14454 top=10090 dist=150 collidable=1 rideable=1
+wall=133850 qt=54234 player 1 guid=00000068 slot=1 pad=1 pos=-23600,750,-14604 yaw=1784 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=133850 qt=54234 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-14454 top=10090 dist=180 collidable=1 rideable=1
+wall=133850 qt=54234 view 0 viewport=0,0,640,180 eye=-23500,920,-14591 frames=586 views=2
+wall=133852 qt=54234 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=133855 qt=54234 view 1 viewport=0,180,640,360 eye=-23600,920,-14591 frames=586 views=2
+wall=133856 qt=54234 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=134799 qt=54834 audio voices=4 top=ALIEN_AMB_01_V_1 x1
+wall=134799 qt=54834 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-15456 yaw=1784 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=134799 qt=54834 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-15306 top=10090 dist=150 collidable=1 rideable=1
+wall=134799 qt=54834 player 1 guid=00000068 slot=1 pad=1 pos=-23600,750,-15456 yaw=1784 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=134799 qt=54834 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-15306 top=10090 dist=180 collidable=1 rideable=1
+wall=134992 qt=54934 view 0 viewport=0,0,640,180 eye=-23500,920,-15585 frames=593 views=2
+wall=134994 qt=54934 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=134997 qt=54934 view 1 viewport=0,180,640,360 eye=-23600,920,-15585 frames=593 views=2
+wall=134998 qt=54934 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=135616 qt=55234 perf frames=199 in 5111 ms
+wall=135777 qt=55434 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-16308 yaw=1784 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=135777 qt=55434 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-16158 top=10090 dist=150 collidable=1 rideable=1
+wall=135777 qt=55434 player 1 guid=00000068 slot=1 pad=1 pos=-23600,750,-16308 yaw=1784 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=135777 qt=55434 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-16158 top=10090 dist=180 collidable=1 rideable=1
+wall=136134 qt=55634 view 0 viewport=0,0,640,180 eye=-23500,920,-16579 frames=600 views=2
+wall=136136 qt=55634 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=136139 qt=55634 view 1 viewport=0,180,640,360 eye=-23600,920,-16579 frames=600 views=2
+wall=136140 qt=55634 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=136804 qt=56034 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-17052 yaw=1784 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=136804 qt=56034 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-16902 top=10090 dist=150 collidable=1 rideable=1
+wall=136804 qt=56034 player 1 guid=00000068 slot=1 pad=1 pos=-23600,750,-17052 yaw=1784 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=136804 qt=56034 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-16902 top=10090 dist=180 collidable=1 rideable=1
+wall=137191 qt=56234 view 0 viewport=0,0,640,180 eye=-23500,920,-17269 frames=606 views=2
+wall=137193 qt=56234 bodies view=0 drawn=0 frames=6 others=1 with_body=1
+wall=137197 qt=56234 view 1 viewport=0,180,640,360 eye=-23600,920,-17269 frames=606 views=2
+wall=137199 qt=56234 bodies view=1 drawn=0 frames=6 others=1 with_body=1
+wall=137907 qt=56634 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-17741 yaw=1784 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=137907 qt=56634 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-17591 top=10090 dist=150 collidable=1 rideable=1
+wall=137907 qt=56634 player 1 guid=00000068 slot=1 pad=1 pos=-23600,750,-17741 yaw=1784 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=137907 qt=56634 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-17591 top=10090 dist=180 collidable=1 rideable=1
+wall=138322 qt=56834 view 0 viewport=0,0,640,180 eye=-23500,920,-17958 frames=612 views=2
+wall=138323 qt=56834 bodies view=0 drawn=0 frames=6 others=1 with_body=1
+wall=138328 qt=56834 view 1 viewport=0,180,640,360 eye=-23600,920,-17958 frames=612 views=2
+wall=138329 qt=56834 bodies view=1 drawn=0 frames=6 others=1 with_body=1
+wall=139121 qt=57234 audio voices=10 top=OBJ_BIG_ROUND_COMPUTER_CONSOLE x4
+wall=139121 qt=57234 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-18430 yaw=1784 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=139121 qt=57234 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-18280 top=10090 dist=150 collidable=1 rideable=1
+wall=139121 qt=57234 player 1 guid=00000068 slot=1 pad=1 pos=-23600,750,-18430 yaw=1784 pitch=0 hp=100 weapon=SMP ammo=150 inclip=30 perclip=30 cinema=0
+wall=139121 qt=57234 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-18280 top=10090 dist=180 collidable=1 rideable=1
+wall=139509 qt=57434 view 0 viewport=0,0,640,180 eye=-23500,920,-18646 frames=618 views=2
+wall=139511 qt=57434 bodies view=0 drawn=0 frames=6 others=1 with_body=1
+wall=139515 qt=57434 view 1 viewport=0,180,640,360 eye=-23600,920,-18646 frames=618 views=2
+wall=139517 qt=57434 bodies view=1 drawn=0 frames=6 others=1 with_body=1
+wall=139707 qt=57434 loadout player 0: scanner=1 smp=1 pistol=1
+wall=139707 qt=57434 loadout player 1: scanner=1 smp=1 pistol=1
+wall=139707 qt=57434 equip player 0: pistol, 8 rounds per clip
+wall=139707 qt=57434 equip player 1: pistol, 8 rounds per clip
+wall=139707 qt=57434 profile player 0: index=0 name=Empty avatar=0
+wall=139707 qt=57434 profile player 1: index=1 name=Splitscreen P2 avatar=1
+wall=139707 qt=57434 share item=grenade p0 5->5 p1 5->5
+wall=139894 qt=57534 dialog stream GRAY_CHATTER_B id=000181bc
+wall=140300 qt=57834 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-19080 yaw=1784 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=140300 qt=57834 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-18930 top=10090 dist=150 collidable=1 rideable=1
+wall=140300 qt=57834 player 1 guid=00000068 slot=1 pad=1 pos=-23600,750,-19080 yaw=1784 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=140300 qt=57834 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-18930 top=10090 dist=180 collidable=1 rideable=1
+wall=140667 qt=57934 perf frames=27 in 5051 ms
+wall=140671 qt=58034 view 0 viewport=0,0,640,180 eye=-23500,920,-19257 frames=624 views=2
+wall=140673 qt=58034 bodies view=0 drawn=0 frames=6 others=1 with_body=1
+wall=140677 qt=58034 view 1 viewport=0,180,640,360 eye=-23600,920,-19257 frames=624 views=2
+wall=140679 qt=58034 bodies view=1 drawn=0 frames=6 others=1 with_body=1
+wall=141274 qt=58234 pad 0 rx = -13106
+wall=141274 qt=58234 pad 1 rx = -13106
+wall=141465 qt=58434 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-19650 yaw=1785 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=141465 qt=58434 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-19500 top=10090 dist=150 collidable=1 rideable=1
+wall=141465 qt=58434 player 1 guid=00000068 slot=1 pad=1 pos=-23600,750,-19650 yaw=1785 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=141465 qt=58434 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-19500 top=10090 dist=180 collidable=1 rideable=1
+wall=141836 qt=58634 view 0 viewport=0,0,640,180 eye=-23500,920,-19827 frames=630 views=2
+wall=141838 qt=58634 bodies view=0 drawn=0 frames=6 others=1 with_body=1
+wall=141842 qt=58634 view 1 viewport=0,180,640,360 eye=-23600,920,-19827 frames=630 views=2
+wall=141843 qt=58634 bodies view=1 drawn=0 frames=6 others=1 with_body=1
+wall=142643 qt=59034 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-20219 yaw=1792 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=142643 qt=59034 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-20069 top=10090 dist=150 collidable=1 rideable=1
+wall=142643 qt=59034 player 1 guid=00000068 slot=1 pad=1 pos=-23600,750,-20219 yaw=1792 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=142643 qt=59034 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-20069 top=10090 dist=180 collidable=1 rideable=1
+wall=142837 qt=59134 view 0 viewport=0,0,640,180 eye=-23500,920,-20301 frames=635 views=2
+wall=142839 qt=59134 bodies view=0 drawn=0 frames=5 others=1 with_body=1
+wall=142843 qt=59134 view 1 viewport=0,180,640,360 eye=-23600,920,-20301 frames=635 views=2
+wall=142845 qt=59134 bodies view=1 drawn=0 frames=5 others=1 with_body=1
+wall=143810 qt=59634 audio voices=12 top=OBJ_ALIEN_CEILING_MACHINERY_LP_1_A x3
+wall=143810 qt=59634 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-20789 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=143810 qt=59634 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-20639 top=10090 dist=150 collidable=1 rideable=1
+wall=143810 qt=59634 player 1 guid=00000068 slot=1 pad=1 pos=-23600,750,-20789 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=143810 qt=59634 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-20639 top=10090 dist=180 collidable=1 rideable=1
+wall=144001 qt=59734 view 0 viewport=0,0,640,180 eye=-23499,920,-20857 frames=641 views=2
+wall=144003 qt=59734 bodies view=0 drawn=0 frames=6 others=1 with_body=1
+wall=144007 qt=59734 view 1 viewport=0,180,640,360 eye=-23599,920,-20857 frames=641 views=2
+wall=144009 qt=59734 bodies view=1 drawn=0 frames=6 others=1 with_body=1
+wall=144198 qt=59734 pad 0 rx = 0
+wall=144198 qt=59734 pad 1 rx = 0
+wall=145027 qt=60234 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-21270 yaw=-1798 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=145027 qt=60234 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-21120 top=10090 dist=150 collidable=1 rideable=1
+wall=145027 qt=60234 player 1 guid=00000068 slot=1 pad=1 pos=-23600,750,-21270 yaw=-1798 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=145027 qt=60234 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-21120 top=10090 dist=180 collidable=1 rideable=1
+wall=145027 qt=60234 view 0 viewport=0,0,640,180 eye=-23499,920,-21257 frames=646 views=2
+wall=145029 qt=60234 bodies view=0 drawn=0 frames=5 others=1 with_body=1
+wall=145034 qt=60234 view 1 viewport=0,180,640,360 eye=-23599,920,-21257 frames=646 views=2
+wall=145036 qt=60234 bodies view=1 drawn=0 frames=5 others=1 with_body=1
+wall=145828 qt=60534 perf frames=26 in 5161 ms
+wall=146215 qt=60834 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-21749 yaw=-1798 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=146215 qt=60834 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-21599 top=10090 dist=150 collidable=1 rideable=1
+wall=146215 qt=60834 player 1 guid=00000068 slot=1 pad=1 pos=-23600,750,-21749 yaw=-1798 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=146215 qt=60834 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-21599 top=10090 dist=180 collidable=1 rideable=1
+wall=146215 qt=60834 view 0 viewport=0,0,640,180 eye=-23499,920,-21736 frames=652 views=2
+wall=146216 qt=60834 bodies view=0 drawn=0 frames=6 others=1 with_body=1
+wall=146221 qt=60834 view 1 viewport=0,180,640,360 eye=-23599,920,-21736 frames=652 views=2
+wall=146222 qt=60834 bodies view=1 drawn=0 frames=6 others=1 with_body=1
+wall=147324 qt=61434 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-22228 yaw=-1798 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=147324 qt=61434 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-22078 top=10090 dist=150 collidable=1 rideable=1
+wall=147324 qt=61434 player 1 guid=00000068 slot=1 pad=1 pos=-23600,750,-22228 yaw=-1798 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=147324 qt=61434 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-22078 top=10090 dist=180 collidable=1 rideable=1
+wall=147324 qt=61434 view 0 viewport=0,0,640,180 eye=-23499,920,-22215 frames=658 views=2
+wall=147326 qt=61434 bodies view=0 drawn=0 frames=6 others=1 with_body=1
+wall=147329 qt=61434 view 1 viewport=0,180,640,360 eye=-23599,920,-22215 frames=658 views=2
+wall=147331 qt=61434 bodies view=1 drawn=0 frames=6 others=1 with_body=1
+wall=148340 qt=62034 audio voices=13 top=OBJ_GREEN_HONEYCOMB x3
+wall=148340 qt=62034 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-22582 yaw=-1798 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=148340 qt=62034 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-22432 top=10090 dist=150 collidable=1 rideable=1
+wall=148340 qt=62034 player 1 guid=00000068 slot=1 pad=1 pos=-23600,750,-22582 yaw=-1798 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=148340 qt=62034 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-22432 top=10090 dist=180 collidable=1 rideable=1
+wall=148340 qt=62034 view 0 viewport=0,0,640,180 eye=-23499,920,-22570 frames=664 views=2
+wall=148341 qt=62034 bodies view=0 drawn=0 frames=6 others=1 with_body=1
+wall=148344 qt=62034 view 1 viewport=0,180,640,360 eye=-23599,920,-22570 frames=664 views=2
+wall=148345 qt=62034 bodies view=1 drawn=0 frames=6 others=1 with_body=1
+wall=149260 qt=62634 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-22867 yaw=-1798 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=149260 qt=62634 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-22717 top=10090 dist=150 collidable=1 rideable=1
+wall=149260 qt=62634 player 1 guid=00000068 slot=1 pad=1 pos=-23600,750,-22867 yaw=-1798 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=149260 qt=62634 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-22717 top=10090 dist=180 collidable=1 rideable=1
+wall=149405 qt=62734 view 0 viewport=0,0,640,180 eye=-23499,920,-22902 frames=671 views=2
+wall=149406 qt=62734 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=149408 qt=62734 view 1 viewport=0,180,640,360 eye=-23599,920,-22902 frames=671 views=2
+wall=149409 qt=62734 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=150179 qt=63234 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-23152 yaw=-1798 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=150179 qt=63234 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23002 top=10090 dist=150 collidable=1 rideable=1
+wall=150179 qt=63234 player 1 guid=00000068 slot=1 pad=1 pos=-23600,750,-23152 yaw=-1798 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=150179 qt=63234 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23002 top=10090 dist=180 collidable=1 rideable=1
+wall=150467 qt=63434 view 0 viewport=0,0,640,180 eye=-23499,920,-23235 frames=678 views=2
+wall=150468 qt=63434 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=150470 qt=63434 view 1 viewport=0,180,640,360 eye=-23599,920,-23235 frames=678 views=2
+wall=150471 qt=63434 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=150934 qt=63634 perf frames=31 in 5106 ms
+wall=151086 qt=63834 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-23350 yaw=-1798 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=151086 qt=63834 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=150 collidable=1 rideable=1
+wall=151086 qt=63834 player 1 guid=00000068 slot=1 pad=1 pos=-23600,750,-23350 yaw=-1798 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=151086 qt=63834 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=180 collidable=1 rideable=1
+wall=151504 qt=64134 view 0 viewport=0,0,640,180 eye=-23499,920,-23337 frames=685 views=2
+wall=151505 qt=64134 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=151507 qt=64134 view 1 viewport=0,180,640,360 eye=-23599,920,-23337 frames=685 views=2
+wall=151508 qt=64134 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=151815 qt=64234 pad 0 rx = 13106
+wall=151815 qt=64234 pad 1 rx = 13106
+wall=151957 qt=64434 audio voices=13 top=GLOWING_OBJECT_2 x2
+wall=151957 qt=64434 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-23350 yaw=-1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=151957 qt=64434 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=150 collidable=1 rideable=1
+wall=151957 qt=64434 player 1 guid=00000068 slot=1 pad=1 pos=-23600,750,-23350 yaw=-1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=151957 qt=64434 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=180 collidable=1 rideable=1
+wall=152637 qt=64934 view 0 viewport=0,0,640,180 eye=-23500,920,-23337 frames=693 views=2
+wall=152637 qt=64934 bodies view=0 drawn=0 frames=8 others=1 with_body=1
+wall=152640 qt=64934 view 1 viewport=0,180,640,360 eye=-23600,920,-23337 frames=693 views=2
+wall=152640 qt=64934 bodies view=1 drawn=0 frames=8 others=1 with_body=1
+wall=152811 qt=65034 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-23350 yaw=1793 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=152811 qt=65034 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=150 collidable=1 rideable=1
+wall=152811 qt=65034 player 1 guid=00000068 slot=1 pad=1 pos=-23600,750,-23350 yaw=1793 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=152811 qt=65034 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=180 collidable=1 rideable=1
+wall=153631 qt=65634 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-23350 yaw=1787 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=153631 qt=65634 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=150 collidable=1 rideable=1
+wall=153631 qt=65634 player 1 guid=00000068 slot=1 pad=1 pos=-23600,750,-23350 yaw=1787 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=153631 qt=65634 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=180 collidable=1 rideable=1
+wall=153769 qt=65734 view 0 viewport=0,0,640,180 eye=-23500,920,-23337 frames=701 views=2
+wall=153769 qt=65734 bodies view=0 drawn=0 frames=8 others=1 with_body=1
+wall=153772 qt=65734 view 1 viewport=0,180,640,360 eye=-23600,920,-23337 frames=701 views=2
+wall=153772 qt=65734 bodies view=1 drawn=0 frames=8 others=1 with_body=1
+wall=153951 qt=65734 pad 0 rx = 0
+wall=153951 qt=65734 pad 1 rx = 0
+wall=154519 qt=66234 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-23350 yaw=1784 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=154519 qt=66234 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=150 collidable=1 rideable=1
+wall=154519 qt=66234 player 1 guid=00000068 slot=1 pad=1 pos=-23600,750,-23350 yaw=1784 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=154519 qt=66234 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=180 collidable=1 rideable=1
+wall=154805 qt=66434 view 0 viewport=0,0,640,180 eye=-23500,920,-23337 frames=708 views=2
+wall=154805 qt=66434 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=154808 qt=66434 view 1 viewport=0,180,640,360 eye=-23600,920,-23337 frames=708 views=2
+wall=154809 qt=66434 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=155388 qt=66834 audio voices=12 top=GLOWING_OBJECT_2 x2
+wall=155388 qt=66834 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-23350 yaw=1784 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=155388 qt=66834 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=150 collidable=1 rideable=1
+wall=155388 qt=66834 player 1 guid=00000068 slot=1 pad=1 pos=-23600,750,-23350 yaw=1784 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=155388 qt=66834 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=180 collidable=1 rideable=1
+wall=155981 qt=67134 perf frames=35 in 5047 ms
+wall=155985 qt=67234 view 0 viewport=0,0,640,180 eye=-23500,920,-23337 frames=716 views=2
+wall=155986 qt=67234 bodies view=0 drawn=0 frames=8 others=1 with_body=1
+wall=155989 qt=67234 view 1 viewport=0,180,640,360 eye=-23600,920,-23337 frames=716 views=2
+wall=155990 qt=67234 bodies view=1 drawn=0 frames=8 others=1 with_body=1
+wall=156267 qt=67434 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-23350 yaw=1784 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=156267 qt=67434 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=150 collidable=1 rideable=1
+wall=156267 qt=67434 player 1 guid=00000068 slot=1 pad=1 pos=-23600,750,-23350 yaw=1784 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=156267 qt=67434 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=180 collidable=1 rideable=1
+wall=157000 qt=67934 view 0 viewport=0,0,640,180 eye=-23500,920,-23337 frames=723 views=2
+wall=157001 qt=67934 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=157004 qt=67934 view 1 viewport=0,180,640,360 eye=-23600,920,-23337 frames=723 views=2
+wall=157004 qt=67934 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=157137 qt=68034 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-23350 yaw=1784 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=157137 qt=68034 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=150 collidable=1 rideable=1
+wall=157137 qt=68034 player 1 guid=00000068 slot=1 pad=1 pos=-23600,750,-23350 yaw=1784 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=157137 qt=68034 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=180 collidable=1 rideable=1
+wall=157953 qt=68634 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-23350 yaw=1784 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=157953 qt=68634 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=150 collidable=1 rideable=1
+wall=157953 qt=68634 player 1 guid=00000068 slot=1 pad=1 pos=-23600,750,-23350 yaw=1784 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=157953 qt=68634 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=180 collidable=1 rideable=1
+wall=158133 qt=68734 view 0 viewport=0,0,640,180 eye=-23500,920,-23337 frames=731 views=2
+wall=158134 qt=68734 bodies view=0 drawn=0 frames=8 others=1 with_body=1
+wall=158136 qt=68734 view 1 viewport=0,180,640,360 eye=-23600,920,-23337 frames=731 views=2
+wall=158137 qt=68734 bodies view=1 drawn=0 frames=8 others=1 with_body=1
+wall=158832 qt=69234 audio voices=12 top=GLOWING_OBJECT_2 x2
+wall=158832 qt=69234 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-23350 yaw=1784 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=158832 qt=69234 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=150 collidable=1 rideable=1
+wall=158832 qt=69234 player 1 guid=00000068 slot=1 pad=1 pos=-23600,750,-23350 yaw=1784 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=158832 qt=69234 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=180 collidable=1 rideable=1
+wall=159152 qt=69434 view 0 viewport=0,0,640,180 eye=-23500,920,-23337 frames=738 views=2
+wall=159153 qt=69434 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=159155 qt=69434 view 1 viewport=0,180,640,360 eye=-23600,920,-23337 frames=738 views=2
+wall=159156 qt=69434 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=159705 qt=69834 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-23350 yaw=1784 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=159705 qt=69834 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=150 collidable=1 rideable=1
+wall=159705 qt=69834 player 1 guid=00000068 slot=1 pad=1 pos=-23600,750,-23350 yaw=1784 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=159705 qt=69834 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=180 collidable=1 rideable=1
+wall=160172 qt=70134 view 0 viewport=0,0,640,180 eye=-23500,920,-23337 frames=745 views=2
+wall=160173 qt=70134 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=160175 qt=70134 view 1 viewport=0,180,640,360 eye=-23600,920,-23337 frames=745 views=2
+wall=160176 qt=70134 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=160443 qt=70234 pad 0 rx = -13106
+wall=160443 qt=70234 pad 1 rx = -13106
+wall=160583 qt=70434 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-23350 yaw=1785 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=160583 qt=70434 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=150 collidable=1 rideable=1
+wall=160583 qt=70434 player 1 guid=00000068 slot=1 pad=1 pos=-23600,750,-23350 yaw=1785 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=160583 qt=70434 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=180 collidable=1 rideable=1
+wall=160995 qt=70634 perf frames=35 in 5014 ms
+wall=161316 qt=70934 view 0 viewport=0,0,640,180 eye=-23500,920,-23337 frames=753 views=2
+wall=161317 qt=70934 bodies view=0 drawn=0 frames=8 others=1 with_body=1
+wall=161319 qt=70934 view 1 viewport=0,180,640,360 eye=-23600,920,-23337 frames=753 views=2
+wall=161320 qt=70934 bodies view=1 drawn=0 frames=8 others=1 with_body=1
+wall=161453 qt=71034 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-23350 yaw=1792 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=161453 qt=71034 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=150 collidable=1 rideable=1
+wall=161453 qt=71034 player 1 guid=00000068 slot=1 pad=1 pos=-23600,750,-23350 yaw=1792 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=161453 qt=71034 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=180 collidable=1 rideable=1
+wall=162310 qt=71634 audio voices=12 top=GLOWING_OBJECT_2 x2
+wall=162310 qt=71634 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-23350 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=162310 qt=71634 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=150 collidable=1 rideable=1
+wall=162310 qt=71634 player 1 guid=00000068 slot=1 pad=1 pos=-23600,750,-23350 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=162310 qt=71634 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=180 collidable=1 rideable=1
+wall=162447 qt=71734 view 0 viewport=0,0,640,180 eye=-23499,920,-23337 frames=761 views=2
+wall=162448 qt=71734 bodies view=0 drawn=0 frames=8 others=1 with_body=1
+wall=162451 qt=71734 view 1 viewport=0,180,640,360 eye=-23599,920,-23337 frames=761 views=2
+wall=162451 qt=71734 bodies view=1 drawn=0 frames=8 others=1 with_body=1
+wall=162583 qt=71734 pad 0 rx = 0
+wall=162583 qt=71734 pad 1 rx = 0
+wall=163132 qt=72234 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-23350 yaw=-1798 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=163132 qt=72234 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=150 collidable=1 rideable=1
+wall=163132 qt=72234 player 1 guid=00000068 slot=1 pad=1 pos=-23600,750,-23350 yaw=-1798 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=163132 qt=72234 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=180 collidable=1 rideable=1
+wall=163465 qt=72434 view 0 viewport=0,0,640,180 eye=-23499,920,-23337 frames=768 views=2
+wall=163466 qt=72434 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=163468 qt=72434 view 1 viewport=0,180,640,360 eye=-23599,920,-23337 frames=768 views=2
+wall=163469 qt=72434 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=164041 qt=72834 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-23350 yaw=-1798 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=164041 qt=72834 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=150 collidable=1 rideable=1
+wall=164041 qt=72834 player 1 guid=00000068 slot=1 pad=1 pos=-23600,750,-23350 yaw=-1798 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=164041 qt=72834 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=180 collidable=1 rideable=1
+wall=164503 qt=73134 view 0 viewport=0,0,640,180 eye=-23499,920,-23337 frames=775 views=2
+wall=164504 qt=73134 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=164506 qt=73134 view 1 viewport=0,180,640,360 eye=-23599,920,-23337 frames=775 views=2
+wall=164507 qt=73134 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=164927 qt=73434 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-23350 yaw=-1798 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=164927 qt=73434 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=150 collidable=1 rideable=1
+wall=164927 qt=73434 player 1 guid=00000068 slot=1 pad=1 pos=-23600,750,-23350 yaw=-1798 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=164927 qt=73434 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=180 collidable=1 rideable=1
+wall=165505 qt=73834 view 0 viewport=0,0,640,180 eye=-23499,920,-23337 frames=782 views=2
+wall=165506 qt=73834 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=165508 qt=73834 view 1 viewport=0,180,640,360 eye=-23599,920,-23337 frames=782 views=2
+wall=165509 qt=73834 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=165784 qt=74034 audio voices=12 top=GLOWING_OBJECT_2 x2
+wall=165784 qt=74034 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-23350 yaw=-1798 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=165784 qt=74034 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=150 collidable=1 rideable=1
+wall=165784 qt=74034 player 1 guid=00000068 slot=1 pad=1 pos=-23600,750,-23350 yaw=-1798 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=165784 qt=74034 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=180 collidable=1 rideable=1
+wall=166060 qt=74134 perf frames=35 in 5065 ms
+wall=166527 qt=74534 view 0 viewport=0,0,640,180 eye=-23499,920,-23337 frames=789 views=2
+wall=166528 qt=74534 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=166531 qt=74534 view 1 viewport=0,180,640,360 eye=-23599,920,-23337 frames=789 views=2
+wall=166532 qt=74534 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=166673 qt=74634 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-23350 yaw=-1798 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=166673 qt=74634 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=150 collidable=1 rideable=1
+wall=166673 qt=74634 player 1 guid=00000068 slot=1 pad=1 pos=-23600,750,-23350 yaw=-1798 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=166673 qt=74634 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=180 collidable=1 rideable=1
+wall=167578 qt=75234 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-23350 yaw=-1798 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=167578 qt=75234 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=150 collidable=1 rideable=1
+wall=167578 qt=75234 player 1 guid=00000068 slot=1 pad=1 pos=-23600,750,-23350 yaw=-1798 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=167578 qt=75234 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=180 collidable=1 rideable=1
+wall=167578 qt=75234 view 0 viewport=0,0,640,180 eye=-23499,920,-23337 frames=796 views=2
+wall=167579 qt=75234 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=167582 qt=75234 view 1 viewport=0,180,640,360 eye=-23599,920,-23337 frames=796 views=2
+wall=167582 qt=75234 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=168423 qt=75834 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-23350 yaw=-1798 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=168423 qt=75834 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=150 collidable=1 rideable=1
+wall=168423 qt=75834 player 1 guid=00000068 slot=1 pad=1 pos=-23600,750,-23350 yaw=-1798 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=168423 qt=75834 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=180 collidable=1 rideable=1
+wall=168603 qt=75934 view 0 viewport=0,0,640,180 eye=-23499,920,-23337 frames=803 views=2
+wall=168604 qt=75934 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=168607 qt=75934 view 1 viewport=0,180,640,360 eye=-23599,920,-23337 frames=803 views=2
+wall=168607 qt=75934 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=169165 qt=76234 pad 0 rx = 13106
+wall=169165 qt=76234 pad 1 rx = 13106
+wall=169307 qt=76434 audio voices=12 top=GLOWING_OBJECT_2 x2
+wall=169307 qt=76434 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-23350 yaw=-1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=169307 qt=76434 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=150 collidable=1 rideable=1
+wall=169307 qt=76434 player 1 guid=00000068 slot=1 pad=1 pos=-23600,750,-23350 yaw=-1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=169307 qt=76434 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=180 collidable=1 rideable=1
+wall=169623 qt=76634 view 0 viewport=0,0,640,180 eye=-23500,920,-23337 frames=810 views=2
+wall=169624 qt=76634 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=169626 qt=76634 view 1 viewport=0,180,640,360 eye=-23600,920,-23337 frames=810 views=2
+wall=169627 qt=76634 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=170176 qt=77034 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-23350 yaw=1793 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=170176 qt=77034 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=150 collidable=1 rideable=1
+wall=170176 qt=77034 player 1 guid=00000068 slot=1 pad=1 pos=-23600,750,-23350 yaw=1793 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=170176 qt=77034 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=180 collidable=1 rideable=1
+wall=170308 qt=77034 dialog stream GRAY_CHATTER_B id=000181f9
+wall=170766 qt=77434 view 0 viewport=0,0,640,180 eye=-23500,920,-23337 frames=818 views=2
+wall=170767 qt=77434 bodies view=0 drawn=0 frames=8 others=1 with_body=1
+wall=170769 qt=77434 view 1 viewport=0,180,640,360 eye=-23600,920,-23337 frames=818 views=2
+wall=170770 qt=77434 bodies view=1 drawn=0 frames=8 others=1 with_body=1
+wall=171037 qt=77634 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-23350 yaw=1787 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=171037 qt=77634 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=150 collidable=1 rideable=1
+wall=171037 qt=77634 player 1 guid=00000068 slot=1 pad=1 pos=-23600,750,-23350 yaw=1787 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=171037 qt=77634 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=180 collidable=1 rideable=1
+wall=171170 qt=77634 perf frames=35 in 5110 ms
+wall=171306 qt=77734 pad 0 rx = 0
+wall=171306 qt=77734 pad 1 rx = 0
+wall=171899 qt=78234 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-23350 yaw=1784 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=171899 qt=78234 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=150 collidable=1 rideable=1
+wall=171899 qt=78234 player 1 guid=00000068 slot=1 pad=1 pos=-23600,750,-23350 yaw=1784 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=171899 qt=78234 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=180 collidable=1 rideable=1
+wall=171899 qt=78234 view 0 viewport=0,0,640,180 eye=-23500,920,-23337 frames=826 views=2
+wall=171900 qt=78234 bodies view=0 drawn=0 frames=8 others=1 with_body=1
+wall=171902 qt=78234 view 1 viewport=0,180,640,360 eye=-23600,920,-23337 frames=826 views=2
+wall=171903 qt=78234 bodies view=1 drawn=0 frames=8 others=1 with_body=1
+wall=172782 qt=78834 audio voices=12 top=GLOWING_OBJECT_2 x2
+wall=172782 qt=78834 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-23350 yaw=1784 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=172782 qt=78834 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=150 collidable=1 rideable=1
+wall=172782 qt=78834 player 1 guid=00000068 slot=1 pad=1 pos=-23600,750,-23350 yaw=1784 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=172782 qt=78834 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=180 collidable=1 rideable=1
+wall=172919 qt=78934 view 0 viewport=0,0,640,180 eye=-23500,920,-23337 frames=833 views=2
+wall=172919 qt=78934 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=172922 qt=78934 view 1 viewport=0,180,640,360 eye=-23600,920,-23337 frames=833 views=2
+wall=172923 qt=78934 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=173609 qt=79434 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-23350 yaw=1784 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=173609 qt=79434 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=150 collidable=1 rideable=1
+wall=173609 qt=79434 player 1 guid=00000068 slot=1 pad=1 pos=-23600,750,-23350 yaw=1784 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=173609 qt=79434 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=180 collidable=1 rideable=1
+wall=173935 qt=79634 view 0 viewport=0,0,640,180 eye=-23500,920,-23337 frames=840 views=2
+wall=173936 qt=79634 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=173939 qt=79634 view 1 viewport=0,180,640,360 eye=-23600,920,-23337 frames=840 views=2
+wall=173939 qt=79634 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=174493 qt=80034 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-23350 yaw=1784 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=174493 qt=80034 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=150 collidable=1 rideable=1
+wall=174493 qt=80034 player 1 guid=00000068 slot=1 pad=1 pos=-23600,750,-23350 yaw=1784 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=174493 qt=80034 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=180 collidable=1 rideable=1
+wall=174961 qt=80334 view 0 viewport=0,0,640,180 eye=-23500,920,-23337 frames=847 views=2
+wall=174962 qt=80334 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=174964 qt=80334 view 1 viewport=0,180,640,360 eye=-23600,920,-23337 frames=847 views=2
+wall=174965 qt=80334 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=175372 qt=80634 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-23350 yaw=1784 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=175372 qt=80634 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=150 collidable=1 rideable=1
+wall=175372 qt=80634 player 1 guid=00000068 slot=1 pad=1 pos=-23600,750,-23350 yaw=1784 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=175372 qt=80634 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=180 collidable=1 rideable=1
+wall=175965 qt=81034 view 0 viewport=0,0,640,180 eye=-23500,920,-23337 frames=854 views=2
+wall=175966 qt=81034 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=175968 qt=81034 view 1 viewport=0,180,640,360 eye=-23600,920,-23337 frames=854 views=2
+wall=175969 qt=81034 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=176231 qt=81134 perf frames=35 in 5061 ms
+wall=176235 qt=81234 audio voices=12 top=GLOWING_OBJECT_2 x2
+wall=176235 qt=81234 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-23350 yaw=1784 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=176235 qt=81234 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=150 collidable=1 rideable=1
+wall=176235 qt=81234 player 1 guid=00000068 slot=1 pad=1 pos=-23600,750,-23350 yaw=1784 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=176235 qt=81234 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=180 collidable=1 rideable=1
+wall=177116 qt=81834 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-23350 yaw=1784 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=177116 qt=81834 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=150 collidable=1 rideable=1
+wall=177116 qt=81834 player 1 guid=00000068 slot=1 pad=1 pos=-23600,750,-23350 yaw=1784 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=177116 qt=81834 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=180 collidable=1 rideable=1
+wall=177116 qt=81834 view 0 viewport=0,0,640,180 eye=-23500,920,-23337 frames=862 views=2
+wall=177117 qt=81834 bodies view=0 drawn=0 frames=8 others=1 with_body=1
+wall=177119 qt=81834 view 1 viewport=0,180,640,360 eye=-23600,920,-23337 frames=862 views=2
+wall=177120 qt=81834 bodies view=1 drawn=0 frames=8 others=1 with_body=1
+wall=177819 qt=82234 pad 0 rx = -13106
+wall=177819 qt=82234 pad 1 rx = -13106
+wall=177959 qt=82434 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-23350 yaw=1785 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=177959 qt=82434 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=150 collidable=1 rideable=1
+wall=177959 qt=82434 player 1 guid=00000068 slot=1 pad=1 pos=-23600,750,-23350 yaw=1785 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=177959 qt=82434 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=180 collidable=1 rideable=1
+wall=178139 qt=82534 view 0 viewport=0,0,640,180 eye=-23500,920,-23337 frames=869 views=2
+wall=178140 qt=82534 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=178143 qt=82534 view 1 viewport=0,180,640,360 eye=-23600,920,-23337 frames=869 views=2
+wall=178144 qt=82534 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=178831 qt=83034 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-23350 yaw=1792 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=178831 qt=83034 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=150 collidable=1 rideable=1
+wall=178831 qt=83034 player 1 guid=00000068 slot=1 pad=1 pos=-23600,750,-23350 yaw=1792 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=178831 qt=83034 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=180 collidable=1 rideable=1
+wall=179144 qt=83234 view 0 viewport=0,0,640,180 eye=-23500,920,-23337 frames=876 views=2
+wall=179145 qt=83234 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=179148 qt=83234 view 1 viewport=0,180,640,360 eye=-23600,920,-23337 frames=876 views=2
+wall=179148 qt=83234 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=179698 qt=83634 audio voices=12 top=GLOWING_OBJECT_2 x2
+wall=179698 qt=83634 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-23350 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=179698 qt=83634 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=150 collidable=1 rideable=1
+wall=179698 qt=83634 player 1 guid=00000068 slot=1 pad=1 pos=-23600,750,-23350 yaw=1799 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=179698 qt=83634 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=180 collidable=1 rideable=1
+wall=179977 qt=83734 pad 0 rx = 0
+wall=179977 qt=83734 pad 1 rx = 0
+wall=180159 qt=83934 view 0 viewport=0,0,640,180 eye=-23499,920,-23337 frames=883 views=2
+wall=180160 qt=83934 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=180162 qt=83934 view 1 viewport=0,180,640,360 eye=-23599,920,-23337 frames=883 views=2
+wall=180163 qt=83934 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=180578 qt=84234 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-23350 yaw=-1798 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=180578 qt=84234 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=150 collidable=1 rideable=1
+wall=180578 qt=84234 player 1 guid=00000068 slot=1 pad=1 pos=-23600,750,-23350 yaw=-1798 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=180578 qt=84234 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=180 collidable=1 rideable=1
+wall=181321 qt=84634 perf frames=35 in 5090 ms
+wall=181325 qt=84734 view 0 viewport=0,0,640,180 eye=-23499,920,-23337 frames=891 views=2
+wall=181326 qt=84734 bodies view=0 drawn=0 frames=8 others=1 with_body=1
+wall=181328 qt=84734 view 1 viewport=0,180,640,360 eye=-23599,920,-23337 frames=891 views=2
+wall=181329 qt=84734 bodies view=1 drawn=0 frames=8 others=1 with_body=1
+wall=181466 qt=84834 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-23350 yaw=-1798 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=181466 qt=84834 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=150 collidable=1 rideable=1
+wall=181466 qt=84834 player 1 guid=00000068 slot=1 pad=1 pos=-23600,750,-23350 yaw=-1798 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=181466 qt=84834 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=180 collidable=1 rideable=1
+wall=182358 qt=85434 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-23350 yaw=-1798 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=182358 qt=85434 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=150 collidable=1 rideable=1
+wall=182358 qt=85434 player 1 guid=00000068 slot=1 pad=1 pos=-23600,750,-23350 yaw=-1798 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=182358 qt=85434 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=180 collidable=1 rideable=1
+wall=182358 qt=85434 view 0 viewport=0,0,640,180 eye=-23499,920,-23337 frames=898 views=2
+wall=182359 qt=85434 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=182362 qt=85434 view 1 viewport=0,180,640,360 eye=-23599,920,-23337 frames=898 views=2
+wall=182362 qt=85434 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=183199 qt=86034 audio voices=12 top=GLOWING_OBJECT_2 x2
+wall=183199 qt=86034 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-23350 yaw=-1798 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=183199 qt=86034 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=150 collidable=1 rideable=1
+wall=183199 qt=86034 player 1 guid=00000068 slot=1 pad=1 pos=-23600,750,-23350 yaw=-1798 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=183199 qt=86034 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=180 collidable=1 rideable=1
+wall=183376 qt=86134 view 0 viewport=0,0,640,180 eye=-23499,920,-23337 frames=905 views=2
+wall=183377 qt=86134 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=183380 qt=86134 view 1 viewport=0,180,640,360 eye=-23599,920,-23337 frames=905 views=2
+wall=183380 qt=86134 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=184071 qt=86634 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-23350 yaw=-1798 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=184071 qt=86634 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=150 collidable=1 rideable=1
+wall=184071 qt=86634 player 1 guid=00000068 slot=1 pad=1 pos=-23600,750,-23350 yaw=-1798 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=184071 qt=86634 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=180 collidable=1 rideable=1
+wall=184397 qt=86834 view 0 viewport=0,0,640,180 eye=-23499,920,-23337 frames=912 views=2
+wall=184398 qt=86834 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=184401 qt=86834 view 1 viewport=0,180,640,360 eye=-23599,920,-23337 frames=912 views=2
+wall=184402 qt=86834 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=184956 qt=87234 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-23350 yaw=-1798 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=184956 qt=87234 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=150 collidable=1 rideable=1
+wall=184956 qt=87234 player 1 guid=00000068 slot=1 pad=1 pos=-23600,750,-23350 yaw=-1798 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=184956 qt=87234 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=180 collidable=1 rideable=1
+wall=185420 qt=87534 view 0 viewport=0,0,640,180 eye=-23499,920,-23337 frames=919 views=2
+wall=185421 qt=87534 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=185423 qt=87534 view 1 viewport=0,180,640,360 eye=-23599,920,-23337 frames=919 views=2
+wall=185424 qt=87534 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=185840 qt=87834 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-23350 yaw=-1798 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=185841 qt=87834 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=150 collidable=1 rideable=1
+wall=185841 qt=87834 player 1 guid=00000068 slot=1 pad=1 pos=-23600,750,-23350 yaw=-1798 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=185841 qt=87834 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=180 collidable=1 rideable=1
+wall=186389 qt=88134 perf frames=35 in 5068 ms
+wall=186568 qt=88334 view 0 viewport=0,0,640,180 eye=-23499,920,-23337 frames=927 views=2
+wall=186569 qt=88334 bodies view=0 drawn=0 frames=8 others=1 with_body=1
+wall=186571 qt=88334 view 1 viewport=0,180,640,360 eye=-23599,920,-23337 frames=927 views=2
+wall=186572 qt=88334 bodies view=1 drawn=0 frames=8 others=1 with_body=1
+wall=186710 qt=88434 audio voices=12 top=GLOWING_OBJECT_2 x2
+wall=186710 qt=88434 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-23350 yaw=-1798 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=186710 qt=88434 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=150 collidable=1 rideable=1
+wall=186710 qt=88434 player 1 guid=00000068 slot=1 pad=1 pos=-23600,750,-23350 yaw=-1798 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=186710 qt=88434 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=180 collidable=1 rideable=1
+wall=187585 qt=89034 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-23350 yaw=-1798 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=187585 qt=89034 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=150 collidable=1 rideable=1
+wall=187585 qt=89034 player 1 guid=00000068 slot=1 pad=1 pos=-23600,750,-23350 yaw=-1798 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=187585 qt=89034 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=180 collidable=1 rideable=1
+wall=187585 qt=89034 view 0 viewport=0,0,640,180 eye=-23499,920,-23337 frames=934 views=2
+wall=187586 qt=89034 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=187588 qt=89034 view 1 viewport=0,180,640,360 eye=-23599,920,-23337 frames=934 views=2
+wall=187589 qt=89034 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=188411 qt=89634 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-23350 yaw=-1798 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=188411 qt=89634 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=150 collidable=1 rideable=1
+wall=188411 qt=89634 player 1 guid=00000068 slot=1 pad=1 pos=-23600,750,-23350 yaw=-1798 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=188411 qt=89634 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=180 collidable=1 rideable=1
+wall=188597 qt=89734 view 0 viewport=0,0,640,180 eye=-23499,920,-23337 frames=941 views=2
+wall=188598 qt=89734 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=188601 qt=89734 view 1 viewport=0,180,640,360 eye=-23599,920,-23337 frames=941 views=2
+wall=188602 qt=89734 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=189301 qt=90234 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-23350 yaw=-1798 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=189301 qt=90234 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=150 collidable=1 rideable=1
+wall=189301 qt=90234 player 1 guid=00000068 slot=1 pad=1 pos=-23600,750,-23350 yaw=-1798 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=189301 qt=90234 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=180 collidable=1 rideable=1
+wall=189633 qt=90434 view 0 viewport=0,0,640,180 eye=-23499,920,-23337 frames=948 views=2
+wall=189634 qt=90434 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=189637 qt=90434 view 1 viewport=0,180,640,360 eye=-23599,920,-23337 frames=948 views=2
+wall=189638 qt=90434 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=190219 qt=90834 audio voices=12 top=GLOWING_OBJECT_2 x2
+wall=190219 qt=90834 player 0 guid=DC9DDC01 slot=0 pad=0 pos=-23500,750,-23350 yaw=-1798 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=190219 qt=90834 platform 0: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=150 collidable=1 rideable=1
+wall=190219 qt=90834 player 1 guid=00000068 slot=1 pad=1 pos=-23600,750,-23350 yaw=-1798 pitch=0 hp=100 weapon=EGL ammo=64 inclip=6 perclip=8 cinema=0
+wall=190219 qt=90834 platform 1: on=00000000 support=0 nearest=DDC16C00 at -23500,750,-23200 top=10090 dist=180 collidable=1 rideable=1
+wall=190687 qt=91134 view 0 viewport=0,0,640,180 eye=-23499,920,-23337 frames=955 views=2
+wall=190688 qt=91134 bodies view=0 drawn=0 frames=7 others=1 with_body=1
+wall=190691 qt=91134 view 1 viewport=0,180,640,360 eye=-23599,920,-23337 frames=955 views=2
+wall=190692 qt=91134 bodies view=1 drawn=0 frames=7 others=1 with_body=1
+wall=190968 qt=91234 script finished, asking the game to exit
+wall=190971 qt=91234 dialog stop - id=000181f9
+wall=190971 qt=91234 dialog stop - id=00000000
+wall=190971 qt=91234 dialog stop - id=00000000
+wall=190971 qt=91234 dialog stop - id=00000000
+wall=191817 qt=91234 QA bot shutting down (armed=1 finished=1)
+wall=191884 qt=91234 ASSERT #1 /home/runner/work/area51-pc/area51-pc/Support/NetworkMgr/Voice/VoiceMgr.cpp:38 expr=[!m_Initialized] msg=[]
+wall=191884 qt=91234 ASSERT #2 /home/runner/work/area51-pc/area51-pc/xCore/Entropy/Network/FiFo.cpp:25 expr=[m_Initialized==FALSE] msg=[]
+wall=191884 qt=91234 ASSERT #3 /home/runner/work/area51-pc/area51-pc/xCore/Entropy/Network/FiFo.cpp:25 expr=[m_Initialized==FALSE] msg=[]
