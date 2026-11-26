@@ -183,8 +183,3 @@ placement of players 3-4, pad assignment and swap, pause page bodies P3/P4, prof
 restart only when all are down.  Each view renders the scene again: 4 players is about twice
 today's render work.  Suggested first step: a 4-player test build with only the views and the
 pads, bot-tested (the bot can drive 4 virtual pads), to measure performance.
-
-### On hold: a face visor for the players' hazmat suits (owner, 2026-11-25)
-
-The NPC hazmats have a glass visor; the player model has none. Option 2 (darker face, no visor)
-is done. A visor would mean using or adapting the NPC hazmat model for the players.
