@@ -1,6 +1,6 @@
 # Area 51 (2005) local co-op: status and TODO
 
-Branch `coop/stage1` of `VortexHyperBeast/area51-pc`. Last updated 2026-11-26 (v0.95.55, build 150, published as the first official release). Where everything lives: [README.md](README.md).
+Branch `coop/stage1` of `VortexHyperBeast/Area51-2005-Splitscreen-Coop`. Last updated 2026-11-26 (v0.95.55, build 150, published as the first official release). Where everything lives: [README.md](README.md).
 
 Every status below is backed by one of three kinds of evidence, and says which:
 

@@ -10,13 +10,13 @@
 
 An unofficial, experimental local co-op modification for the **Area 51 (2005) PC port**.
 
-[![Co-op build](https://github.com/VortexHyperBeast/area51-pc/actions/workflows/coop-build.yml/badge.svg?branch=coop%2Fstage1)](https://github.com/VortexHyperBeast/area51-pc/actions/workflows/coop-build.yml)
-[![Latest release](https://img.shields.io/github/v/release/VortexHyperBeast/area51-pc?include_prereleases&label=latest%20release)](https://github.com/VortexHyperBeast/area51-pc/releases/latest)
+[![Co-op build](https://github.com/VortexHyperBeast/Area51-2005-Splitscreen-Coop/actions/workflows/coop-build.yml/badge.svg?branch=coop%2Fstage1)](https://github.com/VortexHyperBeast/Area51-2005-Splitscreen-Coop/actions/workflows/coop-build.yml)
+[![Latest release](https://img.shields.io/github/v/release/VortexHyperBeast/Area51-2005-Splitscreen-Coop?include_prereleases&label=latest%20release)](https://github.com/VortexHyperBeast/Area51-2005-Splitscreen-Coop/releases/latest)
 ![Platform](https://img.shields.io/badge/platform-Windows%20x64-blue)
 ![Players](https://img.shields.io/badge/players-2%20local-purple)
 ![Status](https://img.shields.io/badge/status-experimental-orange)
 
-[**Download v0.95.55 (NexusMods package)**](https://github.com/VortexHyperBeast/area51-pc/releases/download/AREA51_SplitscreenCoop_v0.95.55_Harder_Co-op/AREA51_SplitscreenCoop_v0.95.55_Harder_Co-op.zip) · [**All releases**](https://github.com/VortexHyperBeast/area51-pc/releases) · [**Co-op source branch**](https://github.com/VortexHyperBeast/area51-pc/tree/coop/stage1) · [**Report a bug**](https://github.com/VortexHyperBeast/area51-pc/issues)
+[**Download v0.95.55 (NexusMods package)**](https://github.com/VortexHyperBeast/Area51-2005-Splitscreen-Coop/releases/download/AREA51_SplitscreenCoop_v0.95.55_Harder_Co-op/AREA51_SplitscreenCoop_v0.95.55_Harder_Co-op.zip) · [**All releases**](https://github.com/VortexHyperBeast/Area51-2005-Splitscreen-Coop/releases) · [**Co-op source branch**](https://github.com/VortexHyperBeast/Area51-2005-Splitscreen-Coop/tree/coop/stage1) · [**Report a bug**](https://github.com/VortexHyperBeast/Area51-2005-Splitscreen-Coop/issues)
 
 </div>
 
@@ -63,7 +63,7 @@ These in-game screenshots show both local players exploring and fighting through
 <table>
 <tr><td><strong>Development stage</strong></td><td>Stage 1 — experimental</td></tr>
 <tr><td><strong>Latest public build</strong></td><td>v0.95.55 (build 150)</td></tr>
-<tr><td><strong>Current development branch</strong></td><td><a href="https://github.com/VortexHyperBeast/area51-pc/tree/coop/stage1">coop/stage1</a></td></tr>
+<tr><td><strong>Current development branch</strong></td><td><a href="https://github.com/VortexHyperBeast/Area51-2005-Splitscreen-Coop/tree/coop/stage1">coop/stage1</a></td></tr>
 <tr><td><strong>Players supported</strong></td><td>2 local players</td></tr>
 <tr><td><strong>Platform</strong></td><td>Windows 64-bit build</td></tr>
 </table>
@@ -218,11 +218,11 @@ enemy_health_percent=150
 
 <div align="center">
 
-### [GET THE LATEST CO-OP BUILD](https://github.com/VortexHyperBeast/area51-pc/releases/latest)
+### [GET THE LATEST CO-OP BUILD](https://github.com/VortexHyperBeast/Area51-2005-Splitscreen-Coop/releases/latest)
 
 </div>
 
-1. Download the current co-op package from the [GitHub Releases page](https://github.com/VortexHyperBeast/area51-pc/releases/latest). The v0.95.55 package is intended for an existing Dreamland-51 PC port installation.
+1. Download the current co-op package from the [GitHub Releases page](https://github.com/VortexHyperBeast/Area51-2005-Splitscreen-Coop/releases/latest). The v0.95.55 package is intended for an existing Dreamland-51 PC port installation.
 2. Back up your original A51.exe and SHADERS folder.
 3. Extract the contents of the co-op ZIP into the Dreamland-51 game folder containing A51.exe. Allow the co-op files to replace the existing executable and shader files.
 4. Keep your existing game data in place. The co-op package does **not** include the original Area 51 game data or an asset downloader.
@@ -286,7 +286,7 @@ The game can write these files beside `A51.exe`:
 - `a51_local_coop_probe.log` — co-op session diagnostics.
 - `a51_crash.txt` and `a51_crash.dmp` — created after a crash.
 
-[**Open an issue on GitHub**](https://github.com/VortexHyperBeast/area51-pc/issues)
+[**Open an issue on GitHub**](https://github.com/VortexHyperBeast/Area51-2005-Splitscreen-Coop/issues)
 
 ---
 
@@ -297,13 +297,13 @@ The co-op implementation is developed on the **`coop/stage1`** branch. The defau
 Clone the development branch:
 
 ```bash
-git clone --branch coop/stage1 --single-branch https://github.com/VortexHyperBeast/area51-pc.git
-cd area51-pc
+git clone --branch coop/stage1 --single-branch https://github.com/VortexHyperBeast/Area51-2005-Splitscreen-Coop.git
+cd Area51-2005-Splitscreen-Coop
 ```
 
-- [Co-op source code](https://github.com/VortexHyperBeast/area51-pc/tree/coop/stage1)
-- [Build and test workflow](https://github.com/VortexHyperBeast/area51-pc/actions/workflows/coop-build.yml)
-- [All GitHub releases](https://github.com/VortexHyperBeast/area51-pc/releases)
+- [Co-op source code](https://github.com/VortexHyperBeast/Area51-2005-Splitscreen-Coop/tree/coop/stage1)
+- [Build and test workflow](https://github.com/VortexHyperBeast/Area51-2005-Splitscreen-Coop/actions/workflows/coop-build.yml)
+- [All GitHub releases](https://github.com/VortexHyperBeast/Area51-2005-Splitscreen-Coop/releases)
 - [Upstream Dreamland-51 PC port](https://github.com/Source2Spy/area51-pc)
 
 This project builds on the Dreamland-51 PC port, an independent community project. The upstream port and the co-op modifications are separate contributions.
