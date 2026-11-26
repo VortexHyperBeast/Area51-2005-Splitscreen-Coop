@@ -307,6 +307,8 @@ class Log(object):
         self.finished_wall = None
         self.begins = []        # script times of "campaign BeginGame done"
         self.begin_levels = []  # the level of each of them
+        self.begin_picked = []  # True when the test picked that level in the level select just before
+        self._picked_pending = False
         self.scanner_cmd_qt = None
         self.scanner_has = {}
         self.shares = []        # (p0 before, p0 after, p1 before, p1 after) of the shared-item probe
@@ -393,6 +395,10 @@ def parse_log(text):
             log.level = int(bm.group(2))
             log.begins.append(qt)
             log.begin_levels.append(int(bm.group(2)))
+            log.begin_picked.append(log._picked_pending)
+            log._picked_pending = False
+        elif msg.startswith("level picked by the test:"):
+            log._picked_pending = True
         elif msg.startswith("armed:"):
             if log.armed_wall is None:
                 log.armed_wall = wall
@@ -1479,7 +1485,10 @@ def sweep_report(log, level, probe_text="", shots=None):
     if not log.begins:
         problems.append("the level never started")
     lv = log.begin_levels
-    restarts = sum(1 for k in range(1, len(lv)) if lv[k] == lv[k - 1])
+    # A start the test asked for itself (the chain picks the next level in the level select) is
+    # not a restart, even when the game had already moved on to that level by itself.
+    picked = log.begin_picked + [False] * (len(lv) - len(log.begin_picked))
+    restarts = sum(1 for k in range(1, len(lv)) if lv[k] == lv[k - 1] and not picked[k])
     changes = ["%d -> %d" % (lv[k - 1], lv[k]) for k in range(1, len(lv)) if lv[k] != lv[k - 1]]
     if changes:
         notes.append("level change: " + ", ".join(changes))
