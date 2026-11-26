@@ -125,6 +125,25 @@ void nav_point::OnAdvanceSimulation( f32 DeltaTime )
         object* pObj    = g_ObjMgr.GetObjectBySlot( SlotID );
         hud_object& Hud = hud_object::GetSafeType( *pObj );
 
+#ifdef A51_LOCAL_COOP
+        // Split screen: every local player's HUD gets the objective marker.  The original sent
+        // it to HUD 0 only, which in co-op can be either player (HUDs follow the object list).
+        for( s32 i = 0; i < NET_MAX_PER_CLIENT; i++ )
+        {
+            if( (i > 0) && !Hud.m_PlayerHuds[ i ].m_Active )
+                continue;
+            Hud.m_PlayerHuds[ i ].m_Icon.SubmitIcon( ICON_WAYPOINT,
+                TargetPosition,
+                TargetPosition,
+                TRUE,
+                GUTTER_ELLIPSE,
+                XCOLOR_GREEN,
+                NULL,
+                FALSE,
+                TRUE,
+                1.0f );
+        }
+#else
         Hud.m_PlayerHuds[ 0 ].m_Icon.SubmitIcon( ICON_WAYPOINT,
             TargetPosition, 
             TargetPosition,
@@ -135,6 +154,7 @@ void nav_point::OnAdvanceSimulation( f32 DeltaTime )
             FALSE,
             TRUE, 
             1.0f );
+#endif
     }
 
 }

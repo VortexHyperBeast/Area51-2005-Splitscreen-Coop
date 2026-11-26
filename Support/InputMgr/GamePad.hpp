@@ -152,6 +152,9 @@ public:
 
     static void         ResetKeyboardBindings   ( keyboard_bindings& Bindings );
     static xbool        KeyboardBindingsAreValid( const keyboard_bindings& Bindings );
+#ifdef A51_LOCAL_COOP
+    static xbool        CoopFixKeyboardBindings ( keyboard_bindings& Bindings );
+#endif
     static xbool        IsKeyboardKey           ( input_gadget Key );
     static const char*  GetKeyboardActionLabel  ( s32 Action );
     static xwstring     GetKeyboardKeyLabel     ( input_gadget Key );

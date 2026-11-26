@@ -189,6 +189,10 @@ xbool dlg_profile_keyboard_bindings::Create( s32                       UserID,
     m_OriginalProfile = g_StateMgr.GetPendingProfile();
     m_OriginalProfile.Checksum();
     m_EditingProfile = m_OriginalProfile;
+#ifdef A51_LOCAL_COOP
+    // Show (and save on Accept) "join partner" on T in profiles that still have the old Tab.
+    ingame_pad::CoopFixKeyboardBindings( m_EditingProfile.GetKeyboardBindings() );
+#endif
 
     m_pBindings->SetLineHeight( 24 );
     m_pBindings->EnableHeaderBar();

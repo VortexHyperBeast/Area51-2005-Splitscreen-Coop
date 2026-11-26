@@ -215,7 +215,12 @@ static const keyboard_definition s_KeyboardActions[] =
     { ingame_pad::LEAN_RIGHT, INPUT_KBD_E, "LEAN_RIGHT" },
     { ingame_pad::ACTION_TALK_MODE_TOGGLE, INPUT_KBD_Y, "IDS_BIND_ACTION_TALK_MODE_TOGGLE" },
     { ingame_pad::ACTION_DROP_FLAG, INPUT_KBD_N, "DROP_FLAG" },
+#ifdef A51_LOCAL_COOP
+    // Co-op: this is "join your partner" (Back on a controller).  On Tab it fired with every Use.
+    { ingame_pad::ACTION_SCOREBOARD, INPUT_KBD_T, "SHOW_SCORE" },
+#else
     { ingame_pad::ACTION_SCOREBOARD, INPUT_KBD_TAB, "SHOW_SCORE" },
+#endif
 };
 
 //-------------------------------------------------------------------------
@@ -1000,8 +1005,42 @@ void ingame_pad::SetKeyboardBinding( keyboard_bindings& Bindings, s32 Action, s3
 
 //=========================================================================
 
-void ingame_pad::ApplyKeyboardBindings( const keyboard_bindings& Bindings )
+#ifdef A51_LOCAL_COOP
+//=========================================================================
+// Profiles made before the co-op default changed have "join partner" (the scoreboard action)
+// on Tab together with Use, so every Use also teleported to the partner.  Move it to T.
+// Only that old default pair is changed; a key the player chose himself stays.
+xbool ingame_pad::CoopFixKeyboardBindings( keyboard_bindings& Bindings )
 {
+    xbool bUseOnTab = FALSE;
+    for( s32 Slot = 0; Slot < KEYBOARD_SLOT_COUNT; Slot++ )
+        if( Bindings.Keys[KEY_ACTION_USE][Slot] == INPUT_KBD_TAB )
+            bUseOnTab = TRUE;
+    if( !bUseOnTab )
+        return FALSE;
+
+    xbool bChanged = FALSE;
+    for( s32 Slot = 0; Slot < KEYBOARD_SLOT_COUNT; Slot++ )
+        if( Bindings.Keys[KEY_ACTION_SCOREBOARD][Slot] == INPUT_KBD_TAB )
+        {
+            Bindings.Keys[KEY_ACTION_SCOREBOARD][Slot] = INPUT_KBD_T;
+            bChanged = TRUE;
+        }
+    return bChanged;
+}
+#endif
+
+//=========================================================================
+
+void ingame_pad::ApplyKeyboardBindings( const keyboard_bindings& InBindings )
+{
+#ifdef A51_LOCAL_COOP
+    keyboard_bindings Bindings = InBindings;
+    CoopFixKeyboardBindings( Bindings );
+#else
+    const keyboard_bindings& Bindings = InBindings;
+#endif
+
     ASSERT( KeyboardBindingsAreValid( Bindings ) );
 
     if( !KeyboardBindingsAreValid( Bindings ) )
