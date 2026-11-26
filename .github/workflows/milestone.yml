@@ -45,6 +45,9 @@ jobs:
           else
             J="$(curl -fsSL -H "Authorization: Bearer ${{ github.token }}" -H "Accept: application/vnd.github.raw" "https://api.github.com/repos/${GITHUB_REPOSITORY}/contents/.github/milestone.json?ref=${GITHUB_SHA}")"
             for k in run_id commit tag; do echo "$k=$(echo "$J" | jq -r ".$k")" >> "$GITHUB_OUTPUT"; done
+            echo "nexus=$(echo "$J" | jq -r '.nexus // false')" >> "$GITHUB_OUTPUT"
+            echo "nexus_version=$(echo "$J" | jq -r '.nexus_version // ""')" >> "$GITHUB_OUTPUT"
+            echo "nexus_drop=$(echo "$J" | jq -r '.nexus_readme_drop // ""')" >> "$GITHUB_OUTPUT"
             { echo "title<<EOT"; echo "$J" | jq -r .title; echo "EOT"; echo "notes<<EOT"; echo "$J" | jq -r .notes; echo "EOT"; } >> "$GITHUB_OUTPUT"
           fi
 
@@ -78,6 +81,9 @@ jobs:
           NOTES: ${{ steps.m.outputs.notes }}
           COMMIT: ${{ steps.m.outputs.commit }}
           RUN_ID: ${{ steps.m.outputs.run_id }}
+          NEXUS: ${{ steps.m.outputs.nexus }}
+          NEXUS_VERSION: ${{ steps.m.outputs.nexus_version }}
+          NEXUS_DROP: ${{ steps.m.outputs.nexus_drop }}
         run: |
           set -euo pipefail
           NAME="Area51-Coop-$TAG"
@@ -92,6 +98,24 @@ jobs:
           PDB=()
           if [ -f pdb/A51.pdb ]; then PDB=("pdb/A51.pdb#A51-$TAG.pdb (debug symbols)"); fi
           printf '%s\n\nBuilt from commit %s (Actions run %s). The zip contains no game data.\n' "$NOTES" "$COMMIT" "$RUN_ID" > notes.md
+          # Optional: the NexusMods drop-in zip of this build (A51.exe, SHADERS, SCREENS, readme).
+          NEXUS_ZIP=""
+          if [ "$NEXUS" = "true" ]; then
+            mkdir -p nexus
+            cp play/A51.exe nexus/
+            cp -r play/SHADERS nexus/
+            cp -r tools/coop-play/SCREENS nexus/
+            curl -fsSL -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github.raw" \
+              "https://api.github.com/repos/${GITHUB_REPOSITORY}/contents/tools/coop-play/nexus/README-SplitscreenCoop.txt?ref=coop/stage1" > nexus/README-SplitscreenCoop.txt
+            # features this older build does not have: drop their readme lines
+            if [ -n "$NEXUS_DROP" ]; then grep -v -i -E "$NEXUS_DROP" nexus/README-SplitscreenCoop.txt > r.tmp && mv r.tmp nexus/README-SplitscreenCoop.txt; fi
+            sed -i 's/\r$//; s/$/\r/' nexus/README-SplitscreenCoop.txt
+            NEXUS_ZIP="Area51-SplitscreenCoop-v${NEXUS_VERSION}.zip"
+            (cd nexus && zip -q -r -9 "../$NEXUS_ZIP" .)
+            unzip -l "$NEXUS_ZIP"
+            echo "NEXUS_ZIP=$NEXUS_ZIP" >> "$GITHUB_ENV"
+          fi
+
           # Kept on the branch "milestones" (this token may not create releases from here):
           # milestones/<tag>/ holds the zip, the debug symbols and a note.
           git config --global user.name "github-actions[bot]"
@@ -102,9 +126,83 @@ jobs:
           if git fetch -q --depth 1 origin milestones 2>/dev/null; then git checkout -q -b milestones FETCH_HEAD; else git checkout -q --orphan milestones; fi
           mkdir -p "$TAG"
           cp "../$ZIP" "$TAG/"
+          if [ -n "$NEXUS_ZIP" ]; then cp "../$NEXUS_ZIP" "$TAG/"; fi
           if [ -f ../pdb/A51.pdb ]; then cp ../pdb/A51.pdb "$TAG/A51-$TAG.pdb"; fi
           { echo "$TITLE"; echo; cat ../notes.md; } > "$TAG/ABOUT.txt"
           git add "$TAG"
           git commit -q -m "$TITLE"
           git push -q origin HEAD:milestones
           echo "kept on branch milestones: $TAG/$ZIP"
+
+      - name: Keep the mod zip for the fresh-install check
+        if: env.NEXUS_ZIP != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: nexus-package
+          path: ${{ env.NEXUS_ZIP }}
+
+  nexus-smoke:
+    name: NexusMods package on a fresh install (A51.exe alone, no launcher)
+    needs: keep
+    runs-on: windows-2022
+    timeout-minutes: 60
+    steps:
+      - name: Checkout (setup script for the game data, report publishing)
+        uses: actions/checkout@v4
+        with:
+          ref: coop/stage1
+
+      - name: Download the mod zip
+        id: dl
+        uses: actions/download-artifact@v4
+        with:
+          name: nexus-package
+          path: ${{ runner.temp }}\nexus
+        continue-on-error: true
+
+      - name: Make a Dreamland-51 game folder with its data, drag the mod in, start A51.exe alone
+        if: steps.dl.outcome == 'success'
+        shell: powershell
+        run: |
+          $ErrorActionPreference = 'Continue'
+          New-Item -ItemType Directory -Force report | Out-Null
+          function Log([string] $t) { Write-Host $t; Add-Content -LiteralPath report\smoke.txt -Value $t -Encoding Ascii }
+          $game = "$env:RUNNER_TEMP\game"
+          New-Item -ItemType Directory -Force $game | Out-Null
+          Copy-Item "tools\coop-play\Setup-Assets.ps1" $game
+          cmd /c "powershell.exe -NoProfile -ExecutionPolicy Bypass -File `"$game\Setup-Assets.ps1`" -Yes > report\setup.txt 2>&1"
+          if ($LASTEXITCODE -ne 0) { Log 'MOD RESULT: FAIL (game data setup failed)'; exit 0 }
+          Remove-Item "$game\Setup-Assets.ps1", "$game\.coop-assets-ok" -Force -ErrorAction SilentlyContinue
+          $zip = Get-ChildItem "$env:RUNNER_TEMP\nexus\*.zip" | Select-Object -First 1
+          Log ('mod zip: ' + $zip.Name)
+          Expand-Archive -Path $zip.FullName -DestinationPath $game -Force
+          Get-ChildItem $game -File | Select-Object -ExpandProperty Name | ForEach-Object { Log ('file: ' + $_) }
+          $icd = $null
+          foreach ($root in 'C:\Program Files\Google\Chrome\Application', 'C:\Program Files (x86)\Microsoft\Edge\Application') {
+            if ((-not $icd) -and (Test-Path $root)) { $icd = Get-ChildItem -Path $root -Recurse -Filter vk_swiftshader_icd.json -ErrorAction SilentlyContinue | Select-Object -First 1 }
+          }
+          if ($icd) { $loader = Join-Path $icd.DirectoryName 'vulkan-1.dll'; if (Test-Path $loader) { Copy-Item $loader "$game\vulkan-1.dll" -Force; $env:VK_ICD_FILENAMES = $icd.FullName; $env:VK_DRIVER_FILES = $icd.FullName } }
+          Remove-Item Env:A51_LOCAL_COOP -ErrorAction SilentlyContinue
+          $p = Start-Process -FilePath "$game\A51.exe" -WorkingDirectory $game -PassThru -RedirectStandardOutput "$game\_out.txt" -RedirectStandardError "$game\_err.txt"
+          Start-Sleep -Seconds 75
+          $p.Refresh()
+          $running = -not $p.HasExited
+          if ($running) { Stop-Process -Id $p.Id -Force; Start-Sleep -Seconds 2 }
+          $probe = ''
+          if (Test-Path "$game\a51_local_coop_probe.log") { $probe = Get-Content "$game\a51_local_coop_probe.log" -Raw }
+          $screen = $probe -match 'start screen: ok'
+          Log ('game still running after 75 s: ' + $running)
+          Log ('mod start screen loaded: ' + $screen)
+          if ($running -and $screen) { Log 'MOD RESULT: PASS' } else { Log 'MOD RESULT: FAIL' }
+          foreach ($f in '_out.txt', '_err.txt') { if (Test-Path "$game\$f") { Log ('--- ' + $f); Get-Content "$game\$f" -Tail 30 | ForEach-Object { Log $_ } } }
+          exit 0
+
+      - name: Publish the check
+        if: always() && steps.dl.outcome == 'success'
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p report
+          bash tools/coop-qa/publish_results.sh report "runs/milestone-${GITHUB_REF_NAME//\//-}-${{ github.run_number }}/nexus-smoke"
+
