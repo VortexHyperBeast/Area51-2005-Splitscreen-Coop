@@ -18,6 +18,14 @@ on:
         description: 'Also start every campaign level in co-op through the level select and report each one (about 20 extra jobs)'
         type: boolean
         default: false
+      official_run:
+        description: 'OFFICIAL RELEASE: the Actions run id of an already tested build to publish for everyone (nothing is rebuilt; leave empty for a normal build)'
+        type: string
+        default: ''
+      official_name:
+        description: 'OFFICIAL RELEASE: name after the version, e.g. Harder_Co-op -> v0.95.55_Harder_Co-op'
+        type: string
+        default: ''
 
 permissions:
   contents: write
@@ -36,6 +44,7 @@ env:
 jobs:
   inspect-assets:
     name: Inspect the Asset Pack
+    if: ${{ !inputs.official_run }}
     runs-on: ubuntu-24.04
     timeout-minutes: 90
     steps:
@@ -63,6 +72,7 @@ jobs:
 
   windows:
     name: Windows x64 (MSVC), co-op build
+    if: ${{ !inputs.official_run }}
     runs-on: windows-2022
     timeout-minutes: 300
     env:
@@ -166,6 +176,7 @@ jobs:
 
   linux-build:
     name: Linux x64 (GCC), co-op test build (OptDebug, bot compiled in)
+    if: ${{ !inputs.official_run }}
     runs-on: ubuntu-24.04
     timeout-minutes: 300
     env:
@@ -770,7 +781,7 @@ jobs:
           [ -n "$NEXUS" ] || NEXUS="no result"
           NEXUS_ZIP=(); for z in nexus/*.zip; do [ -f "$z" ] && NEXUS_ZIP+=("$z"); done
           cat > notes.md <<EOF
-          Experimental two-player split-screen co-op for the Area 51 (2005) PC port, Stage 1. Not an official release.
+          TEST BUILD (draft, only visible to the owner). Experimental two-player split-screen co-op for the Area 51 (2005) PC port. Not an official release.
 
           How to use: download the zip below, extract it into a new folder, double-click PLAY-COOP-2-PLAYERS.cmd. It asks before it downloads the game data (about 1.5 GB). README.txt inside the zip has the details and the known gaps.
 
@@ -788,10 +799,112 @@ jobs:
           PDB=()
           if [ -f pdb/A51.pdb ]; then PDB=("pdb/A51.pdb#A51-run${{ github.run_number }}.pdb (debug symbols, only needed to read a crash report)"); fi
           gh release delete "$TAG" --repo "$GITHUB_REPOSITORY" --yes --cleanup-tag >/dev/null 2>&1 || true
-          gh release create "$TAG" --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" \
-            --title "Co-op Stage 1, build ${{ github.run_number }}" --notes-file notes.md "${PRE[@]}" "$ZIP" "${NEXUS_ZIP[@]}" "${PDB[@]}"
+          # Test builds are drafts: only the owner (and people with write access) see them.
+          # Official versions are published for everyone by the job "official" below.
+          gh release create "$TAG" --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --draft \
+            --title "Co-op Stage 1, build ${{ github.run_number }} (test build)" --notes-file notes.md "${PRE[@]}" "$ZIP" "${NEXUS_ZIP[@]}" "${PDB[@]}"
+
+          # Older test builds that were published before builds became drafts: make them drafts too.
+          gh release list --repo "$GITHUB_REPOSITORY" --limit 50 --json tagName,isDraft \
+            --jq '.[] | select((.tagName | startswith("coop-stage1-run")) and (.isDraft | not)) | .tagName' \
+            | while read -r PUB; do gh release edit "$PUB" --repo "$GITHUB_REPOSITORY" --draft=true || true; done
 
           # keep the newest three builds, remove older ones
           gh release list --repo "$GITHUB_REPOSITORY" --limit 50 --json tagName,createdAt \
             --jq '[.[] | select(.tagName | startswith("coop-stage1-run"))] | sort_by(.createdAt) | reverse | .[3:] | .[].tagName' \
             | while read -r OLD; do gh release delete "$OLD" --repo "$GITHUB_REPOSITORY" --yes --cleanup-tag || true; done
+
+  # ----------------------------------------------------------------------------------------
+  # Official release: publish an already tested build for everyone (Releases page, public).
+  # Started by hand with official_run (the Actions run id of the tested build) and
+  # official_name.  Nothing is rebuilt: the files are that run's own.  Also kept on the branch
+  # "milestones" under the same name.
+  official:
+    name: Official release for everyone (a tested build, not rebuilt)
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.official_run && inputs.official_name }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download the tested build's NexusMods package
+        uses: actions/download-artifact@v4
+        with:
+          name: nexus-package
+          path: nexus
+          run-id: ${{ inputs.official_run }}
+          github-token: ${{ github.token }}
+        continue-on-error: true
+
+      - name: Download its debug symbols
+        uses: actions/download-artifact@v4
+        with:
+          name: A51-coop-stage1-win-x64-pdb
+          path: pdb
+          run-id: ${{ inputs.official_run }}
+          github-token: ${{ github.token }}
+        continue-on-error: true
+
+      - name: Publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_ID: ${{ inputs.official_run }}
+          SUFFIX: ${{ inputs.official_name }}
+        run: |
+          set -euo pipefail
+          case "$SUFFIX" in *[!A-Za-z0-9_.-]*) echo "official_name may only use letters, digits, _ . -"; exit 1;; esac
+          case "$RUN_ID" in *[!0-9]*) echo "official_run must be the run id (digits)"; exit 1;; esac
+          INFO="$(gh api "repos/${GITHUB_REPOSITORY}/actions/runs/${RUN_ID}" --jq '"\(.run_number) \(.head_sha) \(.conclusion) \(.path)"')"
+          read -r NUM SHA CONC WPATH <<< "$INFO"
+          case "$WPATH" in *coop-build.yml*) ;; *) echo "run $RUN_ID is not a co-op build"; exit 1;; esac
+          [ "$CONC" = "success" ] || { echo "run $RUN_ID did not pass (conclusion: $CONC)"; exit 1; }
+          if [ "$NUM" -le 95 ]; then VER="0.$(printf %02d "$NUM")"; else VER="0.95.$((NUM - 95))"; fi
+          NAME="v${VER}_${SUFFIX}"
+          ZIP="Area51-SplitscreenCoop-${NAME}.zip"
+          # A build already kept on "milestones" under this name: publish exactly that file (the one
+          # that was tested).  Otherwise the run's own NexusMods package.
+          git fetch -q --depth 1 origin milestones:refs/remotes/origin/milestones 2>/dev/null || true
+          if git cat-file -e "origin/milestones:${NAME}/${ZIP}" 2>/dev/null; then
+            git show "origin/milestones:${NAME}/${ZIP}" > "$ZIP"
+            echo "using the kept file milestones/${NAME}/${ZIP}"
+          else
+            SRC="$(ls nexus/*.zip 2>/dev/null | head -1 || true)"
+            [ -n "$SRC" ] || { echo "run $RUN_ID has no NexusMods package and milestones has no ${NAME}/${ZIP}"; exit 1; }
+            cp "$SRC" "$ZIP"
+          fi
+          unzip -l "$ZIP"
+          TITLE="Area 51 Splitscreen Co-op ${NAME//_/ }"
+          {
+            echo "Two-player local split-screen co-op for the whole Area 51 (2005) campaign, for the Dreamland-51 PC port (Windows 11). Made by VortexHyperBeast. This mod will always be free."
+            echo
+            echo "**Install:** you need the Dreamland-51 port of Area 51, installed and working. Download \`${ZIP}\`, drag everything in it into your game folder (the folder with A51.exe), allow Windows to replace the files, and start A51.exe. The readme inside the zip has the details, the co-op rules and the settings."
+            echo
+            echo "**In the main menu:** Single Player, Splitscreen Co-op (two controllers, top/bottom split screen), Co-op Settings (difficulty and revive rules)."
+            echo
+            echo "The zip contains no game data. Built from commit ${SHA} (build ${NUM})."
+          } > notes.md
+          ASSETS=("$ZIP")
+          if [ -f pdb/A51.pdb ]; then cp pdb/A51.pdb "A51-${NAME}.pdb"; ASSETS+=("A51-${NAME}.pdb#A51-${NAME}.pdb (debug symbols, only for reading crash reports)"); fi
+          gh release delete "$NAME" --repo "$GITHUB_REPOSITORY" --yes --cleanup-tag >/dev/null 2>&1 || true
+          gh release create "$NAME" --repo "$GITHUB_REPOSITORY" --target "$SHA" --latest \
+            --title "$TITLE" --notes-file notes.md "${ASSETS[@]}"
+          echo "published: $NAME"
+
+          # Keep it on the branch "milestones" as well.
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          rm -rf ms && mkdir ms && cd ms
+          git init -q
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          if git fetch -q --depth 1 origin milestones 2>/dev/null; then git checkout -q -b milestones FETCH_HEAD; else git checkout -q --orphan milestones; fi
+          if [ ! -d "$NAME" ]; then
+            mkdir -p "$NAME"
+            cp "../$ZIP" "$NAME/"
+            if [ -f "../A51-${NAME}.pdb" ]; then cp "../A51-${NAME}.pdb" "$NAME/"; fi
+            { echo "$TITLE (build ${NUM})"; echo; echo "Official release. Built from commit ${SHA} (Actions run ${RUN_ID})."; } > "$NAME/ABOUT.txt"
+            git add "$NAME"
+            git commit -q -m "Official release $NAME"
+            git push -q origin HEAD:milestones
+            echo "kept on branch milestones: $NAME/"
+          fi

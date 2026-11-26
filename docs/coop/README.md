@@ -25,6 +25,17 @@ all mod work is on the branch `coop/stage1`.
 | `.github/workflows/coop-build.yml` | Builds every push to `coop/**`: Windows build, Linux bot tests, NexusMods package and checks, GitHub release (newest 3 kept). Started by hand with "level sweep" it also starts every campaign level. |
 | `.github/workflows/milestone.yml` | Saves a build to `milestones`: push a branch `milestone/<name>` with `.github/milestone.json` (run id, commit, tag, `nexus: true`, version). The branch can be deleted afterwards. |
 
+## Releases
+
+- **Test builds** (every push): a *draft* release `coop-stage1-run<N>`, only visible to the owner
+  (and anyone with write access). The newest 3 are kept.
+- **Official versions**: public, on the Releases page for everyone. Made by hand from a build
+  that was already tested, nothing is rebuilt: Actions -> "Co-op build and test" -> Run workflow
+  -> `official_run` = that build's run id, `official_name` = e.g. `Harder_Co-op`. The release is
+  named `v<version>_<name>` (the version from the build number), contains the NexusMods zip and
+  the debug symbols, and is also kept on `milestones`. If `milestones` already has a folder of
+  that name, its zip (the tested one) is published.
+
 ## Versions
 
 The version shown in the menu is the build number: build 87 = v0.87, up to v0.95; after that
