@@ -1,0 +1,15 @@
+mode=sweep expect=probe window=640x360 cycles=3 max=1500s startup-gate=1200s
+host: Linux 7.0.0-1017-azure x86_64, 4 cpus
+install ready (7 shader packages)
+wrote /mnt/pack/work/sweep/script.txt: 11 phases, 46 s of game time
+running under gdb
+game started, pid 8593
+game ended: exit code 0 after 378s (124 = stopped by timeout, 137/143 = killed, 139 = crash)
+game output: 7290 lines, a51_qa_bot.log: 4411 lines
+screenshots taken: 64
+coopqa shots: 64 lines written to /home/runner/work/area51-pc/area51-pc/qa-out/shots.txt
+cutscene sound: dialog lines started: 28 (0 could not start), stop calls: 2350
+  voice  BO_PainGrunt                             x28
+voices in use: max 34 (top BULLETIMPACTMETAL x16), last 28
+level 1080: OK - 1 checkpoint restart(s): 1 downed, 1 bled out (the bot does not fight or revive); player 1 hp 100; player 2 hp 100; enemies: 7 enemies (NPC - BlackOpps); targeted: ; no cinematic during the script
+RESULT: PASS (probe run, report only)
