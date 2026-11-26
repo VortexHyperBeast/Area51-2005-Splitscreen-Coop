@@ -1,0 +1,58 @@
+mode=sweep expect=probe window=640x360 cycles=3 max=1500s startup-gate=1200s
+host: Linux 7.0.0-1014-aws x86_64, 4 cpus
+install ready (7 shader packages)
+wrote /mnt/pack/work/sweep/script.txt: 11 phases, 46 s of game time
+running under gdb
+game started, pid 8893
+game ended: exit code 0 after 236s (124 = stopped by timeout, 137/143 = killed, 139 = crash)
+game output: 6413 lines, a51_qa_bot.log: 2186 lines
+screenshots taken: 33
+coopqa shots: 33 lines written to /home/runner/work/area51-pc/area51-pc/qa-out/shots.txt
+cutscene sound: dialog lines started: 218 (35 could not start), stop calls: 72
+  stream BATTLE_STREAM_LEVEL_3                    x46  (35 failed)
+  stream BRIDGES_BLUSL1_12                        x1
+  stream BRIDGES_BLUSL1_13                        x1
+  stream CRISPYA_KILL                             x1
+  stream RAMIREZA_ALERT                           x2
+  stream RAMIREZA_CLEAR                           x1
+  stream RAMIREZA_HITMELEE                        x1
+  stream RAMIREZA_RELOAD                          x1
+  stream RAMIREZ_BLUSL1_106                       x1
+  stream RAMIREZ_BLUSL1_107                       x1
+  stream RAMIREZ_BLUSL1_43                        x1
+  stream RAMIREZ_BLUSL1_44                        x1
+  stream RAMIREZ_BLUSL1_45                        x1
+  stream SPEC41A_ALERT                            x1
+  stream SPEC41A_HIT                              x1
+  stream SPEC41A_HITMELEE                         x1
+  stream SPEC41A_KILL                             x4
+  stream SPEC43_BLUSL1_01                         x1
+  voice  Mutant1_PainGrunt                        x1
+  voice  Mutant1_Vox_Death01                      x7
+  voice  Mutant1_Vox_MeleeAttack01                x9
+  voice  Mutant1_Vox_ReactRage                    x3
+  voice  Mutant1_Vox_Run                          x112
+  voice  Mutant1_Vox_Walk                         x19
+voices in use: max 41 (top BULLETIMPACTFLESH x6), last 5
+level 1030: OK - player 1 hp 100; player 2 hp 100; enemies: 17 enemies (NPC - Grunt,NPC - Hazmat); targeted: player 1; no cinematic during the script
+wall=1579 qt=-1 level list 0: id=1000
+wall=1579 qt=-1 level list 1: id=1010
+wall=1579 qt=-1 level list 2: id=1020
+wall=1579 qt=-1 level list 3: id=1030
+wall=1579 qt=-1 level list 4: id=1040
+wall=1579 qt=-1 level list 5: id=1050
+wall=1579 qt=-1 level list 6: id=1060
+wall=1579 qt=-1 level list 7: id=1070
+wall=1579 qt=-1 level list 8: id=1075
+wall=1579 qt=-1 level list 9: id=1080
+wall=1579 qt=-1 level list 10: id=1090
+wall=1579 qt=-1 level list 11: id=1095
+wall=1579 qt=-1 level list 12: id=1100
+wall=1579 qt=-1 level list 13: id=1105
+wall=1579 qt=-1 level list 14: id=1110
+wall=1579 qt=-1 level list 15: id=1115
+wall=1579 qt=-1 level list 16: id=1120
+wall=1579 qt=-1 level list 17: id=1125
+wall=1579 qt=-1 level list 18: id=1130
+wall=26304 qt=-1 campaign BeginGame done: players=2 level=1030
+RESULT: PASS (probe run, report only)
