@@ -608,6 +608,10 @@ jobs:
           New-Item -ItemType Directory -Force report | Out-Null
           $game = "$env:RUNNER_TEMP\game"
           New-Item -ItemType Directory -Force $game | Out-Null
+          # the setup script expects A51.exe in the folder (a game folder has one): put the mod's
+          # files there first; the mod is dragged in again in the next step
+          $zip = Get-ChildItem "$env:RUNNER_TEMP\nexus\*.zip" | Select-Object -First 1
+          Expand-Archive -Path $zip.FullName -DestinationPath $game -Force
           Copy-Item "tools\coop-play\Setup-Assets.ps1" $game
           cmd /c "powershell.exe -NoProfile -ExecutionPolicy Bypass -File `"$game\Setup-Assets.ps1`" -Yes > report\setup.txt 2>&1"
           if ($LASTEXITCODE -ne 0) { Get-Content report\setup.txt | Write-Host; exit 1 }

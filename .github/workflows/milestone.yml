@@ -169,11 +169,13 @@ jobs:
           function Log([string] $t) { Write-Host $t; Add-Content -LiteralPath report\smoke.txt -Value $t -Encoding Ascii }
           $game = "$env:RUNNER_TEMP\game"
           New-Item -ItemType Directory -Force $game | Out-Null
+          # the setup script expects A51.exe in the folder (a game folder has one): the mod first
+          $zip = Get-ChildItem "$env:RUNNER_TEMP\nexus\*.zip" | Select-Object -First 1
+          Expand-Archive -Path $zip.FullName -DestinationPath $game -Force
           Copy-Item "tools\coop-play\Setup-Assets.ps1" $game
           cmd /c "powershell.exe -NoProfile -ExecutionPolicy Bypass -File `"$game\Setup-Assets.ps1`" -Yes > report\setup.txt 2>&1"
-          if ($LASTEXITCODE -ne 0) { Log 'MOD RESULT: FAIL (game data setup failed)'; exit 0 }
+          if ($LASTEXITCODE -ne 0) { Log 'MOD RESULT: FAIL (game data setup failed)'; Get-Content report\setup.txt -Tail 15 | ForEach-Object { Log $_ }; exit 0 }
           Remove-Item "$game\Setup-Assets.ps1", "$game\.coop-assets-ok" -Force -ErrorAction SilentlyContinue
-          $zip = Get-ChildItem "$env:RUNNER_TEMP\nexus\*.zip" | Select-Object -First 1
           Log ('mod zip: ' + $zip.Name)
           Expand-Archive -Path $zip.FullName -DestinationPath $game -Force
           Get-ChildItem $game -File | Select-Object -ExpandProperty Name | ForEach-Object { Log ('file: ' + $_) }
