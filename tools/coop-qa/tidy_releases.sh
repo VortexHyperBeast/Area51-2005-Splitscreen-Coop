@@ -88,3 +88,14 @@ EOF
   done
   echo "release $N: title and notes set (v$VER)"
 done < /tmp/rels.txt
+
+# Keep the newest 3 test builds.  Drafts have no tag yet, so "gh release delete <tag>" cannot
+# find them: delete by release id.
+gh api "repos/$R/releases?per_page=100" \
+  --jq '.[] | select(.draft and (.name | test("test build [0-9]+|build [0-9]+"))) | "\(.id) \(.name)"' \
+  | while read -r ID NAME; do
+      N="$(printf '%s' "$NAME" | grep -o 'build [0-9]*' | head -1 | grep -o '[0-9]*')"
+      [ -n "$N" ] && echo "$N $ID"
+    done | sort -rn | tail -n +4 | while read -r N ID; do
+      gh api -X DELETE "repos/$R/releases/$ID" && echo "removed old test build $N"
+    done
