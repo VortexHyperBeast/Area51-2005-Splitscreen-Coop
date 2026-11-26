@@ -2761,6 +2761,9 @@ void state_mgr::UpdateMainMenu( void )
 #ifdef A51_LOCAL_COOP
                             // "Single Player": one player, a single-player profile.
                             LocalCoop_SetPlayerCount( 1 );
+#ifdef A51_LOCAL_COOP_QA
+                            qa_bot_Log( "main menu: Single Player chosen" );
+#endif
                             CoopLeaveSplitscreenProfile();
 #endif
                             g_PendingConfig.SetGameTypeID( GAME_CAMPAIGN );
@@ -2782,6 +2785,9 @@ void state_mgr::UpdateMainMenu( void )
 #ifdef A51_LOCAL_COOP
                             // "Splitscreen Co-op": the campaign for two, with its own save.
                             LocalCoop_SetPlayerCount( 2 );
+#ifdef A51_LOCAL_COOP_QA
+                            qa_bot_Log( "main menu: Splitscreen Co-op chosen" );
+#endif
                             g_PendingConfig.SetGameTypeID( GAME_CAMPAIGN );
                             g_PendingConfig.SetPlayerCount( 1 );
                             if( CoopPrepareSplitscreenProfile() )

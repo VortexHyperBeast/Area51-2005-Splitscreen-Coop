@@ -13,6 +13,9 @@
 #include "UI/ui_button.hpp"
 #include "UI/ui_renderer.hpp"
 #include "NetworkMgr/Game/LocalCoop.hpp"
+#ifdef A51_LOCAL_COOP_QA
+#include "Input/backend/sdl/qa_bot.hpp"
+#endif
 
 #include "dlg_MainMenu.hpp"
 #include "StateMgr/StateMgr.hpp"
@@ -137,9 +140,14 @@ xbool dlg_main_menu::Create( s32                        UserID,
     // TEST ONLY: A51_QA_MENU_COOP=1 starts on "Splitscreen Co-op", so the bot's A presses
     // take the menu route a player takes (no A51_LOCAL_COOP start value, as A51.exe alone).
     {
+        static xbool s_bDone = FALSE;   // first visit only (the menu remembers its control later)
         const char* pMenuCoop = x_getenv( "A51_QA_MENU_COOP" );
-        if( pMenuCoop && ( pMenuCoop[0] == '1' ) && ( iControl == -1 ) )
+        if( pMenuCoop && ( pMenuCoop[0] == '1' ) && !s_bDone )
+        {
+            s_bDone  = TRUE;
             iControl = IDC_MAIN_MENU_MULTI;
+            qa_bot_Log( "main menu: the test starts on Splitscreen Co-op" );
+        }
     }
 #endif
     if( (iControl == -1) || (GotoControl(iControl)==NULL) )
