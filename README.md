@@ -2,7 +2,7 @@
 
 <img src="docs/images/Area%2051_%20Splitscreen%20Co-Op.png" alt="Area 51 Split-Screen Co-op banner with orange frame" width="100%">
 
-# AREA 51 / ( 4 Players Splitscreen soon!!!)
+# AREA 51 / ( 4 Players Splitscreen soon!!! )
 
 ## SPLIT-SCREEN CO-OP
 
