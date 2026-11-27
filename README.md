@@ -4,7 +4,7 @@
 
 # AREA 51 / ( 4 Players Splitscreen soon!!! )
 
-## SPLIT-SCREEN CO-OP
+## SPLIT-SCREEN CO-OP / 2 Players
 
 **Two players. One PC. The campaign — together.**
 
